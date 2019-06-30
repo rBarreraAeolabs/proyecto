@@ -1,0 +1,105 @@
+version: '2'
+services:
+
+  app:
+    image: registry.gitlab.com/ifyum/ifyum
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev,swagger
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://192.168.99.100:5432/pdisciplinario
+      - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+    ports:
+      # - 8080:8080
+      - 9000:9000
+      - 3001:3001
+    volumes:
+      - ~/proyectos/netlinux/registrocivil-pdisciplinario/app:/home/jhipster/app
+    #            - ~/proyectos/netlinux/registrocivil-pdisciplinario/.m2:/home/jhipster/.m2
+    command: tail -f /dev/null
+  db:
+    image: postgres:9.6.2
+    # volumes:
+    #     - ~/volumes/jhipster/siac/postgresql/:/var/lib/postgresql/
+    environment:
+      - POSTGRES_USER=pdisciplinario
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432
+  # mailhog:
+  #     image: mailhog/mailhog:latest
+  #     ports:
+  #         - 8025:8025
+  #         - 1025:1025
+
+  alfresco:
+    image: alfresco/alfresco-content-repository-community:6.1.2-ga
+    build: alfresco/
+    environment:
+      JAVA_OPTS: '
+        -Ddb.driver=org.postgresql.Driver
+        -Ddb.username=alfresco
+        -Ddb.password=alfresco
+        -Ddb.url=jdbc:postgresql://alfresco-db:5432/alfresco
+        -Dsolr.host=solr6
+        -Dsolr.port=8983
+        -Dsolr.secureComms=none
+        -Dsolr.base.url=/solr
+        -Dindex.subsystem.name=solr6
+        -Dshare.host=localhost
+        -Dalfresco.port=8080
+        -Ddeployment.method=DOCKER_COMPOSE
+        -Dcsrf.filter.enabled=false
+        -Xms1g -Xmx1g
+        -Daos.baseUrlOverwrite=http://localhost:8080/alfresco/aos
+        -Dmessaging.broker.url="failover:(nio://activemq:61616)?timeout=3000&jms.useCompression=true"
+        '
+    ports:
+      - 8082:8080
+    depends_on:
+      - alfresco-db
+
+  share:
+    image: alfresco/alfresco-share:6.1.0-RC3
+    mem_limit: 1g
+    environment:
+      - REPO_HOST=alfresco
+      - REPO_PORT=8080
+      - "CATALINA_OPTS= -Xms500m -Xmx500m"
+    ports:
+      - 8084:8080
+    depends_on:
+      - alfresco
+
+  alfresco-db:
+    image: postgres:10.1-alpine
+    environment:
+      - POSTGRES_PASSWORD=alfresco
+      - POSTGRES_USER=alfresco
+      - POSTGRES_DB=alfresco
+    ports:
+      - 5532:5432
+
+  solr6:
+    image: alfresco/alfresco-search-services:1.3.0-RC2
+    mem_limit: 2500m
+    environment:
+      #Solr needs to know how to register itself with Alfresco
+      - SOLR_ALFRESCO_HOST=alfresco
+      - SOLR_ALFRESCO_PORT=8080
+      #Alfresco needs to know how to call solr
+      - SOLR_SOLR_HOST=solr6
+      - SOLR_SOLR_PORT=8983
+      #Create the default alfresco and archive cores
+      - SOLR_CREATE_ALFRESCO_DEFAULTS=alfresco,archive
+      - "SOLR_JAVA_MEM=-Xms2g -Xmx2g"
+    ports:
+      - 8083:8983 #Browser port
+
+  activemq:
+    image: alfresco/alfresco-activemq:5.15.6
+    mem_limit: 2048m
+    ports:
+      - 8161:8161 # Web Console
+      - 5672:5672 # AMQP
+      - 61616:61616 # OpenWire
+      - 61613:61613 # STOMP
+

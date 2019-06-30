@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registrocivil-pdisciplinario-__CI_ENVIRONMENT_SLUG__
+  labels:
+    app: registrocivil-pdisciplinario
+    ref: __CI_ENVIRONMENT_SLUG__
+    track: stable
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: registrocivil-pdisciplinario
+      ref: __CI_ENVIRONMENT_SLUG__
+  template:
+    metadata:
+      labels:
+        app: registrocivil-pdisciplinario
+        ref: __CI_ENVIRONMENT_SLUG__
+        track: stable
+    spec:
+      imagePullSecrets:
+        - name: gitlabregistry
+      restartPolicy: Always
+
+      containers:
+        - name: app
+          image: registry.k.netlinux.cl/desarrollo/registrocivil-pdisciplinario:__VERSION__
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://registrocivil-pdisciplinario-__CI_ENVIRONMENT_SLUG__:5432/pdisciplinario
+            - name: SPRING_DATASOURCE_USERNAME
+              value: pdisciplinario
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: pdisciplinario
+
+        - name: postgres
+          image: postgres:9.6.2
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: pdisciplinario
+            - name: POSTGRES_PASSWORD
+              value: pdisciplinario
+            - name: POSTGRES_DB
+              value: pdisciplinario
+
+      # volumes:
+      #   - name: mysql-initdb
+      #     configMap:
+      #       name: mysql-initdb-config            
+
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: mysql-initdb-config
+#   labels:
+#     app: registrocivil-pdisciplinario
+#     ref: __CI_ENVIRONMENT_SLUG__
+#     track: stable  
+# data:
+#   initdb.sql: |
+#     CREATE TABLE friends (id INT, name VARCHAR(256), age INT, gender VARCHAR(3));
+#     INSERT INTO friends VALUES (1, 'John Smith', 32, 'm');
+#     INSERT INTO friends VALUES (2, 'Lilian Worksmith', 29, 'f');
+#     INSERT INTO friends VALUES (3, 'Michael Rupert', 27, 'm');

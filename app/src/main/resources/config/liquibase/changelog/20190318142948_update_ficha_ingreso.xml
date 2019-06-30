@@ -1,0 +1,39 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="sneiraillanes (generated)" id="1552919407281-1">
+        <createTable tableName="accion_ficha_ingreso">
+            <column name="ficha_ingreso_sdj_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="acciones" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1552919407281-2">
+        <addColumn tableName="ficha_ingreso_sdj">
+            <column name="numero_referencia" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1552919407281-3">
+        <addColumn tableName="ficha_ingreso_sdj">
+            <column name="providencia_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1552919407281-4">
+        <addUniqueConstraint columnNames="providencia_id" constraintName="UC_FICHA_INGRESO_SDJPROVIDENCIA_ID_COL" tableName="ficha_ingreso_sdj"/>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1552919407281-5">
+        <addForeignKeyConstraint baseColumnNames="providencia_id" baseTableName="ficha_ingreso_sdj" constraintName="FKa4ie4g4plett1hi1daqi1dgg2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="providencia"/>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1552919407281-6">
+        <addForeignKeyConstraint baseColumnNames="ficha_ingreso_sdj_id" baseTableName="accion_ficha_ingreso" constraintName="FKmwtx5pigrrqmx6x8wft4fyym4" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ficha_ingreso_sdj"/>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1552919407281-7">
+        <dropForeignKeyConstraint baseTableName="providencia" constraintName="fk_providencia_ficha_ingreso_id"/>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1552919407281-8">
+        <dropUniqueConstraint constraintName="ux_providencia_ficha_ingreso_id" tableName="providencia"/>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1552919407281-9">
+        <dropColumn columnName="ficha_ingreso_id" tableName="providencia"/>
+    </changeSet>
+</databaseChangeLog>

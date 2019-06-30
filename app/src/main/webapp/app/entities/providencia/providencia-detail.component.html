@@ -1,0 +1,241 @@
+<div class="row justify-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12"></div>
+            <div class="col-12">
+                <div class="">
+                    <div class="container">
+                        <jhi-alert></jhi-alert>
+                        <div *ngIf="providencia">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h2>
+                                        <span jhiTranslate="pdisciplinarioApp.providencia.detail.title">Providencia</span> {{providencia.id}}
+                                    </h2>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="d-flex justify-content-center">
+                                        <button type="button"
+                                                *ngIf="actionsPermitted.reply"
+                                                [disabled]="disableResponder"
+                                                class="btn btn-danger mr-2"
+                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/responder'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge">
+                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                            <span *ngIf="isResponder"> Responder</span>
+                                            <span *ngIf="!isResponder"> Aceptar</span>
+                                        </button>
+                                        <div class="dropdown" ngbDropdown>
+                                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+                                                Más opciones
+                                            </button>
+                                            <div class="dropdown-menu" ngbDropdownMenu>
+                                                <a class="dropdown-item" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                                                    <fa-icon icon="plus" fixedWidth="true"></fa-icon>
+                                                    <span>Imprimir</span>
+                                                </a>
+                                                <a class="dropdown-item" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                                                    <fa-icon icon="plus" fixedWidth="true"></fa-icon>
+                                                    <span>Exportar a excel</span>
+                                                </a>
+                                                <a class="dropdown-item" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                                                    <fa-icon icon="plus" fixedWidth="true"></fa-icon>
+                                                    <span>Exportar todo a excel</span>
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.relacionarProvidencia"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/relacionar'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                >
+                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Relacionar Providencia</span>
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.asignarFiscal"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/asignarFiscal'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                >
+                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Asignar Fiscal</span>
+                                                </a>
+                                                <a class="dropdown-item" *ngIf="actionsPermitted.goBackwards"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/devolver'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                >
+                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+
+                                                    <span *ngIf="isDevolver"> Devolver</span>
+                                                    <span *ngIf="!isDevolver"> Rechazar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <jhi-alert-error></jhi-alert-error>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
+                                    <dt><h4>Datos Del Solicitante</h4></dt>
+                                    <hr>
+                                    <dl class="dl-horizontal jh-entity-details">
+                                        <dt>
+                                            <span jhiTranslate="pdisciplinarioApp.providencia.rutSolicitante">Rut</span>
+                                        </dt>
+                                        <dd>
+                                            <span>{{providencia.runSolicitante  | rut}}</span>
+                                        </dd>
+                                        <dt>
+                                        <span jhiTranslate="pdisciplinarioApp.providencia.nombreSolicitante">Nombre </span>
+                                    </dt>
+                                        <dd>
+                                            <span>{{providencia.nombreSolicitante}}</span>
+                                        </dd>
+                                        <dt *ngIf="providencia.entidadSolicitante">
+                                            <span jhiTranslate="pdisciplinarioApp.providencia.entidadSolicitante">Entidad </span>
+                                        </dt>
+                                        <dd *ngIf="providencia.entidadSolicitante">
+                                            <span>{{providencia.entidadSolicitante}}</span>
+                                        </dd>
+
+                                    </dl>
+                                </div>
+                                <br>
+                                <div class="col-sm-6">
+                                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
+                                    <dt><h4>Datos Del Implicado</h4></dt>
+                                    <hr>
+                                    <dl class="dl-horizontal jh-entity-details">
+                                        <dt>
+                                            <span jhiTranslate="pdisciplinarioApp.providencia.rutImplicado">Rut</span>
+                                        </dt>
+                                        <dd>
+                                            <span>{{providencia.runImplicado | rut}}</span>
+                                        </dd>
+                                        <dt>
+                                            <span jhiTranslate="pdisciplinarioApp.providencia.nombreImplicado">Nombre</span>
+                                        </dt>
+                                        <dd>
+                                            <span>{{providencia.nombreImplicado}}</span>
+                                        </dd>
+                                        <dt *ngIf="providencia.entidadImplicada">
+                                            <span jhiTranslate="pdisciplinarioApp.providencia.entidadImplicada">Entidad</span>
+                                        </dt>
+                                        <dd *ngIf="providencia.entidadImplicada">
+                                            <span>{{providencia.entidadImplicada}}</span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="col-sm-12">
+                                <dt><h4>Datos De La Providencia</h4></dt>
+                                <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div style="padding: 10px 20px; font-size: 17.5px"></div>
+                                            <dl class="dl-horizontal jh-entity-details">
+                                                <dt><span jhiTranslate="pdisciplinarioApp.providencia.fechaSolicitud">Fecha Solicitud</span>
+                                                </dt>
+                                                <dd>
+                                                    <span>{{providencia.fechaSolicitud | date:'medium'}}</span>
+                                                </dd>
+                                                <dt>
+                                                    <span jhiTranslate="pdisciplinarioApp.providencia.numero">Numero</span>
+                                                </dt>
+                                                <dd>
+                                                    <span>{{providencia.numero}}</span>
+                                                </dd>
+                                                <dt *ngIf="providencia.tipo">
+                                                    <span jhiTranslate="pdisciplinarioApp.providencia.tipo">Tipo</span></dt>
+                                                <dd>
+                                                    <span jhiTranslate="{{'pdisciplinarioApp.TipoProvidencia.' + providencia.tipo}}">{{providencia.tipo}}</span>
+                                                </dd>
+
+                                                <dt *ngIf="providencia.acciones && providencia.acciones.length > 0"><span jhiTranslate="pdisciplinarioApp.providencia.acciones"></span></dt>
+                                                <dd *ngFor="let accion of providencia.acciones">
+                                                    {{accion.split('_').join(' ')}}
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div style="padding: 10px 20px; font-size: 17.5px"></div>
+                                            <dl class="dl-horizontal jh-entity-details">
+                                                <dt *ngIf="providencia.comentario"><span
+                                                    jhiTranslate="pdisciplinarioApp.providencia.comentario">Comentario</span>
+                                                </dt>
+                                                <dd *ngIf="providencia.comentario">
+                                                    <span>{{providencia.comentario}}</span>
+                                                </dd>
+                                                <dt>
+                                                    <span jhiTranslate="pdisciplinarioApp.providencia.estadoActual">Estado Actual</span>
+                                                </dt>
+                                                <dd>
+                                                <span>
+                                                    {{providencia.estadoActual.split('_').join(' ')}}
+                                                </span>
+                                                </dd>
+
+                                                <dt>
+                                                <span jhiTranslate="pdisciplinarioApp.providencia.fechaCreacion">
+                                                    Fecha Creacion
+                                                </span>
+                                                </dt>
+                                                <dd>
+                                                    <span>{{providencia.fechaCreacion | date:'medium'}}</span>
+                                                </dd>
+                                                <dt *ngIf="providencia.adjuntos">
+                                                    <span>Cantidad de archivos adjuntos</span>
+                                                </dt>
+                                                <dd *ngIf="providencia.adjuntos.length != 0">
+                                                    <span>{{providencia.adjuntos.length}}</span>
+                                                </dd>
+                                                <dd *ngIf="providencia.adjuntos.length == 0">
+                                                    <span> SIN ADJUNTOS </span>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <!--AQUI VIENEN LOS TABS-->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="tab-content">
+                                        <ngb-tabset justify="fill">
+                                            <ngb-tab title="Respuesta" *ngIf="actionsPermitted.watchTabRespuesta">
+                                                <ng-template ngbTabContent>
+                                                    <jhi-respuesta-update [providencia]="providencia" (resp)="getRespuesta($event)">
+
+                                                    </jhi-respuesta-update>
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <ngb-tab title="Bitácora de movimientos">
+                                                <ng-template ngbTabContent>
+                                                    <jhi-movimiento-providencia [providencia]="providencia"></jhi-movimiento-providencia>
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <ngb-tab title="Solicitudes Relacionadas ">
+                                                <ng-template ngbTabContent>
+                                                    <jhi-providencia-relacionadas [providencia]="providencia"></jhi-providencia-relacionadas>
+                                                </ng-template>
+                                            </ngb-tab>
+                                        </ngb-tabset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

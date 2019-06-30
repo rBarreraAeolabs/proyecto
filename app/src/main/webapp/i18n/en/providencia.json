@@ -1,0 +1,49 @@
+{
+    "pdisciplinarioApp": {
+        "providencia" : {
+            "home": {
+                "title": "Providencias",
+                "createLabel": "Create New Providencia",
+                "editLabel": "Edit a Providencia"
+            },
+            "modal":{
+                "numeroResolucion": "Assign number To "
+            },
+            "created": "A new Providencia is created with identifier {{ param }}",
+            "updated": "A Providencia is updated with identifier {{ param }}",
+            "deleted": "A Providencia is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Providencia {{ id }}?"
+            },
+            "detail": {
+                "title": "Providencia ID",
+                "assign": "Asign Number Resolution"
+            },
+            "numero": "N° Providencia",
+            "estadoActual": "Estado Actual",
+            "tipo": "Tipo",
+            "caracter": "Caracter",
+            "comentario": "Comentario",
+            "comentarioDevolucion": "Comentario del motivo de la devolución",
+            "fechaSolicitud": "Fecha Solicitud",
+            "fechaCreacion": "Fecha Creacion",
+            "coordinarCon": "Coordinar Con",
+            "fichaIngreso": "Ficha Ingreso",
+            "derivaciones": "Derivaciones",
+            "hashesDocumentos": "Hashes Documentos",
+            "hashesAdjuntos": "Hashes Adjuntos",
+            "movimientos": "Movimientos",
+            "grupos": "Con copia a",
+            "sumarioAdministrativo": "Sumario Administrativo",
+            "investigacionSumaria": "Investigacion Sumaria",
+            "acciones": "Instructions",
+            "nombrePersona": "Nombre",
+            "rutSolicitante": "Rut",
+            "nombreSolicitante": "Nombre",
+            "entidadSolicitante": "Entidad",
+            "rutImplicado": "Rut",
+            "nombreImplicado": "Nombre",
+            "entidadImplicada": "Entidad"
+        }
+    }
+}

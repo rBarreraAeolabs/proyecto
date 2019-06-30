@@ -1,0 +1,309 @@
+enum TipoFuncionario
+{
+	DIRECTOR_NACIONAL, 
+    DIRECTOR_REGIONAL,
+    SUBDIRECTOR_NACIONAL,
+    SUBDIRECTOR_REGIONAL,
+    SECRETARIO_NACIONAL,
+    SECRETARIO_REGIONAL,
+    FISCAL_NACIONAL,
+    FISCAL_REGIONAL,
+    DGDP_NACIONAL,
+    DGDP_REGIONAL,
+    UPD_NACIONAL,
+    UPD_REGIONAL,
+    INCULPADO,
+    CONTRALORIA,
+    ABOGADO,
+    REMUNERACION_NACIONAL,
+    REMUNERACION_REGIONAL
+}
+
+enum TipoProvidencia
+{
+	SUMARIO_ADMINISTRATIVO, 
+    INVESTIGACION_SUMARIA
+}
+
+enum TipoAdjunto {
+
+    NOTIFICACION_DE_ASIGNACION_FISCAL, 
+    NOTIFICACION_DE_INHABILITA, 
+    NOTIFICACION_DE_ACEPTACION, 
+    DESIGNA_NUEVO_FISCAL, 
+    RESOLUCION_DE_INVESTIGACION, 
+    INFORME_DE_ELEVAR_SUMARIO, 
+    INFORME_DE_PROPONER_SOBRE_SEIMIENTO, 
+    INFORME_DE_FORMULACION_DE_CARGOS, 
+    RESOLUCION_DE_ELEVA_SUMARIO, 
+    NOTIFICACION_DE_RECHAZO_ELEVA_SUMARIO, 
+    RESOLUCION_DE_PROPONER_SOBRE_SEIMIENTO, 
+    NOTIFICACION_DE_FORMULACION_DE_CARGOS, 
+    INFORME_DESCARGO, 
+    INFORME_DE_SOLICITUD_DE_TERMINO_APROBATORIO, 
+    INFORME_DE_TERMINO_APROBATORIO, 
+    INFORME_DE_PROPUESTA_DE_SANCION, 
+    RESOLUCION_DE_SANCION, 
+    RESOLUCION_DE_RECHAZO_DE_SANCION, 
+    NOTIFICACION_DE_RECHAZO_PROPONE_SOBRE_SEIMEINTO, 
+    INFORME_DE_REALIZAR_DILIGENCIAS, 
+    INFORME_DE_PROPONER_MEDIDAS, 
+    RESOLUCION_DE_ACEPTACION_DE_LAS_MEDIDAS, 
+    RESOLUCION_DE_REAPERTURA, 
+    INFORME_DE_TRAER_EL_PROCESO_AL_INICIO, 
+    INFORME_DE_RECURSO_DE_REPOSICION, 
+    NOTIFICACION_DE_RECURSO_DE_REPOSICION, 
+    INFORME_DE_ABSOLVER, 
+    RESOLUCION_DE_ACEPTACION_DE_RESOLUCION_DE_ABSOLVER, 
+    NOTIFICACION_DE_REGISTRO_DE_RESOLUCION_DE_ABSOLVER, 
+    NOTIFICACION_DE_APLICAR_MEDIDAS_DISCIPLINARIAS, 
+    INFORME_DE_ACEPTACION_TOTAL, 
+    INFORME_DE_ACEPTACION_PARCIAL, 
+    INFORME_DE_RECHAZO_DE_RECURSO_DE_REPOSICION, 
+    RESOLUCION_AFINATORIA_CENSURA, 
+    RESOLUCION_AFINATORIA_MULTA, 
+    RESOLUCION_AFINATORIA_SUSPENSION, 
+    NOTIFICACION_DE_RESOLUCION_AFINATORIA_CENSURA, 
+    NOTIFICACION_DE_RESOLUCION_AFINATORIA_MULTA, 
+    NOTIFICACION_DE_RESOLUCION_AFINATORIA_SUSPENSION, 
+    RESOLUCION_AFINATORIA_DESTITUCION, 
+    NOTIFICACION_DE_RESOLUCION_AFINATORIA_DESTITUCION, 
+    RESOLUCION_AFINATORIA_DE_ABSOLUCION_TOTAL, 
+    RESOLUCION_AFINATORIA_DE_ABSOLUCION_PARCIAL, 
+    INFORME_DE_APLICAR_MEDIDAS, 
+    NOTIFICACION_DE_RESOLUCION_AFINATORIA_DE_ABSOLUCION_PARCIAL, 
+    NOTIFICACION_DE_RESOLUCION_AFINATORIA_DE_ABSOLUCION_TOTAL, 
+    INFORME_DE_RESUCURSO_DE_REPOSICION_CON_APELACION_DE_SUBSIDIO, 
+    INFORME_JURIDICO
+	
+}
+
+enum EstadoProvidencia {
+	CREADA,
+    ESPERA,
+    FINALIZADA,
+    DEVUELTO,
+    SOLICITUD_FIRMA_SUBDIRECTOR,
+    SOLICITUD_FIRMA_DIRECTOR,
+    ESPERA_RESOLUCION_EXENTA,
+    ESPERA_ASIGNACION_NUMERO,
+    ESPERA_INFORME_FISCAL,
+    NOTIFICA_FISCAL,
+    ESPERA_ACEPTACION_RECHAZO_FISCAL,
+    INICIO_INVESTIGACION,
+    PRIMERA_PRORROGA_INVESTIGACION,
+    SEGUNDA_PRORROGA_INVESTIGACION,
+    VISTA_FISCAL_ENVIADA_A_DIRECTOR_NACIONAL,
+    ESPERA_ASIGNACION_ABOGADO,
+    ESPERA_RESPUESTA_ABOGADO,
+    ESPERA_RESPUESTA_INFORME_SUBDIRECCION
+}
+
+enum FileUploadStatus {
+    ANALIZANDO,
+    ADJUNTO_DE_RESPUESTA_TEMPORAL,
+    INFECTADO,
+    ESCANEADO_SIN_VIRUS,
+    FORMATO_Y_PESO_VALIDADO,
+    SUCCESS,
+    ERROR
+}
+
+enum Caracter {
+	RESERVADO, 
+    URGENTE, 
+    REITERO
+}
+
+enum Accion {
+    TOMAR_CONOCIMIENTO, 
+    CUMPLIMIENTO, 
+    INFORMAR_A_ESTA_DIRECCION, 
+    ESTUDIAR_Y_PROPONER, 
+    PROPONER_RESPUESTA_DE_DIRECTOR,
+    OFICIO_CARTA_USUARIO, 
+    PROPONER_RESOLUCION, 
+    ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_DERECHO, 
+    CONVERSARLO_CONMIGO,
+    ACTIVAR_TRAMITE, 
+    INSTRUIR_A_QUIEN_CORRESPONDA, 
+    ACUMULAR_A_LOS_ANTECEDENTES, 
+    CONFORME_CON_PROPOSICION,
+    CONTESTAR_DIRECTAMENTE_AL_INTERESADO, 
+    ENVIAR_COPIA_ESTA_DIRECCION, 
+    COORDINAR_CON
+}
+
+enum EstadoDerivacion {
+	LEIDO, NO_LEIDO
+}
+
+enum TipoDerivacion {
+	TIPO_UNO, TIPO_DOS
+}
+
+enum TipoPlantilla {
+	MEMO, RESOLUCION
+}
+
+enum EstadoSumarioAdministrativo
+{
+	ESTADO_UNO, ESTADO_DOS
+}
+
+enum EstadoInvestigacionSumaria
+{
+	ESTADO_UNO, ESTADO_DOS, ELEVADO_A_SUMARIO
+}
+
+entity Perfil {
+    nombre String required
+}
+
+entity Grupo {
+    nombre String required
+}
+
+entity Plazo {
+    nombre String
+    dias Integer
+}
+
+entity Plantilla
+{
+    nombre String
+    contenido String
+    tipo TipoPlantilla
+    estado EstadoProvidencia
+}
+
+entity Documento {
+    descripcion String
+    contenido String
+    fechaCreado LocalDate
+    archivoNombre String
+    archivoMimeType String
+    archivoSize Long
+    archivo Blob
+    archivoContentType String
+    alfrescoNodeId String
+    alfrescoNodePath String
+    localPath String
+    hash String
+}
+
+entity Adjunto {
+    tipoAdjunto TipoAdjunto
+    nombre String
+    descripcion String
+    fechaCreado LocalDate
+    fechaSubido Instant
+    archivoNombre String
+    archivoMimeType String
+    archivoSize Long
+    estado FileUploadStatus
+    archivo Blob
+    archivoContentType String
+    alfrescoNodeId String
+    alfrescoNodePath String
+    localPath String
+    hash String
+}
+
+entity FichaIngresoSdj {
+	id Long
+	fechaInicio Instant
+    observacion String
+    plazo Integer
+    fechaHasta Instant
+}
+
+entity Derivacion {
+    observacion String
+    fechaDerivacion Instant
+    estado EstadoDerivacion
+    tipo TipoDerivacion
+}
+
+entity Providencia {
+    numero Long
+    estadoActual EstadoProvidencia
+    tipo TipoProvidencia
+    caracter Caracter
+    comentario String
+    fechaSolicitud Instant
+    fechaCreacion Instant
+    coordinarCon String
+}
+
+entity SumarioAdministrativo {
+    campoUno String
+}
+
+entity InvestigacionSumaria {
+    compoTres String
+}
+
+entity MovimientoProvidencia {
+    estadoAnterior EstadoProvidencia
+    estadoNuevo EstadoProvidencia
+    fecha Instant
+    accion Accion
+}
+
+entity MovimientoSumarioAdministrativo 
+{
+	estadoAnterior EstadoSumarioAdministrativo
+    estadoNuevo EstadoSumarioAdministrativo
+    fecha Instant
+}
+
+entity MovimientoInvestigacionSumaria 
+{
+	estadoAnterior EstadoInvestigacionSumaria
+    estadoNuevo EstadoInvestigacionSumaria
+    fecha Instant
+}
+
+relationship ManyToMany {
+	Perfil{grupos} to Grupo{perfiles}
+    Providencia{grupos} to Grupo{providencias}
+}
+
+relationship OneToMany {
+    Providencia{derivaciones} to Derivacion{providencia}
+    Providencia{hashesDocumentos} to Documento{providencia}
+    Providencia{hashesAdjuntos} to Adjunto{providencia}
+    Derivacion{hashesDerivacion} to Documento{derivacion}
+    Providencia{movimientos} to MovimientoProvidencia{providencia}
+    MovimientoProvidencia{hashesDocumentos} to Documento{movimientoProvidencia}
+    MovimientoProvidencia{hashesAdjuntos} to Adjunto{movimientoProvidencia}
+  	SumarioAdministrativo{providencias} to Providencia{sumarioAdministrativo}
+    InvestigacionSumaria{providencias} to Providencia{investigacionSumaria}
+    SumarioAdministrativo{movimientosSumarioAdmin} to MovimientoSumarioAdministrativo{sumarioAdministrativo}
+    InvestigacionSumaria{movimientoInvestSumaria} to MovimientoInvestigacionSumaria{investigacionSumaria}
+    Plazo{movimientosProvidenci} to MovimientoProvidencia{plazo}
+}
+
+relationship OneToOne {
+	Providencia{fichaIngreso} to FichaIngresoSdj{providencia}
+    SumarioAdministrativo{investigacionSumaria} to InvestigacionSumaria
+}
+
+// Set pagination options
+// paginate JobHistory, Employee with infinite-scroll
+// paginate Job with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+// service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+
+
+
+
+

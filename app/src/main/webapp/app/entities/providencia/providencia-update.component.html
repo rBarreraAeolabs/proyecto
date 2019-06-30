@@ -1,0 +1,112 @@
+<div class="row justify-content-center" style="width: auto">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-providencia-heading" jhiTranslate="pdisciplinarioApp.providencia.home.createLabel" *ngIf="!providencia.id"></h2>
+
+            <h2 id="jhi-providencia-heading-edit" jhiTranslate="pdisciplinarioApp.providencia.home.editLabel" *ngIf="providencia.id"></h2>
+
+            <div class="mb-2">
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!providencia.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="providencia.id" readonly/>
+                </div>
+                <fieldset class="col-md-12">
+                    <legend>Datos Del Solicitante</legend>
+                    <div class="form-group">
+                        <label class="form-control-label" for="field_run">Rut</label>
+                        <input type="text" class="form-control" name="run_solicitante" id="field_run"  validateRut RutPipe formatRut required [(ngModel)]="providencia.runSolicitante"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="field_nombre_solicitante">Nombre</label>
+                        <input type="text" class="form-control" name="nombre_solicitante" id="field_nombre_solicitante" [(ngModel)]="providencia.nombreSolicitante"/>
+                    </div>
+                    <div class="form-group" *ngIf="entidades && entidades.length > 0">
+                        <label>Asignar entidad</label>
+                        <select class="form-control" id="entidad_solicitante" name="entidad_solicitante" [(ngModel)]="providencia.entidadSolicitante">
+                            <option *ngFor="let entidad of entidades" [ngValue]="entidad">{{entidad.nombre}}</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <br>
+                <fieldset class="col-md-12">
+                    <legend>Datos Del Grupo-Persona A Investigar O sumariar</legend>
+                    <div class="form-group">
+                        <label class="form-control-label" for="field_run_implicado">Rut</label>
+                        <input type="text" class="form-control" name="rut_implicado" id="field_run_implicado" validateRut RutPipe formatRut required [(ngModel)]="providencia.runImplicado"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="field_nombre_implicado">Nombre</label>
+                        <input type="text" class="form-control" name="nombre_implicado" id="field_nombre_implicado" [(ngModel)]="providencia.nombreImplicado"/>
+                    </div>
+                    <div class="form-group" *ngIf="entidades && entidades.length > 0">
+                        <label>Asignar entidad</label>
+                        <select class="form-control" id="entidad_implicada" name="entidad_implicada" [(ngModel)]="providencia.entidadImplicada">
+                            <option *ngFor="let entidad of entidades" [ngValue]="entidad">{{entidad.nombre}}</option>
+                        </select>
+                    </div>
+
+                </fieldset>
+                <br>
+                <fieldset class="col-md-12">
+                    <legend>Datos De La Providencia</legend>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="pdisciplinarioApp.providencia.numero" for="field_numero"></label>
+                        <input type="number" class="form-control" name="numero" id="field_numero" [(ngModel)]="providencia.numero"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="pdisciplinarioApp.providencia.tipo" for="field_tipo">Tipo</label>
+                        <select class="form-control" name="tipo" [(ngModel)]="providencia.tipo" id="field_tipo">
+                            <option select disabled>Selecciona una opción</option>
+                            <option value="SUMARIO_ADMINISTRATIVO">{{'pdisciplinarioApp.TipoProvidencia.SUMARIO_ADMINISTRATIVO' | translate}}</option>
+                            <option value="INVESTIGACION_SUMARIA">{{'pdisciplinarioApp.TipoProvidencia.INVESTIGACION_SUMARIA' | translate}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="pdisciplinarioApp.providencia.acciones">Instrucciones</label>
+                        <angular2-multiselect
+                            name="selectedAcciones"
+                            [data]="dropdownListAcciones"
+                            [(ngModel)]="selectedAcciones"
+                            [settings]="dropdownSettingsAcciones"
+                            (onSelect)="onItemSelect($event)"
+                            (onDeSelect)="OnItemDeSelect($event)"
+                            (onSelectAll)="onSelectAll($event)"
+                            (onDeSelectAll)="onDeSelectAll($event)">
+                        </angular2-multiselect>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="pdisciplinarioApp.providencia.comentario" for="field_comentario">Comentario</label>
+                        <textarea
+                            type="text"
+                            class="form-control"
+                            name="comentario"
+                            id="field_comentario"
+                            [(ngModel)]="providencia.comentario">
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="pdisciplinarioApp.providencia.fechaSolicitud" for="field_fechaSolicitud">Fecha Solicitud</label>
+                        <div class="d-flex">
+                            <input id="field_fechaSolicitud" type="datetime-local" class="form-control" name="fechaSolicitud" [(ngModel)]="fechaSolicitud" required/>
+                        </div>
+                    </div>
+                    <div class="form-group" style="height: auto">
+                        <label class="form-control-label">Adjuntar Archivos</label>
+                    </div>
+                    <div>
+                        <jhi-file-upload-component (fileResponse)="getUploadedAdjuntos($event)"></jhi-file-upload-component>
+                    </div>
+                </fieldset>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="row justify-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12"></div>
+            <div class="col-12">
+                <div class="">
+                    <div class="container">
+                        <div *ngIf="providencia">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h2><span
+                                        jhiTranslate="pdisciplinarioApp.providencia.detail.assign">Numerar Resolucion</span> {{providencia.id}}
+                                    </h2>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="d-flex justify-content-center">
+
+                                        <button class="btn btn-danger mr-2"
+                                                type="button"
+                                                id="asignarNumero"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true"
+                                                aria-expanded="false"
+                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/numerarResolucion'} }]"
+                                        >
+                                            Asignar N° Resolucion
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <jhi-alert-error></jhi-alert-error>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
+                                    <dl class="dl-horizontal jh-entity-details">
+                                        <dt><span jhiTranslate="pdisciplinarioApp.providencia.fechaSolicitud">Fecha Solicitud</span>
+                                        </dt>
+                                        <dd>
+                                            <span>{{providencia.fechaSolicitud | date:'medium'}}</span>
+                                        </dd>
+                                        <dt>
+                                            <span jhiTranslate="pdisciplinarioApp.providencia.numero">Numero</span>
+                                        </dt>
+                                        <dd>
+                                            <span>{{providencia.numero}}</span>
+                                        </dd>
+                                        <dt>
+                                            <span jhiTranslate="pdisciplinarioApp.providencia.tipo">Tipo</span></dt>
+                                        <dd>
+                                            <span jhiTranslate="{{'pdisciplinarioApp.TipoProvidencia.' + providencia.tipo}}">{{providencia.tipo}}</span>
+                                        </dd>
+
+                                        <dt *ngIf="providencia.acciones && providencia.acciones.length > 0"><span jhiTranslate="pdisciplinarioApp.providencia.acciones"></span></dt>
+                                        <dd *ngFor="let accion of providencia.acciones">
+                                            {{accion.split('_').join(' ')}}
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
+                                    <dl class="dl-horizontal jh-entity-details">
+                                        <dt *ngIf="providencia.comentario"><span
+                                            jhiTranslate="pdisciplinarioApp.providencia.comentario">Comentario</span>
+                                        </dt>
+                                        <dd *ngIf="providencia.comentario">
+                                            <span>{{providencia.comentario}}</span>
+                                        </dd>
+                                        <dt>
+                                            <span jhiTranslate="pdisciplinarioApp.providencia.estadoActual">Estado Actual</span>
+                                        </dt>
+                                        <dd>
+                                            <span>
+                                                {{providencia.estadoActual.split('_').join(' ')}}
+                                            </span>
+                                        </dd>
+
+                                        <dt>
+                                            <span jhiTranslate="pdisciplinarioApp.providencia.fechaCreacion">
+                                                Fecha Creacion
+                                            </span>
+                                        </dt>
+                                        <dd>
+                                            <span>{{providencia.fechaCreacion | date:'medium'}}</span>
+                                        </dd>
+                                        <dt *ngIf="providencia.adjuntos">
+                                            <span>Cantidad de archivos adjuntos</span>
+                                        </dt>
+                                        <dd *ngIf="providencia.adjuntos.length != 0">
+                                            <span>{{providencia.adjuntos.length}}</span>
+                                        </dd>
+                                        <dd *ngIf="providencia.adjuntos.length == 0">
+                                            <span> SIN ADJUNTOS </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

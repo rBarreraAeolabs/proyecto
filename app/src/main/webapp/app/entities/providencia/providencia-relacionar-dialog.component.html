@@ -1,0 +1,172 @@
+<form name="deleteForm" (ngSubmit)="onSave()">
+    <div class="modal-header">
+        <h4 class="modal-title">Relacionar Providencia</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;
+        </button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <jhi-alert></jhi-alert>
+        <p id="jhi-responder-providencia-heading">
+            <!--Seguro que desea dar respuesta a la providencia # {{providencia.numero}}?-->
+        </p>
+        <form>
+            <div class="form-group">
+                <label class="form-control-label">Seleccionar N° de Referencia de la Providencia Madre</label>
+                <select class="form-control" (change)="onChange($event)">
+                    <option disabled>selecciona n°</option>
+                    <option *ngFor="let providencia of providencias" value="{{providencia.id}}">
+                        {{providencia.numero}}
+                    </option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="modal-body" *ngIf="providenciaSeleccionada">
+
+        <hr>
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
+                    <dt><h4>Datos Del Solicitante</h4></dt>
+                    <hr>
+                    <dl class="dl-horizontal jh-entity-details">
+                        <dt>
+                            <span jhiTranslate="pdisciplinarioApp.providencia.rutSolicitante">Rut</span>
+                        </dt>
+                        <dd>
+                            <span>{{providenciaSeleccionada.runSolicitante  | rut}}</span>
+                        </dd>
+                        <dt>
+                            <span jhiTranslate="pdisciplinarioApp.providencia.nombreSolicitante">Nombre </span>
+                        </dt>
+                        <dd>
+                            <span>{{providenciaSeleccionada.nombreSolicitante}}</span>
+                        </dd>
+                        <dt *ngIf="providenciaSeleccionada.entidadSolicitante">
+                            <span jhiTranslate="pdisciplinarioApp.providencia.entidadSolicitante">Entidad </span>
+                        </dt>
+                        <dd *ngIf="providenciaSeleccionada.entidadSolicitante">
+                            <span>{{providenciaSeleccionada.entidadSolicitante}}</span>
+                        </dd>
+
+                    </dl>
+                </div>
+                <br>
+                <div class="col-sm-6">
+                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
+                    <dt><h4>Datos Del Implicado</h4></dt>
+                    <hr>
+                    <dl class="dl-horizontal jh-entity-details">
+                        <dt>
+                            <span jhiTranslate="pdisciplinarioApp.providencia.rutImplicado">Rut</span>
+                        </dt>
+                        <dd>
+                            <span>{{providenciaSeleccionada.runImplicado | rut}}</span>
+                        </dd>
+                        <dt>
+                            <span jhiTranslate="pdisciplinarioApp.providencia.nombreImplicado">Nombre</span>
+                        </dt>
+                        <dd>
+                            <span>{{providenciaSeleccionada.nombreImplicado}}</span>
+                        </dd>
+                        <dt *ngIf="providenciaSeleccionada.entidadImplicada">
+                            <span jhiTranslate="pdisciplinarioApp.providencia.entidadImplicada">Entidad</span>
+                        </dt>
+                        <dd *ngIf="providenciaSeleccionada.entidadImplicada">
+                            <span>{{providenciaSeleccionada.entidadImplicada}}</span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <hr>
+            <dt class="d-flex justify-content-center">
+                <h4>Datos De La Providencia</h4>
+            </dt>
+            <hr>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
+                    <dl class="dl-horizontal jh-entity-details">
+                        <dt><span jhiTranslate="pdisciplinarioApp.providencia.fechaSolicitud">Fecha Solicitud</span>
+                        </dt>
+                        <dd>
+                            <span>{{providenciaSeleccionada.fechaSolicitud | date:'medium'}}</span>
+                        </dd>
+                        <dt>
+                            <span jhiTranslate="pdisciplinarioApp.providencia.numero">Numero</span>
+                        </dt>
+                        <dd>
+                            <span>{{providenciaSeleccionada.numero}}</span>
+                        </dd>
+                        <dt>
+                            <span jhiTranslate="pdisciplinarioApp.providencia.tipo">Tipo</span>
+                        </dt>
+                        <dd>
+                            <span jhiTranslate="{{'pdisciplinarioApp.TipoProvidencia.' + providenciaSeleccionada.tipo}}">{{providenciaSeleccionada.tipo}}</span>
+                        </dd>
+
+                        <dt *ngIf="providenciaSeleccionada.acciones && providenciaSeleccionada.acciones.length > 0"><span jhiTranslate="pdisciplinarioApp.providencia.acciones"></span></dt>
+                        <dd *ngFor="let accion of providenciaSeleccionada.acciones">
+                            {{accion.split('_').join(' ')}}
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-sm-6">
+                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
+                    <dl class="dl-horizontal jh-entity-details">
+                        <dt>
+                            <span jhiTranslate="pdisciplinarioApp.providencia.estadoActual">Estado Actual</span>
+                        </dt>
+                        <dd>
+                            <span>
+                                {{providenciaSeleccionada.estadoActual.split('_').join(' ')}}
+                            </span>
+                        </dd>
+
+                        <dt>
+                            <span jhiTranslate="pdisciplinarioApp.providencia.fechaCreacion">
+                                Fecha Creacion
+                            </span>
+                        </dt>
+                        <dd>
+                            <span>{{providenciaSeleccionada.fechaCreacion | date:'medium'}}</span>
+                        </dd>
+                        <dt *ngIf="providenciaSeleccionada.adjuntos">
+                            <span>Cantidad de archivos adjuntos</span>
+                        </dt>
+                        <dd *ngIf="providenciaSeleccionada.adjuntos.length != 0">
+                            <span>{{providenciaSeleccionada.adjuntos.length}}</span>
+                        </dd>
+                        <dd *ngIf="providenciaSeleccionada.adjuntos.length == 0">
+                            <span> SIN ADJUNTOS </span>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-sm-12">
+                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
+                    <dl class="dl-horizontal jh-entity-details">
+                        <dt class="d-flex justify-content-center"  *ngIf="providenciaSeleccionada.comentario">
+                            <span jhiTranslate="pdisciplinarioApp.providencia.comentario">Comentario</span>
+                        </dt>
+                        <dd *ngIf="providenciaSeleccionada.comentario">
+                            <span>{{providenciaSeleccionada.comentario}}</span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+        <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success" [disabled]="disabledSave">
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.derivar">Derivar</span>
+        </button>
+    </div>
+</form>

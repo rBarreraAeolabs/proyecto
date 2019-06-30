@@ -1,0 +1,27 @@
+
+{
+    "pdisciplinarioApp": {
+        "derivacion" : {
+            "home": {
+                "title": "Responses",
+                "createLabel": "Create a new Derivacion",
+                "createOrEditLabel": "Create or edit a Derivacion"
+            },
+            "created": "A new Derivacion is created with identifier {{ param }}",
+            "updated": "A Derivacion is updated with identifier {{ param }}",
+            "deleted": "A Derivacion is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Derivacion {{ id }}?"
+            },
+            "detail": {
+                "title": "Derivacion"
+            },
+            "observacion": "Observacion",
+            "fechaDerivacion": "Fecha Derivacion",
+            "estado": "Estado",
+            "tipo": "Tipo",
+            "hashesDerivacion": "Hashes Derivacion",
+            "providencia": "Providencia"
+        }
+    }
+}

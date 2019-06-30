@@ -1,0 +1,14 @@
+{
+    "pdisciplinarioApp": {
+        "FileUploadStatus" : {
+            "null": "",
+            "ANALIZANDO": "ANALIZANDO",
+            "ADJUNTO_DE_RESPUESTA_TEMPORAL": "ADJUNTO_DE_RESPUESTA_TEMPORAL",
+            "INFECTADO": "INFECTADO",
+            "ESCANEADO_SIN_VIRUS": "ESCANEADO_SIN_VIRUS",
+            "FORMATO_Y_PESO_VALIDADO": "FORMATO_Y_PESO_VALIDADO",
+            "SUCCESS": "SUCCESS",
+            "ERROR": "ERROR"
+        }
+    }
+}

@@ -1,0 +1,38 @@
+
+{
+    "pdisciplinarioApp": {
+        "adjunto" : {
+            "home": {
+                "title": "Adjuntos",
+                "createLabel": "Crear nuevo Adjunto",
+                "createOrEditLabel": "Crear o editar Adjunto"
+            },
+            "created": "Un nuevo Adjunto ha sido creado con el identificador {{ param }}",
+            "updated": "Un Adjunto ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Adjunto ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Adjunto {{ id }}?"
+            },
+            "detail": {
+                "title": "Adjunto"
+            },
+            "tipoAdjunto": "Tipo Adjunto",
+            "nombre": "Nombre",
+            "descripcion": "Descripcion",
+            "fechaCreado": "Fecha Creado",
+            "fechaSubido": "Fecha Subido",
+            "archivoNombre": "Archivo Nombre",
+            "archivoMimeType": "Archivo Mime Type",
+            "archivoSize": "Archivo Size",
+            "estado": "Estado",
+            "archivo": "Archivo",
+            "archivoContentType": "Archivo Content Type",
+            "alfrescoNodeId": "Alfresco Node Id",
+            "alfrescoNodePath": "Alfresco Node Path",
+            "localPath": "Local Path",
+            "hash": "Hash",
+            "providencia": "Providencia",
+            "movimientoProvidencia": "Movimiento Providencia"
+        }
+    }
+}

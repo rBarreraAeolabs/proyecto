@@ -1,0 +1,59 @@
+{
+    "name": "MovimientoProvidencia",
+    "fields": [
+        {
+            "fieldName": "estadoAnterior",
+            "fieldType": "EstadoProvidencia",
+            "fieldValues": "CREADA,ESPERA,FINALIZADA,DEVUELTO,SOLICITUD_FIRMA_SUBDIRECTOR,SOLICITUD_FIRMA_DIRECTOR,ESPERA_RESOLUCION_EXENTA,ESPERA_ASIGNACION_NUMERO,ESPERA_INFORME_FISCAL,NOTIFICA_FISCAL,ESPERA_ACEPTACION_RECHAZO_FISCAL,INICIO_INVESTIGACION,PRIMERA_PRORROGA_INVESTIGACION,SEGUNDA_PRORROGA_INVESTIGACION,VISTA_FISCAL_ENVIADA_A_DIRECTOR_NACIONAL,ESPERA_ASIGNACION_ABOGADO,ESPERA_RESPUESTA_ABOGADO,ESPERA_RESPUESTA_INFORME_SUBDIRECCION"
+        },
+        {
+            "fieldName": "estadoNuevo",
+            "fieldType": "EstadoProvidencia",
+            "fieldValues": "CREADA,ESPERA,FINALIZADA,DEVUELTO,SOLICITUD_FIRMA_SUBDIRECTOR,SOLICITUD_FIRMA_DIRECTOR,ESPERA_RESOLUCION_EXENTA,ESPERA_ASIGNACION_NUMERO,ESPERA_INFORME_FISCAL,NOTIFICA_FISCAL,ESPERA_ACEPTACION_RECHAZO_FISCAL,INICIO_INVESTIGACION,PRIMERA_PRORROGA_INVESTIGACION,SEGUNDA_PRORROGA_INVESTIGACION,VISTA_FISCAL_ENVIADA_A_DIRECTOR_NACIONAL,ESPERA_ASIGNACION_ABOGADO,ESPERA_RESPUESTA_ABOGADO,ESPERA_RESPUESTA_INFORME_SUBDIRECCION"
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "accion",
+            "fieldType": "Accion",
+            "fieldValues": "TOMAR_CONOCIMIENTO,CUMPLIMIENTO,INFORMAR_A_ESTA_DIRECCION,ESTUDIAR_Y_PROPONER,PROPONER_RESPUESTA_DE_DIRECTOR,OFICIO_CARTA_USUARIO,PROPONER_RESOLUCION,ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_DERECHO,CONVERSARLO_CONMIGO,ACTIVAR_TRAMITE,INSTRUIR_A_QUIEN_CORRESPONDA,ACUMULAR_A_LOS_ANTECEDENTES,CONFORME_CON_PROPOSICION,CONTESTAR_DIRECTAMENTE_AL_INTERESADO,ENVIAR_COPIA_ESTA_DIRECCION,COORDINAR_CON"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "hashesDocumentos",
+            "otherEntityName": "documento",
+            "otherEntityRelationshipName": "movimientoProvidencia"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "hashesAdjuntos",
+            "otherEntityName": "adjunto",
+            "otherEntityRelationshipName": "movimientoProvidencia"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "providencia",
+            "otherEntityName": "providencia",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "plazo",
+            "otherEntityName": "plazo",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190306150724",
+    "entityTableName": "movimiento_providencia",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

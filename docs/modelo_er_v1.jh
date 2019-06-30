@@ -1,0 +1,228 @@
+enum TipoDocumento {
+    SUMARIO_ADMINISTRATIVO,
+    INVESTIGACION_SUMARIA,
+    NOTIFICACION_DE_ASIGNACION_FISCAL,
+    NOTIFICACION_DE_INHABILITA,
+    NOTIFICACION_DE_ACEPTACION,
+    DESIGNA_NUEVO_FISCAL,
+    RESOLUCION_DE_INVESTIGACION,
+    INFORME_DE_ELEVAR_SUMARIO,
+    INFORME_DE_PROPONER_SOBRE_SEIMIENTO,
+    INFORME_DE_FORMULACION_DE_CARGOS,
+    RESOLUCION_DE_ELEVA_SUMARIO,
+    NOTIFICACION_DE_RECHAZO_ELEVA_SUMARIO,
+    RESOLUCION_DE_PROPONER_SOBRE_SEIMIENTO,
+    NOTIFICACION_DE_FORMULACION_DE_CARGOS,
+    INFORME_DESCARGO,
+    INFORME_DE_SOLICITUD_DE_TERMINO_APROBATORIO,
+    INFORME_DE_TERMINO_APROBATORIO,
+    INFORME_DE_PROPUESTA_DE_SANCION,
+    RESOLUCION_DE_SANCION,
+    RESOLUCION_DE_RECHAZO_DE_SANCION,
+    NOTIFICACION_DE_RECHAZO_PROPONE_SOBRE_SEIMEINTO,
+    INFORME_DE_REALIZAR_DILIGENCIAS,
+    INFORME_DE_PROPONER_MEDIDAS,
+    RESOLUCION_DE_ACEPTACION_DE_LAS_MEDIDAS,
+    RESOLUCION_DE_REAPERTURA,
+    INFORME_DE_TRAER_EL_PROCESO_AL_INICIO,
+    INFORME_DE_RECURSO_DE_REPOSICION,
+    NOTIFICACION_DE_RECURSO_DE_REPOSICION,
+    INFORME_DE_ABSOLVER,
+    RESOLUCION_DE_ACEPTACION_DE_RESOLUCION_DE_ABSOLVER,
+    NOTIFICACION_DE_REGISTRO_DE_RESOLUCION_DE_ABSOLVER,
+    NOTIFICACION_DE_APLICAR_MEDIDAS_DISCIPLINARIAS,
+    INFORME_DE_ACEPTACION_TOTAL,
+    INFORME_DE_ACEPTACION_PARCIAL,
+    INFORME_DE_RECHAZO_DE_RECURSO_DE_REPOSICION,
+    RESOLUCION_AFINATORIA_CENSURA,
+    RESOLUCION_AFINATORIA_MULTA,
+    RESOLUCION_AFINATORIA_SUSPENSION,
+    NOTIFICACION_DE_RESOLUCION_AFINATORIA_CENSURA,
+    NOTIFICACION_DE_RESOLUCION_AFINATORIA_MULTA,
+    NOTIFICACION_DE_RESOLUCION_AFINATORIA_SUSPENSION,
+    RESOLUCION_AFINATORIA_DESTITUCION,
+    NOTIFICACION_DE_RESOLUCION_AFINATORIA_DESTITUCION,
+    RESOLUCION_AFINATORIA_DE_ABSOLUCION_TOTAL,
+    RESOLUCION_AFINATORIA_DE_ABSOLUCION_PARCIAL,
+    INFORME_DE_APLICAR_MEDIDAS,
+    NOTIFICACION_DE_RESOLUCION_AFINATORIA_DE_ABSOLUCION_PARCIAL,
+    NOTIFICACION_DE_RESOLUCION_AFINATORIA_DE_ABSOLUCION_TOTAL,
+    INFORME_DE_RESUCURSO_DE_REPOSICION_CON_APELACION_DE_SUBSIDIO,
+    INFORME_JURIDICO
+}
+
+entity Documento {
+	tipo TipoDocumento required
+	descripcion String
+    fechaCreado LocalDate
+    fechaSubido Instant required
+	archivoNombre String required
+    archivoMimetype String
+    archivoSize Long
+    archivo Blob
+    alfrescoNodeId String
+    alfrescoPath String
+}
+
+enum EstadoProvidencia {
+	NUEVO,
+    PENDIENTE_DIRECTOR, 
+    INSTRUYE_SUMARIO_ADMINISTRATIVO,
+    INSTRUYE_INVESTIGACION_SUMARIA,
+    FINALIZADO, 
+    ANULADO
+}
+
+entity Providencia {
+	descripcion String
+    fechaCreado LocalDate
+    fechaIngreso Instant required
+    estado EstadoProvidencia required
+}
+
+entity Funcionario {
+	nombre String required
+    apellidos String
+    rut String 
+}
+
+enum TipoDirector {
+	DIRECTOR_REGIONAL, DIRECTOR_NACIONAL
+}
+
+entity Director {
+	nombre String
+    apellidos String
+	tipo TipoDirector required
+}
+
+entity Fiscal {
+	nombre String required
+    apellidos String
+}
+
+entity Investigador {
+	nombre String required
+    apellidos String
+}
+
+enum EstadoInvestigacionSumaria {
+	PENDIENTE_ASIGNAR_INVESTIGADOR, 
+    PENDIENTE_ACEPTAR_INVESTIGADOR,
+    INICIO_DE_INVESTIGACION,
+    ELEVA_SUMARIO,
+    PROPONE_SOBRE_SEIMIENTO,
+    FORMULA_CARGOS,
+    FINALIZADO
+}
+
+entity InvestigacionSumaria {
+	descripcion String
+    fechaCreado LocalDate
+    fechaIngreso Instant required
+    estado EstadoInvestigacionSumaria required
+}
+
+enum EstadoSumarioAdministrativo {
+	PENDIENTE_ASIGNAR_FISCAL, 
+    PENDIENTE_ACEPTAR_FISCAL,
+    INICIO_DE_SUMARIO,
+    INVESTIGACION_EN_CURSO,
+    SOBRE_SEIMIENTO1,
+    PENDIENTE_DIRECTOR1,
+    REALIZAR_DILIGENCIAS1,
+    RETRO_TRAER1,
+    FORMULA_CARGOS,
+    PENDIENTE_INCULPADO,
+    PENDIENTE_FISCAL,
+    SONBRE_SEIMIENTO2,
+    REALIZAR_DILIGENCIAS2,
+    RETRO_TRAER2,
+    RECURSO_REPOSICION,
+    PENDIENTE_DIRECTOR2,
+    TOMA_DE_RAZON,
+    APLICAR_MEDIDAS,
+    PENDIENTE_DIRECTOR3,
+    PENDIENTE_DIRECTOR4,
+    ELEVA_SUMARIO,
+    FINALIZADO
+}
+
+entity SumarioAdministrativo {
+	descripcion String
+    fechaCreado LocalDate
+    fechaIngreso Instant required
+    estado EstadoSumarioAdministrativo required
+}
+
+entity BitacoraProvidencia {
+    fechaCreado Instant required
+    descripcion String
+    comentarios String
+    username String
+}
+
+entity NotificacionInBrowser {
+    fechaCreado Instant required
+    descripcion String
+    visto Boolean
+}
+
+entity Usuario {
+	nombre String
+    username String
+    cargo String
+    dependencia String
+    password String
+    email String
+    telefono String
+}
+
+entity Perfil {
+	nombre String
+	roles String
+}
+
+entity Grupo {
+	nombre String
+}
+
+relationship ManyToOne {
+    Documento{providencia} to Providencia{documentos},
+    Providencia{directorQueInicia(nombre)} to Director,
+    Providencia{inculpado(nombre) required} to Funcionario,
+	InvestigacionSumaria{providencia required} to Providencia,
+	InvestigacionSumaria{investigadorAsignado(nombre)} to Investigador,
+	SumarioAdministrativo{providencia required} to Providencia, 
+    SumarioAdministrativo{fiscalAsignado(nombre)} to Fiscal,
+    BitacoraProvidencia{providencia required} to Providencia,
+    Usuario{perfil(nombre)} to Perfil,
+    Usuario{grupo(nombre)} to Grupo,
+    NotificacionInBrowser{usuario} to Usuario
+}
+
+relationship OneToOne {
+	Providencia{investigacionActivo} to InvestigacionSumaria,
+	Providencia{sumarioActivo} to SumarioAdministrativo
+}
+
+//relationship OneToMany {
+//	Providencia{documentos} to Documento
+//}
+
+//relationship ManyToMany {
+//	Providencia{documentos} to Documento
+//}
+
+// Set pagination options
+paginate * with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service Providencia with serviceClass
+service InvestigacionSumaria with serviceClass
+service SumarioAdministrativo with serviceClass
+
+// Set an angular suffix
+//angularSuffix * with siac

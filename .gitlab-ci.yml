@@ -1,0 +1,167 @@
+image: maven:3.3-jdk-8
+
+variables:
+  WAR_NAME: "app-${CI_BUILD_REF_NAME}"
+  FOLDER_NAME: "${CI_BUILD_REF_NAME}"
+  MAVEN_CONFIG: "$CI_PROJECT_DIR/.m2"
+  MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.defaultLogLevel=info -Dsettings.security=$CI_PROJECT_DIR/.m2/settings-security.xml"  
+  NPM_CONFIG_CACHE: "$CI_PROJECT_DIR/.npm"
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .m2
+    - app/target
+
+before_script:
+  - mkdir -p "${MAVEN_CONFIG}/repository"
+  - cp settings*.xml "${MAVEN_CONFIG}/"
+  - sed -i "s/__VERSION__/${CI_COMMIT_REF_NAME}/" app/pom.xml
+  - chmod +x app/npm
+
+stages:
+  - test
+  - build
+  - release
+  - review
+  - deploy
+
+test_java:
+  stage: test
+  allow_failure: true
+  except:
+    - tags
+  script:
+    - cd app/
+    - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean test -Dskip.npm -Dskip.webpack
+
+test_javascript:
+  stage: test
+  allow_failure: true
+  except:
+    - tags
+  script:
+    - cd app/
+    - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean generate-resources -DskipTests
+    - ./npm run test
+
+compile:
+  stage: build
+  only:
+    - merge_requests
+    - master
+    - tags
+#  changes:
+#    - app/**/*
+  script:
+    - cd app/
+    - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean package -Pprod -DskipTests
+    - cp target/app-*.war* ../
+  artifacts:
+    name: "${CI_BUILD_REF_NAME}"
+    paths:
+      - "${WAR_NAME}.war"
+      - "${WAR_NAME}.war.original"
+
+image_build:
+  stage: release
+  image: docker:latest
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
+  cache: {}
+  services:
+    - docker:dind
+  only:
+    - merge_requests
+    - master
+    - tags
+  script:
+    - docker info
+    - mv "${WAR_NAME}.war" docker/app/
+    - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
+    - docker pull "${CI_REGISTRY_IMAGE}:latest" || true
+    - docker build -t "${CI_REGISTRY_IMAGE}:latest" -f docker/app/Dockerfile docker/app/
+    - docker tag "${CI_REGISTRY_IMAGE}:latest" "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
+    - test ! -z "${CI_COMMIT_TAG}" && docker push "${CI_REGISTRY_IMAGE}:latest"
+    - docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
+#    - docker push "${CI_REGISTRY_IMAGE}:latest"
+#    - docker build -t "${CI_REGISTRY_IMAGE}:dev" -f docker/dev.dockerfile docker/
+#    - docker push "${CI_REGISTRY_IMAGE}:dev"
+
+deploy_review:
+  image: lachlanevenson/k8s-kubectl:latest
+  stage: review
+  variables:
+    KUBECONFIG: /tmp/kubeconfig
+  cache: {}
+  only:
+    - merge_requests
+    - master
+  except:
+    - tags
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    url: http://$CI_ENVIRONMENT_SLUG-registrocivil-pdisciplinario.review.k.netlinux.cl
+    on_stop: stop_review
+  script:
+    - echo $KUBECONFIG  
+    - echo "${KUBE_CONFIG_FILE}" > $KUBECONFIG
+    - cat $KUBECONFIG
+    - kubectl version
+    - cd kube/
+    - sed -i "s/__CI_ENVIRONMENT_SLUG__/${CI_ENVIRONMENT_SLUG}/" deployment.yaml service.yaml ingress.yaml 
+    - sed -i "s/__VERSION__/${CI_COMMIT_REF_NAME}/" deployment.yaml service.yaml ingress.yaml
+    - |
+      if kubectl apply -f deployment.yaml | grep -q unchanged; then
+          echo "=> Patching deployment to force image update."
+          kubectl patch -f deployment.yaml -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"ci-last-updated\":\"$(date +'%s')\"}}}}}"
+      else
+          echo "=> Deployment apply has changed the object, no need to force image update."
+      fi
+    - kubectl apply -f service.yaml || true
+    - kubectl apply -f ingress.yaml
+    - kubectl rollout status -f deployment.yaml
+    - kubectl get all,ing -l ref=${CI_ENVIRONMENT_SLUG}
+
+stop_review:
+  image: lachlanevenson/k8s-kubectl:latest
+  stage: review
+  variables:
+    GIT_STRATEGY: none
+    KUBECONFIG: /tmp/kubeconfig
+  when: manual
+  only:
+    - merge_requests
+    - master
+  except:
+    - tags
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    action: stop
+  script:
+    - echo $KUBECONFIG  
+    - echo "${KUBE_CONFIG_FILE}" > $KUBECONFIG
+    - cat $KUBECONFIG
+    - kubectl delete ing -l ref=${CI_ENVIRONMENT_SLUG}
+    - kubectl delete all -l ref=${CI_ENVIRONMENT_SLUG}
+
+deploy_live:
+  image: lachlanevenson/k8s-kubectl:latest
+  stage: deploy
+  environment:
+    name: live
+    url: https://registrocivil-pdisciplinario.demo.netlinux.cl
+  only:
+    - tags
+  when: manual
+  script:
+    - kubectl version
+    - cd kube/
+    - sed -i "s/__CI_ENVIRONMENT_SLUG__/${CI_ENVIRONMENT_SLUG}/" deployment.yaml mysql-pvc.yaml service.yaml ingress.yaml 
+    - sed -i "s/__VERSION__/${CI_COMMIT_REF_NAME}/" deployment.yaml mysql-pvc.yaml service.yaml ingress.yaml
+    - kubectl apply -f deployment.yaml
+    - kubectl apply -f service.yaml
+    - kubectl apply -f mysql-pvc.yaml
+    - kubectl apply -f ingress.yaml
+    - kubectl rollout status -f deployment.yaml
+    - kubectl get all,ing -l ref=${CI_ENVIRONMENT_SLUG}

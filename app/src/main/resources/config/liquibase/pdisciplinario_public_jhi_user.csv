@@ -1,0 +1,23 @@
+id,login,password_hash,first_name,last_name,email,image_url,activated,lang_key,created_by,last_modified_by,perfil_id,grupo_id
+1,system,$2a$10$mE.qmcV0mFU5NcKh73TZx.z4ueI/.bDWbj0T1BYyqP481kGGarKLG,System,System,system@localhost,,true,es,system,system,NULL,1
+2,anonymoususer,$2a$10$j8S5d7Sr7.8VTOYNviDPOeWX8KcYILUVJBsYV83Y5NtECayypx9lO,Anonymous,User,anonymous@localhost,,true,es,system,system,NULL,1
+3,admin,$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC,Administrator,Administrator,admin@localhost,,true,es,system,system,1,1
+4,user,$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K,User,User,user@localhost,,true,es,system,system,NULL,2
+5,secresubdir@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,Carlos,carlos,secresubdir@gmail.com,,true,es,system,amanda@gmail.com,2,2
+6,jefe_subdir@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,Francisca,fran,jefe_subdir@gmail.com,,true,es,system,amanda@gmail.com,3,2
+7,jefe_upd@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,Alex,alex,jefe_upd@gmail.com,,true,es,system,amanda@gmail.com,3,3
+8,jefe_dgdp@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,Camilo,camilo,jefe_dgdp@gmail.com,,true,es,system,amanda@gmail.com,3,4
+9,cardomo@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,Cardomo,cardomo,cardomo@gmail.com,,true,es,system,system,5,7
+10,jefedn@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,jefe1,toro,jefedn@gmail.com,,true,es,amanda@gmail.com,amanda@gmail.com,3,1
+11,asesor_dn@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,asesor_dn,secre1,asesor_dn@gmail.com,,true,es,amanda@gmail.com,amanda@gmail.com,2,1
+12,secre_upd@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,secre3,jajamadgul,secre_upd@gmail.com,,true,es,amanda@gmail.com,amanda@gmail.com,2,3
+13,secre_dgdp@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,secre4,ylavaca,secre_dgdp@gmail.com,,true,es,amanda@gmail.com,amanda@gmail.com,2,4
+14,jefe_admin@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,jefe6,morningstart,jefe_admin@gmail.com,,true,es,amanda@gmail.com,amanda@gmail.com,3,6
+15,secre_admin@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,secre1,olsen,secre_admin@gmail.com,,true,es,amanda@gmail.com,amanda@gmail.com,2,6
+16,jefe_dgd@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,amanda,amanda,jefe_dgd@gmail.com,,true,es,admin,amanda@gmail.com,3,5
+17,secre_dgd@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,secre5,falala,secre_dgd@gmail.com,,true,es,amanda@gmail.com,amanda@gmail.com,2,5
+18,jefe_fiscal@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,secre7,rosales,jefe_fiscal@gmail.com,,true,es,amanda@gmail.com,amanda@gmail.com,3,7
+19,secre_fiscal@gmail.com,$2a$10$sXEz.3pVKhlWXp9YoLuzyeFRTzJy3k2PFWtHutfm7ZwwdW3IGE49K,secre,ya no se me ocurren nombres,secre_fiscal@gmail.com,,true,es,amanda@gmail.com,amanda@gmail.com,2,7
+
+
+

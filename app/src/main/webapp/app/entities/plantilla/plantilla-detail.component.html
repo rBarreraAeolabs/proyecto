@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="plantilla">
+            <h2><span jhiTranslate="pdisciplinarioApp.plantilla.detail.title">Plantilla</span> {{plantilla.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="pdisciplinarioApp.plantilla.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{plantilla.nombre}}</span>
+                </dd>
+                <!--<dt><span jhiTranslate="pdisciplinarioApp.plantilla.contenido">Contenido</span></dt>-->
+                <!--<dd>-->
+                    <!--<span>{{plantilla.contenido}}</span>-->
+                <!--</dd>-->
+                <dt><span jhiTranslate="pdisciplinarioApp.plantilla.tipo">Tipo</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'pdisciplinarioApp.TipoPlantilla.' + plantilla.tipo}}">{{plantilla.tipo}}</span>
+                </dd>
+                <!--<dt><span jhiTranslate="pdisciplinarioApp.plantilla.estado">Estado</span></dt>-->
+                <!--<dd>-->
+                    <!--<span jhiTranslate="{{'pdisciplinarioApp.EstadoProvidencia.' + plantilla.estado}}">{{plantilla.estado}}</span>-->
+                <!--</dd>-->
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/plantilla', plantilla.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="pdisciplinarioApp.investigacionSumaria.home.title">Investigacion Sumarias</span>
+        <!-- <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-investigacion-sumaria" [routerLink]="['/investigacion-sumaria/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="pdisciplinarioApp.investigacionSumaria.home.createLabel">
+            Create new Investigacion Sumaria
+            </span>
+        </button> -->
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="container2">
+        <div class="pull-left">
+            <label><h6>Filtrar por:</h6></label>
+            <form>
+                <div class="row">
+                    <th>
+                        <div class="form-group">
+                            <label>ID</label><br>
+                            <input  type="text" class="form-control col-xs-2" aria-invalid="false" placeholder="identificador">
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group col">
+                            <label>Campo Tres</label>
+                            <select class="form-control">
+                                <option selected>campo tres</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                    </th>
+                    <div class="col">
+                        <input type="submit" class="btn btn-sm btn-primary" value="Buscar" ng-click="vm.filtrar()">
+                        <input type="reset" class="btn btn-sm btn-danger" value="Limpiar" name="reset" ng-click="vm.limpiar()">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="table-responsive" *ngIf="investigacionSumarias">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="compoTres"><span jhiTranslate="pdisciplinarioApp.investigacionSumaria.compoTres">Compo Tres</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let investigacionSumaria of investigacionSumarias ;trackBy: trackId">
+                <td><a [routerLink]="['/investigacion-sumaria', investigacionSumaria.id, 'view' ]">{{investigacionSumaria.id}}</a></td>
+                <td>{{investigacionSumaria.compoTres}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/investigacion-sumaria', investigacionSumaria.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/investigacion-sumaria', investigacionSumaria.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'investigacion-sumaria/'+ investigacionSumaria.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Pager is not implemented yet, so this is normal pagination instead -->
+    <div *ngIf="investigacionSumarias && investigacionSumarias.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

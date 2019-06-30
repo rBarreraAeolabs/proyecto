@@ -1,0 +1,16 @@
+
+{
+    "pdisciplinarioApp": {
+        "solicitudesRelacionadas" : {
+            "home": {
+                "title": "Solicitudes Relacionadas"
+            },
+            "rutSolicitante": "Rut De Solicitatne",
+            "nombreSolicitante": "Nombre De Solicitante",
+            "entidadSolicitante": "Entidad De Solicitante",
+            "estadoActual": "Estado Actual",
+            "fechaSolicitud": "Fecha De Solicitud",
+            "tipoSolicitud": "Tipo De Solicitud"
+        }
+    }
+}

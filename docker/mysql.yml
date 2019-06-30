@@ -1,0 +1,14 @@
+version: '2'
+services:
+    rutas-mysql:
+        image: mysql:5.6.39
+        # volumes:
+        #     - ~/volumes/jhipster/siac/mysql/:/var/lib/mysql/
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=rutas
+            - MYSQL_USER=rutas
+            - MYSQL_PASSWORD=rutas
+        ports:
+            - 3306:3306
+        command: [mysqld, --lower_case_table_names=1, --skip-ssl, --character_set_server=utf8, --explicit_defaults_for_timestamp]
