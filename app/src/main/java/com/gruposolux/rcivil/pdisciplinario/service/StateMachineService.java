@@ -6,8 +6,11 @@ import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.OrderStates;
 import lombok.extern.java.Log;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.statemachine.StateMachine;
+import org.springframework.statemachine.config.EnableStateMachine;
 import org.springframework.statemachine.config.EnableStateMachineFactory;
 import org.springframework.statemachine.config.StateMachineConfigurerAdapter;
 
@@ -22,26 +25,41 @@ import org.springframework.statemachine.state.State;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+@SpringBootApplication
+@EnableStateMachine
 @Service
 @Transactional
-public class StateMachineService {
+
+public class StateMachineService implements CommandLineRunner {
+//    private final StateMachineFactory<OrderStates, OrderEvents>factory;
+//@Autowired
+//    public StateMachineService(StateMachineFactory<OrderStates, OrderEvents> factory) {
+//    this.factory = factory;
+//}
 
 
-    private final StateMachineFactory<OrderStates, OrderEvents>factory;
 
-    @Autowired
-    public StateMachineService(
-        StateMachineFactory<OrderStates, OrderEvents> factory
-    ){
-        this.factory = factory;
+    @Override
+    public void run(String... args) throws Exception {
+        SpringApplication.run(StateMachineService.class, args);
     }
+//
+//
+//    private final StateMachineFactory<OrderStates, OrderEvents>factory;
+//@Autowired
+//    public StateMachineService(StateMachineFactory<OrderStates, OrderEvents> factory) {
+//        this.factory = factory;
+//    }
+//
+//
+//    public void Maquina() {
+//        StateMachine<OrderStates,OrderEvents> machine = factory.getStateMachine("13232");
+//        machine.start();
+//      //  log.info ("current state:" + machine.getState().getId().name());
+//    }
 
-    public void Maquina() {
-        StateMachine<OrderStates,OrderEvents> machine = factory.getStateMachine("13232");
-        machine.start();
-      //  log.info ("current state:" + machine.getState().getId().name());
-    }
+
+
 
     @Log
     @Configuration
@@ -104,6 +122,7 @@ public class StateMachineService {
                 .listener(adapter);
 
         }
+
 
     }
 }
