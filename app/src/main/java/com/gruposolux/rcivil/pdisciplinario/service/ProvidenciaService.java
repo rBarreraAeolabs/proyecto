@@ -49,7 +49,7 @@ public class ProvidenciaService {
     private final SumarioAdministrativoService sumarioAdministrativoService;
     private final InvestigacionSumariaMapper investigacionSumariaMapper;
     private final SumarioAdministrativoMapper sumarioAdministrativoMapper;
-
+    private final StateMachineService stateMachineService;
     @Autowired
     private final AlfrescoStorageService alfrescoStorageService;
 
@@ -74,7 +74,8 @@ public class ProvidenciaService {
         InvestigacionSumariaMapper investigacionSumariaMapper,
         SumarioAdministrativoMapper sumarioAdministrativoMapper,
 
-        AlfrescoStorageService alfrescoStorageService) {
+
+        StateMachineService stateMachineService, AlfrescoStorageService alfrescoStorageService) {
         this.providenciaRepository = providenciaRepository;
         this.providenciaMapper = providenciaMapper;
         this.adjuntoMapper = adjuntoMapper;
@@ -94,6 +95,7 @@ public class ProvidenciaService {
         this.sumarioAdministrativoService = sumarioAdministrativoService;
         this.investigacionSumariaMapper = investigacionSumariaMapper;
         this.sumarioAdministrativoMapper = sumarioAdministrativoMapper;
+        this.stateMachineService = stateMachineService;
 
 
         this.alfrescoStorageService = alfrescoStorageService;
@@ -421,7 +423,6 @@ public class ProvidenciaService {
         boolean secretaryValidation = true;
 
         EstadoProvidencia newState = null;
-
         switch (estadoActual)
         {
             case CREADO:

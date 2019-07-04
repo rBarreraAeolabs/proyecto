@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.config.EnableStateMachine;
 import org.springframework.statemachine.config.EnableStateMachineFactory;
 import org.springframework.statemachine.config.StateMachineConfigurerAdapter;
@@ -25,25 +26,23 @@ import org.springframework.statemachine.state.State;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@SpringBootApplication
 @EnableStateMachine
-@Service
-@Transactional
 
-public class StateMachineService implements CommandLineRunner {
+
+public class StateMachineService  {
 //    private final StateMachineFactory<OrderStates, OrderEvents>factory;
-//@Autowired
+
 //    public StateMachineService(StateMachineFactory<OrderStates, OrderEvents> factory) {
 //    this.factory = factory;
 //}
 
 
-
-    @Override
-    public void run(String... args) throws Exception {
-        SpringApplication.run(StateMachineService.class, args);
-    }
+//    @Override
+//    public void run(String... args) throws Exception {
+//        SpringApplication.run(StateMachineService.class, args);
 //
+//    }
+////
 //
 //    private final StateMachineFactory<OrderStates, OrderEvents>factory;
 //@Autowired
@@ -63,7 +62,7 @@ public class StateMachineService implements CommandLineRunner {
 
     @Log
     @Configuration
-    @EnableStateMachineFactory
+    @EnableStateMachine
         /**
          *  StateMachineConfigureAdapter  es una clase de la dependencia stateMachine
          */
@@ -125,6 +124,8 @@ public class StateMachineService implements CommandLineRunner {
 
 
     }
+
+
 }
 
 

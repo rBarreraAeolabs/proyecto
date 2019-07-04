@@ -31,5 +31,6 @@ public enum EstadoProvidencia
     ESTADO_24,
     ESTADO_25,
     ESTADO_26,
-    ESTADO_27
+    ESTADO_27,
+    TERMINADA
 }

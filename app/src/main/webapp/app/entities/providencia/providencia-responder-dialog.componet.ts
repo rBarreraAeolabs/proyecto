@@ -18,6 +18,7 @@ export class ProvidenciaResponderDialogComponent implements OnInit {
     observacionDerivacion: string;
     private _providencia: IProvidencia;
     adjuntos: IAdjunto[];
+    disabledSave: true;
 
     constructor(
         public activeModal: NgbActiveModal,

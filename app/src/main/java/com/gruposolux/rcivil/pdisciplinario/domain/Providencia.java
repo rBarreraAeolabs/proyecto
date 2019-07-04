@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Accion;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
+import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.OrderStates;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.TipoProvidencia;
 import org.checkerframework.checker.units.qual.C;
 
@@ -406,4 +407,6 @@ public class Providencia implements Serializable {
             ", providenciaMadre=" + providenciaMadre +
             '}';
     }
+
+
 }
