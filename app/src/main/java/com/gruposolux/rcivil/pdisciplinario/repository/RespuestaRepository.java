@@ -26,7 +26,7 @@ public interface RespuestaRepository extends JpaRepository<Respuesta, Long>
         "WHERE r.providencia = :providencia AND r.movimientoProvidencia is null AND r.user = :userLogged AND " +
         "r.estadoProvidencia = :estadoProvidencia")
     Optional<Respuesta> findByProvidencia(@Param("providencia") Providencia providencia, @Param("userLogged") User userLogged,
-                                          @Param("estadoProvidencia") EstadoProvidencia estadoProvidencia);
+                                          @Param("estadoProvidencia") String estadoProvidencia);
 
     @Query(value = "SELECT id FROM respuesta WHERE movimiento_providencia_id = ? AND providencia_id NOTNULL " +
         "AND user_id NOTNULL AND estado_providencia NOTNULL", nativeQuery = true)

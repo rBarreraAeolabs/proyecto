@@ -1,6 +1,6 @@
 package com.gruposolux.rcivil.pdisciplinario.service.dto;
 
-import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Accion;
+import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.InstruccionesProvidencia;
 
 import java.time.Instant;
 import java.io.Serializable;
@@ -24,7 +24,11 @@ public class FichaIngresoSdjDTO implements Serializable {
 
     private Long numeroReferencia;
 
-    private Collection<Accion> acciones;
+    private Long numeroProvidencia;
+
+    private String tipoSolicitud;
+
+    private Collection<InstruccionesProvidencia> instrucciones;
 
     private String atentamente;
 
@@ -76,13 +80,24 @@ public class FichaIngresoSdjDTO implements Serializable {
         this.numeroReferencia = numeroReferencia;
     }
 
-    public Collection<Accion> getAcciones() {
-        return acciones;
+    public Long getNumeroProvidencia() {
+        return numeroProvidencia;
     }
 
-    public void setAcciones(Collection<Accion> acciones) {
-        this.acciones = acciones;
+    public void setNumeroProvidencia(Long numeroProvidencia) { this.numeroProvidencia = numeroProvidencia; }
+
+    public String getTipoSolicitud() { return tipoSolicitud; }
+
+    public void setTipoSolicitud(String tipoSolicitud) { this.tipoSolicitud = tipoSolicitud; }
+
+    public Collection<InstruccionesProvidencia> getInstrucciones() {
+        return instrucciones;
     }
+
+    public void setInstrucciones(Collection<InstruccionesProvidencia> instrucciones) {
+        this.instrucciones = instrucciones;
+    }
+
 
     public String getAtentamente() {
         return atentamente;
@@ -122,7 +137,9 @@ public class FichaIngresoSdjDTO implements Serializable {
             ", plazo=" + plazo +
             ", fechaHasta=" + fechaHasta +
             ", numeroReferencia=" + numeroReferencia +
-            ", acciones=" + acciones +
+            ", numeroReferencia=" + numeroProvidencia +
+            ", tipoSolicitud=" + tipoSolicitud +
+            ", instrucciones=" + instrucciones +
             ", atentamente='" + atentamente + '\'' +
             '}';
     }

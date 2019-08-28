@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
-import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Accion;
+import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.AccionesProvidencia;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
+import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.InstruccionesProvidencia;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.TipoPlantilla;
 
 /**
@@ -23,7 +24,9 @@ public class PlantillaDTO implements Serializable {
 
     private EstadoProvidencia estado;
 
-    private Collection<Accion> acciones;
+
+
+    private Collection<InstruccionesProvidencia> instrucciones;
 
     public Long getId() {
         return id;
@@ -65,12 +68,12 @@ public class PlantillaDTO implements Serializable {
         this.estado = estado;
     }
 
-    public Collection<Accion> getAcciones() {
-        return acciones;
+    public Collection<InstruccionesProvidencia> getInstrucciones() {
+        return instrucciones;
     }
 
-    public void setAcciones(Collection<Accion> acciones) {
-        this.acciones = acciones;
+    public void setInstrucciones(Collection<InstruccionesProvidencia> instrucciones) {
+        this.instrucciones = instrucciones;
     }
 
     @Override
@@ -102,7 +105,7 @@ public class PlantillaDTO implements Serializable {
             ", contenido='" + contenido + '\'' +
             ", tipo=" + tipo +
             ", estado=" + estado +
-            ", acciones=" + acciones +
+            ", instrucciones=" + instrucciones +
             '}';
     }
 }

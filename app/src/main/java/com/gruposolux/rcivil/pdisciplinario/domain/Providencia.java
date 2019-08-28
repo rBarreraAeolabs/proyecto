@@ -2,11 +2,10 @@ package com.gruposolux.rcivil.pdisciplinario.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Accion;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
-import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.OrderStates;
+import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.InstruccionesProvidencia;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.TipoProvidencia;
-import org.checkerframework.checker.units.qual.C;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -30,12 +29,29 @@ public class Providencia implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "numero")
-    private Long numero;
+    @Column(name = "numeroReferencia")
+    private Long numeroReferencia;
+
+    @Column(name = "numeroProvidencia")
+    private Long numeroProvidencia;
+
+    @Column(name = "estado_actual")
+    private String estadoActual;
+
+    @Column(name = "providencia_madre_id" )
+    private Long providencia_madre_id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "estado_actual")
-    private EstadoProvidencia estadoActual;
+    @Column(name = "etapa")
+    private EstadoProvidencia etapa;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "subEtapa")
+    private EstadoProvidencia subEtapa;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "requisito")
+    private EstadoProvidencia requisito;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo")
@@ -48,35 +64,9 @@ public class Providencia implements Serializable {
     private Instant fechaSolicitud;
 
     @Column(name = "fecha_creacion")
+    @JsonIgnore
     private Instant fechaCreacion;
 
-    @OneToMany(mappedBy = "providencia")
-    @JsonIgnore
-    private Set<Derivacion> derivaciones = new HashSet<>();
-
-    @OneToMany(mappedBy = "providencia", fetch = FetchType.EAGER)
-    private Set<Documento> documentos = new HashSet<>();
-
-    @OneToMany(mappedBy = "providencia", fetch = FetchType.EAGER)
-    private Set<Adjunto> adjuntos = new HashSet<>();
-
-    @OneToMany(mappedBy = "providencia")
-    @JsonIgnore
-    private Set<MovimientoProvidencia> movimientos = new HashSet<>();
-
-    @ManyToOne
-    @JsonIgnoreProperties("providencias")
-    private SumarioAdministrativo sumarioAdministrativo;
-
-    @ManyToOne
-    @JsonIgnoreProperties("providencias")
-    private InvestigacionSumaria investigacionSumaria;
-
-    @ElementCollection(targetClass = Accion.class)
-    @CollectionTable(name = "accion_providencia", joinColumns = @JoinColumn(name = "providencia_id"))
-    @Enumerated(EnumType.STRING)
-    @Column(name = "acciones")
-    private Collection<Accion> acciones;
 
     @Column(name = "fecha_hasta")
     private Instant fechaHasta;
@@ -93,6 +83,46 @@ public class Providencia implements Serializable {
     @Column(name = "nombre_implicado")
     private String nombreImplicado;
 
+    @OneToMany(mappedBy = "providencia")
+    @JsonIgnore
+    private Set<Derivacion> derivaciones = new HashSet<>();
+
+    @OneToMany(mappedBy = "providencia", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<Documento> documentos = new HashSet<>();
+
+    @OneToMany(mappedBy = "providencia", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<Adjunto> adjuntos = new HashSet<>();
+
+    @OneToMany(mappedBy = "providencia")
+    @JsonIgnore
+    private Set<MovimientoProvidencia> movimientos = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties("providencias")
+    private SumarioAdministrativo sumarioAdministrativo;
+
+    @ManyToOne
+    @JsonIgnoreProperties("providencias")
+    private InvestigacionSumaria investigacionSumaria;
+
+
+    public Collection<InstruccionesProvidencia> getInstrucciones() {
+        return instrucciones;
+    }
+
+    public void setInstrucciones(Collection<InstruccionesProvidencia> instrucciones) {
+        this.instrucciones = instrucciones;
+    }
+
+    @ElementCollection(targetClass = InstruccionesProvidencia.class)
+    @CollectionTable(name = "instruccion_providencia", joinColumns = @JoinColumn(name = "providencia_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "instrucciones")
+    private Collection<InstruccionesProvidencia> instrucciones;
+
+
     @ManyToOne
     private Entidad entidadSolicitante;
 
@@ -102,138 +132,101 @@ public class Providencia implements Serializable {
     @Column(name = "nombre_fiscal_asignado")
     private String nombreFiscalAsignado;
 
-    @ManyToOne
-    private Providencia providenciaMadre;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Providencia() {
+    public Providencia() { }
+
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
+
+    // get and setter para el id de la madre
+
+
+    public Long getProvidencia_madre_id() {
+        return providencia_madre_id;
     }
 
-    public Long getId() {
-        return id;
+    public void setProvidencia_madre_id(Long providencia_madre_id) {
+        this.providencia_madre_id = providencia_madre_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Long getNumeroReferencia() { return numeroReferencia; }
 
-    public Long getNumero() {
-        return numero;
-    }
+    public void setNumeroReferencia(Long numeroReferencia) { this.numeroReferencia = numeroReferencia; }
 
-    public void setNumero(Long numero) {
-        this.numero = numero;
-    }
+    public Long getNumeroProvidencia() { return numeroProvidencia; }
 
-    public EstadoProvidencia getEstadoActual() {
-        return estadoActual;
-    }
+    public void setNumeroProvidencia(Long numeroProvidencia) { this.numeroProvidencia = numeroProvidencia; }
 
-    public void setEstadoActual(EstadoProvidencia estadoActual) {
-        this.estadoActual = estadoActual;
-    }
+    public String getEstadoActual() { return estadoActual; }
 
-    public TipoProvidencia getTipo() {
-        return tipo;
-    }
+    public void setEstadoActual(String estadoActual) { this.estadoActual = estadoActual; }
 
-    public void setTipo(TipoProvidencia tipo) {
-        this.tipo = tipo;
-    }
+    public EstadoProvidencia getEtapa() { return etapa; }
 
-    public String getComentario() {
-        return comentario;
-    }
+    public void setEtapa(EstadoProvidencia etapa) { this.etapa = etapa; }
 
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
+    public EstadoProvidencia getSubEtapa() { return subEtapa; }
 
-    public Instant getFechaSolicitud() {
-        return fechaSolicitud;
-    }
+    public void setSubEtapa(EstadoProvidencia subEtapa) { this.subEtapa = subEtapa; }
 
-    public void setFechaSolicitud(Instant fechaSolicitud) {
-        this.fechaSolicitud = fechaSolicitud;
-    }
+    public EstadoProvidencia getRequisito() { return requisito; }
 
-    public Instant getFechaCreacion() {
-        return fechaCreacion;
-    }
+    public void setRequisito(EstadoProvidencia requisito) { this.requisito = requisito; }
 
-    public void setFechaCreacion(Instant fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
+    public TipoProvidencia getTipo() { return tipo; }
 
-    public Set<Derivacion> getDerivaciones() {
-        return derivaciones;
-    }
+    public void setTipo(TipoProvidencia tipo) { this.tipo = tipo; }
 
-    public void setDerivaciones(Set<Derivacion> derivaciones) {
-        this.derivaciones = derivaciones;
-    }
+    public String getComentario() { return comentario; }
 
-    public Set<Documento> getDocumentos() {
-        return documentos;
-    }
+    public void setComentario(String comentario) { this.comentario = comentario; }
 
-    public void setDocumentos(Set<Documento> documentos) {
-        this.documentos = documentos;
-    }
+    public Instant getFechaSolicitud() { return fechaSolicitud; }
 
-    public Set<Adjunto> getAdjuntos() {
-        return adjuntos;
-    }
+    public void setFechaSolicitud(Instant fechaSolicitud) { this.fechaSolicitud = fechaSolicitud; }
 
-    public void setAdjuntos(Set<Adjunto> adjuntos) {
-        this.adjuntos = adjuntos;
-    }
+    public Instant getFechaCreacion() { return fechaCreacion; }
 
-    public Set<MovimientoProvidencia> getMovimientos() {
-        return movimientos;
-    }
+    public void setFechaCreacion(Instant fechaCreacion) { this.fechaCreacion = fechaCreacion; }
 
-    public void setMovimientos(Set<MovimientoProvidencia> movimientos) {
-        this.movimientos = movimientos;
-    }
+    public Set<Derivacion> getDerivaciones() { return derivaciones; }
 
-    public SumarioAdministrativo getSumarioAdministrativo() {
-        return sumarioAdministrativo;
-    }
+    public void setDerivaciones(Set<Derivacion> derivaciones) { this.derivaciones = derivaciones; }
 
-    public void setSumarioAdministrativo(SumarioAdministrativo sumarioAdministrativo) {
-        this.sumarioAdministrativo = sumarioAdministrativo;
-    }
+    public Set<Documento> getDocumentos() { return documentos; }
 
-    public InvestigacionSumaria getInvestigacionSumaria() {
-        return investigacionSumaria;
-    }
+    public void setDocumentos(Set<Documento> documentos) { this.documentos = documentos; }
 
-    public void setInvestigacionSumaria(InvestigacionSumaria investigacionSumaria) {
-        this.investigacionSumaria = investigacionSumaria;
-    }
+    public Set<Adjunto> getAdjuntos() { return adjuntos; }
 
-    public Instant getFechaHasta() {
-        return fechaHasta;
-    }
+    public void setAdjuntos(Set<Adjunto> adjuntos) { this.adjuntos = adjuntos; }
 
-    public void setFechaHasta(Instant fechaHasta) {
-        this.fechaHasta = fechaHasta;
-    }
+    public Set<MovimientoProvidencia> getMovimientos() { return movimientos; }
 
-    public Collection<Accion> getAcciones() {
-        return acciones;
-    }
+    public void setMovimientos(Set<MovimientoProvidencia> movimientos) { this.movimientos = movimientos; }
 
-    public void setAcciones(Collection<Accion> acciones) {
-        this.acciones = acciones;
-    }
+    public SumarioAdministrativo getSumarioAdministrativo() { return sumarioAdministrativo; }
 
-    public String getRunSolicitante() {
-        return runSolicitante;
-    }
+    public void setSumarioAdministrativo(SumarioAdministrativo sumarioAdministrativo) { this.sumarioAdministrativo = sumarioAdministrativo; }
 
-    public void setRunSolicitante(String runSolicitante) {
+    public InvestigacionSumaria getInvestigacionSumaria() { return investigacionSumaria; }
+
+    public void setInvestigacionSumaria(InvestigacionSumaria investigacionSumaria) { this.investigacionSumaria = investigacionSumaria; }
+
+
+
+
+    public Instant getFechaHasta() { return fechaHasta; }
+
+    public void setFechaHasta(Instant fechaHasta) { this.fechaHasta = fechaHasta; }
+
+
+
+    public String getRunSolicitante() { return runSolicitante; }
+
+    public void setRunSolicitante(String runSolicitante)
+    {
         if (this.validateRun(runSolicitante))
         {
             this.runSolicitante = runSolicitante;
@@ -244,27 +237,18 @@ public class Providencia implements Serializable {
         }
     }
 
-    public String getNombreSolicitante() {
-        return nombreSolicitante;
-    }
+    public String getNombreSolicitante() { return nombreSolicitante; }
 
-    public void setNombreSolicitante(String nombreSolicitante) {
-        this.nombreSolicitante = nombreSolicitante;
-    }
+    public void setNombreSolicitante(String nombreSolicitante) { this.nombreSolicitante = nombreSolicitante; }
 
-    public Entidad getEntidadSolicitante() {
-        return entidadSolicitante;
-    }
+    public Entidad getEntidadSolicitante() { return entidadSolicitante; }
 
-    public void setEntidadSolicitante(Entidad entidadSolicitante) {
-        this.entidadSolicitante = entidadSolicitante;
-    }
+    public void setEntidadSolicitante(Entidad entidadSolicitante) { this.entidadSolicitante = entidadSolicitante; }
 
-    public String getRunImplicado() {
-        return runImplicado;
-    }
+    public String getRunImplicado() { return runImplicado; }
 
-    public void setRunImplicado(String runImplicado) {
+    public void setRunImplicado(String runImplicado)
+    {
         if (this.validateRun(runImplicado))
         {
             this.runImplicado = runImplicado;
@@ -275,21 +259,13 @@ public class Providencia implements Serializable {
         }
     }
 
-    public String getNombreImplicado() {
-        return nombreImplicado;
-    }
+    public String getNombreImplicado() { return nombreImplicado; }
 
-    public void setNombreImplicado(String nombreImplicado) {
-        this.nombreImplicado = nombreImplicado;
-    }
+    public void setNombreImplicado(String nombreImplicado) { this.nombreImplicado = nombreImplicado; }
 
-    public Entidad getEntidadImplicada() {
-        return entidadImplicada;
-    }
+    public Entidad getEntidadImplicada() { return entidadImplicada; }
 
-    public void setEntidadImplicada(Entidad entidadImplicada) {
-        this.entidadImplicada = entidadImplicada;
-    }
+    public void setEntidadImplicada(Entidad entidadImplicada) { this.entidadImplicada = entidadImplicada; }
 
     private boolean validateRun(String run)
     {
@@ -341,11 +317,10 @@ public class Providencia implements Serializable {
         return false;
     }
 
-    public String getNombreFiscalAsignado() {
-        return nombreFiscalAsignado;
-    }
+    public String getNombreFiscalAsignado() { return nombreFiscalAsignado; }
 
-    public void setNombreFiscalAsignado(String nombreFiscalAsignado) {
+    public void setNombreFiscalAsignado(String nombreFiscalAsignado)
+    {
         if (nombreFiscalAsignado != null && nombreFiscalAsignado.trim().length() > 0)
         {
             this.nombreFiscalAsignado = nombreFiscalAsignado;
@@ -356,16 +331,10 @@ public class Providencia implements Serializable {
         }
     }
 
-    public Providencia getProvidenciaMadre() {
-        return providenciaMadre;
-    }
-
-    public void setProvidenciaMadre(Providencia providenciaMadre) {
-        this.providenciaMadre = providenciaMadre;
-    }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -375,38 +344,12 @@ public class Providencia implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hashCode(this.getId());
-    }
+    public int hashCode() { return Objects.hashCode(this.getId()); }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return "Providencia{" +
             "id=" + id +
-            ", numero=" + numero +
-            ", estadoActual=" + estadoActual +
-            ", tipo=" + tipo +
-            ", comentario='" + comentario + '\'' +
-            ", fechaSolicitud=" + fechaSolicitud +
-            ", fechaCreacion=" + fechaCreacion +
-            ", derivaciones=" + derivaciones +
-            ", documentos=" + documentos +
-            ", adjuntos=" + adjuntos +
-            ", movimientos=" + movimientos +
-            ", sumarioAdministrativo=" + sumarioAdministrativo +
-            ", investigacionSumaria=" + investigacionSumaria +
-            ", acciones=" + acciones +
-            ", fechaHasta=" + fechaHasta +
-            ", runSolicitante='" + runSolicitante + '\'' +
-            ", nombreSolicitante='" + nombreSolicitante + '\'' +
-            ", runImplicado='" + runImplicado + '\'' +
-            ", nombreImplicado='" + nombreImplicado + '\'' +
-            ", entidadSolicitante=" + entidadSolicitante +
-            ", entidadImplicada=" + entidadImplicada +
-            ", nombreFiscalAsignado='" + nombreFiscalAsignado + '\'' +
-            ", providenciaMadre=" + providenciaMadre +
+//
             '}';
     }
-
-
 }

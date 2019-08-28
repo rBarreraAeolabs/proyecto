@@ -53,6 +53,9 @@ export class AdjuntoService {
         return this.http.get(`${this.resourceUrl}/${hash}/download`, {observe: 'response', responseType: 'blob'});
     }
 
+    view(hash: string): Observable<HttpResponse<Blob>> {
+        return this.http.get(`${this.resourceUrl}/${hash}/view`, {observe: 'response', responseType: 'blob'});
+    }
     private convertDateFromClient(adjunto: IAdjunto): IAdjunto {
         const copy: IAdjunto = Object.assign({}, adjunto, {
             fechaCreado: adjunto.fechaCreado != null && adjunto.fechaCreado.isValid() ? adjunto.fechaCreado.format(DATE_FORMAT) : null,

@@ -9,9 +9,9 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { IAdjunto } from 'app/shared/model/adjunto.model';
 import { AdjuntoService } from './adjunto.service';
-import {IDocumento} from '../../shared/model/documento.model';
-import {DocumentoService} from '../documento/documento.service';
-import {HttpResponse} from '@angular/common/http';
+import { IDocumento } from '../../shared/model/documento.model';
+import { DocumentoService } from '../documento/documento.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
     selector: 'jhi-adjunto-show-list-popup',
@@ -60,7 +60,7 @@ export class AdjuntoShowListPopupComponent implements OnInit, OnDestroy {
             this.adjuntoService.download(hash).subscribe(result => {
                 this.downloadAsPdf(result);
             });
-        } else {
+        }  if (tipo === 'documento') {
             this.documentoService.download(hash).subscribe(result => {
                 this.downloadAsPdf(result);
             });
@@ -69,12 +69,12 @@ export class AdjuntoShowListPopupComponent implements OnInit, OnDestroy {
 
     viewPdfOnOtherTabChrome(hash: string, tipo: string) {
         if (tipo === 'adjunto') {
-            this.adjuntoService.download(hash).subscribe(result => {
+            this.adjuntoService.view(hash).subscribe(result => {
                 const url = window.URL.createObjectURL(result.body);
                 window.open(url);
             });
-        } else {
-            this.documentoService.download(hash).subscribe(result => {
+        }if (tipo === 'documento') {
+            this.documentoService.view(hash).subscribe(result => {
                 const url = window.URL.createObjectURL(result.body);
                 window.open(url);
             });

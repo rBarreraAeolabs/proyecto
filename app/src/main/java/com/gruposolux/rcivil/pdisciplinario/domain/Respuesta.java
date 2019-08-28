@@ -40,9 +40,8 @@ public class Respuesta implements Serializable
     @ManyToOne
     private User user;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "estado_providencia")
-    private EstadoProvidencia estadoProvidencia;
+    private String estadoProvidencia;
 
     public Respuesta() {
     }
@@ -111,11 +110,11 @@ public class Respuesta implements Serializable
         this.user = user;
     }
 
-    public EstadoProvidencia getEstadoProvidencia() {
+    public String getEstadoProvidencia() {
         return estadoProvidencia;
     }
 
-    public void setEstadoProvidencia(EstadoProvidencia estadoProvidencia) {
+    public void setEstadoProvidencia(String estadoProvidencia) {
         this.estadoProvidencia = estadoProvidencia;
     }
 

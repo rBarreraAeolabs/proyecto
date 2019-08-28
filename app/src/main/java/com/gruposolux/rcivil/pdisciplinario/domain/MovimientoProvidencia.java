@@ -9,7 +9,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
-import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Accion;
+
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
 
 /**
@@ -26,13 +26,11 @@ public class MovimientoProvidencia implements Serializable, Comparable<Movimient
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "estado_anterior")
-    private EstadoProvidencia estadoAnterior;
+    private String estadoAnterior;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "estado_nuevo")
-    private EstadoProvidencia estadoNuevo;
+    private String estadoNuevo;
 
     @Column(name = "fecha")
     private Instant fecha;
@@ -75,19 +73,19 @@ public class MovimientoProvidencia implements Serializable, Comparable<Movimient
         this.id = id;
     }
 
-    public EstadoProvidencia getEstadoAnterior() {
+    public String getEstadoAnterior() {
         return estadoAnterior;
     }
 
-    public void setEstadoAnterior(EstadoProvidencia estadoAnterior) {
+    public void setEstadoAnterior(String estadoAnterior) {
         this.estadoAnterior = estadoAnterior;
     }
 
-    public EstadoProvidencia getEstadoNuevo() {
+    public String getEstadoNuevo() {
         return estadoNuevo;
     }
 
-    public void setEstadoNuevo(EstadoProvidencia estadoNuevo) {
+    public void setEstadoNuevo(String estadoNuevo) {
         this.estadoNuevo = estadoNuevo;
     }
 

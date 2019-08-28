@@ -27,8 +27,8 @@ public class ApplicationProperties {
         private int maxTimeForFileExpire;
         private String alfrsco_atompub_url;
         private String repository_id;
-        private String alfresco_temp_rootFolder;
-        private String alfresco_final_rootFolder;
+        private String alfrescoTempRootFolder;
+        private String alfrescoFinalRootFolder;
         private String baseUrl;
         private String userAlfresco;
         private String passAlfresco;
@@ -100,20 +100,20 @@ public class ApplicationProperties {
             this.repository_id = repository_id;
         }
 
-        public String getAlfresco_temp_rootFolder() {
-            return alfresco_temp_rootFolder;
+        public String getAlfrescoTempRootFolder() {
+            return alfrescoTempRootFolder;
         }
 
-        public void setAlfresco_temp_rootFolder(String alfresco_temp_rootFolder) {
-            this.alfresco_temp_rootFolder = alfresco_temp_rootFolder;
+        public void setAlfrescoTempRootFolder(String alfrescoTempRootFolder) {
+            this.alfrescoTempRootFolder = alfrescoTempRootFolder;
         }
 
-        public String getAlfresco_final_rootFolder() {
-            return alfresco_final_rootFolder;
+        public String getAlfrescoFinalRootFolder() {
+            return alfrescoFinalRootFolder;
         }
 
-        public void setAlfresco_final_rootFolder(String alfresco_final_rootFolder) {
-            this.alfresco_final_rootFolder = alfresco_final_rootFolder;
+        public void setAlfrescoFinalRootFolder(String alfrescoFinalRootFolder) {
+            this.alfrescoFinalRootFolder = alfrescoFinalRootFolder;
         }
 
         public String getBaseUrl() {

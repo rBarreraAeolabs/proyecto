@@ -91,7 +91,7 @@ export class RespuestaUpdateComponent implements OnInit {
         result.subscribe(
             (res: HttpResponse<IRespuesta>) => {
                 this.resp.emit(res.body);
-                this.onSaveSuccess()
+                this.onSaveSuccess();
             },
             (res: HttpErrorResponse) => this.onSaveError());
         this.isSaving = false;
@@ -117,14 +117,14 @@ export class RespuestaUpdateComponent implements OnInit {
         this.adjuntos = $event;
         setTimeout(() => {
             this.save(false);
-        }, 500);
+        }, 300);
     }
 
     getNotDeletedDocuments($event) {
         this.documentos = $event;
         setTimeout(() => {
             this.save(false);
-        }, 500);
+        }, 300);
     }
 
     onSelectPlantilla(idPlantilla: string) {

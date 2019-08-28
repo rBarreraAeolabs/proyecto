@@ -50,7 +50,7 @@ public class FichaIngresoSdjResource {
      */
     @PostMapping("/ficha-ingreso-sdjs")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_FICHA_INGRESO_PRIVILAGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_FICHA_INGRESO + "\")")
     public ResponseEntity<FichaIngresoSdjDTO> createFichaIngresoSdj(@RequestBody FichaIngresoSdjDTO fichaIngresoSdjDTO) throws URISyntaxException {
         log.debug("REST request to save FichaIngresoSdj : {}", fichaIngresoSdjDTO);
         if (fichaIngresoSdjDTO.getId() != null) {
@@ -73,7 +73,7 @@ public class FichaIngresoSdjResource {
      */
     @PutMapping("/ficha-ingreso-sdjs")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_ADJUNTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_ADJUNTO + "\")")
     public ResponseEntity<FichaIngresoSdjDTO> updateFichaIngresoSdj(@RequestBody FichaIngresoSdjDTO fichaIngresoSdjDTO) throws URISyntaxException {
         log.debug("REST request to update FichaIngresoSdj : {}", fichaIngresoSdjDTO);
         if (fichaIngresoSdjDTO.getId() == null) {
@@ -94,7 +94,7 @@ public class FichaIngresoSdjResource {
      */
     @GetMapping("/ficha-ingreso-sdjs")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_FICHA_INGRESO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_FICHA_INGRESO + "\")")
     public ResponseEntity<List<FichaIngresoSdjDTO>> getAllFichaIngresoSdjs(Pageable pageable, @RequestParam(required = false) String filter) {
         if ("providencia-is-null".equals(filter)) {
             log.debug("REST request to get all FichaIngresoSdjs where providencia is null");
@@ -115,7 +115,7 @@ public class FichaIngresoSdjResource {
      */
     @GetMapping("/ficha-ingreso-sdjs/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_FICHA_INGRESO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_FICHA_INGRESO + "\")")
     public ResponseEntity<FichaIngresoSdjDTO> getFichaIngresoSdj(@PathVariable Long id) {
         log.debug("REST request to get FichaIngresoSdj : {}", id);
         Optional<FichaIngresoSdjDTO> fichaIngresoSdjDTO = fichaIngresoSdjService.findOne(id);

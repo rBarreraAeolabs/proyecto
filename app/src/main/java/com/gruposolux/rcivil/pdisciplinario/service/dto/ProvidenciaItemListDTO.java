@@ -11,7 +11,7 @@ public class ProvidenciaItemListDTO
 {
     private Long id;
     private Instant fechaCreacion;
-    private EstadoProvidencia estadoProvidencia;
+    private String estadoProvidencia;
     private String nombreGrupo;
     private Long diasDesdeCreacion;
     private Long diasUltimoTramite;
@@ -23,7 +23,7 @@ public class ProvidenciaItemListDTO
     public ProvidenciaItemListDTO(
         Long id,
         Instant fechaCreacion,
-        EstadoProvidencia estadoProvidencia,
+        String estadoProvidencia,
         String nombreGrupo,
         Long diasDesdeCreacion,
         Long diasUltimoTramite,
@@ -54,11 +54,11 @@ public class ProvidenciaItemListDTO
         this.fechaCreacion = fechaCreacion;
     }
 
-    public EstadoProvidencia getEstadoProvidencia() {
+    public String getEstadoProvidencia() {
         return estadoProvidencia;
     }
 
-    public void setEstadoProvidencia(EstadoProvidencia estadoProvidencia) {
+    public void setEstadoProvidencia(String estadoProvidencia) {
         this.estadoProvidencia = estadoProvidencia;
     }
 

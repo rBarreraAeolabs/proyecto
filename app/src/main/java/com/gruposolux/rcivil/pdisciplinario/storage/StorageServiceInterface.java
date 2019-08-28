@@ -1,10 +1,8 @@
 package com.gruposolux.rcivil.pdisciplinario.storage;
 
-import com.gruposolux.rcivil.pdisciplinario.domain.Adjunto;
 import com.gruposolux.rcivil.pdisciplinario.domain.Documento;
 import com.gruposolux.rcivil.pdisciplinario.domain.InvestigacionSumaria;
 import com.gruposolux.rcivil.pdisciplinario.domain.SumarioAdministrativo;
-import com.gruposolux.rcivil.pdisciplinario.service.dto.DocumentoDTO;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.FileUploadResponseDTO;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;

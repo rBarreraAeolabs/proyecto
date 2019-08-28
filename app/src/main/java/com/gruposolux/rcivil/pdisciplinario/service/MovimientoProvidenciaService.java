@@ -79,7 +79,7 @@ public class MovimientoProvidenciaService {
      *
      * @return the persisted entity
      */
-    public MovimientoProvidenciaDTO save(EstadoProvidencia estadoAnterior, EstadoProvidencia estadoNuevo,
+    public MovimientoProvidenciaDTO save(String estadoAnterior, String estadoNuevo,
                                          Long providenciaId, String comentario, Set<DocumentoDTO> documentoDTOs,
                                          Set<AdjuntoDTO> adjuntoDTOs, String accion) {
         log.debug("Request to save MovimientoProvidencia : {}");
@@ -127,16 +127,16 @@ public class MovimientoProvidenciaService {
         }
         movimientoProvidencia = movimientoProvidenciaRepository.save(movimientoProvidencia);
         this.respuestaService.updateMovimientoProvidencia(movimientoProvidencia.getId(),
-            movimientoProvidencia.getProvidencia().getId(), estadoAnterior.name());
+            movimientoProvidencia.getProvidencia().getId(), estadoAnterior);
         return movimientoProvidenciaMapper.toDto(movimientoProvidencia);
     }
 
-    private Plazo determinePlazo(EstadoProvidencia estadoAntiguo, EstadoProvidencia estadoNuevo)
+    private Plazo determinePlazo(String estadoAntiguo, String estadoNuevo)
     {
         Optional<PlazoDTO> optionalPlazo = Optional.empty();
         Plazo plazo = null;
 
-        if (estadoAntiguo != null && estadoAntiguo.equals(EstadoProvidencia.ESTADO_14) && estadoNuevo.equals(EstadoProvidencia.CREADO))
+        if (estadoAntiguo != null && estadoAntiguo.equals(EstadoProvidencia.FISCAL_ENVIA_A_UPD_MEMO_CIERRE) && estadoNuevo.equals(EstadoProvidencia.PROVIDENCIA_CREADA))
         {
             optionalPlazo = this.plazoService.findOne(1L);
             if (optionalPlazo.isPresent())
@@ -172,7 +172,7 @@ public class MovimientoProvidenciaService {
             if (filtro.getTipoAdjunto() != null)
             {
                 List<MovimientoProvidenciaDTO> list = movimientoProvidenciaRepository.findAll(pageable)
-                    .filter(mov -> mov.getEstadoNuevo().name().equalsIgnoreCase(filtro.getEstadoProvidencia().name()))
+                    .filter(mov -> mov.getEstadoNuevo().equalsIgnoreCase(filtro.getEstadoProvidencia().name()))
                     .stream().map(this.movimientoProvidenciaMapper::toDto).collect(Collectors.toList());
 
                 return new PageImpl<MovimientoProvidenciaDTO>(list);

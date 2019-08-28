@@ -1,6 +1,6 @@
 package com.gruposolux.rcivil.pdisciplinario.service.dto;
 
-import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
+
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
 
 import java.util.Set;
@@ -30,7 +30,7 @@ public class RespuestaDTO
 
     private Long userId;
 
-    private EstadoProvidencia estadoProvidencia;
+    private String estadoProvidencia;
 
     public RespuestaDTO() {}
 
@@ -50,6 +50,14 @@ public class RespuestaDTO
         this.comentario = comentario;
     }
 
+    public ProvidenciaDTO getProvidencia() {
+        return providencia;
+    }
+
+    public void setProvidencia(ProvidenciaDTO providencia) {
+        this.providencia = providencia;
+    }
+
     public MovimientoProvidenciaDTO getMovimientoProvidenciaDTO() {
         return movimientoProvidenciaDTO;
     }
@@ -62,20 +70,20 @@ public class RespuestaDTO
         return adjuntos;
     }
 
+    public String getEstadoProvidencia() {
+        return estadoProvidencia;
+    }
+
+    public void setEstadoProvidencia(String estadoProvidencia) {
+        this.estadoProvidencia = estadoProvidencia;
+    }
+
     public void setAdjuntos(Set<AdjuntoDTO> adjuntos) {
         this.adjuntos = adjuntos;
     }
 
     public Set<DocumentoDTO> getDocumentos() {
         return documentos;
-    }
-
-    public ProvidenciaDTO getProvidencia() {
-        return providencia;
-    }
-
-    public void setProvidencia(ProvidenciaDTO providencia) {
-        this.providencia = providencia;
     }
 
     public void setDocumentos(Set<DocumentoDTO> documentos) {
@@ -114,13 +122,6 @@ public class RespuestaDTO
         this.userId = userId;
     }
 
-    public EstadoProvidencia getEstadoProvidencia() {
-        return estadoProvidencia;
-    }
-
-    public void setEstadoProvidencia(EstadoProvidencia estadoProvidencia) {
-        this.estadoProvidencia = estadoProvidencia;
-    }
 
     @Override
     public String toString() {

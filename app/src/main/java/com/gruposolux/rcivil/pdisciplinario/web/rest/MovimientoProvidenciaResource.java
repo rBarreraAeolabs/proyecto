@@ -57,8 +57,8 @@ public class MovimientoProvidenciaResource {
      */
     @PostMapping("/movimiento-providencias")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA_PRIVILEGE + "\") " +
-        "or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\") " +
+        "or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA + "\")")
     public ResponseEntity<MovimientoProvidenciaDTO> createMovimientoProvidencia(@RequestBody MovimientoProvidenciaDTO movimientoProvidenciaDTO) throws URISyntaxException {
         log.debug("REST request to save MovimientoProvidencia : {}", movimientoProvidenciaDTO);
         if (movimientoProvidenciaDTO.getId() != null) {
@@ -81,8 +81,8 @@ public class MovimientoProvidenciaResource {
      */
     @PutMapping("/movimiento-providencias")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_PROVIDENCIA_PRIVILEGE + "\") " +
-        "or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_PROVIDENCIA + "\") " +
+        "or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA + "\")")
     public ResponseEntity<MovimientoProvidenciaDTO> updateMovimientoProvidencia(@RequestBody MovimientoProvidenciaDTO movimientoProvidenciaDTO) throws URISyntaxException {
         log.debug("REST request to update MovimientoProvidencia : {}", movimientoProvidenciaDTO);
         if (movimientoProvidenciaDTO.getId() == null) {
@@ -102,7 +102,7 @@ public class MovimientoProvidenciaResource {
      */
     @GetMapping("/movimiento-providencias")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
     public ResponseEntity<List<MovimientoProvidenciaDTO>> getAllMovimientoProvidencias(Pageable pageable, FiltroMovimientoProvidenciaDTO filtro) {
         log.debug("REST request to get a page of MovimientoProvidencias");
         Page<MovimientoProvidenciaDTO> page = movimientoProvidenciaService.findAll(pageable, filtro);
@@ -118,7 +118,7 @@ public class MovimientoProvidenciaResource {
      */
     @GetMapping("/movimiento-providencias/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
     public ResponseEntity<MovimientoProvidenciaDTO> getMovimientoProvidencia(@PathVariable Long id) {
         log.debug("REST request to get MovimientoProvidencia : {}", id);
         Optional<MovimientoProvidenciaDTO> movimientoProvidenciaDTO = movimientoProvidenciaService.findOne(id);
@@ -142,7 +142,7 @@ public class MovimientoProvidenciaResource {
 
     @PostMapping("/movimiento-providencias/providencia")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
     public ResponseEntity<Set<MovimientoProvidenciaDTO>> getAllByProvidencia(@RequestBody FiltroMovProDTO filtroMovPro) throws URISyntaxException {
 
         if (filtroMovPro.getProvidencia() != null)
@@ -155,7 +155,7 @@ public class MovimientoProvidenciaResource {
 
     @GetMapping("/movimiento-providencias/list")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
     public ResponseEntity<Set<MovimientoProvidenciaDTO>> getAllMovimientosWithoutPagination()
     {
         return new ResponseEntity<Set<MovimientoProvidenciaDTO>>(this.movimientoProvidenciaService.getAllWithoutPagination(),

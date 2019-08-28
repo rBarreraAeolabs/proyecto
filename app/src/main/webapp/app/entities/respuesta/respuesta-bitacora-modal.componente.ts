@@ -4,8 +4,6 @@
 import {Component, OnInit, OnDestroy, Input} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { IAdjunto } from 'app/shared/model/adjunto.model';
-import { IDocumento } from '../../shared/model/documento.model';
 import { DocumentoService } from '../documento/documento.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import { AdjuntoService } from 'app/entities/adjunto';
@@ -21,7 +19,7 @@ export class RespuestaBitacoraModalComponent implements OnInit, OnDestroy {
 
     @Input() movimientoProvidenciaId: number;
     respuesta: IRespuesta;
-
+    private externalWindow = null;
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
@@ -68,7 +66,7 @@ export class RespuestaBitacoraModalComponent implements OnInit, OnDestroy {
             this.adjuntoService.download(hash).subscribe(result => {
                 this.downloadAsPdf(result);
             });
-        } else {
+        }  if (tipo === 'documento'){
             this.documentoService.download(hash).subscribe(result => {
                 this.downloadAsPdf(result);
             });
@@ -76,13 +74,14 @@ export class RespuestaBitacoraModalComponent implements OnInit, OnDestroy {
     }
 
     viewPdfOnOtherTabChrome(hash: string, tipo: string) {
+
         if (tipo === 'adjunto') {
-            this.adjuntoService.download(hash).subscribe(result => {
-                const url = window.URL.createObjectURL(result.body);
-                window.open(url);
+            this.adjuntoService.view(hash).subscribe(result => {
+                const url =  window.URL.createObjectURL(result.body);
+               window.open(url);
             });
-        } else {
-            this.documentoService.download(hash).subscribe(result => {
+        }  if (tipo === 'documento') {
+            this.documentoService.view(hash).subscribe(result => {
                 const url = window.URL.createObjectURL(result.body);
                 window.open(url);
             });

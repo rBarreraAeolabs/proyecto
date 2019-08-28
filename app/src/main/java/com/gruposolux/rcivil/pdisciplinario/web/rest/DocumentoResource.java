@@ -1,11 +1,12 @@
 package com.gruposolux.rcivil.pdisciplinario.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.gruposolux.rcivil.pdisciplinario.config.ApplicationProperties;
 import com.gruposolux.rcivil.pdisciplinario.security.AuthoritiesConstants;
 import com.gruposolux.rcivil.pdisciplinario.service.DocumentoService;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.DocumentoDTO;
-import com.gruposolux.rcivil.pdisciplinario.service.dto.FileUploadResponseDTO;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.ProvidenciaDTO;
+import com.gruposolux.rcivil.pdisciplinario.storage.FileSystemStorageService;
 import com.gruposolux.rcivil.pdisciplinario.storage.StorageServiceInterface;
 import com.gruposolux.rcivil.pdisciplinario.web.rest.errors.BadRequestAlertException;
 import com.gruposolux.rcivil.pdisciplinario.web.rest.util.HeaderUtil;
@@ -22,11 +23,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,14 +42,18 @@ public class DocumentoResource {
     private final Logger log = LoggerFactory.getLogger(DocumentoResource.class);
     private static final String ENTITY_NAME = "documento";
     private final DocumentoService documentoService;
-    private final StorageServiceInterface storageServiceInterface;
+
 
     public DocumentoResource(
         DocumentoService documentoService,
-        StorageServiceInterface storageServiceInterface
-    ) {
+        StorageServiceInterface storageServiceInterface,
+        FileSystemStorageService fileSystemStorageService,
+        ApplicationProperties applicationProperties
+       ) {
         this.documentoService = documentoService;
-        this.storageServiceInterface = storageServiceInterface;
+
+
+
     }
 
     /**
@@ -59,7 +65,7 @@ public class DocumentoResource {
      */
     @PostMapping("/documentos")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ADJUNTAR_DOCUMENTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ADJUNTAR_DOCUMENTO + "\")")
     public ResponseEntity<DocumentoDTO> createDocumento(@RequestBody DocumentoDTO documentoDTO) throws URISyntaxException {
         log.debug("REST request to save Documento : {}", documentoDTO);
         if (documentoDTO.getId() != null) {
@@ -82,7 +88,7 @@ public class DocumentoResource {
      */
     @PutMapping("/documentos")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_DOCUMENTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_DOCUMENTO + "\")")
     public ResponseEntity<DocumentoDTO> updateDocumento(@RequestBody DocumentoDTO documentoDTO) throws URISyntaxException {
         log.debug("REST request to update Documento : {}", documentoDTO);
         if (documentoDTO.getId() == null) {
@@ -102,7 +108,7 @@ public class DocumentoResource {
      */
     @GetMapping("/documentos")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_DOCUMENTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_DOCUMENTO + "\")")
     public ResponseEntity<List<DocumentoDTO>> getAllDocumentos(Pageable pageable) {
         log.debug("REST request to get a page of Documentos");
         Page<DocumentoDTO> page = documentoService.findAll(pageable);
@@ -118,7 +124,7 @@ public class DocumentoResource {
      */
     @GetMapping("/documentos/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_DOCUMENTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_DOCUMENTO + "\")")
     public ResponseEntity<DocumentoDTO> getDocumento(@PathVariable Long id) {
         log.debug("REST request to get Documento : {}", id);
         Optional<DocumentoDTO> documentoDTO = documentoService.findOne(id);
@@ -133,7 +139,7 @@ public class DocumentoResource {
      */
     @DeleteMapping("/documentos/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ELIMINAR_DOCUMENTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ELIMINAR_DOCUMENTO + "\")")
     public ResponseEntity<Void> deleteDocumento(@PathVariable Long id) {
         log.debug("REST request to delete Documento : {}", id);
         documentoService.delete(id);
@@ -141,7 +147,7 @@ public class DocumentoResource {
     }
 
     @GetMapping("/documentos/{hash}/download")
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DESCARGAR_DOCUMENTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DESCARGAR_DOCUMENTO + "\")")
     public ResponseEntity<Resource> downloadByHash(@PathVariable String hash)
     {
         if (hash == null || hash.trim().length() == 0)
@@ -166,5 +172,33 @@ public class DocumentoResource {
         Optional<DocumentoDTO> documentoOptional = this.documentoService.findByProvidencia(providenciaDTO);
         return ResponseUtil.wrapOrNotFound(documentoOptional);
     }
+
+
+
+    @GetMapping("/documentos/{hash}/view")
+    @Timed
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DESCARGAR_DOCUMENTO + "\")")
+    public ResponseEntity<Resource> visualizarDocumento(@PathVariable String hash)
+    {
+        if (hash == null || hash.trim().length() == 0)
+        {
+            return null;
+        }
+
+        Resource resource = this.documentoService.getByHashToDownload(hash);
+
+        String nombreArchivo = this.documentoService.findByHash(hash).getArchivoNombre();
+
+
+        return ResponseEntity.ok()
+            .contentType(MediaType.APPLICATION_PDF)
+            .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + nombreArchivo + "\"")
+            .body(resource);
+    }
+
+
+
+
+
 }
 

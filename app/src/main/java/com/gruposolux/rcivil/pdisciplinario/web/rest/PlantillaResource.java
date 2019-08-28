@@ -51,7 +51,7 @@ public class PlantillaResource {
      */
     @PostMapping("/plantillas")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PLANTILLA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PLANTILLA + "\")")
     public ResponseEntity<PlantillaDTO> createPlantilla(@RequestBody PlantillaDTO plantillaDTO) throws URISyntaxException {
         log.debug("REST request to save Plantilla : {}", plantillaDTO);
         if (plantillaDTO.getId() != null) {
@@ -74,7 +74,7 @@ public class PlantillaResource {
      */
     @PutMapping("/plantillas")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_PLANTILLA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_PLANTILLA + "\")")
     public ResponseEntity<PlantillaDTO> updatePlantilla(@RequestBody PlantillaDTO plantillaDTO) throws URISyntaxException {
         log.debug("REST request to update Plantilla : {}", plantillaDTO);
         if (plantillaDTO.getId() == null) {
@@ -94,7 +94,7 @@ public class PlantillaResource {
      */
     @GetMapping("/plantillas")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PLANTILLA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PLANTILLA + "\")")
     public ResponseEntity<List<PlantillaDTO>> getAllPlantillas(Pageable pageable) {
         log.debug("REST request to get a page of Plantillas");
         Page<PlantillaDTO> page = plantillaService.findAll(pageable);
@@ -110,7 +110,7 @@ public class PlantillaResource {
      */
     @GetMapping("/plantillas/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PLANTILLA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PLANTILLA + "\")")
     public ResponseEntity<PlantillaDTO> getPlantilla(@PathVariable Long id) {
         log.debug("REST request to get Plantilla : {}", id);
         Optional<PlantillaDTO> plantillaDTO = plantillaService.findOne(id);
@@ -125,7 +125,7 @@ public class PlantillaResource {
      */
     @DeleteMapping("/plantillas/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ELIMINAR_PLANTILLA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ELIMINAR_PLANTILLA + "\")")
     public ResponseEntity<Void> deletePlantilla(@PathVariable Long id) {
         log.debug("REST request to delete Plantilla : {}", id);
         plantillaService.delete(id);

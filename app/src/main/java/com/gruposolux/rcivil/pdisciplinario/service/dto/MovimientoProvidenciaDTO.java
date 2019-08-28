@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Accion;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
 
 import javax.validation.constraints.NotNull;
@@ -18,9 +17,9 @@ public class MovimientoProvidenciaDTO implements Serializable, Comparable<Movimi
 
     private Long id;
 
-    private EstadoProvidencia estadoAnterior;
+    private String estadoAnterior;
 
-    private EstadoProvidencia estadoNuevo;
+    private String estadoNuevo;
 
     private Instant fecha;
 
@@ -55,19 +54,19 @@ public class MovimientoProvidenciaDTO implements Serializable, Comparable<Movimi
         this.id = id;
     }
 
-    public EstadoProvidencia getEstadoAnterior() {
+    public String getEstadoAnterior() {
         return estadoAnterior;
     }
 
-    public void setEstadoAnterior(EstadoProvidencia estadoAnterior) {
+    public void setEstadoAnterior(String estadoAnterior) {
         this.estadoAnterior = estadoAnterior;
     }
 
-    public EstadoProvidencia getEstadoNuevo() {
+    public String getEstadoNuevo() {
         return estadoNuevo;
     }
 
-    public void setEstadoNuevo(EstadoProvidencia estadoNuevo) {
+    public void setEstadoNuevo(String estadoNuevo) {
         this.estadoNuevo = estadoNuevo;
     }
 

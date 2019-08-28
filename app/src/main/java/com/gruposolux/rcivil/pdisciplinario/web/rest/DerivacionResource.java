@@ -82,7 +82,7 @@ public class DerivacionResource {
      */
     @PostMapping("/derivacions")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA + "\")")
     public ResponseEntity<DerivacionDTO> createDerivacion(@RequestBody DerivacionDTO derivacionDTO) throws URISyntaxException {
         log.debug("REST request to save Derivacion : {}", derivacionDTO);
         if (derivacionDTO.getId() != null) {
@@ -105,7 +105,7 @@ public class DerivacionResource {
      */
     @PutMapping("/derivacions")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA + "\")")
     public ResponseEntity<ProvidenciaDerivacionDTO> updateDerivacion(@RequestBody ProvidenciaDerivacionDTO providenciaDerivacionDTO) throws URISyntaxException {
         log.debug("REST request to update Derivacion : {}", providenciaDerivacionDTO);
         ProvidenciaDTO providenciaDTO = providenciaDerivacionDTO.getProvidenciaDTO();
@@ -134,7 +134,7 @@ public class DerivacionResource {
      */
     @GetMapping("/derivacions/paged")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA + "\")")
     public ResponseEntity<List<DerivacionDTO>> getAllDerivacions(Pageable pageable) {
         log.debug("REST request to get a page of Derivacions");
         Page<DerivacionDTO> page = derivacionService.findAll(pageable);
@@ -150,7 +150,7 @@ public class DerivacionResource {
      */
     @GetMapping("/derivacions/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA + "\")")
     public ResponseEntity<DerivacionDTO> getDerivacion(@PathVariable Long id) {
         log.debug("REST request to get Derivacion : {}", id);
         Optional<DerivacionDTO> derivacionDTO = derivacionService.findOne(id);
@@ -165,7 +165,7 @@ public class DerivacionResource {
      */
     @DeleteMapping("/derivacions/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DERIVAR_PROVIDENCIA + "\")")
     public ResponseEntity<Void> deleteDerivacion(@PathVariable Long id) {
         log.debug("REST request to delete Derivacion : {}", id);
         derivacionService.delete(id);

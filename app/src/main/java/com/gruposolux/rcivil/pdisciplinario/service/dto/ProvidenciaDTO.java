@@ -4,13 +4,11 @@ import java.time.Instant;
 import java.io.Serializable;
 import java.util.*;
 
-import com.gruposolux.rcivil.pdisciplinario.domain.Adjunto;
-import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Accion;
-import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Caracter;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
+import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.InstruccionesProvidencia;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.TipoProvidencia;
 
-import javax.validation.constraints.Max;
+
 import javax.validation.constraints.Size;
 
 /**
@@ -20,9 +18,17 @@ public class ProvidenciaDTO implements Serializable {
 
     private Long id;
 
-    private Long numero;
+    private Long numeroReferencia;
 
-    private EstadoProvidencia estadoActual;
+    private Long numeroProvidencia;
+
+    private String estadoActual;
+
+    private EstadoProvidencia etapa;
+
+    private EstadoProvidencia subEtapa;
+
+    private EstadoProvidencia requisito;
 
     private TipoProvidencia tipo;
 
@@ -32,7 +38,7 @@ public class ProvidenciaDTO implements Serializable {
 
     private Instant fechaCreacion;
 
-    private Collection<Accion> acciones;
+    private Collection<InstruccionesProvidencia> instrucciones;
 
     private Set<AdjuntoDTO> adjuntos = new HashSet<>();
 
@@ -66,6 +72,8 @@ public class ProvidenciaDTO implements Serializable {
 
     private Long numeroReferenciaPorvidenciaMadre;
 
+
+
     public ProvidenciaDTO() {
     }
 
@@ -77,20 +85,42 @@ public class ProvidenciaDTO implements Serializable {
         this.id = id;
     }
 
-    public Long getNumero() {
-        return numero;
+    public Long getnumeroReferencia() { return numeroReferencia; }
+
+    public void setnumeroReferencia(Long numeroReferencia) {
+        this.numeroReferencia = numeroReferencia;
     }
 
-    public void setNumero(Long numero) {
-        this.numero = numero;
-    }
+    public Long getNumeroProvidencia() { return numeroProvidencia; }
 
-    public EstadoProvidencia getEstadoActual() {
+    public void setNumeroProvidencia(Long numeroProvidencia) { this.numeroProvidencia = numeroProvidencia; }
+
+    public String getEstadoActual() {
         return estadoActual;
     }
 
-    public void setEstadoActual(EstadoProvidencia estadoActual) {
+    public void setEstadoActual(String estadoActual) {
         this.estadoActual = estadoActual;
+    }
+
+    public EstadoProvidencia getEtapa() {
+        return etapa;
+    }
+
+    public void setEtapa(EstadoProvidencia etapa) {
+        this.etapa = etapa;
+    }
+
+    public EstadoProvidencia getSubEtapa() { return subEtapa; }
+
+    public void setSubEtapa(EstadoProvidencia subEtapa) { this.subEtapa = subEtapa; }
+
+    public EstadoProvidencia getRequisito() {
+        return requisito;
+    }
+
+    public void setRequisito(EstadoProvidencia requisito) {
+        this.requisito = requisito;
     }
 
     public TipoProvidencia getTipo() {
@@ -125,12 +155,12 @@ public class ProvidenciaDTO implements Serializable {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Collection<Accion> getAcciones() {
-        return acciones;
+    public Collection<InstruccionesProvidencia> getinstrucciones() {
+        return instrucciones;
     }
 
-    public void setAcciones(Collection<Accion> acciones) {
-        this.acciones = acciones;
+    public void setinstrucciones(Collection<InstruccionesProvidencia> instrucciones) {
+        this.instrucciones = instrucciones;
     }
 
     public Set<AdjuntoDTO> getAdjuntos() {
@@ -253,17 +283,19 @@ public class ProvidenciaDTO implements Serializable {
         this.numeroReferenciaPorvidenciaMadre = numeroReferenciaPorvidenciaMadre;
     }
 
+
+
     @Override
     public String toString() {
         return "ProvidenciaDTO{" +
             "id=" + id +
-            ", numero=" + numero +
+            ", numeroReferencia=" + numeroReferencia +
             ", estadoActual=" + estadoActual +
             ", tipo=" + tipo +
             ", comentario='" + comentario + '\'' +
             ", fechaSolicitud=" + fechaSolicitud +
             ", fechaCreacion=" + fechaCreacion +
-            ", acciones=" + acciones +
+            ", instrucciones=" + instrucciones +
             ", adjuntos=" + adjuntos +
             ", documentos=" + documentos +
             ", movimientos=" + movimientos +
@@ -278,7 +310,8 @@ public class ProvidenciaDTO implements Serializable {
             ", entidadImplicada=" + entidadImplicada +
             ", nombreFiscalAsignado='" + nombreFiscalAsignado + '\'' +
             ", providenciaMadreId=" + providenciaMadreId +
-            ", numeroReferenciaPorvidenciaMadre=" + numeroReferenciaPorvidenciaMadre +
+            ", numeroReferenciaReferenciaPorvidenciaMadre=" + numeroReferenciaPorvidenciaMadre +
+//            ", idsProvidenciasHijas=" + idsProvidenciasHijas +
             '}';
     }
 }

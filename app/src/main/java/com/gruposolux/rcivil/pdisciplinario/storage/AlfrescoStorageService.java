@@ -28,7 +28,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +38,7 @@ public class AlfrescoStorageService {
     private final Path uploadPath;
     private final ApplicationProperties applicationProperties;
     private final Logger log = LoggerFactory.getLogger(AlfrescoStorageService.class);
-    private static Session alfrescoSession;
+    private Session alfrescoSession;
     private Folder alfrescoFolder;
     private DocumentoRepository documentoRepository;
     private String rootTempFolder;
@@ -55,13 +54,18 @@ public class AlfrescoStorageService {
         this.documentoRepository = documentoRepository;
         this.adjuntoRepository = adjuntoRepository;
         this.uploadPath = Paths.get(this.applicationProperties.getStorage().getTmpDir());
-        this.rootTempFolder = this.applicationProperties.getStorage().getAlfresco_temp_rootFolder();
-        this.rootFinalFolder = this.applicationProperties.getStorage().getAlfresco_final_rootFolder();
+        this.rootTempFolder = this.applicationProperties.getStorage().getAlfrescoTempRootFolder();
+        this.rootFinalFolder = this.applicationProperties.getStorage().getAlfrescoFinalRootFolder();
         this.baseUrl = this.applicationProperties.getStorage().getBaseUrl();
         this.atomPub_Alfresco_Url = this.applicationProperties.getStorage().getAlfrsco_atompub_url();
         this.userAlfresco = this.applicationProperties.getStorage().getUserAlfresco();
         this.passAlfresco = this.applicationProperties.getStorage().getPassAlfresco();
+    }
 
+    private Session getAlfrescoSession(){
+        if (this.alfrescoSession != null) {
+            return this.alfrescoSession;
+        }
 
         SessionFactory sessionFactory = SessionFactoryImpl.newInstance();
         Map<String, String> parameter = new HashMap<>();
@@ -71,9 +75,10 @@ public class AlfrescoStorageService {
         parameter.put(SessionParameter.BINDING_TYPE,
             BindingType.ATOMPUB.value());
         parameter.put(SessionParameter.REPOSITORY_ID, this.applicationProperties.getStorage().getRepository_id());
-
-        alfrescoSession = sessionFactory.createSession(parameter);
+        this.alfrescoSession = sessionFactory.createSession(parameter);
         this.alfrescoFolder = alfrescoSession.getRootFolder();
+
+        return this.alfrescoSession;
     }
 
     /**
@@ -96,12 +101,12 @@ public class AlfrescoStorageService {
         props.put(PropertyIds.OBJECT_TYPE_ID, "cmis:folder");
 
         try {
-            pathCreado = alfrescoSession.createPath(aux, props);
+            pathCreado = getAlfrescoSession().createPath(aux, props);
         } catch (CmisObjectNotFoundException e) {
             System.out.println(e.getMessage());
         }
 
-        return (Folder) alfrescoSession.getObject(pathCreado);
+        return (Folder) getAlfrescoSession().getObject(pathCreado);
 
     }
 
@@ -205,7 +210,7 @@ public class AlfrescoStorageService {
         ByteArrayInputStream stream = new ByteArrayInputStream(contentBytes);
 
 
-        ContentStream contentStream = alfrescoSession.getObjectFactory().createContentStream(archivoAMover.getName(), contentBytes.length, mimetype, stream);
+        ContentStream contentStream = getAlfrescoSession().getObjectFactory().createContentStream(archivoAMover.getName(), contentBytes.length, mimetype, stream);
 
         String timeParaNombre = DateTimeFormatter.ofPattern("ddMMyyy_hhmmss").format(ZonedDateTime.now());
         Map<String, Object> propiedades = new HashMap<>();
@@ -239,7 +244,7 @@ public class AlfrescoStorageService {
         if (adjunto.getAlfrescoNodeId() == null)
             return null;
 
-        CmisObject object = alfrescoSession.getObject(adjunto.getAlfrescoNodeId());
+        CmisObject object = getAlfrescoSession().getObject(adjunto.getAlfrescoNodeId());
 
         if (object instanceof Document) {
             Document document = (Document) object;

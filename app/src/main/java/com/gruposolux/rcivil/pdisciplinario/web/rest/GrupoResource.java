@@ -51,7 +51,7 @@ public class GrupoResource {
      */
     @PostMapping("/grupos")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_GRUPO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_GRUPO + "\")")
     public ResponseEntity<GrupoDTO> createGrupo(@Valid @RequestBody GrupoDTO grupoDTO) throws URISyntaxException {
         log.debug("REST request to save Grupo : {}", grupoDTO);
         if (grupoDTO.getId() != null) {
@@ -74,7 +74,7 @@ public class GrupoResource {
      */
     @PutMapping("/grupos")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_GRUPO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_GRUPO + "\")")
     public ResponseEntity<GrupoDTO> updateGrupo(@Valid @RequestBody GrupoDTO grupoDTO) throws URISyntaxException {
         log.debug("REST request to update Grupo : {}", grupoDTO);
         if (grupoDTO.getId() == null) {
@@ -94,7 +94,7 @@ public class GrupoResource {
      */
     @GetMapping("/grupos")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_GRUPO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_GRUPO + "\")")
     public ResponseEntity<List<GrupoDTO>> getAllGrupos(Pageable pageable) {
         log.debug("REST request to get a page of Grupos");
         Page<GrupoDTO> page = grupoService.findAll(pageable);
@@ -110,7 +110,7 @@ public class GrupoResource {
      */
     @GetMapping("/grupos/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_GRUPO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_GRUPO + "\")")
     public ResponseEntity<GrupoDTO> getGrupo(@PathVariable Long id) {
         log.debug("REST request to get Grupo : {}", id);
         Optional<GrupoDTO> grupoDTO = grupoService.findOne(id);
@@ -125,7 +125,7 @@ public class GrupoResource {
      */
     @DeleteMapping("/grupos/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ELIMINAR_GRUPO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ELIMINAR_GRUPO + "\")")
     public ResponseEntity<Void> deleteGrupo(@PathVariable Long id) {
         log.debug("REST request to delete Grupo : {}", id);
         grupoService.delete(id);
@@ -134,8 +134,8 @@ public class GrupoResource {
 
     @GetMapping("/grupos/list")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_GRUPO_PRIVILEGE + "\") or " +
-        "hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_GRUPO + "\") or " +
+        "hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
     public ResponseEntity<List<GrupoDTO>> getAllAsList()
     {
         return new ResponseEntity<List<GrupoDTO>>(this.grupoService.getAllAsList(), HttpStatus.OK);

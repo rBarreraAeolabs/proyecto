@@ -47,7 +47,7 @@ public class AdjuntoService {
      * @return the persisted entity
      */
     public AdjuntoDTO save(AdjuntoDTO adjuntoDTO) {
-        log.debug("Request to save Adjunto : {}", adjuntoDTO);
+        log.debug("Solicitud para guardar adjunto: {}", adjuntoDTO);
         Adjunto adjunto = adjuntoMapper.toEntity(adjuntoDTO);
         adjunto = adjuntoRepository.save(adjunto);
         return adjuntoMapper.toDto(adjunto);

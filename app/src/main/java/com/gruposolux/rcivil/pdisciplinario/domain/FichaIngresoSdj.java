@@ -1,7 +1,7 @@
 package com.gruposolux.rcivil.pdisciplinario.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Accion;
+
+import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.InstruccionesProvidencia;
 
 import javax.persistence.*;
 
@@ -36,14 +36,22 @@ public class FichaIngresoSdj implements Serializable {
     @Column(name = "fecha_hasta")
     private Instant fechaHasta;
 
+    @Column(name = "numero_providencia")
+    private Long numeroProvidencia;
+
     @Column(name = "numero_referencia")
     private Long numeroReferencia;
 
-    @ElementCollection(targetClass = Accion.class)
+    @Column(name = "tipo_solicitud")
+    private String tipoSolicitud;
+
+
+
+    @ElementCollection(targetClass = InstruccionesProvidencia.class)
     @CollectionTable(name = "accion_ficha_ingreso", joinColumns = @JoinColumn(name = "ficha_ingreso_sdj_id"))
     @Enumerated(EnumType.STRING)
-    @Column(name = "acciones")
-    private Collection<Accion> acciones;
+    @Column(name = "instrucciones")
+    private Collection<InstruccionesProvidencia> instrucciones;
 
     @Column(name = "atentamente")
     private String atentamente;
@@ -51,6 +59,7 @@ public class FichaIngresoSdj implements Serializable {
 
     public FichaIngresoSdj() {
     }
+
 
     public Long getId() {
         return id;
@@ -92,20 +101,30 @@ public class FichaIngresoSdj implements Serializable {
         this.fechaHasta = fechaHasta;
     }
 
+    public Long getNumeroProvidencia() {
+        return numeroProvidencia;
+    }
+
+    public void setNumeroProvidencia(Long numeroProvidencia) { this.numeroProvidencia = numeroProvidencia; }
+
     public Long getNumeroReferencia() {
         return numeroReferencia;
     }
 
-    public void setNumeroReferencia(Long numeroReferencia) {
-        this.numeroReferencia = numeroReferencia;
+    public void setNumeroReferencia(Long numeroReferencia) { this.numeroReferencia = numeroReferencia; }
+
+    public String getTipoSolicitud() {
+        return tipoSolicitud;
     }
 
-    public Collection<Accion> getAcciones() {
-        return acciones;
+    public void setTipoSolicitud(String tipoSolicitud) { this.tipoSolicitud = tipoSolicitud; }
+
+    public Collection<InstruccionesProvidencia> getInstrucciones() {
+        return instrucciones;
     }
 
-    public void setAcciones(Collection<Accion> acciones) {
-        this.acciones = acciones;
+    public void setInstrucciones(Collection<InstruccionesProvidencia> instrucciones) {
+        this.instrucciones = instrucciones;
     }
 
     public String getAtentamente() {
@@ -139,8 +158,10 @@ public class FichaIngresoSdj implements Serializable {
             ", observacion='" + observacion + '\'' +
             ", plazo=" + plazo +
             ", fechaHasta=" + fechaHasta +
+            ", numeroProvidencia=" + numeroProvidencia +
             ", numeroReferencia=" + numeroReferencia +
-            ", acciones=" + acciones +
+            ", tipoSolicitud=" + tipoSolicitud +
+            ", Instrucciones=" + instrucciones +
             ", atentamente='" + atentamente + '\'' +
             '}';
     }

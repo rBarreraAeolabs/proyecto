@@ -55,7 +55,7 @@ public class AdjuntoResource {
      */
     @PostMapping("/adjuntos")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ADJUNTAR_ADJUNTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ADJUNTAR_ADJUNTO + "\")")
     public ResponseEntity<AdjuntoDTO> createAdjunto(@RequestBody AdjuntoDTO adjuntoDTO) throws URISyntaxException {
         log.debug("REST request to save Adjunto : {}", adjuntoDTO);
         if (adjuntoDTO.getId() != null) {
@@ -78,7 +78,7 @@ public class AdjuntoResource {
      */
     @PutMapping("/adjuntos")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_ADJUNTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_ADJUNTO + "\")")
     public ResponseEntity<AdjuntoDTO> updateAdjunto(@RequestBody AdjuntoDTO adjuntoDTO) throws URISyntaxException {
         log.debug("REST request to update Adjunto : {}", adjuntoDTO);
         if (adjuntoDTO.getId() == null) {
@@ -98,7 +98,7 @@ public class AdjuntoResource {
      */
     @GetMapping("/adjuntos")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_ADJUNTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_ADJUNTO + "\")")
     public ResponseEntity<List<AdjuntoDTO>> getAllAdjuntos(Pageable pageable) {
         log.debug("REST request to get a page of Adjuntos");
         Page<AdjuntoDTO> page = adjuntoService.findAll(pageable);
@@ -114,7 +114,7 @@ public class AdjuntoResource {
      */
     @GetMapping("/adjuntos/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_ADJUNTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_ADJUNTO + "\")")
     public ResponseEntity<AdjuntoDTO> getAdjunto(@PathVariable Long id) {
         log.debug("REST request to get Adjunto : {}", id);
         Optional<AdjuntoDTO> adjuntoDTO = adjuntoService.findOne(id);
@@ -129,7 +129,7 @@ public class AdjuntoResource {
      */
     @DeleteMapping("/adjuntos/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ELIMINAR_ADJUNTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ELIMINAR_ADJUNTO + "\")")
     public ResponseEntity<Void> deleteAdjunto(@PathVariable Long id) {
         log.debug("REST request to delete Adjunto : {}", id);
         this.adjuntoService.delete(id);
@@ -143,7 +143,7 @@ public class AdjuntoResource {
      * @return
      */
     @PostMapping("/adjuntos/_upload")
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ADJUNTAR_ADJUNTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ADJUNTAR_ADJUNTO + "\")")
     public ResponseEntity<FileUploadResponseDTO> handleFileUpload(@RequestParam("file") MultipartFile file) {
 
         FileUploadResponseDTO information = this.storageServiceInterface.store(file);
@@ -165,7 +165,7 @@ public class AdjuntoResource {
     }
 
     @GetMapping("/adjuntos/{hash}/download")
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DESCARGAR_ADJUNTO_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DESCARGAR_ADJUNTO + "\")")
     public ResponseEntity<Resource> downloadByHash(@PathVariable String hash) throws IOException
     {
         if (hash == null || hash.trim().length() == 0)
@@ -183,4 +183,29 @@ public class AdjuntoResource {
             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + nombreArchivo + "\"")
             .body(resource);
     }
+
+// para visualizar archivo
+    @GetMapping("/adjuntos/{hash}/view")
+    @Timed
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DESCARGAR_DOCUMENTO + "\")")
+    public ResponseEntity<Resource> visualizarAdjunto(@PathVariable String hash) throws IOException
+    {
+        if (hash == null || hash.trim().length() == 0)
+        {
+            return null;
+        }
+
+        Resource resource = this.adjuntoService.getByHashToDownload(hash);
+
+        String nombreArchivo = this.adjuntoService.findByHash(hash).getArchivoNombre();
+        // dejar con la variable para dejar que se visualice cualquier tipo de archivo si no se puede es porque la libreria no permite
+      //  String tipo = this.adjuntoService.findByHash(hash).getArchivoMimeType();
+        return ResponseEntity.ok()
+          //  .contentType(MediaType.valueOf(tipo))
+            .contentType(MediaType.APPLICATION_PDF)
+            .contentLength(resource.contentLength())
+           .header(HttpHeaders.CONTENT_DISPOSITION,"inline")
+            .body(resource);
+    }
+
 }

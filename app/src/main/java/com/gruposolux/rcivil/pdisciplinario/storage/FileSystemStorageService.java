@@ -11,7 +11,9 @@ import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.TipoDocumento;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.AdjuntoDTO;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.DocumentoDTO;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.FileUploadResponseDTO;
+import com.gruposolux.rcivil.pdisciplinario.service.util.PdfConverter;
 import com.gruposolux.rcivil.pdisciplinario.web.rest.DocumentoResource;
+import com.itextpdf.text.DocumentException;
 import org.apache.commons.io.FileUtils;
 import org.apache.tika.Tika;
 import org.slf4j.Logger;
@@ -25,6 +27,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -78,6 +81,22 @@ public class FileSystemStorageService implements StorageServiceInterface {
 
     }
 
+    public Path getAdjuntosPath() {
+        return adjuntosPath;
+    }
+
+    public Path getTemporalPath() {
+        return temporalPath;
+    }
+
+    public Path getExcelPath() {
+        return excelPath;
+    }
+
+    public Path getUploadPath() {
+        return uploadPath;
+    }
+
     private FileUploadResponseDTO virusValidation(FileUploadResponseDTO responseDTO, MultipartFile file) {
         return responseDTO;
     }
@@ -104,7 +123,7 @@ public class FileSystemStorageService implements StorageServiceInterface {
 
         try {
             if (file.isEmpty()) {
-                throw new StorageException("Failed to store empty file " + file.getOriginalFilename());
+                throw new StorageException("Error al almacenar el archivo vacío " + file.getOriginalFilename());
             }
 
             //valida tamaño del formato
@@ -125,14 +144,14 @@ public class FileSystemStorageService implements StorageServiceInterface {
             String hash = UUID.randomUUID().toString();
             Path destino = null;
             if (!validation.hasError()) {
-                if (file.getContentType().equalsIgnoreCase(MediaType.APPLICATION_PDF.toString()))
-                {
+//              if (file.getContentType().equalsIgnoreCase(MediaType.APPLICATION_PDF.toString()))
+//                {
                     destino = this.adjuntosPath.resolve(hash);
-                }
-                else
-                {
-                    destino = this.uploadPath.resolve(hash);
-                }
+//                }
+//                else
+//                {
+              //    destino = this.uploadPath.resolve(hash);
+//                }
 
                 Files.copy(file.getInputStream(), destino);
 
@@ -376,5 +395,10 @@ public class FileSystemStorageService implements StorageServiceInterface {
         {
             log.debug("Error " + ex.getMessage());
         }
+    }
+
+    public String storePdf(String filename, String contenido) throws ParserConfigurationException, IOException, DocumentException
+    {
+        return PdfConverter.generatePDFFromHTML(filename, contenido, this.adjuntosPath);
     }
 }

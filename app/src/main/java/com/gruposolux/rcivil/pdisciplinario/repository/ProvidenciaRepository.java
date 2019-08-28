@@ -1,5 +1,6 @@
 package com.gruposolux.rcivil.pdisciplinario.repository;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gruposolux.rcivil.pdisciplinario.domain.Entidad;
 import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
 import org.springframework.data.domain.Page;
@@ -28,19 +29,44 @@ public interface ProvidenciaRepository extends JpaRepository<Providencia, Long> 
     @Query("select providencia from Providencia providencia where providencia.id =:id")
     Optional<Providencia> findOneWithEagerRelationships(@Param("id") Long id);
 
+    @Query("select providencia from Providencia providencia where providencia.id =:id")
+    Providencia findOne(@Param("id") Long id);
+
     @Query("SELECT p FROM Providencia p WHERE p.id <> :providenciaId AND p.runImplicado = :runImplicado OR p.entidadImplicada = :entidadImplicada")
     List<Providencia> findAllByRunOrEntidadImplicada(@Param("runImplicado") String runImplicado,
                                                      @Param("entidadImplicada") Entidad entidad,
                                                      @Param("providenciaId") Long providenciaId);
 
-    @Query("SELECT p FROM Providencia p WHERE p.numero = :numeroReferencia")
-    Optional<Providencia> findByNumero(@Param("numeroReferencia") Long numeroReferencia);
+    @Query(value = "SELECT * FROM Providencia p WHERE p.numero_referencia = :numeroReferencia AND p.requisito = 'FISCAL_RECHAZO' " +
+        "ORDER BY p.fecha_creacion DESC LIMIT 1", nativeQuery = true)
+    List<Providencia> findByNumeroRefeSeleccionFiscal(@Param("numeroReferencia") Long numeroReferencia);
+
+    @Query(value = "SELECT * FROM Providencia p WHERE p.numero_referencia = :numeroReferencia AND p.requisito = 'SUB_DIRECCION_ENVIA_A_DN_INFORME_JURIDICO' " +
+        "ORDER BY p.fecha_creacion DESC LIMIT 1", nativeQuery = true)
+    List<Providencia> findByNumeroRefeOrdenJuridico(@Param("numeroReferencia") Long numeroReferencia);
+
+    @Query(value = "SELECT * FROM Providencia p WHERE p.numero_referencia = :numeroReferencia AND p.etapa = 'IJ_PROVIDENCIA_SANCIONAR' " +
+        "ORDER BY p.fecha_creacion DESC LIMIT 1", nativeQuery = true)
+    List<Providencia> findByNumeroRefeSeleccionApelacion(@Param("numeroReferencia") Long numeroReferencia);
+
+    @Query("SELECT p FROM Providencia p WHERE p.numeroReferencia = :numeroReferencia")
+    Providencia findByNumero(@Param("numeroReferencia") Long numeroReferencia);
+
+    @Query("SELECT p FROM Providencia p WHERE p.numeroReferencia = :numeroReferencia")
+    List<Providencia> findByAllnroReferencia(@Param("numeroReferencia") Long numeroReferencia);
+
+    @Query("SELECT p FROM Providencia p WHERE p.tipo = :tipoSolicitud")
+    Optional<Providencia> findByTipo(@Param("tipoSolicitud") String tipoSolicitud);
 
     @Modifying
     @Query(value = "UPDATE providencia SET providencia_madre_id = ? WHERE id = ?", nativeQuery = true)
     void updateProvidenciaMadre(Long providenciaMadreId, Long providenciaId);
 
     @Modifying
-    @Query(value = "UPDATE providencia SET numero = ? WHERE id = ?", nativeQuery = true)
+    @Query(value = "UPDATE providencia SET numero_referencia = ? WHERE id = ?", nativeQuery = true)
     void updateNumeroReferencia(Long numeroReferencia, Long providenciaId);
+
+    @Modifying
+    @Query(value = "UPDATE providencia SET tipo = ? WHERE id = ?", nativeQuery = true)
+    void updateTipoSolicitud(String tipoSolicitud, Long providenciaId);
 }

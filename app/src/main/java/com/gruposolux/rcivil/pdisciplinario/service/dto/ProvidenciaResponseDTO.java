@@ -10,7 +10,7 @@ import java.util.Set;
 public class ProvidenciaResponseDTO
 {
     private Long providenciaId;
-    private EstadoProvidencia estadoActual;
+    private String estadoActual;
     private Set<AdjuntoDTO> adjuntosDTOs;
     private Set<DocumentoDTO> documentosDTOs;
     private String observacion;
@@ -25,11 +25,11 @@ public class ProvidenciaResponseDTO
         this.providenciaId = providenciaId;
     }
 
-    public EstadoProvidencia getEstadoActual() {
+    public String getEstadoActual() {
         return estadoActual;
     }
 
-    public void setEstadoActual(EstadoProvidencia estadoActual) {
+    public void setEstadoActual(String estadoActual) {
         this.estadoActual = estadoActual;
     }
 

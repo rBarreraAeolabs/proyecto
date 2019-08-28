@@ -89,7 +89,7 @@ public class UserResource {
      */
     @PostMapping("/users")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority('" + AuthoritiesConstants.CREAR_USUARIO_PRIVILEGE + "')")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority('" + AuthoritiesConstants.CREAR_USUARIO + "')")
     public ResponseEntity<User> createUser(@Valid @RequestBody UserDTO userDTO) throws URISyntaxException {
         log.debug("REST \n" + "solicitud para guardar usuario : {}", userDTO);
 
@@ -119,7 +119,7 @@ public class UserResource {
      */
     @PutMapping("/users")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority('" + AuthoritiesConstants.EDITAR_USUARIO_PRIVILEGE + "')")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority('" + AuthoritiesConstants.EDITAR_USUARIO + "')")
     public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody UserDTO userDTO) {
         log.debug("REST \n" + "solicitud para actualizar el usuario : {}", userDTO);
         Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
@@ -163,7 +163,7 @@ public class UserResource {
      */
     @GetMapping("/users/authorities")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority('" + AuthoritiesConstants.CREAR_USUARIO_PRIVILEGE + "')")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority('" + AuthoritiesConstants.CREAR_USUARIO + "')")
     public List<String> getAuthorities() {
         return userService.getAuthorities();
     }
@@ -176,7 +176,7 @@ public class UserResource {
      */
     @GetMapping("/users/{login:" + Constants.LOGIN_REGEX + "}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority('" + AuthoritiesConstants.VISUALIZAR_USUARIO_PRIVILEGE + "')")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority('" + AuthoritiesConstants.VISUALIZAR_USUARIO + "')")
     public ResponseEntity<UserDTO> getUser(@PathVariable String login) {
         log.debug("REST solicitud para obtener usuario : {}", login);
         return ResponseUtil.wrapOrNotFound(
@@ -192,7 +192,7 @@ public class UserResource {
      */
     @DeleteMapping("/users/{login:" + Constants.LOGIN_REGEX + "}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority('" + AuthoritiesConstants.ELIMINAR_USUARIO_PRIVILEGE + "')")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority('" + AuthoritiesConstants.ELIMINAR_USUARIO + "')")
     public ResponseEntity<Void> deleteUser(@PathVariable String login) {
         log.debug("REST solicitud para borrar usuario: {}", login);
         userService.deleteUser(login);

@@ -51,7 +51,7 @@ public class PerfilResource {
      */
     @PostMapping("/perfils")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PERFIL_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PERFIL + "\")")
     public ResponseEntity<PerfilDTO> createPerfil(@Valid @RequestBody PerfilDTO perfilDTO) throws URISyntaxException {
         log.debug("REST request to save Perfil : {}", perfilDTO);
 
@@ -75,7 +75,7 @@ public class PerfilResource {
      */
     @PutMapping("/perfils")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_PERFIL_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_PERFIL + "\")")
     public ResponseEntity<PerfilDTO> updatePerfil(@Valid @RequestBody PerfilDTO perfilDTO) throws URISyntaxException {
         log.debug("REST request to update Perfil : {}", perfilDTO);
         if (perfilDTO.getId() == null) {
@@ -96,7 +96,7 @@ public class PerfilResource {
      */
     @GetMapping("/perfils")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PERFIL_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PERFIL + "\")")
     public ResponseEntity<List<PerfilDTO>> getAllPerfils(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of Perfils");
         Page<PerfilDTO> page;
@@ -119,7 +119,7 @@ public class PerfilResource {
      */
     @GetMapping("/perfils/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PERFIL_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PERFIL + "\")")
     public ResponseEntity<PerfilDTO> getPerfil(@PathVariable Long id) {
         log.debug("REST request to get Perfil : {}", id);
         Optional<PerfilDTO> perfilDTO = perfilService.findOne(id);
@@ -134,7 +134,7 @@ public class PerfilResource {
      */
     @DeleteMapping("/perfils/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ELIMINAR_PERFIL_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ELIMINAR_PERFIL + "\")")
     public ResponseEntity<Void> deletePerfil(@PathVariable Long id) {
         log.debug("REST request to delete Perfil : {}", id);
         perfilService.delete(id);
@@ -146,7 +146,7 @@ public class PerfilResource {
      */
     @GetMapping("/perfil/authorities")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PERFIL_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PERFIL + "\")")
     public List<String> getAuthorities() {
         return perfilService.getAuthorities();
     }

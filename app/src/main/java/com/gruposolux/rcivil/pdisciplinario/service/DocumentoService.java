@@ -8,6 +8,7 @@ import com.gruposolux.rcivil.pdisciplinario.service.mapper.DocumentoMapper;
 import com.gruposolux.rcivil.pdisciplinario.domain.Documento;
 import com.gruposolux.rcivil.pdisciplinario.service.mapper.ProvidenciaMapper;
 import com.gruposolux.rcivil.pdisciplinario.service.util.PdfConverter;
+import com.gruposolux.rcivil.pdisciplinario.storage.FileSystemStorageService;
 import com.gruposolux.rcivil.pdisciplinario.storage.StorageServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,15 +38,20 @@ public class DocumentoService {
     private final DocumentoMapper documentoMapper;
     private final StorageServiceInterface storageServiceInterface;
     private final ProvidenciaMapper providenciaMapper;
+    private final FileSystemStorageService fileSystemStorageService;
 
     public DocumentoService(
-        DocumentoRepository documentoRepository, DocumentoMapper documentoMapper,
-        StorageServiceInterface storageServiceInterface, ProvidenciaMapper providenciaMapper)
-    {
+        DocumentoRepository documentoRepository,
+        DocumentoMapper documentoMapper,
+        StorageServiceInterface storageServiceInterface,
+        ProvidenciaMapper providenciaMapper,
+        FileSystemStorageService fileSystemStorageService
+    ) {
         this.documentoRepository = documentoRepository;
         this.documentoMapper = documentoMapper;
         this.storageServiceInterface = storageServiceInterface;
         this.providenciaMapper = providenciaMapper;
+        this.fileSystemStorageService = fileSystemStorageService;
     }
 
     /**
@@ -63,16 +69,19 @@ public class DocumentoService {
             String filename = "";
             if (documento.getArchivoNombre() != null)
             {
-                filename = PdfConverter.generatePDFFromHTML(documento.getArchivoNombre(), documento.getContenido());
+//                filename = PdfConverter.generatePDFFromHTML(documento.getArchivoNombre(), documento.getContenido());
+                filename = this.fileSystemStorageService.storePdf(documento.getArchivoNombre(), documento.getContenido());
             }
             else
             {
                 documento.setArchivoNombre("respuesta-" + this.documentoRepository.getCountTotal());
-                filename = PdfConverter.generatePDFFromHTML(documento.getArchivoNombre(), documento.getContenido());
+//                filename = PdfConverter.generatePDFFromHTML(documento.getArchivoNombre(), documento.getContenido());
+                filename = this.fileSystemStorageService.storePdf(documento.getArchivoNombre(), documento.getContenido());
             }
 
             documento.setArchivoNombre(filename);
-            documento.setLocalPath("./upload/" + filename.trim());
+//            documento.setLocalPath("./upload/" + filename.trim());
+            documento.setLocalPath(this.fileSystemStorageService.getAdjuntosPath() + "/" + filename.trim());
             documento.setArchivoMimeType(MediaType.APPLICATION_PDF.toString());
             documento.setFechaCreado(ZonedDateTime.now().toLocalDate());
 
@@ -108,37 +117,6 @@ public class DocumentoService {
         }
         catch (Exception e)
         {
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
-            log.debug("error");
             log.debug(e.getMessage());
         }
 

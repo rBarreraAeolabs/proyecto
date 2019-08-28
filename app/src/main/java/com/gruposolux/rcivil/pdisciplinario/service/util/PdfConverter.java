@@ -24,6 +24,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 import static java.nio.file.StandardOpenOption.CREATE;
 import static java.nio.file.StandardOpenOption.DELETE_ON_CLOSE;
@@ -45,7 +48,7 @@ public class PdfConverter
         }
     }
 
-    public static String generatePDFFromHTML(String filename, String data) throws ParserConfigurationException, IOException, DocumentException
+    public static String generatePDFFromHTML(String filename, String data, Path pathAdjunto) throws ParserConfigurationException, IOException, DocumentException
     {
         Logger log = LoggerFactory.getLogger(PdfConverter.class);
 
@@ -65,7 +68,8 @@ public class PdfConverter
                 "\n" +
                 "</html>";
             byte content[] = html.getBytes();
-            Path p = Paths.get("./upload/temp.html");
+//            Path p = Paths.get("./upload/temp.html");
+            Path p = Paths.get(pathAdjunto.toString() + "/temp.html");
             OutputStream os = Files.newOutputStream(p);
             os.write(content, 0, content.length);
 
@@ -73,7 +77,8 @@ public class PdfConverter
             {
                 filename = filename + ".pdf";
             }
-            String path = "./upload/" + filename;
+//            String path = "./upload/" + filename;
+            String path = pathAdjunto.toString() + "/" + filename;
 
             // content/logo/logo.png URL del logo
 
@@ -85,13 +90,33 @@ public class PdfConverter
             htmlContext.setImageProvider(new AbstractImageProvider() {
                 @Override
                 public String getImageRootPath() {
-                    return "C:\\Users\\rbarrera\\proyectos\\netlinux\\registrocivil-pdisciplinario\\app\\src\\main\\webapp\\";
+//                    return "C:\\Users\\sneiraillanes\\proyectos\\netlinux\\registrocivil-pdisciplinario\\app\\src\\main\\webapp\\";
+                    try
+                    {
+//                        return new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator;
+                        return new File(".").getCanonicalPath() + File.separator + "target" + File.separator + "www" + File.separator;
+                    }
+                    catch (IOException e)
+                    {
+                        log.debug(e.getMessage());
+                    }
+                    return "." + File.separator;
                 }
             });
             htmlContext.setLinkProvider(new LinkProvider() {
                 @Override
                 public String getLinkRoot() {
-                    return "C:\\Users\\rbarrera\\proyectos\\netlinux\\registrocivil-pdisciplinario\\app\\src\\main\\webapp\\";
+//                    return "C:\\Users\\sneiraillanes\\proyectos\\netlinux\\registrocivil-pdisciplinario\\app\\src\\main\\webapp\\";
+                    try
+                    {
+//                        return new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator;
+                        return new File(".").getCanonicalPath() + File.separator + "target" + File.separator + "www" + File.separator;
+                    }
+                    catch (IOException e)
+                    {
+                        log.debug(e.getMessage());
+                    }
+                    return "." + File.separator;
                 }
             });
 
@@ -101,7 +126,8 @@ public class PdfConverter
             XMLWorker worker = new XMLWorker(htmlPipeline, true);
             XMLParser xmlParser = new XMLParser(worker);
 
-            xmlParser.parse(new FileInputStream("./upload/temp.html"));
+//            xmlParser.parse(new FileInputStream("./upload/temp.html"));
+            xmlParser.parse(new FileInputStream(pathAdjunto.toString() + "/temp.html"));
 
 //            XMLWorkerHelper.getInstance().parseXHtml(writer, document, new FileInputStream("./upload/temp.html"));
             document.close();
@@ -109,6 +135,18 @@ public class PdfConverter
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+        log.debug("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        log.debug("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        log.debug("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        log.debug("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        log.debug("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        log.debug("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        log.debug("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        log.debug("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+        log.debug(new File(".").getCanonicalPath() + File.separator + "target" + File.separator + "www" + File.separator);
+
 
         return filename;
     }

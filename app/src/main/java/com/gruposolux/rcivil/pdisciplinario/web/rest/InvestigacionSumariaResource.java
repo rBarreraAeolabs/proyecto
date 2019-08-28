@@ -50,7 +50,7 @@ public class InvestigacionSumariaResource {
      */
     @PostMapping("/investigacion-sumarias")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ASIGNAR_TIPO_A_PROVIDENCIA_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.ASIGNAR_TIPO_A_PROVIDENCIA + "\")")
     public ResponseEntity<InvestigacionSumariaDTO> createInvestigacionSumaria(@RequestBody InvestigacionSumariaDTO investigacionSumariaDTO) throws URISyntaxException {
         log.debug("REST request to save InvestigacionSumaria : {}", investigacionSumariaDTO);
         if (investigacionSumariaDTO.getId() != null) {
@@ -73,7 +73,7 @@ public class InvestigacionSumariaResource {
      */
     @PutMapping("/investigacion-sumarias")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_INVESTIGACION_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.EDITAR_INVESTIGACION + "\")")
     public ResponseEntity<InvestigacionSumariaDTO> updateInvestigacionSumaria(@RequestBody InvestigacionSumariaDTO investigacionSumariaDTO) throws URISyntaxException {
         log.debug("REST request to update InvestigacionSumaria : {}", investigacionSumariaDTO);
         if (investigacionSumariaDTO.getId() == null) {
@@ -93,7 +93,7 @@ public class InvestigacionSumariaResource {
      */
     @GetMapping("/investigacion-sumarias")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_INVESTIGACION_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_INVESTIGACION + "\")")
     public ResponseEntity<List<InvestigacionSumariaDTO>> getAllInvestigacionSumarias(Pageable pageable) {
         log.debug("REST request to get a page of InvestigacionSumarias");
         Page<InvestigacionSumariaDTO> page = investigacionSumariaService.findAll(pageable);
@@ -109,7 +109,7 @@ public class InvestigacionSumariaResource {
      */
     @GetMapping("/investigacion-sumarias/{id}")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_INVESTIGACION_PRIVILEGE + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_INVESTIGACION + "\")")
     public ResponseEntity<InvestigacionSumariaDTO> getInvestigacionSumaria(@PathVariable Long id) {
         log.debug("REST request to get InvestigacionSumaria : {}", id);
         Optional<InvestigacionSumariaDTO> investigacionSumariaDTO = investigacionSumariaService.findOne(id);

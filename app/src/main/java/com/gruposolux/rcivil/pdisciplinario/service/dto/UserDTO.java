@@ -60,7 +60,7 @@ public class UserDTO {
     private Perfil perfil;
 
     @NotBlank
-    @Pattern(regexp = Constants.PASSWORD_REGEX)
+//    @Pattern(regexp = Constants.PASSWORD_REGEX)
     @Size(min = 8)
     private String password;
 

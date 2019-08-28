@@ -2,7 +2,6 @@ package com.gruposolux.rcivil.pdisciplinario;
 
 import com.gruposolux.rcivil.pdisciplinario.config.ApplicationProperties;
 import com.gruposolux.rcivil.pdisciplinario.config.DefaultProfileUtil;
-import com.gruposolux.rcivil.pdisciplinario.service.StateMachineService;
 import io.github.jhipster.config.JHipsterConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -61,7 +60,6 @@ public class AppApp {
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
         logApplicationStartup(env);
-
     }
 
     private static void logApplicationStartup(Environment env) {

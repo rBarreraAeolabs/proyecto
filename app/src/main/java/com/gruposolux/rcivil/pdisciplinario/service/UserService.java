@@ -200,12 +200,20 @@ public class UserService {
      * @return updated user
      */
     public Optional<UserDTO> updateUser(UserDTO userDTO) {
+        log.debug("&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/");
+        log.debug("&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/");
+        log.debug("&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/");
+        log.debug("&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/");
+        log.debug("&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/");
+        log.debug("&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/&/");
         return Optional.of(userRepository
             .findById(userDTO.getId()))
             .filter(Optional::isPresent)
             .map(Optional::get)
             .map(user -> {
-                this.clearUserCaches(user);
+            // this.clearUserCaches(user);
+                String encryptedPassword = passwordEncoder.encode(userDTO.getPassword());
+                user.setPassword(encryptedPassword);
                 user.setLogin(userDTO.getLogin().toLowerCase());
                 user.setFirstName(userDTO.getFirstName());
                 user.setLastName(userDTO.getLastName());
@@ -217,12 +225,13 @@ public class UserService {
                 user.setGrupo(userDTO.getGrupo());
                 user.setAuthorities(userDTO.getPerfil().getAuthorities());
                 Set<Authority> managedAuthorities = user.getAuthorities();
-                managedAuthorities.clear();
+//                managedAuthorities.clear();
                 userDTO.getAuthorities().stream()
                     .map(authorityRepository::findById)
                     .filter(Optional::isPresent)
                     .map(Optional::get)
                     .forEach(managedAuthorities::add);
+                userRepository.save(user);
                 this.clearUserCaches(user);
                 log.debug("Changed Information for User: {}", user);
                 return user;
