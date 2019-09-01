@@ -32,7 +32,7 @@ public interface ProvidenciaRepository extends JpaRepository<Providencia, Long> 
     @Query("select providencia from Providencia providencia where providencia.id =:id")
     Providencia findOne(@Param("id") Long id);
 
-    @Query("select providencia from Providencia providencia where providencia.id =:id AND p.requisito = 'FISCAL_RECHAZO'")
+    @Query("select providencia from Providencia providencia where providencia.id =:id AND p.requisito = :requisito")
     Providencia findOneforProrroga(@Param("id") Long id);
 
 

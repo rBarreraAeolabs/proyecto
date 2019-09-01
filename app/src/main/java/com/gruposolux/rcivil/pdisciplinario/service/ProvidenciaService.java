@@ -324,6 +324,9 @@ public class ProvidenciaService {
                 break;
                 //PRORROGA AGREGAR ACA
 
+            case PRORROGA:
+                etapa = EstadoProvidencia.PRORROGA2;
+                break;
 
 //            case SUB_DIRECCION_ENVIA_A_DN_INFORME_JURIDICO:
 //                etapa = EstadoProvidencia.PROVIDENCIA_INFORME_JURIDICO;
@@ -895,7 +898,7 @@ public class ProvidenciaService {
 
         if (tipoProvidencia == "EL ESTADO DE DONDE NACE LA PRORROGA?") {
             providencias = (List<Providencia>) providenciaRepository.findOneforProrroga(idMadre);
-        } else if (tipoProvidencia == "PRORROGA2") {
+        } else if (tipoProvidencia == "PRORROGA") {
             providencias = (List<Providencia>) providenciaRepository.findOneforProrroga(idMadre);
         }
         return providencias.get(0);
