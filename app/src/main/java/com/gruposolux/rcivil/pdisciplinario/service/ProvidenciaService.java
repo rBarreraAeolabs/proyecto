@@ -438,6 +438,16 @@ public class ProvidenciaService {
         return nro;
     }
 
+
+    // madre prorroga
+    @Transactional(readOnly = true)
+    public Optional<ProvidenciaDTO> findAllProrroga(Long idMadre) {
+
+        log.debug("Request to get Providencia : {}", idMadre);
+        Optional result = providenciaRepository.findById(idMadre);
+        return result;
+    }
+
     /*
     varchar cambiarlo a string el comentario al crear providencia
     sacar la hora al crear providencia
@@ -901,6 +911,80 @@ public class ProvidenciaService {
         }
         return providencias.get(0);
     }
+
+    @Transactional(readOnly = true)
+    public Providencia getProvidenciaMadreid(Long idMadre, String tipoProvidencia) {
+        log.debug("Request to get Providencia : {}", idMadre);
+        List<Providencia> providencias = null;
+
+        if (tipoProvidencia == "que estado es?"){
+            providencias = (List<Providencia>) providenciaRepository.findOne(idMadre);
+        }else if (tipoProvidencia == "son mas de un estado"){
+            providencias = (List<Providencia>)providenciaRepository.findOne(idMadre);
+        }else if (tipoProvidencia == "estado"){
+            providencias =(List<Providencia>) providenciaRepository.findOne(idMadre);
+        }
+        return providencias.get(0);
+    }
+
+
+
+
+    // crear prrorroga
+    public ProvidenciaDTO createdProvidenciProrroga(ProvidenciaDTO providenciaDTO, Providencia providenciaMadre,
+                                                    OrdenJuridico ordenJuridicoSeleccionado) { {
+
+        Providencia provi = new Providencia();
+//        Providencia provi = providenciaMapper.toEntity(providenciaDTO);
+        OrdenJuridico oJuridicoSeleccionado = ordenJuridicoSeleccionado;
+        EstadoProvidencia etapa = null;
+
+        if (oJuridicoSeleccionado == null){
+            etapa = this.determinaEtapa(providenciaMadre.getRequisito());
+        }else{
+            etapa = this.determinaEtapaOrdenJuridico(ordenJuridicoSeleccionado);
+        }
+        EstadoProvidencia requisito = this.newState(provi, AccionesProvidencia.CREAR_PROVIDENCIA);
+        EstadoProvidencia subEtapa = this.determinaSubEtapa(requisito);
+        String estadoProviCompleto = this.concatenarEstado(requisito, subEtapa, etapa);
+        String estadoInicial = this.determinaEstadoInicial(etapa);
+
+        provi.setFechaCreacion(Instant.now());
+        provi.setEtapa(etapa);
+        provi.setSubEtapa(subEtapa);
+        provi.setRequisito(requisito);
+        provi.setEstadoActual(estadoProviCompleto);
+        provi.setNumeroReferencia(providenciaMadre.getNumeroReferencia());
+
+        if (providenciaMadre.getEtapa() == EstadoProvidencia.NUEVA_PROVIDENCIA){
+            provi.setProvidencia_madre_id(providenciaMadre.getId());
+        }else{
+            provi.setProvidencia_madre_id(providenciaMadre.getProvidencia_madre_id());
+        }
+
+        insertaTipoProvidencia(provi);
+        provi = providenciaRepository.save(provi);
+        verificaAdjuntosYGuarda(providenciaDTO, provi);
+        //Settear el ID de la providencia creada en los adjuntos
+        List<AdjuntoDTO> adjuntoDTOs = this.setIdProvidenciaOnAdjuntos(provi, providenciaDTO.getAdjuntos());
+        ProvidenciaDTO proviDto = providenciaMapper.toDto(provi);
+
+        if (adjuntoDTOs != null && adjuntoDTOs.size() > 0){
+            providenciaDTO.setAdjuntos(adjuntoDTOs.stream().collect(Collectors.toSet()));
+        }
+
+        Grupo grupoAnswer = this.determineGroupAnswer(provi);
+        Derivacion derivacion = this.registerDerivation("desde el director nacional", provi, null, grupoAnswer);
+
+        this.movimientoProvidenciaService.save(estadoInicial, estadoProviCompleto, provi.getId(), derivacion.getObservacion(),
+            null, proviDto.getAdjuntos(), "Derivado");
+
+        return proviDto;
+    }
+
+
+
+
 
         // Metodo que crea una Providencia de tipo SELECCIONFISCAL u ORDENJURIDICO
     public ProvidenciaDTO createdProvidenciaForType(ProvidenciaDTO providenciaDTO, Providencia providenciaMadre,

@@ -41,9 +41,16 @@ public interface ProvidenciaRepository extends JpaRepository<Providencia, Long> 
         "ORDER BY p.fecha_creacion DESC LIMIT 1", nativeQuery = true)
     List<Providencia> findByNumeroRefeSeleccionFiscal(@Param("numeroReferencia") Long numeroReferencia);
 
+
+
+
     @Query(value = "SELECT * FROM Providencia p WHERE p.numero_referencia = :numeroReferencia AND p.requisito = 'SUB_DIRECCION_ENVIA_A_DN_INFORME_JURIDICO' " +
         "ORDER BY p.fecha_creacion DESC LIMIT 1", nativeQuery = true)
     List<Providencia> findByNumeroRefeOrdenJuridico(@Param("numeroReferencia") Long numeroReferencia);
+
+
+
+
 
     @Query(value = "SELECT * FROM Providencia p WHERE p.numero_referencia = :numeroReferencia AND p.etapa = 'IJ_PROVIDENCIA_SANCIONAR' " +
         "ORDER BY p.fecha_creacion DESC LIMIT 1", nativeQuery = true)

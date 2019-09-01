@@ -340,7 +340,7 @@ public class ProvidenciaResource {
     }
 
       // Metodo permite obtener todas las providencias asociadas a un Numero de Referencia
-    @GetMapping("/provi/{nroReferencia}")
+    @GetMapping("/providencias/{nroReferencia}")
     @Timed
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
     public ResponseEntity<List<NroReferenciaDTO>> getnroReferencia(@PathVariable Long nroReferencia) {
@@ -351,4 +351,22 @@ public class ProvidenciaResource {
        //
         return  ResponseEntity.ok (nroReferenciaDTOList);
     }
+
+    //crear prrorroga
+    @PostMapping("/providencias/crearSeleccionFiscal")
+    @Timed
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
+    public ResponseEntity<ProvidenciaDTO> crearProrroga(@RequestBody (required=false) ProvidenciaDTO providenciaDTO,
+                                                               @RequestParam Long idMadre) throws URISyntaxException {
+        String tipoProvidencia = "SeleccionFiscal";
+        // Busca la providencia madre
+        Providencia providenciaMadre = providenciaService.getProvidenciaNumeroReferencia(idMadre, tipoProvidencia);
+
+        //Crear una providencia nueva a partir de la madre
+        ProvidenciaDTO result = providenciaService.createdProvidenciProrroga(providenciaDTO, providenciaMadre, null);
+
+        return ResponseEntity.created(new URI("/api/providencias/" + result.getId())).body(result);
+    }
+
+
 }
