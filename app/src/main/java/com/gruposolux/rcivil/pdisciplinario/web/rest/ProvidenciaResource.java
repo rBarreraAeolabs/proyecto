@@ -5,6 +5,7 @@ import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Apelacion;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.OrdenJuridico;
+import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Prorroga;
 import com.gruposolux.rcivil.pdisciplinario.security.AuthoritiesConstants;
 import com.gruposolux.rcivil.pdisciplinario.service.ProvidenciaService;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.*;
@@ -12,11 +13,9 @@ import com.gruposolux.rcivil.pdisciplinario.web.rest.errors.BadRequestAlertExcep
 import com.gruposolux.rcivil.pdisciplinario.web.rest.util.HeaderUtil;
 import com.gruposolux.rcivil.pdisciplinario.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.checkerframework.checker.units.qual.Time;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -304,7 +303,8 @@ public class ProvidenciaResource {
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
     public ResponseEntity<ProvidenciaDTO> crearProvidenciaOrdenJuridico (@RequestBody (required=false) ProvidenciaDTO providenciaDTO,
                                                                          @RequestParam Long numeroReferencia,
-                                                                         OrdenJuridico tipoOrdeJuridico) throws URISyntaxException {
+                                                                      OrdenJuridico tipoOrdeJuridico) throws URISyntaxException {
+
         String tipoProvidencia = "ordenJuridico";
         // Primero buscar la providencia madre
         Providencia providenciaMadre = providenciaService.getProvidenciaNumeroReferencia(numeroReferencia, tipoProvidencia);
@@ -357,13 +357,24 @@ public class ProvidenciaResource {
     @Timed
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
     public ResponseEntity<ProvidenciaDTO> crearProrroga(@RequestBody (required=false) ProvidenciaDTO providenciaDTO,
-                                                               @RequestParam Long idMadre) throws URISyntaxException {
+                                                               @RequestParam Long idMadre,
+                                                        Prorroga tipoProrroga) throws URISyntaxException {
         String tipoProvidencia = "SeleccionFiscal";
         // Busca la providencia madre
-        Providencia providenciaMadre = providenciaService.getProvidenciaNumeroReferencia(idMadre, tipoProvidencia);
+        Providencia providenciaMadre = providenciaService.getProvidenciaMadreid(idMadre, tipoProvidencia);
 
-        //Crear una providencia nueva a partir de la madre
-        ProvidenciaDTO result = providenciaService.createdProvidenciProrroga(providenciaDTO, providenciaMadre, null);
+//        //Crear una providencia nueva a partir de la madre
+//        ProvidenciaDTO result = providenciaService.createdProvidenciProrroga(providenciaDTO, providenciaMadre, tipoProrroga);
+
+        ProvidenciaDTO result = null;
+        if (providenciaMadre.getRequisito() == EstadoProvidencia.DONDENACEPRORROGA) {
+            result = providenciaService.createdProvidenciProrroga(providenciaDTO, providenciaMadre, tipoProrroga);
+        }else{
+            log.debug("No se puede Crear una Providencia de tipo Orden Juridico " + providenciaMadre.getId());
+        }
+
+
+
 
         return ResponseEntity.created(new URI("/api/providencias/" + result.getId())).body(result);
     }

@@ -32,6 +32,10 @@ public interface ProvidenciaRepository extends JpaRepository<Providencia, Long> 
     @Query("select providencia from Providencia providencia where providencia.id =:id")
     Providencia findOne(@Param("id") Long id);
 
+    @Query("select providencia from Providencia providencia where providencia.id =:id AND p.requisito = 'FISCAL_RECHAZO'")
+    Providencia findOneforProrroga(@Param("id") Long id);
+
+
     @Query("SELECT p FROM Providencia p WHERE p.id <> :providenciaId AND p.runImplicado = :runImplicado OR p.entidadImplicada = :entidadImplicada")
     List<Providencia> findAllByRunOrEntidadImplicada(@Param("runImplicado") String runImplicado,
                                                      @Param("entidadImplicada") Entidad entidad,
