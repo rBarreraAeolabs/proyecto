@@ -47,7 +47,7 @@ export class FileUploadComponent implements OnInit, OnChanges {
         private localStorage: LocalStorageService
     ) {
         // aqui solo limito la cantidad de archivos que se suben al mismo tiempo
-        this.options = { concurrency: 1 }; //  ,maxUploads: 3 agregarioa limite pero no funciona bien
+        this.options = { concurrency: 1 }; //  ,maxUploads: 3 agregaria limite pero no funciona bien
         this.files = [];
         this.uploadInput = new EventEmitter<UploadInput>();
         this.humanizeBytes = humanizeBytes;
@@ -64,7 +64,7 @@ export class FileUploadComponent implements OnInit, OnChanges {
         if (typeof this.documentos !== 'undefined' && this.documentos !== null && this.documentos.length > 0) {
 
         }
-            }
+    }
 
     onUploadOutput(output: UploadOutput): void {
         if (output.type === 'allAddedToQueue') {
@@ -99,18 +99,18 @@ export class FileUploadComponent implements OnInit, OnChanges {
             });
             console.log('list ', this.listFiles.length);
             /** condicion de subida de archivos*/
-         } else if (output.type === 'addedToQueue' && typeof output.file !== 'undefined') {
+        } else if (output.type === 'addedToQueue' && typeof output.file !== 'undefined') {
             this.nombreAdjunto = output.file.name.substring(output.file.name.lastIndexOf('.') + 1).toLowerCase();
-            console.log('nombre archivos: ', output.file.name , 'extension: ', this.nombreAdjunto, 'tamaño: ', output.file.size  );
-                 /** cambio de color*/
-                if (this.listFiles.length >= 3) {this.colorC = false; alert ('No puedes subir mas de 3 archivos');  } else {this.colorC = true; }
-                if (output.file.size > this.sizeLimit) {this.colorP = false; alert ('el archivo no puede pesar mas de 8Mb'); } else {this.colorP = true; }
-                if (this.nombreAdjunto !== 'pdf' ) {this.colorF = false; alert ('El archivo debe ser PDF'); } else {this.colorF = true; }
-                /** condicion  debe ser menor a 3 archivos y menor al tamaño limite y formato pdf*/
-                if (this.listFiles.length < 3 && output.file.size < this.sizeLimit && this.nombreAdjunto === 'pdf') {
+            console.log('nombre archivos: ', output.file.name , ', extension: ', this.nombreAdjunto, ', tamaño: ', output.file.size  );
+            /** cambio de color*/
+            if (this.listFiles.length >= 3) {this.colorC = false; alert ('No puedes subir mas de 3 archivos');  } else {this.colorC = true; }
+            if (output.file.size > this.sizeLimit) {this.colorP = false; alert ('el archivo no puede pesar mas de 8Mb'); } else {this.colorP = true; }
+            if ((this.nombreAdjunto !== 'pdf' && this.nombreAdjunto !== 'docx' )) {this.colorF = false; alert ('El archivo debe ser PDF '); } else {this.colorF = true; }
+            /** condicion  debe ser menor a 3 archivos y menor al tamaño limite y formato pdf*/
+            if ((this.listFiles.length < 3 && output.file.size < this.sizeLimit) && (this.nombreAdjunto === 'pdf' || this.nombreAdjunto === 'docx'   ) ) {
                 this.files.push(output.file);
                 console.log('cantidad de archivos', this.listFiles.length);
-                }
+            }
         }
         this.files = this.files.filter(file => file.progress.status !== UploadStatus.Done);
     }
@@ -132,7 +132,7 @@ export class FileUploadComponent implements OnInit, OnChanges {
     cancelUpload(id: string): void {
         this.uploadInput.emit({ type: 'cancel', id});
     }
-                /** este es el eliminar de la lista que se ve */
+    /** este es el eliminar de la lista que se ve */
     removeFile(id: string): void {
         let hashAux = null;
         this.uploadService.delete(parseInt(id, 10)).subscribe(response => {

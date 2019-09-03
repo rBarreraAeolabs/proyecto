@@ -15,7 +15,7 @@ export const adminState: Routes = [
     {
         path: '',
         data: {
-            authorities: ['ROLE_ADMIN', 'CREAR_USUARIO_PRIVILEGE']
+            authorities: ['ROLE_ADMIN', 'CREAR_USUARIO']
         },
         canActivate: [UserRouteAccessService],
         children: ADMIN_ROUTES

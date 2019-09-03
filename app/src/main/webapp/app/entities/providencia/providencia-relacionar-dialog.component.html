@@ -17,156 +17,230 @@
                 <select class="form-control" (change)="onChange($event)">
                     <option disabled>selecciona n°</option>
                     <option *ngFor="let providencia of providencias" value="{{providencia.id}}">
-                        {{providencia.numero}}
+                        {{providencia.numeroReferencia}}
                     </option>
                 </select>
             </div>
         </form>
     </div>
     <div class="modal-body" *ngIf="providenciaSeleccionada">
-
         <hr>
+    <div class="modal-footer">
         <div class="col-sm-12">
+            <div class="col-md-8 d-flex justify-content-center">
+                <h2>
+                    {{providenciaSeleccionada.etapa.split('_').join(' ')}}
+                    <span jhiTranslate="pdisciplinarioApp.providencia.detail.title"></span>
+                    {{ providenciaSeleccionada.id}}
+<!--                    {{ providenciaSeleccionada.numeroReferencia}}-->
+                </h2>
+            </div>
+            <hr>
             <div class="row">
                 <div class="col-sm-6">
-                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
-                    <dt><h4>Datos Del Solicitante</h4></dt>
+                    <dt class="d-flex justify-content-center"><h4>Datos Del Solicitante</h4></dt>
                     <hr>
-                    <dl class="dl-horizontal jh-entity-details">
-                        <dt>
-                            <span jhiTranslate="pdisciplinarioApp.providencia.rutSolicitante">Rut</span>
-                        </dt>
-                        <dd>
-                            <span>{{providenciaSeleccionada.runSolicitante  | rut}}</span>
-                        </dd>
-                        <dt>
-                            <span jhiTranslate="pdisciplinarioApp.providencia.nombreSolicitante">Nombre </span>
-                        </dt>
-                        <dd>
-                            <span>{{providenciaSeleccionada.nombreSolicitante}}</span>
-                        </dd>
-                        <dt *ngIf="providenciaSeleccionada.entidadSolicitante">
-                            <span jhiTranslate="pdisciplinarioApp.providencia.entidadSolicitante">Entidad </span>
-                        </dt>
-                        <dd *ngIf="providenciaSeleccionada.entidadSolicitante">
-                            <span>{{providenciaSeleccionada.entidadSolicitante}}</span>
-                        </dd>
-
-                    </dl>
+                    <div class="d-flex justify-content-center">
+                        <dl class="dl-horizontal jh-entity-details">
+                            <dt class="d-flex justify-content-center" >
+                                <span jhiTranslate="pdisciplinarioApp.providencia.rutSolicitante">Rut</span>
+                            </dt>
+                            <dd class="d-flex justify-content-center" >
+                                <span>{{providenciaSeleccionada.runSolicitante  | rut}}</span>
+                            </dd>
+                            <dt class="d-flex justify-content-center" >
+                                <span *ngIf="!providenciaSeleccionada.entidadSolicitante" jhiTranslate="pdisciplinarioApp.providencia.nombreSolicitante">Nombre</span>
+                            </dt>
+                            <dd class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.nombreSolicitante && !providenciaSeleccionada.entidadSolicitante">
+                                <span >{{providenciaSeleccionada.nombreSolicitante}}</span>
+                            </dd>
+                            <dd class="d-flex justify-content-center" *ngIf="!providenciaSeleccionada.nombreSolicitante && !providenciaSeleccionada.entidadSolicitante">
+                                <span style="color:red">NO INGRESADO</span>
+                            </dd>
+                            <dt class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.entidadSolicitante">
+                                <span jhiTranslate="pdisciplinarioApp.providencia.entidadSolicitante">Entidad </span>
+                            </dt>
+                            <dd class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.entidadSolicitante">
+                                <span>{{providenciaSeleccionada.entidadSolicitante.nombre}}</span>
+                            </dd>
+                        </dl>
+                    </div>
                 </div>
                 <br>
                 <div class="col-sm-6">
-                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
-                    <dt><h4>Datos Del Implicado</h4></dt>
+                    <dt class="d-flex justify-content-center"><h4>Datos Del Implicado</h4></dt>
                     <hr>
-                    <dl class="dl-horizontal jh-entity-details">
-                        <dt>
-                            <span jhiTranslate="pdisciplinarioApp.providencia.rutImplicado">Rut</span>
-                        </dt>
-                        <dd>
-                            <span>{{providenciaSeleccionada.runImplicado | rut}}</span>
-                        </dd>
-                        <dt>
-                            <span jhiTranslate="pdisciplinarioApp.providencia.nombreImplicado">Nombre</span>
-                        </dt>
-                        <dd>
-                            <span>{{providenciaSeleccionada.nombreImplicado}}</span>
-                        </dd>
-                        <dt *ngIf="providenciaSeleccionada.entidadImplicada">
-                            <span jhiTranslate="pdisciplinarioApp.providencia.entidadImplicada">Entidad</span>
-                        </dt>
-                        <dd *ngIf="providenciaSeleccionada.entidadImplicada">
-                            <span>{{providenciaSeleccionada.entidadImplicada}}</span>
-                        </dd>
-                    </dl>
+                    <div class="d-flex justify-content-center">
+                        <dl class="dl-horizontal jh-entity-details">
+                            <dt class="d-flex justify-content-center" >
+                                <span jhiTranslate="pdisciplinarioApp.providencia.rutImplicado">Rut</span>
+                            </dt>
+                            <dd class="d-flex justify-content-center" >
+                                <span>{{providenciaSeleccionada.runImplicado | rut}}</span>
+                            </dd>
+                            <dt class="d-flex justify-content-center" >
+                                <span *ngIf="!providenciaSeleccionada.entidadImplicada && !providenciaSeleccionada.entidadImplicada" jhiTranslate="pdisciplinarioApp.providencia.nombreImplicado">Nombre</span>
+                            </dt>
+                            <dd class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.nombreImplicado">
+                                <span >{{providenciaSeleccionada.nombreImplicado}}</span>
+                            </dd>
+                            <dd class="d-flex justify-content-center" *ngIf="!providenciaSeleccionada.nombreImplicado && !providenciaSeleccionada.entidadImplicada">
+                                <span style="color:red">NO INGRESADO</span>
+                            </dd>
+                            <dt class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.entidadImplicada">
+                                <span jhiTranslate="pdisciplinarioApp.providencia.entidadImplicada">Entidad</span>
+                            </dt>
+                            <dd class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.entidadImplicada">
+                                <span>{{providenciaSeleccionada.entidadImplicada.nombre}}</span>
+                            </dd>
+                        </dl>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-12">
-            <hr>
-            <dt class="d-flex justify-content-center">
-                <h4>Datos De La Providencia</h4>
-            </dt>
-            <hr>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
-                    <dl class="dl-horizontal jh-entity-details">
-                        <dt><span jhiTranslate="pdisciplinarioApp.providencia.fechaSolicitud">Fecha Solicitud</span>
-                        </dt>
-                        <dd>
-                            <span>{{providenciaSeleccionada.fechaSolicitud | date:'medium'}}</span>
-                        </dd>
-                        <dt>
-                            <span jhiTranslate="pdisciplinarioApp.providencia.numero">Numero</span>
-                        </dt>
-                        <dd>
-                            <span>{{providenciaSeleccionada.numero}}</span>
-                        </dd>
-                        <dt>
-                            <span jhiTranslate="pdisciplinarioApp.providencia.tipo">Tipo</span>
-                        </dt>
-                        <dd>
-                            <span jhiTranslate="{{'pdisciplinarioApp.TipoProvidencia.' + providenciaSeleccionada.tipo}}">{{providenciaSeleccionada.tipo}}</span>
-                        </dd>
-
-                        <dt *ngIf="providenciaSeleccionada.acciones && providenciaSeleccionada.acciones.length > 0"><span jhiTranslate="pdisciplinarioApp.providencia.acciones"></span></dt>
-                        <dd *ngFor="let accion of providenciaSeleccionada.acciones">
-                            {{accion.split('_').join(' ')}}
-                        </dd>
-                    </dl>
-                </div>
-                <div class="col-sm-6">
-                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
-                    <dl class="dl-horizontal jh-entity-details">
-                        <dt>
-                            <span jhiTranslate="pdisciplinarioApp.providencia.estadoActual">Estado Actual</span>
-                        </dt>
-                        <dd>
-                            <span>
-                                {{providenciaSeleccionada.estadoActual.split('_').join(' ')}}
-                            </span>
-                        </dd>
-
-                        <dt>
-                            <span jhiTranslate="pdisciplinarioApp.providencia.fechaCreacion">
-                                Fecha Creacion
-                            </span>
-                        </dt>
-                        <dd>
-                            <span>{{providenciaSeleccionada.fechaCreacion | date:'medium'}}</span>
-                        </dd>
-                        <dt *ngIf="providenciaSeleccionada.adjuntos">
-                            <span>Cantidad de archivos adjuntos</span>
-                        </dt>
-                        <dd *ngIf="providenciaSeleccionada.adjuntos.length != 0">
-                            <span>{{providenciaSeleccionada.adjuntos.length}}</span>
-                        </dd>
-                        <dd *ngIf="providenciaSeleccionada.adjuntos.length == 0">
-                            <span> SIN ADJUNTOS </span>
-                        </dd>
-                    </dl>
+                <br>
+                <div class="col-sm-12">
+                    <hr>
+                    <dt class="d-flex justify-content-center"><h4>Estado De La Providencia</h4></dt>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4 d-flex justify-content-center">
+                            <dl class="dl-horizontal jh-entity-details">
+                                <dt class="d-flex justify-content-center" >
+                                    <span>Etapa</span>
+                                </dt>
+                                <dd class="d-flex justify-content-center" >
+                                    <span>{{providenciaSeleccionada.etapa.split('_').join(' ')}}</span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-sm-4 d-flex justify-content-center">
+                            <dl class="dl-horizontal jh-entity-details">
+                                <dt class="d-flex justify-content-center" >
+                                    <span class="d-flex justify-content-center">Sub Etapa</span>
+                                </dt>
+                                <dd class="d-flex justify-content-center" >
+                                    <span>{{providenciaSeleccionada.subEtapa.split('_').join(' ')}}</span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-sm-4 d-flex justify-content-center">
+                            <dl class="dl-horizontal jh-entity-details">
+                                <dt class="d-flex justify-content-center" >
+                                    <span class="d-flex justify-content-center">Accion </span>
+                                </dt>
+                                <dd class="d-flex justify-content-center" >
+                                    <span>{{providenciaSeleccionada.requisito.split('_').join(' ')}}</span>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-12">
-                    <div style="padding: 10px 20px; font-size: 17.5px"></div>
-                    <dl class="dl-horizontal jh-entity-details">
-                        <dt class="d-flex justify-content-center"  *ngIf="providenciaSeleccionada.comentario">
-                            <span jhiTranslate="pdisciplinarioApp.providencia.comentario">Comentario</span>
-                        </dt>
-                        <dd *ngIf="providenciaSeleccionada.comentario">
-                            <span>{{providenciaSeleccionada.comentario}}</span>
-                        </dd>
-                    </dl>
+                    <hr>
+                    <dt class="d-flex justify-content-center"><h4>Datos De La Providencia</h4></dt>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-6 d-flex justify-content-center">
+                            <dl class="dl-horizontal jh-entity-details">
+                                <dt class="d-flex justify-content-center">
+                                    <span jhiTranslate="pdisciplinarioApp.providencia.fechaSolicitud">Fecha Solicitud</span>
+                                </dt>
+                                <dd class="d-flex justify-content-center">
+                                    <span>{{providenciaSeleccionada.fechaSolicitud | date:'mediumDate'}}</span>
+                                </dd>
+                                <dt class="d-flex justify-content-center">
+                                    <span jhiTranslate="pdisciplinarioApp.providencia.numeroProvidencia">numero Providencia </span>
+                                </dt>
+                                <dd class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.numeroProvidencia">
+                                    <span>{{providenciaSeleccionada.numeroProvidencia}}</span>
+                                </dd>
+                                <dd class="d-flex justify-content-center" *ngIf="!providenciaSeleccionada.numeroProvidencia">
+                                    <span style="color:red">DEBE ENUMERAR</span>
+                                </dd>
+                                <dt class="d-flex justify-content-center">
+                                    <span>Cantidad de archivos adjuntos</span>
+                                </dt>
+                                <dd class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.adjuntos.length != 0">
+                                    <span>{{providenciaSeleccionada.adjuntos.length}}</span>
+                                </dd>
+                                <dd class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.adjuntos.length == 0">
+                                    <span style="color:red">SIN ADJUNTOS</span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-sm-6 d-flex justify-content-center">
+                            <dl class="dl-horizontal jh-entity-details">
+                                <dt class="d-flex justify-content-center">
+                                    <span>Fecha Creacion</span>
+                                </dt>
+                                <dd class="d-flex justify-content-center">
+                                    <span>{{providenciaSeleccionada.fechaCreacion  | date:'mediumDate'}}</span>
+                                </dd>
+                                <dt class="d-flex justify-content-center">
+                                    <span jhiTranslate="pdisciplinarioApp.providencia.numeroReferencia">numero referencia </span>
+                                </dt>
+                                <dd class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.numeroReferencia">
+                                    <span>{{providenciaSeleccionada.numeroReferencia}}</span>
+                                </dd>
+                                <dd class="d-flex justify-content-center" *ngIf="!providenciaSeleccionada.numeroReferencia">
+                                    <span style="color:red">DEBE ENUMERAR</span>
+                                </dd>
+                                <dt class="d-flex justify-content-center">
+                                    <span jhiTranslate="pdisciplinarioApp.providencia.tipo">Tipo</span>
+                                </dt>
+                                <dd class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.tipo">
+                                    <span jhiTranslate="{{'pdisciplinarioApp.TipoProvidencia.' + providenciaSeleccionada.tipo}}">{{providenciaSeleccionada.tipo}}</span>
+                                </dd>
+                                <dd class="d-flex justify-content-center" *ngIf="!providenciaSeleccionada.tipo">
+                                    <span style="color:red">DEBE ESPECIFICAR</span>
+                                </dd>
+                                <dt class="d-flex justify-content-center">
+                                    <span>Nombre del Fiscal Asignado</span>
+                                </dt>
+                                <dd class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.nombreFiscalAsignado">
+                                    <span>{{providenciaSeleccionada.nombreFiscalAsignado}}</span>
+                                </dd>
+                                <dd class="d-flex justify-content-center" *ngIf="!providenciaSeleccionada.nombreFiscalAsignado">
+                                    <span style="color:red">DEBE ASIGNAR</span>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <dl class="dl-horizontal jh-entity-details">
+                                <dt class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.instrucciones && providenciaSeleccionada.instrucciones.length > 0">
+                                    <span jhiTranslate="pdisciplinarioApp.providencia.instrucciones">Instrucciones</span>
+                                </dt>
+                                <dd class="d-flex justify-content-center" *ngFor="let instruccion of providenciaSeleccionada.instrucciones">
+                                    {{instruccion.split('_').join(' ')}}
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center">
+                            <dl class="dl-horizontal jh-entity-details">
+                                <dt class="d-flex justify-content-center">
+                                    <span>Comentario</span>
+                                </dt>
+                                <dd *ngIf="providenciaSeleccionada.comentario">
+                                    <P class="text-center text-justify">{{providenciaSeleccionada.comentario}}</P>
+                                </dd>
+                                <dd class="d-flex justify-content-center" *ngIf="!providenciaSeleccionada.comentario">
+                                    <span style="color:red">SIN COMENTARIO</span>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <hr>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
         </button>
-        <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success" [disabled]="disabledSave">
-            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.derivar">Derivar</span>
+        <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success">
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
         </button>
     </div>
 </form>

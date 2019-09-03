@@ -8,7 +8,7 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { IFichaIngresoSdj } from 'app/shared/model/ficha-ingreso-sdj.model';
 import { FichaIngresoSdjService } from './ficha-ingreso-sdj.service';
-import { Accion, IProvidencia } from 'app/shared/model/providencia.model';
+import { InstruccionesProvidencia, IProvidencia} from 'app/shared/model/providencia.model';
 import { ProvidenciaService } from 'app/entities/providencia';
 import { PlazoService } from '../plazo/plazo.service';
 import { IPlazo } from '../../shared/model/plazo.model';
@@ -125,14 +125,14 @@ export class FichaIngresoSdjUpdateComponent implements OnInit {
     // Funciones del multiselect
 
     cargarConfigMultiSelectAcciones() {
-        // this.dropdownListAcciones = [
-        //     { id: 1, itemName: Accion.TOMAR_CONOCIMIENTO.split('_').join(' ') },
-        //     { id: 2, itemName: Accion.PROPONER_RESPUESTA_DE_DIRECTOR.split('_').join(' ') },
-        //     { id: 3, itemName: Accion.PROPONER_RESOLUCION.split('_').join(' ') },
-        //     { id: 4, itemName: Accion.ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_DERECHO.split('_').join(' ') },
-        //     { id: 5, itemName: Accion.CONVERSARLO_CONMIGO.split('_').join(' ') },
-        //     { id: 6, itemName: Accion.PROVIDENCIA_ARCHIVO.split('_').join(' ') }
-        // ];
+        this.dropdownListAcciones = [
+            { id: 1, itemName: InstruccionesProvidencia.TOMAR_CONOCIMIENTO.split('_').join(' ') },
+            { id: 2, itemName: InstruccionesProvidencia.PROPONER_RESPUESTA_AL_DIRECTOR.split('_').join(' ') },
+            { id: 3, itemName: InstruccionesProvidencia.PROPONER_DECRETO_O_RESOLUCION.split('_').join(' ') },
+            { id: 4, itemName: InstruccionesProvidencia.ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_A_DERECHO.split('_').join(' ') },
+            { id: 5, itemName: InstruccionesProvidencia.CONVERSAR_CONMIGO.split('_').join(' ') },
+            { id: 6, itemName: InstruccionesProvidencia.PROVIDENCIA_ARCHIVO.split('_').join(' ') }
+        ];
 
         this.dropdownSettingsAcciones = {
             singleSelection: false,

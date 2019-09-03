@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProvidenciaService } from 'app/entities/providencia/providencia.service';
 import { JhiEventManager } from 'ng-jhipster';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import {UserService} from "../../core/user/user.service";
+import {UserService} from '../../core/user/user.service';
 
 @Component({
     selector: 'jhi-providencia-asignar-fiscal',

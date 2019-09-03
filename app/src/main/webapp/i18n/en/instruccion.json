@@ -1,6 +1,6 @@
 {
     "pdisciplinarioApp": {
-        "Accion" : {
+        "instrucciones" : {
             "null": "",
             "TOMAR_CONOCIMIENTO": "TOMAR_CONOCIMIENTO",
             "CUMPLIMIENTO": "CUMPLIMIENTO",

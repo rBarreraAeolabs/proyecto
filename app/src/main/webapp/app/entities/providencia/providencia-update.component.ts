@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import {DATE_FORMAT, DATE_TIME_FORMAT} from 'app/shared/constants/input.constants';
 import { JhiAlertService } from 'ng-jhipster';
 
-import { Accion, IProvidencia } from 'app/shared/model/providencia.model';
+import { InstruccionesProvidencia, IProvidencia } from 'app/shared/model/providencia.model';
 import { ProvidenciaService } from './providencia.service';
 import { IGrupo } from 'app/shared/model/grupo.model';
 import {IEntidad} from '../../shared/model/entidad.model';
@@ -25,6 +25,7 @@ export class ProvidenciaUpdateComponent implements OnInit {
     // Atributos de la clase
     private _providencia: IProvidencia;
     isSaving: boolean;
+    cargarTipoSolicitud: IProvidencia;
     fechaSolicitud: string;
     fechaCreacion: string;
     entidades: IEntidad[];
@@ -38,20 +39,18 @@ export class ProvidenciaUpdateComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-
         this.cargarConfigMultiSelectAcciones();
-
         this.activatedRoute.data.subscribe(({ providencia }) => {
             this.providencia = providencia;
 
             if (this.providencia.id !== null && typeof this.providencia.id !== 'undefined') {
                 // Cargar acciones asociadas a la providencia
                 if (
-                    this.providencia.acciones !== null &&
-                    typeof this.providencia.acciones !== 'undefined' &&
-                    this.providencia.acciones.length > 0
+                    this.providencia.instrucciones !== null &&
+                    typeof this.providencia.instrucciones !== 'undefined' &&
+                    this.providencia.instrucciones.length > 0
                 ) {
-                    this.cargarAccionesProvidencia(this.providencia.acciones);
+                    this.cargarAccionesProvidencia(this.providencia.instrucciones);
                 }
             }
         });
@@ -67,12 +66,13 @@ export class ProvidenciaUpdateComponent implements OnInit {
 
     cargarConfigMultiSelectAcciones() {
         this.dropdownListAcciones = [
-            { id: 1, itemName: Accion.TOMAR_CONOCIMIENTO.split('_').join(' ') },
-            { id: 2, itemName: Accion.PROPONER_RESPUESTA_AL_DIRECTOR.split('_').join(' ') },
-            { id: 3, itemName: Accion.PROPONER_DECRETO_O_RESOLUCION.split('_').join(' ') },
-            { id: 4, itemName: Accion.ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_A_DERECHO.split('_').join(' ') },
-            { id: 5, itemName: Accion.CONVERSAR_CONMIGO.split('_').join(' ') },
-            { id: 6, itemName: Accion.PROVIDENCIA_ARCHIVO.split('_').join(' ') },
+            { id: 1, itemName: InstruccionesProvidencia.TOMAR_CONOCIMIENTO.split('_').join(' ') },
+            { id: 2, itemName: InstruccionesProvidencia.CONVERSAR_CONMIGO.split('_').join(' ') },
+            { id: 3, itemName: InstruccionesProvidencia.PROVIDENCIA_ARCHIVO.split('_').join(' ') },
+            { id: 4, itemName: InstruccionesProvidencia.PROPONER_RESPUESTA_AL_DIRECTOR.split('_').join(' ') },
+            { id: 5, itemName: InstruccionesProvidencia.PROPONER_DECRETO_O_RESOLUCION.split('_').join(' ') },
+            { id: 6, itemName: InstruccionesProvidencia.ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_A_DERECHO.split('_').join(' ') },
+
         ];
 
         this.dropdownSettingsAcciones = {
@@ -101,23 +101,22 @@ export class ProvidenciaUpdateComponent implements OnInit {
     previousState() {
         window.history.back();
     }
-
     save() {
         this.providencia.runImplicado = this.providencia.runImplicado.trim()
             .substring(0, this.providencia.runImplicado.trim().length - 1) + '-' + this.providencia.runImplicado
             .trim().substring(this.providencia.runImplicado.trim().length - 1);
-        this.providencia.acciones = this.selectedAcciones.map(item => {
+        this.providencia.instrucciones = this.selectedAcciones.map(item => {
             return item.itemName.split(' ').join('_');
         });
         this.providencia.runSolicitante = this.providencia.runSolicitante.trim()
             .substring(0, this.providencia.runSolicitante.trim().length - 1) + '-' + this.providencia.runSolicitante
             .trim().substring(this.providencia.runSolicitante.trim().length - 1);
-        this.providencia.acciones = this.selectedAcciones.map(item => {
+        this.providencia.instrucciones = this.selectedAcciones.map(item => {
             return item.itemName.split(' ').join('_');
         });
 
         this.isSaving = true;
-        this.providencia.fechaSolicitud = moment(this.fechaSolicitud, DATE_TIME_FORMAT);
+        this.providencia.fechaSolicitud = moment(this.fechaSolicitud, DATE_FORMAT);
         this.providencia.fechaCreacion = moment(this.fechaCreacion, DATE_TIME_FORMAT);
         console.log('almacenando la providencia', this.providencia);
         if (this.providencia.id !== undefined) {
@@ -164,7 +163,7 @@ export class ProvidenciaUpdateComponent implements OnInit {
 
     set providencia(providencia: IProvidencia) {
         this._providencia = providencia;
-        this.fechaSolicitud = moment(providencia.fechaSolicitud).format(DATE_TIME_FORMAT);
+        this.fechaSolicitud = moment(providencia.fechaSolicitud).format(DATE_FORMAT);
         this.fechaCreacion = moment(providencia.fechaCreacion).format(DATE_TIME_FORMAT);
     }
 

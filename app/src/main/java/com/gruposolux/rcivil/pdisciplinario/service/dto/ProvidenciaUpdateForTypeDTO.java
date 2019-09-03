@@ -3,12 +3,12 @@ package com.gruposolux.rcivil.pdisciplinario.service.dto;
 /**
  * Created by sneiraillanes on 10-05-2019.
  */
-public class ProvidenciaUpdateMadreDTO
-{
+public class ProvidenciaUpdateForTypeDTO {
     private Long providenciaId;
     private Long providenciaMadreId;
+    private Long numeroReferencia;
 
-    public ProvidenciaUpdateMadreDTO() {
+    public ProvidenciaUpdateForTypeDTO() {
     }
 
     public Long getProvidenciaId() {
@@ -27,11 +27,23 @@ public class ProvidenciaUpdateMadreDTO
         this.providenciaMadreId = providenciaMadreId;
     }
 
+    public Long getNumeroReferencia() {
+        return numeroReferencia;
+    }
+
+    public void setProvidenciaMadreNumeroReferencia(Long providenciaMadreNumeroReferencia) {
+        this.numeroReferencia = providenciaMadreNumeroReferencia;
+    }
+
     @Override
     public String toString() {
         return "ProvidenciaUpdateMadreDTO{" +
             "providenciaId=" + providenciaId +
             ", providenciaMadreId=" + providenciaMadreId +
+            ", numeroReferencia=" + numeroReferencia +
             '}';
     }
+
 }
+
+

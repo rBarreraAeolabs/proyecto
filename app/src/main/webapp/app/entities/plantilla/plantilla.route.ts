@@ -34,7 +34,7 @@ export const plantillaRoute: Routes = [
             pagingParams: JhiResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER', 'VISUALIZAR_PLANTILLA_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'VISUALIZAR_PLANTILLA'],
             defaultSort: 'id,asc',
             pageTitle: 'pdisciplinarioApp.plantilla.home.title'
         },
@@ -47,7 +47,7 @@ export const plantillaRoute: Routes = [
             plantilla: PlantillaResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'VISUALIZAR_PLANTILLA_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'VISUALIZAR_PLANTILLA'],
             pageTitle: 'pdisciplinarioApp.plantilla.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -59,7 +59,7 @@ export const plantillaRoute: Routes = [
             plantilla: PlantillaResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'CREAR_PLANTILLA_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'CREAR_PLANTILLA'],
             pageTitle: 'pdisciplinarioApp.plantilla.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -71,7 +71,7 @@ export const plantillaRoute: Routes = [
             plantilla: PlantillaResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'EDITAR_PLANTILLA_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'EDITAR_PLANTILLA'],
             pageTitle: 'pdisciplinarioApp.plantilla.home.title'
         },
         canActivate: [UserRouteAccessService]

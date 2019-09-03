@@ -6,7 +6,8 @@ import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap'
 import {ActivatedRoute, Router} from '@angular/router';
 import {JhiEventManager} from 'ng-jhipster';
 import {ProvidenciaService} from './providencia.service';
-import {IProvidencia, IProvidenciaUpdateMadre, Providencia} from '../../shared/model/providencia.model';
+// import {IProvidencia, IProvidenciaUpdateMadre, Providencia} from '../../shared/model/providencia.model';
+import {IProvidencia, IProvidenciaUpdateForType, Providencia} from '../../shared/model/providencia.model';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 
 @Component({
@@ -17,9 +18,11 @@ export class ProvidenciaRelacionarDialogComponent implements OnInit {
 
     private _providencia: IProvidencia;
     providencias: IProvidencia[];
-    providenciaUpdateMadre: IProvidenciaUpdateMadre = {
+
+    providenciaUpdateForType: IProvidenciaUpdateForType = {
         providenciaId: null,
-        providenciaMadreId: null
+        providenciaMadreId: null,
+        providenciaMadreNumeroReferencia: null
     };
     providenciaSeleccionada: IProvidencia;
 
@@ -34,14 +37,14 @@ export class ProvidenciaRelacionarDialogComponent implements OnInit {
         this.providenciaService.getAllWithoutPagination().subscribe(
             (req: HttpResponse<IProvidencia[]>) => {
                 this.providencias = req.body.filter(prov => prov.id !== this.providencia.id);
-            },
+                      },
             (req: HttpErrorResponse) => {
                 console.log('error', req.message);
             }
         );
 
-        this.providenciaUpdateMadre.providenciaId = this.providencia.id;
-    }
+        this.providenciaUpdateForType.providenciaId = this.providencia.id;
+      }
 
     clear() {
         this.activeModal.dismiss('cancel');
@@ -60,15 +63,21 @@ export class ProvidenciaRelacionarDialogComponent implements OnInit {
     }
 
     onChange($event) {
-        this.providenciaUpdateMadre.providenciaMadreId = parseInt($event.target.value, 10);
-        this.providenciaSeleccionada = this.providencias.filter(pro => pro.id === parseInt($event.target.value, 10))[0];
-    }
+        console.log($event);
+        this.providenciaUpdateForType.providenciaMadreId = $event.target.value;
+        this.providenciaSeleccionada = this.providencias.filter(pro => pro.id === parseInt($event.target.value, 10),
+            pro2 => pro2.numerarReferencia === parseInt($event.target.value, 10)
+        )[0];
+        this.providenciaUpdateForType.providenciaMadreNumeroReferencia =  this.providenciaSeleccionada.numeroReferencia;
+        console.log('weada: ' + this.providenciaUpdateForType.providenciaMadreNumeroReferencia);
+ }
 
     onSave() {
-        this.providenciaService.updateProvidenciaMadre(this.providenciaUpdateMadre).subscribe(
+        this.providenciaService.providenciaUpdateForType(this.providenciaUpdateForType).subscribe(
             (req: HttpResponse<IProvidencia>) => {
                 if (req.body.id !== null || typeof req.body.id !== 'undefined') {
                     this.activeModal.close('updated');
+                    console.log('weada2: ', this.providenciaUpdateForType.providenciaMadreNumeroReferencia);
                 }
             },
             (req: HttpErrorResponse) => {

@@ -4,8 +4,7 @@ import { TipoAdjunto } from 'app/shared/model/adjunto.model';
 export interface IFiltroMovimientoProvidencia {
     accion?: string;
     estadoProvidencia?: EstadoProvidencia;
-    tipoAdjunto?: TipoAdjunto
-
+    tipoAdjunto?: TipoAdjunto;
 }
 
 export class FiltroMovimientoProvidencia implements IFiltroMovimientoProvidencia {

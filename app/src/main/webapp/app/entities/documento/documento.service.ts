@@ -53,7 +53,9 @@ export class DocumentoService {
     download(hash: string): Observable<HttpResponse<Blob>> {
         return this.http.get(`${this.resourceUrl}/${hash}/download`, { observe: 'response', responseType: 'blob' });
     }
-
+    view(hash: string): Observable<HttpResponse<Blob>> {
+        return this.http.get(`${this.resourceUrl}/${hash}/view`, { observe: 'response', responseType: 'blob' });
+    }
     findByProvidencia( providecia: IProvidencia): Observable<EntityResponseType> {
         return this.http
             .post<IDocumento>(`${this.resourceUrl}/providencia`, providecia, { observe: 'response' })

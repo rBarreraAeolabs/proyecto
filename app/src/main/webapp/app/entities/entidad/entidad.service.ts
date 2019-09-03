@@ -16,7 +16,6 @@ export class EntidadService {
     constructor(private http: HttpClient) {}
 
     create(entidad: IEntidad): Observable<EntityResponseType> {
-        console.log('ESTOY DE VIO EN EL SERVICE', entidad);
         return this.http.post<IEntidad>(this.resourceUrl, entidad, { observe: 'response' });
     }
 

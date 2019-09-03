@@ -13,7 +13,7 @@ import { RespuestaService } from '../respuesta/respuesta.service';
 import { IRespuesta, Respuesta } from '../../shared/model/respuesta.model';
 
 @Component({
-    selector: 'jhi-providencia-asignar-numero-resolucion-dialog',
+    selector: 'jhi-providencia-asignar-numero-resolucion',
     templateUrl: './providencia-asignar-numero-resolucion.component.html'
 })
 export class ProvidenciaAsignarNumeroResolucionComponent implements OnInit {
@@ -84,12 +84,14 @@ export class ProvidenciaAsignarNumeroResolucionComponent implements OnInit {
 
                             this.providenciaService.reply(providenciaResponse).subscribe(
                                 (req2: HttpResponse<any>) => {
+
+                                    this.router.navigate(['/providencias']);
                                     this.eventManager.broadcast({
                                         name: 'providenciaListModification',
                                         content: 'Providencia derivada'
                                     });
                                     this.activeModal.dismiss(true);
-                                    this.previousState();
+                                    // this.previousState();
                                 },
                                 (req3: HttpErrorResponse) => console.log('error reply', req3.message)
                             );

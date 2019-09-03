@@ -1,14 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
-
-import {EstadoProvidencia, IProvidencia, IProvidenciaResponse, Providencia} from 'app/shared/model/providencia.model';
+import { IProvidencia, IProvidenciaResponse} from 'app/shared/model/providencia.model';
 import { DerivacionService } from 'app/entities/derivacion';
-import {ProvidenciaService} from './providencia.service';
-import {PlantillaService} from '../plantilla/plantilla.service';
-import {IAdjunto} from '../../shared/model/adjunto.model';
+import { ProvidenciaService} from './providencia.service';
+import { PlantillaService} from '../plantilla/plantilla.service';
+import { IAdjunto} from '../../shared/model/adjunto.model';
+import { Principal} from 'app/core';
 
 @Component({
     selector: 'jhi-providencia-devolver-dialog',
@@ -20,6 +19,9 @@ export class ProvidenciaDevolverDialogComponent implements OnInit {
     observacionDerivacion: string;
     adjuntos: IAdjunto[];
     private _providencia: IProvidencia;
+    isContinuar = true;
+    cuenta: any;
+    usuario: any;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -27,14 +29,24 @@ export class ProvidenciaDevolverDialogComponent implements OnInit {
         private router: Router,
         private eventManager: JhiEventManager,
         private plantillaService: PlantillaService,
-        private providenciaService: ProvidenciaService
-    ) {}
+        private providenciaService: ProvidenciaService,
+        private principal: Principal
+
+) {}
 
     clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    ngOnInit(): void {}
+    ngOnInit() {
+        this.cuenta = this.principal.identity();
+        this.usuario = this.cuenta.__zone_symbol__value.perfil.nombre;
+        console.log('usuario: ', this.usuario);
+        if (this.usuario === 'Fiscal') {
+            console.log('el usuario es fiscal el envia');
+            this.isContinuar = false;
+        }
+    }
 
     get providencias() {
         return this._providencia;
@@ -57,6 +69,18 @@ export class ProvidenciaDevolverDialogComponent implements OnInit {
             this.activeModal.dismiss(true);
             this.previousState();
         });
+        if (this.providencia.etapa === 'NUEVA_PROVIDENCIA' && this.providencia.requisito === 'FISCAL_NOTIFICADO' ||
+            this.providencia.etapa === 'PROVIDENCIA_SELECCION_FISCAL' && this.providencia.requisito === 'FISCAL_NOTIFICADO'
+        ) {
+            this.providenciaService.rechazar(this.providenciaResponse).subscribe(res => {
+                this.eventManager.broadcast({
+                    name: 'providenciaAceptada',
+                    content: 'Providencia aceptada'
+                });
+                this.activeModal.dismiss(true);
+                this.previousState();
+            });
+        }
     }
 
     previousState() {

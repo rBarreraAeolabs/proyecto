@@ -79,4 +79,9 @@
     <include file="config/liquibase/changelog/20190509133748_changelog.xml" relativeToChangelogFile="false"/>
     <!-- Se crea la relación entre providencias. -->
     <include file="config/liquibase/changelog/20190509153549_changelog.xml" relativeToChangelogFile="false"/>
+    <!-- Sse agrega el campo numero_providencia. -->
+    <include file="config/liquibase/changelog/20190719195158_changelog.xml" relativeToChangelogFile="false"/>
+    <!-- Sse agrega el campo etapa , subEtapa y requisito a la tabla providencia. -->
+    <include file="config/liquibase/changelog/20190726180254_changelog.xml" relativeToChangelogFile="false"/>
+
 </databaseChangeLog>

@@ -8,8 +8,30 @@
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <jhi-alert></jhi-alert>
-        <p id="jhi-responder-providencia-heading">
-            Seguro que desea dar respuesta a la providencia # {{providencia.numero}}?
+        <p id="jhi-responder-estado-1" *ngIf="
+                                              providencia.estadoActual === 'ESTADO_1' && providencia.numeroReferencia == null ||
+                                              providencia.estadoActual === 'ESTADO_1' && providencia.tipo == null
+                                              ">
+                                              <span style="color:#dc3545"><h6>Recordatorio.</h6></span>
+                                              <span *ngIf="providencia.numeroReferencia == null" style="color:#0449a7">Debe Asignar El Numero De Referencia.</span><br>
+                                              <span *ngIf="providencia.tipo == null" style="color:#0449a7">Debe Asignar El Tipo De Solicitud.</span><br>
+                                              <span *ngIf="providencia.numeroReferencia == null || providencia.tipo == null" style="color:#28a745"><h6>Continuando...</h6></span>
+                                              <span>Seguro que desea pasar al "estado 2", la providencia "{{providencia.id}}" sin numero de referencia # ?"</span>
+
+        </p>
+        <p id="jhi-responder-estado-1,2" *ngIf="providencia.estadoActual === 'ESTADO_1' && providencia.numeroReferencia !== null ||
+                                                providencia.estadoActual === 'ESTADO_1' && providencia.tipo !== null
+                                                ">
+                                                <span style="color:#28a745"><h6>Continuando...</h6></span>
+                                                <span>Seguro que desea pasar al "estado 2", la providencia "{{providencia.id}}" con numero de referencia # "{{providencia.numeroReferencia}}?"</span>
+        </p>
+        <p id="jhi-responder-estado-2" *ngIf="
+                                              providencia.estadoActual === 'ESTADO_2' && providencia.numeroReferencia == null ||
+                                              providencia.estadoActual === 'ESTADO_2' && providencia.tipo == null
+                                              ">
+                                              <span style="color:#dc3545"><h6>Recordatorio.</h6></span>
+                                              <span *ngIf="providencia.numeroReferencia == null" style="color:#0449a7">Debe Asignar El Numero De Referencia.</span><br>
+                                              <span *ngIf="providencia.tipo == null" style="color:#0449a7">Debe Asignar El Tipo De Solicitud.</span>
         </p>
         <form>
             <div class="form-group">
@@ -29,8 +51,21 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
         </button>
-        <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success" [disabled]="disabledSave">
-            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.derivar">Derivar</span>
+
+        <button
+
+                id="jhi-confirm-providencia"
+                type="submit"
+                class="btn btn-outline-success"
+                [disabled]="
+                providencia.requisito == 'SUB_DIRECCION_ENVIA_A_DN_INFORME_JURIDICO' ||
+                providencia.estadoActual == 'ESTADO_3' && providencia.numeroReferencia == null ||
+                providencia.estadoActual == 'ESTADO_6' && providencia.tipo == null
+
+        ">
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;
+            <span *ngIf="isDerivar" >Derivar</span>
+            <span *ngIf="!isDerivar">Enviar</span>
         </button>
     </div>
 </form>

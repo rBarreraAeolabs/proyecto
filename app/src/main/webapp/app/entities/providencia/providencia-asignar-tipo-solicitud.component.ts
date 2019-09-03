@@ -1,31 +1,31 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+    IProvidencia,
+    IProvidenciaUpdateTipoSolicitud
+} from 'app/shared/model/providencia.model';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JhiEventManager } from 'ng-jhipster';
-import { IProvidencia, IProvidenciaResponse } from 'app/shared/model/providencia.model';
-import { DerivacionService } from 'app/entities/derivacion';
-import { PlantillaService } from '../plantilla/plantilla.service';
-import { ProvidenciaService } from './providencia.service';
-import { IAdjunto} from '../../shared/model/adjunto.model';
+import { ProvidenciaService } from 'app/entities/providencia/providencia.service';
+import { HttpErrorResponse, HttpResponse} from '@angular/common/http';
 
 @Component({
-    selector: 'jhi-providencia-responder-dialog',
-    templateUrl: './providencia-responder-dialog.component.html'
+    selector: 'jhi-providencia-asignar-tipo-solicitud',
+    templateUrl: './providencia-asignar-tipo-solicitud.component.html'
 })
-export class ProvidenciaResponderDialogComponent implements OnInit {
+export class ProvidenciaAsignarTipoSolicitudComponent implements OnInit {
     providencia: IProvidencia;
-    providenciaResponse: IProvidenciaResponse = new IProvidenciaResponse();
-    observacionDerivacion: string;
     private _providencia: IProvidencia;
-    adjuntos: IAdjunto[];
-    disabledSave: true;
+
+    providenciaUpdateTipoSolicitud: IProvidenciaUpdateTipoSolicitud = {
+        providenciaId: null,
+        tipoSolicitud: null
+    };
 
     constructor(
         public activeModal: NgbActiveModal,
-        private derivacionService: DerivacionService,
         private router: Router,
         private eventManager: JhiEventManager,
-        private plantillaService: PlantillaService,
         private providenciaService: ProvidenciaService
     ) {}
 
@@ -33,7 +33,10 @@ export class ProvidenciaResponderDialogComponent implements OnInit {
         this.activeModal.dismiss('cancel');
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.providenciaUpdateTipoSolicitud.providenciaId = this.providencia.id;
+        console.log('esta es la providencia ', this.providencia.id);
+    }
 
     get providencias() {
         return this._providencia;
@@ -43,28 +46,20 @@ export class ProvidenciaResponderDialogComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    confirmarRespuesta(id: number) {
-        this.providenciaResponse.estadoActual = this.providencia.estadoActual;
-        this.providenciaResponse.providenciaId = id;
-        this.providenciaResponse.adjuntosDTOs = this.adjuntos;
-        this.providenciaResponse.observacion = this.observacionDerivacion;
+    asignarTipo() {
+        this.providenciaService.updateTipoSolicitud(this.providenciaUpdateTipoSolicitud)
+            .subscribe(
+                (req: HttpResponse<IProvidencia>) => {
+                    this.activeModal.close(req.body);
+                },
+                (req: HttpErrorResponse) => {
 
-        this.providenciaService.reply(this.providenciaResponse).subscribe(res => {
-            this.eventManager.broadcast({
-                name: 'providenciaListModification',
-                content: 'Providencia derivada'
-            });
-            this.activeModal.dismiss(true);
-            this.previousState();
-        });
+                }
+            );
     }
 
     previousState() {
         window.history.back();
-    }
-
-    getUploadedAdjuntos($event) {
-        this.adjuntos = $event;
     }
 
     private onError(errorMessage: string) {
@@ -73,10 +68,10 @@ export class ProvidenciaResponderDialogComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-responder-popup',
+    selector: 'jhi-providencia-asignar-tipo-solicitud-popup',
     template: ''
 })
-export class ProvidenciaResponderPopupComponent implements OnInit, OnDestroy {
+export class  ProvidenciaAsignarTipoSolicitudPopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
@@ -84,7 +79,7 @@ export class ProvidenciaResponderPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaResponderDialogComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciaAsignarTipoSolicitudComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });

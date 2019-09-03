@@ -58,8 +58,14 @@ public interface ProvidenciaRepository extends JpaRepository<Providencia, Long> 
     @Query("SELECT p FROM Providencia p WHERE p.tipo = :tipoSolicitud")
     Optional<Providencia> findByTipo(@Param("tipoSolicitud") String tipoSolicitud);
 
+    @Query(value = "SELECT numero_referencia FROM Providencia p WHERE p.id = :iDMadre ", nativeQuery = true)
+    Long findNumberReferentForID(@Param("iDMadre") Long iDMadre);
+
+    @Query(value = "SELECT * FROM Providencia p WHERE p.numero_referencia = :numberRefere ORDER BY p.fecha_creacion DESC LIMIT 1", nativeQuery = true)
+    List<Providencia> findForNumberReferent(@Param("numberRefere") Long numberRefere);
+
     @Modifying
-    @Query(value = "UPDATE providencia SET providencia_madre_id = ? WHERE id = ?", nativeQuery = true)
+    @Query(value = "UPDATE providencia SET providencia_madre_id = ? WHERE id = ? ", nativeQuery = true)
     void updateProvidenciaMadre(Long providenciaMadreId, Long providenciaId);
 
     @Modifying
@@ -69,4 +75,13 @@ public interface ProvidenciaRepository extends JpaRepository<Providencia, Long> 
     @Modifying
     @Query(value = "UPDATE providencia SET tipo = ? WHERE id = ?", nativeQuery = true)
     void updateTipoSolicitud(String tipoSolicitud, Long providenciaId);
+
+//    @Query("select providencia from Providencia providencia where providencia.id =:id ")
+//    Providencia findOneforProrroga(@Param("id") Long id);
+
+    //actualizar requisito de prorroga madre
+    @Modifying
+    @Query(value = "UPDATE providencia   SET requisito = 'VEREMOS' where id =:id ",nativeQuery = true)
+    void  updateRequisito(@Param("id") Long id);
+
 }

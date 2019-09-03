@@ -36,7 +36,7 @@ export const movimientoProvidenciaRoute: Routes = [
             pagingParams: JhiResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER', 'VISUALIZAR_PROVIDENCIA_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'VISUALIZAR_PROVIDENCIA'],
             defaultSort: 'id,asc',
             pageTitle: 'pdisciplinarioApp.movimientoProvidencia.home.title'
         },
@@ -49,7 +49,7 @@ export const movimientoProvidenciaRoute: Routes = [
             movimientoProvidencia: MovimientoProvidenciaResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'VISUALIZAR_PROVIDENCIA_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'VISUALIZAR_PROVIDENCIA'],
             pageTitle: 'pdisciplinarioApp.movimientoProvidencia.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -61,7 +61,7 @@ export const movimientoProvidenciaRoute: Routes = [
             movimientoProvidencia: MovimientoProvidenciaResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'CREAR_PROVIDENCIA_PRIVILEGE', 'EDITAR_PROVIDENCIA_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'CREAR_PROVIDENCIA', 'EDITAR_PROVIDENCIA'],
             pageTitle: 'pdisciplinarioApp.movimientoProvidencia.home.title'
         },
         canActivate: [UserRouteAccessService]

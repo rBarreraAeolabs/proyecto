@@ -184,7 +184,7 @@ public class AdjuntoResource {
             .body(resource);
     }
 
-// para visualizar archivo
+
     @GetMapping("/adjuntos/{hash}/view")
     @Timed
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DESCARGAR_DOCUMENTO + "\")")
@@ -198,13 +198,11 @@ public class AdjuntoResource {
         Resource resource = this.adjuntoService.getByHashToDownload(hash);
 
         String nombreArchivo = this.adjuntoService.findByHash(hash).getArchivoNombre();
-        // dejar con la variable para dejar que se visualice cualquier tipo de archivo si no se puede es porque la libreria no permite
-      //  String tipo = this.adjuntoService.findByHash(hash).getArchivoMimeType();
+
         return ResponseEntity.ok()
-          //  .contentType(MediaType.valueOf(tipo))
             .contentType(MediaType.APPLICATION_PDF)
             .contentLength(resource.contentLength())
-           .header(HttpHeaders.CONTENT_DISPOSITION,"inline")
+            .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + nombreArchivo + "\"")
             .body(resource);
     }
 

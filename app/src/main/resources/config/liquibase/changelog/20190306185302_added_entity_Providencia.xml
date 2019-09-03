@@ -29,6 +29,7 @@
                 <constraints nullable="true" />
             </column>
 
+
             <column name="tipo" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -37,7 +38,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="comentario" type="varchar(255)">
+            <column name="comentario" type="text">
                 <constraints nullable="true" />
             </column>
 

@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
     public barCharLabels: string[] = ['2016', '2017', '2018'];
 
-    public barChartType = 'bar';
+    public barChartType = 'line';
 
     public barChartLegend = true;
 

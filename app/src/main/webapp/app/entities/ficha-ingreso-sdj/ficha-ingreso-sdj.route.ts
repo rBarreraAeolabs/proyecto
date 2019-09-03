@@ -34,7 +34,7 @@ export const fichaIngresoSdjRoute: Routes = [
             pagingParams: JhiResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER', 'VISUALIZAR_FICHA_INGRESO_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'VISUALIZAR_FICHA_INGRESO'],
             defaultSort: 'id,asc',
             pageTitle: 'pdisciplinarioApp.fichaIngresoSdj.home.title'
         },
@@ -47,7 +47,7 @@ export const fichaIngresoSdjRoute: Routes = [
             fichaIngresoSdj: FichaIngresoSdjResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'VISUALIZAR_FICHA_INGRESO_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'VISUALIZAR_FICHA_INGRESO'],
             pageTitle: 'pdisciplinarioApp.fichaIngresoSdj.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -59,7 +59,7 @@ export const fichaIngresoSdjRoute: Routes = [
             fichaIngresoSdj: FichaIngresoSdjResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'CREAR_FICHA_INGRESO_PRIVILAGE'],
+            authorities: ['ROLE_USER', 'CREAR_FICHA_INGRESO'],
             pageTitle: 'pdisciplinarioApp.fichaIngresoSdj.home.title'
         },
         canActivate: [UserRouteAccessService]

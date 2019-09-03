@@ -66,7 +66,7 @@ export class RespuestaBitacoraModalComponent implements OnInit, OnDestroy {
             this.adjuntoService.download(hash).subscribe(result => {
                 this.downloadAsPdf(result);
             });
-        }  if (tipo === 'documento'){
+        }  if (tipo === 'documento') {
             this.documentoService.download(hash).subscribe(result => {
                 this.downloadAsPdf(result);
             });

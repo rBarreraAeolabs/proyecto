@@ -6,7 +6,11 @@ import { map } from 'rxjs/operators';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
-import {IProvidencia, IProvidenciaResponse, IProvidenciaUpdateMadre} from 'app/shared/model/providencia.model';
+import {
+    IProvidencia, IProvidenciaResponse, IProvidenciaUpdateForType,
+    // IProvidenciaUpdateMadre,
+    IProvidenciaUpdateNroReferencia, IProvidenciaUpdateTipoSolicitud
+} from 'app/shared/model/providencia.model';
 import {IPlantilla} from '../../shared/model/plantilla.model';
 
 type EntityResponseType = HttpResponse<IProvidencia>;
@@ -32,16 +36,35 @@ export class ProvidenciaService {
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
 
-    updateProvidenciaMadre(providenciaUpdateMadre: IProvidenciaUpdateMadre): Observable<EntityResponseType> {
+    providenciaUpdateForType(providenciaUpdateForType: IProvidenciaUpdateForType): Observable<EntityResponseType> {
         return this.http
-            .put<IProvidencia>(`${this.resourceUrl}/madre`, providenciaUpdateMadre, { observe: 'response'} )
+            .put<IProvidencia>(`${this.resourceUrl}/updateProvidenciaForType`, providenciaUpdateForType, { observe: 'response'} )
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
+
+    // updateProvidenciaMadre(providenciaUpdateMadre: IProvidenciaUpdateMadre): Observable<EntityResponseType> {
+    //     return this.http
+    //         .put<IProvidencia>(`${this.resourceUrl}/madre`, providenciaUpdateMadre, { observe: 'response'} )
+    //         .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    // }
 
     updateFiscal(providencia: IProvidencia): Observable<EntityResponseType> {
         const copy = this.convertDateFromClient(providencia);
         return this.http.
             put<IProvidencia>(`${this.resourceUrl}/fiscal`, copy, {observe: 'response'})
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+
+    updateNroReferencia(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
+        return this.http.
+        put<IProvidencia>(`${this.resourceUrl}/nroReferencia`, providencia, {observe: 'response'})
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+
+    updateTipoSolicitud(providencia: IProvidenciaUpdateTipoSolicitud): Observable<EntityResponseType> {
+        console.log('almacenando la providencia', providencia);
+        return this.http.
+        put<IProvidencia>(`${this.resourceUrl}/tipoSolicitud`, providencia, {observe: 'response'})
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
 
@@ -66,8 +89,24 @@ export class ProvidenciaService {
         return this.http.post<any>(this.resourceUrl + '/reply', response, {observe: 'response'});
     }
 
+    aceptar(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/aceptar', response, {observe: 'response'});
+    }
+
+    rechazar(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/rechazar', response, {observe: 'response'});
+    }
+
     goBackwards(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/comeback', response, {observe: 'response'});
+    }
+
+    prorroga(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/prorrogaUno', response, {observe: 'response'});
+    }
+
+    prorrogaDos(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/rechazar', response, {observe: 'response'});
     }
 
     getActionsPermitted(providencia: IProvidencia): Observable<HttpResponse<any>> {

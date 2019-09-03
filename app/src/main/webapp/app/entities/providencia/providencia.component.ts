@@ -10,7 +10,7 @@ import {Principal, UserService} from 'app/core';
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { ProvidenciaService } from './providencia.service';
 import {Moment} from 'moment';
-import moment = require('moment');
+import * as moment from 'moment';
 
 @Component({
     selector: 'jhi-providencia',
@@ -130,9 +130,7 @@ export class ProvidenciaComponent implements OnInit, OnDestroy {
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         this.queryCount = this.totalItems;
         this.providencias = data;
-
     }
-
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);

@@ -34,7 +34,7 @@ export const grupoRoute: Routes = [
             pagingParams: JhiResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER', 'VISUALIZAR_GRUPO_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'VISUALIZAR_GRUPO'],
             defaultSort: 'id,asc',
             pageTitle: 'pdisciplinarioApp.grupo.home.title'
         },
@@ -47,7 +47,7 @@ export const grupoRoute: Routes = [
             grupo: GrupoResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'VISUALIZAR_GRUPO_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'VISUALIZAR_GRUPO'],
             pageTitle: 'pdisciplinarioApp.grupo.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -59,7 +59,7 @@ export const grupoRoute: Routes = [
             grupo: GrupoResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'CREAR_GRUPO_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'CREAR_GRUPO'],
             pageTitle: 'pdisciplinarioApp.grupo.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -71,7 +71,7 @@ export const grupoRoute: Routes = [
             grupo: GrupoResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'EDITAR_GRUPO_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'EDITAR_GRUPO'],
             pageTitle: 'pdisciplinarioApp.grupo.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -86,7 +86,7 @@ export const grupoPopupRoute: Routes = [
             grupo: GrupoResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'ELIMINAR_GRUPO_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'ELIMINAR_GRUPO'],
             pageTitle: 'pdisciplinarioApp.grupo.home.title'
         },
         canActivate: [UserRouteAccessService],

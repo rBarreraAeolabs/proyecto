@@ -65,12 +65,12 @@ compile:
 
 image_build:
   stage: release
-  image: docker:latest
+  image: docker:18
   variables:
     DOCKER_HOST: tcp://localhost:2375
   cache: {}
   services:
-    - docker:dind
+    - docker:18-dind
   only:
     - merge_requests
     - master

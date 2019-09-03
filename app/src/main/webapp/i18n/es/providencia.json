@@ -16,10 +16,12 @@
                 "question": "¿Seguro que quiere eliminar Providencia {{ id }}?"
             },
             "detail": {
-                "title": "Providencia ID",
-                "assign": "Asignar Numero Resolucion"
+                "title": "ID",
+                "assign": "Asignar Numero Resolucion",
+                "numeroDgdp": "Asignar Numero Dgdp"
             },
-            "numero": "N° De Referencia De La Providencia",
+            "numeroReferencia": "N° De Referencia",
+            "numeroProvidencia": "N° De Providencia",
             "estadoActual": "Estado Actual",
             "tipo": "Tipo De Solicitud",
             "caracter": "Caracter",

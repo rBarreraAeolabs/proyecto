@@ -49,6 +49,4 @@ export class UserService {
     verifyUserDgdp(): Observable<HttpResponse<any>> {
         return this.http.get(`${this.resourceUrl}/dgdp` , {observe: 'response'});
     }
-
-
 }

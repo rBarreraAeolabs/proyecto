@@ -34,7 +34,7 @@ export const perfilRoute: Routes = [
             pagingParams: JhiResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER', 'VISUALIZAR_PERFIL_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'VISUALIZAR_PERFIL'],
             defaultSort: 'id,asc',
             pageTitle: 'pdisciplinarioApp.perfil.home.title'
         },
@@ -47,7 +47,7 @@ export const perfilRoute: Routes = [
             perfil: PerfilResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'VISUALIZAR_PERFIL_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'VISUALIZAR_PERFIL'],
             pageTitle: 'pdisciplinarioApp.perfil.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -59,7 +59,7 @@ export const perfilRoute: Routes = [
             perfil: PerfilResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'CREAR_PERFIL_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'CREAR_PERFIL'],
             pageTitle: 'pdisciplinarioApp.perfil.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -71,7 +71,7 @@ export const perfilRoute: Routes = [
             perfil: PerfilResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'EDITAR_PERFIL_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'EDITAR_PERFIL'],
             pageTitle: 'pdisciplinarioApp.perfil.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -86,7 +86,7 @@ export const perfilPopupRoute: Routes = [
             perfil: PerfilResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'ELIMINAR_PERFIL_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'ELIMINAR_PERFIL'],
             pageTitle: 'pdisciplinarioApp.perfil.home.title'
         },
         canActivate: [UserRouteAccessService],

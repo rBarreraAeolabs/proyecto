@@ -15,7 +15,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { MovimientoProvidenciaComponent } from 'app/entities/movimiento-providencia';
-import { ProvidenciaResponderDialogComponent, ProvidenciaResponderPopupComponent } from 'app/entities/providencia/providencia-responder-dialog.componet';
+import { ProvidenciaResponderDialogComponent, ProvidenciaResponderPopupComponent } from 'app/entities/providencia/providencia-responder-dialog.component';
 import { ProvidenciaDevolverDialogComponent, ProvidenciaDevolverPopupComponent } from 'app/entities/providencia/providencia-devolver-dialog.component';
 import { DerivacionComponent } from '../derivacion/derivacion.component';
 import { AdjuntoShowListPopupComponent } from '../adjunto/adjunto-show-list-dialog.component';
@@ -40,6 +40,14 @@ import {
     ProvidenciaAsignarFiscalComponent,
     ProvidenciaAsignarFiscalPopupComponent
 } from './providencia-asignar-fiscal.component';
+import {
+    ProvidenciaAsignarNumeroReferenciaComponent,
+    ProvidenciaAsignarNumeroReferenciaPopupComponent
+} from 'app/entities/providencia/providencia-asignar-numero-referencia.component';
+import {
+    ProvidenciaAsignarTipoSolicitudComponent,
+    ProvidenciaAsignarTipoSolicitudPopupComponent
+} from 'app/entities/providencia/providencia-asignar-tipo-solicitud.component';
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -48,6 +56,7 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         Ng2Rut,
         PdisciplinarioSharedModule,
         RouterModule.forChild(ENTITY_STATES),
+        // ,{onSameUrlNavigation: 'reload'}
         AngularMultiSelectModule,
         FormsModule,
         CKEditorModule
@@ -56,7 +65,6 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaComponent,
         ProvidenciaDetailComponent,
         ProvidenciaDetailDgdpComponent,
-        ProvidenciaAsignarNumeroResolucionComponent,
         ProvidenciaUpdateComponent,
         ProvidenciaDeleteDialogComponent,
         ProvidenciaResponderDialogComponent,
@@ -69,13 +77,18 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         AdjuntoShowListPopupComponent,
         RespuestaBitacoraModalComponent,
         ComentarioBitacoraModalComponent,
+        ProvidenciaAsignarNumeroResolucionComponent,
         ProvidenciaAsignarNumeroResolucionPopupComponent,
+        ProvidenciaAsignarNumeroReferenciaComponent,
+        ProvidenciaAsignarNumeroReferenciaPopupComponent,
         RespuestaUpdateComponent,
         ProvidenciaRelacionadasComponent,
         ProvidenciaRelacionarPopupComponent,
         ProvidenciaRelacionarDialogComponent,
         ProvidenciaAsignarFiscalComponent,
-        ProvidenciaAsignarFiscalPopupComponent
+        ProvidenciaAsignarFiscalPopupComponent,
+        ProvidenciaAsignarTipoSolicitudComponent,
+        ProvidenciaAsignarTipoSolicitudPopupComponent
     ],
     entryComponents: [
         ProvidenciaComponent,
@@ -91,12 +104,16 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ComentarioBitacoraModalComponent,
         ProvidenciaAsignarNumeroResolucionComponent,
         ProvidenciaAsignarNumeroResolucionPopupComponent,
+        ProvidenciaAsignarNumeroReferenciaComponent,
+        ProvidenciaAsignarNumeroReferenciaPopupComponent,
         RespuestaUpdateComponent,
         ProvidenciaRelacionadasComponent,
         ProvidenciaRelacionarPopupComponent,
         ProvidenciaRelacionarDialogComponent,
         ProvidenciaAsignarFiscalComponent,
-        ProvidenciaAsignarFiscalPopupComponent
+        ProvidenciaAsignarFiscalPopupComponent,
+        ProvidenciaAsignarTipoSolicitudComponent,
+        ProvidenciaAsignarTipoSolicitudPopupComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

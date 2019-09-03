@@ -56,7 +56,7 @@ export class ComentarioBitacoraModalComponent implements OnInit, OnDestroy {
             this.adjuntoService.download(hash).subscribe(result => {
                 this.downloadAsPdf(result);
             });
-        } else {
+        }  if (tipo === 'documento') {
             this.documentoService.download(hash).subscribe(result => {
                 this.downloadAsPdf(result);
             });
@@ -65,12 +65,12 @@ export class ComentarioBitacoraModalComponent implements OnInit, OnDestroy {
 
     viewPdfOnOtherTabChrome(hash: string, tipo: string) {
         if (tipo === 'adjunto') {
-            this.adjuntoService.download(hash).subscribe(result => {
+            this.adjuntoService.view(hash).subscribe(result => {
                 const url = window.URL.createObjectURL(result.body);
                 window.open(url);
             });
-        } else {
-            this.documentoService.download(hash).subscribe(result => {
+        }    if (tipo === 'documento') {
+            this.documentoService.view(hash).subscribe(result => {
                 const url = window.URL.createObjectURL(result.body);
                 window.open(url);
             });

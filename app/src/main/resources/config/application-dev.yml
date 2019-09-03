@@ -124,7 +124,7 @@ jhipster:
 # to have type-safe configuration, like in the JHipsterProperties above
 #
 # More documentation is available at:
-# https://www.jhipster.tech/common-application-properties/
+# https://www.jhipster.tech/common-application-properties
 # ===================================================================
 
 application:
@@ -134,11 +134,11 @@ application:
         excel-dir: 'excel/'
         imprimir-dir: 'pdf/'
         max-time-for-file-expire: 30
-
+        max-file-size: 8 #MB
         baseUrl: http://192.168.99.100:8082
         ALFRSCO_ATOMPUB_URL: /alfresco/api/-default-/public/cmis/versions/1.0/atom
         REPOSITORY_ID: -default-
-        alfresco_temp_rootFolder: /pdisciplinario/temp
-        alfresco_final_rootFolder: /pdisciplinario/final
+        alfresco-temp-root-folder: /pdisciplinario/temp
+        alfresco-final-root-folder: /pdisciplinario/final
         userAlfresco: admin
         passAlfresco: admin

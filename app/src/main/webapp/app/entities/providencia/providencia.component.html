@@ -2,7 +2,7 @@
     <h2 id="page-heading">
         <span jhiTranslate="pdisciplinarioApp.providencia.home.title">Providencias</span>
         <div class="dropdown" ngbDropdown>
-            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-providencia" [routerLink]="['/providencia/new']">
+            <button *jhiHasAnyAuthority="['ROLE_ADMIN' , 'CREAR_PROVIDENCIA']" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-providencia" [routerLink]="['/providencia/new']">
                 <fa-icon [icon]="'plus'"></fa-icon>
                 <span  jhiTranslate="pdisciplinarioApp.providencia.home.createLabel">
                     Create new Providencia
@@ -14,7 +14,7 @@
                 Más opciones
             </button>
             <div class="dropdown-menu" ngbDropdownMenu>
-                <a  class="dropdown-item" routerLink="providencia"
+                <a class="dropdown-item" routerLink="providencia"
                    routerLinkActive="active"
                    [routerLinkActiveOptions]="{ exact: true }">
                     <fa-icon icon="plus" fixedWidth="true"></fa-icon>
@@ -23,7 +23,6 @@
                 <a class="dropdown-item" routerLink="providencia"
                    routerLinkActive="active"
                    [routerLinkActiveOptions]="{ exact: true }">
-
                     <fa-icon icon="plus" fixedWidth="true"></fa-icon>
                     <span>Exportar todo a excel</span>
                 </a>
@@ -31,6 +30,7 @@
         </div>
     </h2>
     <br>
+
     <jhi-alert></jhi-alert>
     <br/>
     <div class="table-responsive" *ngIf="providencias">
@@ -44,22 +44,18 @@
                 <th><span>Días desde la creación</span></th>
                 <th><span>Días desde el último trámite</span></th>
                 <th><span>Fecha de Vencimiento</span></th>
-                <!--<th jhiSortBy="numero"><span jhiTranslate="pdisciplinarioApp.providencia.numero">Numero</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
-                <!--<th jhiSortBy="fechaSolicitud"><span jhiTranslate="pdisciplinarioApp.providencia.fechaSolicitud">Fecha Solicitud</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
                 <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let providencia of providencias ;trackBy: trackId">
                 <td><a [routerLink]="['/providencia', providencia.id, 'view' ]">{{providencia.id}}</a></td>
-                <td>{{providencia.fechaCreacion | date:'medium'}}</td>
+                <td>{{providencia.fechaCreacion | date}}</td>
                 <td>{{providencia.estadoProvidencia.split('_').join(' ')}}</td>
                 <td>{{providencia.nombreGrupo}}</td>
                 <td>{{providencia.diasDesdeCreacion}}</td>
                 <td>{{providencia.diasUltimoTramite}}</td>
                 <td>{{providencia.fechaVencimiento}}</td>
-                <!--<td>{{providencia.numero}}</td>-->
-                <!--<td>{{providencia.fechaSolicitud | date:'medium'}}</td>-->
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button
@@ -70,7 +66,15 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button
-                            *ngIf="userDgdp && providencia.estadoProvidencia == 'ESTADO_12'"
+                            *ngIf="userDgdp && providencia.estadoProvidencia == 'ESTADO_13'"
+                            type="submit"
+                            [routerLink]="['/providencia', providencia.id, 'viewDgdp' ]"
+                            class="btn btn-outline-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button
+                            *ngIf="userDgdp && providencia.estadoProvidencia == 'ESTADO_14'"
                             type="submit"
                             [routerLink]="['/providencia', providencia.id, 'viewDgdp' ]"
                             class="btn btn-outline-info btn-sm">

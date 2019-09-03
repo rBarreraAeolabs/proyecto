@@ -40,7 +40,7 @@
     "ngx-webstorage": "2.0.1",
     "popper.js": "^1.14.7",
     "reflect-metadata": "0.1.12",
-    "rxjs": "^6.5.1",
+    "rxjs": "6.1.0",
     "rxjs-compat": "6.1.0",
     "sockjs-client": "1.3.0",
     "stompjs": "2.3.3",
@@ -146,8 +146,8 @@
     "webpack:prod:main": "npm run webpack -- --config webpack/webpack.prod.js --profile",
     "webpack:prod": "npm run cleanup && npm run webpack:prod:main && npm run clean-www",
     "webpack:test": "npm run test",
-    "webpack-dev-server": "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js"
+    "webpack-dev-server": "node --max_old_space_size=2096 node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "webpack": "node --max_old_space_size=2096 node_modules/webpack/bin/webpack.js"
   },
   "jestSonar": {
     "reportPath": "target/test-results/jest",
