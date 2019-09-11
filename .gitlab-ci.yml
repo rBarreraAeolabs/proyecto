@@ -4,7 +4,7 @@ variables:
   WAR_NAME: "app-${CI_BUILD_REF_NAME}"
   FOLDER_NAME: "${CI_BUILD_REF_NAME}"
   MAVEN_CONFIG: "$CI_PROJECT_DIR/.m2"
-  MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.defaultLogLevel=info -Dsettings.security=$CI_PROJECT_DIR/.m2/settings-security.xml"  
+  MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.defaultLogLevel=info -Dsettings.security=$CI_PROJECT_DIR/.m2/settings-security.xml"
   NPM_CONFIG_CACHE: "$CI_PROJECT_DIR/.npm"
 
 cache:
@@ -51,8 +51,8 @@ compile:
     - merge_requests
     - master
     - tags
-#  changes:
-#    - app/**/*
+  #  changes:
+  #    - app/**/*
   script:
     - cd app/
     - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean package -Pprod -DskipTests
@@ -104,12 +104,12 @@ deploy_review:
     url: http://$CI_ENVIRONMENT_SLUG-registrocivil-pdisciplinario.review.k.netlinux.cl
     on_stop: stop_review
   script:
-    - echo $KUBECONFIG  
+    - echo $KUBECONFIG
     - echo "${KUBE_CONFIG_FILE}" > $KUBECONFIG
     - cat $KUBECONFIG
     - kubectl version
     - cd kube/
-    - sed -i "s/__CI_ENVIRONMENT_SLUG__/${CI_ENVIRONMENT_SLUG}/" deployment.yaml service.yaml ingress.yaml 
+    - sed -i "s/__CI_ENVIRONMENT_SLUG__/${CI_ENVIRONMENT_SLUG}/" deployment.yaml service.yaml ingress.yaml
     - sed -i "s/__VERSION__/${CI_COMMIT_REF_NAME}/" deployment.yaml service.yaml ingress.yaml
     - |
       if kubectl apply -f deployment.yaml | grep -q unchanged; then
@@ -139,7 +139,7 @@ stop_review:
     name: review/$CI_BUILD_REF_NAME
     action: stop
   script:
-    - echo $KUBECONFIG  
+    - echo $KUBECONFIG
     - echo "${KUBE_CONFIG_FILE}" > $KUBECONFIG
     - cat $KUBECONFIG
     - kubectl delete ing -l ref=${CI_ENVIRONMENT_SLUG}
@@ -157,7 +157,7 @@ deploy_live:
   script:
     - kubectl version
     - cd kube/
-    - sed -i "s/__CI_ENVIRONMENT_SLUG__/${CI_ENVIRONMENT_SLUG}/" deployment.yaml mysql-pvc.yaml service.yaml ingress.yaml 
+    - sed -i "s/__CI_ENVIRONMENT_SLUG__/${CI_ENVIRONMENT_SLUG}/" deployment.yaml mysql-pvc.yaml service.yaml ingress.yaml
     - sed -i "s/__VERSION__/${CI_COMMIT_REF_NAME}/" deployment.yaml mysql-pvc.yaml service.yaml ingress.yaml
     - kubectl apply -f deployment.yaml
     - kubectl apply -f service.yaml

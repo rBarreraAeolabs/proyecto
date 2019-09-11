@@ -1,5 +1,5 @@
-import { IProvidencia } from 'app/shared/model/providencia.model';
-import { IDerivacion } from 'app/shared/model/derivacion.model';
+import {IProvidencia} from 'app/shared/model/providencia.model';
+import {IDerivacion} from 'app/shared/model/derivacion.model';
 
 export interface IProvidenciaDerivacion {
     providenciaDTO?: IProvidencia;
@@ -7,5 +7,6 @@ export interface IProvidenciaDerivacion {
 }
 
 export class ProvidenciaDerivacion implements IProvidenciaDerivacion {
-    constructor(public providenciaDTO?: IProvidencia, public derivacionDTO?: IDerivacion) {}
+    constructor(public providenciaDTO?: IProvidencia, public derivacionDTO?: IDerivacion) {
+    }
 }

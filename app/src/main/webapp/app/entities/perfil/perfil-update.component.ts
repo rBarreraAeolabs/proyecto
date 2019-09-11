@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { JhiAlertService } from 'ng-jhipster';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {JhiAlertService} from 'ng-jhipster';
 
-import { IPerfil } from 'app/shared/model/perfil.model';
-import { PerfilService } from './perfil.service';
-import { IGrupo } from 'app/shared/model/grupo.model';
-import { GrupoService } from 'app/entities/grupo';
+import {IPerfil} from 'app/shared/model/perfil.model';
+import {PerfilService} from './perfil.service';
+import {IGrupo} from 'app/shared/model/grupo.model';
+import {GrupoService} from 'app/entities/grupo';
 
 interface IAuthority {
     state?: boolean;
@@ -81,12 +81,13 @@ export class PerfilUpdateComponent implements OnInit {
         private perfilService: PerfilService,
         private grupoService: GrupoService,
         private activatedRoute: ActivatedRoute
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
         this.isSaving = false;
 
-        this.activatedRoute.data.subscribe(({ perfil }) => {
+        this.activatedRoute.data.subscribe(({perfil}) => {
             this._perfil = perfil;
             if (perfil.id !== null && typeof perfil.id !== 'undefined') {
 
@@ -519,7 +520,8 @@ export class PerfilUpdateComponent implements OnInit {
                         return a !== 'VISUALIZAR_NOTIFICACION_PRIVILEGE';
                     });
                     this.selectedAuthorities = auxArray;
-                }                break;
+                }
+                break;
             }
             case 'VISUALIZAR_MENU_USUARIO_PRIVILAGE' : {
                 this.visualizarMenuUsuarioPrivilege.state = !this.visualizarMenuUsuarioPrivilege.state;
@@ -531,7 +533,8 @@ export class PerfilUpdateComponent implements OnInit {
                         return a !== 'VISUALIZAR_MENU_USUARIO_PRIVILAGE';
                     });
                     this.selectedAuthorities = auxArray;
-                }                break;
+                }
+                break;
             }
             case 'VISUALIZAR_SUMARIO_PRIVILEGE' : {
                 this.visualizarSumarioPrivilege.state = !this.visualizarSumarioPrivilege.state;
@@ -543,7 +546,8 @@ export class PerfilUpdateComponent implements OnInit {
                         return a !== 'VISUALIZAR_SUMARIO_PRIVILEGE';
                     });
                     this.selectedAuthorities = auxArray;
-                }                break;
+                }
+                break;
             }
             case 'VISUALIZAR_PROCEDIMIENTOS_PRIVILEGE' : {
                 this.visualizarProcedimientosPrivilege.state = !this.visualizarProcedimientosPrivilege.state;
@@ -555,7 +559,8 @@ export class PerfilUpdateComponent implements OnInit {
                         return a !== 'VISUALIZAR_PROCEDIMIENTOS_PRIVILEGE';
                     });
                     this.selectedAuthorities = auxArray;
-                }                break;
+                }
+                break;
             }
             case 'ADJUNTAR_ADJUNTO_PRIVILEGE' : {
                 this.adjuntarAdjuntoPrivilege.state = !this.adjuntarAdjuntoPrivilege.state;
@@ -675,6 +680,7 @@ export class PerfilUpdateComponent implements OnInit {
         //     return authority.itemName.split(' ').join('_');
         // });
     }
+
     private subscribeToSaveResponse(result: Observable<HttpResponse<IPerfil>>) {
         result.subscribe((res: HttpResponse<IPerfil>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
@@ -706,6 +712,7 @@ export class PerfilUpdateComponent implements OnInit {
         }
         return option;
     }
+
     get perfil() {
         return this._perfil;
     }

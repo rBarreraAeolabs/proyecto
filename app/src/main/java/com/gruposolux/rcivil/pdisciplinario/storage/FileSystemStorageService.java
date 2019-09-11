@@ -146,11 +146,11 @@ public class FileSystemStorageService implements StorageServiceInterface {
             if (!validation.hasError()) {
 //              if (file.getContentType().equalsIgnoreCase(MediaType.APPLICATION_PDF.toString()))
 //                {
-                    destino = this.adjuntosPath.resolve(hash);
+                destino = this.adjuntosPath.resolve(hash);
 //                }
 //                else
 //                {
-              //    destino = this.uploadPath.resolve(hash);
+                //    destino = this.uploadPath.resolve(hash);
 //                }
 
                 Files.copy(file.getInputStream(), destino);
@@ -183,22 +183,18 @@ public class FileSystemStorageService implements StorageServiceInterface {
     }
 
     @Override
-    public Documento store(Documento documento)
-    {
+    public Documento store(Documento documento) {
         String hash = UUID.randomUUID().toString();
         Path destino = this.adjuntosPath.resolve(hash);
         Path localPath = Paths.get(documento.getLocalPath());
 
-        try
-        {
+        try {
             Files.copy(Files.newInputStream(localPath, READ), destino);
             documento.setLocalPath(destino.toString());
             documento.setHash(hash);
             documento.setArchivoSize(Files.size(localPath));
 
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             throw new StorageException("Failed to store file " + documento.getArchivoNombre(), e);
         }
 
@@ -271,12 +267,12 @@ public class FileSystemStorageService implements StorageServiceInterface {
     public HashMap<String, String> moveToArchivosFolder(ArrayList<String> documentos, InvestigacionSumaria investigacionSumaria) {
         HashMap<String, String> nuevasRutas = new HashMap<>();
 
-        for (String hash: documentos) {
-            try{
+        for (String hash : documentos) {
+            try {
                 Path moved = Files.move(this.uploadPath.resolve(hash), this.adjuntosPath.resolve(hash));
                 nuevasRutas.put(hash, moved.toString());
 
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 return null;
             }
         }
@@ -318,8 +314,7 @@ public class FileSystemStorageService implements StorageServiceInterface {
     }
 
     @Override
-    public Resource loadFromAdjuntoFile(String hash)
-    {
+    public Resource loadFromAdjuntoFile(String hash) {
         Path path = Paths.get(this.adjuntosPath.toString(), hash);
 
         if (Files.exists(path)) {
@@ -385,20 +380,15 @@ public class FileSystemStorageService implements StorageServiceInterface {
         return tmp;
     }
 
-    private void moveToAdjuntosFolder(String hash)
-    {
-        try
-        {
+    private void moveToAdjuntosFolder(String hash) {
+        try {
             Path moved = Files.move(this.uploadPath.resolve(hash), this.adjuntosPath.resolve(hash));
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             log.debug("Error " + ex.getMessage());
         }
     }
 
-    public String storePdf(String filename, String contenido) throws ParserConfigurationException, IOException, DocumentException
-    {
+    public String storePdf(String filename, String contenido) throws ParserConfigurationException, IOException, DocumentException {
         return PdfConverter.generatePDFFromHTML(filename, contenido, this.adjuntosPath);
     }
 }

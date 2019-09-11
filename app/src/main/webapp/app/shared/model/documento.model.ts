@@ -1,4 +1,4 @@
-import { Moment } from 'moment';
+import {Moment} from 'moment';
 import {TipoPlantilla} from './plantilla.model';
 
 export interface IDocumento {
@@ -44,5 +44,6 @@ export class Documento implements IDocumento {
         public numeroResolucion?: number,
         public tipoPlantilla?: TipoPlantilla,
         public version?: number
-    ) {}
+    ) {
+    }
 }

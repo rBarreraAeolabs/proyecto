@@ -1,7 +1,6 @@
-
 {
     "pdisciplinarioApp": {
-        "grupo" : {
+        "grupo": {
             "home": {
                 "title": "Grupos",
                 "createLabel": "Create a new Grupo",

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { JhiDataUtils } from 'ng-jhipster';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {JhiDataUtils} from 'ng-jhipster';
 
-import { IDocumento } from 'app/shared/model/documento.model';
+import {IDocumento} from 'app/shared/model/documento.model';
 
 @Component({
     selector: 'jhi-documento-detail',
@@ -11,10 +11,11 @@ import { IDocumento } from 'app/shared/model/documento.model';
 export class DocumentoDetailComponent implements OnInit {
     documento: IDocumento;
 
-    constructor(private dataUtils: JhiDataUtils, private activatedRoute: ActivatedRoute) {}
+    constructor(private dataUtils: JhiDataUtils, private activatedRoute: ActivatedRoute) {
+    }
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({ documento }) => {
+        this.activatedRoute.data.subscribe(({documento}) => {
             this.documento = documento;
         });
     }
@@ -26,6 +27,7 @@ export class DocumentoDetailComponent implements OnInit {
     openFile(contentType, field) {
         return this.dataUtils.openFile(contentType, field);
     }
+
     previousState() {
         window.history.back();
     }

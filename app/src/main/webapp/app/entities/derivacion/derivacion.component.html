@@ -10,12 +10,12 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="pdisciplinarioApp.derivacion.observacion">Observacion</span></th>
-            <th><span jhiTranslate="pdisciplinarioApp.derivacion.fechaDerivacion">Fecha Derivacion</span></th>
-            <th><span jhiTranslate="pdisciplinarioApp.derivacion.estado">Estado</span></th>
-            <th><span jhiTranslate="pdisciplinarioApp.derivacion.tipo">Tipo</span></th>
-            <th><span jhiTranslate="pdisciplinarioApp.derivacion.providencia">Providencia</span></th>
+                <th><span jhiTranslate="global.field.id">ID</span></th>
+                <th><span jhiTranslate="pdisciplinarioApp.derivacion.observacion">Observacion</span></th>
+                <th><span jhiTranslate="pdisciplinarioApp.derivacion.fechaDerivacion">Fecha Derivacion</span></th>
+                <th><span jhiTranslate="pdisciplinarioApp.derivacion.estado">Estado</span></th>
+                <th><span jhiTranslate="pdisciplinarioApp.derivacion.tipo">Tipo</span></th>
+                <th><span jhiTranslate="pdisciplinarioApp.derivacion.providencia">Providencia</span></th>
             </tr>
             </thead>
             <tbody>
@@ -27,7 +27,7 @@
                 <td jhiTranslate="{{'pdisciplinarioApp.TipoDerivacion.' + derivacion.tipo}}">{{derivacion.tipo}}</td>
                 <td>
                     <div *ngIf="derivacion.providenciaId">
-                        <a [routerLink]="['../providencia', derivacion.providenciaId , 'view' ]" >{{derivacion.providenciaId}}</a>
+                        <a [routerLink]="['../providencia', derivacion.providenciaId , 'view' ]">{{derivacion.providenciaId}}</a>
                     </div>
                 </td>
             </tr>

@@ -8,52 +8,52 @@
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th>
-                        <span >ID Providencia</span>
-                    </th>
-                    <th>
-                        <span >Rut Solicitantes</span>
-                    </th>
-                    <th>
-                        <span >Nombre Solicitante</span>
-                    </th>
-                    <th>
-                        <span >Entidad Solicitante</span>
-                    </th>
-                    <th>
-                        <span >Estado Actual</span>
-                    </th>
-                    <th>
-                        <span >Fecha Solicitud</span>
-                    </th>
-                    <th>
-                        <span >Tipo Solicitud</span>
-                    </th>
-                </tr>
+            <tr>
+                <th>
+                    <span>ID Providencia</span>
+                </th>
+                <th>
+                    <span>Rut Solicitantes</span>
+                </th>
+                <th>
+                    <span>Nombre Solicitante</span>
+                </th>
+                <th>
+                    <span>Entidad Solicitante</span>
+                </th>
+                <th>
+                    <span>Estado Actual</span>
+                </th>
+                <th>
+                    <span>Fecha Solicitud</span>
+                </th>
+                <th>
+                    <span>Tipo Solicitud</span>
+                </th>
+            </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let providencia of providencias ;trackBy: trackId">
-                    <td><a [routerLink]="['/providencia', providencia.id, 'view' ]">{{providencia.id}}</a></td>
-                    <td>
-                        <span>{{providencia.runSolicitante}}</span>
-                    </td>
-                    <td>
-                        <span>{{providencia.nombreSolicitante}}</span>
-                    </td>
-                    <td>
-                        <span> {{providencia.entidadSolicitante}}</span>
-                    </td>
-                    <td>
-                        <span> {{providencia.estadoActual}}</span>
-                    </td>
-                    <td>
-                        <span> {{providencia.fechaSolicitud}}</span>
-                    </td>
-                    <td>
-                        <span> {{providencia.tipo}}</span>
-                    </td>
-                </tr>
+            <tr *ngFor="let providencia of providencias ;trackBy: trackId">
+                <td><a [routerLink]="['/providencia', providencia.id, 'view' ]">{{providencia.id}}</a></td>
+                <td>
+                    <span>{{providencia.runSolicitante}}</span>
+                </td>
+                <td>
+                    <span>{{providencia.nombreSolicitante}}</span>
+                </td>
+                <td>
+                    <span> {{providencia.entidadSolicitante}}</span>
+                </td>
+                <td>
+                    <span> {{providencia.estadoActual}}</span>
+                </td>
+                <td>
+                    <span> {{providencia.fechaSolicitud}}</span>
+                </td>
+                <td>
+                    <span> {{providencia.tipo}}</span>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

@@ -1,6 +1,6 @@
-import { IProvidencia } from 'app/shared/model//providencia.model';
-import { IMovimientoSumarioAdministrativo } from 'app/shared/model//movimiento-sumario-administrativo.model';
-import { Moment } from 'moment';
+import {IProvidencia} from 'app/shared/model//providencia.model';
+import {IMovimientoSumarioAdministrativo} from 'app/shared/model//movimiento-sumario-administrativo.model';
+import {Moment} from 'moment';
 
 export interface ISumarioAdministrativo {
     id?: number;
@@ -25,5 +25,6 @@ export class SumarioAdministrativo implements ISumarioAdministrativo {
         public investigacionSumariaId?: number,
         public providencias?: IProvidencia[],
         public movimientosSumarioAdmins?: IMovimientoSumarioAdministrativo[]
-    ) {}
+    ) {
+    }
 }

@@ -150,12 +150,9 @@ public class AdjuntoResource {
 
         ResponseEntity.BodyBuilder response = null;
 
-        if (information.hasError())
-        {
+        if (information.hasError()) {
             response = ResponseEntity.badRequest();
-        }
-        else
-        {
+        } else {
             AdjuntoDTO adjuntoDTO = this.adjuntoService.save(information.getFileinfo());
             information.setFileinfo(adjuntoDTO);
             response = ResponseEntity.ok();
@@ -166,10 +163,8 @@ public class AdjuntoResource {
 
     @GetMapping("/adjuntos/{hash}/download")
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DESCARGAR_ADJUNTO + "\")")
-    public ResponseEntity<Resource> downloadByHash(@PathVariable String hash) throws IOException
-    {
-        if (hash == null || hash.trim().length() == 0)
-        {
+    public ResponseEntity<Resource> downloadByHash(@PathVariable String hash) throws IOException {
+        if (hash == null || hash.trim().length() == 0) {
             return null;
         }
 
@@ -184,14 +179,12 @@ public class AdjuntoResource {
             .body(resource);
     }
 
-// para visualizar archivo
+    // para visualizar archivo
     @GetMapping("/adjuntos/{hash}/view")
     @Timed
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DESCARGAR_DOCUMENTO + "\")")
-    public ResponseEntity<Resource> visualizarAdjunto(@PathVariable String hash) throws IOException
-    {
-        if (hash == null || hash.trim().length() == 0)
-        {
+    public ResponseEntity<Resource> visualizarAdjunto(@PathVariable String hash) throws IOException {
+        if (hash == null || hash.trim().length() == 0) {
             return null;
         }
 
@@ -199,12 +192,12 @@ public class AdjuntoResource {
 
         String nombreArchivo = this.adjuntoService.findByHash(hash).getArchivoNombre();
         // dejar con la variable para dejar que se visualice cualquier tipo de archivo si no se puede es porque la libreria no permite
-      //  String tipo = this.adjuntoService.findByHash(hash).getArchivoMimeType();
+        //  String tipo = this.adjuntoService.findByHash(hash).getArchivoMimeType();
         return ResponseEntity.ok()
-          //  .contentType(MediaType.valueOf(tipo))
+            //  .contentType(MediaType.valueOf(tipo))
             .contentType(MediaType.APPLICATION_PDF)
             .contentLength(resource.contentLength())
-           .header(HttpHeaders.CONTENT_DISPOSITION,"inline")
+            .header(HttpHeaders.CONTENT_DISPOSITION, "inline")
             .body(resource);
     }
 

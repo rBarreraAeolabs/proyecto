@@ -1,23 +1,30 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="movimientoInvestigacionSumaria">
-            <h2><span jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.detail.title">Movimiento Investigacion Sumaria</span> {{movimientoInvestigacionSumaria.id}}</h2>
+            <h2><span jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.detail.title">Movimiento Investigacion Sumaria</span> {{movimientoInvestigacionSumaria.id}}
+            </h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.estadoAnterior">Estado Anterior</span></dt>
+                <dt><span
+                    jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.estadoAnterior">Estado Anterior</span>
+                </dt>
                 <dd>
-                    <span jhiTranslate="{{'pdisciplinarioApp.EstadoInvestigacionSumaria.' + movimientoInvestigacionSumaria.estadoAnterior}}">{{movimientoInvestigacionSumaria.estadoAnterior}}</span>
+                    <span
+                        jhiTranslate="{{'pdisciplinarioApp.EstadoInvestigacionSumaria.' + movimientoInvestigacionSumaria.estadoAnterior}}">{{movimientoInvestigacionSumaria.estadoAnterior}}</span>
                 </dd>
-                <dt><span jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.estadoNuevo">Estado Nuevo</span></dt>
+                <dt><span
+                    jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.estadoNuevo">Estado Nuevo</span></dt>
                 <dd>
-                    <span jhiTranslate="{{'pdisciplinarioApp.EstadoInvestigacionSumaria.' + movimientoInvestigacionSumaria.estadoNuevo}}">{{movimientoInvestigacionSumaria.estadoNuevo}}</span>
+                    <span
+                        jhiTranslate="{{'pdisciplinarioApp.EstadoInvestigacionSumaria.' + movimientoInvestigacionSumaria.estadoNuevo}}">{{movimientoInvestigacionSumaria.estadoNuevo}}</span>
                 </dd>
                 <dt><span jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.fecha">Fecha</span></dt>
                 <dd>
                     <span>{{movimientoInvestigacionSumaria.fecha}}</span>
                 </dd>
-                <dt><span jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.investigacionSumaria">Investigacion Sumaria</span></dt>
+                <dt><span jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.investigacionSumaria">Investigacion Sumaria</span>
+                </dt>
                 <dd>
                     <div *ngIf="movimientoInvestigacionSumaria.investigacionSumariaId">
                         <a [routerLink]="['/investigacion-sumaria', movimientoInvestigacionSumaria.investigacionSumariaId, 'view']">{{movimientoInvestigacionSumaria.investigacionSumariaId}}</a>

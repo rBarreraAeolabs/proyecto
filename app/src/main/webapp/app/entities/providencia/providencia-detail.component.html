@@ -10,7 +10,8 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <h2>
-                                        <span jhiTranslate="pdisciplinarioApp.providencia.detail.title">Providencia</span> {{providencia.id}}
+                                        <span
+                                            jhiTranslate="pdisciplinarioApp.providencia.detail.title">Providencia</span> {{providencia.id}}
                                     </h2>
                                 </div>
                                 <div class="col-md-4">
@@ -33,15 +34,21 @@
                                                 Más opciones
                                             </button>
                                             <div class="dropdown-menu" ngbDropdownMenu>
-                                                <a class="dropdown-item" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                                                <a class="dropdown-item" routerLink="/dashboard"
+                                                   routerLinkActive="active"
+                                                   [routerLinkActiveOptions]="{ exact: true }">
                                                     <fa-icon icon="plus" fixedWidth="true"></fa-icon>
                                                     <span>Imprimir</span>
                                                 </a>
-                                                <a class="dropdown-item" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                                                <a class="dropdown-item" routerLink="/dashboard"
+                                                   routerLinkActive="active"
+                                                   [routerLinkActiveOptions]="{ exact: true }">
                                                     <fa-icon icon="plus" fixedWidth="true"></fa-icon>
                                                     <span>Exportar a excel</span>
                                                 </a>
-                                                <a class="dropdown-item" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                                                <a class="dropdown-item" routerLink="/dashboard"
+                                                   routerLinkActive="active"
+                                                   [routerLinkActiveOptions]="{ exact: true }">
                                                     <fa-icon icon="plus" fixedWidth="true"></fa-icon>
                                                     <span>Exportar todo a excel</span>
                                                 </a>
@@ -59,7 +66,8 @@
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"
                                                 >
-                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Asignar Fiscal</span>
+                                                    <fa-icon
+                                                        [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Asignar Fiscal</span>
                                                 </a>
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.goBackwards"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/devolver'} }]"
@@ -92,8 +100,9 @@
                                             <span>{{providencia.runSolicitante  | rut}}</span>
                                         </dd>
                                         <dt>
-                                        <span jhiTranslate="pdisciplinarioApp.providencia.nombreSolicitante">Nombre </span>
-                                    </dt>
+                                            <span
+                                                jhiTranslate="pdisciplinarioApp.providencia.nombreSolicitante">Nombre </span>
+                                        </dt>
                                         <dd>
                                             <span>{{providencia.nombreSolicitante}}</span>
                                         </dd>
@@ -119,13 +128,15 @@
                                             <span>{{providencia.runImplicado | rut}}</span>
                                         </dd>
                                         <dt>
-                                            <span jhiTranslate="pdisciplinarioApp.providencia.nombreImplicado">Nombre</span>
+                                            <span
+                                                jhiTranslate="pdisciplinarioApp.providencia.nombreImplicado">Nombre</span>
                                         </dt>
                                         <dd>
                                             <span>{{providencia.nombreImplicado}}</span>
                                         </dd>
                                         <dt *ngIf="providencia.entidadImplicada">
-                                            <span jhiTranslate="pdisciplinarioApp.providencia.entidadImplicada">Entidad</span>
+                                            <span
+                                                jhiTranslate="pdisciplinarioApp.providencia.entidadImplicada">Entidad</span>
                                         </dt>
                                         <dd *ngIf="providencia.entidadImplicada">
                                             <span>{{providencia.entidadImplicada}}</span>
@@ -135,8 +146,8 @@
                                 <br>
                                 <br>
                                 <div class="col-sm-12">
-                                <dt><h4>Datos De La Providencia</h4></dt>
-                                <hr>
+                                    <dt><h4>Datos De La Providencia</h4></dt>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div style="padding: 10px 20px; font-size: 17.5px"></div>
@@ -147,18 +158,23 @@
                                                     <span>{{providencia.fechaSolicitud | date:'medium'}}</span>
                                                 </dd>
                                                 <dt>
-                                                    <span jhiTranslate="pdisciplinarioApp.providencia.numero">Numero</span>
+                                                    <span
+                                                        jhiTranslate="pdisciplinarioApp.providencia.numero">Numero</span>
                                                 </dt>
                                                 <dd>
                                                     <span>{{providencia.numero}}</span>
                                                 </dd>
                                                 <dt *ngIf="providencia.tipo">
-                                                    <span jhiTranslate="pdisciplinarioApp.providencia.tipo">Tipo</span></dt>
+                                                    <span jhiTranslate="pdisciplinarioApp.providencia.tipo">Tipo</span>
+                                                </dt>
                                                 <dd>
-                                                    <span jhiTranslate="{{'pdisciplinarioApp.TipoProvidencia.' + providencia.tipo}}">{{providencia.tipo}}</span>
+                                                    <span
+                                                        jhiTranslate="{{'pdisciplinarioApp.TipoProvidencia.' + providencia.tipo}}">{{providencia.tipo}}</span>
                                                 </dd>
 
-                                                <dt *ngIf="providencia.acciones && providencia.acciones.length > 0"><span jhiTranslate="pdisciplinarioApp.providencia.acciones"></span></dt>
+                                                <dt *ngIf="providencia.acciones && providencia.acciones.length > 0">
+                                                    <span jhiTranslate="pdisciplinarioApp.providencia.acciones"></span>
+                                                </dt>
                                                 <dd *ngFor="let accion of providencia.acciones">
                                                     {{accion.split('_').join(' ')}}
                                                 </dd>
@@ -213,19 +229,22 @@
                                         <ngb-tabset justify="fill">
                                             <ngb-tab title="Respuesta" *ngIf="actionsPermitted.watchTabRespuesta">
                                                 <ng-template ngbTabContent>
-                                                    <jhi-respuesta-update [providencia]="providencia" (resp)="getRespuesta($event)">
+                                                    <jhi-respuesta-update [providencia]="providencia"
+                                                                          (resp)="getRespuesta($event)">
 
                                                     </jhi-respuesta-update>
                                                 </ng-template>
                                             </ngb-tab>
                                             <ngb-tab title="Bitácora de movimientos">
                                                 <ng-template ngbTabContent>
-                                                    <jhi-movimiento-providencia [providencia]="providencia"></jhi-movimiento-providencia>
+                                                    <jhi-movimiento-providencia
+                                                        [providencia]="providencia"></jhi-movimiento-providencia>
                                                 </ng-template>
                                             </ngb-tab>
                                             <ngb-tab title="Solicitudes Relacionadas ">
                                                 <ng-template ngbTabContent>
-                                                    <jhi-providencia-relacionadas [providencia]="providencia"></jhi-providencia-relacionadas>
+                                                    <jhi-providencia-relacionadas
+                                                        [providencia]="providencia"></jhi-providencia-relacionadas>
                                                 </ng-template>
                                             </ngb-tab>
                                         </ngb-tabset>

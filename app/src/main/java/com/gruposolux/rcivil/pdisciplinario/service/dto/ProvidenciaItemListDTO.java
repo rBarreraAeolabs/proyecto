@@ -7,8 +7,7 @@ import java.time.Instant;
 /**
  * Created by sneiraillanes on 02-05-2019.
  */
-public class ProvidenciaItemListDTO
-{
+public class ProvidenciaItemListDTO {
     private Long id;
     private Instant fechaCreacion;
     private String estadoProvidencia;

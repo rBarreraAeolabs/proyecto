@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { JhiDataUtils } from 'ng-jhipster';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {JhiDataUtils} from 'ng-jhipster';
 
-import { IAdjunto } from 'app/shared/model/adjunto.model';
+import {IAdjunto} from 'app/shared/model/adjunto.model';
 
 @Component({
     selector: 'jhi-adjunto-detail',
@@ -11,10 +11,11 @@ import { IAdjunto } from 'app/shared/model/adjunto.model';
 export class AdjuntoDetailComponent implements OnInit {
     adjunto: IAdjunto;
 
-    constructor(private dataUtils: JhiDataUtils, private activatedRoute: ActivatedRoute) {}
+    constructor(private dataUtils: JhiDataUtils, private activatedRoute: ActivatedRoute) {
+    }
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({ adjunto }) => {
+        this.activatedRoute.data.subscribe(({adjunto}) => {
             this.adjunto = adjunto;
         });
     }
@@ -26,6 +27,7 @@ export class AdjuntoDetailComponent implements OnInit {
     openFile(contentType, field) {
         return this.dataUtils.openFile(contentType, field);
     }
+
     previousState() {
         window.history.back();
     }

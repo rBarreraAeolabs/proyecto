@@ -1,21 +1,22 @@
-import { Injectable } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
-import { UserRouteAccessService } from 'app/core';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { FichaIngresoSdj } from 'app/shared/model/ficha-ingreso-sdj.model';
-import { FichaIngresoSdjService } from './ficha-ingreso-sdj.service';
-import { FichaIngresoSdjComponent } from './ficha-ingreso-sdj.component';
-import { FichaIngresoSdjDetailComponent } from './ficha-ingreso-sdj-detail.component';
-import { FichaIngresoSdjUpdateComponent } from './ficha-ingreso-sdj-update.component';
-import { FichaIngresoSdjDeletePopupComponent } from './ficha-ingreso-sdj-delete-dialog.component';
-import { IFichaIngresoSdj } from 'app/shared/model/ficha-ingreso-sdj.model';
+import {Injectable} from '@angular/core';
+import {HttpResponse} from '@angular/common/http';
+import {Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes} from '@angular/router';
+import {JhiPaginationUtil, JhiResolvePagingParams} from 'ng-jhipster';
+import {UserRouteAccessService} from 'app/core';
+import {of} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {FichaIngresoSdj} from 'app/shared/model/ficha-ingreso-sdj.model';
+import {FichaIngresoSdjService} from './ficha-ingreso-sdj.service';
+import {FichaIngresoSdjComponent} from './ficha-ingreso-sdj.component';
+import {FichaIngresoSdjDetailComponent} from './ficha-ingreso-sdj-detail.component';
+import {FichaIngresoSdjUpdateComponent} from './ficha-ingreso-sdj-update.component';
+import {FichaIngresoSdjDeletePopupComponent} from './ficha-ingreso-sdj-delete-dialog.component';
+import {IFichaIngresoSdj} from 'app/shared/model/ficha-ingreso-sdj.model';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class FichaIngresoSdjResolve implements Resolve<IFichaIngresoSdj> {
-    constructor(private service: FichaIngresoSdjService) {}
+    constructor(private service: FichaIngresoSdjService) {
+    }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const id = route.params['id'] ? route.params['id'] : null;

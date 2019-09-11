@@ -1,9 +1,10 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="pdisciplinarioApp.grupo.home.title">Grupos</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-grupo" [routerLink]="['/grupo/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-grupo"
+                [routerLink]="['/grupo/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="pdisciplinarioApp.grupo.home.createLabel">
+            <span jhiTranslate="pdisciplinarioApp.grupo.home.createLabel">
             Create new Grupo
             </span>
         </button>
@@ -14,10 +15,14 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="nombre"><span jhiTranslate="pdisciplinarioApp.grupo.nombre">Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <!--<th jhiSortBy="perfil"><span>Perfil Asignado</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
-            <th></th>
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="nombre"><span jhiTranslate="pdisciplinarioApp.grupo.nombre">Nombre</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <!--<th jhiSortBy="perfil"><span>Perfil Asignado</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -25,9 +30,9 @@
                 <td><a [routerLink]="['/grupo', grupo.id, 'view' ]">{{grupo.id}}</a></td>
                 <td>{{grupo.nombre}}</td>
                 <!--<td>-->
-                    <!--<div *ngFor="let perfil of grupo.perfiles">-->
-                        <!--<span class="badge badge-info">{{perfil.nombre}}</span>-->
-                    <!--</div>-->
+                <!--<div *ngFor="let perfil of grupo.perfiles">-->
+                <!--<span class="badge badge-info">{{perfil.nombre}}</span>-->
+                <!--</div>-->
                 <!--</td>-->
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
@@ -63,7 +68,8 @@
             <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                            [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div>
 </div>

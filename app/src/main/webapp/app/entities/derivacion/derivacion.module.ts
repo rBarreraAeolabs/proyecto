@@ -1,7 +1,7 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
-import { PdisciplinarioSharedModule } from 'app/shared';
+import {PdisciplinarioSharedModule} from 'app/shared';
 import {
     // DerivacionComponent,
     DerivacionDetailComponent,
@@ -30,4 +30,5 @@ const ENTITY_STATES = [...derivacionRoute, ...derivacionPopupRoute];
         DerivacionDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PdisciplinarioDerivacionModule {}
+export class PdisciplinarioDerivacionModule {
+}

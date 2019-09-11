@@ -126,8 +126,7 @@ public class PlazoResource {
 
     @GetMapping("/plazos/all")
     @Timed
-    public ResponseEntity<List<PlazoDTO>> getAllPlazos()
-    {
+    public ResponseEntity<List<PlazoDTO>> getAllPlazos() {
         List<PlazoDTO> plazosDtos = this.plazoService.getAllPlazos();
         return new ResponseEntity<List<PlazoDTO>>(plazosDtos, HttpStatus.OK);
     }

@@ -29,7 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 @EnableStateMachine
 
 
-public class StateMachineService  {
+public class StateMachineService {
 //    private final StateMachineFactory<OrderStates, OrderEvents>factory;
 
 //    public StateMachineService(StateMachineFactory<OrderStates, OrderEvents> factory) {
@@ -56,8 +56,6 @@ public class StateMachineService  {
 //        machine.start();
 //      //  log.info ("current state:" + machine.getState().getId().name());
 //    }
-
-
 
 
     @Log

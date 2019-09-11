@@ -7,15 +7,15 @@ import java.util.Set;
 /**
  * Created by sneiraillanes on 04-04-2019.
  */
-public class ProvidenciaResponseDTO
-{
+public class ProvidenciaResponseDTO {
     private Long providenciaId;
     private String estadoActual;
     private Set<AdjuntoDTO> adjuntosDTOs;
     private Set<DocumentoDTO> documentosDTOs;
     private String observacion;
 
-    public ProvidenciaResponseDTO() {}
+    public ProvidenciaResponseDTO() {
+    }
 
     public Long getProvidenciaId() {
         return providenciaId;

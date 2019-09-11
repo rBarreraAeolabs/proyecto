@@ -86,8 +86,7 @@ public class PlantillaService {
     }
 
     @Transactional
-    public Set<PlantillaDTO> getAll()
-    {
+    public Set<PlantillaDTO> getAll() {
         List<Plantilla> plantillas = this.plantillaRepository.findAll();
         return plantillas.stream().map(this.plantillaMapper::toDto).collect(Collectors.toSet());
     }

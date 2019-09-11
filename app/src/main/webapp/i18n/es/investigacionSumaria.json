@@ -1,7 +1,6 @@
-
 {
     "pdisciplinarioApp": {
-        "investigacionSumaria" : {
+        "investigacionSumaria": {
             "home": {
                 "title": "Investigacion Sumarias",
                 "createLabel": "Crear nuevo Investigacion Sumaria",

@@ -1,21 +1,22 @@
-import { Injectable } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
-import { UserRouteAccessService } from 'app/core';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { MovimientoInvestigacionSumaria } from 'app/shared/model/movimiento-investigacion-sumaria.model';
-import { MovimientoInvestigacionSumariaService } from './movimiento-investigacion-sumaria.service';
-import { MovimientoInvestigacionSumariaComponent } from './movimiento-investigacion-sumaria.component';
-import { MovimientoInvestigacionSumariaDetailComponent } from './movimiento-investigacion-sumaria-detail.component';
-import { MovimientoInvestigacionSumariaUpdateComponent } from './movimiento-investigacion-sumaria-update.component';
-import { MovimientoInvestigacionSumariaDeletePopupComponent } from './movimiento-investigacion-sumaria-delete-dialog.component';
-import { IMovimientoInvestigacionSumaria } from 'app/shared/model/movimiento-investigacion-sumaria.model';
+import {Injectable} from '@angular/core';
+import {HttpResponse} from '@angular/common/http';
+import {Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes} from '@angular/router';
+import {JhiPaginationUtil, JhiResolvePagingParams} from 'ng-jhipster';
+import {UserRouteAccessService} from 'app/core';
+import {of} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {MovimientoInvestigacionSumaria} from 'app/shared/model/movimiento-investigacion-sumaria.model';
+import {MovimientoInvestigacionSumariaService} from './movimiento-investigacion-sumaria.service';
+import {MovimientoInvestigacionSumariaComponent} from './movimiento-investigacion-sumaria.component';
+import {MovimientoInvestigacionSumariaDetailComponent} from './movimiento-investigacion-sumaria-detail.component';
+import {MovimientoInvestigacionSumariaUpdateComponent} from './movimiento-investigacion-sumaria-update.component';
+import {MovimientoInvestigacionSumariaDeletePopupComponent} from './movimiento-investigacion-sumaria-delete-dialog.component';
+import {IMovimientoInvestigacionSumaria} from 'app/shared/model/movimiento-investigacion-sumaria.model';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class MovimientoInvestigacionSumariaResolve implements Resolve<IMovimientoInvestigacionSumaria> {
-    constructor(private service: MovimientoInvestigacionSumariaService) {}
+    constructor(private service: MovimientoInvestigacionSumariaService) {
+    }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const id = route.params['id'] ? route.params['id'] : null;

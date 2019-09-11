@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
-import { ISumarioAdministrativo } from 'app/shared/model/sumario-administrativo.model';
+import {ISumarioAdministrativo} from 'app/shared/model/sumario-administrativo.model';
 
 @Component({
     selector: 'jhi-sumario-administrativo-detail',
@@ -10,10 +10,11 @@ import { ISumarioAdministrativo } from 'app/shared/model/sumario-administrativo.
 export class SumarioAdministrativoDetailComponent implements OnInit {
     sumarioAdministrativo: ISumarioAdministrativo;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(private activatedRoute: ActivatedRoute) {
+    }
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({ sumarioAdministrativo }) => {
+        this.activatedRoute.data.subscribe(({sumarioAdministrativo}) => {
             this.sumarioAdministrativo = sumarioAdministrativo;
         });
     }

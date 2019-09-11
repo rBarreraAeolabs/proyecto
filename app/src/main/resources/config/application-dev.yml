@@ -37,9 +37,9 @@ spring:
             indent-output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://192.168.99.100:5432/pdisciplinario
-        username: pdisciplinario
-        password:
+        url: postgresql://ec2-107-20-155-148.compute-1.amazonaws.com:5432/d7kp5cfk65p3o8
+        username: wjdbxftazarnvt
+        password: ee3647810a066e3fbc30e1c90f7da20927b79288d9b36d642bbae31a8ae54f2f
         hikari:
             auto-commit: false
     h2:
@@ -135,10 +135,10 @@ application:
         imprimir-dir: 'pdf/'
         max-time-for-file-expire: 30
 
-        baseUrl: http://192.168.99.100:8082
+        baseUrl: mysql://bc70e5fc0e454f:ddd25c40@us-cdbr-iron-east-02.cleardb.net/heroku_faf038d65f502e2?reconnect=true
         ALFRSCO_ATOMPUB_URL: /alfresco/api/-default-/public/cmis/versions/1.0/atom
         REPOSITORY_ID: -default-
         alfresco_temp_rootFolder: /pdisciplinario/temp
         alfresco_final_rootFolder: /pdisciplinario/final
-        userAlfresco: admin
-        passAlfresco: admin
+        userAlfresco: bc70e5fc0e454f
+        passAlfresco: ddd25c40

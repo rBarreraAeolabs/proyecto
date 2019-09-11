@@ -1,6 +1,6 @@
-import { Route } from '@angular/router';
-import { SolicitudComponent } from 'app/solicitud/solicitud.component';
-import { UserRouteAccessService } from 'app/core';
+import {Route} from '@angular/router';
+import {SolicitudComponent} from 'app/solicitud/solicitud.component';
+import {UserRouteAccessService} from 'app/core';
 
 export const SOLICITUD_ROUTE: Route = {
     path: 'solicitud',

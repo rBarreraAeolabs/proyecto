@@ -1,7 +1,7 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
-import { PdisciplinarioSharedModule } from 'app/shared';
+import {PdisciplinarioSharedModule} from 'app/shared';
 import {
     MovimientoInvestigacionSumariaComponent,
     MovimientoInvestigacionSumariaDetailComponent,
@@ -31,4 +31,5 @@ const ENTITY_STATES = [...movimientoInvestigacionSumariaRoute, ...movimientoInve
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PdisciplinarioMovimientoInvestigacionSumariaModule {}
+export class PdisciplinarioMovimientoInvestigacionSumariaModule {
+}

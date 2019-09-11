@@ -1,7 +1,6 @@
-
 {
     "pdisciplinarioApp": {
-        "movimientoSumarioAdministrativo" : {
+        "movimientoSumarioAdministrativo": {
             "home": {
                 "title": "Movimiento Sumario Administrativos",
                 "createLabel": "Create a new Movimiento Sumario Administrativo",

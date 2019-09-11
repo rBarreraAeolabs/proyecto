@@ -1,14 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {JhiEventManager, JhiParseLinks, JhiAlertService} from 'ng-jhipster';
 
-import { IFichaIngresoSdj } from 'app/shared/model/ficha-ingreso-sdj.model';
-import { Principal } from 'app/core';
+import {IFichaIngresoSdj} from 'app/shared/model/ficha-ingreso-sdj.model';
+import {Principal} from 'app/core';
 
-import { ITEMS_PER_PAGE } from 'app/shared';
-import { FichaIngresoSdjService } from './ficha-ingreso-sdj.service';
+import {ITEMS_PER_PAGE} from 'app/shared';
+import {FichaIngresoSdjService} from './ficha-ingreso-sdj.service';
 
 @Component({
     selector: 'jhi-ficha-ingreso-sdj',

@@ -28,7 +28,8 @@ export class ProvidenciaRelacionarDialogComponent implements OnInit {
         private router: Router,
         private eventManager: JhiEventManager,
         private providenciaService: ProvidenciaService
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
         this.providenciaService.getAllWithoutPagination().subscribe(
@@ -90,7 +91,8 @@ export class ProvidenciaRelacionarPopupComponent implements OnInit, OnDestroy {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private modalService: NgbModal
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({providencia}) => {
@@ -104,16 +106,22 @@ export class ProvidenciaRelacionarPopupComponent implements OnInit, OnDestroy {
 
                 this.ngbModalRef.result.then(
                     result => {
-                        this.router.navigate([{outlets: {popup: null}}], {replaceUrl: true, queryParamsHandling: 'merge'});
+                        this.router.navigate([{outlets: {popup: null}}], {
+                            replaceUrl: true,
+                            queryParamsHandling: 'merge'
+                        });
                         this.ngbModalRef = null;
                     },
                     reason => {
-                        this.router.navigate([{outlets: {popup: null}}], {replaceUrl: true, queryParamsHandling: 'merge'});
+                        this.router.navigate([{outlets: {popup: null}}], {
+                            replaceUrl: true,
+                            queryParamsHandling: 'merge'
+                        });
                         this.ngbModalRef = null;
                     }
                 );
             }, 0);
-        } );
+        });
     }
 
     ngOnDestroy() {

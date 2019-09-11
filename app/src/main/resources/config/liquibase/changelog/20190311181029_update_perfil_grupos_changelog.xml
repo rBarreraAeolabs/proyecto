@@ -1,12 +1,17 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <changeSet author="phernandez (generated)" id="1552327850394-1">
         <addColumn tableName="perfil">
             <column name="grupo_id" type="int8"/>
         </addColumn>
     </changeSet>
     <changeSet author="phernandez (generated)" id="1552327850394-2">
-        <addForeignKeyConstraint baseColumnNames="grupo_id" baseTableName="perfil" constraintName="FK3gfdm5xcq97bh3jha01c4el4v" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="grupo"/>
+        <addForeignKeyConstraint baseColumnNames="grupo_id" baseTableName="perfil"
+                                 constraintName="FK3gfdm5xcq97bh3jha01c4el4v" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="grupo"/>
     </changeSet>
     <changeSet author="phernandez (generated)" id="1552327850394-3">
         <dropForeignKeyConstraint baseTableName="perfil_grupos" constraintName="fk_perfil_grupos_grupos_id"/>
@@ -18,15 +23,15 @@
         <dropTable tableName="perfil_grupos"/>
 
         <!--<loadData encoding="UTF-8"-->
-                  <!--file="config/liquibase/pdisciplinario_public_perfil.csv"-->
-                  <!--separator=","-->
-                  <!--tableName="perfil"/>-->
+        <!--file="config/liquibase/pdisciplinario_public_perfil.csv"-->
+        <!--separator=","-->
+        <!--tableName="perfil"/>-->
 
         <!--<loadUpdateData tableName="jhi_user"-->
-                        <!--primaryKey="id"-->
-                        <!--encoding="UTF-8"-->
-                        <!--separator=";"-->
-                        <!--file="config/liquibase/update_perfil_usuario.csv"/>-->
+        <!--primaryKey="id"-->
+        <!--encoding="UTF-8"-->
+        <!--separator=";"-->
+        <!--file="config/liquibase/update_perfil_usuario.csv"/>-->
     </changeSet>
 </databaseChangeLog>
 

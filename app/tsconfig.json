@@ -11,13 +11,18 @@
         "skipLibCheck": true,
         "suppressImplicitAnyIndexErrors": true,
         "outDir": "target/www/app",
-        "lib": ["es7", "dom"],
+        "lib": [
+            "es7",
+            "dom"
+        ],
         "typeRoots": [
             "node_modules/@types"
         ],
         "baseUrl": "./",
         "paths": {
-            "app/*": ["src/main/webapp/app/*"]
+            "app/*": [
+                "src/main/webapp/app/*"
+            ]
         },
         "importHelpers": true,
         "allowJs": true

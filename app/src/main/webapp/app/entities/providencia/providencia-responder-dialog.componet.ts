@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
-import { IProvidencia, IProvidenciaResponse } from 'app/shared/model/providencia.model';
-import { DerivacionService } from 'app/entities/derivacion';
-import { PlantillaService } from '../plantilla/plantilla.service';
-import { ProvidenciaService } from './providencia.service';
-import { IAdjunto} from '../../shared/model/adjunto.model';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {JhiEventManager} from 'ng-jhipster';
+import {IProvidencia, IProvidenciaResponse} from 'app/shared/model/providencia.model';
+import {DerivacionService} from 'app/entities/derivacion';
+import {PlantillaService} from '../plantilla/plantilla.service';
+import {ProvidenciaService} from './providencia.service';
+import {IAdjunto} from '../../shared/model/adjunto.model';
 
 @Component({
     selector: 'jhi-providencia-responder-dialog',
@@ -27,13 +27,15 @@ export class ProvidenciaResponderDialogComponent implements OnInit {
         private eventManager: JhiEventManager,
         private plantillaService: PlantillaService,
         private providenciaService: ProvidenciaService
-    ) {}
+    ) {
+    }
 
     clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
 
     get providencias() {
         return this._providencia;
@@ -79,10 +81,11 @@ export class ProvidenciaResponderDialogComponent implements OnInit {
 export class ProvidenciaResponderPopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
+    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {
+    }
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({ providencia }) => {
+        this.activatedRoute.data.subscribe(({providencia}) => {
             setTimeout(() => {
                 this.ngbModalRef = this.modalService.open(ProvidenciaResponderDialogComponent as Component, {
                     size: 'lg',
@@ -91,11 +94,17 @@ export class ProvidenciaResponderPopupComponent implements OnInit, OnDestroy {
                 this.ngbModalRef.componentInstance.providencia = providencia;
                 this.ngbModalRef.result.then(
                     result => {
-                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.router.navigate([{outlets: {popup: null}}], {
+                            replaceUrl: true,
+                            queryParamsHandling: 'merge'
+                        });
                         this.ngbModalRef = null;
                     },
                     reason => {
-                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.router.navigate([{outlets: {popup: null}}], {
+                            replaceUrl: true,
+                            queryParamsHandling: 'merge'
+                        });
                         this.ngbModalRef = null;
                     }
                 );

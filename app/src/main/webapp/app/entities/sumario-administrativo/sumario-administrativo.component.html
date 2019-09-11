@@ -51,7 +51,8 @@
 
                     <div class="col">
                         <input type="submit" class="btn btn-sm btn-primary" value="Buscar" ng-click="vm.filtrar()">
-                        <input type="reset" class="btn btn-sm btn-danger" value="Limpiar" name="reset" ng-click="vm.limpiar()">
+                        <input type="reset" class="btn btn-sm btn-danger" value="Limpiar" name="reset"
+                               ng-click="vm.limpiar()">
                     </div>
                 </div>
             </form>
@@ -61,18 +62,19 @@
     <div class="table-responsive" *ngIf="sumarioAdministrativos">
         <table class="table table-striped">
             <thead>
-                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
                 <th jhiSortBy="id">
                     <span jhiTranslate="global.field.id">ID</span>
                     <fa-icon [icon]="'sort'"></fa-icon>
                 </th>
                 <!--<th jhiSortBy="campoUno">-->
-                    <!--<span jhiTranslate="pdisciplinarioApp.sumarioAdministrativo.campoUno">Campo Uno</span> -->
-                    <!--<fa-icon [icon]="'sort'"></fa-icon>-->
+                <!--<span jhiTranslate="pdisciplinarioApp.sumarioAdministrativo.campoUno">Campo Uno</span> -->
+                <!--<fa-icon [icon]="'sort'"></fa-icon>-->
                 <!--</th>   -->
 
                 <th jhiSortBy="fechaDeSolicitud">
-                    <span jhiTranslate="pdisciplinarioApp.sumarioAdministrativo.fechaDeSolicitud">Fecha De Solicitud</span>
+                    <span
+                        jhiTranslate="pdisciplinarioApp.sumarioAdministrativo.fechaDeSolicitud">Fecha De Solicitud</span>
                     <fa-icon [icon]="'sort'"></fa-icon>
                 </th>
                 <th jhiSortBy="plazo">
@@ -90,20 +92,22 @@
                     <fa-icon [icon]="'sort'"></fa-icon>
                 </th>
                 <!--<th jhiSortBy="investigacionSumariaId">-->
-                    <!--<span jhiTranslate="pdisciplinarioApp.sumarioAdministrativo.investigacionSumaria">Investigacion Sumaria</span>-->
-                    <!--<fa-icon [icon]="'sort'"></fa-icon>-->
+                <!--<span jhiTranslate="pdisciplinarioApp.sumarioAdministrativo.investigacionSumaria">Investigacion Sumaria</span>-->
+                <!--<fa-icon [icon]="'sort'"></fa-icon>-->
                 <!--</th>-->
 
                 <th></th>
-                </tr>
+            </tr>
             </thead>
             <tbody>
             <tr *ngFor="let sumarioAdministrativo of sumarioAdministrativos ;trackBy: trackId">
-                <td><a [routerLink]="['/sumario-administrativo', sumarioAdministrativo.id, 'view' ]">{{sumarioAdministrativo.id}}</a></td>
+                <td><a
+                    [routerLink]="['/sumario-administrativo', sumarioAdministrativo.id, 'view' ]">{{sumarioAdministrativo.id}}</a>
+                </td>
                 <td>{{sumarioAdministrativo.campoUno}}</td>
                 <td>
                     <div *ngIf="sumarioAdministrativo.investigacionSumariaId">
-                        <a [routerLink]="['../investigacion-sumaria', sumarioAdministrativo.investigacionSumariaId , 'view' ]" >{{sumarioAdministrativo.investigacionSumariaId}}</a>
+                        <a [routerLink]="['../investigacion-sumaria', sumarioAdministrativo.investigacionSumariaId , 'view' ]">{{sumarioAdministrativo.investigacionSumariaId}}</a>
                     </div>
                 </td>
                 <td class="text-right">
@@ -140,7 +144,8 @@
             <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                            [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div>
 </div>

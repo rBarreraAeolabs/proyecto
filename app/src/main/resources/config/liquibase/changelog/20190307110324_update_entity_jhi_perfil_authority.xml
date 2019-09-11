@@ -35,8 +35,8 @@
                                  referencedTableName="jhi_authority"/>
 
         <!--<loadData encoding="UTF-8"-->
-                  <!--file="config/liquibase/grupo_authority.csv"-->
-                  <!--separator=";"-->
-                  <!--tableName="jhi_grupo_authority"/>-->
+        <!--file="config/liquibase/grupo_authority.csv"-->
+        <!--separator=";"-->
+        <!--tableName="jhi_grupo_authority"/>-->
     </changeSet>
 </databaseChangeLog>

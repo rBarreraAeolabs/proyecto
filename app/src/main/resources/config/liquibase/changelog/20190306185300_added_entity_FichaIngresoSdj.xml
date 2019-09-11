@@ -22,26 +22,26 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="fecha_inicio" type="datetime">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="observacion" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="plazo" type="integer">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="fecha_hasta" type="datetime">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="ficha_ingreso_sdj" columnName="fecha_inicio" columnDataType="datetime"/>
         <dropDefaultValue tableName="ficha_ingreso_sdj" columnName="fecha_hasta" columnDataType="datetime"/>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

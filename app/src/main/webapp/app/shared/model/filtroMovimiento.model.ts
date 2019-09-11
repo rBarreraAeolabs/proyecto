@@ -10,5 +10,6 @@ export class FiltroMovPro implements IFiltroMovPro {
     constructor(
         public providencia?: IProvidencia,
         public filtroMovimientoProvidencia?: IFiltroMovimientoProvidencia
-    ) {}
+    ) {
+    }
 }

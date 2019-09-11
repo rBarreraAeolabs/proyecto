@@ -1,7 +1,7 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
-import { PdisciplinarioSharedModule } from 'app/shared';
+import {PdisciplinarioSharedModule} from 'app/shared';
 import {
     PlazoComponent,
     PlazoDetailComponent,
@@ -20,4 +20,5 @@ const ENTITY_STATES = [...plazoRoute, ...plazoPopupRoute];
     entryComponents: [PlazoComponent, PlazoUpdateComponent, PlazoDeleteDialogComponent, PlazoDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PdisciplinarioPlazoModule {}
+export class PdisciplinarioPlazoModule {
+}

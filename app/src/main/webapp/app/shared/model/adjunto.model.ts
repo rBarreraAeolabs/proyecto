@@ -1,4 +1,4 @@
-import { Moment } from 'moment';
+import {Moment} from 'moment';
 
 export const enum TipoAdjunto {
     NOTIFICACION_DE_ASIGNACION_FISCAL = 'NOTIFICACION_DE_ASIGNACION_FISCAL',
@@ -102,5 +102,6 @@ export class Adjunto implements IAdjunto {
         public hash?: string,
         public providenciaId?: number,
         public movimientoProvidenciaId?: number
-    ) {}
+    ) {
+    }
 }

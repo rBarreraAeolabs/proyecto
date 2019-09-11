@@ -1,4 +1,4 @@
-import { IPerfil } from 'app/shared/model/perfil.model';
+import {IPerfil} from 'app/shared/model/perfil.model';
 import {IGrupo} from '../../shared/model/grupo.model';
 
 export interface IUser {
@@ -61,5 +61,6 @@ export interface IUserActivate {
 }
 
 export class UserActivate implements IUserActivate {
-    constructor(public id?: number, public activated?: boolean) {}
+    constructor(public id?: number, public activated?: boolean) {
+    }
 }

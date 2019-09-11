@@ -57,7 +57,7 @@ public class FileUploadResponseDTO implements Serializable {
         this.status = status;
     }
 
-    public boolean hasError(){
+    public boolean hasError() {
         return status == FileUploadStatus.ERROR || status == FileUploadStatus.INFECTADO;
     }
 

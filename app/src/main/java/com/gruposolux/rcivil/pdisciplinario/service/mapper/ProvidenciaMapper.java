@@ -18,8 +18,8 @@ public interface ProvidenciaMapper extends EntityMapper<ProvidenciaDTO, Providen
 
     @Mapping(source = "sumarioAdministrativo.id", target = "sumarioAdministrativoId")
     @Mapping(source = "investigacionSumaria.id", target = "investigacionSumariaId")
-   // @Mapping(source = "providenciaMadre.id", target = "providenciaMadreId")
-  //  @Mapping(source = "providenciaMadre.numeroReferencia", target = "numeroReferenciaPorvidenciaMadre")
+        // @Mapping(source = "providenciaMadre.id", target = "providenciaMadreId")
+        //  @Mapping(source = "providenciaMadre.numeroReferencia", target = "numeroReferenciaPorvidenciaMadre")
 //    @Mapping(target = "idsProvidenciasHijas", expression = "java( providencia.getProvidenciasHijas().stream().map(e -> " +
 //        "e.getId()).collect(Collectors.toList()) )")
     ProvidenciaDTO toDto(Providencia providencia);
@@ -37,3 +37,4 @@ public interface ProvidenciaMapper extends EntityMapper<ProvidenciaDTO, Providen
         return providencia;
     }
 }
+

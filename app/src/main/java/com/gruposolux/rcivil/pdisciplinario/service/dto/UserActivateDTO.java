@@ -3,8 +3,7 @@ package com.gruposolux.rcivil.pdisciplinario.service.dto;
 /**
  * Created by sneiraillanes on 20-03-2019.
  */
-public class UserActivateDTO
-{
+public class UserActivateDTO {
     private Long id;
     private Boolean activated;
 

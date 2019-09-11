@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
-import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {JhiEventManager} from 'ng-jhipster';
 
 import {EstadoProvidencia, IProvidencia, IProvidenciaResponse, Providencia} from 'app/shared/model/providencia.model';
-import { DerivacionService } from 'app/entities/derivacion';
+import {DerivacionService} from 'app/entities/derivacion';
 import {ProvidenciaService} from './providencia.service';
 import {PlantillaService} from '../plantilla/plantilla.service';
 import {IAdjunto} from '../../shared/model/adjunto.model';
@@ -28,13 +28,15 @@ export class ProvidenciaDevolverDialogComponent implements OnInit {
         private eventManager: JhiEventManager,
         private plantillaService: PlantillaService,
         private providenciaService: ProvidenciaService
-    ) {}
+    ) {
+    }
 
     clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+    }
 
     get providencias() {
         return this._providencia;
@@ -79,10 +81,11 @@ export class ProvidenciaDevolverDialogComponent implements OnInit {
 export class ProvidenciaDevolverPopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
+    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {
+    }
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({ providencia }) => {
+        this.activatedRoute.data.subscribe(({providencia}) => {
             setTimeout(() => {
                 this.ngbModalRef = this.modalService.open(ProvidenciaDevolverDialogComponent as Component, {
                     size: 'lg',
@@ -91,11 +94,17 @@ export class ProvidenciaDevolverPopupComponent implements OnInit, OnDestroy {
                 this.ngbModalRef.componentInstance.providencia = providencia;
                 this.ngbModalRef.result.then(
                     result => {
-                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.router.navigate([{outlets: {popup: null}}], {
+                            replaceUrl: true,
+                            queryParamsHandling: 'merge'
+                        });
                         this.ngbModalRef = null;
                     },
                     reason => {
-                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.router.navigate([{outlets: {popup: null}}], {
+                            replaceUrl: true,
+                            queryParamsHandling: 'merge'
+                        });
                         this.ngbModalRef = null;
                     }
                 );

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
-import { IGrupo } from 'app/shared/model/grupo.model';
+import {IGrupo} from 'app/shared/model/grupo.model';
 
 @Component({
     selector: 'jhi-grupo-detail',
@@ -10,10 +10,11 @@ import { IGrupo } from 'app/shared/model/grupo.model';
 export class GrupoDetailComponent implements OnInit {
     grupo: IGrupo;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(private activatedRoute: ActivatedRoute) {
+    }
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({ grupo }) => {
+        this.activatedRoute.data.subscribe(({grupo}) => {
             this.grupo = grupo;
         });
     }

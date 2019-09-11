@@ -107,10 +107,12 @@
                             <span jhiTranslate="pdisciplinarioApp.providencia.tipo">Tipo</span>
                         </dt>
                         <dd>
-                            <span jhiTranslate="{{'pdisciplinarioApp.TipoProvidencia.' + providenciaSeleccionada.tipo}}">{{providenciaSeleccionada.tipo}}</span>
+                            <span
+                                jhiTranslate="{{'pdisciplinarioApp.TipoProvidencia.' + providenciaSeleccionada.tipo}}">{{providenciaSeleccionada.tipo}}</span>
                         </dd>
 
-                        <dt *ngIf="providenciaSeleccionada.acciones && providenciaSeleccionada.acciones.length > 0"><span jhiTranslate="pdisciplinarioApp.providencia.acciones"></span></dt>
+                        <dt *ngIf="providenciaSeleccionada.acciones && providenciaSeleccionada.acciones.length > 0">
+                            <span jhiTranslate="pdisciplinarioApp.providencia.acciones"></span></dt>
                         <dd *ngFor="let accion of providenciaSeleccionada.acciones">
                             {{accion.split('_').join(' ')}}
                         </dd>
@@ -150,7 +152,7 @@
                 <div class="col-sm-12">
                     <div style="padding: 10px 20px; font-size: 17.5px"></div>
                     <dl class="dl-horizontal jh-entity-details">
-                        <dt class="d-flex justify-content-center"  *ngIf="providenciaSeleccionada.comentario">
+                        <dt class="d-flex justify-content-center" *ngIf="providenciaSeleccionada.comentario">
                             <span jhiTranslate="pdisciplinarioApp.providencia.comentario">Comentario</span>
                         </dt>
                         <dd *ngIf="providenciaSeleccionada.comentario">
@@ -165,7 +167,8 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
         </button>
-        <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success" [disabled]="disabledSave">
+        <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success"
+                [disabled]="disabledSave">
             <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.derivar">Derivar</span>
         </button>
     </div>

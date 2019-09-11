@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
-import { IPlazo } from 'app/shared/model/plazo.model';
-import { PlazoService } from './plazo.service';
+import {IPlazo} from 'app/shared/model/plazo.model';
+import {PlazoService} from './plazo.service';
 
 @Component({
     selector: 'jhi-plazo-update',
@@ -14,11 +14,12 @@ export class PlazoUpdateComponent implements OnInit {
     private _plazo: IPlazo;
     isSaving: boolean;
 
-    constructor(private plazoService: PlazoService, private activatedRoute: ActivatedRoute) {}
+    constructor(private plazoService: PlazoService, private activatedRoute: ActivatedRoute) {
+    }
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({ plazo }) => {
+        this.activatedRoute.data.subscribe(({plazo}) => {
             this.plazo = plazo;
         });
     }
@@ -48,6 +49,7 @@ export class PlazoUpdateComponent implements OnInit {
     private onSaveError() {
         this.isSaving = false;
     }
+
     get plazo() {
         return this._plazo;
     }

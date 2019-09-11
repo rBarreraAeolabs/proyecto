@@ -1,13 +1,13 @@
 import {Component, OnInit, OnDestroy, Input} from '@angular/core';
-import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {JhiEventManager, JhiParseLinks, JhiAlertService} from 'ng-jhipster';
 
-import { IDerivacion } from 'app/shared/model/derivacion.model';
-import { Principal } from 'app/core';
+import {IDerivacion} from 'app/shared/model/derivacion.model';
+import {Principal} from 'app/core';
 
-import { DerivacionService } from './derivacion.service';
+import {DerivacionService} from './derivacion.service';
 
 @Component({
     selector: 'jhi-derivacion',
@@ -34,7 +34,8 @@ export class DerivacionComponent implements OnInit, OnDestroy {
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private eventManager: JhiEventManager
-    ) {}
+    ) {
+    }
 
     loadAll() {
         this.derivacionService.getByProvidencia(this.idProvidencia).subscribe(

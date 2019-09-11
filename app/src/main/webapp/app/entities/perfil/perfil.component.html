@@ -1,9 +1,10 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="pdisciplinarioApp.perfil.home.title">Perfils</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-perfil" [routerLink]="['/perfil/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-perfil"
+                [routerLink]="['/perfil/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="pdisciplinarioApp.perfil.home.createLabel">
+            <span jhiTranslate="pdisciplinarioApp.perfil.home.createLabel">
             Create new Perfil
             </span>
         </button>
@@ -14,9 +15,13 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="nombre"><span jhiTranslate="pdisciplinarioApp.perfil.nombre">Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="nombre"><span jhiTranslate="pdisciplinarioApp.perfil.nombre">Nombre</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -57,7 +62,8 @@
             <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                            [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div>
 </div>

@@ -1,26 +1,27 @@
-import { Injectable } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, Routes } from '@angular/router';
-import { JhiResolvePagingParams } from 'ng-jhipster';
-import { UserRouteAccessService } from 'app/core';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { IProvidencia, Providencia } from 'app/shared/model/providencia.model';
-import { ProvidenciaService } from './providencia.service';
-import { ProvidenciaComponent } from './providencia.component';
-import { ProvidenciaUpdateComponent } from './providencia-update.component';
-import { ProvidenciaDeletePopupComponent } from './providencia-delete-dialog.component';
-import { ProvidenciaResponderPopupComponent } from 'app/entities/providencia/providencia-responder-dialog.componet';
-import { ProvidenciaDevolverPopupComponent } from 'app/entities/providencia/providencia-devolver-dialog.component';
-import { ProvidenciaDetailComponent } from 'app/entities/providencia/providencia-detail.component';
-import { ProvidenciaDetailDgdpComponent } from './providencia-detail-dgdp.component';
-import { ProvidenciaAsignarNumeroResolucionPopupComponent } from 'app/entities/providencia/providencia-asignar-numero-resolucion.component';
-import { ProvidenciaAsignarFiscalPopupComponent } from 'app/entities/providencia/providencia-asignar-fiscal.component';
+import {Injectable} from '@angular/core';
+import {HttpResponse} from '@angular/common/http';
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, Routes} from '@angular/router';
+import {JhiResolvePagingParams} from 'ng-jhipster';
+import {UserRouteAccessService} from 'app/core';
+import {of} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {IProvidencia, Providencia} from 'app/shared/model/providencia.model';
+import {ProvidenciaService} from './providencia.service';
+import {ProvidenciaComponent} from './providencia.component';
+import {ProvidenciaUpdateComponent} from './providencia-update.component';
+import {ProvidenciaDeletePopupComponent} from './providencia-delete-dialog.component';
+import {ProvidenciaResponderPopupComponent} from 'app/entities/providencia/providencia-responder-dialog.componet';
+import {ProvidenciaDevolverPopupComponent} from 'app/entities/providencia/providencia-devolver-dialog.component';
+import {ProvidenciaDetailComponent} from 'app/entities/providencia/providencia-detail.component';
+import {ProvidenciaDetailDgdpComponent} from './providencia-detail-dgdp.component';
+import {ProvidenciaAsignarNumeroResolucionPopupComponent} from 'app/entities/providencia/providencia-asignar-numero-resolucion.component';
+import {ProvidenciaAsignarFiscalPopupComponent} from 'app/entities/providencia/providencia-asignar-fiscal.component';
 import {ProvidenciaRelacionarPopupComponent} from './providencia-relacionar-dialog.component';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
-    constructor(private service: ProvidenciaService) {}
+    constructor(private service: ProvidenciaService) {
+    }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const id = route.params['id'] ? route.params['id'] : null;

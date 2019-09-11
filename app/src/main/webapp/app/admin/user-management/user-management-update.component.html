@@ -13,73 +13,87 @@
                 <div class="form-group" [hidden]="!user.id">
                     <label jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" name="id"
-                        [(ngModel)]="user.id" readonly>
+                           [(ngModel)]="user.id" readonly>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="userManagement.login">Login</label>
-                    <input type="text" class="form-control" name="login" #loginInput="ngModel" [(ngModel)]="user.login" minlength="1" maxlength="50" disabled>
+                    <input type="text" class="form-control" name="login" #loginInput="ngModel" [(ngModel)]="user.login"
+                           minlength="1" maxlength="50" disabled>
 
                     <div *ngIf="loginInput.dirty && loginInput.invalid">
-                        <small class="form-text text-danger" *ngIf="loginInput.errors.required" jhiTranslate="entity.validation.required">
+                        <small class="form-text text-danger" *ngIf="loginInput.errors.required"
+                               jhiTranslate="entity.validation.required">
                             This field is required.
                         </small>
 
                         <small class="form-text text-danger"
-                        *ngIf="loginInput.errors.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{max: 50}">
+                               *ngIf="loginInput.errors.maxlength" jhiTranslate="entity.validation.maxlength"
+                               translateValues="{max: 50}">
                             This field cannot be longer than 50 characters.
                         </small>
 
-                        <small class="form-text text-danger" *ngIf="loginInput.errors.pattern" jhiTranslate="entity.validation.patternLogin">
+                        <small class="form-text text-danger" *ngIf="loginInput.errors.pattern"
+                               jhiTranslate="entity.validation.patternLogin">
                             This field can only contain letters, digits and e-mail addresses.
                         </small>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="userManagement.firstName">First Name</label>
-                    <input type="text" class="form-control" name="firstName" #firstNameInput="ngModel" [(ngModel)]="user.firstName" maxlength="50">
+                    <input type="text" class="form-control" name="firstName" #firstNameInput="ngModel"
+                           [(ngModel)]="user.firstName" maxlength="50">
 
                     <div *ngIf="firstNameInput.dirty && firstNameInput.invalid">
-                        <small class="form-text text-danger" *ngIf="firstNameInput.errors.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{max: 50}">
+                        <small class="form-text text-danger" *ngIf="firstNameInput.errors.maxlength"
+                               jhiTranslate="entity.validation.maxlength" translateValues="{max: 50}">
                             This field cannot be longer than 50 characters.
                         </small>
                     </div>
                 </div>
                 <div class="form-group">
                     <label jhiTranslate="userManagement.lastName">Last Name</label>
-                    <input type="text" class="form-control" name="lastName" #lastNameInput="ngModel" [(ngModel)]="user.lastName" maxlength="50">
+                    <input type="text" class="form-control" name="lastName" #lastNameInput="ngModel"
+                           [(ngModel)]="user.lastName" maxlength="50">
 
                     <div *ngIf="lastNameInput.dirty && lastNameInput.invalid">
-                        <small class="form-text text-danger" *ngIf="lastNameInput.errors.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{max: 50}">
+                        <small class="form-text text-danger" *ngIf="lastNameInput.errors.maxlength"
+                               jhiTranslate="entity.validation.maxlength" translateValues="{max: 50}">
                             This field cannot be longer than 50 characters.
                         </small>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="userManagement.email">Email</label>
-                    <input type="email" class="form-control" name="email" #emailInput="ngModel" [(ngModel)]="user.email" minlength="5" required maxlength="254" email (blur)="setLogin()">
+                    <input type="email" class="form-control" name="email" #emailInput="ngModel" [(ngModel)]="user.email"
+                           minlength="5" required maxlength="254" email (blur)="setLogin()">
 
                     <div *ngIf="emailInput.dirty && emailInput.invalid">
-                        <small class="form-text text-danger" *ngIf="emailInput.errors.required" jhiTranslate="entity.validation.required">
+                        <small class="form-text text-danger" *ngIf="emailInput.errors.required"
+                               jhiTranslate="entity.validation.required">
                             This field is required.
                         </small>
 
-                        <small class="form-text text-danger" *ngIf="emailInput.errors.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{max: 100}">
+                        <small class="form-text text-danger" *ngIf="emailInput.errors.maxlength"
+                               jhiTranslate="entity.validation.maxlength" translateValues="{max: 100}">
                             This field cannot be longer than 100 characters.
                         </small>
 
-                        <small class="form-text text-danger" *ngIf="emailInput.errors.minlength" jhiTranslate="entity.validation.minlength" translateValues="{min: 5}">
+                        <small class="form-text text-danger" *ngIf="emailInput.errors.minlength"
+                               jhiTranslate="entity.validation.minlength" translateValues="{min: 5}">
                             This field is required to be at least 5 characters.
                         </small>
 
-                        <small class="form-text text-danger" *ngIf="emailInput.errors.email" jhiTranslate="global.messages.validate.email.invalid">
+                        <small class="form-text text-danger" *ngIf="emailInput.errors.email"
+                               jhiTranslate="global.messages.validate.email.invalid">
                             Your email is invalid.
                         </small>
                     </div>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label" for="activated">
-                        <input class="form-check-input" [disabled]="user.id === null" type="checkbox" id="activated" name="activated" [(ngModel)]="user.activated">
+                        <input class="form-check-input" [disabled]="user.id === null" type="checkbox" id="activated"
+                               name="activated" [(ngModel)]="user.activated">
                         <span jhiTranslate="userManagement.activated">Activated</span>
                     </label>
                 </div>
@@ -99,40 +113,52 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="newPassword" jhiTranslate="global.form.newpassword">New password</label>
-                    <input type="password" class="form-control" id="newPassword" name="newPassword" #newPasswordInput="ngModel"
-                           placeholder="{{'global.form.newpassword.placeholder' | translate}}" [(ngModel)]="newPassword" minlength=8 maxlength=50 required>
+                    <label class="form-control-label" for="newPassword" jhiTranslate="global.form.newpassword">New
+                        password</label>
+                    <input type="password" class="form-control" id="newPassword" name="newPassword"
+                           #newPasswordInput="ngModel"
+                           placeholder="{{'global.form.newpassword.placeholder' | translate}}" [(ngModel)]="newPassword"
+                           minlength=8 maxlength=50 required>
 
                     <div *ngIf="newPasswordInput.dirty && newPasswordInput.invalid">
-                        <small class="form-text text-danger" *ngIf="newPasswordInput.errors.required" jhiTranslate="global.messages.validate.newpassword.required">
+                        <small class="form-text text-danger" *ngIf="newPasswordInput.errors.required"
+                               jhiTranslate="global.messages.validate.newpassword.required">
                             Your password is required.
                         </small>
-                        <small class="form-text text-danger" *ngIf="newPasswordInput.errors.minlength" jhiTranslate="global.messages.validate.newpassword.minlength">
+                        <small class="form-text text-danger" *ngIf="newPasswordInput.errors.minlength"
+                               jhiTranslate="global.messages.validate.newpassword.minlength">
                             Your password is required to be at least 8 characters.
                         </small>
-                        <small class="form-text text-danger" *ngIf="newPasswordInput.errors.maxlength" jhiTranslate="global.messages.validate.newpassword.maxlength">
+                        <small class="form-text text-danger" *ngIf="newPasswordInput.errors.maxlength"
+                               jhiTranslate="global.messages.validate.newpassword.maxlength">
                             Your password cannot be longer than 50 characters.
                         </small>
                     </div>
                     <jhi-password-strength-bar [passwordToCheck]="newPassword"></jhi-password-strength-bar>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="confirmPassword" jhiTranslate="global.form.confirmpassword">New password confirmation</label>
-                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" #confirmPasswordInput="ngModel"
-                           placeholder="{{'global.form.confirmpassword.placeholder' | translate}}" (blur)="confirmMatch()"
+                    <label class="form-control-label" for="confirmPassword" jhiTranslate="global.form.confirmpassword">New
+                        password confirmation</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                           #confirmPasswordInput="ngModel"
+                           placeholder="{{'global.form.confirmpassword.placeholder' | translate}}"
+                           (blur)="confirmMatch()"
                            [(ngModel)]="confirmPassword" minlength=8 maxlength=50 required>
 
                     <div *ngIf="confirmPasswordInput.dirty && confirmPasswordInput.invalid">
 
-                        <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.required" jhiTranslate="global.messages.validate.confirmpassword.required">
+                        <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.required"
+                               jhiTranslate="global.messages.validate.confirmpassword.required">
                             Your confirmation password is required.
                         </small>
 
-                        <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.minlength" jhiTranslate="global.messages.validate.confirmpassword.minlength">
+                        <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.minlength"
+                               jhiTranslate="global.messages.validate.confirmpassword.minlength">
                             Your confirmation password is required to be at least 8 characters.
                         </small>
 
-                        <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.maxlength" jhiTranslate="global.messages.validate.confirmpassword.maxlength">
+                        <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.maxlength"
+                               jhiTranslate="global.messages.validate.confirmpassword.maxlength">
                             Your confirmation password cannot be longer than 50 characters.
                         </small>
                     </div>

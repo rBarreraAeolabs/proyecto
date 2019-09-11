@@ -2,11 +2,11 @@
  * Created by sneiraillanes on 01-04-2019.
  */
 import {Component, OnInit, OnDestroy, Input} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { DocumentoService } from '../documento/documento.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {DocumentoService} from '../documento/documento.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import { AdjuntoService } from 'app/entities/adjunto';
+import {AdjuntoService} from 'app/entities/adjunto';
 import {RespuestaService} from './respuesta.service';
 import {IRespuesta} from '../../shared/model/respuesta.model';
 
@@ -20,6 +20,7 @@ export class RespuestaBitacoraModalComponent implements OnInit, OnDestroy {
     @Input() movimientoProvidenciaId: number;
     respuesta: IRespuesta;
     private externalWindow = null;
+
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
@@ -28,7 +29,8 @@ export class RespuestaBitacoraModalComponent implements OnInit, OnDestroy {
         private adjuntoService: AdjuntoService,
         private documentoService: DocumentoService,
         private respuestaService: RespuestaService
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
         this.respuestaService.getByMovimientoProvidencia(this.movimientoProvidenciaId).subscribe(
@@ -47,10 +49,10 @@ export class RespuestaBitacoraModalComponent implements OnInit, OnDestroy {
 
     open(content) {
         console.log(content);
-        this.modalService.open(content, { size: 'lg', backdrop: 'static' }).result.then(
+        this.modalService.open(content, {size: 'lg', backdrop: 'static'}).result.then(
             result => {
 
-                },
+            },
             reason => {
 
             });
@@ -66,7 +68,8 @@ export class RespuestaBitacoraModalComponent implements OnInit, OnDestroy {
             this.adjuntoService.download(hash).subscribe(result => {
                 this.downloadAsPdf(result);
             });
-        }  if (tipo === 'documento'){
+        }
+        if (tipo === 'documento') {
             this.documentoService.download(hash).subscribe(result => {
                 this.downloadAsPdf(result);
             });
@@ -77,10 +80,11 @@ export class RespuestaBitacoraModalComponent implements OnInit, OnDestroy {
 
         if (tipo === 'adjunto') {
             this.adjuntoService.view(hash).subscribe(result => {
-                const url =  window.URL.createObjectURL(result.body);
-               window.open(url);
+                const url = window.URL.createObjectURL(result.body);
+                window.open(url);
             });
-        }  if (tipo === 'documento') {
+        }
+        if (tipo === 'documento') {
             this.documentoService.view(hash).subscribe(result => {
                 const url = window.URL.createObjectURL(result.body);
                 window.open(url);

@@ -1,9 +1,11 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.home.title">Movimiento Sumario Administrativos</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-movimiento-sumario-administrativo" [routerLink]="['/movimiento-sumario-administrativo/new']">
+        <button id="jh-create-entity"
+                class="btn btn-primary float-right jh-create-entity create-movimiento-sumario-administrativo"
+                [routerLink]="['/movimiento-sumario-administrativo/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.home.createLabel">
+            <span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.home.createLabel">
             Create new Movimiento Sumario Administrativo
             </span>
         </button>
@@ -14,23 +16,39 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estadoAnterior"><span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.estadoAnterior">Estado Anterior</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estadoNuevo"><span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.estadoNuevo">Estado Nuevo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="fecha"><span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.fecha">Fecha</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="sumarioAdministrativoId"><span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.sumarioAdministrativo">Sumario Administrativo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="estadoAnterior"><span
+                    jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.estadoAnterior">Estado Anterior</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="estadoNuevo"><span
+                    jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.estadoNuevo">Estado Nuevo</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="fecha"><span
+                    jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.fecha">Fecha</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="sumarioAdministrativoId"><span
+                    jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.sumarioAdministrativo">Sumario Administrativo</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let movimientoSumarioAdministrativo of movimientoSumarioAdministrativos ;trackBy: trackId">
-                <td><a [routerLink]="['/movimiento-sumario-administrativo', movimientoSumarioAdministrativo.id, 'view' ]">{{movimientoSumarioAdministrativo.id}}</a></td>
+                <td><a
+                    [routerLink]="['/movimiento-sumario-administrativo', movimientoSumarioAdministrativo.id, 'view' ]">{{movimientoSumarioAdministrativo.id}}</a>
+                </td>
                 <td jhiTranslate="{{'pdisciplinarioApp.EstadoSumarioAdministrativo.' + movimientoSumarioAdministrativo.estadoAnterior}}">{{movimientoSumarioAdministrativo.estadoAnterior}}</td>
                 <td jhiTranslate="{{'pdisciplinarioApp.EstadoSumarioAdministrativo.' + movimientoSumarioAdministrativo.estadoNuevo}}">{{movimientoSumarioAdministrativo.estadoNuevo}}</td>
                 <td>{{movimientoSumarioAdministrativo.fecha | date:'medium'}}</td>
                 <td>
                     <div *ngIf="movimientoSumarioAdministrativo.sumarioAdministrativoId">
-                        <a [routerLink]="['../sumario-administrativo', movimientoSumarioAdministrativo.sumarioAdministrativoId , 'view' ]" >{{movimientoSumarioAdministrativo.sumarioAdministrativoId}}</a>
+                        <a [routerLink]="['../sumario-administrativo', movimientoSumarioAdministrativo.sumarioAdministrativoId , 'view' ]">{{movimientoSumarioAdministrativo.sumarioAdministrativoId}}</a>
                     </div>
                 </td>
                 <td class="text-right">
@@ -67,7 +85,8 @@
             <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                            [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div>
 </div>

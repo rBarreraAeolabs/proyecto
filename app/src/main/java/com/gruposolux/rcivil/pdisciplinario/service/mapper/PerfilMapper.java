@@ -33,7 +33,7 @@ public interface PerfilMapper extends EntityMapper<PerfilDTO, Perfil> {
         return perfil;
     }
 
-    default Set<String> stringsFromAuthorities (Set<Authority> authorities) {
+    default Set<String> stringsFromAuthorities(Set<Authority> authorities) {
         return authorities.stream().map(Authority::getName)
             .collect(Collectors.toSet());
     }

@@ -8,11 +8,9 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
  * Created by sneiraillanes on 09-04-2019.
  */
 @Configuration
-public class ThymeleafConfiguration
-{
+public class ThymeleafConfiguration {
     @Bean
-    public ClassLoaderTemplateResolver emailTemplateResolver()
-    {
+    public ClassLoaderTemplateResolver emailTemplateResolver() {
         ClassLoaderTemplateResolver emailTemplateResolver = new ClassLoaderTemplateResolver();
         emailTemplateResolver.setPrefix("templates/");
         emailTemplateResolver.setTemplateMode("HTML5");

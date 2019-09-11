@@ -15,65 +15,65 @@
         <div class="table-responsive" *ngIf="adjuntos">
             <table class="table table-striped">
                 <thead>
-                    <th>Nombre</th>
-                    <th>Tamaño</th>
-                    <th>Fecha de Subida</th>
-                    <th>Opciones</th>
+                <th>Nombre</th>
+                <th>Tamaño</th>
+                <th>Fecha de Subida</th>
+                <th>Opciones</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let adjunto of adjuntos">
-                        <td>
-                            {{adjunto.archivoNombre}}
-                        </td>
-                        <td>
-                            {{adjunto.archivoSize}}
-                        </td>
-                        <td>
-                            {{adjunto.fechaSubido | date: "dd-MM-yyyy"}}
-                        </td>
-                        <td>
-                            <div class="btn-group flex-btn-group-container">
-                                <button type="button" class="btn btn-outline-info btn-sm" name="adjunto"
-                                        (click)="viewPdfOnOtherTabChrome(adjunto.hash, $event.target.offsetParent.name)">
-                                    <fa-icon [icon]="['fas', 'file-pdf']"></fa-icon>
-                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                                </button>
-                                <button type="button" class="btn btn-outline-info btn-sm" name="adjunto"
-                                        (click)="download(adjunto.hash, $event.target.offsetParent.name)">
-                                    <fa-icon [icon]="['fas', 'file-download']"></fa-icon>
-                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.download">
+                <tr *ngFor="let adjunto of adjuntos">
+                    <td>
+                        {{adjunto.archivoNombre}}
+                    </td>
+                    <td>
+                        {{adjunto.archivoSize}}
+                    </td>
+                    <td>
+                        {{adjunto.fechaSubido | date: "dd-MM-yyyy"}}
+                    </td>
+                    <td>
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="button" class="btn btn-outline-info btn-sm" name="adjunto"
+                                    (click)="viewPdfOnOtherTabChrome(adjunto.hash, $event.target.offsetParent.name)">
+                                <fa-icon [icon]="['fas', 'file-pdf']"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+                            <button type="button" class="btn btn-outline-info btn-sm" name="adjunto"
+                                    (click)="download(adjunto.hash, $event.target.offsetParent.name)">
+                                <fa-icon [icon]="['fas', 'file-download']"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.download">
                                     </span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Documentos -->
-                    <tr *ngFor="let documento of documentos">
-                        <td>
-                            {{documento.archivoNombre}}
-                        </td>
-                        <td>
-                            {{documento.archivoSize}}
-                        </td>
-                        <td>
-                            {{documento.fechaCreado | date: "dd-MM-yyyy"}}
-                        </td>
-                        <td>
-                            <div class="btn-group flex-btn-group-container">
-                                <button type="button" class="btn btn-outline-info btn-sm" name="documento"
-                                        (click)="viewPdfOnOtherTabChrome(documento.hash, $event.target.offsetParent.name)">
-                                    <fa-icon [icon]="['fas', 'file-pdf']"></fa-icon>
-                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                                </button>
-                                <button type="button" class="btn btn-outline-info btn-sm" name="documento"
-                                        (click)="download(documento.hash, $event.target.offsetParent.name)">
-                                    <fa-icon [icon]="['fas', 'file-download']"></fa-icon>
-                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.download">
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Documentos -->
+                <tr *ngFor="let documento of documentos">
+                    <td>
+                        {{documento.archivoNombre}}
+                    </td>
+                    <td>
+                        {{documento.archivoSize}}
+                    </td>
+                    <td>
+                        {{documento.fechaCreado | date: "dd-MM-yyyy"}}
+                    </td>
+                    <td>
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="button" class="btn btn-outline-info btn-sm" name="documento"
+                                    (click)="viewPdfOnOtherTabChrome(documento.hash, $event.target.offsetParent.name)">
+                                <fa-icon [icon]="['fas', 'file-pdf']"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+                            <button type="button" class="btn btn-outline-info btn-sm" name="documento"
+                                    (click)="download(documento.hash, $event.target.offsetParent.name)">
+                                <fa-icon [icon]="['fas', 'file-download']"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.download">
                                     </span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>

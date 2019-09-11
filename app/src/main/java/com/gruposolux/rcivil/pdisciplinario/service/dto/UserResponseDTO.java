@@ -17,8 +17,7 @@ import java.util.stream.Collectors;
 /**
  * Created by sneiraillanes on 20-03-2019.
  */
-public class UserResponseDTO
-{
+public class UserResponseDTO {
     private Long id;
 
     @NotBlank

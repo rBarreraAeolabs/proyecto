@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 /**
  * Created by rbarrera on 8/9/2019.
  */
-public class NroReferenciaDTO  {
+public class NroReferenciaDTO {
     private Long id;
 
     public Long getId() {
@@ -114,7 +114,7 @@ public class NroReferenciaDTO  {
 
     private Long numeroReferenciaPorvidenciaMadre;
 
-    public NroReferenciaDTO(){
+    public NroReferenciaDTO() {
     }
 
     @Override

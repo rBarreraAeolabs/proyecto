@@ -3,8 +3,7 @@ package com.gruposolux.rcivil.pdisciplinario.service.dto;
 /**
  * Created by sneiraillanes on 14-05-2019.
  */
-public class ProvidenciaUpdateNumeroReferenciaDTO
-{
+public class ProvidenciaUpdateNumeroReferenciaDTO {
     private Long providenciaId;
     private Long numeroReferencia;
 

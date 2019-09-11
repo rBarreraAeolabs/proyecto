@@ -1,16 +1,20 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="sumarioAdministrativo">
-            <h2><span jhiTranslate="pdisciplinarioApp.sumarioAdministrativo.detail.title">Sumario Administrativo</span> {{sumarioAdministrativo.id}}</h2>
+            <h2><span
+                jhiTranslate="pdisciplinarioApp.sumarioAdministrativo.detail.title">Sumario Administrativo</span> {{sumarioAdministrativo.id}}
+            </h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
                 <!--<dt><span jhiTranslate="pdisciplinarioApp.sumarioAdministrativo.campoUno">Campo Uno</span></dt>-->
                 <!--<dd>-->
-                    <!--<span>{{sumarioAdministrativo.campoUno}}</span>-->
+                <!--<span>{{sumarioAdministrativo.campoUno}}</span>-->
                 <!--</dd>-->
-                <dt><span jhiTranslate="pdisciplinarioApp.sumarioAdministrativo.fechaDeSolicitud">Fecha De Solicitud</span></dt>
+                <dt><span
+                    jhiTranslate="pdisciplinarioApp.sumarioAdministrativo.fechaDeSolicitud">Fecha De Solicitud</span>
+                </dt>
                 <dd>
                     <span>{{sumarioAdministrativo.fechaDeSolicitud}}</span>
                 </dd>
@@ -28,9 +32,9 @@
                 </dd>
                 <!--<dt><span jhiTranslate="pdisciplinarioApp.sumarioAdministrativo.investigacionSumaria">Investigacion Sumaria</span></dt>-->
                 <!--<dd>-->
-                    <!--<div *ngIf="sumarioAdministrativo.investigacionSumariaId">-->
-                        <!--<a [routerLink]="['/investigacion-sumaria', sumarioAdministrativo.investigacionSumariaId, 'view']">{{sumarioAdministrativo.investigacionSumariaId}}</a>-->
-                    <!--</div>-->
+                <!--<div *ngIf="sumarioAdministrativo.investigacionSumariaId">-->
+                <!--<a [routerLink]="['/investigacion-sumaria', sumarioAdministrativo.investigacionSumariaId, 'view']">{{sumarioAdministrativo.investigacionSumariaId}}</a>-->
+                <!--</div>-->
                 <!--</dd>-->
             </dl>
 

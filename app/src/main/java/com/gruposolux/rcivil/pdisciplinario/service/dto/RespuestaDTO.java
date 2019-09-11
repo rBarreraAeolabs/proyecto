@@ -8,8 +8,7 @@ import java.util.Set;
 /**
  * Created by sneiraillanes on 22-04-2019.
  */
-public class RespuestaDTO
-{
+public class RespuestaDTO {
     private Long id;
 
     private String comentario;
@@ -32,7 +31,8 @@ public class RespuestaDTO
 
     private String estadoProvidencia;
 
-    public RespuestaDTO() {}
+    public RespuestaDTO() {
+    }
 
     public Long getId() {
         return id;

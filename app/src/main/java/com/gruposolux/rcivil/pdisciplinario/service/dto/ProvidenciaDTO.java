@@ -73,7 +73,6 @@ public class ProvidenciaDTO implements Serializable {
     private Long numeroReferenciaPorvidenciaMadre;
 
 
-
     public ProvidenciaDTO() {
     }
 
@@ -85,15 +84,21 @@ public class ProvidenciaDTO implements Serializable {
         this.id = id;
     }
 
-    public Long getnumeroReferencia() { return numeroReferencia; }
+    public Long getnumeroReferencia() {
+        return numeroReferencia;
+    }
 
     public void setnumeroReferencia(Long numeroReferencia) {
         this.numeroReferencia = numeroReferencia;
     }
 
-    public Long getNumeroProvidencia() { return numeroProvidencia; }
+    public Long getNumeroProvidencia() {
+        return numeroProvidencia;
+    }
 
-    public void setNumeroProvidencia(Long numeroProvidencia) { this.numeroProvidencia = numeroProvidencia; }
+    public void setNumeroProvidencia(Long numeroProvidencia) {
+        this.numeroProvidencia = numeroProvidencia;
+    }
 
     public String getEstadoActual() {
         return estadoActual;
@@ -111,9 +116,13 @@ public class ProvidenciaDTO implements Serializable {
         this.etapa = etapa;
     }
 
-    public EstadoProvidencia getSubEtapa() { return subEtapa; }
+    public EstadoProvidencia getSubEtapa() {
+        return subEtapa;
+    }
 
-    public void setSubEtapa(EstadoProvidencia subEtapa) { this.subEtapa = subEtapa; }
+    public void setSubEtapa(EstadoProvidencia subEtapa) {
+        this.subEtapa = subEtapa;
+    }
 
     public EstadoProvidencia getRequisito() {
         return requisito;
@@ -282,7 +291,6 @@ public class ProvidenciaDTO implements Serializable {
     public void setNumeroReferenciaPorvidenciaMadre(Long numeroReferenciaPorvidenciaMadre) {
         this.numeroReferenciaPorvidenciaMadre = numeroReferenciaPorvidenciaMadre;
     }
-
 
 
     @Override

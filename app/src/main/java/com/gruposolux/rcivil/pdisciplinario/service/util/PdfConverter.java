@@ -34,10 +34,8 @@ import static java.nio.file.StandardOpenOption.DELETE_ON_CLOSE;
 /**
  * Created by sneiraillanes on 09-04-2019.
  */
-public class PdfConverter
-{
-    public static void generateHTMLFromPDF(String filename) throws ParserConfigurationException, IOException
-    {
+public class PdfConverter {
+    public static void generateHTMLFromPDF(String filename) throws ParserConfigurationException, IOException {
         PDDocument pdf = PDDocument.load(new File(filename));
         PDFDomTree parser = new PDFDomTree();
         Writer output = new PrintWriter("src/output/pdf.html", "utf-8");
@@ -48,8 +46,7 @@ public class PdfConverter
         }
     }
 
-    public static String generatePDFFromHTML(String filename, String data, Path pathAdjunto) throws ParserConfigurationException, IOException, DocumentException
-    {
+    public static String generatePDFFromHTML(String filename, String data, Path pathAdjunto) throws ParserConfigurationException, IOException, DocumentException {
         Logger log = LoggerFactory.getLogger(PdfConverter.class);
 
         Document document = new Document(PageSize.A4);
@@ -73,8 +70,7 @@ public class PdfConverter
             OutputStream os = Files.newOutputStream(p);
             os.write(content, 0, content.length);
 
-            if (filename.indexOf(".") < 0)
-            {
+            if (filename.indexOf(".") < 0) {
                 filename = filename + ".pdf";
             }
 //            String path = "./upload/" + filename;
@@ -91,13 +87,10 @@ public class PdfConverter
                 @Override
                 public String getImageRootPath() {
 //                    return "C:\\Users\\sneiraillanes\\proyectos\\netlinux\\registrocivil-pdisciplinario\\app\\src\\main\\webapp\\";
-                    try
-                    {
+                    try {
 //                        return new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator;
                         return new File(".").getCanonicalPath() + File.separator + "target" + File.separator + "www" + File.separator;
-                    }
-                    catch (IOException e)
-                    {
+                    } catch (IOException e) {
                         log.debug(e.getMessage());
                     }
                     return "." + File.separator;
@@ -107,13 +100,10 @@ public class PdfConverter
                 @Override
                 public String getLinkRoot() {
 //                    return "C:\\Users\\sneiraillanes\\proyectos\\netlinux\\registrocivil-pdisciplinario\\app\\src\\main\\webapp\\";
-                    try
-                    {
+                    try {
 //                        return new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator;
                         return new File(".").getCanonicalPath() + File.separator + "target" + File.separator + "www" + File.separator;
-                    }
-                    catch (IOException e)
-                    {
+                    } catch (IOException e) {
                         log.debug(e.getMessage());
                     }
                     return "." + File.separator;
@@ -131,8 +121,7 @@ public class PdfConverter
 
 //            XMLWorkerHelper.getInstance().parseXHtml(writer, document, new FileInputStream("./upload/temp.html"));
             document.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 

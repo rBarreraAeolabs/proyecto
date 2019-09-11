@@ -38,7 +38,7 @@ public class Providencia implements Serializable {
     @Column(name = "estado_actual")
     private String estadoActual;
 
-    @Column(name = "providencia_madre_id" )
+    @Column(name = "providencia_madre_id")
     private Long providencia_madre_id;
 
     @Enumerated(EnumType.STRING)
@@ -133,11 +133,16 @@ public class Providencia implements Serializable {
     private String nombreFiscalAsignado;
 
 
-    public Providencia() { }
+    public Providencia() {
+    }
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     // get and setter para el id de la madre
 
@@ -150,131 +155,205 @@ public class Providencia implements Serializable {
         this.providencia_madre_id = providencia_madre_id;
     }
 
-    public Long getNumeroReferencia() { return numeroReferencia; }
+    public Long getNumeroReferencia() {
+        return numeroReferencia;
+    }
 
-    public void setNumeroReferencia(Long numeroReferencia) { this.numeroReferencia = numeroReferencia; }
+    public void setNumeroReferencia(Long numeroReferencia) {
+        this.numeroReferencia = numeroReferencia;
+    }
 
-    public Long getNumeroProvidencia() { return numeroProvidencia; }
+    public Long getNumeroProvidencia() {
+        return numeroProvidencia;
+    }
 
-    public void setNumeroProvidencia(Long numeroProvidencia) { this.numeroProvidencia = numeroProvidencia; }
+    public void setNumeroProvidencia(Long numeroProvidencia) {
+        this.numeroProvidencia = numeroProvidencia;
+    }
 
-    public String getEstadoActual() { return estadoActual; }
+    public String getEstadoActual() {
+        return estadoActual;
+    }
 
-    public void setEstadoActual(String estadoActual) { this.estadoActual = estadoActual; }
+    public void setEstadoActual(String estadoActual) {
+        this.estadoActual = estadoActual;
+    }
 
-    public EstadoProvidencia getEtapa() { return etapa; }
+    public EstadoProvidencia getEtapa() {
+        return etapa;
+    }
 
-    public void setEtapa(EstadoProvidencia etapa) { this.etapa = etapa; }
+    public void setEtapa(EstadoProvidencia etapa) {
+        this.etapa = etapa;
+    }
 
-    public EstadoProvidencia getSubEtapa() { return subEtapa; }
+    public EstadoProvidencia getSubEtapa() {
+        return subEtapa;
+    }
 
-    public void setSubEtapa(EstadoProvidencia subEtapa) { this.subEtapa = subEtapa; }
+    public void setSubEtapa(EstadoProvidencia subEtapa) {
+        this.subEtapa = subEtapa;
+    }
 
-    public EstadoProvidencia getRequisito() { return requisito; }
+    public EstadoProvidencia getRequisito() {
+        return requisito;
+    }
 
-    public void setRequisito(EstadoProvidencia requisito) { this.requisito = requisito; }
+    public void setRequisito(EstadoProvidencia requisito) {
+        this.requisito = requisito;
+    }
 
-    public TipoProvidencia getTipo() { return tipo; }
+    public TipoProvidencia getTipo() {
+        return tipo;
+    }
 
-    public void setTipo(TipoProvidencia tipo) { this.tipo = tipo; }
+    public void setTipo(TipoProvidencia tipo) {
+        this.tipo = tipo;
+    }
 
-    public String getComentario() { return comentario; }
+    public String getComentario() {
+        return comentario;
+    }
 
-    public void setComentario(String comentario) { this.comentario = comentario; }
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
 
-    public Instant getFechaSolicitud() { return fechaSolicitud; }
+    public Instant getFechaSolicitud() {
+        return fechaSolicitud;
+    }
 
-    public void setFechaSolicitud(Instant fechaSolicitud) { this.fechaSolicitud = fechaSolicitud; }
+    public void setFechaSolicitud(Instant fechaSolicitud) {
+        this.fechaSolicitud = fechaSolicitud;
+    }
 
-    public Instant getFechaCreacion() { return fechaCreacion; }
+    public Instant getFechaCreacion() {
+        return fechaCreacion;
+    }
 
-    public void setFechaCreacion(Instant fechaCreacion) { this.fechaCreacion = fechaCreacion; }
+    public void setFechaCreacion(Instant fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
 
-    public Set<Derivacion> getDerivaciones() { return derivaciones; }
+    public Set<Derivacion> getDerivaciones() {
+        return derivaciones;
+    }
 
-    public void setDerivaciones(Set<Derivacion> derivaciones) { this.derivaciones = derivaciones; }
+    public void setDerivaciones(Set<Derivacion> derivaciones) {
+        this.derivaciones = derivaciones;
+    }
 
-    public Set<Documento> getDocumentos() { return documentos; }
+    public Set<Documento> getDocumentos() {
+        return documentos;
+    }
 
-    public void setDocumentos(Set<Documento> documentos) { this.documentos = documentos; }
+    public void setDocumentos(Set<Documento> documentos) {
+        this.documentos = documentos;
+    }
 
-    public Set<Adjunto> getAdjuntos() { return adjuntos; }
+    public Set<Adjunto> getAdjuntos() {
+        return adjuntos;
+    }
 
-    public void setAdjuntos(Set<Adjunto> adjuntos) { this.adjuntos = adjuntos; }
+    public void setAdjuntos(Set<Adjunto> adjuntos) {
+        this.adjuntos = adjuntos;
+    }
 
-    public Set<MovimientoProvidencia> getMovimientos() { return movimientos; }
+    public Set<MovimientoProvidencia> getMovimientos() {
+        return movimientos;
+    }
 
-    public void setMovimientos(Set<MovimientoProvidencia> movimientos) { this.movimientos = movimientos; }
+    public void setMovimientos(Set<MovimientoProvidencia> movimientos) {
+        this.movimientos = movimientos;
+    }
 
-    public SumarioAdministrativo getSumarioAdministrativo() { return sumarioAdministrativo; }
+    public SumarioAdministrativo getSumarioAdministrativo() {
+        return sumarioAdministrativo;
+    }
 
-    public void setSumarioAdministrativo(SumarioAdministrativo sumarioAdministrativo) { this.sumarioAdministrativo = sumarioAdministrativo; }
+    public void setSumarioAdministrativo(SumarioAdministrativo sumarioAdministrativo) {
+        this.sumarioAdministrativo = sumarioAdministrativo;
+    }
 
-    public InvestigacionSumaria getInvestigacionSumaria() { return investigacionSumaria; }
+    public InvestigacionSumaria getInvestigacionSumaria() {
+        return investigacionSumaria;
+    }
 
-    public void setInvestigacionSumaria(InvestigacionSumaria investigacionSumaria) { this.investigacionSumaria = investigacionSumaria; }
-
-
-
-
-    public Instant getFechaHasta() { return fechaHasta; }
-
-    public void setFechaHasta(Instant fechaHasta) { this.fechaHasta = fechaHasta; }
-
+    public void setInvestigacionSumaria(InvestigacionSumaria investigacionSumaria) {
+        this.investigacionSumaria = investigacionSumaria;
+    }
 
 
-    public String getRunSolicitante() { return runSolicitante; }
+    public Instant getFechaHasta() {
+        return fechaHasta;
+    }
 
-    public void setRunSolicitante(String runSolicitante)
-    {
-        if (this.validateRun(runSolicitante))
-        {
+    public void setFechaHasta(Instant fechaHasta) {
+        this.fechaHasta = fechaHasta;
+    }
+
+
+    public String getRunSolicitante() {
+        return runSolicitante;
+    }
+
+    public void setRunSolicitante(String runSolicitante) {
+        if (this.validateRun(runSolicitante)) {
             this.runSolicitante = runSolicitante;
-        }
-        else
-        {
+        } else {
             this.runSolicitante = "malo";
         }
     }
 
-    public String getNombreSolicitante() { return nombreSolicitante; }
+    public String getNombreSolicitante() {
+        return nombreSolicitante;
+    }
 
-    public void setNombreSolicitante(String nombreSolicitante) { this.nombreSolicitante = nombreSolicitante; }
+    public void setNombreSolicitante(String nombreSolicitante) {
+        this.nombreSolicitante = nombreSolicitante;
+    }
 
-    public Entidad getEntidadSolicitante() { return entidadSolicitante; }
+    public Entidad getEntidadSolicitante() {
+        return entidadSolicitante;
+    }
 
-    public void setEntidadSolicitante(Entidad entidadSolicitante) { this.entidadSolicitante = entidadSolicitante; }
+    public void setEntidadSolicitante(Entidad entidadSolicitante) {
+        this.entidadSolicitante = entidadSolicitante;
+    }
 
-    public String getRunImplicado() { return runImplicado; }
+    public String getRunImplicado() {
+        return runImplicado;
+    }
 
-    public void setRunImplicado(String runImplicado)
-    {
-        if (this.validateRun(runImplicado))
-        {
+    public void setRunImplicado(String runImplicado) {
+        if (this.validateRun(runImplicado)) {
             this.runImplicado = runImplicado;
-        }
-        else
-        {
+        } else {
             this.runImplicado = "malo";
         }
     }
 
-    public String getNombreImplicado() { return nombreImplicado; }
+    public String getNombreImplicado() {
+        return nombreImplicado;
+    }
 
-    public void setNombreImplicado(String nombreImplicado) { this.nombreImplicado = nombreImplicado; }
+    public void setNombreImplicado(String nombreImplicado) {
+        this.nombreImplicado = nombreImplicado;
+    }
 
-    public Entidad getEntidadImplicada() { return entidadImplicada; }
+    public Entidad getEntidadImplicada() {
+        return entidadImplicada;
+    }
 
-    public void setEntidadImplicada(Entidad entidadImplicada) { this.entidadImplicada = entidadImplicada; }
+    public void setEntidadImplicada(Entidad entidadImplicada) {
+        this.entidadImplicada = entidadImplicada;
+    }
 
-    private boolean validateRun(String run)
-    {
-        if (run != null && run.length() >= 2)
-        {
+    private boolean validateRun(String run) {
+        if (run != null && run.length() >= 2) {
             String dv = run.trim().substring(run.indexOf("-") + 1);
 
-            if (dv.length() > 1)
-            {
+            if (dv.length() > 1) {
                 return false;
             }
 
@@ -283,14 +362,10 @@ public class Providencia implements Serializable {
             int result = 0;
             int n = 2;
 
-            for(int i = 0; i < runWithoutDv.length(); i++)
-            {
-                if (n < 8)
-                {
+            for (int i = 0; i < runWithoutDv.length(); i++) {
+                if (n < 8) {
                     result += Integer.valueOf(String.valueOf(runWithoutDv.charAt(runWithoutDv.length() - 1 - i))) * n;
-                }
-                else
-                {
+                } else {
                     n = 2;
                     result += Integer.valueOf(String.valueOf(runWithoutDv.charAt(runWithoutDv.length() - 1 - i))) * n;
                 }
@@ -300,16 +375,11 @@ public class Providencia implements Serializable {
 
             int dvResult = 11 - (result % 11);
 
-            if (dvResult < 10)
-            {
+            if (dvResult < 10) {
                 return Integer.valueOf(dv) == dvResult;
-            }
-            else if (dvResult == 10)
-            {
+            } else if (dvResult == 10) {
                 return dv.equalsIgnoreCase("k");
-            }
-            else
-            {
+            } else {
                 return Integer.valueOf(dv) == 0;
             }
         }
@@ -317,24 +387,21 @@ public class Providencia implements Serializable {
         return false;
     }
 
-    public String getNombreFiscalAsignado() { return nombreFiscalAsignado; }
+    public String getNombreFiscalAsignado() {
+        return nombreFiscalAsignado;
+    }
 
-    public void setNombreFiscalAsignado(String nombreFiscalAsignado)
-    {
-        if (nombreFiscalAsignado != null && nombreFiscalAsignado.trim().length() > 0)
-        {
+    public void setNombreFiscalAsignado(String nombreFiscalAsignado) {
+        if (nombreFiscalAsignado != null && nombreFiscalAsignado.trim().length() > 0) {
             this.nombreFiscalAsignado = nombreFiscalAsignado;
-        }
-        else
-        {
+        } else {
             this.nombreFiscalAsignado = null;
         }
     }
 
 
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -344,9 +411,12 @@ public class Providencia implements Serializable {
     }
 
     @Override
-    public int hashCode() { return Objects.hashCode(this.getId()); }
+    public int hashCode() {
+        return Objects.hashCode(this.getId());
+    }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return "Providencia{" +
             "id=" + id +
 //

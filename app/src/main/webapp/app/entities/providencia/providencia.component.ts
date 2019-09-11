@@ -1,14 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {JhiEventManager, JhiParseLinks, JhiAlertService} from 'ng-jhipster';
 
 import {IProvidencia, IProvidenciaItemList} from 'app/shared/model/providencia.model';
 import {Principal, UserService} from 'app/core';
 
-import { ITEMS_PER_PAGE } from 'app/shared';
-import { ProvidenciaService } from './providencia.service';
+import {ITEMS_PER_PAGE} from 'app/shared';
+import {ProvidenciaService} from './providencia.service';
 import {Moment} from 'moment';
 import moment = require('moment');
 

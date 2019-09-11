@@ -1,9 +1,9 @@
-import { Moment } from 'moment';
-import { IDerivacion } from 'app/shared/model//derivacion.model';
-import { IDocumento } from 'app/shared/model//documento.model';
-import { IAdjunto } from 'app/shared/model//adjunto.model';
-import { IMovimientoProvidencia } from 'app/shared/model//movimiento-providencia.model';
-import { IGrupo } from 'app/shared/model//grupo.model';
+import {Moment} from 'moment';
+import {IDerivacion} from 'app/shared/model//derivacion.model';
+import {IDocumento} from 'app/shared/model//documento.model';
+import {IAdjunto} from 'app/shared/model//adjunto.model';
+import {IMovimientoProvidencia} from 'app/shared/model//movimiento-providencia.model';
+import {IGrupo} from 'app/shared/model//grupo.model';
 import {IEntidad} from './entidad.model';
 
 export const enum EstadoProvidencia {
@@ -23,11 +23,11 @@ export const enum EstadoProvidencia {
     ESTADO_14 = 'ESTADO 14',
     ESTADO_15 = 'ESTADO 15',
     ESTADO_16 = 'ESTADO 16',
-    ESTADO_17= 'ESTADO 17',
-    ESTADO_18='ESTADO 18',
-    ESTADO_19='ESTADO 19',
-    ESTADO_20='ESTADO 20',
-    ESTADO_21='ESTADO 21',
+    ESTADO_17 = 'ESTADO 17',
+    ESTADO_18 = 'ESTADO 18',
+    ESTADO_19 = 'ESTADO 19',
+    ESTADO_20 = 'ESTADO 20',
+    ESTADO_21 = 'ESTADO 21',
 
 }
 
@@ -98,7 +98,8 @@ export class Providencia implements IProvidencia {
         public entidadSolicitante?: IEntidad,
         public entidadImplicada?: IEntidad,
         public nombreFiscalAsignado?: string
-    ) {}
+    ) {
+    }
 }
 
 export class IProvidenciaResponse {

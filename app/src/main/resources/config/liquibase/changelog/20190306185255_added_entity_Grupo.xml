@@ -22,16 +22,16 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="nombre" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
         <!--<loadData tableName="grupo"-->
-                  <!--encoding="UTF-8"-->
-                  <!--file="config/liquibase/pdisciplinario_public_grupo.csv"-->
-                  <!--separator=",">-->
+        <!--encoding="UTF-8"-->
+        <!--file="config/liquibase/pdisciplinario_public_grupo.csv"-->
+        <!--separator=",">-->
         <!--</loadData>-->
 
     </changeSet>

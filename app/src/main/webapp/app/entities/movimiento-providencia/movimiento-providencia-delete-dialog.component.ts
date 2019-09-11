@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
-import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {JhiEventManager} from 'ng-jhipster';
 
-import { IMovimientoProvidencia } from 'app/shared/model/movimiento-providencia.model';
-import { MovimientoProvidenciaService } from './movimiento-providencia.service';
+import {IMovimientoProvidencia} from 'app/shared/model/movimiento-providencia.model';
+import {MovimientoProvidenciaService} from './movimiento-providencia.service';
 
 @Component({
     selector: 'jhi-movimiento-providencia-delete-dialog',
@@ -18,7 +18,8 @@ export class MovimientoProvidenciaDeleteDialogComponent {
         private movimientoProvidenciaService: MovimientoProvidenciaService,
         public activeModal: NgbActiveModal,
         private eventManager: JhiEventManager
-    ) {}
+    ) {
+    }
 
     clear() {
         this.activeModal.dismiss('cancel');
@@ -42,10 +43,11 @@ export class MovimientoProvidenciaDeleteDialogComponent {
 export class MovimientoProvidenciaDeletePopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
+    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {
+    }
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({ movimientoProvidencia }) => {
+        this.activatedRoute.data.subscribe(({movimientoProvidencia}) => {
             setTimeout(() => {
                 this.ngbModalRef = this.modalService.open(MovimientoProvidenciaDeleteDialogComponent as Component, {
                     size: 'lg',
@@ -54,11 +56,17 @@ export class MovimientoProvidenciaDeletePopupComponent implements OnInit, OnDest
                 this.ngbModalRef.componentInstance.movimientoProvidencia = movimientoProvidencia;
                 this.ngbModalRef.result.then(
                     result => {
-                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.router.navigate([{outlets: {popup: null}}], {
+                            replaceUrl: true,
+                            queryParamsHandling: 'merge'
+                        });
                         this.ngbModalRef = null;
                     },
                     reason => {
-                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.router.navigate([{outlets: {popup: null}}], {
+                            replaceUrl: true,
+                            queryParamsHandling: 'merge'
+                        });
                         this.ngbModalRef = null;
                     }
                 );

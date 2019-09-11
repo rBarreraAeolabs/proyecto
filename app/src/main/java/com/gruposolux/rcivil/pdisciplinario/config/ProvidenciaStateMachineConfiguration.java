@@ -15,6 +15,7 @@ import org.springframework.statemachine.config.builders.StateMachineTransitionCo
 import org.springframework.statemachine.listener.StateMachineListenerAdapter;
 import org.springframework.statemachine.state.State;
 import org.springframework.statemachine.transition.Transition;
+
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
@@ -46,7 +47,7 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
     }
 
     @Override
-    public void configure(StateMachineTransitionConfigurer<String, String > transitions)
+    public void configure(StateMachineTransitionConfigurer<String, String> transitions)
         throws Exception {
         transitions
             .withExternal()
@@ -220,6 +221,7 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             .and()
         ;
     }
+
     @Override
     public void configure(StateMachineConfigurationConfigurer<String, String> config) throws Exception {
 
@@ -228,9 +230,10 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             public void stateChanged(State<String, String> from, State<String, String> to) {
                 logger.info("Listener stateChanged from {} to {}", (from != null) ? from.getId() : null, (to != null) ? to.getId() : null);
             }
+
             @Override
             public void eventNotAccepted(Message<String> event) {
-               logger.info("Listener eventNotAccepted {}", event);
+                logger.info("Listener eventNotAccepted {}", event);
             }
 
             @Override
@@ -245,8 +248,8 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
 
             @Override
             public void transition(Transition<String, String> transition) {
-                logger.info("Listener transition from {} to {}" , (transition.getSource() != null) ? transition.getSource().getId()
-                    :null, (transition.getTarget() != null) ? transition.getTarget().getId() : null);
+                logger.info("Listener transition from {} to {}", (transition.getSource() != null) ? transition.getSource().getId()
+                    : null, (transition.getTarget() != null) ? transition.getTarget().getId() : null);
             }
 
             @Override
@@ -257,7 +260,7 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
 
             @Override
             public void transitionEnded(Transition<String, String> transition) {
-                logger.info("Listener transitionEnded from {} to {}" , (transition.getSource() != null) ? transition.getSource().getId()
+                logger.info("Listener transitionEnded from {} to {}", (transition.getSource() != null) ? transition.getSource().getId()
                     : null, (transition.getTarget() != null) ? transition.getTarget().getId() : null);
             }
 

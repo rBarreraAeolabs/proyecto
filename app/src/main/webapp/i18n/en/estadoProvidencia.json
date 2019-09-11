@@ -1,6 +1,6 @@
 {
     "pdisciplinarioApp": {
-        "EstadoProvidencia" : {
+        "EstadoProvidencia": {
             "null": "",
             "CREADA": "CREADA",
             "ESPERA": "ESPERA",

@@ -1,7 +1,6 @@
-
 {
     "pdisciplinarioApp": {
-        "fichaIngresoSdj" : {
+        "fichaIngresoSdj": {
             "home": {
                 "title": "Ficha Ingreso Sdjs",
                 "createLabel": "Crear nuevo Ficha Ingreso Sdj",

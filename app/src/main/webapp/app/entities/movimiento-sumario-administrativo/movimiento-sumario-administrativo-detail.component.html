@@ -1,23 +1,30 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="movimientoSumarioAdministrativo">
-            <h2><span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.detail.title">Movimiento Sumario Administrativo</span> {{movimientoSumarioAdministrativo.id}}</h2>
+            <h2><span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.detail.title">Movimiento Sumario Administrativo</span> {{movimientoSumarioAdministrativo.id}}
+            </h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.estadoAnterior">Estado Anterior</span></dt>
+                <dt><span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.estadoAnterior">Estado Anterior</span>
+                </dt>
                 <dd>
-                    <span jhiTranslate="{{'pdisciplinarioApp.EstadoSumarioAdministrativo.' + movimientoSumarioAdministrativo.estadoAnterior}}">{{movimientoSumarioAdministrativo.estadoAnterior}}</span>
+                    <span
+                        jhiTranslate="{{'pdisciplinarioApp.EstadoSumarioAdministrativo.' + movimientoSumarioAdministrativo.estadoAnterior}}">{{movimientoSumarioAdministrativo.estadoAnterior}}</span>
                 </dd>
-                <dt><span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.estadoNuevo">Estado Nuevo</span></dt>
+                <dt><span
+                    jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.estadoNuevo">Estado Nuevo</span>
+                </dt>
                 <dd>
-                    <span jhiTranslate="{{'pdisciplinarioApp.EstadoSumarioAdministrativo.' + movimientoSumarioAdministrativo.estadoNuevo}}">{{movimientoSumarioAdministrativo.estadoNuevo}}</span>
+                    <span
+                        jhiTranslate="{{'pdisciplinarioApp.EstadoSumarioAdministrativo.' + movimientoSumarioAdministrativo.estadoNuevo}}">{{movimientoSumarioAdministrativo.estadoNuevo}}</span>
                 </dd>
                 <dt><span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.fecha">Fecha</span></dt>
                 <dd>
                     <span>{{movimientoSumarioAdministrativo.fecha}}</span>
                 </dd>
-                <dt><span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.sumarioAdministrativo">Sumario Administrativo</span></dt>
+                <dt><span jhiTranslate="pdisciplinarioApp.movimientoSumarioAdministrativo.sumarioAdministrativo">Sumario Administrativo</span>
+                </dt>
                 <dd>
                     <div *ngIf="movimientoSumarioAdministrativo.sumarioAdministrativoId">
                         <a [routerLink]="['/sumario-administrativo', movimientoSumarioAdministrativo.sumarioAdministrativoId, 'view']">{{movimientoSumarioAdministrativo.sumarioAdministrativoId}}</a>

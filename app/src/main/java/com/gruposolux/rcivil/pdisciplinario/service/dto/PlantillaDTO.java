@@ -25,7 +25,6 @@ public class PlantillaDTO implements Serializable {
     private EstadoProvidencia estado;
 
 
-
     private Collection<InstruccionesProvidencia> instrucciones;
 
     public Long getId() {

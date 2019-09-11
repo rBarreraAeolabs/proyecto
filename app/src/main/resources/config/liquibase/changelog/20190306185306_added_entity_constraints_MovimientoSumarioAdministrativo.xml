@@ -7,7 +7,7 @@
         Added the constraints for entity MovimientoSumarioAdministrativo.
     -->
     <changeSet id="20190306185306-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="sumario_administrativo_id"
                                  baseTableName="mov_sumario_admin"
                                  constraintName="fk_movimiento_sumario_administrativo_sumario_administrativo_id"

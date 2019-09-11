@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { IEntidad } from 'app/shared/model/entidad.model';
-import { Subscription } from 'rxjs';
-import { JhiAlertService, JhiEventManager, JhiParseLinks } from 'ng-jhipster';
-import { Principal } from 'app/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ITEMS_PER_PAGE } from 'app/shared';
-import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { EntidadService } from 'app/entities/entidad/entidad.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {IEntidad} from 'app/shared/model/entidad.model';
+import {Subscription} from 'rxjs';
+import {JhiAlertService, JhiEventManager, JhiParseLinks} from 'ng-jhipster';
+import {Principal} from 'app/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ITEMS_PER_PAGE} from 'app/shared';
+import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {EntidadService} from 'app/entities/entidad/entidad.service';
 
 @Component({
     selector: 'jhi-entidad',

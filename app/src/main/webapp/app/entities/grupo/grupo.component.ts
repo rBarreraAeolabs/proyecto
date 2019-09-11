@@ -1,14 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {JhiEventManager, JhiParseLinks, JhiAlertService} from 'ng-jhipster';
 
-import { IGrupo } from 'app/shared/model/grupo.model';
-import { Principal } from 'app/core';
+import {IGrupo} from 'app/shared/model/grupo.model';
+import {Principal} from 'app/core';
 
-import { ITEMS_PER_PAGE } from 'app/shared';
-import { GrupoService } from './grupo.service';
+import {ITEMS_PER_PAGE} from 'app/shared';
+import {GrupoService} from './grupo.service';
 
 @Component({
     selector: 'jhi-grupo',

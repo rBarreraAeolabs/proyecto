@@ -1,14 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {JhiEventManager, JhiParseLinks, JhiAlertService} from 'ng-jhipster';
 
-import { IInvestigacionSumaria } from 'app/shared/model/investigacion-sumaria.model';
-import { Principal } from 'app/core';
+import {IInvestigacionSumaria} from 'app/shared/model/investigacion-sumaria.model';
+import {Principal} from 'app/core';
 
-import { ITEMS_PER_PAGE } from 'app/shared';
-import { InvestigacionSumariaService } from './investigacion-sumaria.service';
+import {ITEMS_PER_PAGE} from 'app/shared';
+import {InvestigacionSumariaService} from './investigacion-sumaria.service';
 
 @Component({
     selector: 'jhi-investigacion-sumaria',

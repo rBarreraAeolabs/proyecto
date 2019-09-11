@@ -1,39 +1,39 @@
 <settings>
-  <localRepository>${MAVEN_CONFIG}/repository</localRepository>
-  <interactiveMode>false</interactiveMode>
+    <localRepository>${MAVEN_CONFIG}/repository</localRepository>
+    <interactiveMode>false</interactiveMode>
 
-  <!--   <proxies>
-    <proxy>
-      <active>true</active>
-      <protocol>http</protocol>
-      <host>proxy.mycompany.com</host>
-      <nonProxyHosts>mycompany.com</nonProxyHosts>
-   </proxy>
-  </proxies> -->
+    <!--   <proxies>
+      <proxy>
+        <active>true</active>
+        <protocol>http</protocol>
+        <host>proxy.mycompany.com</host>
+        <nonProxyHosts>mycompany.com</nonProxyHosts>
+     </proxy>
+    </proxies> -->
 
-  <servers>
-      <server>
-        <id>maven.oracle.com</id>
-        <username>bcarvajal@gruposolux.com</username>
-        <password>{BbAV2G9Sk3gHNGVQpPabDHbV/B2F58Ane/QShmxox9Q=}</password>
-      <configuration>
-        <basicAuthScope>
-          <host>ANY</host>
-          <port>ANY</port>
-          <realm>OAM 11g</realm>
-        </basicAuthScope>
-        <httpConfiguration>
-          <all>
-          <params>
-            <property>
-              <name>http.protocol.allow-circular-redirects</name>
-              <value>%b,true</value>
-            </property>
-          </params>
-          </all>
-        </httpConfiguration>
-      </configuration>
-      </server>
-  </servers>
-  
+    <servers>
+        <server>
+            <id>maven.oracle.com</id>
+            <username>bcarvajal@gruposolux.com</username>
+            <password>{BbAV2G9Sk3gHNGVQpPabDHbV/B2F58Ane/QShmxox9Q=}</password>
+            <configuration>
+                <basicAuthScope>
+                    <host>ANY</host>
+                    <port>ANY</port>
+                    <realm>OAM 11g</realm>
+                </basicAuthScope>
+                <httpConfiguration>
+                    <all>
+                        <params>
+                            <property>
+                                <name>http.protocol.allow-circular-redirects</name>
+                                <value>%b,true</value>
+                            </property>
+                        </params>
+                    </all>
+                </httpConfiguration>
+            </configuration>
+        </server>
+    </servers>
+
 </settings>

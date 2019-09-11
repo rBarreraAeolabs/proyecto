@@ -1,7 +1,6 @@
-
 {
     "pdisciplinarioApp": {
-        "respuesta" : {
+        "respuesta": {
             "home": {
                 "title": "Respuestas",
                 "createLabel": "Crear una nueva Respuesta",

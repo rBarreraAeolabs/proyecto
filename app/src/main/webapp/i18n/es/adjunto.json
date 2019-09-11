@@ -1,7 +1,6 @@
-
 {
     "pdisciplinarioApp": {
-        "adjunto" : {
+        "adjunto": {
             "home": {
                 "title": "Adjuntos",
                 "createLabel": "Crear nuevo Adjunto",

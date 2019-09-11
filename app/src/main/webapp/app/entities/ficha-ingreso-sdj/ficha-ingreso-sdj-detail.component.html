@@ -1,11 +1,14 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="fichaIngresoSdj">
-            <h2><span jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.detail.title">Ficha Ingreso Sdj</span> {{fichaIngresoSdj.id}}</h2>
+            <h2><span
+                jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.detail.title">Ficha Ingreso Sdj</span> {{fichaIngresoSdj.id}}
+            </h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt *ngIf="fichaIngresoSdj.numeroReferencia"><span jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.numeroReferencia"></span></dt>
+                <dt *ngIf="fichaIngresoSdj.numeroReferencia"><span
+                    jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.numeroReferencia"></span></dt>
                 <dd *ngIf="fichaIngresoSdj.numeroReferencia">
                     <span>{{fichaIngresoSdj.numeroReferencia}}</span>
                 </dd>
@@ -17,7 +20,8 @@
                 <dd>
                     <span>{{fichaIngresoSdj.observacion}}</span>
                 </dd>
-                <dt *ngIf="fichaIngresoSdj.plazo"><span jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.plazo">Plazo</span></dt>
+                <dt *ngIf="fichaIngresoSdj.plazo"><span
+                    jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.plazo">Plazo</span></dt>
                 <dd *ngIf="fichaIngresoSdj.plazo">
                     <span>{{fichaIngresoSdj.plazo}}</span>
                 </dd>
@@ -31,7 +35,8 @@
                 <dd>
                     <span>{{fichaIngresoSdj.fechaHasta}}</span>
                 </dd>
-                <dt *ngIf="fichaIngresoSdj.atentamente"><span jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.fechaHasta">Fecha Hasta</span></dt>
+                <dt *ngIf="fichaIngresoSdj.atentamente"><span
+                    jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.fechaHasta">Fecha Hasta</span></dt>
                 <dd *ngIf="fichaIngresoSdj.atentamente">
                     <span>{{fichaIngresoSdj.atentamente}}</span>
                 </dd>

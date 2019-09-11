@@ -174,10 +174,8 @@ public class DerivacionResource {
 
     @GetMapping("/derivacions/list/{idProvidencia}")
     @Timed
-    public ResponseEntity<Set<DerivacionDTO>> getByProvidencia(@PathVariable Long idProvidencia)
-    {
-        if (idProvidencia != null)
-        {
+    public ResponseEntity<Set<DerivacionDTO>> getByProvidencia(@PathVariable Long idProvidencia) {
+        if (idProvidencia != null) {
             return new ResponseEntity<>(this.derivacionService.getByProvidencia(idProvidencia), HttpStatus.OK);
         }
         return null;

@@ -67,8 +67,7 @@ public class MovimientoProvidenciaService {
     }
 
 
-    public MovimientoProvidenciaDTO save(MovimientoProvidenciaDTO movimientoProvidenciaDTO)
-    {
+    public MovimientoProvidenciaDTO save(MovimientoProvidenciaDTO movimientoProvidenciaDTO) {
         MovimientoProvidencia movimientoProvidencia = this.movimientoProvidenciaMapper.toEntity(movimientoProvidenciaDTO);
         movimientoProvidencia = this.movimientoProvidenciaRepository.save(movimientoProvidencia);
         return this.movimientoProvidenciaMapper.toDto(movimientoProvidencia);
@@ -94,32 +93,26 @@ public class MovimientoProvidenciaService {
 
         Plazo plazo = this.determinePlazo(estadoAnterior, estadoNuevo);
 
-        if (plazo != null)
-        {
+        if (plazo != null) {
             movimientoProvidencia.setPlazo(plazo);
         }
 
-        if (estadoAnterior != null)
-        {
+        if (estadoAnterior != null) {
             movimientoProvidencia.setEstadoAnterior(estadoAnterior);
         }
 
         movimientoProvidencia = this.movimientoProvidenciaRepository.save(movimientoProvidencia);
 
-        if (documentoDTOs != null && documentoDTOs.size() > 0)
-        {
-            for (Iterator<DocumentoDTO> it = documentoDTOs.iterator(); it.hasNext();)
-            {
+        if (documentoDTOs != null && documentoDTOs.size() > 0) {
+            for (Iterator<DocumentoDTO> it = documentoDTOs.iterator(); it.hasNext(); ) {
                 DocumentoDTO documentoDTO = it.next();
                 documentoDTO.setMovimientoProvidenciaId(movimientoProvidencia.getId());
                 this.documentoService.update(documentoDTO);
             }
         }
 
-        if (adjuntoDTOs != null && adjuntoDTOs.size() > 0)
-        {
-            for (Iterator<AdjuntoDTO> it = adjuntoDTOs.iterator(); it.hasNext();)
-            {
+        if (adjuntoDTOs != null && adjuntoDTOs.size() > 0) {
+            for (Iterator<AdjuntoDTO> it = adjuntoDTOs.iterator(); it.hasNext(); ) {
                 AdjuntoDTO adjuntoDTO = it.next();
                 adjuntoDTO.setMovimientoProvidenciaId(movimientoProvidencia.getId());
                 this.adjuntoService.save(adjuntoDTO);
@@ -131,16 +124,13 @@ public class MovimientoProvidenciaService {
         return movimientoProvidenciaMapper.toDto(movimientoProvidencia);
     }
 
-    private Plazo determinePlazo(String estadoAntiguo, String estadoNuevo)
-    {
+    private Plazo determinePlazo(String estadoAntiguo, String estadoNuevo) {
         Optional<PlazoDTO> optionalPlazo = Optional.empty();
         Plazo plazo = null;
 
-        if (estadoAntiguo != null && estadoAntiguo.equals(EstadoProvidencia.FISCAL_ENVIA_A_UPD_MEMO_CIERRE) && estadoNuevo.equals(EstadoProvidencia.PROVIDENCIA_CREADA))
-        {
+        if (estadoAntiguo != null && estadoAntiguo.equals(EstadoProvidencia.FISCAL_ENVIA_A_UPD_MEMO_CIERRE) && estadoNuevo.equals(EstadoProvidencia.PROVIDENCIA_CREADA)) {
             optionalPlazo = this.plazoService.findOne(1L);
-            if (optionalPlazo.isPresent())
-            {
+            if (optionalPlazo.isPresent()) {
                 plazo = this.plazoMapper.toEntity(optionalPlazo.get());
             }
         }
@@ -157,10 +147,8 @@ public class MovimientoProvidenciaService {
     public Page<MovimientoProvidenciaDTO> findAll(Pageable pageable, FiltroMovimientoProvidenciaDTO filtro) {
         log.debug("Request to get all MovimientoProvidencias");
 
-        if (filtro != null)
-        {
-            if (filtro.getAccion() != null)
-            {
+        if (filtro != null) {
+            if (filtro.getAccion() != null) {
                 List<MovimientoProvidenciaDTO> list = movimientoProvidenciaRepository.findAll(pageable)
                     .filter(mov -> mov.getAccion().equalsIgnoreCase(filtro.getAccion())).stream()
                     .map(this.movimientoProvidenciaMapper::toDto)
@@ -169,8 +157,7 @@ public class MovimientoProvidenciaService {
                 return new PageImpl<MovimientoProvidenciaDTO>(list);
             }
 
-            if (filtro.getTipoAdjunto() != null)
-            {
+            if (filtro.getTipoAdjunto() != null) {
                 List<MovimientoProvidenciaDTO> list = movimientoProvidenciaRepository.findAll(pageable)
                     .filter(mov -> mov.getEstadoNuevo().equalsIgnoreCase(filtro.getEstadoProvidencia().name()))
                     .stream().map(this.movimientoProvidenciaMapper::toDto).collect(Collectors.toList());
@@ -217,14 +204,12 @@ public class MovimientoProvidenciaService {
     }
 
     @Transactional
-    public Set<MovimientoProvidenciaDTO> getAllByIdProvidencia(ProvidenciaDTO providenciaDTO)
-    {
+    public Set<MovimientoProvidenciaDTO> getAllByIdProvidencia(ProvidenciaDTO providenciaDTO) {
         Providencia providencia = this.providenciaMapper.toEntity(providenciaDTO);
         Set<MovimientoProvidencia> movimientos = this.movimientoProvidenciaRepository.findByProvidencia(providencia);
 
         Set<MovimientoProvidenciaDTO> movimientoProvidenciaDTOs = new TreeSet<>();
-        for (Iterator<MovimientoProvidencia> it = movimientos.iterator(); it.hasNext();)
-        {
+        for (Iterator<MovimientoProvidencia> it = movimientos.iterator(); it.hasNext(); ) {
             MovimientoProvidencia movimientoProvidencia = it.next();
 
             movimientoProvidenciaDTOs.add(this.movimientoProvidenciaMapper.toDto(movimientoProvidencia));
@@ -234,42 +219,32 @@ public class MovimientoProvidenciaService {
     }
 
     @Transactional
-    public Set<MovimientoProvidenciaDTO> getAllByIdProvidenciaWithFilters(ProvidenciaDTO providenciaDTO, FiltroMovimientoProvidenciaDTO filtro)
-    {
+    public Set<MovimientoProvidenciaDTO> getAllByIdProvidenciaWithFilters(ProvidenciaDTO providenciaDTO, FiltroMovimientoProvidenciaDTO filtro) {
         Providencia providencia = this.providenciaMapper.toEntity(providenciaDTO);
         Set<MovimientoProvidencia> movimientos = this.movimientoProvidenciaRepository.findByProvidencia(providencia);
         Set<MovimientoProvidenciaDTO> movimientoProvidenciaDTOs = new TreeSet<>();
 
-        for (Iterator<MovimientoProvidencia> it = movimientos.iterator(); it.hasNext();)
-        {
+        for (Iterator<MovimientoProvidencia> it = movimientos.iterator(); it.hasNext(); ) {
             MovimientoProvidencia movimientoProvidencia = it.next();
 
-            if(filtro != null)
-            {
-                if(filtro.getAccion() != null)
-                {
-                    if(movimientoProvidencia.getAccion() != null && movimientoProvidencia.getAccion()
-                        .equalsIgnoreCase(filtro.getAccion()))
-                    {
+            if (filtro != null) {
+                if (filtro.getAccion() != null) {
+                    if (movimientoProvidencia.getAccion() != null && movimientoProvidencia.getAccion()
+                        .equalsIgnoreCase(filtro.getAccion())) {
                         movimientoProvidenciaDTOs.add(this.movimientoProvidenciaMapper.toDto(movimientoProvidencia));
                     }
                 }
 
-                if(filtro.getEstadoProvidencia() != null)
-                {
-                    if (movimientoProvidencia.getEstadoAnterior().equals(filtro.getEstadoProvidencia()))
-                    {
+                if (filtro.getEstadoProvidencia() != null) {
+                    if (movimientoProvidencia.getEstadoAnterior().equals(filtro.getEstadoProvidencia())) {
                         movimientoProvidenciaDTOs.add(this.movimientoProvidenciaMapper.toDto(movimientoProvidencia));
                     }
                 }
 
-                if(filtro.getTipoAdjunto() != null)
-                {
+                if (filtro.getTipoAdjunto() != null) {
 //                    if (movimientoProvidencia)
                 }
-            }
-            else
-            {
+            } else {
 
                 movimientoProvidenciaDTOs.add(this.movimientoProvidenciaMapper.toDto(movimientoProvidencia));
             }

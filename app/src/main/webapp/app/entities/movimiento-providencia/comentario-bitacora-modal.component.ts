@@ -2,13 +2,13 @@
  * Created by sneiraillanes on 01-04-2019.
  */
 import {Component, OnInit, OnDestroy, Input} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { IAdjunto } from 'app/shared/model/adjunto.model';
-import { IDocumento } from '../../shared/model/documento.model';
-import { DocumentoService } from '../documento/documento.service';
-import { HttpResponse } from '@angular/common/http';
-import { AdjuntoService } from 'app/entities/adjunto';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {IAdjunto} from 'app/shared/model/adjunto.model';
+import {IDocumento} from '../../shared/model/documento.model';
+import {DocumentoService} from '../documento/documento.service';
+import {HttpResponse} from '@angular/common/http';
+import {AdjuntoService} from 'app/entities/adjunto';
 import {IMovimientoProvidencia} from '../../shared/model/movimiento-providencia.model';
 
 @Component({
@@ -27,9 +27,11 @@ export class ComentarioBitacoraModalComponent implements OnInit, OnDestroy {
         public activeModal: NgbActiveModal,
         private adjuntoService: AdjuntoService,
         private documentoService: DocumentoService
-    ) {}
+    ) {
+    }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
 
     ngOnDestroy() {
         this.ngbModalRef = null;
@@ -37,7 +39,7 @@ export class ComentarioBitacoraModalComponent implements OnInit, OnDestroy {
 
     open(content) {
         console.log(content);
-        this.modalService.open(content, { size: 'lg', backdrop: 'static' }).result.then(
+        this.modalService.open(content, {size: 'lg', backdrop: 'static'}).result.then(
             result => {
 
             },

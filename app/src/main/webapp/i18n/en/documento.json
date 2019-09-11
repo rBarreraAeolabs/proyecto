@@ -1,7 +1,6 @@
-
 {
     "pdisciplinarioApp": {
-        "documento" : {
+        "documento": {
             "home": {
                 "title": "Documentos",
                 "createLabel": "Create a new Documento",

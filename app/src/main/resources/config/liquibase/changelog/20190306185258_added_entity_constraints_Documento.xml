@@ -7,7 +7,7 @@
         Added the constraints for entity Documento.
     -->
     <changeSet id="20190306185258-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="providencia_id"
                                  baseTableName="documento"
                                  constraintName="fk_documento_providencia_id"

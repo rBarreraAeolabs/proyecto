@@ -200,18 +200,12 @@ public class MovimientoProvidenciaDTO implements Serializable, Comparable<Movimi
     }
 
     @Override
-    public int compareTo(@NotNull MovimientoProvidenciaDTO movimientoProvidenciaDTO)
-    {
-        if (this.getId() > movimientoProvidenciaDTO.getId())
-        {
+    public int compareTo(@NotNull MovimientoProvidenciaDTO movimientoProvidenciaDTO) {
+        if (this.getId() > movimientoProvidenciaDTO.getId()) {
             return 1;
-        }
-        else if (this.getId() < movimientoProvidenciaDTO.getId())
-        {
+        } else if (this.getId() < movimientoProvidenciaDTO.getId()) {
             return -1;
-        }
-        else
-        {
+        } else {
             return 0;
         }
     }

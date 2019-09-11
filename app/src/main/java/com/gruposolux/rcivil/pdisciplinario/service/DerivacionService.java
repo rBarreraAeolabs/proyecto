@@ -96,11 +96,9 @@ public class DerivacionService {
     }
 
     @Transactional
-    public Set<DerivacionDTO> getByProvidencia(Long idProvidencia)
-    {
+    public Set<DerivacionDTO> getByProvidencia(Long idProvidencia) {
         Optional<ProvidenciaDTO> optionalProvidencia = this.providenciaService.findOne(idProvidencia);
-        if (optionalProvidencia.isPresent())
-        {
+        if (optionalProvidencia.isPresent()) {
             Providencia providencia = optionalProvidencia.map(this.providenciaMapper::toEntity).get();
             return this.derivacionRepository.findLastByProvidencia(providencia).stream()
                 .map(this.derivacionMapper::toDto).collect(Collectors.toSet());
@@ -109,8 +107,7 @@ public class DerivacionService {
     }
 
     @Transactional
-    public List<DerivacionDTO> findLastByProvidencia(ProvidenciaDTO providenciaDTO)
-    {
+    public List<DerivacionDTO> findLastByProvidencia(ProvidenciaDTO providenciaDTO) {
         Providencia providencia = this.providenciaMapper.toEntity(providenciaDTO);
         return this.derivacionRepository.findLastByProvidencia(providencia).stream().map(this.derivacionMapper::toDto)
             .collect(Collectors.toList());

@@ -6,7 +6,8 @@
                 <div>
                     <div class="container">
                         <div class="d-flex justify-content-center">
-                            <h2 id="jhi-providencia-heading" jhiTranslate="pdisciplinarioApp.respuesta.home.createLabel"></h2>
+                            <h2 id="jhi-providencia-heading"
+                                jhiTranslate="pdisciplinarioApp.respuesta.home.createLabel"></h2>
                         </div>
                         <form name="editForm" role="form" novalidate (ngSubmit)="save(true)" #editForm="ngForm">
                             <div>
@@ -21,7 +22,8 @@
                                     <div class="d-flex justify-content-between">
                                         <select class="form-control" (click)="onSelectPlantilla($event.target.value)">
                                             <option disabled value="Seleccionar">Seleccionar</option>
-                                            <option *ngFor="let plantilla of plantillas" id="field_plantillas" value="{{plantilla.id}}">
+                                            <option *ngFor="let plantilla of plantillas" id="field_plantillas"
+                                                    value="{{plantilla.id}}">
                                                 {{plantilla.nombre}}
                                             </option>
                                         </select>
@@ -44,7 +46,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label " jhiTranslate="pdisciplinarioApp.respuesta.adjuntos">Adjuntos</label>
+                                    <label class="form-control-label "
+                                           jhiTranslate="pdisciplinarioApp.respuesta.adjuntos">Adjuntos</label>
                                     <jhi-file-upload-component
                                         (fileResponse)="getUploadedAdjuntos($event)"
                                         (notDeletedDocument)="getNotDeletedDocuments($event)"

@@ -89,7 +89,7 @@ public class FichaIngresoSdjResource {
      * GET  /ficha-ingreso-sdjs : get all the fichaIngresoSdjs.
      *
      * @param pageable the pagination information
-     * @param filter the filter of the request
+     * @param filter   the filter of the request
      * @return the ResponseEntity with status 200 (OK) and the list of fichaIngresoSdjs in body
      */
     @GetMapping("/ficha-ingreso-sdjs")

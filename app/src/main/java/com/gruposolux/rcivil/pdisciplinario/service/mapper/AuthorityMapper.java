@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {})
-public interface AuthorityMapper extends EntityMapper <AuthorityDTO, Authority> {
+public interface AuthorityMapper extends EntityMapper<AuthorityDTO, Authority> {
 
     AuthorityDTO toDto(Authority authority);
 
@@ -18,7 +18,7 @@ public interface AuthorityMapper extends EntityMapper <AuthorityDTO, Authority> 
     List<Authority> toEntity(List<AuthorityDTO> authorityDTOS);
 
     default Authority fromName(String name) {
-        if (name == null){
+        if (name == null) {
             return null;
         }
 

@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
-import { JhiAlertService } from 'ng-jhipster';
+import {DATE_TIME_FORMAT} from 'app/shared/constants/input.constants';
+import {JhiAlertService} from 'ng-jhipster';
 
-import { IMovimientoSumarioAdministrativo } from 'app/shared/model/movimiento-sumario-administrativo.model';
-import { MovimientoSumarioAdministrativoService } from './movimiento-sumario-administrativo.service';
-import { ISumarioAdministrativo } from 'app/shared/model/sumario-administrativo.model';
-import { SumarioAdministrativoService } from 'app/entities/sumario-administrativo';
+import {IMovimientoSumarioAdministrativo} from 'app/shared/model/movimiento-sumario-administrativo.model';
+import {MovimientoSumarioAdministrativoService} from './movimiento-sumario-administrativo.service';
+import {ISumarioAdministrativo} from 'app/shared/model/sumario-administrativo.model';
+import {SumarioAdministrativoService} from 'app/entities/sumario-administrativo';
 
 @Component({
     selector: 'jhi-movimiento-sumario-administrativo-update',
@@ -27,11 +27,12 @@ export class MovimientoSumarioAdministrativoUpdateComponent implements OnInit {
         private movimientoSumarioAdministrativoService: MovimientoSumarioAdministrativoService,
         private sumarioAdministrativoService: SumarioAdministrativoService,
         private activatedRoute: ActivatedRoute
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({ movimientoSumarioAdministrativo }) => {
+        this.activatedRoute.data.subscribe(({movimientoSumarioAdministrativo}) => {
             this.movimientoSumarioAdministrativo = movimientoSumarioAdministrativo;
         });
         this.sumarioAdministrativoService.query().subscribe(
@@ -79,6 +80,7 @@ export class MovimientoSumarioAdministrativoUpdateComponent implements OnInit {
     trackSumarioAdministrativoById(index: number, item: ISumarioAdministrativo) {
         return item.id;
     }
+
     get movimientoSumarioAdministrativo() {
         return this._movimientoSumarioAdministrativo;
     }

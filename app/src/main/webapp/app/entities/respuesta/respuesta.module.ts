@@ -1,9 +1,9 @@
 /**
  * Created by sneiraillanes on 22-04-2019.
  */
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { PdisciplinarioSharedModule } from 'app/shared';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {PdisciplinarioSharedModule} from 'app/shared';
 import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import {FormsModule} from '@angular/forms';
 import {CKEditorModule} from 'ng2-ckeditor';
@@ -21,12 +21,10 @@ import {RespuestaBitacoraModalComponent} from 'app/entities/respuesta/respuesta-
         CommonModule,
         PdisciplinarioSharedModule
     ],
-    exports: [
-    ],
-    declarations: [
-    ],
-    entryComponents: [
-    ],
+    exports: [],
+    declarations: [],
+    entryComponents: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PdisciplinarioRespuestaModule {}
+export class PdisciplinarioRespuestaModule {
+}

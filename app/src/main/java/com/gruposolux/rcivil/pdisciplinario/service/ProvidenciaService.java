@@ -322,7 +322,7 @@ public class ProvidenciaService {
             case FISCAL_RECHAZO:
                 etapa = EstadoProvidencia.PROVIDENCIA_SELECCION_FISCAL;
                 break;
-                //PRORROGA AGREGAR ACA
+            //PRORROGA AGREGAR ACA
 
             case PRORROGA:
                 etapa = EstadoProvidencia.PRORROGA2;
@@ -892,198 +892,196 @@ public class ProvidenciaService {
     }
 
     @Transactional(readOnly = true)
-    public Providencia getProvidenciaMadreid(Long idMadre, String tipoProvidencia) {
+    public Providencia getProvidenciaMadreid(Long idMadre) {
         log.debug("Request to get Providencia : {}", idMadre);
-        List<Providencia> providencias = null;
+        Providencia providencias = null;
 
-        if (tipoProvidencia == "EL ESTADO DE DONDE NACE LA PRORROGA?") {
-            providencias = (List<Providencia>) providenciaRepository.findOneforProrroga(idMadre);
-        } else if (tipoProvidencia == "PRORROGA") {
-            providencias = (List<Providencia>) providenciaRepository.findOneforProrroga(idMadre);
-        }
-        return providencias.get(0);
+
+        providencias = (Providencia) providenciaRepository.findOneforProrroga(idMadre);
+
+        return providencias;
     }
 
     // crear prrorroga
-    public ProvidenciaDTO createdProvidenciProrroga(ProvidenciaDTO providenciaDTO, Providencia providenciaMadre,
-                                                    Prorroga tipoProrroga) {
+    public ProvidenciaDTO createdProvidenciProrroga(Providencia providenciaMadre
+                                                    ) {
 
 
-            Providencia provi = new Providencia();
+        Providencia provi = new Providencia();
 //        Providencia provi = providenciaMapper.toEntity(providenciaDTO);
-            Prorroga ProrrogaSeleccionado = tipoProrroga;
-            EstadoProvidencia etapa = null;
+        Prorroga tipoProrroga =null;
+        Prorroga ProrrogaSeleccionado = tipoProrroga;
+        EstadoProvidencia etapa = null;
 
-            if (ProrrogaSeleccionado == null) {
-                etapa = this.determinaEtapa(providenciaMadre.getRequisito());
-            } else {
-                etapa = this.determinaEtapaProrroga(tipoProrroga);
-            }
-            EstadoProvidencia requisito = this.newState(provi, AccionesProvidencia.CREAR_PROVIDENCIA);
-            EstadoProvidencia subEtapa = this.determinaSubEtapa(requisito);
-            String estadoProviCompleto = this.concatenarEstado(requisito, subEtapa, etapa);
-            String estadoInicial = this.determinaEstadoInicial(etapa);
-
-            provi.setFechaCreacion(Instant.now());
-            provi.setEtapa(etapa);
-            provi.setSubEtapa(subEtapa);
-            provi.setRequisito(requisito);
-            provi.setEstadoActual(estadoProviCompleto);
-            provi.setNumeroReferencia(providenciaMadre.getNumeroReferencia());
-
-            if (providenciaMadre.getEtapa() == EstadoProvidencia.NUEVA_PROVIDENCIA) {
-                provi.setProvidencia_madre_id(providenciaMadre.getId());
-            } else {
-                provi.setProvidencia_madre_id(providenciaMadre.getProvidencia_madre_id());
-            }
-
-            insertaTipoProvidencia(provi);
-            provi = providenciaRepository.save(provi);
-            verificaAdjuntosYGuarda(providenciaDTO, provi);
-            //Settear el ID de la providencia creada en los adjuntos
-            List<AdjuntoDTO> adjuntoDTOs = this.setIdProvidenciaOnAdjuntos(provi, providenciaDTO.getAdjuntos());
-            ProvidenciaDTO proviDto = providenciaMapper.toDto(provi);
-
-            if (adjuntoDTOs != null && adjuntoDTOs.size() > 0) {
-                providenciaDTO.setAdjuntos(adjuntoDTOs.stream().collect(Collectors.toSet()));
-            }
-
-            Grupo grupoAnswer = this.determineGroupAnswer(provi);
-            Derivacion derivacion = this.registerDerivation("desde el director nacional", provi, null, grupoAnswer);
-
-            this.movimientoProvidenciaService.save(estadoInicial, estadoProviCompleto, provi.getId(), derivacion.getObservacion(),
-                null, proviDto.getAdjuntos(), "Derivado");
-
-            return proviDto;
+        if (ProrrogaSeleccionado == Prorroga.PRORROGA) {
+            etapa = this.determinaEtapa(providenciaMadre.getRequisito());
+        } else {
+            etapa = this.determinaEtapaProrroga(tipoProrroga);
         }
+        EstadoProvidencia requisito = this.newState(provi, AccionesProvidencia.CREAR_PROVIDENCIA);
+        EstadoProvidencia subEtapa = this.determinaSubEtapa(requisito);
+        String estadoProviCompleto = this.concatenarEstado(requisito, subEtapa, etapa);
+        String estadoInicial = this.determinaEstadoInicial(etapa);
 
+        provi.setFechaCreacion(Instant.now());
+        provi.setEtapa(etapa);
+        provi.setSubEtapa(subEtapa);
+        provi.setRequisito(requisito);
+        provi.setEstadoActual(estadoProviCompleto);
+        provi.setNumeroReferencia(providenciaMadre.getNumeroReferencia());
 
-
-        // Metodo que crea una Providencia de tipo SELECCIONFISCAL u ORDENJURIDICO
-
-        public ProvidenciaDTO createdProvidenciaForType (ProvidenciaDTO providenciaDTO, Providencia providenciaMadre,
-            OrdenJuridico ordenJuridicoSeleccionado){
-
-            Providencia provi = new Providencia();
-//        Providencia provi = providenciaMapper.toEntity(providenciaDTO);
-            OrdenJuridico oJuridicoSeleccionado = ordenJuridicoSeleccionado;
-            EstadoProvidencia etapa = null;
-
-            if (oJuridicoSeleccionado == null) {
-                etapa = this.determinaEtapa(providenciaMadre.getRequisito());
-            } else {
-                etapa = this.determinaEtapaOrdenJuridico(ordenJuridicoSeleccionado);
-            }
-            EstadoProvidencia requisito = this.newState(provi, AccionesProvidencia.CREAR_PROVIDENCIA);
-            EstadoProvidencia subEtapa = this.determinaSubEtapa(requisito);
-            String estadoProviCompleto = this.concatenarEstado(requisito, subEtapa, etapa);
-            String estadoInicial = this.determinaEstadoInicial(etapa);
-
-            provi.setFechaCreacion(Instant.now());
-            provi.setEtapa(etapa);
-            provi.setSubEtapa(subEtapa);
-            provi.setRequisito(requisito);
-            provi.setEstadoActual(estadoProviCompleto);
-            provi.setNumeroReferencia(providenciaMadre.getNumeroReferencia());
-
-            if (providenciaMadre.getEtapa() == EstadoProvidencia.NUEVA_PROVIDENCIA) {
-                provi.setProvidencia_madre_id(providenciaMadre.getId());
-            } else {
-                provi.setProvidencia_madre_id(providenciaMadre.getProvidencia_madre_id());
-            }
-
-            insertaTipoProvidencia(provi);
-            provi = providenciaRepository.save(provi);
-            verificaAdjuntosYGuarda(providenciaDTO, provi);
-            //Settear el ID de la providencia creada en los adjuntos
-            List<AdjuntoDTO> adjuntoDTOs = this.setIdProvidenciaOnAdjuntos(provi, providenciaDTO.getAdjuntos());
-            ProvidenciaDTO proviDto = providenciaMapper.toDto(provi);
-
-            if (adjuntoDTOs != null && adjuntoDTOs.size() > 0) {
-                providenciaDTO.setAdjuntos(adjuntoDTOs.stream().collect(Collectors.toSet()));
-            }
-
-            Grupo grupoAnswer = this.determineGroupAnswer(provi);
-            Derivacion derivacion = this.registerDerivation("desde el director nacional", provi, null, grupoAnswer);
-
-            this.movimientoProvidenciaService.save(estadoInicial, estadoProviCompleto, provi.getId(), derivacion.getObservacion(),
-                null, proviDto.getAdjuntos(), "Derivado");
-
-            return proviDto;
-        }
-
-        // Metodo que crea una tipo de providencia Sancion APELO o NO APELO
-        public ProvidenciaDTO createdProvidenciaSancion (ProvidenciaDTO providenciaDTO,
-            Providencia providenciaMadre, Apelacion tipoApelacion) {
-
-            Providencia provi = new Providencia();
-//        Providencia provi = providenciaMapper.toEntity(providenciaDTO);
-            Apelacion tipoApleacion = tipoApelacion;
-            EstadoProvidencia etapa = null;
-
-            if (tipoApleacion == Apelacion.APELO) {
-                etapa = EstadoProvidencia.PROVIDENCIA_SANCION_APELO;
-            } else {
-                etapa = EstadoProvidencia.PROVIDENCIA_SANCION_NO_APELO;
-            }
-            EstadoProvidencia requisito = this.newState(provi, AccionesProvidencia.CREAR_PROVIDENCIA);
-            EstadoProvidencia subEtapa = this.determinaSubEtapa(requisito);
-            String estadoProviCompleto = this.concatenarEstado(requisito, subEtapa, etapa);
-            String estadoInicial = this.determinaEstadoInicial(etapa);
-
-            provi.setFechaCreacion(Instant.now());
-            provi.setEtapa(etapa);
-            provi.setSubEtapa(subEtapa);
-            provi.setRequisito(requisito);
-            provi.setEstadoActual(estadoProviCompleto);
-            provi.setNumeroReferencia(providenciaMadre.getNumeroReferencia());
+        if (providenciaMadre.getEtapa() == EstadoProvidencia.NUEVA_PROVIDENCIA) {
             provi.setProvidencia_madre_id(providenciaMadre.getId());
-
-            insertaTipoProvidencia(provi);
-            provi = providenciaRepository.save(provi);
-            verificaAdjuntosYGuarda(providenciaDTO, provi);
-            //Settear el ID de la providencia creada en los adjuntos
-            List<AdjuntoDTO> adjuntoDTOs = this.setIdProvidenciaOnAdjuntos(provi, providenciaDTO.getAdjuntos());
-            ProvidenciaDTO proviDto = providenciaMapper.toDto(provi);
-
-            if (adjuntoDTOs != null && adjuntoDTOs.size() > 0) {
-                providenciaDTO.setAdjuntos(adjuntoDTOs.stream().collect(Collectors.toSet()));
-            }
-
-            Grupo grupoAnswer = this.determineGroupAnswer(provi);
-            Derivacion derivacion = this.registerDerivation("desde el director nacional", provi, null, grupoAnswer);
-
-            this.movimientoProvidenciaService.save(estadoInicial, estadoProviCompleto, provi.getId(), derivacion.getObservacion(),
-                null, proviDto.getAdjuntos(), "Derivado");
-
-            return proviDto;
+        } else {
+            provi.setProvidencia_madre_id(providenciaMadre.getProvidencia_madre_id());
         }
 
-        // Metodo para Determinar la Etapa en base a la seleccion del OrdenJuridico hecho por el usuario
-        private EstadoProvidencia determinaEtapaOrdenJuridico (OrdenJuridico ordenJuridicoSeleccionado){
+        insertaTipoProvidencia(provi);
+        provi = providenciaRepository.save(provi);
+//            verificaAdjuntosYGuarda(providenciaDTO, provi);
+        //Settear el ID de la providencia creada en los adjuntos
+//            List<AdjuntoDTO> adjuntoDTOs = this.setIdProvidenciaOnAdjuntos(provi, providenciaDTO.getAdjuntos());
+        ProvidenciaDTO proviDto = providenciaMapper.toDto(provi);
 
-            EstadoProvidencia etapaOrdenJuridico = null;
+//            if (adjuntoDTOs != null && adjuntoDTOs.size() > 0) {
+//                providenciaDTO.setAdjuntos(adjuntoDTOs.stream().collect(Collectors.toSet()));
+//            }
 
-            switch (ordenJuridicoSeleccionado) {
-                case REABRIR:
-                    etapaOrdenJuridico = EstadoProvidencia.IJ_PROVIDENCIA_REABRIR;
-                    break;
-                case SANCIONAR:
-                    etapaOrdenJuridico = EstadoProvidencia.IJ_PROVIDENCIA_SANCIONAR;
-                    break;
-                case SOBRECEDER:
-                    etapaOrdenJuridico = EstadoProvidencia.IJ_PROVIDENCIA_SOBRECEDER;
-                    break;
-                case ABSOLVER:
-                    etapaOrdenJuridico = EstadoProvidencia.IJ_PROVIDENCIA_ABSOLVER;
-                    break;
-            }
-            return etapaOrdenJuridico;
+        Grupo grupoAnswer = this.determineGroupAnswer(provi);
+        Derivacion derivacion = this.registerDerivation("desde el director nacional", provi, null, grupoAnswer);
+
+        this.movimientoProvidenciaService.save(estadoInicial, estadoProviCompleto, provi.getId(), derivacion.getObservacion(),
+            null, proviDto.getAdjuntos(), "Derivado");
+
+        return proviDto;
+    }
+
+
+    // Metodo que crea una Providencia de tipo SELECCIONFISCAL u ORDENJURIDICO
+
+    public ProvidenciaDTO createdProvidenciaForType(ProvidenciaDTO providenciaDTO, Providencia providenciaMadre,
+                                                    OrdenJuridico ordenJuridicoSeleccionado) {
+
+        Providencia provi = new Providencia();
+//        Providencia provi = providenciaMapper.toEntity(providenciaDTO);
+        OrdenJuridico oJuridicoSeleccionado = ordenJuridicoSeleccionado;
+        EstadoProvidencia etapa = null;
+
+        if (oJuridicoSeleccionado == null) {
+            etapa = this.determinaEtapa(providenciaMadre.getRequisito());
+        } else {
+            etapa = this.determinaEtapaOrdenJuridico(ordenJuridicoSeleccionado);
+        }
+        EstadoProvidencia requisito = this.newState(provi, AccionesProvidencia.CREAR_PROVIDENCIA);
+        EstadoProvidencia subEtapa = this.determinaSubEtapa(requisito);
+        String estadoProviCompleto = this.concatenarEstado(requisito, subEtapa, etapa);
+        String estadoInicial = this.determinaEstadoInicial(etapa);
+
+        provi.setFechaCreacion(Instant.now());
+        provi.setEtapa(etapa);
+        provi.setSubEtapa(subEtapa);
+        provi.setRequisito(requisito);
+        provi.setEstadoActual(estadoProviCompleto);
+        provi.setNumeroReferencia(providenciaMadre.getNumeroReferencia());
+
+        if (providenciaMadre.getEtapa() == EstadoProvidencia.NUEVA_PROVIDENCIA) {
+            provi.setProvidencia_madre_id(providenciaMadre.getId());
+        } else {
+            provi.setProvidencia_madre_id(providenciaMadre.getProvidencia_madre_id());
         }
 
+        insertaTipoProvidencia(provi);
+        provi = providenciaRepository.save(provi);
+        verificaAdjuntosYGuarda(providenciaDTO, provi);
+        //Settear el ID de la providencia creada en los adjuntos
+        List<AdjuntoDTO> adjuntoDTOs = this.setIdProvidenciaOnAdjuntos(provi, providenciaDTO.getAdjuntos());
+        ProvidenciaDTO proviDto = providenciaMapper.toDto(provi);
 
-        //determinar la etapa para prorroga
-    private EstadoProvidencia determinaEtapaProrroga (Prorroga tipoProrroga){
+        if (adjuntoDTOs != null && adjuntoDTOs.size() > 0) {
+            providenciaDTO.setAdjuntos(adjuntoDTOs.stream().collect(Collectors.toSet()));
+        }
+
+        Grupo grupoAnswer = this.determineGroupAnswer(provi);
+        Derivacion derivacion = this.registerDerivation("desde el director nacional", provi, null, grupoAnswer);
+
+        this.movimientoProvidenciaService.save(estadoInicial, estadoProviCompleto, provi.getId(), derivacion.getObservacion(),
+            null, proviDto.getAdjuntos(), "Derivado");
+
+        return proviDto;
+    }
+
+    // Metodo que crea una tipo de providencia Sancion APELO o NO APELO
+    public ProvidenciaDTO createdProvidenciaSancion(ProvidenciaDTO providenciaDTO,
+                                                    Providencia providenciaMadre, Apelacion tipoApelacion) {
+
+        Providencia provi = new Providencia();
+//        Providencia provi = providenciaMapper.toEntity(providenciaDTO);
+        Apelacion tipoApleacion = tipoApelacion;
+        EstadoProvidencia etapa = null;
+
+        if (tipoApleacion == Apelacion.APELO) {
+            etapa = EstadoProvidencia.PROVIDENCIA_SANCION_APELO;
+        } else {
+            etapa = EstadoProvidencia.PROVIDENCIA_SANCION_NO_APELO;
+        }
+        EstadoProvidencia requisito = this.newState(provi, AccionesProvidencia.CREAR_PROVIDENCIA);
+        EstadoProvidencia subEtapa = this.determinaSubEtapa(requisito);
+        String estadoProviCompleto = this.concatenarEstado(requisito, subEtapa, etapa);
+        String estadoInicial = this.determinaEstadoInicial(etapa);
+
+        provi.setFechaCreacion(Instant.now());
+        provi.setEtapa(etapa);
+        provi.setSubEtapa(subEtapa);
+        provi.setRequisito(requisito);
+        provi.setEstadoActual(estadoProviCompleto);
+        provi.setNumeroReferencia(providenciaMadre.getNumeroReferencia());
+        provi.setProvidencia_madre_id(providenciaMadre.getId());
+
+        insertaTipoProvidencia(provi);
+        provi = providenciaRepository.save(provi);
+        verificaAdjuntosYGuarda(providenciaDTO, provi);
+        //Settear el ID de la providencia creada en los adjuntos
+        List<AdjuntoDTO> adjuntoDTOs = this.setIdProvidenciaOnAdjuntos(provi, providenciaDTO.getAdjuntos());
+        ProvidenciaDTO proviDto = providenciaMapper.toDto(provi);
+
+        if (adjuntoDTOs != null && adjuntoDTOs.size() > 0) {
+            providenciaDTO.setAdjuntos(adjuntoDTOs.stream().collect(Collectors.toSet()));
+        }
+
+        Grupo grupoAnswer = this.determineGroupAnswer(provi);
+        Derivacion derivacion = this.registerDerivation("desde el director nacional", provi, null, grupoAnswer);
+
+        this.movimientoProvidenciaService.save(estadoInicial, estadoProviCompleto, provi.getId(), derivacion.getObservacion(),
+            null, proviDto.getAdjuntos(), "Derivado");
+
+        return proviDto;
+    }
+
+    // Metodo para Determinar la Etapa en base a la seleccion del OrdenJuridico hecho por el usuario
+    private EstadoProvidencia determinaEtapaOrdenJuridico(OrdenJuridico ordenJuridicoSeleccionado) {
+
+        EstadoProvidencia etapaOrdenJuridico = null;
+
+        switch (ordenJuridicoSeleccionado) {
+            case REABRIR:
+                etapaOrdenJuridico = EstadoProvidencia.IJ_PROVIDENCIA_REABRIR;
+                break;
+            case SANCIONAR:
+                etapaOrdenJuridico = EstadoProvidencia.IJ_PROVIDENCIA_SANCIONAR;
+                break;
+            case SOBRECEDER:
+                etapaOrdenJuridico = EstadoProvidencia.IJ_PROVIDENCIA_SOBRECEDER;
+                break;
+            case ABSOLVER:
+                etapaOrdenJuridico = EstadoProvidencia.IJ_PROVIDENCIA_ABSOLVER;
+                break;
+        }
+        return etapaOrdenJuridico;
+    }
+
+
+    //determinar la etapa para prorroga
+    private EstadoProvidencia determinaEtapaProrroga(Prorroga tipoProrroga) {
 
         EstadoProvidencia etapaProrroga = null;
 
@@ -1098,8 +1096,6 @@ public class ProvidenciaService {
         }
         return etapaProrroga;
     }
-
-
 
 
 }

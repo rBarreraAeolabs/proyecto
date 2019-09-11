@@ -1,7 +1,6 @@
-
 {
     "pdisciplinarioApp": {
-        "sumarioAdministrativo" : {
+        "sumarioAdministrativo": {
             "home": {
                 "title": "Sumario Administrativos",
                 "createLabel": "Create a new Sumario Administrativo",

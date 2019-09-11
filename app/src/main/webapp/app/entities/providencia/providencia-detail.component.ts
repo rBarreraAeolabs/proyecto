@@ -1,10 +1,10 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 import {EstadoProvidencia, IProvidencia} from 'app/shared/model/providencia.model';
 
-import { JhiAlertService } from 'ng-jhipster';
-import { IMovimientoProvidencia } from 'app/shared/model/movimiento-providencia.model';
+import {JhiAlertService} from 'ng-jhipster';
+import {IMovimientoProvidencia} from 'app/shared/model/movimiento-providencia.model';
 import {ProvidenciaService} from './providencia.service';
 import {IRespuesta} from '../../shared/model/respuesta.model';
 
@@ -33,27 +33,28 @@ export class ProvidenciaDetailComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private jhiAlertService: JhiAlertService,
         private providenciaService: ProvidenciaService
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({ providencia }) => {
+        this.activatedRoute.data.subscribe(({providencia}) => {
             this.providencia = providencia;
 
             this.providenciaService.getActionsPermitted(this.providencia).subscribe(response => {
                 this.actionsPermitted = response.body;
             });
 
-            if (this.providencia.estadoActual===EstadoProvidencia.ESTADO_6 || this.providencia.estadoActual===EstadoProvidencia.ESTADO_14) {
+            if (this.providencia.estadoActual === EstadoProvidencia.ESTADO_6 || this.providencia.estadoActual === EstadoProvidencia.ESTADO_14) {
                 this.disableResponder = true;
             }
 
-            if (this.providencia.estadoActual===EstadoProvidencia.ESTADO_21){
-                this.isResponder=false;
-                this.isDevolver=false;
+            if (this.providencia.estadoActual === EstadoProvidencia.ESTADO_21) {
+                this.isResponder = false;
+                this.isDevolver = false;
             }
-            if (this.providencia.estadoActual===EstadoProvidencia.ESTADO_19){
-                this.isResponder=false;
-                this.isDevolver=false;
+            if (this.providencia.estadoActual === EstadoProvidencia.ESTADO_19) {
+                this.isResponder = false;
+                this.isDevolver = false;
             }
         });
 

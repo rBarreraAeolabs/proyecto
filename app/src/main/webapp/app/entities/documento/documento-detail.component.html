@@ -32,7 +32,8 @@
                 <dt><span jhiTranslate="pdisciplinarioApp.documento.archivo">Archivo</span></dt>
                 <dd>
                     <div *ngIf="documento.archivo">
-                        <a (click)="openFile(documento.archivoContentType, documento.archivo)" jhiTranslate="entity.action.open">open</a>
+                        <a (click)="openFile(documento.archivoContentType, documento.archivo)"
+                           jhiTranslate="entity.action.open">open</a>
                         {{documento.archivoContentType}}, {{byteSize(documento.archivo)}}
                     </div>
                 </dd>
@@ -68,7 +69,8 @@
                         <a [routerLink]="['/derivacion', documento.derivacionId, 'view']">{{documento.derivacionId}}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="pdisciplinarioApp.documento.movimientoProvidencia">Movimiento Providencia</span></dt>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.movimientoProvidencia">Movimiento Providencia</span>
+                </dt>
                 <dd>
                     <div *ngIf="documento.movimientoProvidenciaId">
                         <a [routerLink]="['/movimiento-providencia', documento.movimientoProvidenciaId, 'view']">{{documento.movimientoProvidenciaId}}</a>

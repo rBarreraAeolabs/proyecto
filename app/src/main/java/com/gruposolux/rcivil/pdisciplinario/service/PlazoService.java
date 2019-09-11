@@ -87,13 +87,11 @@ public class PlazoService {
     }
 
     @Transactional
-    public List<PlazoDTO> getAllPlazos()
-    {
+    public List<PlazoDTO> getAllPlazos() {
         List<Plazo> plazos = this.plazoRepository.findAll();
         List<PlazoDTO> plazoDTOs = new ArrayList<>();
 
-        for(Plazo plazo: plazos)
-        {
+        for (Plazo plazo : plazos) {
             PlazoDTO plazoDTO = this.plazoMapper.toDto(plazo);
             plazoDTOs.add(plazoDTO);
         }

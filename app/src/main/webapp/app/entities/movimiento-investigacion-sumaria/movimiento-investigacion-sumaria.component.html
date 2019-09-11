@@ -1,9 +1,11 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.home.title">Movimiento Investigacion Sumarias</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-movimiento-investigacion-sumaria" [routerLink]="['/movimiento-investigacion-sumaria/new']">
+        <button id="jh-create-entity"
+                class="btn btn-primary float-right jh-create-entity create-movimiento-investigacion-sumaria"
+                [routerLink]="['/movimiento-investigacion-sumaria/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.home.createLabel">
+            <span jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.home.createLabel">
             Create new Movimiento Investigacion Sumaria
             </span>
         </button>
@@ -14,23 +16,39 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estadoAnterior"><span jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.estadoAnterior">Estado Anterior</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estadoNuevo"><span jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.estadoNuevo">Estado Nuevo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="fecha"><span jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.fecha">Fecha</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="investigacionSumariaId"><span jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.investigacionSumaria">Investigacion Sumaria</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="estadoAnterior"><span
+                    jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.estadoAnterior">Estado Anterior</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="estadoNuevo"><span
+                    jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.estadoNuevo">Estado Nuevo</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="fecha"><span
+                    jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.fecha">Fecha</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="investigacionSumariaId"><span
+                    jhiTranslate="pdisciplinarioApp.movimientoInvestigacionSumaria.investigacionSumaria">Investigacion Sumaria</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let movimientoInvestigacionSumaria of movimientoInvestigacionSumarias ;trackBy: trackId">
-                <td><a [routerLink]="['/movimiento-investigacion-sumaria', movimientoInvestigacionSumaria.id, 'view' ]">{{movimientoInvestigacionSumaria.id}}</a></td>
+                <td><a
+                    [routerLink]="['/movimiento-investigacion-sumaria', movimientoInvestigacionSumaria.id, 'view' ]">{{movimientoInvestigacionSumaria.id}}</a>
+                </td>
                 <td jhiTranslate="{{'pdisciplinarioApp.EstadoInvestigacionSumaria.' + movimientoInvestigacionSumaria.estadoAnterior}}">{{movimientoInvestigacionSumaria.estadoAnterior}}</td>
                 <td jhiTranslate="{{'pdisciplinarioApp.EstadoInvestigacionSumaria.' + movimientoInvestigacionSumaria.estadoNuevo}}">{{movimientoInvestigacionSumaria.estadoNuevo}}</td>
                 <td>{{movimientoInvestigacionSumaria.fecha | date:'medium'}}</td>
                 <td>
                     <div *ngIf="movimientoInvestigacionSumaria.investigacionSumariaId">
-                        <a [routerLink]="['../investigacion-sumaria', movimientoInvestigacionSumaria.investigacionSumariaId , 'view' ]" >{{movimientoInvestigacionSumaria.investigacionSumariaId}}</a>
+                        <a [routerLink]="['../investigacion-sumaria', movimientoInvestigacionSumaria.investigacionSumariaId , 'view' ]">{{movimientoInvestigacionSumaria.investigacionSumariaId}}</a>
                     </div>
                 </td>
                 <td class="text-right">
@@ -67,7 +85,8 @@
             <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                            [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div>
 </div>

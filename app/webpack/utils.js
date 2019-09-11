@@ -8,6 +8,7 @@ module.exports = {
 };
 
 const parseString = require('xml2js').parseString;
+
 // return the version number from `pom.xml` file
 function parseVersion() {
     let version = null;

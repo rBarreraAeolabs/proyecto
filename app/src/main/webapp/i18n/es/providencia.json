@@ -1,12 +1,12 @@
 {
     "pdisciplinarioApp": {
-        "providencia" : {
+        "providencia": {
             "home": {
                 "title": "Providencias",
                 "createLabel": "Crear Nueva Providencia",
                 "editLabel": "Editar la Providencia"
             },
-            "modal":{
+            "modal": {
                 "numeroResolucion": "Asignar N° De Resolucion"
             },
             "created": "Una nueva Providencia ha sido creado con el identificador {{ param }}",

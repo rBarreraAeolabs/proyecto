@@ -136,8 +136,7 @@ public class GrupoResource {
     @Timed
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_GRUPO + "\") or " +
         "hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
-    public ResponseEntity<List<GrupoDTO>> getAllAsList()
-    {
+    public ResponseEntity<List<GrupoDTO>> getAllAsList() {
         return new ResponseEntity<List<GrupoDTO>>(this.grupoService.getAllAsList(), HttpStatus.OK);
     }
 }

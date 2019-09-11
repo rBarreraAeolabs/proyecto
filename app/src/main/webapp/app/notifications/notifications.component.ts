@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import * as $ from 'jquery';
@@ -21,7 +21,7 @@ export class NotificationsComponent {
         const ws = new SockJS(this.serverUrl);
         this.stompClient = Stomp.over(ws);
         const that = this;
-        this.stompClient.connect({}, function(frame) {
+        this.stompClient.connect({}, function (frame) {
             that.stompClient.subscribe('/chat', message => {
                 if (message.body) {
                     $('.chat').prepend("<div class='alert alert-secondary flex-wrap'>" + message.body + '</div>');

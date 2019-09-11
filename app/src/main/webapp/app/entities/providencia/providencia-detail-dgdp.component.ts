@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
-import { IProvidencia } from 'app/shared/model/providencia.model';
+import {IProvidencia} from 'app/shared/model/providencia.model';
 
-import { JhiAlertService } from 'ng-jhipster';
-import { IMovimientoProvidencia } from 'app/shared/model/movimiento-providencia.model';
+import {JhiAlertService} from 'ng-jhipster';
+import {IMovimientoProvidencia} from 'app/shared/model/movimiento-providencia.model';
 import {ProvidenciaService} from './providencia.service';
 
 @Component({
@@ -20,10 +20,11 @@ export class ProvidenciaDetailDgdpComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private jhiAlertService: JhiAlertService,
         private providenciaService: ProvidenciaService
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({ providencia }) => {
+        this.activatedRoute.data.subscribe(({providencia}) => {
             this.providencia = providencia;
 
             this.providenciaService.getActionsPermitted(this.providencia).subscribe(response => {

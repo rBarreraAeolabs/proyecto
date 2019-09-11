@@ -1,10 +1,15 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { NgbActiveModal, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {NgbActiveModal, NgbDateAdapter} from '@ng-bootstrap/ng-bootstrap';
 
-import { NgbDateMomentAdapter } from './util/datepicker-adapter';
-import { HasAnyAuthorityDirective, JhiLoginModalComponent, PdisciplinarioSharedCommonModule, PdisciplinarioSharedLibsModule } from './';
-import { FileUploadComponent } from './util/file_upload/file-upload.component';
-import { AppFileUploaderModule } from './util/file_upload/file-upload.module';
+import {NgbDateMomentAdapter} from './util/datepicker-adapter';
+import {
+    HasAnyAuthorityDirective,
+    JhiLoginModalComponent,
+    PdisciplinarioSharedCommonModule,
+    PdisciplinarioSharedLibsModule
+} from './';
+import {FileUploadComponent} from './util/file_upload/file-upload.component';
+import {AppFileUploaderModule} from './util/file_upload/file-upload.module';
 
 @NgModule({
     imports: [

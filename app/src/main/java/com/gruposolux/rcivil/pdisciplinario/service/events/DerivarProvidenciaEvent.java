@@ -24,15 +24,15 @@ public class DerivarProvidenciaEvent {
         return providencia;
     }
 
-    public Derivacion getDerivacion(){
+    public Derivacion getDerivacion() {
         return derivacion;
     }
 
-    public Set<Documento> getAdjuntos(){
+    public Set<Documento> getAdjuntos() {
         return documentos;
     }
 
-    public String getObservacion(){
+    public String getObservacion() {
         return observacion;
     }
 }

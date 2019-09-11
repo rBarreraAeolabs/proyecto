@@ -1,7 +1,6 @@
-
 {
     "pdisciplinarioApp": {
-        "plazo" : {
+        "plazo": {
             "home": {
                 "title": "Plazos",
                 "createLabel": "Crear nuevo Plazo",

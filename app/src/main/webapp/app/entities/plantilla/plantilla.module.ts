@@ -1,7 +1,7 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
-import { PdisciplinarioSharedModule } from 'app/shared';
+import {PdisciplinarioSharedModule} from 'app/shared';
 import {
     PlantillaComponent,
     PlantillaDetailComponent,
@@ -11,7 +11,7 @@ import {
     plantillaRoute,
     plantillaPopupRoute
 } from './';
-import { CKEditorModule } from 'ng2-ckeditor';
+import {CKEditorModule} from 'ng2-ckeditor';
 
 const ENTITY_STATES = [...plantillaRoute, ...plantillaPopupRoute];
 
@@ -27,4 +27,5 @@ const ENTITY_STATES = [...plantillaRoute, ...plantillaPopupRoute];
     entryComponents: [PlantillaComponent, PlantillaUpdateComponent, PlantillaDeleteDialogComponent, PlantillaDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PdisciplinarioPlantillaModule {}
+export class PdisciplinarioPlantillaModule {
+}

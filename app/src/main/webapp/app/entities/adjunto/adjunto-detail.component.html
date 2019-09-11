@@ -7,7 +7,8 @@
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="pdisciplinarioApp.adjunto.tipoAdjunto">Tipo Adjunto</span></dt>
                 <dd>
-                    <span jhiTranslate="{{'pdisciplinarioApp.TipoAdjunto.' + adjunto.tipoAdjunto}}">{{adjunto.tipoAdjunto}}</span>
+                    <span
+                        jhiTranslate="{{'pdisciplinarioApp.TipoAdjunto.' + adjunto.tipoAdjunto}}">{{adjunto.tipoAdjunto}}</span>
                 </dd>
                 <dt><span jhiTranslate="pdisciplinarioApp.adjunto.nombre">Nombre</span></dt>
                 <dd>
@@ -39,12 +40,14 @@
                 </dd>
                 <dt><span jhiTranslate="pdisciplinarioApp.adjunto.estado">Estado</span></dt>
                 <dd>
-                    <span jhiTranslate="{{'pdisciplinarioApp.FileUploadStatus.' + adjunto.estado}}">{{adjunto.estado}}</span>
+                    <span
+                        jhiTranslate="{{'pdisciplinarioApp.FileUploadStatus.' + adjunto.estado}}">{{adjunto.estado}}</span>
                 </dd>
                 <dt><span jhiTranslate="pdisciplinarioApp.adjunto.archivo">Archivo</span></dt>
                 <dd>
                     <div *ngIf="adjunto.archivo">
-                        <a (click)="openFile(adjunto.archivoContentType, adjunto.archivo)" jhiTranslate="entity.action.open">open</a>
+                        <a (click)="openFile(adjunto.archivoContentType, adjunto.archivo)"
+                           jhiTranslate="entity.action.open">open</a>
                         {{adjunto.archivoContentType}}, {{byteSize(adjunto.archivo)}}
                     </div>
                 </dd>
@@ -74,7 +77,8 @@
                         <a [routerLink]="['/providencia', adjunto.providenciaId, 'view']">{{adjunto.providenciaId}}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.movimientoProvidencia">Movimiento Providencia</span></dt>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.movimientoProvidencia">Movimiento Providencia</span>
+                </dt>
                 <dd>
                     <div *ngIf="adjunto.movimientoProvidenciaId">
                         <a [routerLink]="['/movimiento-providencia', adjunto.movimientoProvidenciaId, 'view']">{{adjunto.movimientoProvidenciaId}}</a>

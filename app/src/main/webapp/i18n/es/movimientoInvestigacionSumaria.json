@@ -1,7 +1,6 @@
-
 {
     "pdisciplinarioApp": {
-        "movimientoInvestigacionSumaria" : {
+        "movimientoInvestigacionSumaria": {
             "home": {
                 "title": "Movimiento Investigacion Sumarias",
                 "createLabel": "Crear nuevo Movimiento Investigacion Sumaria",

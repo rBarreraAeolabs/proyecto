@@ -1,6 +1,6 @@
-import { Route } from '@angular/router';
-import { DashboardComponent } from 'app/dashboard/dashboard.component';
-import { UserRouteAccessService } from 'app/core';
+import {Route} from '@angular/router';
+import {DashboardComponent} from 'app/dashboard/dashboard.component';
+import {UserRouteAccessService} from 'app/core';
 
 export const DASHBOARD_ROUTE: Route = {
     path: 'dashboard',

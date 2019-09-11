@@ -33,5 +33,6 @@ export class Respuesta implements IRespuesta {
         public userLastname?: string,
         public userId?: number,
         public estadoProvidencia?: EstadoProvidencia
-    ) {}
+    ) {
+    }
 }

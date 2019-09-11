@@ -1,4 +1,4 @@
-import { IMovimientoProvidencia } from 'app/shared/model//movimiento-providencia.model';
+import {IMovimientoProvidencia} from 'app/shared/model//movimiento-providencia.model';
 
 export interface IPlazo {
     id?: number;
@@ -13,5 +13,6 @@ export class Plazo implements IPlazo {
         public nombre?: string,
         public dias?: number,
         public movimientosProvidencis?: IMovimientoProvidencia[]
-    ) {}
+    ) {
+    }
 }

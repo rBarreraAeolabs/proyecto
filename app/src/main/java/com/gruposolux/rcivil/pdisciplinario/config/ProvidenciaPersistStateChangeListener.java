@@ -15,7 +15,7 @@ import org.springframework.statemachine.transition.Transition;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProvidenciaPersistStateChangeListener  implements PersistStateChangeListener {
+public class ProvidenciaPersistStateChangeListener implements PersistStateChangeListener {
 
 
     private final static Logger logger = LoggerFactory.getLogger(ProvidenciaPersistStateChangeListener.class);
@@ -24,7 +24,7 @@ public class ProvidenciaPersistStateChangeListener  implements PersistStateChang
     private ProvidenciaRepository providenciaRepository;
 
     @Override
-    public void onPersist(State<String, String> state,Message<String> message,Transition<String, String> transition,StateMachine<String, String> stateMachine) {
+    public void onPersist(State<String, String> state, Message<String> message, Transition<String, String> transition, StateMachine<String, String> stateMachine) {
         if (message != null && message.getHeaders().containsKey(ProvidenciaConstants.entityHeader)) {
             Providencia providencia = message.getHeaders().get(ProvidenciaConstants.entityHeader, Providencia.class);
             providencia.setEstadoActual(state.getId());

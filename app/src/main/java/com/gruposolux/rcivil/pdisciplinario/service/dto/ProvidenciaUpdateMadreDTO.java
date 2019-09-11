@@ -3,8 +3,7 @@ package com.gruposolux.rcivil.pdisciplinario.service.dto;
 /**
  * Created by sneiraillanes on 10-05-2019.
  */
-public class ProvidenciaUpdateMadreDTO
-{
+public class ProvidenciaUpdateMadreDTO {
     private Long providenciaId;
     private Long providenciaMadreId;
 

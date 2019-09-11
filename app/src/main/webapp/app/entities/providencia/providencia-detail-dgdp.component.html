@@ -48,10 +48,12 @@
                                         <dt>
                                             <span jhiTranslate="pdisciplinarioApp.providencia.tipo">Tipo</span></dt>
                                         <dd>
-                                            <span jhiTranslate="{{'pdisciplinarioApp.TipoProvidencia.' + providencia.tipo}}">{{providencia.tipo}}</span>
+                                            <span
+                                                jhiTranslate="{{'pdisciplinarioApp.TipoProvidencia.' + providencia.tipo}}">{{providencia.tipo}}</span>
                                         </dd>
 
-                                        <dt *ngIf="providencia.acciones && providencia.acciones.length > 0"><span jhiTranslate="pdisciplinarioApp.providencia.acciones"></span></dt>
+                                        <dt *ngIf="providencia.acciones && providencia.acciones.length > 0"><span
+                                            jhiTranslate="pdisciplinarioApp.providencia.acciones"></span></dt>
                                         <dd *ngFor="let accion of providencia.acciones">
                                             {{accion.split('_').join(' ')}}
                                         </dd>

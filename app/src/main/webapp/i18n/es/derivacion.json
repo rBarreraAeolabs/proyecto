@@ -1,7 +1,6 @@
-
 {
     "pdisciplinarioApp": {
-        "derivacion" : {
+        "derivacion": {
             "home": {
                 "title": "Respuestas",
                 "createLabel": "Crear nuevo Derivacion",

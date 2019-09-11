@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { JhiAlertService } from 'ng-jhipster';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {JhiAlertService} from 'ng-jhipster';
 
-import { ISumarioAdministrativo } from 'app/shared/model/sumario-administrativo.model';
-import { SumarioAdministrativoService } from './sumario-administrativo.service';
-import { IInvestigacionSumaria } from 'app/shared/model/investigacion-sumaria.model';
-import { InvestigacionSumariaService } from 'app/entities/investigacion-sumaria';
+import {ISumarioAdministrativo} from 'app/shared/model/sumario-administrativo.model';
+import {SumarioAdministrativoService} from './sumario-administrativo.service';
+import {IInvestigacionSumaria} from 'app/shared/model/investigacion-sumaria.model';
+import {InvestigacionSumariaService} from 'app/entities/investigacion-sumaria';
 
 @Component({
     selector: 'jhi-sumario-administrativo-update',
@@ -24,14 +24,15 @@ export class SumarioAdministrativoUpdateComponent implements OnInit {
         private sumarioAdministrativoService: SumarioAdministrativoService,
         private investigacionSumariaService: InvestigacionSumariaService,
         private activatedRoute: ActivatedRoute
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({ sumarioAdministrativo }) => {
+        this.activatedRoute.data.subscribe(({sumarioAdministrativo}) => {
             this.sumarioAdministrativo = sumarioAdministrativo;
         });
-        this.investigacionSumariaService.query({ filter: 'sumarioadministrativo-is-null' }).subscribe(
+        this.investigacionSumariaService.query({filter: 'sumarioadministrativo-is-null'}).subscribe(
             (res: HttpResponse<IInvestigacionSumaria[]>) => {
                 if (!this.sumarioAdministrativo.investigacionSumariaId) {
                     this.investigacionsumarias = res.body;
@@ -84,6 +85,7 @@ export class SumarioAdministrativoUpdateComponent implements OnInit {
     trackInvestigacionSumariaById(index: number, item: IInvestigacionSumaria) {
         return item.id;
     }
+
     get sumarioAdministrativo() {
         return this._sumarioAdministrativo;
     }

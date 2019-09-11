@@ -64,16 +64,12 @@ public class DocumentoService {
         log.debug("Request to save Documento : {}", documentoDTO);
         Documento documento = documentoMapper.toEntity(documentoDTO);
 
-        try
-        {
+        try {
             String filename = "";
-            if (documento.getArchivoNombre() != null)
-            {
+            if (documento.getArchivoNombre() != null) {
 //                filename = PdfConverter.generatePDFFromHTML(documento.getArchivoNombre(), documento.getContenido());
                 filename = this.fileSystemStorageService.storePdf(documento.getArchivoNombre(), documento.getContenido());
-            }
-            else
-            {
+            } else {
                 documento.setArchivoNombre("respuesta-" + this.documentoRepository.getCountTotal());
 //                filename = PdfConverter.generatePDFFromHTML(documento.getArchivoNombre(), documento.getContenido());
                 filename = this.fileSystemStorageService.storePdf(documento.getArchivoNombre(), documento.getContenido());
@@ -90,33 +86,24 @@ public class DocumentoService {
             // Ask if exist other resolucion file with the same name and the same providencia to change version
             Set<Documento> docs = null;
 
-            if (documento.getTipoPlantilla() != null)
-            {
-                if (documento.getTipoPlantilla().equals(TipoPlantilla.RESOLUCION))
-                {
+            if (documento.getTipoPlantilla() != null) {
+                if (documento.getTipoPlantilla().equals(TipoPlantilla.RESOLUCION)) {
                     docs = this.documentoRepository.findResolucionByNombreArchivo(documento.getArchivoNombre().toLowerCase(),
                         documento.getProvidencia());
-                }
-                else
-                {
+                } else {
                     docs = this.documentoRepository.findByNombreArchivo(documento.getArchivoNombre().toLowerCase(),
                         documento.getProvidencia());
                 }
             }
 
-            if (docs != null && docs.size() > 0)
-            {
+            if (docs != null && docs.size() > 0) {
                 documento.setVersion(docs.stream().findFirst().get().getVersion() + 1);
-            }
-            else
-            {
-                documento.setVersion((int)1);
+            } else {
+                documento.setVersion((int) 1);
             }
 
             documento = documentoRepository.save(documento);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             log.debug(e.getMessage());
         }
 
@@ -124,8 +111,7 @@ public class DocumentoService {
     }
 
     @Transactional
-    public DocumentoDTO update(DocumentoDTO documentoDTO)
-    {
+    public DocumentoDTO update(DocumentoDTO documentoDTO) {
         Documento documento = this.documentoMapper.toEntity(documentoDTO);
         documento = this.documentoRepository.save(documento);
         return this.documentoMapper.toDto(documento);
@@ -159,11 +145,9 @@ public class DocumentoService {
     }
 
     @Transactional(readOnly = true)
-    public DocumentoDTO findByHash(String hash)
-    {
+    public DocumentoDTO findByHash(String hash) {
         Documento documento = this.documentoRepository.findByHash(hash);
-        if (documento != null)
-        {
+        if (documento != null) {
             return this.documentoMapper.toDto(documento);
         }
 
@@ -181,22 +165,18 @@ public class DocumentoService {
     }
 
     @Transactional
-    public Resource getByHashToDownload(String hash)
-    {
+    public Resource getByHashToDownload(String hash) {
         return this.storageServiceInterface.loadFromAdjuntoFile(hash);
     }
 
-    public void updateDocumentos(Set<DocumentoDTO> documentoDTOs)
-    {
-        for(Iterator<DocumentoDTO> it = documentoDTOs.iterator(); it.hasNext();)
-        {
+    public void updateDocumentos(Set<DocumentoDTO> documentoDTOs) {
+        for (Iterator<DocumentoDTO> it = documentoDTOs.iterator(); it.hasNext(); ) {
             this.documentoRepository.save(this.documentoMapper.toEntity(it.next()));
         }
     }
 
     @Transactional
-    public Optional<DocumentoDTO> findByProvidencia(ProvidenciaDTO providenciaDTO)
-    {
+    public Optional<DocumentoDTO> findByProvidencia(ProvidenciaDTO providenciaDTO) {
         Set<Documento> documentos = this.documentoRepository.findByProvidencia(this.providenciaMapper.toEntity(providenciaDTO));
 
         return documentos.stream().findFirst().map(this.documentoMapper::toDto);

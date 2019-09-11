@@ -7,7 +7,7 @@
         Added the constraints for entity Providencia.
     -->
     <changeSet id="20190306185302-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="ficha_ingreso_id"
                                  baseTableName="providencia"
                                  constraintName="fk_providencia_ficha_ingreso_id"
@@ -24,7 +24,7 @@
                                  constraintName="fk_providencia_grupos_grupos_id"
                                  referencedColumnNames="id"
                                  referencedTableName="grupo"/>
-        
+
         <addForeignKeyConstraint baseColumnNames="sumario_administrativo_id"
                                  baseTableName="providencia"
                                  constraintName="fk_providencia_sumario_administrativo_id"

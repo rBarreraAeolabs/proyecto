@@ -17,103 +17,178 @@
                                 <div class="form-group" [hidden]="!movimientoProvidencia.id">
                                     <label for="id" jhiTranslate="global.field.id">ID</label>
                                     <input type="text" class="form-control" id="id" name="id"
-                                           [(ngModel)]="movimientoProvidencia.id" readonly />
+                                           [(ngModel)]="movimientoProvidencia.id" readonly/>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.estadoAnterior" for="field_estadoAnterior">Estado Anterior</label>
-                                    <select class="form-control" name="estadoAnterior" [(ngModel)]="movimientoProvidencia.estadoAnterior" id="field_estadoAnterior" >
-                                        <option value="CREADA">{{'pdisciplinarioApp.EstadoProvidencia.CREADA' | translate}}</option>
-                                        <option value="ESPERA">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA' | translate}}</option>
-                                        <option value="FINALIZADA">{{'pdisciplinarioApp.EstadoProvidencia.FINALIZADA' | translate}}</option>
-                                        <option value="DEVUELTO">{{'pdisciplinarioApp.EstadoProvidencia.DEVUELTO' | translate}}</option>
-                                        <option value="SOLICITUD_FIRMA_SUBDIRECTOR">{{'pdisciplinarioApp.EstadoProvidencia.SOLICITUD_FIRMA_SUBDIRECTOR' | translate}}</option>
-                                        <option value="SOLICITUD_FIRMA_DIRECTOR">{{'pdisciplinarioApp.EstadoProvidencia.SOLICITUD_FIRMA_DIRECTOR' | translate}}</option>
-                                        <option value="ESPERA_RESOLUCION_EXENTA">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_RESOLUCION_EXENTA' | translate}}</option>
-                                        <option value="ESPERA_ASIGNACION_NUMERO">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_ASIGNACION_NUMERO' | translate}}</option>
-                                        <option value="ESPERA_INFORME_FISCAL">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_INFORME_FISCAL' | translate}}</option>
-                                        <option value="NOTIFICA_FISCAL">{{'pdisciplinarioApp.EstadoProvidencia.NOTIFICA_FISCAL' | translate}}</option>
-                                        <option value="ESPERA_ACEPTACION_RECHAZO_FISCAL">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_ACEPTACION_RECHAZO_FISCAL' | translate}}</option>
-                                        <option value="INICIO_INVESTIGACION">{{'pdisciplinarioApp.EstadoProvidencia.INICIO_INVESTIGACION' | translate}}</option>
-                                        <option value="PRIMERA_PRORROGA_INVESTIGACION">{{'pdisciplinarioApp.EstadoProvidencia.PRIMERA_PRORROGA_INVESTIGACION' | translate}}</option>
-                                        <option value="SEGUNDA_PRORROGA_INVESTIGACION">{{'pdisciplinarioApp.EstadoProvidencia.SEGUNDA_PRORROGA_INVESTIGACION' | translate}}</option>
-                                        <option value="VISTA_FISCAL_ENVIADA_A_DIRECTOR_NACIONAL">{{'pdisciplinarioApp.EstadoProvidencia.VISTA_FISCAL_ENVIADA_A_DIRECTOR_NACIONAL' | translate}}</option>
-                                        <option value="ESPERA_ASIGNACION_ABOGADO">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_ASIGNACION_ABOGADO' | translate}}</option>
-                                        <option value="ESPERA_RESPUESTA_ABOGADO">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_RESPUESTA_ABOGADO' | translate}}</option>
-                                        <option value="ESPERA_RESPUESTA_INFORME_SUBDIRECCION">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_RESPUESTA_INFORME_SUBDIRECCION' | translate}}</option>
+                                    <label class="form-control-label"
+                                           jhiTranslate="pdisciplinarioApp.movimientoProvidencia.estadoAnterior"
+                                           for="field_estadoAnterior">Estado Anterior</label>
+                                    <select class="form-control" name="estadoAnterior"
+                                            [(ngModel)]="movimientoProvidencia.estadoAnterior"
+                                            id="field_estadoAnterior">
+                                        <option
+                                            value="CREADA">{{'pdisciplinarioApp.EstadoProvidencia.CREADA' | translate}}</option>
+                                        <option
+                                            value="ESPERA">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA' | translate}}</option>
+                                        <option
+                                            value="FINALIZADA">{{'pdisciplinarioApp.EstadoProvidencia.FINALIZADA' | translate}}</option>
+                                        <option
+                                            value="DEVUELTO">{{'pdisciplinarioApp.EstadoProvidencia.DEVUELTO' | translate}}</option>
+                                        <option
+                                            value="SOLICITUD_FIRMA_SUBDIRECTOR">{{'pdisciplinarioApp.EstadoProvidencia.SOLICITUD_FIRMA_SUBDIRECTOR' | translate}}</option>
+                                        <option
+                                            value="SOLICITUD_FIRMA_DIRECTOR">{{'pdisciplinarioApp.EstadoProvidencia.SOLICITUD_FIRMA_DIRECTOR' | translate}}</option>
+                                        <option
+                                            value="ESPERA_RESOLUCION_EXENTA">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_RESOLUCION_EXENTA' | translate}}</option>
+                                        <option
+                                            value="ESPERA_ASIGNACION_NUMERO">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_ASIGNACION_NUMERO' | translate}}</option>
+                                        <option
+                                            value="ESPERA_INFORME_FISCAL">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_INFORME_FISCAL' | translate}}</option>
+                                        <option
+                                            value="NOTIFICA_FISCAL">{{'pdisciplinarioApp.EstadoProvidencia.NOTIFICA_FISCAL' | translate}}</option>
+                                        <option
+                                            value="ESPERA_ACEPTACION_RECHAZO_FISCAL">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_ACEPTACION_RECHAZO_FISCAL' | translate}}</option>
+                                        <option
+                                            value="INICIO_INVESTIGACION">{{'pdisciplinarioApp.EstadoProvidencia.INICIO_INVESTIGACION' | translate}}</option>
+                                        <option
+                                            value="PRIMERA_PRORROGA_INVESTIGACION">{{'pdisciplinarioApp.EstadoProvidencia.PRIMERA_PRORROGA_INVESTIGACION' | translate}}</option>
+                                        <option
+                                            value="SEGUNDA_PRORROGA_INVESTIGACION">{{'pdisciplinarioApp.EstadoProvidencia.SEGUNDA_PRORROGA_INVESTIGACION' | translate}}</option>
+                                        <option
+                                            value="VISTA_FISCAL_ENVIADA_A_DIRECTOR_NACIONAL">{{'pdisciplinarioApp.EstadoProvidencia.VISTA_FISCAL_ENVIADA_A_DIRECTOR_NACIONAL' | translate}}</option>
+                                        <option
+                                            value="ESPERA_ASIGNACION_ABOGADO">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_ASIGNACION_ABOGADO' | translate}}</option>
+                                        <option
+                                            value="ESPERA_RESPUESTA_ABOGADO">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_RESPUESTA_ABOGADO' | translate}}</option>
+                                        <option
+                                            value="ESPERA_RESPUESTA_INFORME_SUBDIRECCION">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_RESPUESTA_INFORME_SUBDIRECCION' | translate}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.estadoNuevo" for="field_estadoNuevo">Estado Nuevo</label>
-                                    <select class="form-control" name="estadoNuevo" [(ngModel)]="movimientoProvidencia.estadoNuevo" id="field_estadoNuevo" >
-                                        <option value="CREADA">{{'pdisciplinarioApp.EstadoProvidencia.CREADA' | translate}}</option>
-                                        <option value="ESPERA">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA' | translate}}</option>
-                                        <option value="FINALIZADA">{{'pdisciplinarioApp.EstadoProvidencia.FINALIZADA' | translate}}</option>
-                                        <option value="DEVUELTO">{{'pdisciplinarioApp.EstadoProvidencia.DEVUELTO' | translate}}</option>
-                                        <option value="SOLICITUD_FIRMA_SUBDIRECTOR">{{'pdisciplinarioApp.EstadoProvidencia.SOLICITUD_FIRMA_SUBDIRECTOR' | translate}}</option>
-                                        <option value="SOLICITUD_FIRMA_DIRECTOR">{{'pdisciplinarioApp.EstadoProvidencia.SOLICITUD_FIRMA_DIRECTOR' | translate}}</option>
-                                        <option value="ESPERA_RESOLUCION_EXENTA">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_RESOLUCION_EXENTA' | translate}}</option>
-                                        <option value="ESPERA_ASIGNACION_NUMERO">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_ASIGNACION_NUMERO' | translate}}</option>
-                                        <option value="ESPERA_INFORME_FISCAL">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_INFORME_FISCAL' | translate}}</option>
-                                        <option value="NOTIFICA_FISCAL">{{'pdisciplinarioApp.EstadoProvidencia.NOTIFICA_FISCAL' | translate}}</option>
-                                        <option value="ESPERA_ACEPTACION_RECHAZO_FISCAL">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_ACEPTACION_RECHAZO_FISCAL' | translate}}</option>
-                                        <option value="INICIO_INVESTIGACION">{{'pdisciplinarioApp.EstadoProvidencia.INICIO_INVESTIGACION' | translate}}</option>
-                                        <option value="PRIMERA_PRORROGA_INVESTIGACION">{{'pdisciplinarioApp.EstadoProvidencia.PRIMERA_PRORROGA_INVESTIGACION' | translate}}</option>
-                                        <option value="SEGUNDA_PRORROGA_INVESTIGACION">{{'pdisciplinarioApp.EstadoProvidencia.SEGUNDA_PRORROGA_INVESTIGACION' | translate}}</option>
-                                        <option value="VISTA_FISCAL_ENVIADA_A_DIRECTOR_NACIONAL">{{'pdisciplinarioApp.EstadoProvidencia.VISTA_FISCAL_ENVIADA_A_DIRECTOR_NACIONAL' | translate}}</option>
-                                        <option value="ESPERA_ASIGNACION_ABOGADO">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_ASIGNACION_ABOGADO' | translate}}</option>
-                                        <option value="ESPERA_RESPUESTA_ABOGADO">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_RESPUESTA_ABOGADO' | translate}}</option>
-                                        <option value="ESPERA_RESPUESTA_INFORME_SUBDIRECCION">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_RESPUESTA_INFORME_SUBDIRECCION' | translate}}</option>
+                                    <label class="form-control-label"
+                                           jhiTranslate="pdisciplinarioApp.movimientoProvidencia.estadoNuevo"
+                                           for="field_estadoNuevo">Estado Nuevo</label>
+                                    <select class="form-control" name="estadoNuevo"
+                                            [(ngModel)]="movimientoProvidencia.estadoNuevo" id="field_estadoNuevo">
+                                        <option
+                                            value="CREADA">{{'pdisciplinarioApp.EstadoProvidencia.CREADA' | translate}}</option>
+                                        <option
+                                            value="ESPERA">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA' | translate}}</option>
+                                        <option
+                                            value="FINALIZADA">{{'pdisciplinarioApp.EstadoProvidencia.FINALIZADA' | translate}}</option>
+                                        <option
+                                            value="DEVUELTO">{{'pdisciplinarioApp.EstadoProvidencia.DEVUELTO' | translate}}</option>
+                                        <option
+                                            value="SOLICITUD_FIRMA_SUBDIRECTOR">{{'pdisciplinarioApp.EstadoProvidencia.SOLICITUD_FIRMA_SUBDIRECTOR' | translate}}</option>
+                                        <option
+                                            value="SOLICITUD_FIRMA_DIRECTOR">{{'pdisciplinarioApp.EstadoProvidencia.SOLICITUD_FIRMA_DIRECTOR' | translate}}</option>
+                                        <option
+                                            value="ESPERA_RESOLUCION_EXENTA">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_RESOLUCION_EXENTA' | translate}}</option>
+                                        <option
+                                            value="ESPERA_ASIGNACION_NUMERO">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_ASIGNACION_NUMERO' | translate}}</option>
+                                        <option
+                                            value="ESPERA_INFORME_FISCAL">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_INFORME_FISCAL' | translate}}</option>
+                                        <option
+                                            value="NOTIFICA_FISCAL">{{'pdisciplinarioApp.EstadoProvidencia.NOTIFICA_FISCAL' | translate}}</option>
+                                        <option
+                                            value="ESPERA_ACEPTACION_RECHAZO_FISCAL">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_ACEPTACION_RECHAZO_FISCAL' | translate}}</option>
+                                        <option
+                                            value="INICIO_INVESTIGACION">{{'pdisciplinarioApp.EstadoProvidencia.INICIO_INVESTIGACION' | translate}}</option>
+                                        <option
+                                            value="PRIMERA_PRORROGA_INVESTIGACION">{{'pdisciplinarioApp.EstadoProvidencia.PRIMERA_PRORROGA_INVESTIGACION' | translate}}</option>
+                                        <option
+                                            value="SEGUNDA_PRORROGA_INVESTIGACION">{{'pdisciplinarioApp.EstadoProvidencia.SEGUNDA_PRORROGA_INVESTIGACION' | translate}}</option>
+                                        <option
+                                            value="VISTA_FISCAL_ENVIADA_A_DIRECTOR_NACIONAL">{{'pdisciplinarioApp.EstadoProvidencia.VISTA_FISCAL_ENVIADA_A_DIRECTOR_NACIONAL' | translate}}</option>
+                                        <option
+                                            value="ESPERA_ASIGNACION_ABOGADO">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_ASIGNACION_ABOGADO' | translate}}</option>
+                                        <option
+                                            value="ESPERA_RESPUESTA_ABOGADO">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_RESPUESTA_ABOGADO' | translate}}</option>
+                                        <option
+                                            value="ESPERA_RESPUESTA_INFORME_SUBDIRECCION">{{'pdisciplinarioApp.EstadoProvidencia.ESPERA_RESPUESTA_INFORME_SUBDIRECCION' | translate}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.fecha" for="field_fecha">Fecha</label>
+                                    <label class="form-control-label"
+                                           jhiTranslate="pdisciplinarioApp.movimientoProvidencia.fecha"
+                                           for="field_fecha">Fecha</label>
                                     <div class="d-flex">
-                                        <input id="field_fecha" type="datetime-local" class="form-control" name="fecha" [(ngModel)]="fecha"
+                                        <input id="field_fecha" type="datetime-local" class="form-control" name="fecha"
+                                               [(ngModel)]="fecha"
                                         />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.accion" for="field_accion">Accion</label>
-                                    <select class="form-control" name="accion" [(ngModel)]="movimientoProvidencia.accion" id="field_accion" >
-                                        <option value="TOMAR_CONOCIMIENTO">{{'pdisciplinarioApp.Accion.TOMAR_CONOCIMIENTO' | translate}}</option>
-                                        <option value="CUMPLIMIENTO">{{'pdisciplinarioApp.Accion.CUMPLIMIENTO' | translate}}</option>
-                                        <option value="INFORMAR_A_ESTA_DIRECCION">{{'pdisciplinarioApp.Accion.INFORMAR_A_ESTA_DIRECCION' | translate}}</option>
-                                        <option value="ESTUDIAR_Y_PROPONER">{{'pdisciplinarioApp.Accion.ESTUDIAR_Y_PROPONER' | translate}}</option>
-                                        <option value="PROPONER_RESPUESTA_DE_DIRECTOR">{{'pdisciplinarioApp.Accion.PROPONER_RESPUESTA_DE_DIRECTOR' | translate}}</option>
-                                        <option value="OFICIO_CARTA_USUARIO">{{'pdisciplinarioApp.Accion.OFICIO_CARTA_USUARIO' | translate}}</option>
-                                        <option value="PROPONER_RESOLUCION">{{'pdisciplinarioApp.Accion.PROPONER_RESOLUCION' | translate}}</option>
-                                        <option value="ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_DERECHO">{{'pdisciplinarioApp.Accion.ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_DERECHO' | translate}}</option>
-                                        <option value="CONVERSARLO_CONMIGO">{{'pdisciplinarioApp.Accion.CONVERSARLO_CONMIGO' | translate}}</option>
-                                        <option value="ACTIVAR_TRAMITE">{{'pdisciplinarioApp.Accion.ACTIVAR_TRAMITE' | translate}}</option>
-                                        <option value="INSTRUIR_A_QUIEN_CORRESPONDA">{{'pdisciplinarioApp.Accion.INSTRUIR_A_QUIEN_CORRESPONDA' | translate}}</option>
-                                        <option value="ACUMULAR_A_LOS_ANTECEDENTES">{{'pdisciplinarioApp.Accion.ACUMULAR_A_LOS_ANTECEDENTES' | translate}}</option>
-                                        <option value="CONFORME_CON_PROPOSICION">{{'pdisciplinarioApp.Accion.CONFORME_CON_PROPOSICION' | translate}}</option>
-                                        <option value="CONTESTAR_DIRECTAMENTE_AL_INTERESADO">{{'pdisciplinarioApp.Accion.CONTESTAR_DIRECTAMENTE_AL_INTERESADO' | translate}}</option>
-                                        <option value="ENVIAR_COPIA_ESTA_DIRECCION">{{'pdisciplinarioApp.Accion.ENVIAR_COPIA_ESTA_DIRECCION' | translate}}</option>
-                                        <option value="COORDINAR_CON">{{'pdisciplinarioApp.Accion.COORDINAR_CON' | translate}}</option>
+                                    <label class="form-control-label"
+                                           jhiTranslate="pdisciplinarioApp.movimientoProvidencia.accion"
+                                           for="field_accion">Accion</label>
+                                    <select class="form-control" name="accion"
+                                            [(ngModel)]="movimientoProvidencia.accion" id="field_accion">
+                                        <option
+                                            value="TOMAR_CONOCIMIENTO">{{'pdisciplinarioApp.Accion.TOMAR_CONOCIMIENTO' | translate}}</option>
+                                        <option
+                                            value="CUMPLIMIENTO">{{'pdisciplinarioApp.Accion.CUMPLIMIENTO' | translate}}</option>
+                                        <option
+                                            value="INFORMAR_A_ESTA_DIRECCION">{{'pdisciplinarioApp.Accion.INFORMAR_A_ESTA_DIRECCION' | translate}}</option>
+                                        <option
+                                            value="ESTUDIAR_Y_PROPONER">{{'pdisciplinarioApp.Accion.ESTUDIAR_Y_PROPONER' | translate}}</option>
+                                        <option
+                                            value="PROPONER_RESPUESTA_DE_DIRECTOR">{{'pdisciplinarioApp.Accion.PROPONER_RESPUESTA_DE_DIRECTOR' | translate}}</option>
+                                        <option
+                                            value="OFICIO_CARTA_USUARIO">{{'pdisciplinarioApp.Accion.OFICIO_CARTA_USUARIO' | translate}}</option>
+                                        <option
+                                            value="PROPONER_RESOLUCION">{{'pdisciplinarioApp.Accion.PROPONER_RESOLUCION' | translate}}</option>
+                                        <option
+                                            value="ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_DERECHO">{{'pdisciplinarioApp.Accion.ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_DERECHO' | translate}}</option>
+                                        <option
+                                            value="CONVERSARLO_CONMIGO">{{'pdisciplinarioApp.Accion.CONVERSARLO_CONMIGO' | translate}}</option>
+                                        <option
+                                            value="ACTIVAR_TRAMITE">{{'pdisciplinarioApp.Accion.ACTIVAR_TRAMITE' | translate}}</option>
+                                        <option
+                                            value="INSTRUIR_A_QUIEN_CORRESPONDA">{{'pdisciplinarioApp.Accion.INSTRUIR_A_QUIEN_CORRESPONDA' | translate}}</option>
+                                        <option
+                                            value="ACUMULAR_A_LOS_ANTECEDENTES">{{'pdisciplinarioApp.Accion.ACUMULAR_A_LOS_ANTECEDENTES' | translate}}</option>
+                                        <option
+                                            value="CONFORME_CON_PROPOSICION">{{'pdisciplinarioApp.Accion.CONFORME_CON_PROPOSICION' | translate}}</option>
+                                        <option
+                                            value="CONTESTAR_DIRECTAMENTE_AL_INTERESADO">{{'pdisciplinarioApp.Accion.CONTESTAR_DIRECTAMENTE_AL_INTERESADO' | translate}}</option>
+                                        <option
+                                            value="ENVIAR_COPIA_ESTA_DIRECCION">{{'pdisciplinarioApp.Accion.ENVIAR_COPIA_ESTA_DIRECCION' | translate}}</option>
+                                        <option
+                                            value="COORDINAR_CON">{{'pdisciplinarioApp.Accion.COORDINAR_CON' | translate}}</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.providencia" for="field_providencia">Providencia</label>
-                                    <select class="form-control" id="field_providencia" name="providencia" [(ngModel)]="movimientoProvidencia.providenciaId" >
+                                    <label class="form-control-label"
+                                           jhiTranslate="pdisciplinarioApp.movimientoProvidencia.providencia"
+                                           for="field_providencia">Providencia</label>
+                                    <select class="form-control" id="field_providencia" name="providencia"
+                                            [(ngModel)]="movimientoProvidencia.providenciaId">
                                         <option [ngValue]="null"></option>
-                                        <option [ngValue]="providenciaOption.id" *ngFor="let providenciaOption of providencias; trackBy: trackProvidenciaById">{{providenciaOption.id}}</option>
+                                        <option [ngValue]="providenciaOption.id"
+                                                *ngFor="let providenciaOption of providencias; trackBy: trackProvidenciaById">{{providenciaOption.id}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.plazo" for="field_plazo">Plazo</label>
-                                    <select class="form-control" id="field_plazo" name="plazo" [(ngModel)]="movimientoProvidencia.plazoId" >
+                                    <label class="form-control-label"
+                                           jhiTranslate="pdisciplinarioApp.movimientoProvidencia.plazo"
+                                           for="field_plazo">Plazo</label>
+                                    <select class="form-control" id="field_plazo" name="plazo"
+                                            [(ngModel)]="movimientoProvidencia.plazoId">
                                         <option [ngValue]="null"></option>
-                                        <option [ngValue]="plazoOption.id" *ngFor="let plazoOption of plazos; trackBy: trackPlazoById">{{plazoOption.id}}</option>
+                                        <option [ngValue]="plazoOption.id"
+                                                *ngFor="let plazoOption of plazos; trackBy: trackPlazoById">{{plazoOption.id}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div>
-                                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                                <button type="button" id="cancel-save" class="btn btn-secondary"
+                                        (click)="previousState()">
                                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                                 </button>
-                                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving"
+                                        class="btn btn-primary">
                                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                                 </button>
                             </div>

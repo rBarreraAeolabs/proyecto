@@ -1,5 +1,5 @@
-import { IPerfil } from 'app/shared/model//perfil.model';
-import { IProvidencia } from 'app/shared/model//providencia.model';
+import {IPerfil} from 'app/shared/model//perfil.model';
+import {IProvidencia} from 'app/shared/model//providencia.model';
 
 export interface IGrupo {
     id?: number;
@@ -14,5 +14,6 @@ export class Grupo implements IGrupo {
         public nombre?: string,
         public perfiles?: IPerfil[],
         public providencias?: IProvidencia[]
-    ) {}
+    ) {
+    }
 }

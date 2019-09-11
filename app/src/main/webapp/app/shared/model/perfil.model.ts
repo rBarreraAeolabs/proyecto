@@ -1,4 +1,4 @@
-import { IGrupo } from 'app/shared/model//grupo.model';
+import {IGrupo} from 'app/shared/model//grupo.model';
 
 export interface IPerfil {
     id?: number;
@@ -13,5 +13,6 @@ export class Perfil implements IPerfil {
         public nombre?: string,
         public authorities?: any[],
         public grupo?: IGrupo
-    ) {}
+    ) {
+    }
 }

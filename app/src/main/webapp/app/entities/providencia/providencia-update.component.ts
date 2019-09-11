@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
-import { JhiAlertService } from 'ng-jhipster';
+import {DATE_TIME_FORMAT} from 'app/shared/constants/input.constants';
+import {JhiAlertService} from 'ng-jhipster';
 
-import { Accion, IProvidencia } from 'app/shared/model/providencia.model';
-import { ProvidenciaService } from './providencia.service';
-import { IGrupo } from 'app/shared/model/grupo.model';
+import {Accion, IProvidencia} from 'app/shared/model/providencia.model';
+import {ProvidenciaService} from './providencia.service';
+import {IGrupo} from 'app/shared/model/grupo.model';
 import {IEntidad} from '../../shared/model/entidad.model';
 import {EntidadService} from '../entidad/entidad.service';
 
@@ -34,14 +34,15 @@ export class ProvidenciaUpdateComponent implements OnInit {
         private providenciaService: ProvidenciaService,
         private activatedRoute: ActivatedRoute,
         private entidadService: EntidadService
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
         this.isSaving = false;
 
         this.cargarConfigMultiSelectAcciones();
 
-        this.activatedRoute.data.subscribe(({ providencia }) => {
+        this.activatedRoute.data.subscribe(({providencia}) => {
             this.providencia = providencia;
 
             if (this.providencia.id !== null && typeof this.providencia.id !== 'undefined') {
@@ -67,12 +68,12 @@ export class ProvidenciaUpdateComponent implements OnInit {
 
     cargarConfigMultiSelectAcciones() {
         this.dropdownListAcciones = [
-            { id: 1, itemName: Accion.TOMAR_CONOCIMIENTO.split('_').join(' ') },
-            { id: 2, itemName: Accion.PROPONER_RESPUESTA_AL_DIRECTOR.split('_').join(' ') },
-            { id: 3, itemName: Accion.PROPONER_DECRETO_O_RESOLUCION.split('_').join(' ') },
-            { id: 4, itemName: Accion.ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_A_DERECHO.split('_').join(' ') },
-            { id: 5, itemName: Accion.CONVERSAR_CONMIGO.split('_').join(' ') },
-            { id: 6, itemName: Accion.PROVIDENCIA_ARCHIVO.split('_').join(' ') },
+            {id: 1, itemName: Accion.TOMAR_CONOCIMIENTO.split('_').join(' ')},
+            {id: 2, itemName: Accion.PROPONER_RESPUESTA_AL_DIRECTOR.split('_').join(' ')},
+            {id: 3, itemName: Accion.PROPONER_DECRETO_O_RESOLUCION.split('_').join(' ')},
+            {id: 4, itemName: Accion.ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_A_DERECHO.split('_').join(' ')},
+            {id: 5, itemName: Accion.CONVERSAR_CONMIGO.split('_').join(' ')},
+            {id: 6, itemName: Accion.PROVIDENCIA_ARCHIVO.split('_').join(' ')},
         ];
 
         this.dropdownSettingsAcciones = {
@@ -92,7 +93,7 @@ export class ProvidenciaUpdateComponent implements OnInit {
         acciones.map(accion => {
             this.dropdownListAcciones.map(a => {
                 if (a.itemName === accion.split('_').join(' ')) {
-                    this.selectedAcciones.push({ id: a.id, itemName: accion.split('_').join(' ') });
+                    this.selectedAcciones.push({id: a.id, itemName: accion.split('_').join(' ')});
                 }
             });
         });
@@ -158,6 +159,7 @@ export class ProvidenciaUpdateComponent implements OnInit {
         }
         return option;
     }
+
     get providencia() {
         return this._providencia;
     }
@@ -168,12 +170,16 @@ export class ProvidenciaUpdateComponent implements OnInit {
         this.fechaCreacion = moment(providencia.fechaCreacion).format(DATE_TIME_FORMAT);
     }
 
-    onItemSelect(item: any) {}
+    onItemSelect(item: any) {
+    }
 
-    OnItemDeSelect(item: any) {}
+    OnItemDeSelect(item: any) {
+    }
+
     onSelectAll(items: any) {
         console.log(items);
     }
+
     onDeSelectAll(items: any) {
         console.log(items);
     }
