@@ -7,7 +7,7 @@ import com.gruposolux.rcivil.pdisciplinario.repository.ProvidenciaRepository;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.*;
 import com.gruposolux.rcivil.pdisciplinario.service.mapper.*;
 import com.gruposolux.rcivil.pdisciplinario.storage.AlfrescoStorageService;
-import com.sun.el.stream.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,36 +58,13 @@ public class ProvidenciaService {
     @Autowired
     private final AlfrescoStorageService alfrescoStorageService;
 
-    public ProvidenciaService(
-        ProvidenciaRepository providenciaRepository,
-        ProvidenciaMapper providenciaMapper,
-        AdjuntoMapper adjuntoMapper,
-        ApplicationEventPublisher publisher,
-        UserService userService,
-        AdjuntoService adjuntoService,
-        DerivacionRepository derivacionRepository,
-        GrupoService grupoService,
-        GrupoMapper grupoMapper,
-        DocumentoMapper documentoMapper,
-        DocumentoService documentoService,
-        MovimientoProvidenciaService movimientoProvidenciaService,
-        PlantillaService plantillaService,
-        EntidadService entidadService,
-        EntidadMapper entidadMapper,
-        InvestigacionSumariaService investigacionSumariaService,
-        SumarioAdministrativoService sumarioAdministrativoService,
-        InvestigacionSumariaMapper investigacionSumariaMapper,
-        SumarioAdministrativoMapper sumarioAdministrativoMapper,
-        AlfrescoStorageService alfrescoStorageService,
-        ProvidenciaStateMachineService providenciaStateMachineService,
-        StateMachine stateMachine
-    ) {
+    public ProvidenciaService(ProvidenciaRepository providenciaRepository, ProvidenciaMapper providenciaMapper, AdjuntoService adjuntoService, AdjuntoMapper adjuntoMapper, ApplicationEventPublisher publisher, UserService userService, DerivacionRepository derivacionRepository, GrupoService grupoService, GrupoMapper grupoMapper, DocumentoMapper documentoMapper, DocumentoService documentoService, MovimientoProvidenciaService movimientoProvidenciaService, PlantillaService plantillaService, EntidadService entidadService, EntidadMapper entidadMapper, InvestigacionSumariaService investigacionSumariaService, SumarioAdministrativoService sumarioAdministrativoService, InvestigacionSumariaMapper investigacionSumariaMapper, SumarioAdministrativoMapper sumarioAdministrativoMapper, ProvidenciaStateMachineService providenciaStateMachineService, StateMachine stateMachine, AlfrescoStorageService alfrescoStorageService) {
         this.providenciaRepository = providenciaRepository;
         this.providenciaMapper = providenciaMapper;
+        this.adjuntoService = adjuntoService;
         this.adjuntoMapper = adjuntoMapper;
         this.publisher = publisher;
         this.userService = userService;
-        this.adjuntoService = adjuntoService;
         this.derivacionRepository = derivacionRepository;
         this.grupoService = grupoService;
         this.grupoMapper = grupoMapper;
@@ -101,9 +78,9 @@ public class ProvidenciaService {
         this.sumarioAdministrativoService = sumarioAdministrativoService;
         this.investigacionSumariaMapper = investigacionSumariaMapper;
         this.sumarioAdministrativoMapper = sumarioAdministrativoMapper;
-        this.alfrescoStorageService = alfrescoStorageService;
         this.providenciaStateMachineService = providenciaStateMachineService;
         this.stateMachine = stateMachine;
+        this.alfrescoStorageService = alfrescoStorageService;
     }
 
     /**
@@ -904,7 +881,7 @@ public class ProvidenciaService {
 
     // crear prrorroga
     public ProvidenciaDTO createdProvidenciProrroga(Providencia providenciaMadre
-                                                    ) {
+    ) {
 
 
         Providencia provi = new Providencia();

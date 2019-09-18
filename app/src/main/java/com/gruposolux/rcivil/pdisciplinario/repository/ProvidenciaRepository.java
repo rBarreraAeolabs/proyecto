@@ -19,20 +19,20 @@ import java.util.Optional;
 @Repository
 public interface ProvidenciaRepository extends JpaRepository<Providencia, Long> {
 
-    @Query(value = "select distinct providencia from Providencia providencia",
+    @Query(value = "select distinct p from Providencia p",
         countQuery = "select count(distinct providencia) from Providencia providencia")
     Page<Providencia> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query(value = "select distinct providencia from Providencia providencia")
+    @Query(value = "select distinct p from Providencia p")
     List<Providencia> findAllWithEagerRelationships();
 
-    @Query("select providencia from Providencia providencia where providencia.id =:id")
+    @Query("select p from Providencia p where p.id =:id")
     Optional<Providencia> findOneWithEagerRelationships(@Param("id") Long id);
 
-    @Query("select providencia from Providencia providencia where providencia.id =:id")
+    @Query("select p from Providencia p where p.id =:id")
     Providencia findOne(@Param("id") Long id);
 
-    @Query("select providencia from Providencia providencia where providencia.id =:id AND p.requisito = :requisito")
+    @Query("select p from Providencia p where p.id =:id AND p.requisito = :requisito")
     Providencia findOneforProrroga(@Param("id") Long id);
 
 

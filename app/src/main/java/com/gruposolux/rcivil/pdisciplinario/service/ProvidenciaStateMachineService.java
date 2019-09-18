@@ -23,8 +23,12 @@ class ProvidenciaStateMachineService {
     @Autowired
     private ProvidenciaRepository entityRepository;
 
-    @Autowired
-    private PersistStateMachineHandler persistStateMachineHandler;
+    private final PersistStateMachineHandler persistStateMachineHandler;
+
+    public ProvidenciaStateMachineService(PersistStateMachineHandler persistStateMachineHandler) {
+        this.persistStateMachineHandler = persistStateMachineHandler;
+    }
+
 
     public List<Providencia> getEntities() {
         return Lists.newArrayList(entityRepository.findAll());
