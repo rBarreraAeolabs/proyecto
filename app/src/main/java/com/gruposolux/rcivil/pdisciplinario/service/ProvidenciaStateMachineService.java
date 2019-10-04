@@ -21,25 +21,22 @@ import java.util.List;
 class ProvidenciaStateMachineService {
 
     @Autowired
-    private ProvidenciaRepository entityRepository;
+    private ProvidenciaRepository providenciaRepository;
 
-    @Autowired
-    private PersistStateMachineHandler persistStateMachineHandler;
+    private  PersistStateMachineHandler persistStateMachineHandler;
+
+    public ProvidenciaStateMachineService(PersistStateMachineHandler persistStateMachineHandler) {
+        this.persistStateMachineHandler = persistStateMachineHandler;
+    }
+
 
     public List<Providencia> getEntities() {
-        return Lists.newArrayList(entityRepository.findAll());
+        return Lists.newArrayList(providenciaRepository.findAll());
     }
 
-    public Providencia getEntity(Long id) {
-        return entityRepository.findOne(id);
-    }
-
-    public Providencia createEntity(Providencia entity) {
-        return entityRepository.save(entity);
-    }
 
     public Boolean nextState(Long id, AccionesProvidencia accion, EstadoProvidencia estado) {
-        Providencia providencia = entityRepository.findOne(id);
+        Providencia providencia = providenciaRepository.findOne(id);
         return persistStateMachineHandler.handleEventWithState(
             MessageBuilder.withPayload(accion.name()).setHeader(ProvidenciaConstants.entityHeader, providencia).build(),
             estado.name()

@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 /**
  * Service Implementation for managing Providencia.
  */
-@Service
+@Service()
 @Transactional
 public class ProvidenciaService {
 

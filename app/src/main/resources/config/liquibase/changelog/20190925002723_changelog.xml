@@ -1,0 +1,69 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-1">
+        <createTable tableName="instruccion_providencia">
+            <column name="providencia_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="instrucciones" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-2">
+        <addColumn tableName="providencia">
+            <column name="etapa" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-3">
+        <addColumn tableName="accion_ficha_ingreso">
+            <column name="instrucciones" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-4">
+        <addColumn tableName="ficha_ingreso_sdj">
+            <column name="numero_providencia" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-5">
+        <addColumn tableName="providencia">
+            <column name="numero_providencia" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-6">
+        <addColumn tableName="providencia">
+            <column name="numero_referencia" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-7">
+        <addColumn tableName="providencia">
+            <column name="requisito" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-8">
+        <addColumn tableName="providencia">
+            <column name="sub_etapa" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-9">
+        <addColumn tableName="ficha_ingreso_sdj">
+            <column name="tipo_solicitud" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-10">
+        <addForeignKeyConstraint baseColumnNames="providencia_id" baseTableName="instruccion_providencia" constraintName="FK5qv01e0irexq3njyrf2043kl6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="providencia"/>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-11">
+        <dropForeignKeyConstraint baseTableName="providencia" constraintName="FK6wdd2d6i14ldtlukog3lfvooh"/>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-12">
+        <dropForeignKeyConstraint baseTableName="accion_providencia" constraintName="FKsfmlirkbkbabsxax3mvfdxj4c"/>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-13">
+        <dropTable tableName="accion_providencia"/>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-14">
+        <dropColumn columnName="acciones" tableName="accion_ficha_ingreso"/>
+    </changeSet>
+    <changeSet author="Rubén Barrera (generated)" id="1569371251973-15">
+        <dropColumn columnName="numero" tableName="providencia"/>
+    </changeSet>
+</databaseChangeLog>

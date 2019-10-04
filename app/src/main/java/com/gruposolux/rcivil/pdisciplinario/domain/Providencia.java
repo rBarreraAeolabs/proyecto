@@ -87,11 +87,11 @@ public class Providencia implements Serializable {
     @JsonIgnore
     private Set<Derivacion> derivaciones = new HashSet<>();
 
-    @OneToMany(mappedBy = "providencia", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "providencia", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Documento> documentos = new HashSet<>();
 
-    @OneToMany(mappedBy = "providencia", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "providencia", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Adjunto> adjuntos = new HashSet<>();
 
