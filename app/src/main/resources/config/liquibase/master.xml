@@ -108,4 +108,6 @@
     <include file="config/liquibase/changelog/20190509133748_changelog.xml" relativeToChangelogFile="false"/>
     <!-- Se crea la relación entre providencias. -->
     <include file="config/liquibase/changelog/20190509153549_changelog.xml" relativeToChangelogFile="false"/>
+<!--    weada-->
+    <include file="config/liquibase/changelog/20190925002723_changelog.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

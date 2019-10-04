@@ -9,8 +9,6 @@ import com.gruposolux.rcivil.pdisciplinario.service.mapper.DerivacionMapper;
 import com.gruposolux.rcivil.pdisciplinario.service.mapper.ProvidenciaMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -29,22 +27,25 @@ import java.util.stream.Collectors;
 public class DerivacionService {
 
     private final Logger log = LoggerFactory.getLogger(DerivacionService.class);
-    @Autowired
-    @Qualifier("derivacionRepository")
-    private final DerivacionRepository derivacionRepository;
-    @Autowired
+     private final DerivacionRepository derivacionRepository;
     private final DerivacionMapper derivacionMapper;
-    @Autowired
-    private final ProvidenciaService providenciaService;
-    @Autowired
+
     private final ProvidenciaMapper providenciaMapper;
 
-    public DerivacionService(DerivacionRepository derivacionRepository, DerivacionMapper derivacionMapper, ProvidenciaService providenciaService, ProvidenciaMapper providenciaMapper) {
+    private  ProvidenciaService providenciaService;
+
+    public DerivacionService(
+        DerivacionRepository derivacionRepository,
+        DerivacionMapper derivacionMapper,
+
+        ProvidenciaMapper providenciaMapper, ProvidenciaService providenciaService) {
         this.derivacionRepository = derivacionRepository;
         this.derivacionMapper = derivacionMapper;
-        this.providenciaService = providenciaService;
+
         this.providenciaMapper = providenciaMapper;
+        this.providenciaService = providenciaService;
     }
+
 
     /**
      * Save a derivacion.
