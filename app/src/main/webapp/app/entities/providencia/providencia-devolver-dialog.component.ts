@@ -1,14 +1,13 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-
-import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {JhiEventManager} from 'ng-jhipster';
-
-import {EstadoProvidencia, IProvidencia, IProvidenciaResponse, Providencia} from 'app/shared/model/providencia.model';
-import {DerivacionService} from 'app/entities/derivacion';
-import {ProvidenciaService} from './providencia.service';
-import {PlantillaService} from '../plantilla/plantilla.service';
-import {IAdjunto} from '../../shared/model/adjunto.model';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager } from 'ng-jhipster';
+import { IProvidencia, IProvidenciaResponse} from 'app/shared/model/providencia.model';
+import { DerivacionService } from 'app/entities/derivacion';
+import { ProvidenciaService} from './providencia.service';
+import { PlantillaService} from '../plantilla/plantilla.service';
+import { IAdjunto} from '../../shared/model/adjunto.model';
+import { Principal} from 'app/core';
 
 @Component({
     selector: 'jhi-providencia-devolver-dialog',
@@ -20,6 +19,11 @@ export class ProvidenciaDevolverDialogComponent implements OnInit {
     observacionDerivacion: string;
     adjuntos: IAdjunto[];
     private _providencia: IProvidencia;
+    isDevolver = false;
+    isRechazar = false;
+    isProrroga = false;
+    cuenta: any;
+    usuario: any;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -27,15 +31,23 @@ export class ProvidenciaDevolverDialogComponent implements OnInit {
         private router: Router,
         private eventManager: JhiEventManager,
         private plantillaService: PlantillaService,
-        private providenciaService: ProvidenciaService
-    ) {
-    }
+        private providenciaService: ProvidenciaService,
+        private principal: Principal
+
+    ) {}
 
     clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    ngOnInit(): void {
+    ngOnInit() {
+        this.cuenta = this.principal.identity();
+        this.usuario = this.cuenta.__zone_symbol__value.perfil.nombre;
+        console.log('usuario: ', this.usuario);
+        if (this.usuario === 'usuario') {
+            console.log('el usuario es fiscal el devuelve');
+            this.isDevolver = true;
+        }
     }
 
     get providencias() {
@@ -53,12 +65,13 @@ export class ProvidenciaDevolverDialogComponent implements OnInit {
         this.providenciaResponse.observacion = this.observacionDerivacion;
         this.providenciaService.goBackwards(this.providenciaResponse).subscribe(res => {
             this.eventManager.broadcast({
-                name: 'providenciaListModification',
-                content: 'Providencia devuelta'
+                name: 'providenciaAceptada',
+                content: 'Providencia solicitud prorroga'
             });
             this.activeModal.dismiss(true);
             this.previousState();
         });
+
     }
 
     previousState() {
@@ -81,11 +94,10 @@ export class ProvidenciaDevolverDialogComponent implements OnInit {
 export class ProvidenciaDevolverPopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {
-    }
+    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({providencia}) => {
+        this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
                 this.ngbModalRef = this.modalService.open(ProvidenciaDevolverDialogComponent as Component, {
                     size: 'lg',
@@ -94,19 +106,13 @@ export class ProvidenciaDevolverPopupComponent implements OnInit, OnDestroy {
                 this.ngbModalRef.componentInstance.providencia = providencia;
                 this.ngbModalRef.result.then(
                     result => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     },
-                    reason => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
-                        this.ngbModalRef = null;
-                    }
+                    // reason => {
+                    //     this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                    //     this.ngbModalRef = null;
+                    // }
                 );
             }, 0);
         });

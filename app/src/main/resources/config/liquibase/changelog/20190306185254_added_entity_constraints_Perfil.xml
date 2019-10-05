@@ -7,7 +7,7 @@
         Added the constraints for entity Perfil.
     -->
     <changeSet id="20190306185254-2" author="jhipster">
-
+        
         <addForeignKeyConstraint baseColumnNames="perfil_id"
                                  baseTableName="perfil_grupos"
                                  constraintName="fk_perfil_grupos_perfils_id"
@@ -18,6 +18,6 @@
                                  constraintName="fk_perfil_grupos_grupos_id"
                                  referencedColumnNames="id"
                                  referencedTableName="grupo"/>
-
+        
     </changeSet>
 </databaseChangeLog>

@@ -6,7 +6,8 @@ import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.TipoAdjunto;
 /**
  * Created by sneiraillanes on 30-04-2019.
  */
-public class FiltroMovimientoProvidenciaDTO {
+public class FiltroMovimientoProvidenciaDTO
+{
     private String accion;
     private EstadoProvidencia estadoProvidencia;
     private TipoAdjunto tipoAdjunto;

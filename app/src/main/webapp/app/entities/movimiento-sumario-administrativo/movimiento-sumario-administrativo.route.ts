@@ -1,22 +1,21 @@
-import {Injectable} from '@angular/core';
-import {HttpResponse} from '@angular/common/http';
-import {Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes} from '@angular/router';
-import {JhiPaginationUtil, JhiResolvePagingParams} from 'ng-jhipster';
-import {UserRouteAccessService} from 'app/core';
-import {of} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {MovimientoSumarioAdministrativo} from 'app/shared/model/movimiento-sumario-administrativo.model';
-import {MovimientoSumarioAdministrativoService} from './movimiento-sumario-administrativo.service';
-import {MovimientoSumarioAdministrativoComponent} from './movimiento-sumario-administrativo.component';
-import {MovimientoSumarioAdministrativoDetailComponent} from './movimiento-sumario-administrativo-detail.component';
-import {MovimientoSumarioAdministrativoUpdateComponent} from './movimiento-sumario-administrativo-update.component';
-import {MovimientoSumarioAdministrativoDeletePopupComponent} from './movimiento-sumario-administrativo-delete-dialog.component';
-import {IMovimientoSumarioAdministrativo} from 'app/shared/model/movimiento-sumario-administrativo.model';
+import { Injectable } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
+import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
+import { UserRouteAccessService } from 'app/core';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { MovimientoSumarioAdministrativo } from 'app/shared/model/movimiento-sumario-administrativo.model';
+import { MovimientoSumarioAdministrativoService } from './movimiento-sumario-administrativo.service';
+import { MovimientoSumarioAdministrativoComponent } from './movimiento-sumario-administrativo.component';
+import { MovimientoSumarioAdministrativoDetailComponent } from './movimiento-sumario-administrativo-detail.component';
+import { MovimientoSumarioAdministrativoUpdateComponent } from './movimiento-sumario-administrativo-update.component';
+import { MovimientoSumarioAdministrativoDeletePopupComponent } from './movimiento-sumario-administrativo-delete-dialog.component';
+import { IMovimientoSumarioAdministrativo } from 'app/shared/model/movimiento-sumario-administrativo.model';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class MovimientoSumarioAdministrativoResolve implements Resolve<IMovimientoSumarioAdministrativo> {
-    constructor(private service: MovimientoSumarioAdministrativoService) {
-    }
+    constructor(private service: MovimientoSumarioAdministrativoService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const id = route.params['id'] ? route.params['id'] : null;

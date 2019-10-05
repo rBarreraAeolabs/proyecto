@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import {IPlantilla} from 'app/shared/model/plantilla.model';
+import { IPlantilla } from 'app/shared/model/plantilla.model';
 
 @Component({
     selector: 'jhi-plantilla-detail',
@@ -10,11 +10,10 @@ import {IPlantilla} from 'app/shared/model/plantilla.model';
 export class PlantillaDetailComponent implements OnInit {
     plantilla: IPlantilla;
 
-    constructor(private activatedRoute: ActivatedRoute) {
-    }
+    constructor(private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({plantilla}) => {
+        this.activatedRoute.data.subscribe(({ plantilla }) => {
             this.plantilla = plantilla;
         });
     }

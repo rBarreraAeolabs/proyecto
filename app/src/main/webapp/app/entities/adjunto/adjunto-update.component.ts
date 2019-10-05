@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import * as moment from 'moment';
-import {DATE_TIME_FORMAT} from 'app/shared/constants/input.constants';
-import {JhiAlertService, JhiDataUtils} from 'ng-jhipster';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
-import {IAdjunto} from 'app/shared/model/adjunto.model';
-import {AdjuntoService} from './adjunto.service';
-import {IProvidencia} from 'app/shared/model/providencia.model';
-import {ProvidenciaService} from 'app/entities/providencia';
-import {IMovimientoProvidencia} from 'app/shared/model/movimiento-providencia.model';
-import {MovimientoProvidenciaService} from 'app/entities/movimiento-providencia';
+import { IAdjunto } from 'app/shared/model/adjunto.model';
+import { AdjuntoService } from './adjunto.service';
+import { IProvidencia } from 'app/shared/model/providencia.model';
+import { ProvidenciaService } from 'app/entities/providencia';
+import { IMovimientoProvidencia } from 'app/shared/model/movimiento-providencia.model';
+import { MovimientoProvidenciaService } from 'app/entities/movimiento-providencia';
 
 @Component({
     selector: 'jhi-adjunto-update',
@@ -34,12 +34,11 @@ export class AdjuntoUpdateComponent implements OnInit {
         private providenciaService: ProvidenciaService,
         private movimientoProvidenciaService: MovimientoProvidenciaService,
         private activatedRoute: ActivatedRoute
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({adjunto}) => {
+        this.activatedRoute.data.subscribe(({ adjunto }) => {
             this.adjunto = adjunto;
         });
         this.providenciaService.query().subscribe(
@@ -106,7 +105,6 @@ export class AdjuntoUpdateComponent implements OnInit {
     trackMovimientoProvidenciaById(index: number, item: IMovimientoProvidencia) {
         return item.id;
     }
-
     get adjunto() {
         return this._adjunto;
     }

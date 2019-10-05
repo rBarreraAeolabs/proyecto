@@ -14,6 +14,7 @@ import org.mapstruct.*;
 public interface PlantillaMapper extends EntityMapper<PlantillaDTO, Plantilla> {
 
 
+
     default Plantilla fromId(Long id) {
         if (id == null) {
             return null;

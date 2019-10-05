@@ -9,7 +9,8 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "entidad")
-public class Entidad implements Serializable {
+public class Entidad implements Serializable
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,8 +18,7 @@ public class Entidad implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    public Entidad() {
-    }
+    public Entidad() {}
 
     public Long getId() {
         return id;

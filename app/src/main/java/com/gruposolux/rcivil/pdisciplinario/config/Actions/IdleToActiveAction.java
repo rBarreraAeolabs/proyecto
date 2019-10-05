@@ -1,30 +1,30 @@
-//package com.gruposolux.rcivil.pdisciplinario.config.Actions;
+package com.gruposolux.rcivil.pdisciplinario.config.Actions;
 
-//import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
-//import com.gruposolux.rcivil.pdisciplinario.service.dto.ProvidenciaDTO;
-//import com.gruposolux.rcivil.pdisciplinario.utils.ProvidenciaConstants;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.statemachine.StateContext;
-//import org.springframework.statemachine.action.Action;
-//import org.springframework.stereotype.Component;
-//
-//import java.util.HashMap;
-//
-//@Component
-//public class IdleToActiveAction implements Action<String, String> {
-//
-//    private final static Logger logger = LoggerFactory.getLogger(IdleToActiveAction.class);
-//
-//    @Override
-//    public void execute(StateContext<String, String> context) {
-//        Providencia providencia = (Providencia) context.getMessageHeader(ProvidenciaConstants.entityHeader);
-//        if (providencia == null) {
-//            logger.debug("Action: Wrong transition?");
-//        } else {
-//            logger.debug("Action: changing the idle entity to active.. {}", providencia);
-//        }
-//    }
+import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
+import com.gruposolux.rcivil.pdisciplinario.service.dto.ProvidenciaDTO;
+import com.gruposolux.rcivil.pdisciplinario.utils.ProvidenciaConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.statemachine.StateContext;
+import org.springframework.statemachine.action.Action;
+import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+
+@Component
+public class IdleToActiveAction implements Action<String, String> {
+
+    private final static Logger logger = LoggerFactory.getLogger(IdleToActiveAction.class);
+
+    @Override
+    public void execute(StateContext<String, String> context) {
+        Providencia providencia = (Providencia) context.getMessageHeader(ProvidenciaConstants.entityHeader);
+        if (providencia == null) {
+            logger.debug("Action: Wrong transition?");
+        } else {
+            logger.debug("Action: changing the idle entity to active.. {}", providencia);
+        }
+    }
 //    public HashMap<String, Boolean> getActionsPermitted(){
 //
 //        if (providenciaDTO.getEstadoActual() == null)
@@ -50,4 +50,4 @@
 //
 //        return actionsPermitted;
 //    }
-//}
+}

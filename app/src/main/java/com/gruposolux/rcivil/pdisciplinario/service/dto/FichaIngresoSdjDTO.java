@@ -84,17 +84,11 @@ public class FichaIngresoSdjDTO implements Serializable {
         return numeroProvidencia;
     }
 
-    public void setNumeroProvidencia(Long numeroProvidencia) {
-        this.numeroProvidencia = numeroProvidencia;
-    }
+    public void setNumeroProvidencia(Long numeroProvidencia) { this.numeroProvidencia = numeroProvidencia; }
 
-    public String getTipoSolicitud() {
-        return tipoSolicitud;
-    }
+    public String getTipoSolicitud() { return tipoSolicitud; }
 
-    public void setTipoSolicitud(String tipoSolicitud) {
-        this.tipoSolicitud = tipoSolicitud;
-    }
+    public void setTipoSolicitud(String tipoSolicitud) { this.tipoSolicitud = tipoSolicitud; }
 
     public Collection<InstruccionesProvidencia> getInstrucciones() {
         return instrucciones;

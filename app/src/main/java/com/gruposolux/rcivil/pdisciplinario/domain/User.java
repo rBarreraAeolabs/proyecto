@@ -5,7 +5,6 @@ import com.gruposolux.rcivil.pdisciplinario.config.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.BatchSize;
-
 import javax.validation.constraints.Email;
 
 import javax.persistence.*;

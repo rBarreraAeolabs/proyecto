@@ -7,7 +7,7 @@
         Added the constraints for entity Adjunto.
     -->
     <changeSet id="20190306185259-2" author="jhipster">
-
+        
         <addForeignKeyConstraint baseColumnNames="providencia_id"
                                  baseTableName="adjunto"
                                  constraintName="fk_adjunto_providencia_id"

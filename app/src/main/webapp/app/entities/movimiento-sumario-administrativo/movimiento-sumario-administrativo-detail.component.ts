@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import {IMovimientoSumarioAdministrativo} from 'app/shared/model/movimiento-sumario-administrativo.model';
+import { IMovimientoSumarioAdministrativo } from 'app/shared/model/movimiento-sumario-administrativo.model';
 
 @Component({
     selector: 'jhi-movimiento-sumario-administrativo-detail',
@@ -10,11 +10,10 @@ import {IMovimientoSumarioAdministrativo} from 'app/shared/model/movimiento-suma
 export class MovimientoSumarioAdministrativoDetailComponent implements OnInit {
     movimientoSumarioAdministrativo: IMovimientoSumarioAdministrativo;
 
-    constructor(private activatedRoute: ActivatedRoute) {
-    }
+    constructor(private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({movimientoSumarioAdministrativo}) => {
+        this.activatedRoute.data.subscribe(({ movimientoSumarioAdministrativo }) => {
             this.movimientoSumarioAdministrativo = movimientoSumarioAdministrativo;
         });
     }

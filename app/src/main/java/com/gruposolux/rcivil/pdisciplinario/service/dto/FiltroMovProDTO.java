@@ -3,7 +3,8 @@ package com.gruposolux.rcivil.pdisciplinario.service.dto;
 /**
  * Created by sneiraillanes on 03-05-2019.
  */
-public class FiltroMovProDTO {
+public class FiltroMovProDTO
+{
     private ProvidenciaDTO providencia;
     private FiltroMovimientoProvidenciaDTO filtroMovimientoProvidencia;
 

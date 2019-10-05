@@ -1,11 +1,11 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {JhiEventManager} from 'ng-jhipster';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager } from 'ng-jhipster';
 
-import {IAdjunto} from 'app/shared/model/adjunto.model';
-import {AdjuntoService} from './adjunto.service';
+import { IAdjunto } from 'app/shared/model/adjunto.model';
+import { AdjuntoService } from './adjunto.service';
 
 @Component({
     selector: 'jhi-adjunto-delete-dialog',
@@ -14,8 +14,7 @@ import {AdjuntoService} from './adjunto.service';
 export class AdjuntoDeleteDialogComponent {
     adjunto: IAdjunto;
 
-    constructor(private adjuntoService: AdjuntoService, public activeModal: NgbActiveModal, private eventManager: JhiEventManager) {
-    }
+    constructor(private adjuntoService: AdjuntoService, public activeModal: NgbActiveModal, private eventManager: JhiEventManager) {}
 
     clear() {
         this.activeModal.dismiss('cancel');
@@ -39,30 +38,20 @@ export class AdjuntoDeleteDialogComponent {
 export class AdjuntoDeletePopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {
-    }
+    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({adjunto}) => {
+        this.activatedRoute.data.subscribe(({ adjunto }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(AdjuntoDeleteDialogComponent as Component, {
-                    size: 'lg',
-                    backdrop: 'static'
-                });
+                this.ngbModalRef = this.modalService.open(AdjuntoDeleteDialogComponent as Component, { size: 'lg', backdrop: 'static' });
                 this.ngbModalRef.componentInstance.adjunto = adjunto;
                 this.ngbModalRef.result.then(
                     result => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     },
                     reason => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     }
                 );

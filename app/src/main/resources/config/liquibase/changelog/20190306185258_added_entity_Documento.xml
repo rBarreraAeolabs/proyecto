@@ -22,67 +22,67 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="descripcion" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="contenido" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="fecha_creado" type="date">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="archivo_nombre" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="archivo_mime_type" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="archivo_size" type="bigint">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="archivo" type="longblob">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
             <column name="archivo_content_type" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="alfresco_node_id" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="alfresco_node_path" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="local_path" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="jhi_hash" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="providencia_id" type="bigint">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="derivacion_id" type="bigint">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="movimiento_providencia_id" type="bigint">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

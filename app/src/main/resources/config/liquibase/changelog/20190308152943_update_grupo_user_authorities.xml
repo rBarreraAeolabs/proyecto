@@ -18,9 +18,11 @@
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="notificacion_in_browserPK"/>
             </column>
-            <column name="descripcion" type="VARCHAR(255)"/>
-            <column name="fecha_creado" type="BYTEA">
-                <constraints nullable="false"/>
+            <column name="contenido" type="VARCHAR(255)"/>
+            <column name ="grupoid" type="BIGINT"/>
+            <column name ="userid" type="BIGINT"/>
+            <column name="created_at" type="datetime">
+                <constraints nullable="true" />
             </column>
             <column name="visto" type="BOOLEAN"/>
         </createTable>

@@ -1,10 +1,10 @@
 import {Component, AfterViewInit, Renderer, ElementRef, OnInit} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {Router} from '@angular/router';
-import {JhiEventManager} from 'ng-jhipster';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { JhiEventManager } from 'ng-jhipster';
 
-import {LoginService} from 'app/core/login/login.service';
-import {StateStorageService} from 'app/core/auth/state-storage.service';
+import { LoginService } from 'app/core/login/login.service';
+import { StateStorageService } from 'app/core/auth/state-storage.service';
 
 @Component({
     selector: 'jhi-login-modal',
@@ -29,11 +29,9 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
     ) {
         this.credentials = {};
     }
-
     ngOnInit() {
         this.router.navigate(['/dashboard']);
     }
-
     ngAfterViewInit() {
         setTimeout(() => this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#username'), 'focus', []), 0);
     }

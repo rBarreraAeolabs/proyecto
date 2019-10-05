@@ -29,7 +29,7 @@ public interface AdjuntoRepository extends JpaRepository<Adjunto, Long> {
     @Modifying
     @Transactional
     @Query("update Adjunto set providencia.id = :providencia, estado = :status where hash in (:hashes)")
-    void confirmarComoIngresoProvidencia(@Param("providencia") Long providencia, @Param("status") FileUploadStatus status, @Param("hashes") ArrayList<String> hashes);
+    void confirmarComoIngresoProvidencia(@Param("providencia") Long providencia, @Param("status")FileUploadStatus status, @Param("hashes")ArrayList<String> hashes);
 
     @Modifying
     @Transactional

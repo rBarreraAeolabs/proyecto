@@ -1,0 +1,24 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="rbarrera (generated)" id="1567718614531-1">
+        <addColumn tableName="notificacion_in_browser">
+            <column name="grupo_id" type="BIGINT"/>
+             </addColumn>
+        <addColumn tableName="notificacion_in_browser">
+            <column name="user_id" type="BIGINT"/>
+        </addColumn>
+        <dropColumn columnName="grupoid" tableName="notificacion_in_browser"/>
+        <dropColumn columnName="userid" tableName="notificacion_in_browser"/>
+    </changeSet>
+
+    <changeSet author="rbarrera (generated)" id="1567718614531-3">
+    <addForeignKeyConstraint baseColumnNames="grupo_id" baseTableName="notificacion_in_browser" constraintName="FKolcmakcrsygt1muut14jbsjif" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="grupo"/>
+</changeSet>
+    <changeSet author="rbarrera (generated)" id="1567781560582-45">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="notificacion_in_browser" constraintName="FKa0fkpdk2qd51h1c01fiqdivm4" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="rbarrera (generated)" id="1567718614531-7">
+        <addNotNullConstraint columnDataType="bytea" columnName="created_at" tableName="notificacion_in_browser"/>
+    </changeSet>
+
+</databaseChangeLog>

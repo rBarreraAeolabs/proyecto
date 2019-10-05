@@ -65,7 +65,8 @@ public class ProvidenciaEventsListener {
 //    }
 
     @EventListener
-    public void handlePreCrearProvidenciaEvent(PreCrearProvidenciaEvent event) {
+    public void handlePreCrearProvidenciaEvent(PreCrearProvidenciaEvent event)
+    {
 //        ProvidenciaDTO providenciaDTO = event.getProvidenciaDTO();
 //
 //        this.registrarMovimientoProvidencia(providenciaDTO, providenciaDTO.getEstadoActual(), EstadoProvidencia.ESTADO_1,
@@ -73,7 +74,8 @@ public class ProvidenciaEventsListener {
     }
 
     @EventListener
-    public void handlePostCrearProvidenciaEvent(PostCrearProvidenciaEvent event) {
+    public void handlePostCrearProvidenciaEvent(PostCrearProvidenciaEvent event)
+    {
 //        // recibe providencia enviada desde el metodo save
 //        ProvidenciaDTO providenciaDTO = event.getProvidenciaDTO();
 //
@@ -251,7 +253,8 @@ public class ProvidenciaEventsListener {
     }
 
     private void registrarMovimientoProvidencia(ProvidenciaDTO providenciaDTO, EstadoProvidencia estadoProvidenciaActual,
-                                                EstadoProvidencia estadoProvidenciaAnterior, Long userReceiveId, String comentario) {
+                                                EstadoProvidencia estadoProvidenciaAnterior, Long userReceiveId, String comentario)
+    {
 //        MovimientoProvidenciaDTO movimientoProvidenciaDTO = new MovimientoProvidenciaDTO();
 //
 //        if (estadoProvidenciaAnterior != null) {
@@ -275,11 +278,13 @@ public class ProvidenciaEventsListener {
 //        }
     }
 
-    private void registrarMovimientoOnDocumentos(MovimientoProvidencia movimientoProvidencia, Providencia providencia) {
+    private void registrarMovimientoOnDocumentos(MovimientoProvidencia movimientoProvidencia, Providencia providencia)
+    {
 
     }
 
-    private void registrarMovimientoOnAdjuntos(MovimientoProvidencia movimientoProvidencia, ProvidenciaDTO providenciaDTO) {
+    private void registrarMovimientoOnAdjuntos(MovimientoProvidencia movimientoProvidencia, ProvidenciaDTO providenciaDTO)
+    {
 //        for (Iterator<AdjuntoDTO> it = providenciaDTO.getAdjuntos().iterator(); it.hasNext();)
 //        {
 //            AdjuntoDTO adjuntoDTO = it.next();

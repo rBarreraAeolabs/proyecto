@@ -134,7 +134,8 @@ public class PlantillaResource {
 
     @GetMapping("/plantillas/list")
     @Timed
-    public ResponseEntity<Set<PlantillaDTO>> getAll() {
+    public ResponseEntity<Set<PlantillaDTO>> getAll()
+    {
         return new ResponseEntity<>(this.plantillaService.getAll(), HttpStatus.OK);
     }
 }

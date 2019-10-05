@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import {IEntidad} from 'app/shared/model/entidad.model';
 import {EntidadService} from 'app/entities/entidad/entidad.service';
 
@@ -13,12 +13,11 @@ export class EntidadUpdateComponent implements OnInit {
     private _entidad: IEntidad;
     isSaving: boolean;
 
-    constructor(private entidadService: EntidadService, private activatedRoute: ActivatedRoute) {
-    }
+    constructor(private entidadService: EntidadService, private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({entidad}) => {
+        this.activatedRoute.data.subscribe(({ entidad }) => {
             this.entidad = entidad;
         });
     }
@@ -49,7 +48,6 @@ export class EntidadUpdateComponent implements OnInit {
     private onSaveError() {
         this.isSaving = false;
     }
-
     get entidad() {
         return this._entidad;
     }

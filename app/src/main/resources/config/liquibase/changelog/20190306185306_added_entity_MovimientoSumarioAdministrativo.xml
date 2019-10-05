@@ -22,25 +22,25 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="estado_anterior" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="estado_nuevo" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="fecha" type="datetime">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="sumario_administrativo_id" type="bigint">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="mov_sumario_admin" columnName="fecha" columnDataType="datetime"/>
-
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

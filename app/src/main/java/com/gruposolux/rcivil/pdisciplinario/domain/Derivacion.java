@@ -69,7 +69,8 @@ public class Derivacion implements Serializable {
 //    @JoinColumn(name = "grupo_id")
 //    private Set<Grupo> gruposACopiar;
 
-    public Derivacion() {
+    public Derivacion()
+    {
         fechaDerivacion = Instant.now();
     }
 
@@ -171,7 +172,6 @@ public class Derivacion implements Serializable {
     public void setProvidencia(Providencia providencia) {
         this.providencia = providencia;
     }
-
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
     public User getDerivadoPorUsuario() {
         return derivadoPorUsuario;

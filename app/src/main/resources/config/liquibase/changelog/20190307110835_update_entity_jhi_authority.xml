@@ -19,7 +19,7 @@
     <changeSet id="20190307110835" author="jhipster">
         <addColumn tableName="jhi_authority">
             <column name="descripcion" type="varchar(200)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
         </addColumn>
 

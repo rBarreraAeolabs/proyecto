@@ -2,16 +2,16 @@
  * Created by sneiraillanes on 01-04-2019.
  */
 import {Component, OnInit, OnDestroy, Input} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {JhiEventManager} from 'ng-jhipster';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager } from 'ng-jhipster';
 
-import {IAdjunto} from 'app/shared/model/adjunto.model';
-import {AdjuntoService} from './adjunto.service';
-import {IDocumento} from '../../shared/model/documento.model';
-import {DocumentoService} from '../documento/documento.service';
-import {HttpResponse} from '@angular/common/http';
+import { IAdjunto } from 'app/shared/model/adjunto.model';
+import { AdjuntoService } from './adjunto.service';
+import { IDocumento } from '../../shared/model/documento.model';
+import { DocumentoService } from '../documento/documento.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
     selector: 'jhi-adjunto-show-list-popup',
@@ -30,8 +30,7 @@ export class AdjuntoShowListPopupComponent implements OnInit, OnDestroy {
         public activeModal: NgbActiveModal,
         private adjuntoService: AdjuntoService,
         private documentoService: DocumentoService
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
     }
@@ -42,7 +41,7 @@ export class AdjuntoShowListPopupComponent implements OnInit, OnDestroy {
 
     open(content) {
         console.log(content);
-        this.modalService.open(content, {size: 'lg', backdrop: 'static'}).result.then(
+        this.modalService.open(content, { size: 'lg', backdrop: 'static' }).result.then(
             result => {
                 console.log('result', result);
             },
@@ -61,8 +60,7 @@ export class AdjuntoShowListPopupComponent implements OnInit, OnDestroy {
             this.adjuntoService.download(hash).subscribe(result => {
                 this.downloadAsPdf(result);
             });
-        }
-        if (tipo === 'documento') {
+        }  if (tipo === 'documento') {
             this.documentoService.download(hash).subscribe(result => {
                 this.downloadAsPdf(result);
             });
@@ -75,8 +73,7 @@ export class AdjuntoShowListPopupComponent implements OnInit, OnDestroy {
                 const url = window.URL.createObjectURL(result.body);
                 window.open(url);
             });
-        }
-        if (tipo === 'documento') {
+        }if (tipo === 'documento') {
             this.documentoService.view(hash).subscribe(result => {
                 const url = window.URL.createObjectURL(result.body);
                 window.open(url);

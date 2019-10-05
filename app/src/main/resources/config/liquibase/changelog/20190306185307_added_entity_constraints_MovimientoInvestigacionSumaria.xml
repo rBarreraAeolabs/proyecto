@@ -7,7 +7,7 @@
         Added the constraints for entity MovimientoInvestigacionSumaria.
     -->
     <changeSet id="20190306185307-2" author="jhipster">
-
+        
         <addForeignKeyConstraint baseColumnNames="investigacion_sumaria_id"
                                  baseTableName="mov_invest_sum"
                                  constraintName="fk_movimiento_investigacion_sumaria_investigacion_sumaria_id"

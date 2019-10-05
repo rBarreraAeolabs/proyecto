@@ -49,8 +49,9 @@ public class DocumentoResource {
         StorageServiceInterface storageServiceInterface,
         FileSystemStorageService fileSystemStorageService,
         ApplicationProperties applicationProperties
-    ) {
+       ) {
         this.documentoService = documentoService;
+
 
 
     }
@@ -147,8 +148,10 @@ public class DocumentoResource {
 
     @GetMapping("/documentos/{hash}/download")
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DESCARGAR_DOCUMENTO + "\")")
-    public ResponseEntity<Resource> downloadByHash(@PathVariable String hash) {
-        if (hash == null || hash.trim().length() == 0) {
+    public ResponseEntity<Resource> downloadByHash(@PathVariable String hash)
+    {
+        if (hash == null || hash.trim().length() == 0)
+        {
             return null;
         }
 
@@ -164,17 +167,21 @@ public class DocumentoResource {
 
     @PostMapping("/documentos/providencia")
     @Timed
-    public ResponseEntity<DocumentoDTO> findDocumentoByProvidencia(@RequestBody ProvidenciaDTO providenciaDTO) {
+    public ResponseEntity<DocumentoDTO> findDocumentoByProvidencia(@RequestBody ProvidenciaDTO providenciaDTO)
+    {
         Optional<DocumentoDTO> documentoOptional = this.documentoService.findByProvidencia(providenciaDTO);
         return ResponseUtil.wrapOrNotFound(documentoOptional);
     }
 
 
+
     @GetMapping("/documentos/{hash}/view")
     @Timed
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.DESCARGAR_DOCUMENTO + "\")")
-    public ResponseEntity<Resource> visualizarDocumento(@PathVariable String hash) {
-        if (hash == null || hash.trim().length() == 0) {
+    public ResponseEntity<Resource> visualizarDocumento(@PathVariable String hash)
+    {
+        if (hash == null || hash.trim().length() == 0)
+        {
             return null;
         }
 
@@ -188,6 +195,9 @@ public class DocumentoResource {
             .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + nombreArchivo + "\"")
             .body(resource);
     }
+
+
+
 
 
 }

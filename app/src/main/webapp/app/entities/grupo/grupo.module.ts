@@ -1,7 +1,7 @@
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-import {PdisciplinarioSharedModule} from 'app/shared';
+import { PdisciplinarioSharedModule } from 'app/shared';
 import {
     GrupoComponent,
     GrupoDetailComponent,
@@ -20,5 +20,4 @@ const ENTITY_STATES = [...grupoRoute, ...grupoPopupRoute];
     entryComponents: [GrupoComponent, GrupoUpdateComponent, GrupoDeleteDialogComponent, GrupoDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PdisciplinarioGrupoModule {
-}
+export class PdisciplinarioGrupoModule {}

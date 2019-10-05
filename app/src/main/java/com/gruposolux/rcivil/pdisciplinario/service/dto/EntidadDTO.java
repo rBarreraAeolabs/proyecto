@@ -3,12 +3,12 @@ package com.gruposolux.rcivil.pdisciplinario.service.dto;
 /**
  * Created by sneiraillanes on 24-04-2019.
  */
-public class EntidadDTO {
+public class EntidadDTO
+{
     private Long id;
     private String nombre;
 
-    public EntidadDTO() {
-    }
+    public EntidadDTO() {}
 
     public Long getId() {
         return id;

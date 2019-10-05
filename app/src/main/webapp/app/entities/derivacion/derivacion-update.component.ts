@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import * as moment from 'moment';
-import {DATE_TIME_FORMAT} from 'app/shared/constants/input.constants';
-import {JhiAlertService} from 'ng-jhipster';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { JhiAlertService } from 'ng-jhipster';
 
-import {IDerivacion} from 'app/shared/model/derivacion.model';
-import {DerivacionService} from './derivacion.service';
-import {IProvidencia} from 'app/shared/model/providencia.model';
-import {ProvidenciaService} from 'app/entities/providencia';
-import {IProvidenciaDerivacion} from 'app/shared/model/providencia-derivacion.model';
+import { IDerivacion } from 'app/shared/model/derivacion.model';
+import { DerivacionService } from './derivacion.service';
+import { IProvidencia } from 'app/shared/model/providencia.model';
+import { ProvidenciaService } from 'app/entities/providencia';
+import { IProvidenciaDerivacion } from 'app/shared/model/providencia-derivacion.model';
 
 @Component({
     selector: 'jhi-derivacion-update',
@@ -28,12 +28,11 @@ export class DerivacionUpdateComponent implements OnInit {
         private derivacionService: DerivacionService,
         private providenciaService: ProvidenciaService,
         private activatedRoute: ActivatedRoute
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({derivacion}) => {
+        this.activatedRoute.data.subscribe(({ derivacion }) => {
             this.derivacion = derivacion;
         });
         this.providenciaService.query().subscribe(
@@ -52,10 +51,7 @@ export class DerivacionUpdateComponent implements OnInit {
         this.isSaving = true;
         this.derivacion.fechaDerivacion = moment(this.fechaDerivacion, DATE_TIME_FORMAT);
         if (this.derivacion.id !== undefined) {
-            this.subscribeToSaveResponseDP(this.derivacionService.update({
-                providenciaDTO: null,
-                derivacionDTO: this.derivacion
-            }));
+            this.subscribeToSaveResponseDP(this.derivacionService.update({ providenciaDTO: null, derivacionDTO: this.derivacion }));
         } else {
             this.subscribeToSaveResponseDerivacion(this.derivacionService.create(this.derivacion));
         }
@@ -88,7 +84,6 @@ export class DerivacionUpdateComponent implements OnInit {
     trackProvidenciaById(index: number, item: IProvidencia) {
         return item.id;
     }
-
     get derivacion() {
         return this._derivacion;
     }

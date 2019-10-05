@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {JhiAlertService} from 'ng-jhipster';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { JhiAlertService } from 'ng-jhipster';
 
-import {IGrupo} from 'app/shared/model/grupo.model';
-import {GrupoService} from './grupo.service';
-import {IPerfil} from 'app/shared/model/perfil.model';
-import {PerfilService} from 'app/entities/perfil';
-import {IProvidencia} from 'app/shared/model/providencia.model';
-import {ProvidenciaService} from 'app/entities/providencia';
+import { IGrupo } from 'app/shared/model/grupo.model';
+import { GrupoService } from './grupo.service';
+import { IPerfil } from 'app/shared/model/perfil.model';
+import { PerfilService } from 'app/entities/perfil';
+import { IProvidencia } from 'app/shared/model/providencia.model';
+import { ProvidenciaService } from 'app/entities/providencia';
 
 @Component({
     selector: 'jhi-grupo-update',
@@ -27,12 +27,11 @@ export class GrupoUpdateComponent implements OnInit {
         private perfilService: PerfilService,
         private providenciaService: ProvidenciaService,
         private activatedRoute: ActivatedRoute
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({grupo}) => {
+        this.activatedRoute.data.subscribe(({ grupo }) => {
             this.grupo = grupo;
         });
         this.perfilService.query().subscribe(
@@ -98,7 +97,6 @@ export class GrupoUpdateComponent implements OnInit {
         }
         return option;
     }
-
     get grupo() {
         return this._grupo;
     }

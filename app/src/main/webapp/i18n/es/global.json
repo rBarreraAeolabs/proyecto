@@ -16,6 +16,9 @@
                 "fichaIngresoSdj": "Ficha Ingreso Sdj",
                 "derivacion": "Derivacion",
                 "entidad": "Entidad",
+                "fiscal": "Fiscal",
+                "fiscalInvestigador": "Fiscal o Investigador",
+                "investigador": "Investigador",
                 "providencia": "Providencia",
                 "sumarioAdministrativo": "Sumario Administrativo",
                 "investigacionSumaria": "Investigacion Sumaria",
@@ -73,7 +76,7 @@
                 }
             },
             "error": {
-                "dontmatch": "¡La contraseña y la confirmación de contraseña no coinciden!"
+                "dontmatch" : "¡La contraseña y la confirmación de contraseña no coinciden!"
             },
             "validate": {
                 "newpassword": {
@@ -96,10 +99,10 @@
             }
         },
         "field": {
-            "id": "ID"
+            "id" : "ID"
         },
         "ribbon": {
-            "dev": "Development"
+            "dev":"Development"
         },
         "item-count": "Monstrando {{first}} - {{second}} de {{total}} artículos."
     },
@@ -115,6 +118,7 @@
             "save": "Guardar",
             "view": "Vista",
             "derivar": "Derivar",
+            "rechazar": "Rechazar",
             "download": "Descargar"
         },
         "detail": {

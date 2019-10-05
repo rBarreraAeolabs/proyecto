@@ -1,6 +1,7 @@
 package com.gruposolux.rcivil.pdisciplinario.service.dto;
 
-public class ProvidenciaUpdateTipoSolicitudDTO {
+public class ProvidenciaUpdateTipoSolicitudDTO
+{
     private Long providenciaId;
     private String tipoSolicitud;
 

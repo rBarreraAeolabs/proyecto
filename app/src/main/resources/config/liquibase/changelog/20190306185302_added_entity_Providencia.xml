@@ -22,49 +22,50 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="numero" type="bigint">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="estado_actual" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
+
             <column name="tipo" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="caracter" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
-            <column name="comentario" type="varchar(255)">
-                <constraints nullable="true"/>
+            <column name="comentario" type="text">
+                <constraints nullable="true" />
             </column>
 
             <column name="fecha_solicitud" type="datetime">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="fecha_creacion" type="datetime">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="coordinar_con" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
             <column name="ficha_ingreso_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_providencia_ficha_ingreso_id"/>
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_providencia_ficha_ingreso_id" />
             </column>
             <column name="sumario_administrativo_id" type="bigint">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="investigacion_sumaria_id" type="bigint">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="nombre_persona" type="varchar(100)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->

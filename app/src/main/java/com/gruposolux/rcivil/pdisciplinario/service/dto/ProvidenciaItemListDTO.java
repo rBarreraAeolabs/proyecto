@@ -7,7 +7,8 @@ import java.time.Instant;
 /**
  * Created by sneiraillanes on 02-05-2019.
  */
-public class ProvidenciaItemListDTO {
+public class ProvidenciaItemListDTO
+{
     private Long id;
     private Instant fechaCreacion;
     private String estadoProvidencia;
@@ -15,9 +16,8 @@ public class ProvidenciaItemListDTO {
     private Long diasDesdeCreacion;
     private Long diasUltimoTramite;
     private Instant fechaVencimiento;
+    private boolean standby;
 
-    public ProvidenciaItemListDTO() {
-    }
 
     public ProvidenciaItemListDTO(
         Long id,
@@ -26,8 +26,9 @@ public class ProvidenciaItemListDTO {
         String nombreGrupo,
         Long diasDesdeCreacion,
         Long diasUltimoTramite,
-        Instant fechaVencimiento
-    ) {
+        Instant fechaVencimiento,
+        boolean standby) {
+
         this.id = id;
         this.fechaCreacion = fechaCreacion;
         this.estadoProvidencia = estadoProvidencia;
@@ -35,6 +36,7 @@ public class ProvidenciaItemListDTO {
         this.diasDesdeCreacion = diasDesdeCreacion;
         this.diasUltimoTramite = diasUltimoTramite;
         this.fechaVencimiento = fechaVencimiento;
+        this.standby = standby;
     }
 
     public Long getId() {
@@ -93,16 +95,25 @@ public class ProvidenciaItemListDTO {
         this.fechaVencimiento = fechaVencimiento;
     }
 
+    public boolean isStandby() {
+        return standby;
+    }
+
+    public void setStandby(boolean standby) {
+        this.standby = standby;
+    }
+
     @Override
     public String toString() {
         return "ProvidenciaItemListDTO{" +
             "id=" + id +
             ", fechaCreacion=" + fechaCreacion +
-            ", estadoProvidencia=" + estadoProvidencia +
+            ", estadoProvidencia='" + estadoProvidencia + '\'' +
             ", nombreGrupo='" + nombreGrupo + '\'' +
             ", diasDesdeCreacion=" + diasDesdeCreacion +
             ", diasUltimoTramite=" + diasUltimoTramite +
             ", fechaVencimiento=" + fechaVencimiento +
+            ", standby=" + standby +
             '}';
     }
 }

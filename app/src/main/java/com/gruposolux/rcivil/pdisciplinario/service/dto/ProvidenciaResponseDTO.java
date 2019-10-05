@@ -7,15 +7,20 @@ import java.util.Set;
 /**
  * Created by sneiraillanes on 04-04-2019.
  */
-public class ProvidenciaResponseDTO {
+public class ProvidenciaResponseDTO
+{
     private Long providenciaId;
     private String estadoActual;
+    private EstadoProvidencia etapa;
+
+    private EstadoProvidencia subEtapa;
+
+    private EstadoProvidencia requisito;
     private Set<AdjuntoDTO> adjuntosDTOs;
     private Set<DocumentoDTO> documentosDTOs;
     private String observacion;
 
-    public ProvidenciaResponseDTO() {
-    }
+    public ProvidenciaResponseDTO() {}
 
     public Long getProvidenciaId() {
         return providenciaId;
@@ -49,6 +54,30 @@ public class ProvidenciaResponseDTO {
         this.documentosDTOs = documentosDTOs;
     }
 
+    public EstadoProvidencia getEtapa() {
+        return etapa;
+    }
+
+    public void setEtapa(EstadoProvidencia etapa) {
+        this.etapa = etapa;
+    }
+
+    public EstadoProvidencia getSubEtapa() {
+        return subEtapa;
+    }
+
+    public void setSubEtapa(EstadoProvidencia subEtapa) {
+        this.subEtapa = subEtapa;
+    }
+
+    public EstadoProvidencia getRequisito() {
+        return requisito;
+    }
+
+    public void setRequisito(EstadoProvidencia requisito) {
+        this.requisito = requisito;
+    }
+
     public String getObservacion() {
         return observacion;
     }
@@ -61,7 +90,9 @@ public class ProvidenciaResponseDTO {
     public String toString() {
         return "ProvidenciaResponseDTO{" +
             "providenciaId=" + providenciaId +
-            ", estadoActual=" + estadoActual +
+            ", estadoActual='" + estadoActual + '\'' +
+            ", requisito='" + requisito + '\'' +
+            ", subEtapa='" + subEtapa + '\'' +
             ", adjuntosDTOs=" + adjuntosDTOs +
             ", documentosDTOs=" + documentosDTOs +
             ", observacion='" + observacion + '\'' +

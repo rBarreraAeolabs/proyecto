@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'jhi-dashboard',
@@ -13,18 +13,16 @@ export class DashboardComponent implements OnInit {
 
     public barCharLabels: string[] = ['2016', '2017', '2018'];
 
-    public barChartType = 'bar';
+    public barChartType = 'line';
 
     public barChartLegend = true;
 
-    public barChartData: any[] = [{data: [65, 59, 80], label: 'Series A'}, {data: [28, 48, 19], label: 'Series B'}];
+    public barChartData: any[] = [{ data: [65, 59, 80], label: 'Series A' }, { data: [28, 48, 19], label: 'Series B' }];
 
     // eventos
-    public chartClicked(e: any): void {
-    }
+    public chartClicked(e: any): void {}
 
-    public chartHovered(e: any): void {
-    }
+    public chartHovered(e: any): void {}
 
     public randomize(): void {
         // only changes 3 values
@@ -36,9 +34,7 @@ export class DashboardComponent implements OnInit {
         this.barChartData = clone;
     }
 
-    constructor() {
-    }
+    constructor() {}
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 }

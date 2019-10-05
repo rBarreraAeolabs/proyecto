@@ -1,6 +1,7 @@
+
 {
     "pdisciplinarioApp": {
-        "plantilla": {
+        "plantilla" : {
             "home": {
                 "title": "Plantillas",
                 "createLabel": "Crear nuevo Plantilla",

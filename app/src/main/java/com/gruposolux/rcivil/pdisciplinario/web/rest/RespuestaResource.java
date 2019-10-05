@@ -22,55 +22,64 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping("/api")
-public class RespuestaResource {
+public class RespuestaResource
+{
     private final Logger log = LoggerFactory.getLogger(RespuestaResource.class);
     private static final String ENTITY_NAME = "respuesta";
     private final RespuestaService respuestaService;
 
-    public RespuestaResource(RespuestaService respuestaService) {
+    public RespuestaResource(RespuestaService respuestaService)
+    {
         this.respuestaService = respuestaService;
     }
 
     @PostMapping("/respuestas")
     @Timed
-    public ResponseEntity<RespuestaDTO> save(@RequestBody RespuestaDTO respuestaDTO) {
+    public ResponseEntity<RespuestaDTO> save(@RequestBody RespuestaDTO respuestaDTO)
+    {
         respuestaDTO = this.respuestaService.save(respuestaDTO);
         return new ResponseEntity<>(respuestaDTO, HttpStatus.OK);
     }
 
     @PutMapping("/respuestas")
     @Timed
-    public ResponseEntity<RespuestaDTO> update(@RequestBody RespuestaDTO respuestaDTO) {
+    public ResponseEntity<RespuestaDTO> update(@RequestBody RespuestaDTO respuestaDTO)
+    {
         respuestaDTO = this.respuestaService.save(respuestaDTO);
         return new ResponseEntity<>(respuestaDTO, HttpStatus.OK);
     }
 
     @GetMapping("/respuestas/{id}")
     @Timed
-    public ResponseEntity<RespuestaDTO> getOne(@PathVariable Long id) {
+    public ResponseEntity<RespuestaDTO> getOne(@PathVariable Long id)
+    {
         Optional<RespuestaDTO> respuestaDTO = this.respuestaService.findOne(id);
         return ResponseUtil.wrapOrNotFound(respuestaDTO);
     }
 
     @DeleteMapping("/respuestas/{id}")
     @Timed
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id)
+    {
         this.respuestaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
     @GetMapping("/respuestas/all")
     @Timed
-    public ResponseEntity<List<RespuestaDTO>> getAll() {
+    public ResponseEntity<List<RespuestaDTO>> getAll()
+    {
         List<RespuestaDTO> respuestas = this.respuestaService.getAll();
         return new ResponseEntity<>(respuestas, HttpStatus.OK);
     }
 
     @PostMapping("/respuestas/providencia")
     @Timed
-    public ResponseEntity<RespuestaDTO> getRespuestaByProvidencia(@RequestBody ProvidenciaDTO providenciaDTO) {
+    public ResponseEntity<RespuestaDTO> getRespuestaByProvidencia(@RequestBody ProvidenciaDTO providenciaDTO)
+    {
         Optional<RespuestaDTO> respuestaDTO = this.respuestaService.findOneByProvidencia(providenciaDTO);
-        if (respuestaDTO.isPresent()) {
+        if (respuestaDTO.isPresent())
+        {
             return new ResponseEntity<>(respuestaDTO.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(new RespuestaDTO(), HttpStatus.OK);
@@ -78,7 +87,8 @@ public class RespuestaResource {
 
     @GetMapping("/respuestas/movimiento-providencia/{movimientoProvidenciaId}")
     @Timed
-    public ResponseEntity<RespuestaDTO> findByMovimientoProvidencia(@PathVariable Long movimientoProvidenciaId) {
+    public ResponseEntity<RespuestaDTO> findByMovimientoProvidencia(@PathVariable Long movimientoProvidenciaId)
+    {
         Optional<RespuestaDTO> respuestaDTO = Optional.of(this.respuestaService.findByMovimientoProvidencia(movimientoProvidenciaId));
         return ResponseUtil.wrapOrNotFound(respuestaDTO);
     }

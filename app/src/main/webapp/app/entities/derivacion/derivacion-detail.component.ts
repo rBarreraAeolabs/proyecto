@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import {IDerivacion} from 'app/shared/model/derivacion.model';
+import { IDerivacion } from 'app/shared/model/derivacion.model';
 
 @Component({
     selector: 'jhi-derivacion-detail',
@@ -10,11 +10,10 @@ import {IDerivacion} from 'app/shared/model/derivacion.model';
 export class DerivacionDetailComponent implements OnInit {
     derivacion: IDerivacion;
 
-    constructor(private activatedRoute: ActivatedRoute) {
-    }
+    constructor(private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({derivacion}) => {
+        this.activatedRoute.data.subscribe(({ derivacion }) => {
             this.derivacion = derivacion;
         });
     }

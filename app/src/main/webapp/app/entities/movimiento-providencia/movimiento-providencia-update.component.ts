@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import * as moment from 'moment';
-import {DATE_TIME_FORMAT} from 'app/shared/constants/input.constants';
-import {JhiAlertService} from 'ng-jhipster';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { JhiAlertService } from 'ng-jhipster';
 
-import {IMovimientoProvidencia} from 'app/shared/model/movimiento-providencia.model';
-import {MovimientoProvidenciaService} from './movimiento-providencia.service';
-import {IProvidencia} from 'app/shared/model/providencia.model';
-import {ProvidenciaService} from 'app/entities/providencia';
-import {IPlazo} from 'app/shared/model/plazo.model';
-import {PlazoService} from 'app/entities/plazo';
+import { IMovimientoProvidencia } from 'app/shared/model/movimiento-providencia.model';
+import { MovimientoProvidenciaService } from './movimiento-providencia.service';
+import { IProvidencia } from 'app/shared/model/providencia.model';
+import { ProvidenciaService } from 'app/entities/providencia';
+import { IPlazo } from 'app/shared/model/plazo.model';
+import { PlazoService } from 'app/entities/plazo';
 
 @Component({
     selector: 'jhi-movimiento-providencia-update',
@@ -32,12 +32,11 @@ export class MovimientoProvidenciaUpdateComponent implements OnInit {
         private providenciaService: ProvidenciaService,
         private plazoService: PlazoService,
         private activatedRoute: ActivatedRoute
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({movimientoProvidencia}) => {
+        this.activatedRoute.data.subscribe(({ movimientoProvidencia }) => {
             this.movimientoProvidencia = movimientoProvidencia;
         });
         this.providenciaService.query().subscribe(
@@ -95,7 +94,6 @@ export class MovimientoProvidenciaUpdateComponent implements OnInit {
     trackPlazoById(index: number, item: IPlazo) {
         return item.id;
     }
-
     get movimientoProvidencia() {
         return this._movimientoProvidencia;
     }

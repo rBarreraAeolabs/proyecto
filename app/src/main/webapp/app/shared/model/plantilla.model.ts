@@ -1,4 +1,4 @@
-import {EstadoProvidencia} from 'app/shared/model/providencia.model';
+import { EstadoProvidencia } from 'app/shared/model/providencia.model';
 
 export const enum TipoPlantilla {
     MEMORANDUM = 'MEMORANDUM',
@@ -24,6 +24,5 @@ export class Plantilla implements IPlantilla {
         public contenido?: string,
         public tipo?: TipoPlantilla,
         public estado?: EstadoProvidencia
-    ) {
-    }
+    ) {}
 }

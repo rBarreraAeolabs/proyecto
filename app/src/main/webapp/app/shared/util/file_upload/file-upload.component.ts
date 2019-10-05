@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
-import {CookieService} from 'ngx-cookie';
-import {HttpClient} from '@angular/common/http';
-import {humanizeBytes, UploaderOptions, UploadFile, UploadInput, UploadOutput, UploadStatus} from 'ngx-uploader';
-import {UploadFileService} from './upload-file.service';
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { CookieService } from 'ngx-cookie';
+import { HttpClient } from '@angular/common/http';
+import { humanizeBytes, UploaderOptions, UploadFile, UploadInput, UploadOutput, UploadStatus } from 'ngx-uploader';
+import { UploadFileService } from './upload-file.service';
 import {IAdjunto} from '../../model/adjunto.model';
 import {IDocumento} from '../../model/documento.model';
 
@@ -35,13 +35,11 @@ export class FileUploadComponent implements OnInit, OnChanges {
 
     token: string;
     nombreAdjunto: String;
-    sizeLimit = 8000000;
-    /** aqui le doy 8mb*/
+    sizeLimit = 8000000; /** aqui le doy 8mb*/
 
-    colorC = true;
-    colorP = true;
-    colorF = true;
-
+    colorC = true ;
+    colorP = true ;
+    colorF = true ;
     constructor(
         private http: HttpClient,
         private sessionStorage: SessionStorageService,
@@ -49,7 +47,7 @@ export class FileUploadComponent implements OnInit, OnChanges {
         private localStorage: LocalStorageService
     ) {
         // aqui solo limito la cantidad de archivos que se suben al mismo tiempo
-        this.options = {concurrency: 1}; //  ,maxUploads: 3 agregarioa limite pero no funciona bien
+        this.options = { concurrency: 1 }; //  ,maxUploads: 3 agregaria limite pero no funciona bien
         this.files = [];
         this.uploadInput = new EventEmitter<UploadInput>();
         this.humanizeBytes = humanizeBytes;
@@ -77,7 +75,7 @@ export class FileUploadComponent implements OnInit, OnChanges {
                 headers: {
                     Authorization: 'Bearer ' + this.token
                 },
-                data: {foo: 'bar'}
+                data: { foo: 'bar' }
             };
             this.uploadInput.emit(event);
         } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
@@ -103,28 +101,13 @@ export class FileUploadComponent implements OnInit, OnChanges {
             /** condicion de subida de archivos*/
         } else if (output.type === 'addedToQueue' && typeof output.file !== 'undefined') {
             this.nombreAdjunto = output.file.name.substring(output.file.name.lastIndexOf('.') + 1).toLowerCase();
-            console.log('nombre archivos: ', output.file.name, 'extension: ', this.nombreAdjunto, 'tamaño: ', output.file.size);
+            console.log('nombre archivos: ', output.file.name , ', extension: ', this.nombreAdjunto, ', tamaño: ', output.file.size  );
             /** cambio de color*/
-            if (this.listFiles.length >= 3) {
-                this.colorC = false;
-                alert('No puedes subir mas de 3 archivos');
-            } else {
-                this.colorC = true;
-            }
-            if (output.file.size > this.sizeLimit) {
-                this.colorP = false;
-                alert('el archivo no puede pesar mas de 8Mb');
-            } else {
-                this.colorP = true;
-            }
-            if (this.nombreAdjunto !== 'pdf') {
-                this.colorF = false;
-                alert('El archivo debe ser PDF');
-            } else {
-                this.colorF = true;
-            }
+            if (this.listFiles.length >= 3) {this.colorC = false; alert ('No puedes subir mas de 3 archivos');  } else {this.colorC = true; }
+            if (output.file.size > this.sizeLimit) {this.colorP = false; alert ('el archivo no puede pesar mas de 8Mb'); } else {this.colorP = true; }
+            if ((this.nombreAdjunto !== 'pdf' && this.nombreAdjunto !== 'docx' )) {this.colorF = false; alert ('El archivo debe ser PDF '); } else {this.colorF = true; }
             /** condicion  debe ser menor a 3 archivos y menor al tamaño limite y formato pdf*/
-            if (this.listFiles.length < 3 && output.file.size < this.sizeLimit && this.nombreAdjunto === 'pdf') {
+            if ((this.listFiles.length < 3 && output.file.size < this.sizeLimit) && (this.nombreAdjunto === 'pdf' || this.nombreAdjunto === 'docx'   ) ) {
                 this.files.push(output.file);
                 console.log('cantidad de archivos', this.listFiles.length);
             }
@@ -140,16 +123,15 @@ export class FileUploadComponent implements OnInit, OnChanges {
                 Authorization: 'Bearer ' + this.token
             },
             method: 'POST',
-            data: {foo: 'bar'}
+            data: { foo: 'bar' }
         };
 
         this.uploadInput.emit(event);
     }
 
     cancelUpload(id: string): void {
-        this.uploadInput.emit({type: 'cancel', id});
+        this.uploadInput.emit({ type: 'cancel', id});
     }
-
     /** este es el eliminar de la lista que se ve */
     removeFile(id: string): void {
         let hashAux = null;
@@ -185,6 +167,6 @@ export class FileUploadComponent implements OnInit, OnChanges {
     }
 
     removeAllFiles(): void {
-        this.uploadInput.emit({type: 'removeAll'});
+        this.uploadInput.emit({ type: 'removeAll' });
     }
 }

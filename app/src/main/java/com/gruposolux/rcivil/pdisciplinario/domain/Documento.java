@@ -26,7 +26,7 @@ public class Documento implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "numero_resolucion")
+    @Column (name = "numero_resolucion")
     private Long numeroResolucion;
 
     @Column(name = "descripcion")
@@ -89,15 +89,11 @@ public class Documento implements Serializable {
     private Integer version;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getNumeroResolucion() {
-        return numeroResolucion;
-    }
+    public Long getNumeroResolucion(){return numeroResolucion; }
 
-    public void setNumeroResolucion(Long numeroResolucion) {
-        this.numeroResolucion = numeroResolucion;
-    }
+    public void setNumeroResolucion(Long numeroResolucion) { this.numeroResolucion = numeroResolucion; }
 
-    public Documento numeroResolucion(Long numeroResolucion) {
+    public Documento numeroResolucion(Long numeroResolucion){
         this.numeroResolucion = numeroResolucion;
         return this;
     }
@@ -159,9 +155,12 @@ public class Documento implements Serializable {
     }
 
     public void setArchivoNombre(String archivoNombre) {
-        if (archivoNombre != null && archivoNombre.length() > 0) {
+        if (archivoNombre != null && archivoNombre.length() > 0)
+        {
             this.archivoNombre = archivoNombre.trim();
-        } else {
+        }
+        else
+        {
             this.archivoNombre = null;
         }
 

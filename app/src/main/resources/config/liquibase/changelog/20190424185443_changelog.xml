@@ -1,8 +1,5 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <changeSet author="sneiraillanes (generated)" id="1556132109420-1">
         <addColumn tableName="providencia">
             <column name="entidad_implicada_id" type="int8"/>
@@ -19,9 +16,7 @@
         </addColumn>
     </changeSet>
     <changeSet author="sneiraillanes (generated)" id="1556132109420-4">
-        <addForeignKeyConstraint baseColumnNames="entidad_implicada_id" baseTableName="providencia"
-                                 constraintName="FKcqkenkw6s814qj02wv2dghrjk" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="entidad"/>
+        <addForeignKeyConstraint baseColumnNames="entidad_implicada_id" baseTableName="providencia" constraintName="FKcqkenkw6s814qj02wv2dghrjk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="entidad"/>
     </changeSet>
     <changeSet author="sneiraillanes (generated)" id="1556132109420-5">
         <dropForeignKeyConstraint baseTableName="providencia" constraintName="FKq77nnfg1e7fyhj6pbdt2mfhqq"/>

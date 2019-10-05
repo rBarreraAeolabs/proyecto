@@ -1,7 +1,7 @@
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-import {PdisciplinarioSharedModule} from 'app/shared';
+import { PdisciplinarioSharedModule } from 'app/shared';
 import {
     AdjuntoComponent,
     AdjuntoDetailComponent,
@@ -26,5 +26,4 @@ const ENTITY_STATES = [...adjuntoRoute, ...adjuntoPopupRoute];
     entryComponents: [AdjuntoComponent, AdjuntoUpdateComponent, AdjuntoDeleteDialogComponent, AdjuntoDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PdisciplinarioAdjuntoModule {
-}
+export class PdisciplinarioAdjuntoModule {}

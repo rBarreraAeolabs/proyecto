@@ -1,11 +1,11 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {JhiEventManager} from 'ng-jhipster';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager } from 'ng-jhipster';
 
-import {IMovimientoSumarioAdministrativo} from 'app/shared/model/movimiento-sumario-administrativo.model';
-import {MovimientoSumarioAdministrativoService} from './movimiento-sumario-administrativo.service';
+import { IMovimientoSumarioAdministrativo } from 'app/shared/model/movimiento-sumario-administrativo.model';
+import { MovimientoSumarioAdministrativoService } from './movimiento-sumario-administrativo.service';
 
 @Component({
     selector: 'jhi-movimiento-sumario-administrativo-delete-dialog',
@@ -18,8 +18,7 @@ export class MovimientoSumarioAdministrativoDeleteDialogComponent {
         private movimientoSumarioAdministrativoService: MovimientoSumarioAdministrativoService,
         public activeModal: NgbActiveModal,
         private eventManager: JhiEventManager
-    ) {
-    }
+    ) {}
 
     clear() {
         this.activeModal.dismiss('cancel');
@@ -43,11 +42,10 @@ export class MovimientoSumarioAdministrativoDeleteDialogComponent {
 export class MovimientoSumarioAdministrativoDeletePopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {
-    }
+    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({movimientoSumarioAdministrativo}) => {
+        this.activatedRoute.data.subscribe(({ movimientoSumarioAdministrativo }) => {
             setTimeout(() => {
                 this.ngbModalRef = this.modalService.open(MovimientoSumarioAdministrativoDeleteDialogComponent as Component, {
                     size: 'lg',
@@ -56,17 +54,11 @@ export class MovimientoSumarioAdministrativoDeletePopupComponent implements OnIn
                 this.ngbModalRef.componentInstance.movimientoSumarioAdministrativo = movimientoSumarioAdministrativo;
                 this.ngbModalRef.result.then(
                     result => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     },
                     reason => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     }
                 );

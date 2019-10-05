@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import {IFichaIngresoSdj} from 'app/shared/model/ficha-ingreso-sdj.model';
+import { IFichaIngresoSdj } from 'app/shared/model/ficha-ingreso-sdj.model';
 
 @Component({
     selector: 'jhi-ficha-ingreso-sdj-detail',
@@ -10,11 +10,10 @@ import {IFichaIngresoSdj} from 'app/shared/model/ficha-ingreso-sdj.model';
 export class FichaIngresoSdjDetailComponent implements OnInit {
     fichaIngresoSdj: IFichaIngresoSdj;
 
-    constructor(private activatedRoute: ActivatedRoute) {
-    }
+    constructor(private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({fichaIngresoSdj}) => {
+        this.activatedRoute.data.subscribe(({ fichaIngresoSdj }) => {
             this.fichaIngresoSdj = fichaIngresoSdj;
             console.log(this.fichaIngresoSdj);
         });

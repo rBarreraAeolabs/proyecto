@@ -1,4 +1,4 @@
-import {Moment} from 'moment';
+import { Moment } from 'moment';
 
 export const enum EstadoInvestigacionSumaria {
     ESTADO_UNO = 'ESTADO_UNO',
@@ -21,6 +21,5 @@ export class MovimientoInvestigacionSumaria implements IMovimientoInvestigacionS
         public estadoNuevo?: EstadoInvestigacionSumaria,
         public fecha?: Moment,
         public investigacionSumariaId?: number
-    ) {
-    }
+    ) {}
 }

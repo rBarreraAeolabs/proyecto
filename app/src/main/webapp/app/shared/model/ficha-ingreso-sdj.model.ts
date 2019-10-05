@@ -1,4 +1,4 @@
-import {Moment} from 'moment';
+import { Moment } from 'moment';
 
 export interface IFichaIngresoSdj {
     id?: number;
@@ -23,6 +23,5 @@ export class FichaIngresoSdj implements IFichaIngresoSdj {
         public numeroReferencia?: number,
         public acciones?: string[],
         public atentamente?: string
-    ) {
-    }
+    ) {}
 }

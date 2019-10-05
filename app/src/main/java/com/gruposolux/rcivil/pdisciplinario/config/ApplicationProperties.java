@@ -16,9 +16,7 @@ public class ApplicationProperties {
     public ApplicationProperties() {
     }
 
-    public ApplicationProperties.Storage getStorage() {
-        return this.storage;
-    }
+    public ApplicationProperties.Storage getStorage() { return this.storage; }
 
     public static class Storage {
         private int maxFileSize;

@@ -1,6 +1,7 @@
+
 {
     "pdisciplinarioApp": {
-        "solicitudesRelacionadas": {
+        "solicitudesRelacionadas" : {
             "home": {
                 "title": "Solicitudes Relacionadas"
             },

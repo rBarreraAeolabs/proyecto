@@ -1,11 +1,11 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {JhiEventManager} from 'ng-jhipster';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager } from 'ng-jhipster';
 
-import {IProvidencia} from 'app/shared/model/providencia.model';
-import {ProvidenciaService} from './providencia.service';
+import { IProvidencia } from 'app/shared/model/providencia.model';
+import { ProvidenciaService } from './providencia.service';
 
 @Component({
     selector: 'jhi-providencia-delete-dialog',
@@ -18,8 +18,7 @@ export class ProvidenciaDeleteDialogComponent {
         private providenciaService: ProvidenciaService,
         public activeModal: NgbActiveModal,
         private eventManager: JhiEventManager
-    ) {
-    }
+    ) {}
 
     clear() {
         this.activeModal.dismiss('cancel');
@@ -43,11 +42,10 @@ export class ProvidenciaDeleteDialogComponent {
 export class ProvidenciaDeletePopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {
-    }
+    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({providencia}) => {
+        this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
                 this.ngbModalRef = this.modalService.open(ProvidenciaDeleteDialogComponent as Component, {
                     size: 'lg',
@@ -56,17 +54,11 @@ export class ProvidenciaDeletePopupComponent implements OnInit, OnDestroy {
                 this.ngbModalRef.componentInstance.providencia = providencia;
                 this.ngbModalRef.result.then(
                     result => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     },
                     reason => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     }
                 );

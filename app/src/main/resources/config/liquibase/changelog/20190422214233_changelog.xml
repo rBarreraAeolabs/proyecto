@@ -1,8 +1,5 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <changeSet author="sneiraillanes (generated)" id="1555969375257-1">
         <createTable tableName="respuesta">
             <column autoIncrement="true" name="id" type="BIGINT">
@@ -17,37 +14,27 @@
     <changeSet author="sneiraillanes (generated)" id="1555969375257-2">
         <addColumn tableName="adjunto">
             <column name="respuesta_id" type="BIGINT">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
         </addColumn>
     </changeSet>
     <changeSet author="sneiraillanes (generated)" id="1555969375257-3">
         <addColumn tableName="documento">
             <column name="respuesta_id" type="BIGINT">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
         </addColumn>
     </changeSet>
     <changeSet author="sneiraillanes (generated)" id="1555969375257-4">
-        <addForeignKeyConstraint baseColumnNames="respuesta_id" baseTableName="documento"
-                                 constraintName="FKauix5sdnuioxsoaa3b7q0wah4" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="respuesta"/>
+        <addForeignKeyConstraint baseColumnNames="respuesta_id" baseTableName="documento" constraintName="FKauix5sdnuioxsoaa3b7q0wah4" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="respuesta"/>
     </changeSet>
     <changeSet author="sneiraillanes (generated)" id="1555969375257-5">
-        <addForeignKeyConstraint baseColumnNames="respuesta_id" baseTableName="adjunto"
-                                 constraintName="FKbkkxujaewksvw2x0lc84lu9sv" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="respuesta"/>
+        <addForeignKeyConstraint baseColumnNames="respuesta_id" baseTableName="adjunto" constraintName="FKbkkxujaewksvw2x0lc84lu9sv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="respuesta"/>
     </changeSet>
     <changeSet author="sneiraillanes (generated)" id="1555969375257-6">
-        <addForeignKeyConstraint baseColumnNames="providencia_id" baseTableName="respuesta"
-                                 constraintName="FKgc4sc24l112v1rv18d9obyyg" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id"
-                                 referencedTableName="providencia"/>
+        <addForeignKeyConstraint baseColumnNames="providencia_id" baseTableName="respuesta" constraintName="FKgc4sc24l112v1rv18d9obyyg" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="providencia"/>
     </changeSet>
     <changeSet author="sneiraillanes (generated)" id="1555969375257-7">
-        <addForeignKeyConstraint baseColumnNames="movimiento_providencia_id" baseTableName="respuesta"
-                                 constraintName="FKsre9ptak1o1k2s5yeg78nxf11" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id"
-                                 referencedTableName="movimiento_providencia"/>
+        <addForeignKeyConstraint baseColumnNames="movimiento_providencia_id" baseTableName="respuesta" constraintName="FKsre9ptak1o1k2s5yeg78nxf11" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="movimiento_providencia"/>
     </changeSet>
 </databaseChangeLog>

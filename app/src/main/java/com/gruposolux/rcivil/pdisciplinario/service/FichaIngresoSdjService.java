@@ -63,10 +63,10 @@ public class FichaIngresoSdjService {
     }
 
 
+
     /**
-     * get all the fichaIngresoSdjs where Providencia is null.
-     *
-     * @return the list of entities
+     *  get all the fichaIngresoSdjs where Providencia is null.
+     *  @return the list of entities
      */
     @Transactional(readOnly = true)
     public List<FichaIngresoSdjDTO> findAllWhereProvidenciaIsNull() {

@@ -103,9 +103,10 @@ public class PerfilService {
 
 
     /**
+     *
      * @return list de todas las autoridades de jhipster y roles
      */
-    public List<String> getAuthorities() {
+    public List<String> getAuthorities(){
         return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
     }
 }

@@ -1,22 +1,21 @@
-import {Injectable} from '@angular/core';
-import {HttpResponse} from '@angular/common/http';
-import {Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes} from '@angular/router';
-import {JhiPaginationUtil, JhiResolvePagingParams} from 'ng-jhipster';
-import {UserRouteAccessService} from 'app/core';
-import {of} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {Plantilla} from 'app/shared/model/plantilla.model';
-import {PlantillaService} from './plantilla.service';
-import {PlantillaComponent} from './plantilla.component';
-import {PlantillaDetailComponent} from './plantilla-detail.component';
-import {PlantillaUpdateComponent} from './plantilla-update.component';
-import {PlantillaDeletePopupComponent} from './plantilla-delete-dialog.component';
-import {IPlantilla} from 'app/shared/model/plantilla.model';
+import { Injectable } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
+import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
+import { UserRouteAccessService } from 'app/core';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Plantilla } from 'app/shared/model/plantilla.model';
+import { PlantillaService } from './plantilla.service';
+import { PlantillaComponent } from './plantilla.component';
+import { PlantillaDetailComponent } from './plantilla-detail.component';
+import { PlantillaUpdateComponent } from './plantilla-update.component';
+import { PlantillaDeletePopupComponent } from './plantilla-delete-dialog.component';
+import { IPlantilla } from 'app/shared/model/plantilla.model';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class PlantillaResolve implements Resolve<IPlantilla> {
-    constructor(private service: PlantillaService) {
-    }
+    constructor(private service: PlantillaService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const id = route.params['id'] ? route.params['id'] : null;
@@ -35,7 +34,7 @@ export const plantillaRoute: Routes = [
             pagingParams: JhiResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER', 'VISUALIZAR_PLANTILLA_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'VISUALIZAR_PLANTILLA'],
             defaultSort: 'id,asc',
             pageTitle: 'pdisciplinarioApp.plantilla.home.title'
         },
@@ -48,7 +47,7 @@ export const plantillaRoute: Routes = [
             plantilla: PlantillaResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'VISUALIZAR_PLANTILLA_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'VISUALIZAR_PLANTILLA'],
             pageTitle: 'pdisciplinarioApp.plantilla.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -60,7 +59,7 @@ export const plantillaRoute: Routes = [
             plantilla: PlantillaResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'CREAR_PLANTILLA_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'CREAR_PLANTILLA'],
             pageTitle: 'pdisciplinarioApp.plantilla.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -72,7 +71,7 @@ export const plantillaRoute: Routes = [
             plantilla: PlantillaResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'EDITAR_PLANTILLA_PRIVILEGE'],
+            authorities: ['ROLE_USER', 'EDITAR_PLANTILLA'],
             pageTitle: 'pdisciplinarioApp.plantilla.home.title'
         },
         canActivate: [UserRouteAccessService]

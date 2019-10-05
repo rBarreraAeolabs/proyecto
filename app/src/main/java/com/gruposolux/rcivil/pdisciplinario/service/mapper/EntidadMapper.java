@@ -10,7 +10,8 @@ import java.util.List;
  * Created by sneiraillanes on 24-04-2019.
  */
 @Mapper(componentModel = "spring", uses = {})
-public interface EntidadMapper extends EntityMapper<EntidadDTO, Entidad> {
+public interface EntidadMapper extends EntityMapper<EntidadDTO, Entidad>
+{
     EntidadDTO toDto(Entidad entidad);
 
     Entidad toEntity(EntidadDTO entidadDTO);
@@ -19,8 +20,10 @@ public interface EntidadMapper extends EntityMapper<EntidadDTO, Entidad> {
 
     List<Entidad> toEntity(List<EntidadDTO> entidadDTOs);
 
-    default Entidad fromId(Long id) {
-        if (id == null) {
+    default Entidad fromId(Long id)
+    {
+        if (id == null)
+        {
             return null;
         }
 

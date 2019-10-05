@@ -8,7 +8,6 @@ import org.springframework.cloud.config.java.AbstractCloudConfig;
 import org.springframework.context.annotation.*;
 
 import javax.sql.DataSource;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
@@ -17,7 +16,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class CloudDatabaseConfiguration extends AbstractCloudConfig {
 
     private final Logger log = LoggerFactory.getLogger(CloudDatabaseConfiguration.class);
-
+    
     private final String CLOUD_CONFIGURATION_HIKARI_PREFIX = "spring.datasource.hikari";
 
     @Bean

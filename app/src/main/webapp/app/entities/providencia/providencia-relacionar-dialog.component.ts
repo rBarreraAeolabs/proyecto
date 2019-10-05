@@ -6,7 +6,8 @@ import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap'
 import {ActivatedRoute, Router} from '@angular/router';
 import {JhiEventManager} from 'ng-jhipster';
 import {ProvidenciaService} from './providencia.service';
-import {IProvidencia, IProvidenciaUpdateMadre, Providencia} from '../../shared/model/providencia.model';
+// import {IProvidencia, IProvidenciaUpdateMadre, Providencia} from '../../shared/model/providencia.model';
+import {IProvidencia, IProvidenciaUpdateForType, Providencia} from '../../shared/model/providencia.model';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 
 @Component({
@@ -17,9 +18,13 @@ export class ProvidenciaRelacionarDialogComponent implements OnInit {
 
     private _providencia: IProvidencia;
     providencias: IProvidencia[];
-    providenciaUpdateMadre: IProvidenciaUpdateMadre = {
+
+    providenciaUpdateForType: IProvidenciaUpdateForType = {
+        numeroReferencia: null,
         providenciaId: null,
-        providenciaMadreId: null
+        providenciaMadreId: null,
+        providenciaMadreNumeroReferencia: null,
+        ordenJuridico: null,
     };
     providenciaSeleccionada: IProvidencia;
 
@@ -28,20 +33,22 @@ export class ProvidenciaRelacionarDialogComponent implements OnInit {
         private router: Router,
         private eventManager: JhiEventManager,
         private providenciaService: ProvidenciaService
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.providenciaService.getAllWithoutPagination().subscribe(
             (req: HttpResponse<IProvidencia[]>) => {
-                this.providencias = req.body.filter(prov => prov.id !== this.providencia.id);
-            },
+               this.providencias = req.body.filter(prov => prov.id !== this.providencia.id && prov.numeroReferencia !== null);
+                                      },
             (req: HttpErrorResponse) => {
                 console.log('error', req.message);
             }
         );
 
-        this.providenciaUpdateMadre.providenciaId = this.providencia.id;
+        this.providenciaUpdateForType.providenciaId = this.providencia.id;
+        this.providenciaUpdateForType.ordenJuridico = null;
+        // este es el log de la provi madre
+        console.log('esta es la providencia: ', this.providencia);
     }
 
     clear() {
@@ -61,21 +68,28 @@ export class ProvidenciaRelacionarDialogComponent implements OnInit {
     }
 
     onChange($event) {
-        this.providenciaUpdateMadre.providenciaMadreId = parseInt($event.target.value, 10);
-        this.providenciaSeleccionada = this.providencias.filter(pro => pro.id === parseInt($event.target.value, 10))[0];
+        console.log($event);
+        this.providenciaUpdateForType.providenciaMadreId = $event.target.value;
+        this.providenciaSeleccionada = this.providencias.filter(pro => pro.id === parseInt($event.target.value, 10),
+            pro2 => pro2.numerarReferencia === parseInt($event.target.value, 10)
+        )[0];
+        this.providenciaUpdateForType.providenciaMadreNumeroReferencia =  this.providenciaSeleccionada.numeroReferencia;
     }
 
-    onSave() {
-        this.providenciaService.updateProvidenciaMadre(this.providenciaUpdateMadre).subscribe(
+    relacionar() {
+        this.providenciaUpdateForType.numeroReferencia = this.providenciaSeleccionada.numeroReferencia;
+        this.providenciaService.providenciaUpdateForType(this.providenciaUpdateForType)
+            .subscribe(
             (req: HttpResponse<IProvidencia>) => {
                 if (req.body.id !== null || typeof req.body.id !== 'undefined') {
                     this.activeModal.close('updated');
-                }
+                    console.log('Este es el console: ', this.providenciaUpdateForType.ordenJuridico);                }
             },
             (req: HttpErrorResponse) => {
                 console.log('error ', req.message);
             }
         );
+
     }
 }
 
@@ -91,8 +105,7 @@ export class ProvidenciaRelacionarPopupComponent implements OnInit, OnDestroy {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private modalService: NgbModal
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({providencia}) => {
@@ -106,22 +119,16 @@ export class ProvidenciaRelacionarPopupComponent implements OnInit, OnDestroy {
 
                 this.ngbModalRef.result.then(
                     result => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
+                        this.router.navigate([{outlets: {popup: null}}], {replaceUrl: true, queryParamsHandling: 'merge'});
                         this.ngbModalRef = null;
                     },
                     reason => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
+                        this.router.navigate([{outlets: {popup: null}}], {replaceUrl: true, queryParamsHandling: 'merge'});
                         this.ngbModalRef = null;
                     }
                 );
             }, 0);
-        });
+        } );
     }
 
     ngOnDestroy() {

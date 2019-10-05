@@ -1,6 +1,7 @@
+
 {
     "pdisciplinarioApp": {
-        "derivacion": {
+        "derivacion" : {
             "home": {
                 "title": "Responses",
                 "createLabel": "Create a new Derivacion",

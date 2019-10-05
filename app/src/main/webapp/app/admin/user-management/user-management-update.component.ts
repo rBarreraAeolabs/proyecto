@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {JhiLanguageHelper, User, UserService} from 'app/core';
-import {IPerfil} from 'app/shared/model/perfil.model';
-import {PerfilService} from 'app/entities/perfil';
-import {GrupoService} from 'app/entities/grupo';
+import { JhiLanguageHelper, User, UserService } from 'app/core';
+import { IPerfil } from 'app/shared/model/perfil.model';
+import { PerfilService } from 'app/entities/perfil';
+import { GrupoService } from 'app/entities/grupo';
 import {IGrupo} from '../../shared/model/grupo.model';
 
 @Component({
@@ -31,12 +31,11 @@ export class UserMgmtUpdateComponent implements OnInit {
         private perfilesService: PerfilService,
         private grupoService: GrupoService,
         private router: Router
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
-        this.route.data.subscribe(({user}) => {
+        this.route.data.subscribe(({ user }) => {
             this.user = user.body ? user.body : user;
         });
         this.authorities = [];
@@ -87,7 +86,6 @@ export class UserMgmtUpdateComponent implements OnInit {
             }
         }
     }
-
     private onSaveSuccess(result) {
         this.isSaving = false;
         this.previousState();

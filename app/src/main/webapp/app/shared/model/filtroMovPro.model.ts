@@ -1,11 +1,10 @@
-import {EstadoProvidencia} from 'app/shared/model/providencia.model';
-import {TipoAdjunto} from 'app/shared/model/adjunto.model';
+import { EstadoProvidencia } from 'app/shared/model/providencia.model';
+import { TipoAdjunto } from 'app/shared/model/adjunto.model';
 
 export interface IFiltroMovimientoProvidencia {
     accion?: string;
     estadoProvidencia?: EstadoProvidencia;
-    tipoAdjunto?: TipoAdjunto
-
+    tipoAdjunto?: TipoAdjunto;
 }
 
 export class FiltroMovimientoProvidencia implements IFiltroMovimientoProvidencia {
@@ -13,6 +12,5 @@ export class FiltroMovimientoProvidencia implements IFiltroMovimientoProvidencia
         public accion?: string,
         public estadoProvidencia?: EstadoProvidencia,
         public tipoAdjunto?: TipoAdjunto
-    ) {
-    }
+    ) {}
 }

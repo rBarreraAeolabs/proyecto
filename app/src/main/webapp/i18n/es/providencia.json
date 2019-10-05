@@ -1,12 +1,12 @@
 {
     "pdisciplinarioApp": {
-        "providencia": {
+        "providencia" : {
             "home": {
                 "title": "Providencias",
                 "createLabel": "Crear Nueva Providencia",
                 "editLabel": "Editar la Providencia"
             },
-            "modal": {
+            "modal":{
                 "numeroResolucion": "Asignar N° De Resolucion"
             },
             "created": "Una nueva Providencia ha sido creado con el identificador {{ param }}",
@@ -16,10 +16,12 @@
                 "question": "¿Seguro que quiere eliminar Providencia {{ id }}?"
             },
             "detail": {
-                "title": "Providencia ID",
-                "assign": "Asignar Numero Resolucion"
+                "title": "ID",
+                "assign": "Asignar Numero Resolucion",
+                "numeroDgdp": "Asignar Numero Dgdp"
             },
-            "numero": "N° De Referencia De La Providencia",
+            "numeroReferencia": "N° De Referencia",
+            "numeroProvidencia": "N° De Providencia",
             "estadoActual": "Estado Actual",
             "tipo": "Tipo De Solicitud",
             "caracter": "Caracter",
@@ -36,7 +38,7 @@
             "grupos": "Con copia a",
             "sumarioAdministrativo": "Sumario Administrativo",
             "investigacionSumaria": "Investigacion Sumaria",
-            "acciones": "Instructiones",
+            "instrucciones": "Instrucciones",
             "nombrePersona": "Nombre",
             "rutSolicitante": "Rut",
             "nombreSolicitante": "Nombre",

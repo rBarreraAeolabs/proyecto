@@ -1,22 +1,17 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="movimientoProvidencia">
-            <h2><span
-                jhiTranslate="pdisciplinarioApp.movimientoProvidencia.detail.title">Movimiento Providencias</span> {{movimientoProvidencia.id}}
-            </h2>
+            <h2><span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.detail.title">Movimiento Providencias</span> {{movimientoProvidencia.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.estadoAnterior">Estado Anterior</span>
-                </dt>
+                <dt><span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.estadoAnterior">Estado Anterior</span></dt>
                 <dd>
-                    <span
-                        jhiTranslate="{{'pdisciplinarioApp.EstadoProvidencia.' + movimientoProvidencia.estadoAnterior}}">{{movimientoProvidencia.estadoAnterior}}</span>
+                    <span jhiTranslate="{{'pdisciplinarioApp.EstadoProvidencia.' + movimientoProvidencia.estadoAnterior}}">{{movimientoProvidencia.estadoAnterior}}</span>
                 </dd>
                 <dt><span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.estadoNuevo">Estado Nuevo</span></dt>
                 <dd>
-                    <span
-                        jhiTranslate="{{'pdisciplinarioApp.EstadoProvidencia.' + movimientoProvidencia.estadoNuevo}}">{{movimientoProvidencia.estadoNuevo}}</span>
+                    <span jhiTranslate="{{'pdisciplinarioApp.EstadoProvidencia.' + movimientoProvidencia.estadoNuevo}}">{{movimientoProvidencia.estadoNuevo}}</span>
                 </dd>
                 <dt><span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.fecha">Fecha</span></dt>
                 <dd>
@@ -24,8 +19,7 @@
                 </dd>
                 <dt><span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.accion">Accion</span></dt>
                 <dd>
-                    <span
-                        jhiTranslate="{{'pdisciplinarioApp.Accion.' + movimientoProvidencia.accion}}">{{movimientoProvidencia.accion}}</span>
+                    <span jhiTranslate="{{'pdisciplinarioApp.Accion.' + movimientoProvidencia.accion}}">{{movimientoProvidencia.accion}}</span>
                 </dd>
                 <dt><span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.providencia">Providencia</span></dt>
                 <dd>

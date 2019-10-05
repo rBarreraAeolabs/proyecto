@@ -1,5 +1,5 @@
-import {Moment} from 'moment';
-import {IDocumento} from 'app/shared/model//documento.model';
+import { Moment } from 'moment';
+import { IDocumento } from 'app/shared/model//documento.model';
 import {IAdjunto} from './adjunto.model';
 
 export const enum EstadoDerivacion {
@@ -33,6 +33,5 @@ export class Derivacion implements IDerivacion {
         public providenciaId?: number,
         public documentosDtos?: IDocumento[],
         public adjuntosDtos?: IAdjunto[]
-    ) {
-    }
+    ) {}
 }

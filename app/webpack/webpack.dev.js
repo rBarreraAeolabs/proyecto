@@ -14,7 +14,7 @@ const commonConfig = require('./webpack.common.js');
 
 const ENV = 'development';
 
-module.exports = (options) => webpackMerge(commonConfig({env: ENV}), {
+module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
     devtool: 'eval-source-map',
     devServer: {
         contentBase: './target/www',
@@ -31,7 +31,7 @@ module.exports = (options) => webpackMerge(commonConfig({env: ENV}), {
             target: `http${options.tls ? 's' : ''}://127.0.0.1:8080`,
             secure: false,
             changeOrigin: options.tls,
-            headers: {host: 'localhost:9000'}
+            headers: { host: 'localhost:9000' }
         }],
         stats: options.stats,
         watchOptions: {
@@ -87,7 +87,7 @@ module.exports = (options) => webpackMerge(commonConfig({env: ENV}), {
                 test: /\.scss$/,
                 use: ['to-string-loader', 'css-loader', {
                     loader: 'sass-loader',
-                    options: {implementation: sass}
+                    options: { implementation: sass }
                 }],
                 exclude: /(vendor\.scss|global\.scss)/
             },
@@ -95,7 +95,7 @@ module.exports = (options) => webpackMerge(commonConfig({env: ENV}), {
                 test: /(vendor\.scss|global\.scss)/,
                 use: ['style-loader', 'css-loader', 'postcss-loader', {
                     loader: 'sass-loader',
-                    options: {implementation: sass}
+                    options: { implementation: sass }
                 }]
             },
             {

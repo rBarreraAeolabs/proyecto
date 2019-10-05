@@ -1,6 +1,6 @@
 {
     "pdisciplinarioApp": {
-        "TipoAdjunto": {
+        "TipoAdjunto" : {
             "null": "",
             "NOTIFICACION_DE_ASIGNACION_FISCAL": "NOTIFICACION_DE_ASIGNACION_FISCAL",
             "NOTIFICACION_DE_INHABILITA": "NOTIFICACION_DE_INHABILITA",

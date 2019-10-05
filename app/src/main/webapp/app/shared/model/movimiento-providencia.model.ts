@@ -1,7 +1,7 @@
-import {Moment} from 'moment';
-import {IDocumento} from 'app/shared/model//documento.model';
-import {IAdjunto} from 'app/shared/model//adjunto.model';
-import {EstadoProvidencia} from 'app/shared/model/providencia.model';
+import { Moment } from 'moment';
+import { IDocumento } from 'app/shared/model//documento.model';
+import { IAdjunto } from 'app/shared/model//adjunto.model';
+import { EstadoProvidencia } from 'app/shared/model/providencia.model';
 
 export interface IMovimientoProvidencia {
     id?: number;
@@ -36,6 +36,5 @@ export class MovimientoProvidencia implements IMovimientoProvidencia {
         public userId?: number,
         public userFirstName?: string,
         public userLastName?: string,
-    ) {
-    }
+    ) {}
 }

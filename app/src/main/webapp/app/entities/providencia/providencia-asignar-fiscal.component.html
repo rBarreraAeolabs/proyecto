@@ -1,6 +1,6 @@
 <form name="deleteForm" (ngSubmit)="asignarFiscal()">
     <div class="modal-header">
-        <h4 class="modal-title">Asignar Fiscal A La Providencia</h4>
+        <h4 class="modal-title" >Asignar Fiscal A La Providencia</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;
         </button>
@@ -9,38 +9,24 @@
         <jhi-alert-error></jhi-alert-error>
         <jhi-alert></jhi-alert>
         <p id="jhi-asignar-fiscal-heading">
-            Asignar número a la resolución de la providencia # {{providencia.numero}}?
+            Asignar un fiscal a la providencia # {{providencia.numeroReferencia}}?
         </p>
         <div class="form-group">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>
-                        <span>Asignar Fiscal</span>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <input type="text"
-                               class="form-control col-6"
-                               name="fiscalAsignado"
-                               id="field_asignar_fiscal"
-                               [(ngModel)]="providencia.nombreFiscalAsignado"
-                        >
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <label class="control-label" for="field_nombre_fiscal">Nombre del Fiscal</label>
+            <input
+                type="text"
+                class="form-control"
+                id="field_nombre_fiscal"
+                name="nombre_fiscal"
+                [(ngModel)]="providencia.nombreFiscalAsignado"
+                required>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
         </button>
-        <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success"
-                [disabled]="disabledSave">
+        <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success" [disabled]="!providencia.nombreFiscalAsignado">
             <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>guardar</span>
         </button>
     </div>

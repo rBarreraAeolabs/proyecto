@@ -1,11 +1,11 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {JhiEventManager} from 'ng-jhipster';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager } from 'ng-jhipster';
 
-import {IDocumento} from 'app/shared/model/documento.model';
-import {DocumentoService} from './documento.service';
+import { IDocumento } from 'app/shared/model/documento.model';
+import { DocumentoService } from './documento.service';
 
 @Component({
     selector: 'jhi-documento-delete-dialog',
@@ -14,8 +14,7 @@ import {DocumentoService} from './documento.service';
 export class DocumentoDeleteDialogComponent {
     documento: IDocumento;
 
-    constructor(private documentoService: DocumentoService, public activeModal: NgbActiveModal, private eventManager: JhiEventManager) {
-    }
+    constructor(private documentoService: DocumentoService, public activeModal: NgbActiveModal, private eventManager: JhiEventManager) {}
 
     clear() {
         this.activeModal.dismiss('cancel');
@@ -39,30 +38,20 @@ export class DocumentoDeleteDialogComponent {
 export class DocumentoDeletePopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {
-    }
+    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({documento}) => {
+        this.activatedRoute.data.subscribe(({ documento }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(DocumentoDeleteDialogComponent as Component, {
-                    size: 'lg',
-                    backdrop: 'static'
-                });
+                this.ngbModalRef = this.modalService.open(DocumentoDeleteDialogComponent as Component, { size: 'lg', backdrop: 'static' });
                 this.ngbModalRef.componentInstance.documento = documento;
                 this.ngbModalRef.result.then(
                     result => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     },
                     reason => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     }
                 );

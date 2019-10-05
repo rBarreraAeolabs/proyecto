@@ -37,10 +37,26 @@ public class Grupo implements Serializable {
     @JsonIgnore
     private Set<Derivacion> derivacion;
 
+    @OneToMany(mappedBy = "grupo", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<NotificacionInBrowser> notificacionInBrowser;
+
+//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+//    @JsonIgnore
+//    private Set<User>  user;
+
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Grupo() {
     }
+
+//    public Set<User> getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(Set<User> user) {
+//        this.user = user;
+//    }
 
     public Long getId() {
         return id;
@@ -72,6 +88,14 @@ public class Grupo implements Serializable {
 
     public void setDerivacion(Set<Derivacion> derivacion) {
         this.derivacion = derivacion;
+    }
+
+    public Set<NotificacionInBrowser> getNotificacionInBrowser() {
+        return notificacionInBrowser;
+    }
+
+    public void setNotificacionInBrowser(Set<NotificacionInBrowser> notificacionInBrowser) {
+        this.notificacionInBrowser = notificacionInBrowser;
     }
 
     @Override

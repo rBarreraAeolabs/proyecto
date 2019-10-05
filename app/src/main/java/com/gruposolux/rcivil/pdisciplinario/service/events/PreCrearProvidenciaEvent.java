@@ -3,10 +3,12 @@ package com.gruposolux.rcivil.pdisciplinario.service.events;
 import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.ProvidenciaDTO;
 
-public class PreCrearProvidenciaEvent {
+public class PreCrearProvidenciaEvent
+{
     private ProvidenciaDTO providenciaDTO;
 
-    public PreCrearProvidenciaEvent(ProvidenciaDTO providenciaDTO) {
+    public PreCrearProvidenciaEvent(ProvidenciaDTO providenciaDTO)
+    {
         this.providenciaDTO = providenciaDTO;
     }
 

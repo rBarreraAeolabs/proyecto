@@ -90,32 +90,39 @@ public class AdjuntoService {
         adjuntoRepository.deleteById(id);
     }
 
-    public void updateAdjuntos(Set<AdjuntoDTO> adjuntos) {
-        for (Iterator<AdjuntoDTO> it = adjuntos.iterator(); it.hasNext(); ) {
+    public void updateAdjuntos(Set<AdjuntoDTO> adjuntos)
+    {
+        for(Iterator<AdjuntoDTO> it = adjuntos.iterator(); it.hasNext();)
+        {
             this.save(it.next());
         }
     }
 
     @Transactional
-    public Resource getByHashToDownload(String hash) {
+    public Resource getByHashToDownload(String hash)
+    {
         return this.storageServiceInterface.loadFromAdjuntoFile(hash.trim());
     }
 
     @Transactional
-    public List<Adjunto> getByProvidencia(Providencia providencia) {
-        if (providencia != null) {
+    public List<Adjunto> getByProvidencia(Providencia providencia)
+    {
+        if (providencia != null)
+        {
             return this.adjuntoRepository.findByProvidencia(providencia);
         }
         return null;
     }
 
     @Transactional
-    public void updateMovimiento(MovimientoProvidencia movimientoProvidencia, Providencia providencia, Long idAdjunto) {
+    public void updateMovimiento(MovimientoProvidencia movimientoProvidencia, Providencia providencia, Long idAdjunto)
+    {
         this.adjuntoRepository.updateMovimiento(movimientoProvidencia, providencia, idAdjunto);
     }
 
     @Transactional
-    public AdjuntoDTO findByHash(String hash) {
+    public AdjuntoDTO findByHash(String hash)
+    {
         return this.adjuntoMapper.toDto(this.adjuntoRepository.findByHash(hash));
     }
 }

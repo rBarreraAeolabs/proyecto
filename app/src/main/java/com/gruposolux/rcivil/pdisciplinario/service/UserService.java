@@ -126,9 +126,8 @@ public class UserService {
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
-
-    private boolean removeNonActivatedUser(User existingUser) {
-        if (existingUser.getActivated()) {
+    private boolean removeNonActivatedUser(User existingUser){
+        if(existingUser.getActivated()) {
             return false;
         }
         userRepository.delete(existingUser);
@@ -175,10 +174,10 @@ public class UserService {
      * Update basic information (first name, last name, email, language) for the current user.
      *
      * @param firstName first name of user
-     * @param lastName  last name of user
-     * @param email     email id of user
-     * @param langKey   language key
-     * @param imageUrl  image URL of user
+     * @param lastName last name of user
+     * @param email email id of user
+     * @param langKey language key
+     * @param imageUrl image URL of user
      */
     public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
         SecurityUtils.getCurrentUserLogin()
@@ -212,7 +211,7 @@ public class UserService {
             .filter(Optional::isPresent)
             .map(Optional::get)
             .map(user -> {
-                // this.clearUserCaches(user);
+            // this.clearUserCaches(user);
                 String encryptedPassword = passwordEncoder.encode(userDTO.getPassword());
                 user.setPassword(encryptedPassword);
                 user.setLogin(userDTO.getLogin().toLowerCase());
@@ -300,6 +299,7 @@ public class UserService {
     }
 
     /**
+     *
      * @return usuario logeado
      */
     @Transactional(readOnly = true)
@@ -310,12 +310,13 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public Boolean verifyUserDgdp() {
+    public Boolean verifyUserDgdp()
+    {
         return this.getCurrentUser().getGrupo().getId() == 4L;
     }
 
     @Transactional(readOnly = true)
-    public List<User> getUsersByPerfilId(Long perfilId) {
+    public List<User> getUsersByPerfilId(Long perfilId){
         return userRepository.findByPerfilId(perfilId);
     }
 
@@ -326,9 +327,12 @@ public class UserService {
         return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
     }
 
-    public UserResponseDTO changeActivationStatus(UserActivateDTO userActivateDTO) {
-        if (userActivateDTO != null) {
-            if (userActivateDTO.getId() != null && userActivateDTO.getActivated() != null) {
+    public UserResponseDTO changeActivationStatus(UserActivateDTO userActivateDTO)
+    {
+        if (userActivateDTO != null)
+        {
+            if (userActivateDTO.getId() != null && userActivateDTO.getActivated() != null)
+            {
                 this.userRepository.updateActivationStatus(userActivateDTO.getActivated(), Instant.now(),
                     this.getUserWithAuthorities().get().getLogin(), userActivateDTO.getId());
 
@@ -340,7 +344,8 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<User> findByFullName(String fullname) {
+    public Optional<User> findByFullName(String fullname)
+    {
         Optional<User> userOptional = this.userRepository.findByFullName(fullname.trim().toLowerCase());
         return userOptional;
     }

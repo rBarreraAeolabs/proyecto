@@ -1,4 +1,4 @@
-import {Moment} from 'moment';
+import { Moment } from 'moment';
 
 export interface ISolicitudesRelacionadas {
     id?: number;
@@ -9,7 +9,6 @@ export interface ISolicitudesRelacionadas {
     estadoActual?: string;
     fechaSolicitud?: Moment;
     tipo?: string;
-
 }
 
 export class SolicitudesRelacionadas implements ISolicitudesRelacionadas {
@@ -22,6 +21,5 @@ export class SolicitudesRelacionadas implements ISolicitudesRelacionadas {
         public estadoActual?: string,
         public fechaSolicitud?: Moment,
         public tipo?: string,
-    ) {
-    }
+    ) {}
 }

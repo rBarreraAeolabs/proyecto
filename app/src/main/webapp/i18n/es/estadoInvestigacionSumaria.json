@@ -1,6 +1,6 @@
 {
     "pdisciplinarioApp": {
-        "EstadoInvestigacionSumaria": {
+        "EstadoInvestigacionSumaria" : {
             "null": "",
             "ESTADO_UNO": "ESTADO_UNO",
             "ESTADO_DOS": "ESTADO_DOS",

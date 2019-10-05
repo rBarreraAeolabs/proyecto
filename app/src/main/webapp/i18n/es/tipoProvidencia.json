@@ -1,9 +1,11 @@
 {
     "pdisciplinarioApp": {
-        "TipoProvidencia": {
+        "TipoProvidencia" : {
             "null": "",
             "SUMARIO_ADMINISTRATIVO": "SUMARIO ADMINISTRATIVO",
-            "INVESTIGACION_SUMARIA": "INVESTIGACION SUMARIA"
+            "INVESTIGACION_SUMARIA": "INVESTIGACION SUMARIA",
+            "seleccionar": "Seleccionar"
+
         }
     }
 }

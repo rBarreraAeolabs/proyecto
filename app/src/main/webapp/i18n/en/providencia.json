@@ -1,12 +1,12 @@
 {
     "pdisciplinarioApp": {
-        "providencia": {
+        "providencia" : {
             "home": {
                 "title": "Providencias",
                 "createLabel": "Create New Providencia",
                 "editLabel": "Edit a Providencia"
             },
-            "modal": {
+            "modal":{
                 "numeroResolucion": "Assign number To "
             },
             "created": "A new Providencia is created with identifier {{ param }}",
@@ -36,7 +36,7 @@
             "grupos": "Con copia a",
             "sumarioAdministrativo": "Sumario Administrativo",
             "investigacionSumaria": "Investigacion Sumaria",
-            "acciones": "Instructions",
+            "instrucciones": "Instructions",
             "nombrePersona": "Nombre",
             "rutSolicitante": "Rut",
             "nombreSolicitante": "Nombre",

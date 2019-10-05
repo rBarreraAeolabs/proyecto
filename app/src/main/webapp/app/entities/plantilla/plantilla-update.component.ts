@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {IPlantilla} from 'app/shared/model/plantilla.model';
-import {PlantillaService} from './plantilla.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { IPlantilla } from 'app/shared/model/plantilla.model';
+import { PlantillaService } from './plantilla.service';
 
 @Component({
     selector: 'jhi-plantilla-update',
@@ -16,12 +16,11 @@ export class PlantillaUpdateComponent implements OnInit {
         height: '400px'
     };
 
-    constructor(private plantillaService: PlantillaService, private activatedRoute: ActivatedRoute) {
-    }
+    constructor(private plantillaService: PlantillaService, private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({plantilla}) => {
+        this.activatedRoute.data.subscribe(({ plantilla }) => {
             this.plantilla = plantilla;
             console.log('plantilla ', this.plantilla.contenido);
         });
@@ -52,7 +51,6 @@ export class PlantillaUpdateComponent implements OnInit {
     private onSaveError() {
         this.isSaving = false;
     }
-
     get plantilla() {
         return this._plantilla;
     }

@@ -8,76 +8,47 @@
     <include file="config/liquibase/changelog/20190306185254_added_entity_Perfil.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190306185255_added_entity_Grupo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190306185256_added_entity_Plazo.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185257_added_entity_Plantilla.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185258_added_entity_Documento.xml"
-             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185257_added_entity_Plantilla.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185258_added_entity_Documento.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190306185259_added_entity_Adjunto.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185300_added_entity_FichaIngresoSdj.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185301_added_entity_Derivacion.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185302_added_entity_Providencia.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185303_added_entity_SumarioAdministrativo.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185304_added_entity_InvestigacionSumaria.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185305_added_entity_MovimientoProvidencia.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185306_added_entity_MovimientoSumarioAdministrativo.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185307_added_entity_MovimientoInvestigacionSumaria.xml"
-             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185300_added_entity_FichaIngresoSdj.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185301_added_entity_Derivacion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185302_added_entity_Providencia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185303_added_entity_SumarioAdministrativo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185304_added_entity_InvestigacionSumaria.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185305_added_entity_MovimientoProvidencia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185306_added_entity_MovimientoSumarioAdministrativo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185307_added_entity_MovimientoInvestigacionSumaria.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20190306185254_added_entity_constraints_Perfil.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185258_added_entity_constraints_Documento.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185259_added_entity_constraints_Adjunto.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185301_added_entity_constraints_Derivacion.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185302_added_entity_constraints_Providencia.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185303_added_entity_constraints_SumarioAdministrativo.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190306185305_added_entity_constraints_MovimientoProvidencia.xml"
-             relativeToChangelogFile="false"/>
-    <include
-        file="config/liquibase/changelog/20190306185306_added_entity_constraints_MovimientoSumarioAdministrativo.xml"
-        relativeToChangelogFile="false"/>
-    <include
-        file="config/liquibase/changelog/20190306185307_added_entity_constraints_MovimientoInvestigacionSumaria.xml"
-        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185254_added_entity_constraints_Perfil.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185258_added_entity_constraints_Documento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185259_added_entity_constraints_Adjunto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185301_added_entity_constraints_Derivacion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185302_added_entity_constraints_Providencia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185303_added_entity_constraints_SumarioAdministrativo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185305_added_entity_constraints_MovimientoProvidencia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185306_added_entity_constraints_MovimientoSumarioAdministrativo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190306185307_added_entity_constraints_MovimientoInvestigacionSumaria.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!--Se modifican las entidades para que los usuarios tengan un perfil y perfil se relacione con authorities de jhipster-->
     <!--<include file="config/liquibase/changelog/20190307111235_update_entity_jhi_user.xml" relativeToChangelogFile="false"/>-->
     <include file="config/liquibase/changelog/20190307112025_update_entity_perfil.xml" relativeToChangelogFile="false"/>
     <!--<include file="config/liquibase/changelog/20190307110835_update_entity_jhi_authority.xml" relativeToChangelogFile="false"/>-->
-    <include file="config/liquibase/changelog/20190307110324_update_entity_jhi_perfil_authority.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190308152943_update_grupo_user_authorities.xml"
-             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190307110324_update_entity_jhi_perfil_authority.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190308152943_update_grupo_user_authorities.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190308203935_changelog.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190311181029_update_perfil_grupos_changelog.xml"
-             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190311181029_update_perfil_grupos_changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190308122944_accion_providencia.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190308202209_add_dr_providencia.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190313160128_update_derivacion_providencia.xml"
-             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190313160128_update_derivacion_providencia.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190314143220_update_tabla_user.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190315194452_update_derivacion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190315203225_drop_colum_derivacion.xml"
-             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190315203225_drop_colum_derivacion.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190318142948_update_ficha_ingreso.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190318170124_add_atentamente_ficha_ingreso.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190321190625_drop_column_providencia_derivacion.xml"
-             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190318170124_add_atentamente_ficha_ingreso.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190321190625_drop_column_providencia_derivacion.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190322194520_modificacion_modelo.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190401181022_update_movimiento_providencia.xml"
-             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190401181022_update_movimiento_providencia.xml" relativeToChangelogFile="false"/>
     <!--Se elimina la tabla intermedia entre usuario y derivación.-->
     <include file="config/liquibase/changelog/20190403173653_delete_table.xml" relativeToChangelogFile="false"/>
     <!-- Se elimina el campo grupo_id de la tabla Perfil. -->
@@ -108,6 +79,15 @@
     <include file="config/liquibase/changelog/20190509133748_changelog.xml" relativeToChangelogFile="false"/>
     <!-- Se crea la relación entre providencias. -->
     <include file="config/liquibase/changelog/20190509153549_changelog.xml" relativeToChangelogFile="false"/>
-<!--    weada-->
-    <include file="config/liquibase/changelog/20190925002723_changelog.xml" relativeToChangelogFile="false"/>
+    <!-- Sse agrega el campo numero_providencia. -->
+    <include file="config/liquibase/changelog/20190719195158_changelog.xml" relativeToChangelogFile="false"/>
+    <!-- Sse agrega el campo etapa , subEtapa y requisito a la tabla providencia. -->
+    <include file="config/liquibase/changelog/20190726180254_changelog.xml" relativeToChangelogFile="false"/>
+    <!-- se agrega relacion para tabla notificacion. -->
+    <include file="config/liquibase/changelog/20190905212318_changelog.xml" relativeToChangelogFile="false"/>
+    <!-- se numero dgd y dgdp a la tabla providencia. -->
+    <include file="config/liquibase/changelog/20190926201807_changelog.xml" relativeToChangelogFile="false"/>
+    <!-- agregando columna stanby booleana a providencia. -->
+    <include file="config\liquibase\changelog\20190927182747_changelog.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
+

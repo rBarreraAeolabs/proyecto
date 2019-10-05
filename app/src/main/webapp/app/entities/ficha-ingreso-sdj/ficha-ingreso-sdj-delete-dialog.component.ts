@@ -1,11 +1,11 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {JhiEventManager} from 'ng-jhipster';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager } from 'ng-jhipster';
 
-import {IFichaIngresoSdj} from 'app/shared/model/ficha-ingreso-sdj.model';
-import {FichaIngresoSdjService} from './ficha-ingreso-sdj.service';
+import { IFichaIngresoSdj } from 'app/shared/model/ficha-ingreso-sdj.model';
+import { FichaIngresoSdjService } from './ficha-ingreso-sdj.service';
 
 @Component({
     selector: 'jhi-ficha-ingreso-sdj-delete-dialog',
@@ -18,8 +18,7 @@ export class FichaIngresoSdjDeleteDialogComponent {
         private fichaIngresoSdjService: FichaIngresoSdjService,
         public activeModal: NgbActiveModal,
         private eventManager: JhiEventManager
-    ) {
-    }
+    ) {}
 
     clear() {
         this.activeModal.dismiss('cancel');
@@ -43,11 +42,10 @@ export class FichaIngresoSdjDeleteDialogComponent {
 export class FichaIngresoSdjDeletePopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {
-    }
+    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({fichaIngresoSdj}) => {
+        this.activatedRoute.data.subscribe(({ fichaIngresoSdj }) => {
             setTimeout(() => {
                 this.ngbModalRef = this.modalService.open(FichaIngresoSdjDeleteDialogComponent as Component, {
                     size: 'lg',
@@ -56,17 +54,11 @@ export class FichaIngresoSdjDeletePopupComponent implements OnInit, OnDestroy {
                 this.ngbModalRef.componentInstance.fichaIngresoSdj = fichaIngresoSdj;
                 this.ngbModalRef.result.then(
                     result => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     },
                     reason => {
-                        this.router.navigate([{outlets: {popup: null}}], {
-                            replaceUrl: true,
-                            queryParamsHandling: 'merge'
-                        });
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     }
                 );

@@ -46,6 +46,7 @@ public class FichaIngresoSdj implements Serializable {
     private String tipoSolicitud;
 
 
+
     @ElementCollection(targetClass = InstruccionesProvidencia.class)
     @CollectionTable(name = "accion_ficha_ingreso", joinColumns = @JoinColumn(name = "ficha_ingreso_sdj_id"))
     @Enumerated(EnumType.STRING)
@@ -104,25 +105,19 @@ public class FichaIngresoSdj implements Serializable {
         return numeroProvidencia;
     }
 
-    public void setNumeroProvidencia(Long numeroProvidencia) {
-        this.numeroProvidencia = numeroProvidencia;
-    }
+    public void setNumeroProvidencia(Long numeroProvidencia) { this.numeroProvidencia = numeroProvidencia; }
 
     public Long getNumeroReferencia() {
         return numeroReferencia;
     }
 
-    public void setNumeroReferencia(Long numeroReferencia) {
-        this.numeroReferencia = numeroReferencia;
-    }
+    public void setNumeroReferencia(Long numeroReferencia) { this.numeroReferencia = numeroReferencia; }
 
     public String getTipoSolicitud() {
         return tipoSolicitud;
     }
 
-    public void setTipoSolicitud(String tipoSolicitud) {
-        this.tipoSolicitud = tipoSolicitud;
-    }
+    public void setTipoSolicitud(String tipoSolicitud) { this.tipoSolicitud = tipoSolicitud; }
 
     public Collection<InstruccionesProvidencia> getInstrucciones() {
         return instrucciones;

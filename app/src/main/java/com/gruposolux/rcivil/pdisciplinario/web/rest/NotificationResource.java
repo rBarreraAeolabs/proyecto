@@ -19,7 +19,7 @@ public class NotificationResource {
     }
 
     @MessageMapping("/send/message")
-    public void onReceivedMessage(String message) {
+    public void onReceivedMessage(String message){
         this.template.convertAndSend("/chat", new SimpleDateFormat("HH:mm:ss").format(new Date()) + "- " + message);
     }
 }

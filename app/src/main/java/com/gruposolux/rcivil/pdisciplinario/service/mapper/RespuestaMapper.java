@@ -11,7 +11,8 @@ import java.util.List;
  * Created by sneiraillanes on 22-04-2019.
  */
 @Mapper(componentModel = "spring", uses = {AdjuntoMapper.class, DocumentoMapper.class, UserMapper.class})
-public interface RespuestaMapper extends EntityMapper<RespuestaDTO, Respuesta> {
+public interface RespuestaMapper extends EntityMapper<RespuestaDTO, Respuesta>
+{
     Respuesta toEntity(RespuestaDTO respuestaDTO);
 
     @Mapping(source = "user.firstName", target = "userName")

@@ -25,11 +25,7 @@
         "clientFramework": "angularX",
         "useSass": true,
         "clientPackageManager": "npm",
-        "testFrameworks": [
-            "gatling",
-            "cucumber",
-            "protractor"
-        ],
+        "testFrameworks": ["gatling", "cucumber", "protractor"],
         "jhiPrefix": "jhi",
         "nativeLanguage": "es",
         "languages": [

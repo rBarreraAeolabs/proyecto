@@ -2,9 +2,9 @@
  * Created by sneiraillanes on 22-04-2019.
  */
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
-import {Observable, from, of} from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Observable, from, of } from 'rxjs';
 import {IRespuesta, Respuesta} from '../../shared/model/respuesta.model';
 import {IPlantilla, Plantilla} from '../../shared/model/plantilla.model';
 import {IAdjunto} from '../../shared/model/adjunto.model';
@@ -41,8 +41,7 @@ export class RespuestaUpdateComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private providenciaService: ProvidenciaService,
         private jhiAlertService: JhiAlertService
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -106,7 +105,6 @@ export class RespuestaUpdateComponent implements OnInit {
     private onSaveError() {
         this.isSaving = false;
     }
-
     get respuesta() {
         return this._respuesta;
     }

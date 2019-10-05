@@ -17,164 +17,114 @@
                                 <div class="form-group" [hidden]="!documento.id">
                                     <label for="id" jhiTranslate="global.field.id">ID</label>
                                     <input type="text" class="form-control" id="id" name="id"
-                                           [(ngModel)]="documento.id" readonly/>
+                                           [(ngModel)]="documento.id" readonly />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.documento.descripcion"
-                                           for="field_descripcion">Descripcion</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.descripcion" for="field_descripcion">Descripcion</label>
                                     <input type="text" class="form-control" name="descripcion" id="field_descripcion"
-                                           [(ngModel)]="documento.descripcion"/>
+                                           [(ngModel)]="documento.descripcion" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.documento.contenido" for="field_contenido">Contenido</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.contenido" for="field_contenido">Contenido</label>
                                     <input type="text" class="form-control" name="contenido" id="field_contenido"
-                                           [(ngModel)]="documento.contenido"/>
+                                           [(ngModel)]="documento.contenido" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.documento.fechaCreado"
-                                           for="field_fechaCreado">Fecha Creado</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.fechaCreado" for="field_fechaCreado">Fecha Creado</label>
                                     <div class="input-group">
-                                        <input id="field_fechaCreado" type="text" class="form-control"
-                                               name="fechaCreado" ngbDatepicker #fechaCreadoDp="ngbDatepicker"
-                                               [(ngModel)]="documento.fechaCreado"
+                                        <input id="field_fechaCreado" type="text" class="form-control" name="fechaCreado" ngbDatepicker  #fechaCreadoDp="ngbDatepicker" [(ngModel)]="documento.fechaCreado"
                                         />
                                         <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="fechaCreadoDp.toggle()"><fa-icon
-                                [icon]="'calendar-alt'"></fa-icon></button>
+                            <button type="button" class="btn btn-secondary" (click)="fechaCreadoDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
                         </span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.documento.archivoNombre"
-                                           for="field_archivoNombre">Archivo Nombre</label>
-                                    <input type="text" class="form-control" name="archivoNombre"
-                                           id="field_archivoNombre"
-                                           [(ngModel)]="documento.archivoNombre"/>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.archivoNombre" for="field_archivoNombre">Archivo Nombre</label>
+                                    <input type="text" class="form-control" name="archivoNombre" id="field_archivoNombre"
+                                           [(ngModel)]="documento.archivoNombre" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.documento.archivoMimeType"
-                                           for="field_archivoMimeType">Archivo Mime Type</label>
-                                    <input type="text" class="form-control" name="archivoMimeType"
-                                           id="field_archivoMimeType"
-                                           [(ngModel)]="documento.archivoMimeType"/>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.archivoMimeType" for="field_archivoMimeType">Archivo Mime Type</label>
+                                    <input type="text" class="form-control" name="archivoMimeType" id="field_archivoMimeType"
+                                           [(ngModel)]="documento.archivoMimeType" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.documento.archivoSize"
-                                           for="field_archivoSize">Archivo Size</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.archivoSize" for="field_archivoSize">Archivo Size</label>
                                     <input type="number" class="form-control" name="archivoSize" id="field_archivoSize"
-                                           [(ngModel)]="documento.archivoSize"/>
+                                           [(ngModel)]="documento.archivoSize" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.archivo"
-                                           for="field_archivo">Archivo</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.archivo" for="field_archivo">Archivo</label>
                                     <div>
                                         <div *ngIf="documento.archivo" class="form-text text-danger clearfix">
-                                            <a class="pull-left"
-                                               (click)="openFile(documento.archivoContentType, documento.archivo)"
-                                               jhiTranslate="entity.action.open">open</a><br>
-                                            <span class="pull-left">{{documento.archivoContentType}}
-                                                , {{byteSize(documento.archivo)}}</span>
-                                            <button type="button"
-                                                    (click)="documento.archivo=null;documento.archivoContentType=null;"
+                                            <a class="pull-left" (click)="openFile(documento.archivoContentType, documento.archivo)" jhiTranslate="entity.action.open">open</a><br>
+                                            <span class="pull-left">{{documento.archivoContentType}}, {{byteSize(documento.archivo)}}</span>
+                                            <button type="button" (click)="documento.archivo=null;documento.archivoContentType=null;"
                                                     class="btn btn-secondary btn-xs pull-right">
                                                 <fa-icon [icon]="'times'"></fa-icon>
                                             </button>
                                         </div>
-                                        <input type="file" id="file_archivo"
-                                               (change)="setFileData($event, documento, 'archivo', false)"
-                                               jhiTranslate="entity.action.addblob"/>
+                                        <input type="file" id="file_archivo" (change)="setFileData($event, documento, 'archivo', false)" jhiTranslate="entity.action.addblob"/>
                                     </div>
                                     <input type="hidden" class="form-control" name="archivo" id="field_archivo"
-                                           [(ngModel)]="documento.archivo"/>
-                                    <input type="hidden" class="form-control" name="archivoContentType"
-                                           id="field_archivoContentType"
-                                           [(ngModel)]="documento.archivoContentType"/>
+                                           [(ngModel)]="documento.archivo" />
+                                    <input type="hidden" class="form-control" name="archivoContentType" id="field_archivoContentType"
+                                           [(ngModel)]="documento.archivoContentType" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.documento.archivoContentType"
-                                           for="field_archivoContentType">Archivo Content Type</label>
-                                    <input type="text" class="form-control" name="archivoContentType"
-                                           id="field_archivoContentType"
-                                           [(ngModel)]="documento.archivoContentType"/>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.archivoContentType" for="field_archivoContentType">Archivo Content Type</label>
+                                    <input type="text" class="form-control" name="archivoContentType" id="field_archivoContentType"
+                                           [(ngModel)]="documento.archivoContentType" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.documento.alfrescoNodeId"
-                                           for="field_alfrescoNodeId">Alfresco Node Id</label>
-                                    <input type="text" class="form-control" name="alfrescoNodeId"
-                                           id="field_alfrescoNodeId"
-                                           [(ngModel)]="documento.alfrescoNodeId"/>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.alfrescoNodeId" for="field_alfrescoNodeId">Alfresco Node Id</label>
+                                    <input type="text" class="form-control" name="alfrescoNodeId" id="field_alfrescoNodeId"
+                                           [(ngModel)]="documento.alfrescoNodeId" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.documento.alfrescoNodePath"
-                                           for="field_alfrescoNodePath">Alfresco Node Path</label>
-                                    <input type="text" class="form-control" name="alfrescoNodePath"
-                                           id="field_alfrescoNodePath"
-                                           [(ngModel)]="documento.alfrescoNodePath"/>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.alfrescoNodePath" for="field_alfrescoNodePath">Alfresco Node Path</label>
+                                    <input type="text" class="form-control" name="alfrescoNodePath" id="field_alfrescoNodePath"
+                                           [(ngModel)]="documento.alfrescoNodePath" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.documento.localPath" for="field_localPath">Local
-                                        Path</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.localPath" for="field_localPath">Local Path</label>
                                     <input type="text" class="form-control" name="localPath" id="field_localPath"
-                                           [(ngModel)]="documento.localPath"/>
+                                           [(ngModel)]="documento.localPath" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.hash"
-                                           for="field_hash">Hash</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.hash" for="field_hash">Hash</label>
                                     <input type="text" class="form-control" name="hash" id="field_hash"
-                                           [(ngModel)]="documento.hash"/>
+                                           [(ngModel)]="documento.hash" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.documento.providencia"
-                                           for="field_providencia">Providencia</label>
-                                    <select class="form-control" id="field_providencia" name="providencia"
-                                            [(ngModel)]="documento.providenciaId">
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.providencia" for="field_providencia">Providencia</label>
+                                    <select class="form-control" id="field_providencia" name="providencia" [(ngModel)]="documento.providenciaId" >
                                         <option [ngValue]="null"></option>
-                                        <option [ngValue]="providenciaOption.id"
-                                                *ngFor="let providenciaOption of providencias; trackBy: trackProvidenciaById">{{providenciaOption.id}}</option>
+                                        <option [ngValue]="providenciaOption.id" *ngFor="let providenciaOption of providencias; trackBy: trackProvidenciaById">{{providenciaOption.id}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.documento.derivacion" for="field_derivacion">Derivacion</label>
-                                    <select class="form-control" id="field_derivacion" name="derivacion"
-                                            [(ngModel)]="documento.derivacionId">
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.derivacion" for="field_derivacion">Derivacion</label>
+                                    <select class="form-control" id="field_derivacion" name="derivacion" [(ngModel)]="documento.derivacionId" >
                                         <option [ngValue]="null"></option>
-                                        <option [ngValue]="derivacionOption.id"
-                                                *ngFor="let derivacionOption of derivacions; trackBy: trackDerivacionById">{{derivacionOption.id}}</option>
+                                        <option [ngValue]="derivacionOption.id" *ngFor="let derivacionOption of derivacions; trackBy: trackDerivacionById">{{derivacionOption.id}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.documento.movimientoProvidencia"
-                                           for="field_movimientoProvidencia">Movimiento Providencia</label>
-                                    <select class="form-control" id="field_movimientoProvidencia"
-                                            name="movimientoProvidencia"
-                                            [(ngModel)]="documento.movimientoProvidenciaId">
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.documento.movimientoProvidencia" for="field_movimientoProvidencia">Movimiento Providencia</label>
+                                    <select class="form-control" id="field_movimientoProvidencia" name="movimientoProvidencia" [(ngModel)]="documento.movimientoProvidenciaId" >
                                         <option [ngValue]="null"></option>
-                                        <option [ngValue]="movimientoProvidenciaOption.id"
-                                                *ngFor="let movimientoProvidenciaOption of movimientoprovidencias; trackBy: trackMovimientoProvidenciaById">{{movimientoProvidenciaOption.id}}</option>
+                                        <option [ngValue]="movimientoProvidenciaOption.id" *ngFor="let movimientoProvidenciaOption of movimientoprovidencias; trackBy: trackMovimientoProvidenciaById">{{movimientoProvidenciaOption.id}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div>
-                                <button type="button" id="cancel-save" class="btn btn-secondary"
-                                        (click)="previousState()">
+                                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
                                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                                 </button>
-                                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving"
-                                        class="btn btn-primary">
+                                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
                                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                                 </button>
                             </div>

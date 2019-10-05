@@ -1,4 +1,12 @@
+/*
+ * *
+ * este codigo cuenta con la participacion de Rubén Hernan Barrera Chavez
+ * /
+ */
+
 package com.gruposolux.rcivil.pdisciplinario.service.dto;
+
+
 
 import java.time.Instant;
 import java.io.Serializable;
@@ -13,8 +21,27 @@ import javax.validation.constraints.Size;
 /**
  * Created by rbarrera on 8/9/2019.
  */
-public class NroReferenciaDTO {
+public class NroReferenciaDTO  {
     private Long id;
+
+    private EstadoProvidencia etapa;
+
+    private Long numeroReferencia;
+
+    private Long numeroProvidencia;
+
+    private String estadoActual;
+
+    private EstadoProvidencia subEtapa;
+
+    private EstadoProvidencia requisito;
+
+    private TipoProvidencia tipo;
+
+    private Long providenciaMadreId;
+
+    public NroReferenciaDTO(){
+    }
 
     public Long getId() {
         return id;
@@ -86,35 +113,6 @@ public class NroReferenciaDTO {
 
     public void setProvidenciaMadreId(Long providenciaMadreId) {
         this.providenciaMadreId = providenciaMadreId;
-    }
-
-    public Long getNumeroReferenciaPorvidenciaMadre() {
-        return numeroReferenciaPorvidenciaMadre;
-    }
-
-    public void setNumeroReferenciaPorvidenciaMadre(Long numeroReferenciaPorvidenciaMadre) {
-        this.numeroReferenciaPorvidenciaMadre = numeroReferenciaPorvidenciaMadre;
-    }
-
-    private Long numeroReferencia;
-
-    private Long numeroProvidencia;
-
-    private String estadoActual;
-
-    private EstadoProvidencia etapa;
-
-    private EstadoProvidencia subEtapa;
-
-    private EstadoProvidencia requisito;
-
-    private TipoProvidencia tipo;
-
-    private Long providenciaMadreId;
-
-    private Long numeroReferenciaPorvidenciaMadre;
-
-    public NroReferenciaDTO() {
     }
 
     @Override

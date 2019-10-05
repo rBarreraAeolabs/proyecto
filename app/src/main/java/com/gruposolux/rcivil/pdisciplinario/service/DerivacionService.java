@@ -9,6 +9,7 @@ import com.gruposolux.rcivil.pdisciplinario.service.mapper.DerivacionMapper;
 import com.gruposolux.rcivil.pdisciplinario.service.mapper.ProvidenciaMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,25 +28,22 @@ import java.util.stream.Collectors;
 public class DerivacionService {
 
     private final Logger log = LoggerFactory.getLogger(DerivacionService.class);
-     private final DerivacionRepository derivacionRepository;
+    private final DerivacionRepository derivacionRepository;
     private final DerivacionMapper derivacionMapper;
-
+    private final ProvidenciaService providenciaService;
     private final ProvidenciaMapper providenciaMapper;
-
-    private  ProvidenciaService providenciaService;
 
     public DerivacionService(
         DerivacionRepository derivacionRepository,
         DerivacionMapper derivacionMapper,
-
-        ProvidenciaMapper providenciaMapper, ProvidenciaService providenciaService) {
+        ApplicationEventPublisher publisher,
+        ProvidenciaService providenciaService,
+        ProvidenciaMapper providenciaMapper) {
         this.derivacionRepository = derivacionRepository;
         this.derivacionMapper = derivacionMapper;
-
-        this.providenciaMapper = providenciaMapper;
         this.providenciaService = providenciaService;
+        this.providenciaMapper = providenciaMapper;
     }
-
 
     /**
      * Save a derivacion.
@@ -98,18 +96,21 @@ public class DerivacionService {
     }
 
     @Transactional
-    public Set<DerivacionDTO> getByProvidencia(Long idProvidencia) {
-        Optional<ProvidenciaDTO> optionalProvidencia = providenciaService.findOne(idProvidencia);
-        if (optionalProvidencia.isPresent()) {
+    public Set<DerivacionDTO> getByProvidencia(Long idProvidencia)
+    {
+        Optional<ProvidenciaDTO> optionalProvidencia = this.providenciaService.findOne(idProvidencia);
+        if (optionalProvidencia.isPresent())
+        {
             Providencia providencia = optionalProvidencia.map(this.providenciaMapper::toEntity).get();
             return this.derivacionRepository.findLastByProvidencia(providencia).stream()
                 .map(this.derivacionMapper::toDto).collect(Collectors.toSet());
-        }
+                    }
         return null;
     }
 
     @Transactional
-    public List<DerivacionDTO> findLastByProvidencia(ProvidenciaDTO providenciaDTO) {
+    public List<DerivacionDTO> findLastByProvidencia(ProvidenciaDTO providenciaDTO)
+    {
         Providencia providencia = this.providenciaMapper.toEntity(providenciaDTO);
         return this.derivacionRepository.findLastByProvidencia(providencia).stream().map(this.derivacionMapper::toDto)
             .collect(Collectors.toList());

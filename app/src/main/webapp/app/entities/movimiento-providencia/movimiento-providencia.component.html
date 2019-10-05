@@ -12,9 +12,9 @@
             <tr>
                 <th>
                     <div class="form-group col">
-                        <label>Estado</label>
+                        <label class="d-flex justify-content-center">Estado</label>
                         <select class="form-control">
-                            <option selected>estado...</option>
+                            <option disabled selected>estado...</option>
                             <option value="ESTADO_1">ESTADO 1</option>
                             <option value="ESTADO_2">ESTADO 2</option>
                             <option value="ESTADO_3">ESTADO 3</option>
@@ -36,9 +36,9 @@
                 </th>
                 <th>
                     <div class="form-group col">
-                        <label>Accion</label>
+                        <label class="d-flex justify-content-center">Accion</label>
                         <select class="form-control">
-                            <option selected>accion...</option>
+                            <option  disabled selected>accion...</option>
                             <option value="DERIVADA">DERIVADA</option>
                             <option value="ENVIADA">ENVIADA</option>
                             <option value="DEVUELTA">DEVUELTA</option>
@@ -47,20 +47,23 @@
                 </th>
                 <th>
                     <div class="form-group col">
-                        <label>Tipo De Documento</label>
+                        <label class="d-flex justify-content-center">Tipo De Documento</label>
                         <select class="form-control">
-                            <option selected>tipo...</option>
+                            <option disabled selected>tipo...</option>
                             <option value="MEMO">MEMO</option>
                             <option value="RESOLUCION">RESOLUCION</option>
                             <option value="CERTIFICADO">CERTIFICADO</option>
                         </select>
                     </div>
                 </th>
-                <div class="col">
-                    <input type="submit" class="btn btn-sm btn-primary" value="Buscar" ng-click="vm.filtrar()">
-                    <input type="reset" class="btn btn-sm btn-danger" value="Limpiar" name="reset"
-                           ng-click="vm.limpiar()">
-                </div>
+                <th>
+                    <div class="form-group col">
+                        <input type="submit" class="btn btn-sm btn-primary d-flex" value="Buscar" ng-click="vm.filtrar()">
+                    </div>
+                    <div class="form-group col ">
+                        <input type="reset" class="btn btn-sm btn-danger d-flex" value="Limpiar"  ng-click="limpiar()">
+                    </div>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -70,41 +73,40 @@
         <!-- aqui la informacion -->
         <table class="table table-striped">
             <thead>
-            <tr>
-                <th>
-                    <span jhiTranslate="global.field.id">ID</span>
-                </th>
-                <th>
-                    <span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.providencia">Providencia</span>
-                </th>
-                <th>
-                    <span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.usuarioAsignado">Usuario Asignado</span>
-                </th>
-                <th>
-                    <span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.estado">Estado</span>
-                </th>
-                <th>
-                    <span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.accion">Accion</span>
-                </th>
-                <th>
-                    <span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.plazo">Plazo</span>
-                </th>
-                <th>
-                    <span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.respuesta">Respuesta</span>
-                </th>
-                <th>
-                    <span jhiTranslate="pdisciplinarioApp.movimientoProvidencia.comentarios">Comentarios</span>
-                </th>
-            </tr>
+                <tr>
+                    <th>
+                        <span class="d-flex justify-content-center" jhiTranslate="global.field.id">ID</span>
+                    </th>
+                    <th>
+                        <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.providencia">Providencia</span>
+                    </th>
+                    <th>
+                        <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.usuarioAsignado">Usuario Asignado</span>
+                    </th>
+                    <th>
+                        <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.estado">Estado</span>
+                        <span class="d-flex justify-content-center" >Etapa - Sub Etapa - Accion</span>
+                    </th>
+                    <th>
+                        <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.accion">Accion</span>
+                    </th>
+                    <th>
+                        <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.plazo">Plazo</span>
+                    </th>
+                    <th>
+                        <span class="d-flex justify-content-center" class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.respuesta">Respuesta</span>
+                    </th>
+                    <th>
+                        <span class="d-flex justify-content-center" class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.comentarios">Comentarios</span>
+                    </th>
+                </tr>
             </thead>
             <tbody>
             <tr *ngFor="let movimientoProvidencia of movimientosProvidencia ;trackBy: trackId">
-                <td><a
-                    [routerLink]="['/movimiento-providencia', movimientoProvidencia.id, 'view' ]">{{movimientoProvidencia.id}}</a>
-                </td>
+                <td><a [routerLink]="['/providencia', providencia.id, 'view' ]">{{movimientoProvidencia.id}}</a></td>
                 <td>
                     <div *ngIf="movimientoProvidencia.providenciaId">
-                        <a [routerLink]="['../providencia', movimientoProvidencia.providenciaId , 'view' ]">{{movimientoProvidencia.providenciaId}}</a>
+                        <a [routerLink]="['/providencia', providencia.id, 'view' ]">{{movimientoProvidencia.providenciaId}}</a>
                     </div>
                 </td>
                 <td>
@@ -114,7 +116,7 @@
                 </td>
                 <td>
                     <div *ngIf="movimientoProvidencia.estadoAnterior">
-                        <span> {{movimientoProvidencia.estadoAnterior}} </span>
+                        <span> {{movimientoProvidencia.estadoAnterior.split('_').join(' ')}} </span>
                     </div>
                     <div *ngIf="!movimientoProvidencia.estadoAnterior">
                         <span> SIN ESTADO </span>
@@ -123,19 +125,17 @@
                 <td>{{movimientoProvidencia.accion}}</td>
                 <td>
                     <div *ngIf="movimientoProvidencia.plazoDias">
-                        <span> {{movimientoProvidencia.plazoDias}} días</span>
+                       <span> {{movimientoProvidencia.plazoDias}} días</span>
                     </div>
                 </td>
                 <td>
                     <div class="btn-group flex-btn-group-container">
-                        <jhi-respuesta-bitacora-modal-popup
-                            [movimientoProvidenciaId]="movimientoProvidencia.id"></jhi-respuesta-bitacora-modal-popup>
+                        <jhi-respuesta-bitacora-modal-popup [movimientoProvidenciaId]="movimientoProvidencia.id"></jhi-respuesta-bitacora-modal-popup>
                     </div>
                 </td>
                 <td>
                     <div class="btn-group flex-btn-group-container">
-                        <jhi-comentario-bitacora-modal-popup
-                            [movimientoProvidencia]="movimientoProvidencia"></jhi-comentario-bitacora-modal-popup>
+                        <jhi-comentario-bitacora-modal-popup [movimientoProvidencia]="movimientoProvidencia"></jhi-comentario-bitacora-modal-popup>
                     </div>
                 </td>
             </tr>

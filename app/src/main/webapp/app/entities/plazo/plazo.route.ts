@@ -1,22 +1,21 @@
-import {Injectable} from '@angular/core';
-import {HttpResponse} from '@angular/common/http';
-import {Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes} from '@angular/router';
-import {JhiResolvePagingParams} from 'ng-jhipster';
-import {UserRouteAccessService} from 'app/core';
-import {of} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {Plazo} from 'app/shared/model/plazo.model';
-import {PlazoService} from './plazo.service';
-import {PlazoComponent} from './plazo.component';
-import {PlazoDetailComponent} from './plazo-detail.component';
-import {PlazoUpdateComponent} from './plazo-update.component';
-import {PlazoDeletePopupComponent} from './plazo-delete-dialog.component';
-import {IPlazo} from 'app/shared/model/plazo.model';
+import { Injectable } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
+import { JhiResolvePagingParams } from 'ng-jhipster';
+import { UserRouteAccessService } from 'app/core';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Plazo } from 'app/shared/model/plazo.model';
+import { PlazoService } from './plazo.service';
+import { PlazoComponent } from './plazo.component';
+import { PlazoDetailComponent } from './plazo-detail.component';
+import { PlazoUpdateComponent } from './plazo-update.component';
+import { PlazoDeletePopupComponent } from './plazo-delete-dialog.component';
+import { IPlazo } from 'app/shared/model/plazo.model';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class PlazoResolve implements Resolve<IPlazo> {
-    constructor(private service: PlazoService) {
-    }
+    constructor(private service: PlazoService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const id = route.params['id'] ? route.params['id'] : null;

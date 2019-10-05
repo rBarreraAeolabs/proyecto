@@ -5,7 +5,6 @@ import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Set;
 
@@ -15,7 +14,8 @@ import java.util.Set;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface MovimientoProvidenciaRepository extends JpaRepository<MovimientoProvidencia, Long> {
+public interface MovimientoProvidenciaRepository extends JpaRepository<MovimientoProvidencia, Long>
+{
     @Query("SELECT m FROM MovimientoProvidencia m INNER JOIN m.providencia p WHERE p = :providencia " +
         "ORDER BY m.fecha asc")
     Set<MovimientoProvidencia> findByProvidencia(@Param("providencia") Providencia providencia);
@@ -25,4 +25,12 @@ public interface MovimientoProvidenciaRepository extends JpaRepository<Movimient
 //    List<MovimientoProvidencia> findByProvidencia(@Param("providencia") Providencia providencia);
 
     // Set<MovimientoProvidencia> findByProvidenciaOrderByProvidenciaDesc(Providencia providencia);
+
+
+
+//    @Query("SELECT M FROM MovimientoProvidencia m where m.providencia=:Id" )
+//        List<MovimientoProvidencia> traerMovimientos(@Param("Id") Long Id);
+
+
+
 }

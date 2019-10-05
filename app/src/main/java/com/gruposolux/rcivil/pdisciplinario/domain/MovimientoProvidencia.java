@@ -2,7 +2,6 @@ package com.gruposolux.rcivil.pdisciplinario.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -50,7 +49,7 @@ public class MovimientoProvidencia implements Serializable, Comparable<Movimient
     private Providencia providencia;
 
     @ManyToOne
-    @JsonIgnoreProperties("movimientosProvidencis")
+    @JsonIgnoreProperties("movimientosProvidencia")
     private Plazo plazo;
 
     @Column(name = "comentario")
@@ -190,12 +189,18 @@ public class MovimientoProvidencia implements Serializable, Comparable<Movimient
     }
 
     @Override
-    public int compareTo(@NotNull MovimientoProvidencia movimientoProvidencia) {
-        if (this.getId() > movimientoProvidencia.getId()) {
+    public int compareTo(@NotNull MovimientoProvidencia movimientoProvidencia)
+    {
+        if (this.getId() > movimientoProvidencia.getId())
+        {
             return 1;
-        } else if (this.getId() < movimientoProvidencia.getId()) {
+        }
+        else if (this.getId() < movimientoProvidencia.getId())
+        {
             return -1;
-        } else {
+        }
+        else
+        {
             return 0;
         }
     }

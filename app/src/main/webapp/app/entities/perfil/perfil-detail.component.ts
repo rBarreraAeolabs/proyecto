@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import {IPerfil} from 'app/shared/model/perfil.model';
+import { IPerfil } from 'app/shared/model/perfil.model';
 
 @Component({
     selector: 'jhi-perfil-detail',
@@ -10,11 +10,10 @@ import {IPerfil} from 'app/shared/model/perfil.model';
 export class PerfilDetailComponent implements OnInit {
     perfil: IPerfil;
 
-    constructor(private activatedRoute: ActivatedRoute) {
-    }
+    constructor(private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({perfil}) => {
+        this.activatedRoute.data.subscribe(({ perfil }) => {
             this.perfil = perfil;
         });
     }

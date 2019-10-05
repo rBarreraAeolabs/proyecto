@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'jhi-solicitud',
@@ -6,9 +6,7 @@ import {Component, OnInit} from '@angular/core';
     styles: []
 })
 export class SolicitudComponent implements OnInit {
-    constructor() {
-    }
+    constructor() {}
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 }

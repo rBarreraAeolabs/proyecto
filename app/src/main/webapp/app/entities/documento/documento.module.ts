@@ -1,7 +1,7 @@
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-import {PdisciplinarioSharedModule} from 'app/shared';
+import { PdisciplinarioSharedModule } from 'app/shared';
 import {
     DocumentoComponent,
     DocumentoDetailComponent,
@@ -26,5 +26,4 @@ const ENTITY_STATES = [...documentoRoute, ...documentoPopupRoute];
     entryComponents: [DocumentoComponent, DocumentoUpdateComponent, DocumentoDeleteDialogComponent, DocumentoDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PdisciplinarioDocumentoModule {
-}
+export class PdisciplinarioDocumentoModule {}

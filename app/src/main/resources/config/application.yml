@@ -31,6 +31,7 @@ management:
             enabled: false # When using the MailService, configure an SMTP server and set this to true
     metrics:
         enabled: false # http://micrometer.io/ is disabled by default, as we use http://metrics.dropwizard.io/ instead
+
 spring:
     application:
         name: pdisciplinario
@@ -51,13 +52,11 @@ spring:
     mvc:
         favicon:
             enabled: false
-    thymeleaf:
-        mode: HTML
+
+
     servlet:
-        multipart:
-            max-file-size: 8MB
-
-
+      multipart:
+        max-file-size: 8MB
 
 server:
     servlet:
@@ -80,7 +79,7 @@ jhipster:
     async:
         core-pool-size: 2
         max-pool-size: 50
-        queue-capacity: 10000
+        queue-capacity: 80000
         # By default CORS is disabled. Uncomment to enable.
         #cors:
         #allowed-origins: "*"

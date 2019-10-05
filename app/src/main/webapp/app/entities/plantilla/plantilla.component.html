@@ -1,10 +1,9 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="pdisciplinarioApp.plantilla.home.title">Plantillas</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-plantilla"
-                [routerLink]="['/plantilla/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-plantilla" [routerLink]="['/plantilla/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span jhiTranslate="pdisciplinarioApp.plantilla.home.createLabel">
+            <span  jhiTranslate="pdisciplinarioApp.plantilla.home.createLabel">
             Create new Plantilla
             </span>
         </button>
@@ -15,18 +14,12 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
-                    <fa-icon [icon]="'sort'"></fa-icon>
-                </th>
-                <th jhiSortBy="nombre"><span jhiTranslate="pdisciplinarioApp.plantilla.nombre">Nombre</span>
-                    <fa-icon [icon]="'sort'"></fa-icon>
-                </th>
-                <!--<th jhiSortBy="contenido"><span jhiTranslate="pdisciplinarioApp.plantilla.contenido">Contenido</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
-                <th jhiSortBy="tipo"><span jhiTranslate="pdisciplinarioApp.plantilla.tipo">Tipo</span>
-                    <fa-icon [icon]="'sort'"></fa-icon>
-                </th>
-                <!--<th jhiSortBy="estado"><span jhiTranslate="pdisciplinarioApp.plantilla.estado">Estado</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
-                <th></th>
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombre"><span jhiTranslate="pdisciplinarioApp.plantilla.nombre">Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <!--<th jhiSortBy="contenido"><span jhiTranslate="pdisciplinarioApp.plantilla.contenido">Contenido</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+            <th jhiSortBy="tipo"><span jhiTranslate="pdisciplinarioApp.plantilla.tipo">Tipo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <!--<th jhiSortBy="estado"><span jhiTranslate="pdisciplinarioApp.plantilla.estado">Estado</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+            <th></th>
             </tr>
             </thead>
             <tbody>
@@ -70,8 +63,7 @@
             <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
-                            [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div>
 </div>

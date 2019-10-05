@@ -6,6 +6,7 @@ import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Apelacion;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.OrdenJuridico;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Prorroga;
+import com.gruposolux.rcivil.pdisciplinario.repository.ProvidenciaRepository;
 import com.gruposolux.rcivil.pdisciplinario.security.AuthoritiesConstants;
 import com.gruposolux.rcivil.pdisciplinario.service.ProvidenciaService;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.*;
@@ -44,9 +45,11 @@ public class ProvidenciaResource {
     private static final String ENTITY_NAME = "providencia";
 
     private final ProvidenciaService providenciaService;
+    private final ProvidenciaRepository providenciaRepository;
 
-    public ProvidenciaResource(ProvidenciaService providenciaService) {
+    public ProvidenciaResource(ProvidenciaService providenciaService, ProvidenciaRepository providenciaRepository) {
         this.providenciaService = providenciaService;
+        this.providenciaRepository = providenciaRepository;
     }
 
     /**
@@ -97,7 +100,7 @@ public class ProvidenciaResource {
     /**
      * GET  /providencias : get all the providencias.
      *
-     * @param pageable  the pagination information
+     * @param pageable the pagination information
      * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
      * @return the ResponseEntity with status 200 (OK) and the list of providencias in body
      */
@@ -116,6 +119,7 @@ public class ProvidenciaResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, String.format("/api/providencias?eagerload=%b", eagerload));
 
 
+
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
@@ -130,9 +134,21 @@ public class ProvidenciaResource {
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
     public ResponseEntity<ProvidenciaDTO> getProvidencia(@PathVariable Long id) {
         log.debug("REST request to get Providencia : {}", id);
-        Optional<ProvidenciaDTO> providenciaDTO = providenciaService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(providenciaDTO);
+        Optional<ProvidenciaDTO> ProvidenciaDTO = providenciaService.findOne(id);
+        log.debug("devuelve del endpoint provi id: {}", ProvidenciaDTO);
+        return ResponseUtil.wrapOrNotFound(ProvidenciaDTO);
     }
+
+    @GetMapping("/providencias/detalle/{id}")
+    @Timed
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
+    public ResponseEntity<DetalleProvidenciaDTO> detalleProvidencia(@PathVariable Long id) {
+        log.debug("REST request to get Providencia : {}", id);
+        Optional<DetalleProvidenciaDTO> DetalleProvidenciaDTO = providenciaService.findOneDetalle(id);
+        log.debug("devuelve del endpoint detalle: {}", DetalleProvidenciaDTO);
+        return ResponseUtil.wrapOrNotFound(DetalleProvidenciaDTO);
+    }
+
 
     /**
      * DELETE  /providencias/:id : delete the "id" providencia.
@@ -152,6 +168,7 @@ public class ProvidenciaResource {
     @PostMapping("/providencias/reply")
     @Timed
     public ResponseEntity<Void> reply(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO AL REPLY");
         this.providenciaService.reply(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
@@ -159,6 +176,7 @@ public class ProvidenciaResource {
     @PostMapping("/providencias/aceptar")
     @Timed
     public ResponseEntity<Void> aceptar(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO AL ACEPTAR");
         this.providenciaService.aceptar(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
@@ -170,6 +188,30 @@ public class ProvidenciaResource {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+    @PostMapping("/providencias/prorroga")
+    @Timed
+    public ResponseEntity<Void> prorroga(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton prorroga");
+        this.providenciaService.prorroga(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/apela")
+    @Timed
+    public ResponseEntity<Void> apela(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton apela");
+        this.providenciaService.apela(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/noApela")
+    @Timed
+    public ResponseEntity<Void> noApela(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton noApela");
+        this.providenciaService.noApela(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
     @PostMapping("/providencias/comeback")
     @Timed
     public ResponseEntity<Void> goBackwards(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
@@ -177,9 +219,23 @@ public class ProvidenciaResource {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+    @PostMapping("/providencias/representa")
+    @Timed
+    public ResponseEntity<Void> representa(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        this.providenciaService.representa(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/registra")
+    @Timed
+    public ResponseEntity<Void> registra(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        this.providenciaService.registra(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
     @PostMapping("/providencias/actions")
     @Timed
-    public ResponseEntity<HashMap<String, Boolean>> getActionsPermitted(@RequestBody ProvidenciaDTO providenciaDTO) {
+    public ResponseEntity<HashMap<String, Boolean>> getActionsPermitted(@RequestBody ProvidenciaResponseDTO providenciaDTO) {
         HashMap<String, Boolean> actionsPermitted = this.providenciaService.getActionsPermitted(providenciaDTO);
         return new ResponseEntity<>(actionsPermitted, HttpStatus.OK);
     }
@@ -202,7 +258,8 @@ public class ProvidenciaResource {
     @Timed
     public ResponseEntity<Set<ProvidenciaDTO>> getAllByRunOrEntidadImplicada(@PathVariable String runImplicado,
                                                                              @PathVariable Long entidadImplicadaId,
-                                                                             @PathVariable Long providenciaId) {
+                                                                             @PathVariable Long providenciaId)
+    {
         Set<ProvidenciaDTO> providenciaDTOs = this.providenciaService.findAllByRunOrEntidadImplicada(runImplicado,
             entidadImplicadaId, providenciaId);
 
@@ -211,7 +268,8 @@ public class ProvidenciaResource {
 
     @PutMapping("/providencias/fiscal")
     @Timed
-    public ResponseEntity<ProvidenciaDTO> updateNombreFiscalAsignado(@RequestBody ProvidenciaDTO providenciaDTO) {
+    public ResponseEntity<ProvidenciaDTO> updateNombreFiscalAsignado(@RequestBody ProvidenciaDTO providenciaDTO)
+    {
         providenciaDTO = this.providenciaService.updateNombreFiscalAsignado(providenciaDTO);
 
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, providenciaDTO.getId()
@@ -220,24 +278,27 @@ public class ProvidenciaResource {
 
     @GetMapping("/providencias/all")
     @Timed
-    public ResponseEntity<Set<ProvidenciaDTO>> getAllWithoutPagination() {
+    public ResponseEntity<Set<ProvidenciaDTO>> getAllWithoutPagination()
+    {
         return new ResponseEntity<>(this.providenciaService.findAllWithoutPagination(), HttpStatus.OK);
     }
 
-    @PutMapping("/providencias/madre")
-    @Timed
-    public ResponseEntity<ProvidenciaDTO> updateProvidenciaMadre(@RequestBody ProvidenciaUpdateMadreDTO
-                                                                     providenciaUpdateMadreDTO) {
-        ProvidenciaDTO providenciaDTO = this.providenciaService.updateProvidenciaMadre(providenciaUpdateMadreDTO);
-
-        if (providenciaDTO != null) {
-            return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, providenciaDTO.getId()
-                .toString())).body(providenciaDTO);
-        }
-
-        return ResponseEntity.ok().headers(HeaderUtil.createAlert("No se pudo crear la relación entre las dos providencias",
-            providenciaDTO.getId().toString())).body(providenciaDTO);
-    }
+//    @PutMapping("/providencias/madre")
+//    @Timed
+//    public ResponseEntity<ProvidenciaDTO> updateProvidenciaMadre(@RequestBody ProvidenciaUpdateMadreDTO
+//                                                                     providenciaUpdateMadreDTO)
+//    {
+//        ProvidenciaDTO providenciaDTO = this.providenciaService.updateProvidenciaMadre(providenciaUpdateMadreDTO);
+//
+//        if (providenciaDTO != null)
+//        {
+//            return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, providenciaDTO.getId()
+//                .toString())).body(providenciaDTO);
+//        }
+//
+//        return ResponseEntity.ok().headers(HeaderUtil.createAlert("No se pudo crear la relación entre las dos providencias",
+//            providenciaDTO.getId().toString())).body(providenciaDTO);
+//    }
 
     @PutMapping("/providencias/nroReferencia")
     @Timed
@@ -268,96 +329,111 @@ public class ProvidenciaResource {
     }
 
     // Crea providencia Seleccion Fiscal
-    @PostMapping("/providencias/crearSeleccionFiscal")
-    @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
-    public ResponseEntity<ProvidenciaDTO> crearSeleccionFiscal(@RequestBody(required = false) ProvidenciaDTO providenciaDTO,
-                                                               @RequestParam Long numeroReferencia) throws URISyntaxException {
-        String tipoProvidencia = "SeleccionFiscal";
-        // Busca la providencia madre
-        Providencia providenciaMadre = providenciaService.getProvidenciaNumeroReferencia(numeroReferencia, tipoProvidencia);
-
-        //Crear una providencia nueva a partir de la madre
-        ProvidenciaDTO result = providenciaService.createdProvidenciaForType(providenciaDTO, providenciaMadre, null);
-
-        return ResponseEntity.created(new URI("/api/providencias/" + result.getId())).body(result);
-    }
-
-    // Crea providencia tipo Orden Juridico
-    @PostMapping("/providencias/crearProvidenciaOrdenJuridico")
-    @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
-    public ResponseEntity<ProvidenciaDTO> crearProvidenciaOrdenJuridico(@RequestBody(required = false) ProvidenciaDTO providenciaDTO,
-                                                                        @RequestParam Long numeroReferencia,
-                                                                        OrdenJuridico tipoOrdeJuridico) throws URISyntaxException {
-
-        String tipoProvidencia = "ordenJuridico";
-        // Primero buscar la providencia madre
-        Providencia providenciaMadre = providenciaService.getProvidenciaNumeroReferencia(numeroReferencia, tipoProvidencia);
-
-        //Crear una providencia nueva a partir de la madre y segun el Tipo Seleccionado (Absolver, Sobreceder, Reabrir, Sancionar)
-        ProvidenciaDTO result = null;
-        if (providenciaMadre.getRequisito() == EstadoProvidencia.SUB_DIRECCION_ENVIA_A_DN_INFORME_JURIDICO) {
-            result = providenciaService.createdProvidenciaForType(providenciaDTO, providenciaMadre, tipoOrdeJuridico);
-        } else {
-            log.debug("No se puede Crear una Providencia de tipo Orden Juridico " + providenciaMadre.getId());
-        }
-        return ResponseEntity.created(new URI("/api/providencias/" + result.getId())).body(result);
-    }
+//    @PostMapping("/providencias/crearSeleccionFiscal")
+//    @Timed
+//    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
+//    public ResponseEntity<ProvidenciaDTO> crearSeleccionFiscal(@RequestBody(required = false) ProvidenciaDTO providenciaDTO,
+//                                                               @RequestParam Long numeroReferencia) throws URISyntaxException {
+//        String tipoProvidencia = "SeleccionFiscal";
+//        // Busca la providencia madre
+//        Providencia providenciaMadre = providenciaService.getProvidenciaNumeroReferencia(numeroReferencia, tipoProvidencia);
+//
+//        //Crear una providencia nueva a partir de la madre
+//        ProvidenciaDTO result = providenciaService.createdProvidenciaForType(providenciaDTO, providenciaMadre, null);
+//
+//        return ResponseEntity.created(new URI("/api/providencias/" + result.getId())).body(result);
+//    }
 
     // Crea providencia tipo Orden Juridico
-    @PostMapping("/providencias/crearProvidenciaSeleccionApelacion")
-    @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
-    public ResponseEntity<ProvidenciaDTO> crearProvidenciaSeleccionApelacion(@RequestBody(required = false) ProvidenciaDTO providenciaDTO,
-                                                                             @RequestParam Long numeroReferencia,
-                                                                             Apelacion seleccionApelacion) throws URISyntaxException {
-        String tipoProvidencia = "seleccionApelacion";
-        // Primero buscar la providencia madre
-        Providencia providenciaMadre = providenciaService.getProvidenciaNumeroReferencia(numeroReferencia, tipoProvidencia);
+//    @PostMapping("/providencias/crearProvidenciaOrdenJuridico")
+//    @Timed
+//    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
+//    public ResponseEntity<ProvidenciaDTO> crearProvidenciaOrdenJuridico(@RequestBody(required = false) ProvidenciaDTO providenciaDTO,
+//                                                                        @RequestParam Long numeroReferencia,
+//                                                                        OrdenJuridico tipoOrdeJuridico) throws URISyntaxException {
+//        String tipoProvidencia = "ordenJuridico";
+//        // Primero buscar la providencia madre
+//        Providencia providenciaMadre = providenciaService.getProvidenciaNumeroReferencia(numeroReferencia, tipoProvidencia);
+//
+//        //Crear una providencia nueva a partir de la madre y segun el Tipo Seleccionado (Absolver, Sobreceder, Reabrir, Sancionar)
+//        ProvidenciaDTO result = null;
+//        if (providenciaMadre.getRequisito() == EstadoProvidencia.SUB_DIRECCION_ENVIA_A_DN_INFORME_JURIDICO) {
+//            result = providenciaService.createdProvidenciaForType(providenciaDTO, providenciaMadre, tipoOrdeJuridico);
+//        } else {
+//            log.debug("No se puede Crear una Providencia de tipo Orden Juridico " + providenciaMadre.getId());
+//        }
+//        return ResponseEntity.created(new URI("/api/providencias/" + result.getId())).body(result);
+//    }
 
-        ProvidenciaDTO result = null;
-        if (providenciaMadre.getEtapa() == EstadoProvidencia.IJ_PROVIDENCIA_SANCIONAR) {
-            result = providenciaService.createdProvidenciaSancion(providenciaDTO, providenciaMadre, seleccionApelacion);
-        } else {
-            log.debug("No se puede Crear una Providencia de tipo Sancion Apelo o No " + providenciaMadre.getId());
-        }
-        return ResponseEntity.created(new URI("/api/providencias/" + result.getId())).body(result);
-    }
+    // Crea providencia tipo Seleccion Apelacion
+//    @PostMapping("/providencias/crearProvidenciaSeleccionApelacion")
+//    @Timed
+//    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
+//    public ResponseEntity<ProvidenciaDTO> crearProvidenciaSeleccionApelacion(@RequestBody(required = false) ProvidenciaDTO providenciaDTO,
+//                                                                             @RequestParam Long numeroReferencia,
+//                                                                             Apelacion seleccionApelacion) throws URISyntaxException {
+//        String tipoProvidencia = "seleccionApelacion";
+//        // Primero buscar la providencia madre
+//        Providencia providenciaMadre = providenciaService.getProvidenciaNumeroReferencia(numeroReferencia, tipoProvidencia);
+//
+//        ProvidenciaDTO result = null;
+//        if (providenciaMadre.getEtapa() == EstadoProvidencia.PROVIDENCIA_SANCIONAR) {
+//            result = providenciaService.createdProvidenciaSancion(providenciaDTO, providenciaMadre, seleccionApelacion);
+//        } else {
+//            log.debug("No se puede Crear una Providencia de tipo Sancion Apelo o No " + providenciaMadre.getId());
+//        }
+//        return ResponseEntity.created(new URI("/api/providencias/" + result.getId())).body(result);
+//    }
 
     // Metodo permite obtener todas las providencias asociadas a un Numero de Referencia
-    @GetMapping("/providencias/{nroReferencia}")
+    /**
+     * el metodo  @GetMapping es para en viar datos al front sin que el nos envie nada
+      */
+
+    @GetMapping("/providencias/buscarNroReferencia")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
-    public ResponseEntity<List<NroReferenciaDTO>> getnroReferencia(@PathVariable Long nroReferencia) {
-        log.debug("REST request to get Providencia hola: {}", nroReferencia);
-        List<NroReferenciaDTO> nroReferenciaDTOList = providenciaService.findAllNro(nroReferencia);
+    public ResponseEntity<Set<ProvidenciaDTO>> getnroReferencia() {
+        log.debug("ruben te da el numero de referencia hola: {}");
+        Set<ProvidenciaDTO> providenciaDTOList = providenciaService.findAllNro();
+            log.debug("ruben te da la lista"+providenciaDTOList);
+        return new ResponseEntity<>(this.providenciaService.findAllNro(), HttpStatus.OK);
+  }
 
-        //    return new ResponseEntity<>(nroReferenciaDTOList, HttpStatus.ACCEPTED );
-        //
-        return ResponseEntity.ok(nroReferenciaDTOList);
-    }
-
+    /**
+     *  el metodo @PostMapping nos permite recibir un dato del front y tambien devolver algo el put hace lo mismo pero es una mala practica
+     *
+     *
+     */
     //crear prrorroga
-    @PostMapping("/providencias/{crearProrroga}")
+//    @PostMapping("/providencias/prorroga/{idMadre}")
+//    @Timed
+//    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
+//    public ResponseEntity<ProvidenciaDTO> crearProrroga( @RequestParam Long idMadre
+//                                                       ) throws URISyntaxException {
+//        log.debug("recibo el id madre: {}", idMadre);
+//        // Busca la providencia madre
+//        Providencia providenciaMadre = providenciaService.getProvidenciaMadreid(idMadre );
+//
+//         //Crear una providencia nueva a partir de la madre
+//            ProvidenciaDTO result = null;
+//            result = providenciaService.createdProvidenciProrroga( providenciaMadre );
+//      return ResponseEntity.created(new URI("/api/providencias/" + result.getId())).body(result);
+//    }
+
+    @PutMapping("/providencias/updateProvidenciaForType")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
-    public ResponseEntity<ProvidenciaDTO> crearProrroga(@PathVariable Long idMadre
-    ) throws URISyntaxException {
-        String tipoProvidencia = "SeleccionFiscal";
-        // Busca la providencia madre
-        Providencia providenciaMadre = providenciaService.getProvidenciaMadreid(idMadre);
+    public ResponseEntity<ProvidenciaDTO> updateProvidenciaForType(@RequestBody ProvidenciaUpdateForTypeDTO providenciaUpdateForTypeDTO)
+    {  log.debug("REFERENCIA MADRE: "+providenciaUpdateForTypeDTO.getNumeroReferencia());
 
-//        //Crear una providencia nueva a partir de la madre
-//        ProvidenciaDTO result = providenciaService.createdProvidenciProrroga(providenciaDTO, providenciaMadre, tipoProrroga);
+        ProvidenciaDTO providenciaDTO = this.providenciaService.updateProvidenciaForType(providenciaUpdateForTypeDTO);
 
-        ProvidenciaDTO result = null;
-
-        result = providenciaService.createdProvidenciProrroga(providenciaMadre);
-
-
-        return ResponseEntity.created(new URI("/api/providencias/" + result.getId())).body(result);
+        if (providenciaDTO != null)
+        {
+            return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, providenciaDTO.getId()
+                .toString())).body(providenciaDTO);
+        }
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("No se pudo crear la relación entre las dos providencias",
+            providenciaDTO.getId().toString())).body(providenciaDTO);
     }
-
 
 }

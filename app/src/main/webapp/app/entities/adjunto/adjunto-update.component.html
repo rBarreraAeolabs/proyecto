@@ -17,285 +17,179 @@
                                 <div class="form-group" [hidden]="!adjunto.id">
                                     <label for="id" jhiTranslate="global.field.id">ID</label>
                                     <input type="text" class="form-control" id="id" name="id"
-                                           [(ngModel)]="adjunto.id" readonly/>
+                                           [(ngModel)]="adjunto.id" readonly />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.adjunto.tipoAdjunto" for="field_tipoAdjunto">Tipo
-                                        Adjunto</label>
-                                    <select class="form-control" name="tipoAdjunto" [(ngModel)]="adjunto.tipoAdjunto"
-                                            id="field_tipoAdjunto">
-                                        <option
-                                            value="NOTIFICACION_DE_ASIGNACION_FISCAL">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_ASIGNACION_FISCAL' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_INHABILITA">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_INHABILITA' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_ACEPTACION">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_ACEPTACION' | translate}}</option>
-                                        <option
-                                            value="DESIGNA_NUEVO_FISCAL">{{'pdisciplinarioApp.TipoAdjunto.DESIGNA_NUEVO_FISCAL' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_DE_INVESTIGACION">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_INVESTIGACION' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_ELEVAR_SUMARIO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_ELEVAR_SUMARIO' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_PROPONER_SOBRE_SEIMIENTO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_PROPONER_SOBRE_SEIMIENTO' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_FORMULACION_DE_CARGOS">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_FORMULACION_DE_CARGOS' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_DE_ELEVA_SUMARIO">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_ELEVA_SUMARIO' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_RECHAZO_ELEVA_SUMARIO">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RECHAZO_ELEVA_SUMARIO' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_DE_PROPONER_SOBRE_SEIMIENTO">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_PROPONER_SOBRE_SEIMIENTO' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_FORMULACION_DE_CARGOS">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_FORMULACION_DE_CARGOS' | translate}}</option>
-                                        <option
-                                            value="INFORME_DESCARGO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DESCARGO' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_SOLICITUD_DE_TERMINO_APROBATORIO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_SOLICITUD_DE_TERMINO_APROBATORIO' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_TERMINO_APROBATORIO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_TERMINO_APROBATORIO' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_PROPUESTA_DE_SANCION">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_PROPUESTA_DE_SANCION' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_DE_SANCION">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_SANCION' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_DE_RECHAZO_DE_SANCION">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_RECHAZO_DE_SANCION' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_RECHAZO_PROPONE_SOBRE_SEIMEINTO">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RECHAZO_PROPONE_SOBRE_SEIMEINTO' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_REALIZAR_DILIGENCIAS">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_REALIZAR_DILIGENCIAS' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_PROPONER_MEDIDAS">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_PROPONER_MEDIDAS' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_DE_ACEPTACION_DE_LAS_MEDIDAS">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_ACEPTACION_DE_LAS_MEDIDAS' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_DE_REAPERTURA">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_REAPERTURA' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_TRAER_EL_PROCESO_AL_INICIO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_TRAER_EL_PROCESO_AL_INICIO' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_RECURSO_DE_REPOSICION">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_RECURSO_DE_REPOSICION' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_RECURSO_DE_REPOSICION">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RECURSO_DE_REPOSICION' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_ABSOLVER">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_ABSOLVER' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_DE_ACEPTACION_DE_RESOLUCION_DE_ABSOLVER">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_ACEPTACION_DE_RESOLUCION_DE_ABSOLVER' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_REGISTRO_DE_RESOLUCION_DE_ABSOLVER">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_REGISTRO_DE_RESOLUCION_DE_ABSOLVER' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_APLICAR_MEDIDAS_DISCIPLINARIAS">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_APLICAR_MEDIDAS_DISCIPLINARIAS' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_ACEPTACION_TOTAL">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_ACEPTACION_TOTAL' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_ACEPTACION_PARCIAL">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_ACEPTACION_PARCIAL' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_RECHAZO_DE_RECURSO_DE_REPOSICION">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_RECHAZO_DE_RECURSO_DE_REPOSICION' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_AFINATORIA_CENSURA">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_AFINATORIA_CENSURA' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_AFINATORIA_MULTA">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_AFINATORIA_MULTA' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_AFINATORIA_SUSPENSION">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_AFINATORIA_SUSPENSION' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_RESOLUCION_AFINATORIA_CENSURA">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RESOLUCION_AFINATORIA_CENSURA' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_RESOLUCION_AFINATORIA_MULTA">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RESOLUCION_AFINATORIA_MULTA' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_RESOLUCION_AFINATORIA_SUSPENSION">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RESOLUCION_AFINATORIA_SUSPENSION' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_AFINATORIA_DESTITUCION">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_AFINATORIA_DESTITUCION' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_RESOLUCION_AFINATORIA_DESTITUCION">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RESOLUCION_AFINATORIA_DESTITUCION' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_AFINATORIA_DE_ABSOLUCION_TOTAL">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_AFINATORIA_DE_ABSOLUCION_TOTAL' | translate}}</option>
-                                        <option
-                                            value="RESOLUCION_AFINATORIA_DE_ABSOLUCION_PARCIAL">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_AFINATORIA_DE_ABSOLUCION_PARCIAL' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_APLICAR_MEDIDAS">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_APLICAR_MEDIDAS' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_RESOLUCION_AFINATORIA_DE_ABSOLUCION_PARCIAL">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RESOLUCION_AFINATORIA_DE_ABSOLUCION_PARCIAL' | translate}}</option>
-                                        <option
-                                            value="NOTIFICACION_DE_RESOLUCION_AFINATORIA_DE_ABSOLUCION_TOTAL">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RESOLUCION_AFINATORIA_DE_ABSOLUCION_TOTAL' | translate}}</option>
-                                        <option
-                                            value="INFORME_DE_RESUCURSO_DE_REPOSICION_CON_APELACION_DE_SUBSIDIO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_RESUCURSO_DE_REPOSICION_CON_APELACION_DE_SUBSIDIO' | translate}}</option>
-                                        <option
-                                            value="INFORME_JURIDICO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_JURIDICO' | translate}}</option>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.tipoAdjunto" for="field_tipoAdjunto">Tipo Adjunto</label>
+                                    <select class="form-control" name="tipoAdjunto" [(ngModel)]="adjunto.tipoAdjunto" id="field_tipoAdjunto" >
+                                        <option value="NOTIFICACION_DE_ASIGNACION_FISCAL">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_ASIGNACION_FISCAL' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_INHABILITA">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_INHABILITA' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_ACEPTACION">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_ACEPTACION' | translate}}</option>
+                                        <option value="DESIGNA_NUEVO_FISCAL">{{'pdisciplinarioApp.TipoAdjunto.DESIGNA_NUEVO_FISCAL' | translate}}</option>
+                                        <option value="RESOLUCION_DE_INVESTIGACION">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_INVESTIGACION' | translate}}</option>
+                                        <option value="INFORME_DE_ELEVAR_SUMARIO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_ELEVAR_SUMARIO' | translate}}</option>
+                                        <option value="INFORME_DE_PROPONER_SOBRE_SEIMIENTO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_PROPONER_SOBRE_SEIMIENTO' | translate}}</option>
+                                        <option value="INFORME_DE_FORMULACION_DE_CARGOS">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_FORMULACION_DE_CARGOS' | translate}}</option>
+                                        <option value="RESOLUCION_DE_ELEVA_SUMARIO">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_ELEVA_SUMARIO' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_RECHAZO_ELEVA_SUMARIO">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RECHAZO_ELEVA_SUMARIO' | translate}}</option>
+                                        <option value="RESOLUCION_DE_PROPONER_SOBRE_SEIMIENTO">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_PROPONER_SOBRE_SEIMIENTO' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_FORMULACION_DE_CARGOS">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_FORMULACION_DE_CARGOS' | translate}}</option>
+                                        <option value="INFORME_DESCARGO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DESCARGO' | translate}}</option>
+                                        <option value="INFORME_DE_SOLICITUD_DE_TERMINO_APROBATORIO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_SOLICITUD_DE_TERMINO_APROBATORIO' | translate}}</option>
+                                        <option value="INFORME_DE_TERMINO_APROBATORIO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_TERMINO_APROBATORIO' | translate}}</option>
+                                        <option value="INFORME_DE_PROPUESTA_DE_SANCION">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_PROPUESTA_DE_SANCION' | translate}}</option>
+                                        <option value="RESOLUCION_DE_SANCION">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_SANCION' | translate}}</option>
+                                        <option value="RESOLUCION_DE_RECHAZO_DE_SANCION">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_RECHAZO_DE_SANCION' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_RECHAZO_PROPONE_SOBRE_SEIMEINTO">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RECHAZO_PROPONE_SOBRE_SEIMEINTO' | translate}}</option>
+                                        <option value="INFORME_DE_REALIZAR_DILIGENCIAS">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_REALIZAR_DILIGENCIAS' | translate}}</option>
+                                        <option value="INFORME_DE_PROPONER_MEDIDAS">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_PROPONER_MEDIDAS' | translate}}</option>
+                                        <option value="RESOLUCION_DE_ACEPTACION_DE_LAS_MEDIDAS">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_ACEPTACION_DE_LAS_MEDIDAS' | translate}}</option>
+                                        <option value="RESOLUCION_DE_REAPERTURA">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_REAPERTURA' | translate}}</option>
+                                        <option value="INFORME_DE_TRAER_EL_PROCESO_AL_INICIO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_TRAER_EL_PROCESO_AL_INICIO' | translate}}</option>
+                                        <option value="INFORME_DE_RECURSO_DE_REPOSICION">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_RECURSO_DE_REPOSICION' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_RECURSO_DE_REPOSICION">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RECURSO_DE_REPOSICION' | translate}}</option>
+                                        <option value="INFORME_DE_ABSOLVER">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_ABSOLVER' | translate}}</option>
+                                        <option value="RESOLUCION_DE_ACEPTACION_DE_RESOLUCION_DE_ABSOLVER">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_DE_ACEPTACION_DE_RESOLUCION_DE_ABSOLVER' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_REGISTRO_DE_RESOLUCION_DE_ABSOLVER">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_REGISTRO_DE_RESOLUCION_DE_ABSOLVER' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_APLICAR_MEDIDAS_DISCIPLINARIAS">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_APLICAR_MEDIDAS_DISCIPLINARIAS' | translate}}</option>
+                                        <option value="INFORME_DE_ACEPTACION_TOTAL">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_ACEPTACION_TOTAL' | translate}}</option>
+                                        <option value="INFORME_DE_ACEPTACION_PARCIAL">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_ACEPTACION_PARCIAL' | translate}}</option>
+                                        <option value="INFORME_DE_RECHAZO_DE_RECURSO_DE_REPOSICION">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_RECHAZO_DE_RECURSO_DE_REPOSICION' | translate}}</option>
+                                        <option value="RESOLUCION_AFINATORIA_CENSURA">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_AFINATORIA_CENSURA' | translate}}</option>
+                                        <option value="RESOLUCION_AFINATORIA_MULTA">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_AFINATORIA_MULTA' | translate}}</option>
+                                        <option value="RESOLUCION_AFINATORIA_SUSPENSION">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_AFINATORIA_SUSPENSION' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_RESOLUCION_AFINATORIA_CENSURA">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RESOLUCION_AFINATORIA_CENSURA' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_RESOLUCION_AFINATORIA_MULTA">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RESOLUCION_AFINATORIA_MULTA' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_RESOLUCION_AFINATORIA_SUSPENSION">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RESOLUCION_AFINATORIA_SUSPENSION' | translate}}</option>
+                                        <option value="RESOLUCION_AFINATORIA_DESTITUCION">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_AFINATORIA_DESTITUCION' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_RESOLUCION_AFINATORIA_DESTITUCION">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RESOLUCION_AFINATORIA_DESTITUCION' | translate}}</option>
+                                        <option value="RESOLUCION_AFINATORIA_DE_ABSOLUCION_TOTAL">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_AFINATORIA_DE_ABSOLUCION_TOTAL' | translate}}</option>
+                                        <option value="RESOLUCION_AFINATORIA_DE_ABSOLUCION_PARCIAL">{{'pdisciplinarioApp.TipoAdjunto.RESOLUCION_AFINATORIA_DE_ABSOLUCION_PARCIAL' | translate}}</option>
+                                        <option value="INFORME_DE_APLICAR_MEDIDAS">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_APLICAR_MEDIDAS' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_RESOLUCION_AFINATORIA_DE_ABSOLUCION_PARCIAL">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RESOLUCION_AFINATORIA_DE_ABSOLUCION_PARCIAL' | translate}}</option>
+                                        <option value="NOTIFICACION_DE_RESOLUCION_AFINATORIA_DE_ABSOLUCION_TOTAL">{{'pdisciplinarioApp.TipoAdjunto.NOTIFICACION_DE_RESOLUCION_AFINATORIA_DE_ABSOLUCION_TOTAL' | translate}}</option>
+                                        <option value="INFORME_DE_RESUCURSO_DE_REPOSICION_CON_APELACION_DE_SUBSIDIO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_DE_RESUCURSO_DE_REPOSICION_CON_APELACION_DE_SUBSIDIO' | translate}}</option>
+                                        <option value="INFORME_JURIDICO">{{'pdisciplinarioApp.TipoAdjunto.INFORME_JURIDICO' | translate}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.nombre"
-                                           for="field_nombre">Nombre</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.nombre" for="field_nombre">Nombre</label>
                                     <input type="text" class="form-control" name="nombre" id="field_nombre"
-                                           [(ngModel)]="adjunto.nombre"/>
+                                           [(ngModel)]="adjunto.nombre" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.adjunto.descripcion" for="field_descripcion">Descripcion</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.descripcion" for="field_descripcion">Descripcion</label>
                                     <input type="text" class="form-control" name="descripcion" id="field_descripcion"
-                                           [(ngModel)]="adjunto.descripcion"/>
+                                           [(ngModel)]="adjunto.descripcion" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.adjunto.fechaCreado" for="field_fechaCreado">Fecha
-                                        Creado</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.fechaCreado" for="field_fechaCreado">Fecha Creado</label>
                                     <div class="input-group">
-                                        <input id="field_fechaCreado" type="text" class="form-control"
-                                               name="fechaCreado" ngbDatepicker #fechaCreadoDp="ngbDatepicker"
-                                               [(ngModel)]="adjunto.fechaCreado"
+                                        <input id="field_fechaCreado" type="text" class="form-control" name="fechaCreado" ngbDatepicker  #fechaCreadoDp="ngbDatepicker" [(ngModel)]="adjunto.fechaCreado"
                                         />
                                         <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="fechaCreadoDp.toggle()"><fa-icon
-                                [icon]="'calendar-alt'"></fa-icon></button>
+                            <button type="button" class="btn btn-secondary" (click)="fechaCreadoDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
                         </span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.adjunto.fechaSubido" for="field_fechaSubido">Fecha
-                                        Subido</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.fechaSubido" for="field_fechaSubido">Fecha Subido</label>
                                     <div class="d-flex">
-                                        <input id="field_fechaSubido" type="datetime-local" class="form-control"
-                                               name="fechaSubido" [(ngModel)]="fechaSubido"
+                                        <input id="field_fechaSubido" type="datetime-local" class="form-control" name="fechaSubido" [(ngModel)]="fechaSubido"
                                         />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.adjunto.archivoNombre"
-                                           for="field_archivoNombre">Archivo Nombre</label>
-                                    <input type="text" class="form-control" name="archivoNombre"
-                                           id="field_archivoNombre"
-                                           [(ngModel)]="adjunto.archivoNombre"/>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.archivoNombre" for="field_archivoNombre">Archivo Nombre</label>
+                                    <input type="text" class="form-control" name="archivoNombre" id="field_archivoNombre"
+                                           [(ngModel)]="adjunto.archivoNombre" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.adjunto.archivoMimeType"
-                                           for="field_archivoMimeType">Archivo Mime Type</label>
-                                    <input type="text" class="form-control" name="archivoMimeType"
-                                           id="field_archivoMimeType"
-                                           [(ngModel)]="adjunto.archivoMimeType"/>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.archivoMimeType" for="field_archivoMimeType">Archivo Mime Type</label>
+                                    <input type="text" class="form-control" name="archivoMimeType" id="field_archivoMimeType"
+                                           [(ngModel)]="adjunto.archivoMimeType" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.adjunto.archivoSize" for="field_archivoSize">Archivo
-                                        Size</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.archivoSize" for="field_archivoSize">Archivo Size</label>
                                     <input type="number" class="form-control" name="archivoSize" id="field_archivoSize"
-                                           [(ngModel)]="adjunto.archivoSize"/>
+                                           [(ngModel)]="adjunto.archivoSize" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.estado"
-                                           for="field_estado">Estado</label>
-                                    <select class="form-control" name="estado" [(ngModel)]="adjunto.estado"
-                                            id="field_estado">
-                                        <option
-                                            value="ANALIZANDO">{{'pdisciplinarioApp.FileUploadStatus.ANALIZANDO' | translate}}</option>
-                                        <option
-                                            value="ADJUNTO_DE_RESPUESTA_TEMPORAL">{{'pdisciplinarioApp.FileUploadStatus.ADJUNTO_DE_RESPUESTA_TEMPORAL' | translate}}</option>
-                                        <option
-                                            value="INFECTADO">{{'pdisciplinarioApp.FileUploadStatus.INFECTADO' | translate}}</option>
-                                        <option
-                                            value="ESCANEADO_SIN_VIRUS">{{'pdisciplinarioApp.FileUploadStatus.ESCANEADO_SIN_VIRUS' | translate}}</option>
-                                        <option
-                                            value="FORMATO_Y_PESO_VALIDADO">{{'pdisciplinarioApp.FileUploadStatus.FORMATO_Y_PESO_VALIDADO' | translate}}</option>
-                                        <option
-                                            value="SUCCESS">{{'pdisciplinarioApp.FileUploadStatus.SUCCESS' | translate}}</option>
-                                        <option
-                                            value="ERROR">{{'pdisciplinarioApp.FileUploadStatus.ERROR' | translate}}</option>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.estado" for="field_estado">Estado</label>
+                                    <select class="form-control" name="estado" [(ngModel)]="adjunto.estado" id="field_estado" >
+                                        <option value="ANALIZANDO">{{'pdisciplinarioApp.FileUploadStatus.ANALIZANDO' | translate}}</option>
+                                        <option value="ADJUNTO_DE_RESPUESTA_TEMPORAL">{{'pdisciplinarioApp.FileUploadStatus.ADJUNTO_DE_RESPUESTA_TEMPORAL' | translate}}</option>
+                                        <option value="INFECTADO">{{'pdisciplinarioApp.FileUploadStatus.INFECTADO' | translate}}</option>
+                                        <option value="ESCANEADO_SIN_VIRUS">{{'pdisciplinarioApp.FileUploadStatus.ESCANEADO_SIN_VIRUS' | translate}}</option>
+                                        <option value="FORMATO_Y_PESO_VALIDADO">{{'pdisciplinarioApp.FileUploadStatus.FORMATO_Y_PESO_VALIDADO' | translate}}</option>
+                                        <option value="SUCCESS">{{'pdisciplinarioApp.FileUploadStatus.SUCCESS' | translate}}</option>
+                                        <option value="ERROR">{{'pdisciplinarioApp.FileUploadStatus.ERROR' | translate}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.archivo"
-                                           for="field_archivo">Archivo</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.archivo" for="field_archivo">Archivo</label>
                                     <div>
                                         <div *ngIf="adjunto.archivo" class="form-text text-danger clearfix">
-                                            <a class="pull-left"
-                                               (click)="openFile(adjunto.archivoContentType, adjunto.archivo)"
-                                               jhiTranslate="entity.action.open">open</a><br>
-                                            <span class="pull-left">{{adjunto.archivoContentType}}
-                                                , {{byteSize(adjunto.archivo)}}</span>
-                                            <button type="button"
-                                                    (click)="adjunto.archivo=null;adjunto.archivoContentType=null;"
+                                            <a class="pull-left" (click)="openFile(adjunto.archivoContentType, adjunto.archivo)" jhiTranslate="entity.action.open">open</a><br>
+                                            <span class="pull-left">{{adjunto.archivoContentType}}, {{byteSize(adjunto.archivo)}}</span>
+                                            <button type="button" (click)="adjunto.archivo=null;adjunto.archivoContentType=null;"
                                                     class="btn btn-secondary btn-xs pull-right">
                                                 <fa-icon [icon]="'times'"></fa-icon>
                                             </button>
                                         </div>
-                                        <input type="file" id="file_archivo"
-                                               (change)="setFileData($event, adjunto, 'archivo', false)"
-                                               jhiTranslate="entity.action.addblob"/>
+                                        <input type="file" id="file_archivo" (change)="setFileData($event, adjunto, 'archivo', false)" jhiTranslate="entity.action.addblob"/>
                                     </div>
                                     <input type="hidden" class="form-control" name="archivo" id="field_archivo"
-                                           [(ngModel)]="adjunto.archivo"/>
-                                    <input type="hidden" class="form-control" name="archivoContentType"
-                                           id="field_archivoContentType"
-                                           [(ngModel)]="adjunto.archivoContentType"/>
+                                           [(ngModel)]="adjunto.archivo" />
+                                    <input type="hidden" class="form-control" name="archivoContentType" id="field_archivoContentType"
+                                           [(ngModel)]="adjunto.archivoContentType" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.adjunto.archivoContentType"
-                                           for="field_archivoContentType">Archivo Content Type</label>
-                                    <input type="text" class="form-control" name="archivoContentType"
-                                           id="field_archivoContentType"
-                                           [(ngModel)]="adjunto.archivoContentType"/>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.archivoContentType" for="field_archivoContentType">Archivo Content Type</label>
+                                    <input type="text" class="form-control" name="archivoContentType" id="field_archivoContentType"
+                                           [(ngModel)]="adjunto.archivoContentType" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.adjunto.alfrescoNodeId"
-                                           for="field_alfrescoNodeId">Alfresco Node Id</label>
-                                    <input type="text" class="form-control" name="alfrescoNodeId"
-                                           id="field_alfrescoNodeId"
-                                           [(ngModel)]="adjunto.alfrescoNodeId"/>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.alfrescoNodeId" for="field_alfrescoNodeId">Alfresco Node Id</label>
+                                    <input type="text" class="form-control" name="alfrescoNodeId" id="field_alfrescoNodeId"
+                                           [(ngModel)]="adjunto.alfrescoNodeId" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.adjunto.alfrescoNodePath"
-                                           for="field_alfrescoNodePath">Alfresco Node Path</label>
-                                    <input type="text" class="form-control" name="alfrescoNodePath"
-                                           id="field_alfrescoNodePath"
-                                           [(ngModel)]="adjunto.alfrescoNodePath"/>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.alfrescoNodePath" for="field_alfrescoNodePath">Alfresco Node Path</label>
+                                    <input type="text" class="form-control" name="alfrescoNodePath" id="field_alfrescoNodePath"
+                                           [(ngModel)]="adjunto.alfrescoNodePath" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.localPath"
-                                           for="field_localPath">Local Path</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.localPath" for="field_localPath">Local Path</label>
                                     <input type="text" class="form-control" name="localPath" id="field_localPath"
-                                           [(ngModel)]="adjunto.localPath"/>
+                                           [(ngModel)]="adjunto.localPath" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.hash"
-                                           for="field_hash">Hash</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.hash" for="field_hash">Hash</label>
                                     <input type="text" class="form-control" name="hash" id="field_hash"
-                                           [(ngModel)]="adjunto.hash"/>
+                                           [(ngModel)]="adjunto.hash" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.adjunto.providencia" for="field_providencia">Providencia</label>
-                                    <select class="form-control" id="field_providencia" name="providencia"
-                                            [(ngModel)]="adjunto.providenciaId">
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.providencia" for="field_providencia">Providencia</label>
+                                    <select class="form-control" id="field_providencia" name="providencia" [(ngModel)]="adjunto.providenciaId" >
                                         <option [ngValue]="null"></option>
-                                        <option [ngValue]="providenciaOption.id"
-                                                *ngFor="let providenciaOption of providencias; trackBy: trackProvidenciaById">{{providenciaOption.id}}</option>
+                                        <option [ngValue]="providenciaOption.id" *ngFor="let providenciaOption of providencias; trackBy: trackProvidenciaById">{{providenciaOption.id}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.adjunto.movimientoProvidencia"
-                                           for="field_movimientoProvidencia">Movimiento Providencia</label>
-                                    <select class="form-control" id="field_movimientoProvidencia"
-                                            name="movimientoProvidencia" [(ngModel)]="adjunto.movimientoProvidenciaId">
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.adjunto.movimientoProvidencia" for="field_movimientoProvidencia">Movimiento Providencia</label>
+                                    <select class="form-control" id="field_movimientoProvidencia" name="movimientoProvidencia" [(ngModel)]="adjunto.movimientoProvidenciaId" >
                                         <option [ngValue]="null"></option>
-                                        <option [ngValue]="movimientoProvidenciaOption.id"
-                                                *ngFor="let movimientoProvidenciaOption of movimientoprovidencias; trackBy: trackMovimientoProvidenciaById">{{movimientoProvidenciaOption.id}}</option>
+                                        <option [ngValue]="movimientoProvidenciaOption.id" *ngFor="let movimientoProvidenciaOption of movimientoprovidencias; trackBy: trackMovimientoProvidenciaById">{{movimientoProvidenciaOption.id}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div>
-                                <button type="button" id="cancel-save" class="btn btn-secondary"
-                                        (click)="previousState()">
+                                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
                                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                                 </button>
-                                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving"
-                                        class="btn btn-primary">
+                                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
                                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                                 </button>
                             </div>

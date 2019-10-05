@@ -17,11 +17,10 @@
                                 <div class="form-group" [hidden]="!fichaIngresoSdj.id">
                                     <label for="id" jhiTranslate="global.field.id">ID</label>
                                     <input type="text" class="form-control" id="id" name="id"
-                                           [(ngModel)]="fichaIngresoSdj.id" readonly/>
+                                        [(ngModel)]="fichaIngresoSdj.id" readonly />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.numeroReferencia"
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.numeroReferencia"
                                            for="field_numero_referencia">
                                         Número Referencia
                                     </label>
@@ -32,36 +31,27 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.fechaInicio"
-                                           for="field_fechaInicio">Fecha Inicio</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.fechaInicio" for="field_fechaInicio">Fecha Inicio</label>
                                     <div class="d-flex">
-                                        <input id="field_fechaInicio" type="datetime-local" class="form-control"
-                                               name="fechaInicio" [(ngModel)]="fechaInicio"
+                                        <input id="field_fechaInicio" type="datetime-local" class="form-control" name="fechaInicio" [(ngModel)]="fechaInicio"
                                         />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.observacion"
-                                           for="field_observacion">Observacion</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.observacion" for="field_observacion">Observacion</label>
                                     <textarea type="text" class="form-control" name="observacion" id="field_observacion"
-                                              [(ngModel)]="fichaIngresoSdj.observacion">
+                                        [(ngModel)]="fichaIngresoSdj.observacion">
                                     </textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.plazo" for="field_plazo">Plazo</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.plazo" for="field_plazo">Plazo</label>
                                     <input type="number" class="form-control" name="plazo" id="field_plazo"
-                                           [(ngModel)]="fichaIngresoSdj.plazo"/>
+                                        [(ngModel)]="fichaIngresoSdj.plazo" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.fechaHasta"
-                                           for="field_fechaHasta">Fecha Hasta</label>
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.fechaHasta" for="field_fechaHasta">Fecha Hasta</label>
                                     <div class="d-flex">
-                                        <input id="field_fechaHasta" type="datetime-local" class="form-control"
-                                               name="fechaHasta" [(ngModel)]="fechaHasta"
+                                        <input id="field_fechaHasta" type="datetime-local" class="form-control" name="fechaHasta" [(ngModel)]="fechaHasta"
                                         />
                                     </div>
                                 </div>
@@ -80,24 +70,20 @@
                                     </angular2-multiselect>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label"
-                                           jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.atentamente"
+                                    <label class="form-control-label" jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.atentamente"
                                            for="field_atentamente"></label>
                                     <div class="d-flex">
-                                        <input id="field_atentamente" type="text" class="form-control"
-                                               name="atentamente"
+                                        <input id="field_atentamente" type="text" class="form-control" name="atentamente"
                                                [(ngModel)]="atentamente"
                                         />
                                     </div>
                                 </div>
                             </div>
                             <div>
-                                <button type="button" id="cancel-save" class="btn btn-secondary"
-                                        (click)="previousState()">
+                                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
                                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                                 </button>
-                                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving"
-                                        class="btn btn-primary">
+                                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
                                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                                 </button>
                             </div>

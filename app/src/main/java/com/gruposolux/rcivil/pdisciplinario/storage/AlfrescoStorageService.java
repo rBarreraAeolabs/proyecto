@@ -62,7 +62,7 @@ public class AlfrescoStorageService {
         this.passAlfresco = this.applicationProperties.getStorage().getPassAlfresco();
     }
 
-    private Session getAlfrescoSession() {
+    private Session getAlfrescoSession(){
         if (this.alfrescoSession != null) {
             return this.alfrescoSession;
         }
@@ -113,9 +113,9 @@ public class AlfrescoStorageService {
     /**
      * Mueve archivos a alfresco en la ruta creatada dependiendo de la informacion de las investigacionSumaria
      *
-     * @param archivosHash archivos al crear investigacion
-     * @param providencia  recibe objecto providencia
-     * @return HashMap<String, String>
+     * @param archivosHash         archivos al crear investigacion
+     * @param providencia recibe objecto providencia
+     * @return HashMap<String   ,       String>
      */
     public HashMap<String, String> moveToArchivosFolder(List<String> archivosHash, Providencia providencia) {
         String rootFolderName = rootTempFolder;
@@ -139,7 +139,7 @@ public class AlfrescoStorageService {
      * @param archivosHash archivos en sumarioAdministrativo o sumarioAdministrativo
      * @param destinoPath  destino de la carpeta
      * @param id           id de investigacion sumaria o sumarioAdministrativo
-     * @return HashMap<String, String>
+     * @return HashMap<String   ,       String>
      */
     public HashMap<String, String> createFolderPathInAlfresco(List<String> archivosHash, String destinoPath, Long id) {
         HashMap<String, String> nuevasRutas = new HashMap<>();

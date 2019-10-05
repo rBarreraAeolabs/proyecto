@@ -2,7 +2,6 @@ package com.gruposolux.rcivil.pdisciplinario.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -27,7 +26,7 @@ public class Authority implements Serializable {
     @Column(length = 50)
     private String name;
 
-    public Authority(String name) {
+    public Authority(String name){
         this.name = name;
     }
 

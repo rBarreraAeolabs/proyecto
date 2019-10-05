@@ -22,29 +22,29 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="observacion" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="fecha_derivacion" type="datetime">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="estado" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="tipo" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="providencia_id" type="bigint">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="derivacion" columnName="fecha_derivacion" columnDataType="datetime"/>
-
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

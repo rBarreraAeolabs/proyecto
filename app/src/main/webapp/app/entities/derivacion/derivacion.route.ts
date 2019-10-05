@@ -1,22 +1,21 @@
-import {Injectable} from '@angular/core';
-import {HttpResponse} from '@angular/common/http';
-import {Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes} from '@angular/router';
-import {JhiPaginationUtil, JhiResolvePagingParams} from 'ng-jhipster';
-import {UserRouteAccessService} from 'app/core';
-import {of} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {Derivacion} from 'app/shared/model/derivacion.model';
-import {DerivacionService} from './derivacion.service';
-import {DerivacionComponent} from './derivacion.component';
-import {DerivacionDetailComponent} from './derivacion-detail.component';
-import {DerivacionUpdateComponent} from './derivacion-update.component';
-import {DerivacionDeletePopupComponent} from './derivacion-delete-dialog.component';
-import {IDerivacion} from 'app/shared/model/derivacion.model';
+import { Injectable } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
+import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
+import { UserRouteAccessService } from 'app/core';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Derivacion } from 'app/shared/model/derivacion.model';
+import { DerivacionService } from './derivacion.service';
+import { DerivacionComponent } from './derivacion.component';
+import { DerivacionDetailComponent } from './derivacion-detail.component';
+import { DerivacionUpdateComponent } from './derivacion-update.component';
+import { DerivacionDeletePopupComponent } from './derivacion-delete-dialog.component';
+import { IDerivacion } from 'app/shared/model/derivacion.model';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class DerivacionResolve implements Resolve<IDerivacion> {
-    constructor(private service: DerivacionService) {
-    }
+    constructor(private service: DerivacionService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const id = route.params['id'] ? route.params['id'] : null;

@@ -1,6 +1,7 @@
+
 {
     "pdisciplinarioApp": {
-        "perfil": {
+        "perfil" : {
             "home": {
                 "title": "Perfiles",
                 "createLabel": "Crear nuevo Perfil",

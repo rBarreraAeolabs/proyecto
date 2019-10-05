@@ -4,7 +4,7 @@ import '../content/scss/vendor.scss';
 
 // Imports all fontawesome core and solid icons
 
-import {library} from '@fortawesome/fontawesome-svg-core';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faUser,
     faSort,
@@ -43,7 +43,10 @@ import {
     faFile,
     faInfo,
     faFileDownload,
-    faFilePdf
+    faFilePdf,
+    faLink,
+    faCheckCircle,
+    faMinusCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 // Adds the SVG icon to the library so you can use it in your page
@@ -86,3 +89,8 @@ library.add(faInfo);
 // jhipster-needle-add-element-to-vendor - JHipster will add new menu items here
 library.add(faFileDownload);
 library.add(faFilePdf);
+library.add(faLink);
+library.add(faCheckCircle);
+library.add(faMinusCircle);
+
+

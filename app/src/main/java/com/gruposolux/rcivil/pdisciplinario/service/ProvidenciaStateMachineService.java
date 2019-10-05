@@ -13,7 +13,6 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.statemachine.config.EnableStateMachine;
 import org.springframework.statemachine.recipes.persist.PersistStateMachineHandler;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -21,22 +20,25 @@ import java.util.List;
 class ProvidenciaStateMachineService {
 
     @Autowired
-    private ProvidenciaRepository providenciaRepository;
+    private ProvidenciaRepository entityRepository;
 
-    private  PersistStateMachineHandler persistStateMachineHandler;
-
-    public ProvidenciaStateMachineService(PersistStateMachineHandler persistStateMachineHandler) {
-        this.persistStateMachineHandler = persistStateMachineHandler;
-    }
-
+    @Autowired
+    private PersistStateMachineHandler persistStateMachineHandler;
 
     public List<Providencia> getEntities() {
-        return Lists.newArrayList(providenciaRepository.findAll());
+        return Lists.newArrayList(entityRepository.findAll());
     }
 
+    public Providencia getEntity(Long id) {
+        return entityRepository.findOne(id);
+    }
+
+    public Providencia createEntity(Providencia entity) {
+        return entityRepository.save(entity);
+    }
 
     public Boolean nextState(Long id, AccionesProvidencia accion, EstadoProvidencia estado) {
-        Providencia providencia = providenciaRepository.findOne(id);
+        Providencia providencia = entityRepository.findOne(id);
         return persistStateMachineHandler.handleEventWithState(
             MessageBuilder.withPayload(accion.name()).setHeader(ProvidenciaConstants.entityHeader, providencia).build(),
             estado.name()

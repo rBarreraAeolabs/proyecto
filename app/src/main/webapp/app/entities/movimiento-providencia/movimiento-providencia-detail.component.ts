@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import {IMovimientoProvidencia} from 'app/shared/model/movimiento-providencia.model';
+import { IMovimientoProvidencia } from 'app/shared/model/movimiento-providencia.model';
 
 @Component({
     selector: 'jhi-movimiento-providencia-detail',
@@ -10,11 +10,10 @@ import {IMovimientoProvidencia} from 'app/shared/model/movimiento-providencia.mo
 export class MovimientoProvidenciaDetailComponent implements OnInit {
     movimientoProvidencia: IMovimientoProvidencia;
 
-    constructor(private activatedRoute: ActivatedRoute) {
-    }
+    constructor(private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({movimientoProvidencia}) => {
+        this.activatedRoute.data.subscribe(({ movimientoProvidencia }) => {
             this.movimientoProvidencia = movimientoProvidencia;
         });
     }

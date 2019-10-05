@@ -1,8 +1,5 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <changeSet author="phernandez (generated)" id="1552492919744-1">
         <createTable tableName="providencia_derivada_usuario">
             <column name="derivacion_id" type="BIGINT">
@@ -47,43 +44,27 @@
         <addPrimaryKey columnNames="derivacion_id, user_id" tableName="providencia_derivada_usuario"/>
     </changeSet>
     <changeSet author="phernandez (generated)" id="1552492919744-9">
-        <addForeignKeyConstraint baseColumnNames="derivado_por_grupo_id" baseTableName="derivacion"
-                                 constraintName="FK4e2glto42uq19bl784lm7nsol" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="grupo"/>
+        <addForeignKeyConstraint baseColumnNames="derivado_por_grupo_id" baseTableName="derivacion" constraintName="FK4e2glto42uq19bl784lm7nsol" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="grupo"/>
     </changeSet>
     <changeSet author="phernandez (generated)" id="1552492919744-10">
-        <addForeignKeyConstraint baseColumnNames="area_destino_id" baseTableName="derivacion"
-                                 constraintName="FK4ubvsx0jp55yxa4kpp5ias6j7" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="grupo"/>
+        <addForeignKeyConstraint baseColumnNames="area_destino_id" baseTableName="derivacion" constraintName="FK4ubvsx0jp55yxa4kpp5ias6j7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="grupo"/>
     </changeSet>
     <changeSet author="phernandez (generated)" id="1552492919744-11">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="providencia_derivada_usuario"
-                                 constraintName="FK6bnwkjkvm71xsk35psxk0f01j" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="providencia_derivada_usuario" constraintName="FK6bnwkjkvm71xsk35psxk0f01j" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
     </changeSet>
     <changeSet author="phernandez (generated)" id="1552492919744-12">
-        <addForeignKeyConstraint baseColumnNames="derivadoa_id" baseTableName="derivacion"
-                                 constraintName="FKckt9chrnlgy45h1wpdwjv81v8" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="grupo"/>
+        <addForeignKeyConstraint baseColumnNames="derivadoa_id" baseTableName="derivacion" constraintName="FKckt9chrnlgy45h1wpdwjv81v8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="grupo"/>
     </changeSet>
     <changeSet author="phernandez (generated)" id="1552492919744-13">
-        <addForeignKeyConstraint baseColumnNames="asignado_por_id" baseTableName="derivacion"
-                                 constraintName="FKgx1y3ugy6jfywm92b7kdxcivr" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+        <addForeignKeyConstraint baseColumnNames="asignado_por_id" baseTableName="derivacion" constraintName="FKgx1y3ugy6jfywm92b7kdxcivr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
     </changeSet>
     <changeSet author="phernandez (generated)" id="1552492919744-14">
-        <addForeignKeyConstraint baseColumnNames="derivacion_id" baseTableName="providencia_derivada_usuario"
-                                 constraintName="FKhjdwfebniufpxmlejc5tqk5tq" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="derivacion"/>
+        <addForeignKeyConstraint baseColumnNames="derivacion_id" baseTableName="providencia_derivada_usuario" constraintName="FKhjdwfebniufpxmlejc5tqk5tq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="derivacion"/>
     </changeSet>
     <changeSet author="phernandez (generated)" id="1552492919744-15">
-        <addForeignKeyConstraint baseColumnNames="derivado_por_id" baseTableName="derivacion"
-                                 constraintName="FKk7puqwgs5a7n87e7ws56me7xg" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+        <addForeignKeyConstraint baseColumnNames="derivado_por_id" baseTableName="derivacion" constraintName="FKk7puqwgs5a7n87e7ws56me7xg" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
     </changeSet>
     <changeSet author="phernandez (generated)" id="1552492919744-16">
-        <addForeignKeyConstraint baseColumnNames="derivacion_id" baseTableName="providencia"
-                                 constraintName="FKo5e3u5i8tls4bmooo8eyg0s7m" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="derivacion"/>
+        <addForeignKeyConstraint baseColumnNames="derivacion_id" baseTableName="providencia" constraintName="FKo5e3u5i8tls4bmooo8eyg0s7m" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="derivacion"/>
     </changeSet>
 </databaseChangeLog>

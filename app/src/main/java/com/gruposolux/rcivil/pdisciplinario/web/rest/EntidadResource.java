@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -26,7 +25,8 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
-public class EntidadResource {
+public class EntidadResource
+{
     private final Logger log = LoggerFactory.getLogger(EntidadResource.class);
     private static final String ENTITY_NAME = "entidad";
     private final EntidadService entidadService;
@@ -37,7 +37,8 @@ public class EntidadResource {
 
     @PostMapping("/entidades")
     @Timed
-    public ResponseEntity<EntidadDTO> create(@RequestBody EntidadDTO entidadDTO) throws URISyntaxException {
+    public ResponseEntity<EntidadDTO> create(@RequestBody EntidadDTO entidadDTO) throws URISyntaxException
+    {
         entidadDTO = this.entidadService.save(entidadDTO);
         return ResponseEntity.created(new URI("/api/entidades/" + entidadDTO.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, entidadDTO.getId().toString()))
@@ -46,7 +47,8 @@ public class EntidadResource {
 
     @PutMapping("/entidades")
     @Timed
-    public ResponseEntity<EntidadDTO> update(@RequestBody EntidadDTO entidadDTO) throws URISyntaxException {
+    public ResponseEntity<EntidadDTO> update(@RequestBody EntidadDTO entidadDTO) throws URISyntaxException
+    {
         entidadDTO = this.entidadService.save(entidadDTO);
         return ResponseEntity.created(new URI("/api/entidades/" + entidadDTO.getId()))
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, entidadDTO.getId().toString()))
@@ -55,14 +57,16 @@ public class EntidadResource {
 
     @GetMapping("/entidades/{id}")
     @Timed
-    public ResponseEntity<EntidadDTO> findOne(@PathVariable Long id) {
+    public ResponseEntity<EntidadDTO> findOne(@PathVariable Long id)
+    {
         Optional<EntidadDTO> entidadOptional = this.entidadService.findOne(id);
         return ResponseUtil.wrapOrNotFound(entidadOptional);
     }
 
     @GetMapping("/entidades")
     @Timed
-    public ResponseEntity<List<EntidadDTO>> page(Pageable pageable) {
+    public ResponseEntity<List<EntidadDTO>> page(Pageable pageable)
+    {
         Page<EntidadDTO> page = this.entidadService.page(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/entidades");
 
@@ -71,14 +75,16 @@ public class EntidadResource {
 
     @DeleteMapping("/entidades/{id}")
     @Timed
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id)
+    {
         this.entidadService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
     @GetMapping("/entidades/all")
     @Timed
-    public ResponseEntity<List<EntidadDTO>> getAll() {
+    public ResponseEntity<List<EntidadDTO>> getAll()
+    {
         List<EntidadDTO> entidadDTOs = this.entidadService.getAll();
         return new ResponseEntity<>(entidadDTOs, HttpStatus.OK);
     }

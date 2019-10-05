@@ -20,7 +20,8 @@ import java.util.Optional;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface RespuestaRepository extends JpaRepository<Respuesta, Long> {
+public interface RespuestaRepository extends JpaRepository<Respuesta, Long>
+{
     @Query("SELECT r FROM Respuesta r LEFT JOIN r.documentos LEFT JOIN r.adjuntos " +
         "WHERE r.providencia = :providencia AND r.movimientoProvidencia is null AND r.user = :userLogged AND " +
         "r.estadoProvidencia = :estadoProvidencia")

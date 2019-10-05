@@ -1,6 +1,7 @@
+
 {
     "pdisciplinarioApp": {
-        "movimientoProvidencia": {
+        "movimientoProvidencia" : {
             "home": {
                 "title": "Bitacora De Movimientos",
                 "createLabel": "Create a new Movimiento Providencia",

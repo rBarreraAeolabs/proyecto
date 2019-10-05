@@ -1,5 +1,5 @@
-import {Route} from '@angular/router';
-import {JhiLoginModalComponent} from 'app/shared';
+import { Route } from '@angular/router';
+import { JhiLoginModalComponent } from 'app/shared';
 
 export const LOGIN_ROUTE: Route = {
     path: 'iniciar-sesion',

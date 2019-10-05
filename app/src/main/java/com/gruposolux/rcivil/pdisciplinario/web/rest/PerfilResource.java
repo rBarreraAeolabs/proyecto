@@ -90,7 +90,7 @@ public class PerfilResource {
     /**
      * GET  /perfils : get all the perfils.
      *
-     * @param pageable  the pagination information
+     * @param pageable the pagination information
      * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
      * @return the ResponseEntity with status 200 (OK) and the list of perfils in body
      */

@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {JhiAlertService, JhiDataUtils} from 'ng-jhipster';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
-import {IDocumento} from 'app/shared/model/documento.model';
-import {DocumentoService} from './documento.service';
-import {IProvidencia} from 'app/shared/model/providencia.model';
-import {ProvidenciaService} from 'app/entities/providencia';
-import {IDerivacion} from 'app/shared/model/derivacion.model';
-import {DerivacionService} from 'app/entities/derivacion';
-import {IMovimientoProvidencia} from 'app/shared/model/movimiento-providencia.model';
-import {MovimientoProvidenciaService} from 'app/entities/movimiento-providencia';
+import { IDocumento } from 'app/shared/model/documento.model';
+import { DocumentoService } from './documento.service';
+import { IProvidencia } from 'app/shared/model/providencia.model';
+import { ProvidenciaService } from 'app/entities/providencia';
+import { IDerivacion } from 'app/shared/model/derivacion.model';
+import { DerivacionService } from 'app/entities/derivacion';
+import { IMovimientoProvidencia } from 'app/shared/model/movimiento-providencia.model';
+import { MovimientoProvidenciaService } from 'app/entities/movimiento-providencia';
 
 @Component({
     selector: 'jhi-documento-update',
@@ -36,12 +36,11 @@ export class DocumentoUpdateComponent implements OnInit {
         private derivacionService: DerivacionService,
         private movimientoProvidenciaService: MovimientoProvidenciaService,
         private activatedRoute: ActivatedRoute
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({documento}) => {
+        this.activatedRoute.data.subscribe(({ documento }) => {
             this.documento = documento;
         });
         this.providenciaService.query().subscribe(
@@ -117,7 +116,6 @@ export class DocumentoUpdateComponent implements OnInit {
     trackMovimientoProvidenciaById(index: number, item: IMovimientoProvidencia) {
         return item.id;
     }
-
     get documento() {
         return this._documento;
     }

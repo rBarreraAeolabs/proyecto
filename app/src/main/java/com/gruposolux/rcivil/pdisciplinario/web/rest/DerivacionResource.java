@@ -111,7 +111,7 @@ public class DerivacionResource {
         ProvidenciaDTO providenciaDTO = providenciaDerivacionDTO.getProvidenciaDTO();
         DerivacionDTO derivacionDTO = providenciaDerivacionDTO.getDerivacionDTO();
         User currentUser = userService.getCurrentUser();
-
+     log.debug("viendo user: "+currentUser);
         this.publisher.publishEvent(new PostCrearProvidenciaEvent(providenciaDTO, currentUser, providenciaDTO.getAdjuntos(), derivacionDTO));
 
         providenciaDerivacionDTO.setDerivacionDTO(providenciaDerivacionDTO.getDerivacionDTO());
@@ -174,8 +174,10 @@ public class DerivacionResource {
 
     @GetMapping("/derivacions/list/{idProvidencia}")
     @Timed
-    public ResponseEntity<Set<DerivacionDTO>> getByProvidencia(@PathVariable Long idProvidencia) {
-        if (idProvidencia != null) {
+    public ResponseEntity<Set<DerivacionDTO>> getByProvidencia(@PathVariable Long idProvidencia)
+    {
+        if (idProvidencia != null)
+        {
             return new ResponseEntity<>(this.derivacionService.getByProvidencia(idProvidencia), HttpStatus.OK);
         }
         return null;

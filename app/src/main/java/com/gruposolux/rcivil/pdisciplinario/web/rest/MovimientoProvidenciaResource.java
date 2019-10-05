@@ -22,7 +22,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -146,7 +145,8 @@ public class MovimientoProvidenciaResource {
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
     public ResponseEntity<Set<MovimientoProvidenciaDTO>> getAllByProvidencia(@RequestBody FiltroMovProDTO filtroMovPro) throws URISyntaxException {
 
-        if (filtroMovPro.getProvidencia() != null) {
+        if (filtroMovPro.getProvidencia() != null)
+        {
             return new ResponseEntity<>(this.movimientoProvidenciaService.getAllByIdProvidenciaWithFilters(filtroMovPro
                 .getProvidencia(), filtroMovPro.getFiltroMovimientoProvidencia()), HttpStatus.OK);
         }
@@ -156,7 +156,8 @@ public class MovimientoProvidenciaResource {
     @GetMapping("/movimiento-providencias/list")
     @Timed
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
-    public ResponseEntity<Set<MovimientoProvidenciaDTO>> getAllMovimientosWithoutPagination() {
+    public ResponseEntity<Set<MovimientoProvidenciaDTO>> getAllMovimientosWithoutPagination()
+    {
         return new ResponseEntity<Set<MovimientoProvidenciaDTO>>(this.movimientoProvidenciaService.getAllWithoutPagination(),
             HttpStatus.OK);
     }

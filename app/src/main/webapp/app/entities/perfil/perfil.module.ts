@@ -1,7 +1,7 @@
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-import {PdisciplinarioSharedModule} from 'app/shared';
+import { PdisciplinarioSharedModule } from 'app/shared';
 import {
     PerfilComponent,
     PerfilDetailComponent,
@@ -12,7 +12,7 @@ import {
     perfilPopupRoute
 } from './';
 
-import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 const ENTITY_STATES = [...perfilRoute, ...perfilPopupRoute];
 
@@ -22,5 +22,4 @@ const ENTITY_STATES = [...perfilRoute, ...perfilPopupRoute];
     entryComponents: [PerfilComponent, PerfilUpdateComponent, PerfilDeleteDialogComponent, PerfilDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PdisciplinarioPerfilModule {
-}
+export class PdisciplinarioPerfilModule {}

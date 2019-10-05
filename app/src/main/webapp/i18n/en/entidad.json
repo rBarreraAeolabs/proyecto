@@ -1,6 +1,6 @@
 {
     "pdisciplinarioApp": {
-        "entidad": {
+        "entidad" : {
             "home": {
                 "title": "Entitis",
                 "createLabel": "Create a new Entiti",

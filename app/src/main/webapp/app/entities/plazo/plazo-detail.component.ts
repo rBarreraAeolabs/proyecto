@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import {IPlazo} from 'app/shared/model/plazo.model';
+import { IPlazo } from 'app/shared/model/plazo.model';
 
 @Component({
     selector: 'jhi-plazo-detail',
@@ -10,11 +10,10 @@ import {IPlazo} from 'app/shared/model/plazo.model';
 export class PlazoDetailComponent implements OnInit {
     plazo: IPlazo;
 
-    constructor(private activatedRoute: ActivatedRoute) {
-    }
+    constructor(private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({plazo}) => {
+        this.activatedRoute.data.subscribe(({ plazo }) => {
             this.plazo = plazo;
         });
     }

@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import {IInvestigacionSumaria} from 'app/shared/model/investigacion-sumaria.model';
+import { IInvestigacionSumaria } from 'app/shared/model/investigacion-sumaria.model';
 
 @Component({
     selector: 'jhi-investigacion-sumaria-detail',
@@ -10,11 +10,10 @@ import {IInvestigacionSumaria} from 'app/shared/model/investigacion-sumaria.mode
 export class InvestigacionSumariaDetailComponent implements OnInit {
     investigacionSumaria: IInvestigacionSumaria;
 
-    constructor(private activatedRoute: ActivatedRoute) {
-    }
+    constructor(private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({investigacionSumaria}) => {
+        this.activatedRoute.data.subscribe(({ investigacionSumaria }) => {
             this.investigacionSumaria = investigacionSumaria;
         });
     }

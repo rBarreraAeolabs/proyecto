@@ -1,10 +1,9 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.home.title">Ficha Ingreso Sdjs</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-ficha-ingreso-sdj"
-                [routerLink]="['/ficha-ingreso-sdj/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-ficha-ingreso-sdj" [routerLink]="['/ficha-ingreso-sdj/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.home.createLabel">
+            <span  jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.home.createLabel">
             Create new Ficha Ingreso Sdj
             </span>
         </button>
@@ -15,29 +14,17 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
-                    <fa-icon [icon]="'sort'"></fa-icon>
-                </th>
-                <th jhiSortBy="fechaInicio"><span jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.fechaInicio">Fecha Inicio</span>
-                    <fa-icon [icon]="'sort'"></fa-icon>
-                </th>
-                <th jhiSortBy="observacion"><span jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.observacion">Observacion</span>
-                    <fa-icon [icon]="'sort'"></fa-icon>
-                </th>
-                <th jhiSortBy="plazo"><span jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.plazo">Plazo</span>
-                    <fa-icon [icon]="'sort'"></fa-icon>
-                </th>
-                <th jhiSortBy="fechaHasta"><span
-                    jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.fechaHasta">Fecha Hasta</span>
-                    <fa-icon [icon]="'sort'"></fa-icon>
-                </th>
-                <th></th>
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fechaInicio"><span jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.fechaInicio">Fecha Inicio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="observacion"><span jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.observacion">Observacion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="plazo"><span jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.plazo">Plazo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fechaHasta"><span jhiTranslate="pdisciplinarioApp.fichaIngresoSdj.fechaHasta">Fecha Hasta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let fichaIngresoSdj of fichaIngresoSdjs ;trackBy: trackId">
-                <td><a [routerLink]="['/ficha-ingreso-sdj', fichaIngresoSdj.id, 'view' ]">{{fichaIngresoSdj.id}}</a>
-                </td>
+                <td><a [routerLink]="['/ficha-ingreso-sdj', fichaIngresoSdj.id, 'view' ]">{{fichaIngresoSdj.id}}</a></td>
                 <td>{{fichaIngresoSdj.fechaInicio | date:'medium'}}</td>
                 <td>{{fichaIngresoSdj.observacion}}</td>
                 <td>{{fichaIngresoSdj.plazo}}</td>
@@ -76,8 +63,7 @@
             <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
-                            [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div>
 </div>

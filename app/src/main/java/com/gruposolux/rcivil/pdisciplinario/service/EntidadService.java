@@ -20,38 +20,45 @@ import java.util.stream.Collectors;
  */
 @Service
 @Transactional
-public class EntidadService {
+public class EntidadService
+{
     private final Logger log = LoggerFactory.getLogger(EntidadService.class);
     private final EntidadMapper entidadMapper;
     private final EntidadRepository entidadRepository;
 
-    public EntidadService(EntidadMapper entidadMapper, EntidadRepository entidadRepository) {
+    public EntidadService(EntidadMapper entidadMapper, EntidadRepository entidadRepository)
+    {
         this.entidadMapper = entidadMapper;
         this.entidadRepository = entidadRepository;
     }
 
-    public EntidadDTO save(EntidadDTO entidadDTO) {
+    public EntidadDTO save(EntidadDTO entidadDTO)
+    {
         Entidad entidad = this.entidadMapper.toEntity(entidadDTO);
         entidad = this.entidadRepository.save(entidad);
         return this.entidadMapper.toDto(entidad);
     }
 
     @Transactional
-    public Optional<EntidadDTO> findOne(Long id) {
+    public Optional<EntidadDTO> findOne(Long id)
+    {
         return this.entidadRepository.findById(id).map(this.entidadMapper::toDto);
     }
 
     @Transactional
-    public Page<EntidadDTO> page(Pageable pageable) {
+    public Page<EntidadDTO> page(Pageable pageable)
+    {
         return this.entidadRepository.findAll(pageable).map(this.entidadMapper::toDto);
     }
 
-    public void delete(Long id) {
+    public void delete(Long id)
+    {
         this.entidadRepository.deleteById(id);
     }
 
     @Transactional
-    public List<EntidadDTO> getAll() {
+    public List<EntidadDTO> getAll()
+    {
         return this.entidadRepository.findAll().stream().map(this.entidadMapper::toDto).collect(Collectors.toList());
     }
 }

@@ -76,7 +76,7 @@ public class GrupoService {
     }
 
     @Transactional(readOnly = true)
-    public Grupo findOneByName(String nombre) {
+    public Grupo findOneByName(String nombre){
         log.debug("Request to get Grupo by nombre : {}", nombre);
         return grupoRepository.FindOneByName(nombre);
     }
@@ -92,7 +92,8 @@ public class GrupoService {
     }
 
     @Transactional
-    public List<GrupoDTO> getAllAsList() {
+    public List<GrupoDTO> getAllAsList()
+    {
         return this.grupoRepository.findAll().stream().map(grupo -> this.grupoMapper.toDto(grupo)).collect(Collectors.toList());
     }
 }

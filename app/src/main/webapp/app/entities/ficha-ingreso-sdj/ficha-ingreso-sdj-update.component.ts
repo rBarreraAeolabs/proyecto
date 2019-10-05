@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import * as moment from 'moment';
-import {DATE_TIME_FORMAT} from 'app/shared/constants/input.constants';
-import {JhiAlertService} from 'ng-jhipster';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { JhiAlertService } from 'ng-jhipster';
 
-import {IFichaIngresoSdj} from 'app/shared/model/ficha-ingreso-sdj.model';
-import {FichaIngresoSdjService} from './ficha-ingreso-sdj.service';
-import {Accion, IProvidencia} from 'app/shared/model/providencia.model';
-import {ProvidenciaService} from 'app/entities/providencia';
-import {PlazoService} from '../plazo/plazo.service';
-import {IPlazo} from '../../shared/model/plazo.model';
+import { IFichaIngresoSdj } from 'app/shared/model/ficha-ingreso-sdj.model';
+import { FichaIngresoSdjService } from './ficha-ingreso-sdj.service';
+import { InstruccionesProvidencia, IProvidencia} from 'app/shared/model/providencia.model';
+import { ProvidenciaService } from 'app/entities/providencia';
+import { PlazoService } from '../plazo/plazo.service';
+import { IPlazo } from '../../shared/model/plazo.model';
 
 @Component({
     selector: 'jhi-ficha-ingreso-sdj-update',
@@ -37,15 +37,14 @@ export class FichaIngresoSdjUpdateComponent implements OnInit {
         private providenciaService: ProvidenciaService,
         private activatedRoute: ActivatedRoute,
         private plazoService: PlazoService
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
 
         this.cargarConfigMultiSelectAcciones();
 
-        this.activatedRoute.data.subscribe(({fichaIngresoSdj}) => {
+        this.activatedRoute.data.subscribe(({ fichaIngresoSdj }) => {
             this.fichaIngresoSdj = fichaIngresoSdj;
 
             if (this.fichaIngresoSdj.id !== null && typeof this.fichaIngresoSdj.id !== 'undefined') {
@@ -112,7 +111,6 @@ export class FichaIngresoSdjUpdateComponent implements OnInit {
     trackProvidenciaById(index: number, item: IProvidencia) {
         return item.id;
     }
-
     get fichaIngresoSdj() {
         return this._fichaIngresoSdj;
     }
@@ -124,18 +122,17 @@ export class FichaIngresoSdjUpdateComponent implements OnInit {
         this.numeroReferencia = fichaIngresoSdj.numeroReferencia;
         this.atentamente = fichaIngresoSdj.atentamente;
     }
-
     // Funciones del multiselect
 
     cargarConfigMultiSelectAcciones() {
-        // this.dropdownListAcciones = [
-        //     { id: 1, itemName: Accion.TOMAR_CONOCIMIENTO.split('_').join(' ') },
-        //     { id: 2, itemName: Accion.PROPONER_RESPUESTA_DE_DIRECTOR.split('_').join(' ') },
-        //     { id: 3, itemName: Accion.PROPONER_RESOLUCION.split('_').join(' ') },
-        //     { id: 4, itemName: Accion.ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_DERECHO.split('_').join(' ') },
-        //     { id: 5, itemName: Accion.CONVERSARLO_CONMIGO.split('_').join(' ') },
-        //     { id: 6, itemName: Accion.PROVIDENCIA_ARCHIVO.split('_').join(' ') }
-        // ];
+        this.dropdownListAcciones = [
+            { id: 1, itemName: InstruccionesProvidencia.TOMAR_CONOCIMIENTO.split('_').join(' ') },
+            { id: 2, itemName: InstruccionesProvidencia.PROPONER_RESPUESTA_AL_DIRECTOR.split('_').join(' ') },
+            { id: 3, itemName: InstruccionesProvidencia.PROPONER_DECRETO_O_RESOLUCION.split('_').join(' ') },
+            { id: 4, itemName: InstruccionesProvidencia.ESTUDIAR_ANTECEDENTES_Y_PROCEDER_CONFORME_A_DERECHO.split('_').join(' ') },
+            { id: 5, itemName: InstruccionesProvidencia.CONVERSAR_CONMIGO.split('_').join(' ') },
+            { id: 6, itemName: InstruccionesProvidencia.PROVIDENCIA_ARCHIVO.split('_').join(' ') }
+        ];
 
         this.dropdownSettingsAcciones = {
             singleSelection: false,
@@ -154,22 +151,18 @@ export class FichaIngresoSdjUpdateComponent implements OnInit {
         acciones.map(accion => {
             this.dropdownListAcciones.map(a => {
                 if (a.itemName === accion.split('_').join(' ')) {
-                    this.selectedAcciones.push({id: a.id, itemName: accion.split('_').join(' ')});
+                    this.selectedAcciones.push({ id: a.id, itemName: accion.split('_').join(' ') });
                 }
             });
         });
     }
 
-    onItemSelect(item: any) {
-    }
+    onItemSelect(item: any) {}
 
-    OnItemDeSelect(item: any) {
-    }
-
+    OnItemDeSelect(item: any) {}
     onSelectAll(items: any) {
         console.log(items);
     }
-
     onDeSelectAll(items: any) {
         console.log(items);
     }

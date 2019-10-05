@@ -8,7 +8,7 @@
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <p id="jhi-responder-providencia-heading">
-            Seguro que desea devolver la providencia # {{providencia.numero}}?
+            Seguro que desea devolver la providencia # {{providencia.id}}?
         </p>
         <form>
             <div class="form-group">
@@ -30,7 +30,9 @@
             <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
         </button>
         <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success">
-            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.derivar">Derivar</span>
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;
+            <span *ngIf="isDevolver">Devolver</span>
+
         </button>
     </div>
 </form>

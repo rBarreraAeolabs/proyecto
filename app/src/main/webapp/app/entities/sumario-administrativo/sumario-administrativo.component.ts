@@ -1,14 +1,14 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
-import {JhiEventManager, JhiParseLinks, JhiAlertService} from 'ng-jhipster';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import {ISumarioAdministrativo} from 'app/shared/model/sumario-administrativo.model';
-import {Principal} from 'app/core';
+import { ISumarioAdministrativo } from 'app/shared/model/sumario-administrativo.model';
+import { Principal } from 'app/core';
 
-import {ITEMS_PER_PAGE} from 'app/shared';
-import {SumarioAdministrativoService} from './sumario-administrativo.service';
+import { ITEMS_PER_PAGE } from 'app/shared';
+import { SumarioAdministrativoService } from './sumario-administrativo.service';
 
 @Component({
     selector: 'jhi-sumario-administrativo',
