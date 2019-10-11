@@ -89,5 +89,7 @@
     <include file="config/liquibase/changelog/20190926201807_changelog.xml" relativeToChangelogFile="false"/>
     <!-- agregando columna stanby booleana a providencia. -->
     <include file="config\liquibase\changelog\20190927182747_changelog.xml" relativeToChangelogFile="false"/>
+    <!-- editando la columna  derivacion de varchar a tipo text en la tabla derivacion. -->
+      <include file="config\liquibase\changelog\20191010204435_changelog.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
 

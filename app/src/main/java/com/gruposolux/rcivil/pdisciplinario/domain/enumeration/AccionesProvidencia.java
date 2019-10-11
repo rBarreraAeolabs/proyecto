@@ -86,7 +86,14 @@ public enum AccionesProvidencia {
     CONTINUAR_FLUJO_NO_APELA_REGISTRA,
     CONTINUAR_FLUJO_NO_APELA_REPRESENTA,
     PRORROGA,
-    PRORROGA2
+    PRORROGA2,
 
+    /**
+    para investacion luego de prorroga
+
+     */
+
+    INVESTIGADO,
+    FISCAL_NOTIFICA_A_UPD_CIERRE
 }
 

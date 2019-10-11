@@ -10,17 +10,17 @@ metadata:
     kubernetes.io/tls-acme: "true"
     kubernetes.io/ingress.class: "nginx"
 spec:
-  #  tls:
-  #  - hosts:
-  #    - __CI_ENVIRONMENT_SLUG__-registrocivil-pdisciplinario.review.10.10.1.7.xip.io
-  # the secret used here is an unsigned wildcard cert for demo purposes
-  # use your own or comment this out
-  #secretName: tls-wildcard-demo
+#  tls:
+#  - hosts:
+#    - __CI_ENVIRONMENT_SLUG__-registrocivil-pdisciplinario.review.10.10.1.7.xip.io
+    # the secret used here is an unsigned wildcard cert for demo purposes
+    # use your own or comment this out
+    #secretName: tls-wildcard-demo
   rules:
-    - host: __CI_ENVIRONMENT_SLUG__-registrocivil-pdisciplinario.review.k.netlinux.cl
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: registrocivil-pdisciplinario-__CI_ENVIRONMENT_SLUG__
-              servicePort: 8080
+  - host: __CI_ENVIRONMENT_SLUG__-registrocivil-pdisciplinario.review.k.netlinux.cl
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: registrocivil-pdisciplinario-__CI_ENVIRONMENT_SLUG__
+          servicePort: 8080

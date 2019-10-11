@@ -1,11 +1,11 @@
 version: '2'
 services:
-  siac-postgresql:
-    image: postgres:9.6.2
-    # volumes:
-    #     - ~/volumes/jhipster/siac/postgresql/:/var/lib/postgresql/
-    environment:
-      - POSTGRES_USER=siac
-      - POSTGRES_PASSWORD=
-    ports:
-      - 5432:5432
+    siac-postgresql:
+        image: postgres:9.6.2
+        # volumes:
+        #     - ~/volumes/jhipster/siac/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=siac
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

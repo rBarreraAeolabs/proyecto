@@ -34,4 +34,9 @@ public interface DocumentoRepository extends JpaRepository<Documento, Long> {
     @Query("SELECT d FROM Documento d WHERE LOWER(d.archivoNombre) = :nombreArchivo AND d.providencia = :providencia " +
         "ORDER BY d.version DESC")
     Set<Documento> findByNombreArchivo(@Param("nombreArchivo") String nombreArchivo, @Param("providencia") Providencia providencia);
+
+    @Query(value=" select count(d.providencia) from Documento d  where d.providencia.id = :id")
+    Integer Contar(@Param("id") Long id);
+
+
 }

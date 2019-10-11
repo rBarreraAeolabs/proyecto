@@ -151,7 +151,7 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
 //            .event(AccionesProvidencia.DGD_DESPACHO_NOTIFICACION_FISCAL.name())
             .and()
             .withExternal()
-            .source(EstadoProvidencia.FISCAL_NOTIFICADO.name()).target(EstadoProvidencia.FISCAL_ACEPTO_Y_DA_INICIO.name())
+            .source(EstadoProvidencia.FISCAL_NOTIFICADO.name()).target(EstadoProvidencia.INVESTIGACION.name())
             .event(AccionesProvidencia.FISCAL_ACEPTA.name())
 //            .event(AccionesProvidencia.FISCAL_RECHAZA.name())
             .and()
@@ -160,30 +160,44 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             .event(AccionesProvidencia.FISCAL_RECHAZA.name())
 //            .event(AccionesProvidencia.FISCAL_RECHAZA.name())
             .and()
-            .withExternal()
-            .source(EstadoProvidencia.SECRETARIA_REVISA_NUMERO.name()).target(EstadoProvidencia.FISCAL_ACEPTO_Y_DA_INICIO.name())
-            .event(AccionesProvidencia.PRORROGA.name())
-//            .event(AccionesProvidencia.GESTOR_DOCUMENTAL_ASIGNO_NUMERO.name())
-            .and()
-            .withExternal()
-            .source(EstadoProvidencia.FISCAL_ACEPTO_Y_DA_INICIO.name()).target(EstadoProvidencia.FORMULA_CARGOS.name())
-            .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+
+//            .withExternal()
+//            .source(EstadoProvidencia.FISCAL_ACEPTO_Y_DA_INICIO.name()).target(EstadoProvidencia.INVESTIGACION.name())
+//            .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
 //            .event(AccionesProvidencia.FISCAL_RECHAZA.name())
+//            .and()
+            .withExternal()
+            .source(EstadoProvidencia.INVESTIGACION.name()).target(EstadoProvidencia.FORMULA_CARGOS.name())
+            .event(AccionesProvidencia.FISCAL_NOTIFICA_A_UPD_CIERRE.name())
             .and()
             /**
              * Estados en los que se puede cambiar a proroga.
              *
              */
+            //se agrego
+            .withExternal()
+            .source(EstadoProvidencia.SECRETARIA_REVISA_NUMERO.name()).target(EstadoProvidencia.INVESTIGACION.name())
+            .event(AccionesProvidencia.PRORROGA.name())
+//            .event(AccionesProvidencia.GESTOR_DOCUMENTAL_ASIGNO_NUMERO.name())
+            .and()
+            ///
             .withExternal()
             .source(EstadoProvidencia.FISCAL_ACEPTO_Y_DA_INICIO.name()).target(EstadoProvidencia.PETICION_PRORROGA.name())
             .event(AccionesProvidencia.PRORROGA.name())
 //            .event(AccionesProvidencia.FISCAL_RECHAZA.name())
+           //
             .and()
             .withExternal()
-            .source(EstadoProvidencia.FISCAL_ACEPTO_Y_DA_INICIO.name()).target(EstadoProvidencia.PETICION_PRORROGA_2.name())
+            .source(EstadoProvidencia.INVESTIGACION.name()).target(EstadoProvidencia.PETICION_PRORROGA_2.name())
             .event(AccionesProvidencia.PRORROGA2.name())
 //            .event(AccionesProvidencia.FISCAL_ADJUNTA_MEMO.name()).event(AccionesProvidencia.ENVIA_A_UPD.name())
             .and()
+            //
+//            .withExternal()
+//            .source(EstadoProvidencia.INVESTIGACION.name()).target(EstadoProvidencia.FORMULA_CARGOS.name())
+//            .event(AccionesProvidencia.PRORROGA.name())
+////            .event(AccionesProvidencia.GESTOR_DOCUMENTAL_ASIGNO_NUMERO.name())
+//            .and()
             /**
              *  Fin de estados para prorroga
              */

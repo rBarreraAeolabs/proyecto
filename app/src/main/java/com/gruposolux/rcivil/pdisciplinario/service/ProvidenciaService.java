@@ -2,10 +2,7 @@ package com.gruposolux.rcivil.pdisciplinario.service;
 
 import com.gruposolux.rcivil.pdisciplinario.domain.*;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.*;
-import com.gruposolux.rcivil.pdisciplinario.repository.DerivacionRepository;
-import com.gruposolux.rcivil.pdisciplinario.repository.NotificacionInBrowserRepository;
-import com.gruposolux.rcivil.pdisciplinario.repository.ProvidenciaRepository;
-import com.gruposolux.rcivil.pdisciplinario.repository.UserRepository;
+import com.gruposolux.rcivil.pdisciplinario.repository.*;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.*;
 import com.gruposolux.rcivil.pdisciplinario.service.mapper.*;
 import com.gruposolux.rcivil.pdisciplinario.storage.AlfrescoStorageService;
@@ -14,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -60,6 +56,8 @@ public class ProvidenciaService {
     private final StateMachine stateMachine;
     private final UserRepository userRepository;
     private final PlazosHastaService plazosHastaService;
+    private final DocumentoRepository documentoRepository;
+    private final AdjuntoRepository adjuntoRepository;
     @Autowired
     private final AlfrescoStorageService alfrescoStorageService;
 
@@ -89,8 +87,8 @@ public class ProvidenciaService {
         ProvidenciaStateMachineService providenciaStateMachineService,
         StateMachine stateMachine,
         UserRepository userRepository,
-        PlazosHastaService plazosHastaService
-    ) {
+        PlazosHastaService plazosHastaService,
+        DocumentoRepository documentoRepository, AdjuntoRepository adjuntoRepository) {
         this.providenciaRepository = providenciaRepository;
         this.providenciaMapper = providenciaMapper;
         this.adjuntoMapper = adjuntoMapper;
@@ -117,6 +115,8 @@ public class ProvidenciaService {
         this.userRepository = userRepository;
         this.plazosHastaService = plazosHastaService;
 
+        this.documentoRepository = documentoRepository;
+        this.adjuntoRepository = adjuntoRepository;
     }
 
     /**
@@ -130,7 +130,7 @@ public class ProvidenciaService {
         Providencia providencia = providenciaMapper.toEntity(providenciaDTO);
         EstadoProvidencia requisitoEstado = this.newState(providencia, AccionesProvidencia.CREAR_PROVIDENCIA);
         EstadoProvidencia subEtapa = this.determinaSubEtapa(requisitoEstado, EstadoProvidencia.NUEVA_PROVIDENCIA);
-        EstadoProvidencia etapa = this.determinaEtapa(requisitoEstado,providenciaDTO.getEtapa());
+        EstadoProvidencia etapa = this.determinaEtapa(requisitoEstado);
         String estadoProviCompleto = this.concatenarEstado(requisitoEstado, subEtapa, etapa);
         String estadoInicial = this.determinaEstadoInicial(EstadoProvidencia.NUEVA_PROVIDENCIA);
         providencia.setFechaCreacion(Instant.now());
@@ -188,6 +188,10 @@ public class ProvidenciaService {
             case PRORROGA2_CREADA:
                 plazosHastaService.dias(providencia.getId(),20);
                 break;
+            case FISCAL_ACEPTO_Y_DA_INICIO:
+                plazosHastaService.dias(providencia.getId(),20);
+                break;
+
 
         }
 
@@ -238,7 +242,6 @@ public class ProvidenciaService {
 
         log.debug("Entrando a DeterminarEstadoInical" +  requisito);
         String estadoInicial = null;
-        EstadoProvidencia etapa=null;
         EstadoProvidencia requisitoInicial;
         EstadoProvidencia etapaInicial;
         EstadoProvidencia subEtapaInicial;
@@ -268,7 +271,7 @@ public class ProvidenciaService {
         } else {
             requisitoInicial = requisito;
             subEtapaInicial = this.determinaSubEtapa(requisito, requisito);
-            etapaInicial = this.determinaEtapa(requisito,etapa);
+            etapaInicial = this.determinaEtapa(requisito);
         }
         estadoInicial = this.concatenarEstado(requisitoInicial, subEtapaInicial, etapaInicial);
 
@@ -368,18 +371,20 @@ public class ProvidenciaService {
             case FISCAL_RECHAZO:
             case FISCAL_ACEPTO_Y_DA_INICIO:
             case FISCAL_REDACTA_MEMO:
+            case INVESTIGACION: //  le da una sub etapa al requisito
                 subEtapa = EstadoProvidencia.DA_INICIO;
                 break;
             case FORMULA_CARGOS:
+            case FORMULA_CARGOS_TERMINO_PROBATORIO:
             case APELACION_INCULPADO:
             case UPD_ELABORA_NOTIFICACION:
             case ESPERANDO_FIRMA_VISA_DE_SUBDIRECCION_A_NOTIFICACION:
             case UPD_NOTIFICA_A_INCULPADO:
-                subEtapa = EstadoProvidencia.INCULPADO_NOTIFICADO;
+                subEtapa = EstadoProvidencia.FISCAL;
                 break;
-            case FORMULA_CARGOS_TERMINO_PROBATORIO:
-                subEtapa = EstadoProvidencia.TERMINO_PROBATORIO;
-                break;
+//            case FORMULA_CARGOS_TERMINO_PROBATORIO:
+//                subEtapa = EstadoProvidencia.TERMINO_PROBATORIO;
+//                break;
             case FISCAL_REMITE_EXPEDIENTE:
             case DN_RECIBE_SUMARIO_COMPLETO:
             case REVISION_SUMARIO_COMPLETO:
@@ -471,9 +476,9 @@ public class ProvidenciaService {
      * @param requisitoActual requisitoActual en la que se encuentra la providenciaNueva o la ProvidenciaMadre
      * @return etapa correspondiente al requisitoActual
      */
-    private EstadoProvidencia determinaEtapa(EstadoProvidencia requisitoActual,EstadoProvidencia etapaActual) {
+    private EstadoProvidencia determinaEtapa(EstadoProvidencia requisitoActual) {
         log.debug(" determinar Etapa  con REQUISITO " + requisitoActual);
-        EstadoProvidencia etapa = etapaActual;
+        EstadoProvidencia etapa = null;
         EstadoProvidencia requisito = requisitoActual;
 
         switch (requisito) {
@@ -485,11 +490,38 @@ public class ProvidenciaService {
             case FISCAL_RECHAZO:
                 etapa = EstadoProvidencia.PROVIDENCIA_SELECCION_FISCAL;
                 break;
-            case FISCAL_ACEPTO_Y_DA_INICIO:
+            case DGD_DESPACHA_NOTIFICACION_FISCAL:
                 etapa = EstadoProvidencia.INVESTIGACION;
                 break;
+
         }
         log.debug(" La Etapa es " + etapa);
+        return etapa;
+    }
+
+    /**
+     * @CreatedBy Ruben Barrera
+     * @param requisitoActual
+     * @param etapaActual
+     * @return
+     *
+     * determinar etapa en el flujo
+     *
+     */
+
+    private EstadoProvidencia determinaEtapaenFlujo( EstadoProvidencia subEtapaActual,EstadoProvidencia requisitoActual, EstadoProvidencia etapaActual) {
+        log.debug(" determinar Etapa en flujo  con REQUISITO " + requisitoActual);
+        EstadoProvidencia etapa = etapaActual;
+        EstadoProvidencia requisito = requisitoActual;
+        EstadoProvidencia subEtapa = subEtapaActual;
+        switch (requisito) {
+            // Setea variable Etapa segun la subEtapa en que se encuentre
+                       case FISCAL_NOTIFICADO:
+                etapa = EstadoProvidencia.INVESTIGACION;
+                break;
+
+        }
+        log.debug(" La Etapa en el flujo  es " + etapa);
         return etapa;
     }
 
@@ -518,6 +550,7 @@ public class ProvidenciaService {
                 providencia.setSumarioAdministrativo(sumarioAdministrativo);
             }
         }
+
         this.providenciaRepository.save(providencia);
 
         if (adjuntoDTOs != null && adjuntoDTOs.size() > 0) {
@@ -527,6 +560,7 @@ public class ProvidenciaService {
             providenciaDTO = this.providenciaMapper.toDto(providencia);
             providenciaDTO.setAdjuntos(adjuntos.stream().collect(Collectors.toSet()));
         }
+        log.debug("saliendo del update " + providenciaDTO);
         return providenciaDTO;
     }
 
@@ -534,7 +568,11 @@ public class ProvidenciaService {
     @Transactional(readOnly = true)
     public Optional<DetalleProvidenciaDTO> findOneDetalle(Long id) {
         log.debug("resultado del findOneDetalle: {}", id);
+
         return providenciaRepository.findById(id).map(providencia -> {
+            Integer sumaAdjuntos =adjuntoRepository.Contar(providencia.getId())+documentoRepository.Contar(providencia.getId());
+
+            log.debug("ruben-cantidad adjuntos: {}", sumaAdjuntos);
 //            this.providenciaMapper
 //                .toDto(this.providenciaRepository.getOne (providencia.getId())
 //           );
@@ -563,7 +601,8 @@ public class ProvidenciaService {
                 providencia.getNombreImplicado(),
                 providencia.getNombreFiscalAsignado(),
                 providencia.getProvidencia_madre_id(),
-                providencia.getStandby()
+                providencia.getStandby(),
+                sumaAdjuntos
 
 
         );
@@ -731,34 +770,53 @@ public class ProvidenciaService {
      */
     @Transactional
     public void reply(ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("boton CONTINUAR paso");
-        AccionesProvidencia evento = AccionesProvidencia.CREAR_PROVIDENCIA;
-        this.changeStage(providenciaResponseDTO, evento);
-    }
-    @Transactional
-    public void fiscal(ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("boton CONTINUAR paso");
+        log.debug("boton CONTINUAR paso: ");
         AccionesProvidencia evento = AccionesProvidencia.CREAR_PROVIDENCIA;
         this.changeStage(providenciaResponseDTO, evento);
     }
 
     @Transactional
+    public void fiscalDaInicio(ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("boton desde fiscal acepta y da inicio paso: ");
+        AccionesProvidencia evento = AccionesProvidencia.FISCAL_NOTIFICA_A_UPD_CIERRE;
+        this.changeStage(providenciaResponseDTO, evento);
+    }
+
+    @Transactional
+    public void fiscalNotificaUpdInvestigacion( ) {
+
+        NotificacionInBrowser notificacion =  new NotificacionInBrowser();
+        Long IdGrupo = 3L;
+           //*grupoMapper.fromId(3L);
+        notificacion.setUser(null);
+        notificacion.setGrupo(grupoMapper.fromId(3L));
+        notificacion.setCreatedAt(Instant.now());
+        notificacion.setContenido("Fiscal A Adado Inicio a Investigacion de la Providencia: ");
+
+                notificacion.setVisto(false);
+      notificacionInBrowserRepository.save(notificacion);
+        log.debug("notificar a upd inicio de investigacion: ");
+
+
+    }
+
+    @Transactional
     public void aceptar(ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("boton ACEPTAR paso");
+        log.debug("boton ACEPTAR paso: ");
         AccionesProvidencia evento = AccionesProvidencia.FISCAL_ACEPTA;
         this.changeStage(providenciaResponseDTO, evento);
     }
 
     @Transactional
     public void rechazar(ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("boton RECHAZAR paso");
+        log.debug("boton RECHAZAR paso: ");
         AccionesProvidencia evento = AccionesProvidencia.FISCAL_RECHAZA;
         this.changeStage(providenciaResponseDTO, evento);
     }
 
     @Transactional
     public void prorroga(ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("boton PRORROGA paso");
+        log.debug("boton PRORROGA paso: ");
         AccionesProvidencia evento = AccionesProvidencia.PRORROGA;
         this.changeStage(providenciaResponseDTO, evento);
     }
@@ -766,7 +824,7 @@ public class ProvidenciaService {
     // BOTON REPRESENTA PARA FLUJO DE SANCION APELA
     @Transactional
     public void apela(ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("boton APELA paso");
+        log.debug("boton APELA paso: ");
         AccionesProvidencia evento = AccionesProvidencia.CONTINUAR_FLUJO_APELA;
         this.changeStage(providenciaResponseDTO, evento);
     }
@@ -774,7 +832,7 @@ public class ProvidenciaService {
     // BOTON REPRESENTA PARA FLUJO DE SANCION NO APELA
     @Transactional
     public void noApela(ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("boton NO APELA paso");
+        log.debug("boton NO APELA paso: ");
         AccionesProvidencia evento = AccionesProvidencia.CONTINUAR_FLUJO_NO_APELA;
         this.changeStage(providenciaResponseDTO, evento);
     }
@@ -782,14 +840,14 @@ public class ProvidenciaService {
         // BOTON REPRESENTA PARA FLUJO DE SANCION NO APELA
     @Transactional
     public void representa(ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("boton REPRESENTA paso");
+        log.debug("boton REPRESENTA paso: ");
         AccionesProvidencia evento = AccionesProvidencia.CONTINUAR_FLUJO_NO_APELA_REPRESENTA;
         this.changeStage(providenciaResponseDTO, evento);
     }
     // BOTON "REGISTRA2 O "TOMA DE RAZON" PARA FLUJO DE SANCION NO APELA
     @Transactional
     public void registra(ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("boton REGISTRA paso");
+        log.debug("boton REGISTRA paso: ");
         AccionesProvidencia evento = AccionesProvidencia.CONTINUAR_FLUJO_NO_APELA_REGISTRA;
         this.changeStage(providenciaResponseDTO, evento);
     }
@@ -845,16 +903,16 @@ public class ProvidenciaService {
 
             //DEPENDE DE LA ETAPA LA ACCION CAMBIA PARA QUE LA PROVIDENCIA SIGA SU CAMINO CORRECTO
 
-            log.debug("antes de entrar al metodo determianr evento" + providencia);
+            log.debug("antes de entrar al metodo determianr evento " + providencia);
 
             eventoBoton = determinarEvento(providencia);
 
             if (eventoBoton == null) {
                 eventoBoton = evento;
             }
-            log.debug("saliendo del metodo determinar evento" + eventoBoton);
+            log.debug("saliendo del metodo determinar evento " + eventoBoton);
             subEtapaAntes = providencia.getSubEtapa();
-            providencia.setRequisito(this.newState(providencia, eventoBoton));
+            providencia.setRequisito(this.newState(providencia, eventoBoton)); // AQUI ES DONDE SE LLAMA A LA MAQUINA
             requisitoDespues = providencia.getRequisito();
             log.debug(" requisto nuevo despues del cambio de estado" + requisitoDespues);
 
@@ -869,20 +927,32 @@ public class ProvidenciaService {
 
             }
             providencia.setSubEtapa(subEtapa);
-            etapa = this.determinaEtapa(requisitoDespues,etapa);
-           providencia.setEtapa(etapa);
+
+            /**
+             * determinar etapara  ebn el chambio de estado verificar que no afecte el flujo
+             * RubenEtapaNUEV
+             */
+            etapa = this.determinaEtapaenFlujo(subEtapa,requisitoDespues,providencia.getEtapa());
+            log.debug("Ruben- set Etapa nueva: "+etapa);
+            providencia.setEtapa(etapa);
+            log.debug("Ruben- get Etapa nueva: "+providencia.getEtapa());
             subEtapa = providencia.getSubEtapa();
+
             iDProvidenciaMadre = providencia.getProvidencia_madre_id();
             providencia.setEstadoActual(this.concatenarEstado(requisitoDespues, subEtapa, etapa));
+
+
             /**
              * stanby actualiza el booleano en la db
              */
             standby(providencia);
             providenciaDTO = this.update(this.providenciaMapper.toDto(providencia), providenciaResponseDTO.getAdjuntosDTOs());
             Grupo groupAnswer = this.determineGroupAnswer(providencia);
-
+            log.debug("despues del grupo " + providencia.getProvidencia_madre_id());
             Derivacion derivacion = null;
 
+
+//
             //crea la notificacion
             this.registryNotificacion("pendiente por hacer " + requisitoDespues, groupAnswer);
 
@@ -1095,6 +1165,7 @@ public class ProvidenciaService {
                     break;
 
                 case PROVIDENCIA_SELECCION_FISCAL:
+                case INVESTIGACION:
                     optionalGroup = this.grupoService.findOne(1L).map(this.grupoMapper::toEntity);
                     if (optionalGroup.isPresent()) groupAnswer = optionalGroup.get();
                     break;
@@ -1112,12 +1183,14 @@ public class ProvidenciaService {
                     optionalGroup = this.grupoService.findOne(1L).map(this.grupoMapper::toEntity);
                     if (optionalGroup.isPresent()) groupAnswer = optionalGroup.get();
                     break;
-                case INVESTIGACION:
+
                 case PROVIDENCIA_PRORROGA:
                 case PROVIDENCIA_PRORROGA_2:
                     optionalGroup = this.grupoService.findOne(1L).map(this.grupoMapper::toEntity);
                     if (optionalGroup.isPresent()) groupAnswer = optionalGroup.get();
                     break;
+
+
             }
             return groupAnswer;
         }
@@ -1154,6 +1227,8 @@ public class ProvidenciaService {
             // "numerarReferencia" permite mostrar u ocultar el botón que da pie a asignar el número de referencia.
             // "tipoSolicitud" permite mostrar u ocultar el botón que da pie a asignar el tipo de solicitud.
             actionsPermitted.put("reply", false);
+            actionsPermitted.put("fiscalDaInicio", false);
+            actionsPermitted.put("fiscalNotificaUPD", false);
             actionsPermitted.put("goBackwards", false);
             actionsPermitted.put("watchTabRespuesta", true);
             actionsPermitted.put("asignarFiscal", false);
@@ -1167,7 +1242,6 @@ public class ProvidenciaService {
             actionsPermitted.put("noApela", false);
             actionsPermitted.put("representa", false);
             actionsPermitted.put("registra", false);
-            actionsPermitted.put("fiscal", false);
             switch (requisito) {   // Falta un switch anidado para los casos especificos de que salte (muestre un boton o accion diferente) a otro requisito si es alguna etapa especifica
 
                 case NUEVA_PROVIDENCIA:
@@ -1240,8 +1314,11 @@ public class ProvidenciaService {
                     }
                     break;
                 case FISCAL_ACEPTO_Y_DA_INICIO:
+                case INVESTIGACION: // requisito el estado en la maquina de estado
                     if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
-                        actionsPermitted.put("fiscal", true);
+//                        actionsPermitted.put("reply", true);
+                        actionsPermitted.put("fiscalDaInicio", true);
+                        actionsPermitted.put("fiscalNotificaUPD", true);
                         actionsPermitted.put("prorroga", true);
                         actionsPermitted.put("asignarFiscal", false);
 
@@ -1249,6 +1326,8 @@ public class ProvidenciaService {
                         actionsPermitted.put("watchTabRespuesta", false);
                     }
                     break;
+
+
                 case UPD_NOTIFICA_A_INCULPADO:
                     if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
                         actionsPermitted.put("apela", true);
@@ -1340,6 +1419,16 @@ public class ProvidenciaService {
                         return false;
                     }).collect(Collectors.toList());
                     break;
+
+                case FISCAL_ACEPTO_Y_DA_INICIO:
+                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
+                        if (p.getTipo().equals(TipoPlantilla.MEMORANDUM)) {
+                            return true;
+                        }
+                        return false;
+                    }).collect(Collectors.toList());
+                    break;
+
 //                case PROVIDENCIA_CREADA:
 //                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
 //                        if (p.getTipo().equals(TipoPlantilla.MEMORANDUM)) {

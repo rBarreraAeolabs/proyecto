@@ -40,6 +40,10 @@ public interface AdjuntoRepository extends JpaRepository<Adjunto, Long> {
     @Transactional
     @Query("UPDATE Adjunto SET movimientoProvidencia = :movProv, providencia = :prov WHERE id = :idAdjunto")
     void updateMovimiento(@Param("movProv") MovimientoProvidencia movProv, @Param("prov") Providencia prov, @Param("idAdjunto") Long idAdjunto);
+
+    @Query(" select count(a.providencia) from Adjunto a where a.providencia.id = :id")
+    Integer Contar(@Param("id") Long id);
+
 }
 
 

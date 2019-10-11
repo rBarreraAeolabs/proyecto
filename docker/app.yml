@@ -1,19 +1,19 @@
 version: '2'
 services:
-  app:
-    image: gitlab.d.netlinux.cl:4567/clientes/registrocivil-pdisciplinario:latest
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db/pdisciplinario
-      - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
-    ports:
-      - 8080:8080
-  db:
-    image: postgres:9.6.2
-    # volumes:
-    #     - ~/volumes/jhipster/siac/postgresql/:/var/lib/postgresql/
-    environment:
-      - POSTGRES_USER=pdisciplinario
-      - POSTGRES_PASSWORD=
-    ports:
-      - 5432:5432
+    app:
+        image: gitlab.d.netlinux.cl:4567/clientes/registrocivil-pdisciplinario:latest
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://db/pdisciplinario
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    db:
+        image: postgres:9.6.2
+        # volumes:
+        #     - ~/volumes/jhipster/siac/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=pdisciplinario
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

@@ -73,17 +73,17 @@
 //
 //    private NotificacionInBrowser notificacionInBrowser;
 //
-//    @Before
-//    public void setup() {
-//        MockitoAnnotations.initMocks(this);
-//        final NotificacionInBrowserResource notificacionInBrowserResource = new NotificacionInBrowserResource(notificacionInBrowserRepository);
-//        this.restNotificacionInBrowserMockMvc = MockMvcBuilders.standaloneSetup(notificacionInBrowserResource)
-//            .setCustomArgumentResolvers(pageableArgumentResolver)
-//            .setControllerAdvice(exceptionTranslator)
-//            .setConversionService(createFormattingConversionService())
-//            .setMessageConverters(jacksonMessageConverter)
-//            .setValidator(validator).build();
-//    }
+////    @Before
+////    public void setup() {
+////        MockitoAnnotations.initMocks(this);
+////        final NotificacionInBrowserResource notificacionInBrowserResource = new NotificacionInBrowserResource(notificacionInBrowserRepository);
+////        this.restNotificacionInBrowserMockMvc = MockMvcBuilders.standaloneSetup(notificacionInBrowserResource)
+////            .setCustomArgumentResolvers(pageableArgumentResolver)
+////            .setControllerAdvice(exceptionTranslator)
+////            .setConversionService(createFormattingConversionService())
+////            .setMessageConverters(jacksonMessageConverter)
+////            .setValidator(validator).build();
+////    }
 //
 //    /**
 //     * Create an entity for this test.
@@ -93,9 +93,9 @@
 //     */
 //    public static NotificacionInBrowser createEntity(EntityManager em) {
 //        NotificacionInBrowser notificacionInBrowser = new NotificacionInBrowser()
-////            .CreatedAt(DEFAULT_FECHA_CREADO)
-////            .contenido(DEFAULT_DESCRIPCION)
-////            .visto(DEFAULT_VISTO);
+//            .CreatedAt(DEFAULT_FECHA_CREADO)
+//            .contenido(DEFAULT_DESCRIPCION)
+//            .visto(DEFAULT_VISTO);
 //        return notificacionInBrowser;
 //    }
 //

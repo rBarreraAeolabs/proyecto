@@ -68,6 +68,8 @@ public class DetalleProvidenciaDTO  {
 
      private Boolean standby;
 
+     private Integer totalAdjuntos;
+
     public DetalleProvidenciaDTO(
         Long id,
         Long numeroReferencia,
@@ -88,7 +90,7 @@ public class DetalleProvidenciaDTO  {
         Instant fechaHasta, String runSolicitante,
         String nombreSolicitante, String runImplicado,
         String nombreImplicado, String nombreFiscalAsignado,
-        Long providenciaMadreId,  Boolean standby) {
+        Long providenciaMadreId,  Boolean standby,Integer totalAdjuntos) {
         this.id = id;
         this.numeroReferencia = numeroReferencia;
         this.numeroProvidencia = numeroProvidencia;
@@ -113,6 +115,7 @@ public class DetalleProvidenciaDTO  {
         this.nombreFiscalAsignado = nombreFiscalAsignado;
         this.providenciaMadreId = providenciaMadreId;
               this.standby = standby;
+              this.totalAdjuntos= totalAdjuntos;
     }
 
     public Long getId() {
@@ -317,6 +320,13 @@ public class DetalleProvidenciaDTO  {
         this.standby = standby;
     }
 
+    public Integer getTotalAdjuntos() {
+        return totalAdjuntos;
+    }
+
+    public void setTotalAdjuntos(Integer totalAdjuntos) {
+        this.totalAdjuntos = totalAdjuntos;
+    }
 
     @Override
     public String toString() {
@@ -334,6 +344,7 @@ public class DetalleProvidenciaDTO  {
             ", comentario='" + comentario + '\'' +
             ", fechaSolicitud=" + fechaSolicitud +
             ", fechaCreacion=" + fechaCreacion +
+            ", instrucciones=" + instrucciones +
             ", sumarioAdministrativoId=" + sumarioAdministrativoId +
             ", investigacionSumariaId=" + investigacionSumariaId +
             ", fechaHasta=" + fechaHasta +
@@ -345,8 +356,8 @@ public class DetalleProvidenciaDTO  {
             ", entidadImplicada=" + entidadImplicada +
             ", nombreFiscalAsignado='" + nombreFiscalAsignado + '\'' +
             ", providenciaMadreId=" + providenciaMadreId +
-
             ", standby=" + standby +
+            ", totalAdjuntos=" + totalAdjuntos +
             '}';
     }
 }

@@ -89,6 +89,7 @@ public enum EstadoProvidencia {
     CREADA_PROVIDENCIA_PRORROGA_2,
     PRORROGA_SOLICITADA,
 
+
     UPD_NOTIFICA_A_INCULPADO,
     UPD_REALIZA_MEMO,
     FOLIO_Y_ARCHIVA,
@@ -153,7 +154,7 @@ public enum EstadoProvidencia {
     DGDP_ARCHIVA,
     SENSURA_DESTITUCION,
 
-    DA_INICIO
-
+    DA_INICIO,
+    FISCAL
 
 }

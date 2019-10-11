@@ -104,12 +104,12 @@ public class ProvidenciaResource {
      * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
      * @return the ResponseEntity with status 200 (OK) and the list of providencias in body
      */
-    @GetMapping("/providencias/resumen")
+    @GetMapping("/providencias")
     @Timed
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
     public ResponseEntity<List<ProvidenciaItemListDTO>> getAllProvidencias(Pageable pageable,
                                                                            @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
-        log.debug("este es el resumen de la providencia:");
+        log.debug("REST request to get a page of Providencias");
         Page<ProvidenciaItemListDTO> page = null;
         if (eagerload) {
 //            page = providenciaService.findAllWithEagerRelationships(pageable);
@@ -173,14 +173,21 @@ public class ProvidenciaResource {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    @PostMapping("/providencias/fiscal")
+    @PostMapping("/providencias/fiscalDaInicio")
     @Timed
-    public ResponseEntity<Void> fiscal(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("ENTRO AL REPLY");
-        this.providenciaService.fiscal(providenciaResponseDTO);
+    public ResponseEntity<Void> fiscalDaInicio(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO AL fiscal: ");
+        this.providenciaService.fiscalDaInicio(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+    @GetMapping("/providencias/fiscalNotificaUpdInvestigacion")
+    @Timed
+    public ResponseEntity<Void> fiscalNotificaUpdInvestigacion() {
+        log.debug("ENTRO AL fiscalNotificaUpdInvestigacion: ");
+        this.providenciaService.fiscalNotificaUpdInvestigacion();
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
 
     @PostMapping("/providencias/aceptar")
     @Timed

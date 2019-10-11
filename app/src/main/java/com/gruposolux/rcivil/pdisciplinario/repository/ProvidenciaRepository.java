@@ -20,6 +20,7 @@ import java.util.Set;
 @Repository
 public interface ProvidenciaRepository extends JpaRepository<Providencia, Long> {
 
+
     @Query(value = "select distinct providencia from Providencia providencia",
         countQuery = "select count(distinct providencia) from Providencia providencia")
     Page<Providencia> findAllWithEagerRelationships(Pageable pageable);
@@ -87,5 +88,8 @@ public interface ProvidenciaRepository extends JpaRepository<Providencia, Long> 
     @Modifying
     @Query(value = "UPDATE providencia   SET requisito = 'VEREMOS' where id =:id ",nativeQuery = true)
     void  updateRequisito(@Param("id") Long id);
+
+
+
 
 }
