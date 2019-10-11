@@ -104,12 +104,12 @@ public class ProvidenciaResource {
      * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
      * @return the ResponseEntity with status 200 (OK) and the list of providencias in body
      */
-    @GetMapping("/providencias")
+    @GetMapping("/providencias/resumen")
     @Timed
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
     public ResponseEntity<List<ProvidenciaItemListDTO>> getAllProvidencias(Pageable pageable,
                                                                            @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
-        log.debug("REST request to get a page of Providencias");
+        log.debug("este es el resumen de la providencia:");
         Page<ProvidenciaItemListDTO> page = null;
         if (eagerload) {
 //            page = providenciaService.findAllWithEagerRelationships(pageable);
@@ -172,6 +172,15 @@ public class ProvidenciaResource {
         this.providenciaService.reply(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
+
+    @PostMapping("/providencias/fiscal")
+    @Timed
+    public ResponseEntity<Void> fiscal(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO AL REPLY");
+        this.providenciaService.fiscal(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
 
     @PostMapping("/providencias/aceptar")
     @Timed

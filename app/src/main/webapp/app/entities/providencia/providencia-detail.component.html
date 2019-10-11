@@ -33,7 +33,7 @@
                                         <button type="button"
                                                 *ngIf="actionsPermitted.aceptar
                                                 && providencia.requisito == 'FISCAL_NOTIFICADO'
-                                                && providencia.subEtapa == 'INVESTIGACION'
+                                                && providencia.subEtapa == 'DA_INICIO'
                                                 "
                                                 class="btn btn-success mr-2"
                                                 [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/fiscalAcepta'} }]"
@@ -46,7 +46,7 @@
                                         <button type="button"
                                                 *ngIf="actionsPermitted.rechazar
                                                 && providencia.requisito == 'FISCAL_NOTIFICADO'
-                                                && providencia.subEtapa == 'INVESTIGACION'
+                                                && providencia.subEtapa == 'DA_INICIO'
                                                 "
                                                 class="btn btn-danger mr-2"
                                                 [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/fiscalRechaza'} }]"
@@ -118,6 +118,15 @@
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
                                                     <span *ngIf="isProrroga"> Prorroga Uno</span>
                                                     <span *ngIf="!isProrroga"> Prorroga Dos</span>
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.fiscal"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/fiscal'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > Continuar </span>
+
                                                 </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.apela"

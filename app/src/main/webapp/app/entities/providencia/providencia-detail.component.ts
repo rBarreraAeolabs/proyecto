@@ -32,7 +32,8 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
         tipoSolicitud: false,
         prorroga: false,
         apela: false,
-        noApela: false
+        noApela: false,
+        fiscal: false
     };
     refresh = false;
     respuesta: IRespuesta;
@@ -51,13 +52,13 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
         private router: Router,
         private http: HttpClient
     ) {
-        // trabajando con descarga en formato excell
-        this.providenciaService.query().subscribe(data => {
-            console.log('esta es la data: ', data);
-            data.body.forEach(row => {
-                this.excel.push(row);
-            });
-        });
+        // // trabajando con descarga en formato excell
+        // this.providenciaService.query().subscribe(data => {
+        //     console.log('esta es la data: ', data);
+        //     data.body.forEach(row => {
+        //         this.excel.push(row);
+        //     });
+        // });
 
         this.navigationSubscription = this.router.events.subscribe ((e: any) => {
             // Si es un evento NavigationEnd, volver a inicializar el componente
@@ -175,7 +176,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
 
         console.log('Respondiendo', this.respuesta);
 
-        if (this.providencia.estadoActual === 'ESTADO_6') {
+
 
             if (this.respuesta.documentos != null && this.respuesta.documentos.length >= 2) {
 
@@ -197,7 +198,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
                 this.disableResponder = true;
             }
 
-        } else if (this.providencia.estadoActual === 'ESTADO_16') {
+
 
             if (this.respuesta.documentos != null && this.respuesta.documentos.length > 0) {
 
@@ -215,7 +216,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
             } else {
                 this.disableResponder = true;
             }
-        }
+
     }
 
     ngOnDestroy() {

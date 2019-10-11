@@ -130,7 +130,7 @@ public class ProvidenciaService {
         Providencia providencia = providenciaMapper.toEntity(providenciaDTO);
         EstadoProvidencia requisitoEstado = this.newState(providencia, AccionesProvidencia.CREAR_PROVIDENCIA);
         EstadoProvidencia subEtapa = this.determinaSubEtapa(requisitoEstado, EstadoProvidencia.NUEVA_PROVIDENCIA);
-        EstadoProvidencia etapa = this.determinaEtapa(requisitoEstado);
+        EstadoProvidencia etapa = this.determinaEtapa(requisitoEstado,providenciaDTO.getEtapa());
         String estadoProviCompleto = this.concatenarEstado(requisitoEstado, subEtapa, etapa);
         String estadoInicial = this.determinaEstadoInicial(EstadoProvidencia.NUEVA_PROVIDENCIA);
         providencia.setFechaCreacion(Instant.now());
@@ -238,6 +238,7 @@ public class ProvidenciaService {
 
         log.debug("Entrando a DeterminarEstadoInical" +  requisito);
         String estadoInicial = null;
+        EstadoProvidencia etapa=null;
         EstadoProvidencia requisitoInicial;
         EstadoProvidencia etapaInicial;
         EstadoProvidencia subEtapaInicial;
@@ -267,7 +268,7 @@ public class ProvidenciaService {
         } else {
             requisitoInicial = requisito;
             subEtapaInicial = this.determinaSubEtapa(requisito, requisito);
-            etapaInicial = this.determinaEtapa(requisito);
+            etapaInicial = this.determinaEtapa(requisito,etapa);
         }
         estadoInicial = this.concatenarEstado(requisitoInicial, subEtapaInicial, etapaInicial);
 
@@ -367,7 +368,7 @@ public class ProvidenciaService {
             case FISCAL_RECHAZO:
             case FISCAL_ACEPTO_Y_DA_INICIO:
             case FISCAL_REDACTA_MEMO:
-                subEtapa = EstadoProvidencia.INVESTIGACION;
+                subEtapa = EstadoProvidencia.DA_INICIO;
                 break;
             case FORMULA_CARGOS:
             case APELACION_INCULPADO:
@@ -470,9 +471,9 @@ public class ProvidenciaService {
      * @param requisitoActual requisitoActual en la que se encuentra la providenciaNueva o la ProvidenciaMadre
      * @return etapa correspondiente al requisitoActual
      */
-    private EstadoProvidencia determinaEtapa(EstadoProvidencia requisitoActual) {
+    private EstadoProvidencia determinaEtapa(EstadoProvidencia requisitoActual,EstadoProvidencia etapaActual) {
         log.debug(" determinar Etapa  con REQUISITO " + requisitoActual);
-        EstadoProvidencia etapa = null;
+        EstadoProvidencia etapa = etapaActual;
         EstadoProvidencia requisito = requisitoActual;
 
         switch (requisito) {
@@ -483,6 +484,9 @@ public class ProvidenciaService {
                 break;
             case FISCAL_RECHAZO:
                 etapa = EstadoProvidencia.PROVIDENCIA_SELECCION_FISCAL;
+                break;
+            case FISCAL_ACEPTO_Y_DA_INICIO:
+                etapa = EstadoProvidencia.INVESTIGACION;
                 break;
         }
         log.debug(" La Etapa es " + etapa);
@@ -731,6 +735,12 @@ public class ProvidenciaService {
         AccionesProvidencia evento = AccionesProvidencia.CREAR_PROVIDENCIA;
         this.changeStage(providenciaResponseDTO, evento);
     }
+    @Transactional
+    public void fiscal(ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("boton CONTINUAR paso");
+        AccionesProvidencia evento = AccionesProvidencia.CREAR_PROVIDENCIA;
+        this.changeStage(providenciaResponseDTO, evento);
+    }
 
     @Transactional
     public void aceptar(ProvidenciaResponseDTO providenciaResponseDTO) {
@@ -859,7 +869,8 @@ public class ProvidenciaService {
 
             }
             providencia.setSubEtapa(subEtapa);
-
+            etapa = this.determinaEtapa(requisitoDespues,etapa);
+           providencia.setEtapa(etapa);
             subEtapa = providencia.getSubEtapa();
             iDProvidenciaMadre = providencia.getProvidencia_madre_id();
             providencia.setEstadoActual(this.concatenarEstado(requisitoDespues, subEtapa, etapa));
@@ -1101,7 +1112,7 @@ public class ProvidenciaService {
                     optionalGroup = this.grupoService.findOne(1L).map(this.grupoMapper::toEntity);
                     if (optionalGroup.isPresent()) groupAnswer = optionalGroup.get();
                     break;
-
+                case INVESTIGACION:
                 case PROVIDENCIA_PRORROGA:
                 case PROVIDENCIA_PRORROGA_2:
                     optionalGroup = this.grupoService.findOne(1L).map(this.grupoMapper::toEntity);
@@ -1156,6 +1167,7 @@ public class ProvidenciaService {
             actionsPermitted.put("noApela", false);
             actionsPermitted.put("representa", false);
             actionsPermitted.put("registra", false);
+            actionsPermitted.put("fiscal", false);
             switch (requisito) {   // Falta un switch anidado para los casos especificos de que salte (muestre un boton o accion diferente) a otro requisito si es alguna etapa especifica
 
                 case NUEVA_PROVIDENCIA:
@@ -1229,7 +1241,7 @@ public class ProvidenciaService {
                     break;
                 case FISCAL_ACEPTO_Y_DA_INICIO:
                     if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
-                        actionsPermitted.put("reply", true);
+                        actionsPermitted.put("fiscal", true);
                         actionsPermitted.put("prorroga", true);
                         actionsPermitted.put("asignarFiscal", false);
 

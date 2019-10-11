@@ -151,8 +151,9 @@ public enum EstadoProvidencia {
     APLICA_SANCION,
     SUSPENSION_MULTA,
     DGDP_ARCHIVA,
-    SENSURA_DESTITUCION
+    SENSURA_DESTITUCION,
 
+    DA_INICIO
 
 
 }
