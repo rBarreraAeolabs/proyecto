@@ -29,13 +29,19 @@ import { RespuestaUpdateComponent } from '../respuesta/respuesta-update.componen
 import { ComentarioBitacoraModalComponent } from 'app/entities/movimiento-providencia/comentario-bitacora-modal.component';
 import { RespuestaBitacoraModalComponent } from 'app/entities/respuesta/respuesta-bitacora-modal.componente';
 import { ProvidenciaRelacionadasComponent } from './providencia-relacionadas.component';
-
+// import { ProvidenciaFiscalCierreComponent } from './providencia-fiscal-cierre.component';
 import { Ng2Rut } from 'ng2-rut';
 
 import {
     ProvidenciaRelacionarDialogComponent,
     ProvidenciaRelacionarPopupComponent
 } from './providencia-relacionar-dialog.component';
+
+import {
+    ProvidenciaFiscalCierreComponent,
+    ProvidenciaFiscalCierrePopupComponent
+} from './providencia-fiscal-cierre.component';
+
 import {
     ProvidenciaAsignarFiscalComponent,
     ProvidenciaAsignarFiscalPopupComponent
@@ -119,7 +125,8 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaApelaPopupComponent,
         ProvidenciaApelaComponent,
         ProvidenciaNoApelaPopupComponent,
-        ProvidenciaNoApelaComponent
+        ProvidenciaNoApelaComponent,
+        ProvidenciaFiscalCierreComponent
 
     ],
     entryComponents: [
@@ -155,7 +162,8 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaApelaPopupComponent,
         ProvidenciaApelaComponent,
         ProvidenciaNoApelaPopupComponent,
-        ProvidenciaNoApelaComponent
+        ProvidenciaNoApelaComponent,
+        ProvidenciaFiscalCierreComponent
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

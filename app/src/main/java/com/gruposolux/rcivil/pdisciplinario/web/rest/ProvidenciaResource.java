@@ -178,16 +178,18 @@ public class ProvidenciaResource {
     public ResponseEntity<Void> fiscalDaInicio(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("ENTRO AL fiscal: ");
         this.providenciaService.fiscalDaInicio(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
-
-    @GetMapping("/providencias/fiscalNotificaUpdInvestigacion")
-    @Timed
-    public ResponseEntity<Void> fiscalNotificaUpdInvestigacion() {
-        log.debug("ENTRO AL fiscalNotificaUpdInvestigacion: ");
         this.providenciaService.fiscalNotificaUpdInvestigacion();
         return new ResponseEntity<Void>(HttpStatus.OK);
+
     }
+
+//    @GetMapping("/providencias/fiscalNotificaUpdInvestigacion")
+//    @Timed
+//    public ResponseEntity<Void> fiscalNotificaUpdInvestigacion() {
+//        log.debug("ENTRO AL fiscalNotificaUpdInvestigacion: ");
+//        this.providenciaService.fiscalNotificaUpdInvestigacion();
+//        return new ResponseEntity<Void>(HttpStatus.OK);
+//    }
 
     @PostMapping("/providencias/aceptar")
     @Timed

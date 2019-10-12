@@ -42,7 +42,17 @@
                                             <fa-icon [icon]="'check-circle'"></fa-icon>&nbsp;
                                             <span> Aceptar</span>
                                         </button>
+                                        <button type="button"
+                                                *ngIf="actionsPermitted.fiscalDaInicio"
+                                                [disabled]="disableResponder"
+                                                class="btn btn-danger mr-2"
+                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/fiscalDaInicio'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge">
+                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                            <span *ngIf="isResponder"> notificar cierre investigacion</span>
 
+                                        </button>
                                         <button type="button"
                                                 *ngIf="actionsPermitted.rechazar
                                                 && providencia.requisito == 'FISCAL_NOTIFICADO'

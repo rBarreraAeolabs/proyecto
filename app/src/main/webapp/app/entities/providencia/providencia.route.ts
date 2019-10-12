@@ -24,7 +24,7 @@ import {ProvidenciaFiscalRechazaPopupComponent} from 'app/entities/providencia/p
 import {ProvidenciaFiscalProrrogaPopupComponent} from 'app/entities/providencia/providencia-fiscal-prorroga.component';
 import {ProvidenciaApelaPopupComponent} from 'app/entities/providencia/providencia-apela.component';
 import {ProvidenciaNoApelaPopupComponent} from 'app/entities/providencia/providencia-no-apela.component';
-
+import {ProvidenciaFiscalCierrePopupComponent} from 'app/entities/providencia/providencia-fiscal-cierre.component';
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
     constructor(private service: ProvidenciaService) {}
@@ -52,6 +52,7 @@ export const providenciaRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     },
+
     {
         path: 'providencia/:id/view',
         component: ProvidenciaDetailComponent,
@@ -119,6 +120,19 @@ export const providenciaPopupRoute: Routes = [
     {
         path: 'providencia/:id/responder',
         component: ProvidenciaResponderPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Responder providencia',
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/fiscalCierre',
+        component: ProvidenciaFiscalCierrePopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },
