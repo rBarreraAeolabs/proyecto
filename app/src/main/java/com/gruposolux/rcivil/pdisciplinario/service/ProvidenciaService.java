@@ -287,6 +287,7 @@ public class ProvidenciaService {
      */
     private EstadoProvidencia determinaSubEtapa(EstadoProvidencia requisitoEstado, EstadoProvidencia etapa) {
 
+
         log.debug(" determinar subEtapa  con requisito " + requisitoEstado);
         EstadoProvidencia subEtapa = null;
         EstadoProvidencia requisito = requisitoEstado;
@@ -375,6 +376,11 @@ public class ProvidenciaService {
                 subEtapa = EstadoProvidencia.DA_INICIO;
                 break;
             case FORMULA_CARGOS:
+                if (etapa==EstadoProvidencia.INVESTIGACION){
+                    subEtapa = EstadoProvidencia.DA_INICIO;
+                    break;
+                }
+
             case FORMULA_CARGOS_TERMINO_PROBATORIO:
             case APELACION_INCULPADO:
             case UPD_ELABORA_NOTIFICACION:
@@ -519,8 +525,18 @@ public class ProvidenciaService {
                        case FISCAL_NOTIFICADO:
                 etapa = EstadoProvidencia.INVESTIGACION;
                 break;
+                case FORMULA_CARGOS:
+                if (subEtapa== EstadoProvidencia.DA_INICIO){
 
+                        etapa = EstadoProvidencia.INVESTIGACION;
+
+                }
+                    break;
         }
+
+
+
+
         log.debug(" La Etapa en el flujo  es " + etapa);
         return etapa;
     }
@@ -1027,7 +1043,7 @@ public class ProvidenciaService {
                     break;
 
                     // Para que el flujo salte al requisito PETICION PRORROGA2
-                case FISCAL_ACEPTO_Y_DA_INICIO:
+                case INVESTIGACION:
                     switch (etapa) {
                         case PROVIDENCIA_PRORROGA:
                             evento = AccionesProvidencia.PRORROGA2;
@@ -1208,6 +1224,7 @@ public class ProvidenciaService {
 
             EstadoProvidencia requisito = providenciaDTO.getRequisito();
             EstadoProvidencia etapa = providenciaDTO.getEtapa();
+            EstadoProvidencia subEtapa= providenciaDTO.getSubEtapa();
             if (providenciaDTO.getEtapa() == null && providenciaDTO.getSubEtapa() == null && providenciaDTO.getRequisito() == null) {
                 return null;
             }
@@ -1284,6 +1301,17 @@ public class ProvidenciaService {
                     }
                     break;
                 case FORMULA_CARGOS:
+                    if (subEtapa== EstadoProvidencia.DA_INICIO){
+
+                        if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
+                            actionsPermitted.put("apela", true);
+                            actionsPermitted.put("noApela", true);
+                        } else {
+                            actionsPermitted.put("watchTabRespuesta", false);
+                        }
+                        break;
+                    }
+
                 case APELACION_INCULPADO:
                 case FORMULA_CARGOS_TERMINO_PROBATORIO:
                 case FISCAL_REMITE_EXPEDIENTE:
@@ -1322,16 +1350,6 @@ public class ProvidenciaService {
                         actionsPermitted.put("prorroga", true);
                         actionsPermitted.put("asignarFiscal", false);
 
-                    } else {
-                        actionsPermitted.put("watchTabRespuesta", false);
-                    }
-                    break;
-
-
-                case UPD_NOTIFICA_A_INCULPADO:
-                    if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
-                        actionsPermitted.put("apela", true);
-                        actionsPermitted.put("noApela", true);
                     } else {
                         actionsPermitted.put("watchTabRespuesta", false);
                     }
@@ -1420,7 +1438,7 @@ public class ProvidenciaService {
                     }).collect(Collectors.toList());
                     break;
 
-                case FISCAL_ACEPTO_Y_DA_INICIO:
+                case INVESTIGACION:
                     plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
                         if (p.getTipo().equals(TipoPlantilla.MEMORANDUM)) {
                             return true;
