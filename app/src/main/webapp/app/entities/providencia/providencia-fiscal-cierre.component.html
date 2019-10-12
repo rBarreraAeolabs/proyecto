@@ -1,4 +1,4 @@
-<form name="deleteForm" (ngSubmit)="fiscalDaCierre(providencia.id)">
+<form name="deleteForm" (ngSubmit)="fiscalCierre(providencia.id)">
     <div class="modal-header">
         <h4 class="modal-title" jhiTranslate="entity.response.titleDerivar"></h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -35,11 +35,10 @@
 
             id="jhi-confirm-providencia"
             type="submit"
-            class="btn btn-outline-success"
-        >
+            class="btn btn-outline-success">
             <fa-icon [icon]="'save'"></fa-icon>&nbsp;
 
-            <span ">Notificar Cierre</span>
+            <span >Notificar Cierre</span>
         </button>
     </div>
 </form>

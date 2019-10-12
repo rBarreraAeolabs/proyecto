@@ -12,7 +12,7 @@ services:
       - 9000:9000
       - 3001:3001
     volumes:
-      - ~/proyectos/netlinux/registrocivil-pdisciplinario/app:/home/jhipster/app
+      - ~/Documents/proyectos/ifyum/app:/home/jhipster/app
     #            - ~/proyectos/netlinux/registrocivil-pdisciplinario/.m2:/home/jhipster/.m2
     command: tail -f /dev/null
   db:
@@ -32,6 +32,7 @@ services:
 
   alfresco:
     image: alfresco/alfresco-content-repository-community:6.1.2-ga
+    build: alfresco/
     environment:
       JAVA_OPTS: '
         -Ddb.driver=org.postgresql.Driver

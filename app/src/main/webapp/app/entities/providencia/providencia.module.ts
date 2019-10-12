@@ -126,7 +126,8 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaApelaComponent,
         ProvidenciaNoApelaPopupComponent,
         ProvidenciaNoApelaComponent,
-        ProvidenciaFiscalCierreComponent
+        ProvidenciaFiscalCierreComponent,
+        ProvidenciaFiscalCierrePopupComponent
 
     ],
     entryComponents: [
@@ -163,7 +164,8 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaApelaComponent,
         ProvidenciaNoApelaPopupComponent,
         ProvidenciaNoApelaComponent,
-        ProvidenciaFiscalCierreComponent
+        ProvidenciaFiscalCierreComponent,
+        ProvidenciaFiscalCierrePopupComponent
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -188,7 +188,7 @@ public class ProvidenciaService {
             case PRORROGA2_CREADA:
                 plazosHastaService.dias(providencia.getId(),20);
                 break;
-            case FISCAL_ACEPTO_Y_DA_INICIO:
+            case INVESTIGACION:
                 plazosHastaService.dias(providencia.getId(),20);
                 break;
 

@@ -132,6 +132,10 @@ export class ProvidenciaService {
         return this.http.post<any>(this.resourceUrl + '/noApela', response, {observe: 'response'});
     }
 
+    fiscalCierre(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/fiscalDaInicio', response, {observe: 'response'});
+    }
+
     getActionsPermitted(providencia: IProvidencia): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/actions', providencia, {observe: 'response'});
     }

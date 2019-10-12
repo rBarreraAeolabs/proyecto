@@ -53,7 +53,7 @@ export class ProvidenciaFiscalCierreComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    confirmarRespuesta(id: number ) {
+    fiscalCierre(id: number ) {
 
         this.providenciaResponse.estadoActual = this.providencia.estadoActual;
         this.providenciaResponse.providenciaId = id;
@@ -61,7 +61,7 @@ export class ProvidenciaFiscalCierreComponent implements OnInit {
         this.providenciaResponse.observacion = this.observacionDerivacion;
         this.providencia.requisito = this.providencia.requisito;
         this.providencia.etapa = this.providencia.etapa;
-        this.providenciaService.reply(this.providenciaResponse).subscribe(res => {
+        this.providenciaService.fiscalCierre(this.providenciaResponse).subscribe(res => {
             this.eventManager.broadcast({
                 name: 'providenciaListModification',
                 content: 'Providencia aceptada'
