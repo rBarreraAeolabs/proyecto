@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-outline-info btn-sm" (click)="open(content)">
+<button *ngIf="respuesta.adjuntos" type="button" class="btn btn-outline-info btn-sm" (click)="open(content)">
     <fa-icon [icon]="'eye'"></fa-icon>
     <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
 </button>

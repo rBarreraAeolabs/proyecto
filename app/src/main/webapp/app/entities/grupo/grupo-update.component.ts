@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JhiAlertService } from 'ng-jhipster';
-
 import { IGrupo } from 'app/shared/model/grupo.model';
 import { GrupoService } from './grupo.service';
 import { IPerfil } from 'app/shared/model/perfil.model';

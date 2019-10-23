@@ -103,6 +103,7 @@ public class ProvidenciaResource {
      * @param pageable the pagination information
      * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
      * @return the ResponseEntity with status 200 (OK) and the list of providencias in body
+     * optimizar para el futuro
      */
     @GetMapping("/providencias")
     @Timed
@@ -173,23 +174,28 @@ public class ProvidenciaResource {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    @PostMapping("/providencias/fiscalDaInicio")
+    @PostMapping("/providencias/fiscalNotificaCierre")
     @Timed
-    public ResponseEntity<Void> fiscalDaInicio(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+    public ResponseEntity<Void> fiscalNotificaCierre (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("ENTRO AL fiscal: ");
-        this.providenciaService.fiscalDaInicio(providenciaResponseDTO);
-        this.providenciaService.fiscalNotificaUpdInvestigacion();
-        return new ResponseEntity<Void>(HttpStatus.OK);
-
+        this.providenciaService.fiscalNotificaCierre(providenciaResponseDTO);
+           return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-//    @GetMapping("/providencias/fiscalNotificaUpdInvestigacion")
-//    @Timed
-//    public ResponseEntity<Void> fiscalNotificaUpdInvestigacion() {
-//        log.debug("ENTRO AL fiscalNotificaUpdInvestigacion: ");
-//        this.providenciaService.fiscalNotificaUpdInvestigacion();
-//        return new ResponseEntity<Void>(HttpStatus.OK);
-//    }
+    @PostMapping("/providencias/formularCargos")
+    @Timed
+    public ResponseEntity<Void> formularCargos (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO AL fiscal: ");
+        this.providenciaService.formularCargos(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+    @PostMapping("/providencias/remiteExpediente")
+    @Timed
+    public ResponseEntity<Void> remiteExpediente (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO AL fiscal: ");
+        this.providenciaService.remiteExpediente(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
 
     @PostMapping("/providencias/aceptar")
     @Timed
@@ -227,6 +233,22 @@ public class ProvidenciaResource {
     public ResponseEntity<Void> noApela(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("endpoint botton noApela");
         this.providenciaService.noApela(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+
+    @PostMapping("/providencias/inculpadoEnviaMemo")
+    @Timed
+    public ResponseEntity<Void> inculpadoEnviaMemo(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton noApela");
+        this.providenciaService.inculpadoEnviaMemo(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+    @PostMapping("/providencias/inculpadoNoEnviaMemo")
+    @Timed
+    public ResponseEntity<Void> inculpadoNoEnviaMemo(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton noApela");
+        this.providenciaService.inculpadoNoEnviaMemo(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 

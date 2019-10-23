@@ -43,7 +43,7 @@ public class NotificationService {
     @Transactional(readOnly = true)
     public List<NotificacionInBrowserDTO> BuscarNotificaciones(Long userId) {
 
-        log.debug("id del usuario recibido en noptificacionservice : {}", userId);
+        log.debug("id del usuario recibido en notificacionService : {}", userId);
 
         List notificacion =  notificacionInBrowserRepository.TraerNotificacionesPorUsuario(userId);
         log.debug("lista de notificaciones : {}", notificacion);

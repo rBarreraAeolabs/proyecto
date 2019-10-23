@@ -182,6 +182,10 @@ public class ProvidenciaService {
              case FORMULA_CARGOS:
                 plazosHastaService.dias(providencia.getId(),2);
                 break;
+
+            case FORMULA_CARGOS_Y_NOTIFICA:
+                plazosHastaService.dias(providencia.getId(),2);
+                break;
             case PRORROGA1_CREADA:
                 plazosHastaService.dias(providencia.getId(),20);
                 break;
@@ -287,7 +291,6 @@ public class ProvidenciaService {
      */
     private EstadoProvidencia determinaSubEtapa(EstadoProvidencia requisitoEstado, EstadoProvidencia etapa) {
 
-
         log.debug(" determinar subEtapa  con requisito " + requisitoEstado);
         EstadoProvidencia subEtapa = null;
         EstadoProvidencia requisito = requisitoEstado;
@@ -363,12 +366,11 @@ public class ProvidenciaService {
             case DGD_DESPACHA_NOTIFICACION_FISCAL:
             case ENVIADO_A_SUBDIRECCION_JURIDICA:
             case ESPERANDO_FIRMA_DE_SUBDIRECCION_A_NOTIFICACION:
+            case UPD_NOTIFICA_FISCAL:
+            case FISCAL_NOTIFICADO:
                 subEtapa = EstadoProvidencia.ELABORACION_NOTIFICACION_FISCAL;
                 break;
-            case UPD_NOTIFICA_FISCAL:
-                subEtapa = EstadoProvidencia.NOTIFICACION_FISCAL;
-                break;
-            case FISCAL_NOTIFICADO:
+
             case FISCAL_RECHAZO:
             case FISCAL_ACEPTO_Y_DA_INICIO:
             case FISCAL_REDACTA_MEMO:
@@ -376,10 +378,15 @@ public class ProvidenciaService {
                 subEtapa = EstadoProvidencia.DA_INICIO;
                 break;
             case FORMULA_CARGOS:
+            case FORMULA_CARGOS_Y_NOTIFICA:
+            case INCULPADO_ENVIA_MEMO:
+            case INCULPADO_NO_ENVIA_MEMO:
                 if (etapa==EstadoProvidencia.INVESTIGACION){
                     subEtapa = EstadoProvidencia.DA_INICIO;
                     break;
                 }
+
+
 
             case FORMULA_CARGOS_TERMINO_PROBATORIO:
             case APELACION_INCULPADO:
@@ -522,21 +529,17 @@ public class ProvidenciaService {
         EstadoProvidencia subEtapa = subEtapaActual;
         switch (requisito) {
             // Setea variable Etapa segun la subEtapa en que se encuentre
-                       case FISCAL_NOTIFICADO:
+                       case INVESTIGACION:
                 etapa = EstadoProvidencia.INVESTIGACION;
                 break;
-                case FORMULA_CARGOS:
+                       case FORMULA_CARGOS:
                 if (subEtapa== EstadoProvidencia.DA_INICIO){
-
-                        etapa = EstadoProvidencia.INVESTIGACION;
-
+                    etapa = EstadoProvidencia.INVESTIGACION;
                 }
-                    break;
+                break;
+
+
         }
-
-
-
-
         log.debug(" La Etapa en el flujo  es " + etapa);
         return etapa;
     }
@@ -756,7 +759,7 @@ public class ProvidenciaService {
     }
 
     // notificaciones created by: Ruben Barrera
-    private NotificacionInBrowser registryNotificacion(String observacion, Grupo derivadoAGrupo) {
+    private NotificacionInBrowser registryNotificacion(String observacion, Grupo derivadoAGrupo, AccionesProvidencia evento) {
 
 
         List<Long> usuariosUNOporUNO=this.userRepository.findByAllGrupo(derivadoAGrupo.getId());
@@ -767,7 +770,20 @@ public class ProvidenciaService {
             NotificacionInBrowser notificacion =  new NotificacionInBrowser();
 
             log.debug("en el foreach este es el id de los usuarios del grupo: "+usuariosUNOporUNO.get(i));
-            notificacion.setContenido(observacion);
+            switch (evento){
+                default:
+                    notificacion.setContenido(observacion);
+                    break;
+                case FISCAL_NOTIFICA_A_UPD_CIERRE:
+                    notificacion.setContenido("Fiscal A Adado Cierre a Investigacion de la Providencia: ");
+                    break;
+                case FISCAL_ACEPTA:
+                    notificacion.setContenido("Fiscal A Aceptado  Investigacion de la Providencia: ");
+                    break;
+
+
+                  }
+
             notificacion.setGrupo(derivadoAGrupo);
             notificacion.setCreatedAt(Instant.now());
             notificacion.setVisto(false);
@@ -792,35 +808,31 @@ public class ProvidenciaService {
     }
 
     @Transactional
-    public void fiscalDaInicio(ProvidenciaResponseDTO providenciaResponseDTO) {
+    public void fiscalNotificaCierre(ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("boton desde fiscal acepta y da inicio paso: ");
         AccionesProvidencia evento = AccionesProvidencia.FISCAL_NOTIFICA_A_UPD_CIERRE;
         this.changeStage(providenciaResponseDTO, evento);
     }
 
     @Transactional
-    public void fiscalNotificaUpdInvestigacion( ) {
-
-        NotificacionInBrowser notificacion =  new NotificacionInBrowser();
-        Long IdGrupo = 3L;
-           //*grupoMapper.fromId(3L);
-        notificacion.setUser(null);
-        notificacion.setGrupo(grupoMapper.fromId(3L));
-        notificacion.setCreatedAt(Instant.now());
-        notificacion.setContenido("Fiscal A Adado Inicio a Investigacion de la Providencia: ");
-
-                notificacion.setVisto(false);
-      notificacionInBrowserRepository.save(notificacion);
-        log.debug("notificar a upd inicio de investigacion: ");
-
-
+    public void formularCargos(ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("boton desde fiscal acepta y da inicio paso: ");
+        AccionesProvidencia evento = AccionesProvidencia.FORMULAR_CARGOS;
+        this.changeStage(providenciaResponseDTO, evento);
     }
+ @Transactional
+    public void remiteExpediente(ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("boton desde fiscal acepta y da inicio paso: ");
+        AccionesProvidencia evento = AccionesProvidencia.REMITE_EXPEDIENTE;
+        this.changeStage(providenciaResponseDTO, evento);
+    }
+
 
     @Transactional
     public void aceptar(ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("boton ACEPTAR paso: ");
         AccionesProvidencia evento = AccionesProvidencia.FISCAL_ACEPTA;
-        this.changeStage(providenciaResponseDTO, evento);
+       this.changeStage(providenciaResponseDTO, evento);
     }
 
     @Transactional
@@ -850,6 +862,20 @@ public class ProvidenciaService {
     public void noApela(ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("boton NO APELA paso: ");
         AccionesProvidencia evento = AccionesProvidencia.CONTINUAR_FLUJO_NO_APELA;
+        this.changeStage(providenciaResponseDTO, evento);
+    }
+  // BOTON REPRESENTA PARA FLUJO DE SANCION NO APELA luego envia memo
+    @Transactional
+    public void inculpadoEnviaMemo(ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("boton inculado envia memo paso: ");
+        AccionesProvidencia evento = AccionesProvidencia.INCULPADO_ENVIA_MEMO;
+        this.changeStage(providenciaResponseDTO, evento);
+    }
+
+    @Transactional
+    public void inculpadoNoEnviaMemo(ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("boton NO APELA paso: ");
+        AccionesProvidencia evento = AccionesProvidencia.INCULPADO_NO_ENVIA_MEMO;
         this.changeStage(providenciaResponseDTO, evento);
     }
 
@@ -883,6 +909,8 @@ public class ProvidenciaService {
         EstadoProvidencia requisitoAntes = providencia.getRequisito();
         log.debug("entro al metodo standby: "+providencia.getStandby());
         switch (requisitoAntes) {
+            /**
+             * providencia detenida             */
             case PETICION_PRORROGA:
             case PETICION_PRORROGA_2:
             case SECRETARIA_DESPACHA_A_DGD:
@@ -892,6 +920,14 @@ public class ProvidenciaService {
                 providencia.setStandby(true);
                 log.debug("sale al metodo standby: "+providencia.getStandby());
                 break;
+
+            /**
+             *  providencia no detenida
+             */
+            case FORMULA_CARGOS_TERMINO_PROBATORIO:
+                providencia.setStandby(false);
+                break;
+
 
         }
 
@@ -970,7 +1006,7 @@ public class ProvidenciaService {
 
 //
             //crea la notificacion
-            this.registryNotificacion("pendiente por hacer " + requisitoDespues, groupAnswer);
+            this.registryNotificacion("pendiente por hacer " + requisitoDespues, groupAnswer,evento);
 
                 if (providencia.getNombreFiscalAsignado() != null) {
                     Optional<User> userOptional = this.userService.findByFullName(providencia.getNombreFiscalAsignado());
@@ -1043,6 +1079,7 @@ public class ProvidenciaService {
                     break;
 
                     // Para que el flujo salte al requisito PETICION PRORROGA2
+//                case FISCAL_ACEPTO_Y_DA_INICIO:
                 case INVESTIGACION:
                     switch (etapa) {
                         case PROVIDENCIA_PRORROGA:
@@ -1244,7 +1281,7 @@ public class ProvidenciaService {
             // "numerarReferencia" permite mostrar u ocultar el botón que da pie a asignar el número de referencia.
             // "tipoSolicitud" permite mostrar u ocultar el botón que da pie a asignar el tipo de solicitud.
             actionsPermitted.put("reply", false);
-            actionsPermitted.put("fiscalDaInicio", false);
+            actionsPermitted.put("fiscalNotificaCierre", false);
             actionsPermitted.put("fiscalNotificaUPD", false);
             actionsPermitted.put("goBackwards", false);
             actionsPermitted.put("watchTabRespuesta", true);
@@ -1259,6 +1296,11 @@ public class ProvidenciaService {
             actionsPermitted.put("noApela", false);
             actionsPermitted.put("representa", false);
             actionsPermitted.put("registra", false);
+            actionsPermitted.put("inculpadoEnviaMemo", false);
+            actionsPermitted.put("inculpadoNoEnviaMemo", false);
+            actionsPermitted.put("formularCargos", false);
+
+
             switch (requisito) {   // Falta un switch anidado para los casos especificos de que salte (muestre un boton o accion diferente) a otro requisito si es alguna etapa especifica
 
                 case NUEVA_PROVIDENCIA:
@@ -1300,21 +1342,62 @@ public class ProvidenciaService {
                         actionsPermitted.put("watchTabRespuesta", false);
                     }
                     break;
-                case FORMULA_CARGOS:
+
+                case FORMULA_CARGOS_Y_NOTIFICA:
                     if (subEtapa== EstadoProvidencia.DA_INICIO){
 
                         if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
-                            actionsPermitted.put("apela", true);
-                            actionsPermitted.put("noApela", true);
+//                            actionsPermitted.put("apela", true);
+//                            actionsPermitted.put("noApela", true);
+                            actionsPermitted.put("inculpadoEnviaMemo", true);
+                            actionsPermitted.put("inculpadoNoEnviaMemo",true);
+                        } else {
+                            actionsPermitted.put("watchTabRespuesta", false);
+                        }
+                        break;
+                    }
+                    //apelacion inculpado
+//                case PETICION_APELACION:
+//                    if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+//                        actionsPermitted.put("inculpadoEnviaMemo", true);
+//
+//
+//                    } else {
+////                        actionsPermitted.put("watchTabRespuesta", false);
+//                    }
+//                    break;
+                case INCULPADO_ENVIA_MEMO:
+
+                    if (subEtapa== EstadoProvidencia.DA_INICIO){
+
+                        if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
+//                            actionsPermitted.put("apela", true);
+//                            actionsPermitted.put("noApela", true);
+                                     actionsPermitted.put("formularCargos", true);
+
                         } else {
                             actionsPermitted.put("watchTabRespuesta", false);
                         }
                         break;
                     }
 
+                case FORMULA_CARGOS:
+                    break;
                 case APELACION_INCULPADO:
                 case FORMULA_CARGOS_TERMINO_PROBATORIO:
                 case FISCAL_REMITE_EXPEDIENTE:
+                    if (subEtapa== EstadoProvidencia.DA_INICIO){
+
+                        if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
+//                            actionsPermitted.put("apela", true);
+//                            actionsPermitted.put("noApela", true);
+                            actionsPermitted.put("remiteExpediente", true);
+
+                        } else {
+                            actionsPermitted.put("watchTabRespuesta", false);
+                        }
+                        break;
+                    }
                 case REVISION_SUMARIO_COMPLETO:
                 case DGD_RECEPCIONA_SUMARIO:
                 case SECRETARIA_REVISA_SUMARIO:
@@ -1345,8 +1428,8 @@ public class ProvidenciaService {
                 case INVESTIGACION: // requisito el estado en la maquina de estado
                     if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
 //                        actionsPermitted.put("reply", true);
-                        actionsPermitted.put("fiscalDaInicio", true);
-                        actionsPermitted.put("fiscalNotificaUPD", true);
+                        actionsPermitted.put("fiscalNotificaCierre", true);
+//                        actionsPermitted.put("fiscalNotificaUPD", true);
                         actionsPermitted.put("prorroga", true);
                         actionsPermitted.put("asignarFiscal", false);
 
@@ -1354,6 +1437,18 @@ public class ProvidenciaService {
                         actionsPermitted.put("watchTabRespuesta", false);
                     }
                     break;
+
+
+//                case UPD_NOTIFICA_A_INCULPADO:
+//                    if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
+//                        actionsPermitted.put("apela", true);
+//                        actionsPermitted.put("noApela", true);
+//                    } else {
+//                        actionsPermitted.put("watchTabRespuesta", false);
+//                    }
+//                    break;
+
+
 
                 case UPD_REALIZA_MEMO:
                 case UPD_REDACTA_RESOLUCION_EXCENTA_Y_MEMO:
@@ -1438,6 +1533,15 @@ public class ProvidenciaService {
                     }).collect(Collectors.toList());
                     break;
 
+//                case FISCAL_ACEPTO_Y_DA_INICIO:
+//                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
+//                        if (p.getTipo().equals(TipoPlantilla.MEMORANDUM)) {
+//                            return true;
+//                        }
+//                        return false;
+//                    }).collect(Collectors.toList());
+//                    break;
+
                 case INVESTIGACION:
                     plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
                         if (p.getTipo().equals(TipoPlantilla.MEMORANDUM)) {
@@ -1446,6 +1550,8 @@ public class ProvidenciaService {
                         return false;
                     }).collect(Collectors.toList());
                     break;
+
+
 
 //                case PROVIDENCIA_CREADA:
 //                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {

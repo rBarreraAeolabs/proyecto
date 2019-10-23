@@ -20,8 +20,6 @@ export class ProvidenciaDevolverDialogComponent implements OnInit {
     adjuntos: IAdjunto[];
     private _providencia: IProvidencia;
     isDevolver = false;
-    isRechazar = false;
-    isProrroga = false;
     cuenta: any;
     usuario: any;
 

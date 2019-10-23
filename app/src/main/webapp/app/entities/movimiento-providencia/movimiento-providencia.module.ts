@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 
 import { PdisciplinarioSharedModule } from 'app/shared';
 import {
-    MovimientoProvidenciaComponent,
     MovimientoProvidenciaDetailComponent,
     MovimientoProvidenciaUpdateComponent,
     MovimientoProvidenciaDeletePopupComponent,

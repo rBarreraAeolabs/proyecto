@@ -94,6 +94,8 @@ public enum AccionesProvidencia {
      */
 
     INVESTIGADO,
-    FISCAL_NOTIFICA_A_UPD_CIERRE
+    FISCAL_NOTIFICA_A_UPD_CIERRE,
+    INCULPADO_NO_ENVIA_MEMO,
+    FORMULAR_CARGOS
 }
 

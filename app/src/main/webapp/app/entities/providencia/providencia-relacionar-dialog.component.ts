@@ -1,14 +1,10 @@
-/**
- * Created by sneiraillanes on 09-05-2019.
- */
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {ActivatedRoute, Router} from '@angular/router';
-import {JhiEventManager} from 'ng-jhipster';
-import {ProvidenciaService} from './providencia.service';
-// import {IProvidencia, IProvidenciaUpdateMadre, Providencia} from '../../shared/model/providencia.model';
-import {IProvidencia, IProvidenciaUpdateForType, Providencia} from '../../shared/model/providencia.model';
-import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
+import { JhiEventManager } from 'ng-jhipster';
+import { ProvidenciaService } from './providencia.service';
+import { IProvidencia, IProvidenciaUpdateForType } from '../../shared/model/providencia.model';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
     selector: 'jhi-providencia-relacionar-dialog',

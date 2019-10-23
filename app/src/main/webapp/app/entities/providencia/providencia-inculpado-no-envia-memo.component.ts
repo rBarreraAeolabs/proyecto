@@ -10,10 +10,10 @@ import { IAdjunto} from '../../shared/model/adjunto.model';
 import { Principal} from 'app/core';
 
 @Component({
-    selector: 'jhi-providencia-no-apela',
-    templateUrl: './providencia-no-apela.component.html'
+    selector: 'jhi-providencia-inculpado-no-envia-memo',
+    templateUrl: './providencia-inculpado-no-envia-memo.component.html'
 })
-export class ProvidenciaNoApelaComponent implements OnInit {
+export class ProvidenciaInculpadoNoEnviaMemoComponent implements OnInit {
     providencia: IProvidencia;
     providenciaResponse: IProvidenciaResponse = new IProvidenciaResponse();
     observacionDerivacion: string;
@@ -56,21 +56,21 @@ export class ProvidenciaNoApelaComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    noApelacion(id: number) {
+    inculpadoNoEnviaMemo(id: number) {
         this.providenciaResponse.estadoActual = this.providencia.estadoActual;
         this.providenciaResponse.providenciaId = id;
         this.providenciaResponse.adjuntosDTOs = this.adjuntos;
         this.providenciaResponse.observacion = this.observacionDerivacion;
 
-            this.providenciaService.noApela(this.providenciaResponse).subscribe(res => {
-                this.eventManager.broadcast({
-                    name: 'providenciaProrroga',
-                    content: 'Providencia solicitud prorroga'
-                });
-                this.activeModal.dismiss(true);
-                this.previousState();
+        this.providenciaService.inculpadoNoEnviaMemo(this.providenciaResponse).subscribe(res => {
+            this.eventManager.broadcast({
+                name: 'providencia',
+                content: 'Providencia notificacion inculpado no envia memo'
             });
-      }
+            this.activeModal.dismiss(true);
+            this.previousState();
+        });
+    }
 
     previousState() {
         window.history.back();
@@ -86,10 +86,10 @@ export class ProvidenciaNoApelaComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-no-apela-popup',
+    selector: 'jhi-providencia-inculpado-no-envia-memo-popup',
     template: ''
 })
-export class ProvidenciaNoApelaPopupComponent implements OnInit, OnDestroy {
+export class ProvidenciaInculpadoNoEnviaMemoPopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
@@ -97,7 +97,7 @@ export class ProvidenciaNoApelaPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaNoApelaComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciaInculpadoNoEnviaMemoComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });
@@ -107,11 +107,11 @@ export class ProvidenciaNoApelaPopupComponent implements OnInit, OnDestroy {
                         this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     },
-                        reason => {
+                    reason => {
                         this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     }
-                 );
+                );
             }, 0);
         });
     }

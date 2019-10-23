@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
@@ -11,7 +11,6 @@ import { ProvidenciaService } from 'app/entities/providencia';
 import { IProvidencia } from 'app/shared/model/providencia.model';
 import { Moment } from 'moment';
 import {FiltroMovPro} from 'app/shared/model/filtroMovimiento.model';
-import {FiltroMovimientoProvidencia} from 'app/shared/model/filtroMovPro.model';
 
 @Component({
     selector: 'jhi-movimiento-providencia',

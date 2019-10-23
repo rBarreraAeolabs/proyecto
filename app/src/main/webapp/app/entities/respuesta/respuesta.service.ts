@@ -1,7 +1,3 @@
-/**
- * Created by sneiraillanes on 22-04-2019.
- */
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';

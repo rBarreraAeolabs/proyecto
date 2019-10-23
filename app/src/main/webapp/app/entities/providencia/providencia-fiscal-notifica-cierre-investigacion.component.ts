@@ -10,10 +10,10 @@ import { IAdjunto} from '../../shared/model/adjunto.model';
 import { Principal} from 'app/core';
 
 @Component({
-    selector: 'jhi-providencia-no-apela',
-    templateUrl: './providencia-no-apela.component.html'
+    selector: 'jhi-providencia-fiscal-notifica-cierre',
+    templateUrl: './providencia-fiscal-notifica-cierre-investigacion.component.html'
 })
-export class ProvidenciaNoApelaComponent implements OnInit {
+export class ProvidenciaFiscalNotificaCierreComponent implements OnInit {
     providencia: IProvidencia;
     providenciaResponse: IProvidenciaResponse = new IProvidenciaResponse();
     observacionDerivacion: string;
@@ -41,11 +41,11 @@ export class ProvidenciaNoApelaComponent implements OnInit {
     ngOnInit() {
         this.cuenta = this.principal.identity();
         this.usuario = this.cuenta.__zone_symbol__value.perfil.nombre;
-        console.log('usuario: ', this.usuario);
-        if ( this.providencia.requisito === 'FISCAL_ACEPTO_Y_DA_INICIO') {
-            console.log('el usuario es fiscal el pide prorroga');
-            this.isProrroga = true;
-        }
+        // console.log('usuario: ', this.usuario);
+        // if ( this.providencia.requisito === 'INVESTIGACION') {
+        //     console.log('el usuario es fiscal notifica cierre de investigacion');
+        // }
+        this.isProrroga = true;
     }
 
     get providencias() {
@@ -56,21 +56,21 @@ export class ProvidenciaNoApelaComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    noApelacion(id: number) {
+    NotificaCierre(id: number) {
         this.providenciaResponse.estadoActual = this.providencia.estadoActual;
         this.providenciaResponse.providenciaId = id;
         this.providenciaResponse.adjuntosDTOs = this.adjuntos;
         this.providenciaResponse.observacion = this.observacionDerivacion;
-
-            this.providenciaService.noApela(this.providenciaResponse).subscribe(res => {
-                this.eventManager.broadcast({
-                    name: 'providenciaProrroga',
-                    content: 'Providencia solicitud prorroga'
-                });
-                this.activeModal.dismiss(true);
-                this.previousState();
+        console.log('entro al servicio notificacion cierre de investigacion');
+        this.providenciaService.fiscalNotificaCierre(this.providenciaResponse).subscribe(res => {
+            this.eventManager.broadcast({
+                name: 'providenciaProrroga',
+                content: 'Providencia notificacion cierre investigacion'
             });
-      }
+            this.activeModal.dismiss(true);
+            this.previousState();
+        });
+    }
 
     previousState() {
         window.history.back();
@@ -86,10 +86,10 @@ export class ProvidenciaNoApelaComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-no-apela-popup',
+    selector: 'jhi-providencia-fiscal-prorroga-popup',
     template: ''
 })
-export class ProvidenciaNoApelaPopupComponent implements OnInit, OnDestroy {
+export class ProvidenciaFiscalNotificaCierrePopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
@@ -97,7 +97,7 @@ export class ProvidenciaNoApelaPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaNoApelaComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciaFiscalNotificaCierreComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });
@@ -107,11 +107,11 @@ export class ProvidenciaNoApelaPopupComponent implements OnInit, OnDestroy {
                         this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     },
-                        reason => {
+                    reason => {
                         this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     }
-                 );
+                );
             }, 0);
         });
     }

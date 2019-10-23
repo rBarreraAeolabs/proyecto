@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { IProvidencia } from 'app/shared/model/providencia.model';
 
 import { JhiAlertService } from 'ng-jhipster';
-import { IMovimientoProvidencia } from 'app/shared/model/movimiento-providencia.model';
 import {ProvidenciaService} from './providencia.service';
 
 @Component({
@@ -13,7 +12,6 @@ import {ProvidenciaService} from './providencia.service';
 })
 export class ProvidenciaDetailDgdpComponent implements OnInit {
     providencia: IProvidencia;
-    movimientosProvidencia: IMovimientoProvidencia[];
     actionsPermitted: any = {reply: false, goBackwards: false};
 
     constructor(

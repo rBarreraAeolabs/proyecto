@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JhiAlertService } from 'ng-jhipster';
-
 import { ISumarioAdministrativo } from 'app/shared/model/sumario-administrativo.model';
 import { SumarioAdministrativoService } from './sumario-administrativo.service';
 import { IInvestigacionSumaria } from 'app/shared/model/investigacion-sumaria.model';

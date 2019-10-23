@@ -167,7 +167,7 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
 //            .event(AccionesProvidencia.FISCAL_RECHAZA.name())
 //            .and()
             .withExternal()
-            .source(EstadoProvidencia.INVESTIGACION.name()).target(EstadoProvidencia.FORMULA_CARGOS.name())
+            .source(EstadoProvidencia.INVESTIGACION.name()).target(EstadoProvidencia.FORMULA_CARGOS_Y_NOTIFICA.name())
             .event(AccionesProvidencia.FISCAL_NOTIFICA_A_UPD_CIERRE.name())
             .and()
             /**
@@ -209,6 +209,13 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             .withExternal()
             .source(EstadoProvidencia.APELACION_INCULPADO.name()).target(EstadoProvidencia.FORMULA_CARGOS_TERMINO_PROBATORIO.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+
+               .and()
+            .withExternal()
+            .source(EstadoProvidencia.INCULPADO_ENVIA_MEMO.name()).target(EstadoProvidencia.FORMULA_CARGOS_TERMINO_PROBATORIO.name())
+            .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+
+
 //            .event(AccionesProvidencia.UPD_REGISTRA_CIERRE.name())
             .and()
             .withExternal()
@@ -345,12 +352,43 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
 //            .event(AccionesProvidencia.SUB_DIRECCION_FIRMA_VISA.name()).event(AccionesProvidencia.ENVIAR_A_UPD.name())
             .and()
             .withExternal()
-            .source(EstadoProvidencia.UPD_NOTIFICA_A_INCULPADO.name()).target(EstadoProvidencia.PETICION_APELACION.name())
+//            .source(EstadoProvidencia.UPD_NOTIFICA_A_INCULPADO.name()).target(EstadoProvidencia.PETICION_APELACION.name())
+//            .event(AccionesProvidencia.CONTINUAR_FLUJO_APELA.name())
+            .source(EstadoProvidencia.FORMULA_CARGOS.name()).target(EstadoProvidencia.PETICION_APELACION.name())
             .event(AccionesProvidencia.CONTINUAR_FLUJO_APELA.name())
+
+//            .source(EstadoProvidencia.FORMULA_CARGOS.name()).target(EstadoProvidencia.APELACION_INCULPADO.name())
+//            .event(AccionesProvidencia.INCULPADO_ENVIA_MEMO.name())
+
+        /**
+         *   FORMULA CARGOS 1  CONTINUA EL FLUJO CON MAS OPCIONES
+         */
+            .and()
+            .withExternal()
+ .source(EstadoProvidencia.FORMULA_CARGOS_Y_NOTIFICA.name()).target(EstadoProvidencia.INCULPADO_ENVIA_MEMO.name())
+            .event(AccionesProvidencia.INCULPADO_ENVIA_MEMO.name())
+
+            .and()
+            .withExternal()
+  .source(EstadoProvidencia.FORMULA_CARGOS_Y_NOTIFICA.name()).target(EstadoProvidencia.INCULPADO_NO_ENVIA_MEMO.name())
+            .event(AccionesProvidencia.INCULPADO_NO_ENVIA_MEMO.name())
+
+            .and()
+            .withExternal()
+            .source(EstadoProvidencia.FORMULA_CARGOS_Y_NOTIFICA.name()).target(EstadoProvidencia.FISCAL_REMITE_EXPEDIENTE.name())
+            .event(AccionesProvidencia.FORMULAR_CARGOS.name())
+
+            .and()
+            .withExternal()
+            .source(EstadoProvidencia.FISCAL_REMITE_EXPEDIENTE.name()).target(EstadoProvidencia.REMITE_VISTA_FISCAL.name())
+            .event(AccionesProvidencia.REMITE_EXPEDIENTE.name())
+
 //            .event(AccionesProvidencia.SUB_DIRECCION_FIRMA_VISA.name()).event(AccionesProvidencia.ENVIAR_A_UPD.name())
             .and()
             .withExternal()
-            .source(EstadoProvidencia.UPD_NOTIFICA_A_INCULPADO.name()).target(EstadoProvidencia.CERTIFICACION_NO_APELO.name())
+//            .source(EstadoProvidencia.UPD_NOTIFICA_A_INCULPADO.name()).target(EstadoProvidencia.CERTIFICACION_NO_APELO.name())
+//            .event(AccionesProvidencia.CONTINUAR_FLUJO_NO_APELA.name())
+            .source(EstadoProvidencia.FORMULA_CARGOS.name()).target(EstadoProvidencia.CERTIFICACION_NO_APELO.name())
             .event(AccionesProvidencia.CONTINUAR_FLUJO_NO_APELA.name())
 //            .event(AccionesProvidencia.SUB_DIRECCION_FIRMA_VISA.name()).event(AccionesProvidencia.ENVIAR_A_UPD.name())
             .and()
