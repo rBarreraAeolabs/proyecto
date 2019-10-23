@@ -381,6 +381,7 @@ public class ProvidenciaService {
             case FORMULA_CARGOS_Y_NOTIFICA:
             case INCULPADO_ENVIA_MEMO:
             case INCULPADO_NO_ENVIA_MEMO:
+            case FISCAL_REMITE_EXPEDIENTE:
                 if (etapa==EstadoProvidencia.INVESTIGACION){
                     subEtapa = EstadoProvidencia.DA_INICIO;
                     break;
@@ -398,7 +399,7 @@ public class ProvidenciaService {
 //            case FORMULA_CARGOS_TERMINO_PROBATORIO:
 //                subEtapa = EstadoProvidencia.TERMINO_PROBATORIO;
 //                break;
-            case FISCAL_REMITE_EXPEDIENTE:
+
             case DN_RECIBE_SUMARIO_COMPLETO:
             case REVISION_SUMARIO_COMPLETO:
             case DGD_RECEPCIONA_SUMARIO:
@@ -1299,6 +1300,8 @@ public class ProvidenciaService {
             actionsPermitted.put("inculpadoEnviaMemo", false);
             actionsPermitted.put("inculpadoNoEnviaMemo", false);
             actionsPermitted.put("formularCargos", false);
+            actionsPermitted.put("remiteExpediente", false);
+
 
 
             switch (requisito) {   // Falta un switch anidado para los casos especificos de que salte (muestre un boton o accion diferente) a otro requisito si es alguna etapa especifica
@@ -1386,7 +1389,8 @@ public class ProvidenciaService {
                 case APELACION_INCULPADO:
                 case FORMULA_CARGOS_TERMINO_PROBATORIO:
                 case FISCAL_REMITE_EXPEDIENTE:
-                    if (subEtapa== EstadoProvidencia.DA_INICIO){
+                    if (subEtapa== EstadoProvidencia.DA_INICIO
+                    ){
 
                         if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
 //                            actionsPermitted.put("apela", true);

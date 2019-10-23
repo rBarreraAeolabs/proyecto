@@ -375,7 +375,7 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
 
             .and()
             .withExternal()
-            .source(EstadoProvidencia.FORMULA_CARGOS_Y_NOTIFICA.name()).target(EstadoProvidencia.FISCAL_REMITE_EXPEDIENTE.name())
+            .source(EstadoProvidencia.INCULPADO_ENVIA_MEMO.name()).target(EstadoProvidencia.FISCAL_REMITE_EXPEDIENTE.name())
             .event(AccionesProvidencia.FORMULAR_CARGOS.name())
 
             .and()

@@ -15,7 +15,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { MovimientoProvidenciaComponent } from 'app/entities/movimiento-providencia';
-import { ProvidenciaResponderDialogComponent, ProvidenciaResponderPopupComponent } from 'app/entities/providencia/providencia-responder-dialog.component';
+import { ProvidenciaResponderDialogComponent, ProvidenciaResponderPopupComponent } from 'app/entities/providencia/providencia-responder-dialog.componet';
 import { ProvidenciaDevolverDialogComponent, ProvidenciaDevolverPopupComponent } from 'app/entities/providencia/providencia-devolver-dialog.component';
 import { DerivacionComponent } from '../derivacion/derivacion.component';
 import { AdjuntoShowListPopupComponent } from '../adjunto/adjunto-show-list-dialog.component';
