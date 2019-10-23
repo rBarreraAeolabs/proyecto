@@ -46,6 +46,4 @@ public class PlazosHastaService {
         providenciaRepository.save(providencia);
     }
 
-
-
 }
