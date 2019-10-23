@@ -10,7 +10,7 @@ import { ProvidenciaService } from './providencia.service';
 import { ProvidenciaComponent } from './providencia.component';
 import { ProvidenciaUpdateComponent } from './providencia-update.component';
 import { ProvidenciaDeletePopupComponent } from './providencia-delete-dialog.component';
-import { ProvidenciaResponderPopupComponent } from 'app/entities/providencia/providencia-responder-dialog.component';
+import { ProvidenciaResponderPopupComponent } from 'app/entities/providencia/providencia-responder-dialog.componet.ts';
 import { ProvidenciaDevolverPopupComponent } from 'app/entities/providencia/providencia-devolver-dialog.component';
 import { ProvidenciaDetailComponent } from 'app/entities/providencia/providencia-detail.component';
 import { ProvidenciaDetailDgdpComponent } from './providencia-detail-dgdp.component';
