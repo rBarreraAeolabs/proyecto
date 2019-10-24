@@ -75,6 +75,29 @@ import {
     ProvidenciaNoApelaComponent,
     ProvidenciaNoApelaPopupComponent
 } from 'app/entities/providencia/providencia-no-apela.component';
+<<<<<<< Updated upstream
+=======
+import {
+    ProvidenciaFiscalNotificaCierreComponent,
+    ProvidenciaFiscalNotificaCierrePopupComponent
+} from 'app/entities/providencia/providencia-fiscal-notifica-cierre-investigacion.component';
+import {
+    ProvidenciaInculpadoNoEnviaMemoComponent,
+    ProvidenciaInculpadoNoEnviaMemoPopupComponent
+} from 'app/entities/providencia/providencia-inculpado-no-envia-memo.component';
+import {
+    ProvidenciaInculpadoEnviaMemoComponent,
+    ProvidenciaInculpadoEnviaMemoPopupComponent
+} from 'app/entities/providencia/providencia-inculpado-envia-memo.component';
+import {
+    ProvidenciaFiscalFormulaCargosComponent,
+    ProvidenciaFiscalFormulaCargosPopupComponent
+} from 'app/entities/providencia/providencia-fiscal-formula-cargos.component';
+import {
+    ProvidenciaFiscalRemiteExpedienteComponent,
+    ProvidenciaFiscalRemiteExpedientePopupComponent
+} from 'app/entities/providencia/providencia-fiscal-remite-expediente.component';
+>>>>>>> Stashed changes
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -126,8 +149,21 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaApelaComponent,
         ProvidenciaNoApelaPopupComponent,
         ProvidenciaNoApelaComponent,
+<<<<<<< Updated upstream
         ProvidenciaFiscalCierreComponent,
         ProvidenciaFiscalCierrePopupComponent
+=======
+        ProvidenciaFiscalNotificaCierreComponent,
+        ProvidenciaFiscalNotificaCierrePopupComponent,
+        ProvidenciaInculpadoNoEnviaMemoComponent,
+        ProvidenciaInculpadoNoEnviaMemoPopupComponent,
+        ProvidenciaInculpadoEnviaMemoComponent,
+        ProvidenciaInculpadoEnviaMemoPopupComponent,
+        ProvidenciaFiscalRemiteExpedienteComponent,
+        ProvidenciaFiscalRemiteExpedientePopupComponent,
+        ProvidenciaFiscalFormulaCargosComponent,
+        ProvidenciaFiscalFormulaCargosPopupComponent
+>>>>>>> Stashed changes
 
     ],
     entryComponents: [
@@ -164,8 +200,21 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaApelaComponent,
         ProvidenciaNoApelaPopupComponent,
         ProvidenciaNoApelaComponent,
+<<<<<<< Updated upstream
         ProvidenciaFiscalCierreComponent,
         ProvidenciaFiscalCierrePopupComponent
+=======
+        ProvidenciaFiscalNotificaCierreComponent,
+        ProvidenciaFiscalNotificaCierrePopupComponent,
+        ProvidenciaInculpadoNoEnviaMemoComponent,
+        ProvidenciaInculpadoNoEnviaMemoPopupComponent,
+        ProvidenciaInculpadoEnviaMemoComponent,
+        ProvidenciaInculpadoEnviaMemoPopupComponent,
+        ProvidenciaFiscalRemiteExpedienteComponent,
+        ProvidenciaFiscalRemiteExpedientePopupComponent,
+        ProvidenciaFiscalFormulaCargosComponent,
+        ProvidenciaFiscalFormulaCargosPopupComponent
+>>>>>>> Stashed changes
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

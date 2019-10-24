@@ -129,12 +129,28 @@
                                                     <span *ngIf="!isProrroga"> Prorroga Dos</span>
                                                 </a>
                                                 <a
+<<<<<<< Updated upstream
+=======
+                                                    class="dropdown-item" *ngIf="actionsPermitted.fiscalNotificaCierre"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/notificaCierre'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span *ngIf="isNotificaCierre"> Notificar Cierre De Investigacion</span>
+                                                </a>
+                                                <a
+>>>>>>> Stashed changes
                                                     class="dropdown-item" *ngIf="actionsPermitted.apela"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/apela'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
+<<<<<<< Updated upstream
                                                 ><fa-icon [icon]="'ban'"></fa-icon>&nbsp;
                                                     <span > Apela </span>
+=======
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span> Si Apela </span>
+>>>>>>> Stashed changes
 
                                                      </a>
 
@@ -143,8 +159,49 @@
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noApela'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
+<<<<<<< Updated upstream
                                                 ><fa-icon [icon]="'check-circle'"></fa-icon>&nbsp;
                                                     <span >No Apela</span>
+=======
+                                                ><fa-icon style="color: #dc0000;" [icon]="'ban'"></fa-icon>&nbsp;
+                                                    <span>No Apela</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.inculpadoEnviaMemo"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/inculpadoEnviaMemo'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span > Inculpado Envia Memo </span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.inculpadoNoEnviaMemo"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/inculpadoNoEnviaMemo'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span> Inculpado No Envia Memo </span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.formularCargos"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/formulaCargos'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span> Fiscal Formula Cargos</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.remiteExpediente"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/remiteExpediente'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span>Fiscal Remite Expediente</span>
+>>>>>>> Stashed changes
 
                                                 </a>
                                                 <a
@@ -356,6 +413,7 @@
                                                 </dt>
                                                 <dd *ngIf="providencia.comentario">
                                                     <P class="text-center text-justify">{{providencia.comentario}}</P>
+                                                    <button (click)="SeguirLeyendo()" type="button" class="btn btn-info btn-xs">Seguir Leyendo</button>
                                                 </dd>
                                                 <dd class="d-flex justify-content-center" *ngIf="!providencia.comentario">
                                                     <span style="color:red">SIN COMENTARIO</span>

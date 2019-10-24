@@ -376,6 +376,13 @@ public class ProvidenciaService {
                 subEtapa = EstadoProvidencia.DA_INICIO;
                 break;
             case FORMULA_CARGOS:
+<<<<<<< Updated upstream
+=======
+            case FORMULA_CARGOS_Y_NOTIFICA:
+            case INCULPADO_ENVIA_MEMO:
+            case INCULPADO_NO_ENVIA_MEMO:
+            case FISCAL_REMITE_EXPEDIENTE:
+>>>>>>> Stashed changes
                 if (etapa==EstadoProvidencia.INVESTIGACION){
                     subEtapa = EstadoProvidencia.DA_INICIO;
                     break;
@@ -391,7 +398,7 @@ public class ProvidenciaService {
 //            case FORMULA_CARGOS_TERMINO_PROBATORIO:
 //                subEtapa = EstadoProvidencia.TERMINO_PROBATORIO;
 //                break;
-            case FISCAL_REMITE_EXPEDIENTE:
+
             case DN_RECIBE_SUMARIO_COMPLETO:
             case REVISION_SUMARIO_COMPLETO:
             case DGD_RECEPCIONA_SUMARIO:
@@ -1259,6 +1266,14 @@ public class ProvidenciaService {
             actionsPermitted.put("noApela", false);
             actionsPermitted.put("representa", false);
             actionsPermitted.put("registra", false);
+<<<<<<< Updated upstream
+=======
+            actionsPermitted.put("inculpadoEnviaMemo", false);
+            actionsPermitted.put("inculpadoNoEnviaMemo", false);
+            actionsPermitted.put("formularCargos", false);
+            actionsPermitted.put("remiteExpediente", false);
+
+>>>>>>> Stashed changes
             switch (requisito) {   // Falta un switch anidado para los casos especificos de que salte (muestre un boton o accion diferente) a otro requisito si es alguna etapa especifica
 
                 case NUEVA_PROVIDENCIA:
@@ -1300,7 +1315,36 @@ public class ProvidenciaService {
                         actionsPermitted.put("watchTabRespuesta", false);
                     }
                     break;
+<<<<<<< Updated upstream
                 case FORMULA_CARGOS:
+=======
+
+                case FORMULA_CARGOS_Y_NOTIFICA:
+                    if (subEtapa== EstadoProvidencia.DA_INICIO){
+
+                        if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
+//                            actionsPermitted.put("apela", true);
+//                            actionsPermitted.put("noApela", true);
+                            actionsPermitted.put("inculpadoEnviaMemo", true);
+                            actionsPermitted.put("inculpadoNoEnviaMemo",true);
+                        } else {
+                            actionsPermitted.put("watchTabRespuesta", false);
+                        }
+                        break;
+                    }
+                    //apelacion inculpado
+//                case PETICION_APELACION:
+//                    if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+//                        actionsPermitted.put("inculpadoEnviaMemo", true);
+//
+//
+//                    } else {
+////                        actionsPermitted.put("watchTabRespuesta", false);
+//                    }
+//                    break;
+                case INCULPADO_ENVIA_MEMO:
+                case INCULPADO_NO_ENVIA_MEMO:
+>>>>>>> Stashed changes
                     if (subEtapa== EstadoProvidencia.DA_INICIO){
 
                         if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
@@ -1315,6 +1359,22 @@ public class ProvidenciaService {
                 case APELACION_INCULPADO:
                 case FORMULA_CARGOS_TERMINO_PROBATORIO:
                 case FISCAL_REMITE_EXPEDIENTE:
+<<<<<<< Updated upstream
+=======
+                    if (subEtapa== EstadoProvidencia.DA_INICIO
+                    ){
+
+                        if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
+//                            actionsPermitted.put("apela", true);
+//                            actionsPermitted.put("noApela", true);
+                            actionsPermitted.put("remiteExpediente", true);
+
+                        } else {
+                            actionsPermitted.put("watchTabRespuesta", false);
+                        }
+                        break;
+                    }
+>>>>>>> Stashed changes
                 case REVISION_SUMARIO_COMPLETO:
                 case DGD_RECEPCIONA_SUMARIO:
                 case SECRETARIA_REVISA_SUMARIO:

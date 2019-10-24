@@ -347,6 +347,41 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             .withExternal()
             .source(EstadoProvidencia.UPD_NOTIFICA_A_INCULPADO.name()).target(EstadoProvidencia.PETICION_APELACION.name())
             .event(AccionesProvidencia.CONTINUAR_FLUJO_APELA.name())
+<<<<<<< Updated upstream
+=======
+
+//            .source(EstadoProvidencia.FORMULA_CARGOS.name()).target(EstadoProvidencia.APELACION_INCULPADO.name())
+//            .event(AccionesProvidencia.INCULPADO_ENVIA_MEMO.name())
+
+        /**
+         *   FORMULA CARGOS 1  CONTINUA EL FLUJO CON MAS OPCIONES
+         */
+            .and()
+            .withExternal()
+ .source(EstadoProvidencia.FORMULA_CARGOS_Y_NOTIFICA.name()).target(EstadoProvidencia.INCULPADO_ENVIA_MEMO.name())
+            .event(AccionesProvidencia.INCULPADO_ENVIA_MEMO.name())
+
+            .and()
+            .withExternal()
+  .source(EstadoProvidencia.FORMULA_CARGOS_Y_NOTIFICA.name()).target(EstadoProvidencia.INCULPADO_NO_ENVIA_MEMO.name())
+            .event(AccionesProvidencia.INCULPADO_NO_ENVIA_MEMO.name())
+
+            .and()
+            .withExternal()
+            .source(EstadoProvidencia.INCULPADO_ENVIA_MEMO.name()).target(EstadoProvidencia.FISCAL_REMITE_EXPEDIENTE.name())
+            .event(AccionesProvidencia.FORMULAR_CARGOS.name())
+
+               .and()
+            .withExternal()
+            .source(EstadoProvidencia.INCULPADO_NO_ENVIA_MEMO.name()).target(EstadoProvidencia.FISCAL_REMITE_EXPEDIENTE.name())
+            .event(AccionesProvidencia.FORMULAR_CARGOS.name())
+
+            .and()
+            .withExternal()
+            .source(EstadoProvidencia.FISCAL_REMITE_EXPEDIENTE.name()).target(EstadoProvidencia.REMITE_VISTA_FISCAL.name())
+            .event(AccionesProvidencia.REMITE_EXPEDIENTE.name())
+
+>>>>>>> Stashed changes
 //            .event(AccionesProvidencia.SUB_DIRECCION_FIRMA_VISA.name()).event(AccionesProvidencia.ENVIAR_A_UPD.name())
             .and()
             .withExternal()

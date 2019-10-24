@@ -30,8 +30,8 @@ public class PlazosHastaService {
 
     public void dias(Long id, Integer dias){
         Providencia providencia = providenciaRepository.findOne(id);
-//        providencia.setFechaCreacion(Instant.now());
         Instant fechaHoy = Instant.now();
+<<<<<<< Updated upstream
         log.debug("resultado qlo: "+providencia.getFechaCreacion() );
         log.debug("fecha hoy: "+ providencia.getFechaSolicitud());
         Date diahoy = Date.from(fechaHoy);
@@ -44,9 +44,16 @@ public class PlazosHastaService {
         Instant fechadehoy =   fechaqla.toInstant();
         providencia.setFechaHasta(fechadehoy);
 
+=======
+        Date diahoy = Date.from(fechaHoy);
+        log.debug("fecha de hoy: "+diahoy);
+        List<Date> rubenFechasNoLaborables= Collections.emptyList();
+        Date diasHabiles= fechasService.calcularFecha(diahoy,dias,rubenFechasNoLaborables);
+        log.debug("dias habiles: "+ diasHabiles+".");
+        Instant fechaFinal =   diasHabiles.toInstant();
+        //  log.debug("ruben resultado cond dias habiles: "+ fechasService.diasHabiles(rubenHoy,rubenHasta,rubenFechasNoLaborables));
+        providencia.setFechaHasta(fechaFinal);
+>>>>>>> Stashed changes
         providenciaRepository.save(providencia);
-
-
-
     }
 }
