@@ -10,15 +10,16 @@ import { IAdjunto} from '../../shared/model/adjunto.model';
 import { Principal} from 'app/core';
 
 @Component({
-    selector: 'jhi-providencia-fiscal-remite-expediente',
-    templateUrl: './providencia-fiscal-remite-expediente.component.html'
+    selector: 'jhi-providencia-inculpado-no-envia-memo',
+    templateUrl: './providencia-inculpado-no-envia-memo.component.html'
 })
-export class ProvidenciaFiscalRemiteExpedienteComponent implements OnInit {
+export class ProvidenciaInculpadoNoEnviaMemoComponent implements OnInit {
     providencia: IProvidencia;
     providenciaResponse: IProvidenciaResponse = new IProvidenciaResponse();
     observacionDerivacion: string;
     adjuntos: IAdjunto[];
     private _providencia: IProvidencia;
+    isProrroga = false;
     cuenta: any;
     usuario: any;
 
@@ -41,6 +42,10 @@ export class ProvidenciaFiscalRemiteExpedienteComponent implements OnInit {
         this.cuenta = this.principal.identity();
         this.usuario = this.cuenta.__zone_symbol__value.perfil.nombre;
         console.log('usuario: ', this.usuario);
+        if ( this.providencia.requisito === 'FISCAL_ACEPTO_Y_DA_INICIO') {
+            console.log('el usuario es fiscal el pide prorroga');
+            this.isProrroga = true;
+        }
     }
 
     get providencias() {
@@ -51,16 +56,16 @@ export class ProvidenciaFiscalRemiteExpedienteComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    remiteExpediente(id: number) {
+    inculpadoNoEnviaMemo(id: number) {
         this.providenciaResponse.estadoActual = this.providencia.estadoActual;
         this.providenciaResponse.providenciaId = id;
         this.providenciaResponse.adjuntosDTOs = this.adjuntos;
         this.providenciaResponse.observacion = this.observacionDerivacion;
 
-        this.providenciaService.remiteExpediente(this.providenciaResponse).subscribe(res => {
+        this.providenciaService.inculpadoNoEnviaMemo(this.providenciaResponse).subscribe(res => {
             this.eventManager.broadcast({
                 name: 'providencia',
-                content: 'Providencia fiscal remite expediente'
+                content: 'Providencia notificacion inculpado no envia memo'
             });
             this.activeModal.dismiss(true);
             this.previousState();
@@ -81,10 +86,10 @@ export class ProvidenciaFiscalRemiteExpedienteComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-fiscal-remite-expediente-popup',
+    selector: 'jhi-providencia-inculpado-no-envia-memo-popup',
     template: ''
 })
-export class ProvidenciaFiscalRemiteExpedientePopupComponent implements OnInit, OnDestroy {
+export class ProvidenciaInculpadoNoEnviaMemoPopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
@@ -92,7 +97,7 @@ export class ProvidenciaFiscalRemiteExpedientePopupComponent implements OnInit, 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaFiscalRemiteExpedienteComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciaInculpadoNoEnviaMemoComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });

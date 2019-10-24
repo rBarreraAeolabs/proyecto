@@ -19,14 +19,6 @@ import { ProvidenciaAsignarFiscalPopupComponent } from 'app/entities/providencia
 import { ProvidenciaRelacionarPopupComponent } from './providencia-relacionar-dialog.component';
 import { ProvidenciaAsignarNumeroReferenciaPopupComponent } from 'app/entities/providencia/providencia-asignar-numero-referencia.component';
 import { ProvidenciaAsignarTipoSolicitudPopupComponent } from 'app/entities/providencia/providencia-asignar-tipo-solicitud.component';
-<<<<<<< Updated upstream
-import {ProvidenciaFiscalAceptaPopupComponent} from 'app/entities/providencia/providencia-fiscal-acepta.component';
-import {ProvidenciaFiscalRechazaPopupComponent} from 'app/entities/providencia/providencia-fiscal-rechaza.component';
-import {ProvidenciaFiscalProrrogaPopupComponent} from 'app/entities/providencia/providencia-fiscal-prorroga.component';
-import {ProvidenciaApelaPopupComponent} from 'app/entities/providencia/providencia-apela.component';
-import {ProvidenciaNoApelaPopupComponent} from 'app/entities/providencia/providencia-no-apela.component';
-import {ProvidenciaFiscalCierrePopupComponent} from 'app/entities/providencia/providencia-fiscal-cierre.component';
-=======
 import { ProvidenciaFiscalAceptaPopupComponent } from 'app/entities/providencia/providencia-fiscal-acepta.component';
 import { ProvidenciaFiscalRechazaPopupComponent } from 'app/entities/providencia/providencia-fiscal-rechaza.component';
 import { ProvidenciaFiscalProrrogaPopupComponent } from 'app/entities/providencia/providencia-fiscal-prorroga.component';
@@ -38,7 +30,6 @@ import {ProvidenciaInculpadoNoEnviaMemoPopupComponent} from 'app/entities/provid
 import {ProvidenciaFiscalFormulaCargosPopupComponent} from 'app/entities/providencia/providencia-fiscal-formula-cargos.component';
 import {ProvidenciaFiscalRemiteExpedientePopupComponent} from 'app/entities/providencia/providencia-fiscal-remite-expediente.component';
 
->>>>>>> Stashed changes
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
     constructor(private service: ProvidenciaService) {}
@@ -66,7 +57,6 @@ export const providenciaRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     },
-
     {
         path: 'providencia/:id/view',
         component: ProvidenciaDetailComponent,
@@ -145,19 +135,6 @@ export const providenciaPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'providencia/:id/fiscalCierre',
-        component: ProvidenciaFiscalCierrePopupComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
-            pageTitle: 'Responder providencia',
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    {
         path: 'providencia/:id/fiscalAcepta',
         component: ProvidenciaFiscalAceptaPopupComponent,
         resolve: {
@@ -196,7 +173,19 @@ export const providenciaPopupRoute: Routes = [
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
-
+    {
+        path: 'providencia/:id/notificaCierre',
+        component: ProvidenciaFiscalNotificaCierrePopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Apela'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
     {
         path: 'providencia/:id/apela',
         component: ProvidenciaApelaPopupComponent,
@@ -224,8 +213,6 @@ export const providenciaPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-<<<<<<< Updated upstream
-=======
         path: 'providencia/:id/inculpadoEnviaMemo',
         component: ProvidenciaInculpadoEnviaMemoPopupComponent,
         resolve: {
@@ -278,7 +265,6 @@ export const providenciaPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
->>>>>>> Stashed changes
         path: 'providencia/:id/devolver',
         component: ProvidenciaDevolverPopupComponent,
         resolve: {

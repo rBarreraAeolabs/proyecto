@@ -3,22 +3,16 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { map } from 'rxjs/operators';
-
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
-import {
-    IProvidencia, IProvidenciaResponse, IProvidenciaUpdateForType,
-    // IProvidenciaUpdateMadre,
-    IProvidenciaUpdateNroReferencia, IProvidenciaUpdateTipoSolicitud
-} from 'app/shared/model/providencia.model';
-import {IPlantilla} from '../../shared/model/plantilla.model';
-
-type EntityResponseType = HttpResponse<IProvidencia>;
-type EntityArrayResponseType = HttpResponse<IProvidencia[]>;
-
+import { IProvidencia, IProvidenciaResponse, IProvidenciaUpdateForType, IProvidenciaUpdateNroReferencia, IProvidenciaUpdateTipoSolicitud} from 'app/shared/model/providencia.model';
+import { IPlantilla} from '../../shared/model/plantilla.model';
 // librerias para descargar formato excel
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+
+type EntityResponseType = HttpResponse<IProvidencia>;
+type EntityArrayResponseType = HttpResponse<IProvidencia[]>;
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -60,12 +54,6 @@ export class ProvidenciaService {
             .put<IProvidencia>(`${this.resourceUrl}/updateProvidenciaForType`, providenciaUpdateForType, { observe: 'response'} )
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
-
-    // updateProvidenciaMadre(providenciaUpdateMadre: IProvidenciaUpdateMadre): Observable<EntityResponseType> {
-    //     return this.http
-    //         .put<IProvidencia>(`${this.resourceUrl}/madre`, providenciaUpdateMadre, { observe: 'response'} )
-    //         .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
-    // }
 
     updateFiscal(providencia: IProvidencia): Observable<EntityResponseType> {
         const copy = this.convertDateFromClient(providencia);
@@ -124,8 +112,6 @@ export class ProvidenciaService {
         return this.http.post<any>(this.resourceUrl + '/prorroga', response, {observe: 'response'});
     }
 
-<<<<<<< Updated upstream
-=======
     inculpadoNoEnviaMemo(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/inculpadoNoEnviaMemo', response, {observe: 'response'});
     }
@@ -142,7 +128,6 @@ export class ProvidenciaService {
         return this.http.post<any>(this.resourceUrl + '/remiteExpediente', response, {observe: 'response'});
     }
 
->>>>>>> Stashed changes
     apela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/apela', response, {observe: 'response'});
     }
@@ -151,8 +136,8 @@ export class ProvidenciaService {
         return this.http.post<any>(this.resourceUrl + '/noApela', response, {observe: 'response'});
     }
 
-    fiscalCierre(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/fiscalDaInicio', response, {observe: 'response'});
+    fiscalNotificaCierre(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/fiscalNotificaCierre', response, {observe: 'response'});
     }
 
     getActionsPermitted(providencia: IProvidencia): Observable<HttpResponse<any>> {
@@ -177,7 +162,7 @@ export class ProvidenciaService {
         return this.http
             .get<IProvidencia[]>(`${this.resourceUrl}/buscarNroReferencia`, { observe: 'response' })
             .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
-           }
+    }
 
     private convertDateFromClient(providencia: IProvidencia): IProvidencia {
         const copy: IProvidencia = Object.assign({}, providencia, {

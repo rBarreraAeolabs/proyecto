@@ -38,11 +38,12 @@
                                                 class="btn btn-success mr-2"
                                                 [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/fiscalAcepta'} }]"
                                                 id="jhi-aceptar-providencia"
-                                                 >
+                                        >
                                             <fa-icon [icon]="'check-circle'"></fa-icon>&nbsp;
                                             <span> Aceptar</span>
                                         </button>
-                                                                               <button type="button"
+
+                                        <button type="button"
                                                 *ngIf="actionsPermitted.rechazar
                                                 && providencia.requisito == 'FISCAL_NOTIFICADO'
 
@@ -100,16 +101,6 @@
                                                     <span *ngIf="providencia.numeroReferencia !== null"> Editar Número de Referencia</span>
                                                 </a>
 
-                                                <a class="dropdown-item"                                                   *ngIf="actionsPermitted.fiscalDaInicio"
-
-                                                        class="btn btn-danger mr-2"
-                                                        [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/fiscalCierre'} }]"
-                                                        replaceUrl="true"
-                                                        queryParamsHandling="merge">
-                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span > notificar cierre investigacion</span>
-
-                                                </a>
 
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.tipoSolicitud"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/tipoSolicitud'} }]"
@@ -124,13 +115,11 @@
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/prorroga'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
-                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
                                                     <span *ngIf="isProrroga"> Prorroga Uno</span>
                                                     <span *ngIf="!isProrroga"> Prorroga Dos</span>
                                                 </a>
                                                 <a
-<<<<<<< Updated upstream
-=======
                                                     class="dropdown-item" *ngIf="actionsPermitted.fiscalNotificaCierre"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/notificaCierre'} }]"
                                                     replaceUrl="true"
@@ -139,30 +128,21 @@
                                                     <span *ngIf="isNotificaCierre"> Notificar Cierre De Investigacion</span>
                                                 </a>
                                                 <a
->>>>>>> Stashed changes
                                                     class="dropdown-item" *ngIf="actionsPermitted.apela"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/apela'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
-<<<<<<< Updated upstream
-                                                ><fa-icon [icon]="'ban'"></fa-icon>&nbsp;
-                                                    <span > Apela </span>
-=======
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
                                                     <span> Si Apela </span>
->>>>>>> Stashed changes
 
-                                                     </a>
+                                                </a>
 
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.noApela"
+
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noApela'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
-<<<<<<< Updated upstream
-                                                ><fa-icon [icon]="'check-circle'"></fa-icon>&nbsp;
-                                                    <span >No Apela</span>
-=======
                                                 ><fa-icon style="color: #dc0000;" [icon]="'ban'"></fa-icon>&nbsp;
                                                     <span>No Apela</span>
 
@@ -201,18 +181,15 @@
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
                                                     <span>Fiscal Remite Expediente</span>
->>>>>>> Stashed changes
 
                                                 </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.goBackwards"
-                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/devolver'} }]"
-                                                   replaceUrl="true"
-                                                   queryParamsHandling="merge"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/devolver'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span *ngIf="isDevolver"> Devolver</span>
-                                                    <span *ngIf="isRechazar"> Rechazar</span>
-                                                    <span *ngIf="isProrroga"> Prorroga</span>
+                                                    <span> Devolver</span>
                                                 </a>
                                             </div>
                                         </div>
@@ -346,12 +323,12 @@
                                                 <dt class="d-flex justify-content-center">
                                                     <span>Cantidad de archivos adjuntos</span>
                                                 </dt>
-<!--                                                <dd class="d-flex justify-content-center" *ngIf="providencia.adjuntos.length != 0">-->
-<!--                                                    <span>{{providencia.adjuntos.length}}</span>-->
-<!--                                                </dd>-->
-<!--                                                <dd class="d-flex justify-content-center" *ngIf="providencia.adjuntos.length == 0">-->
-<!--                                                    <span style="color:red">SIN ADJUNTOS</span>-->
-<!--                                                </dd>-->
+                                                <dd class="d-flex justify-content-center" *ngIf="providencia.totalAdjuntos">
+                                                    <span>{{providencia.totalAdjuntos}}</span>
+                                                </dd>
+                                                <dd class="d-flex justify-content-center" *ngIf="!providencia.totalAdjuntos">
+                                                    <span style="color:red">SIN ADJUNTOS</span>
+                                                </dd>
                                             </dl>
                                         </div>
                                         <div class="col-sm-6 d-flex justify-content-center">
@@ -405,7 +382,7 @@
                                         </div>
                                     </div>
                                     <hr>
-                                     <div class="row">
+                                    <div class="row">
                                         <div class="col-12 d-flex justify-content-center">
                                             <dl class="dl-horizontal jh-entity-details">
                                                 <dt class="d-flex justify-content-center">

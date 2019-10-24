@@ -2,24 +2,24 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
-import { IProvidencia, IProvidenciaResponse } from 'app/shared/model/providencia.model';
+import { IProvidencia, IProvidenciaResponse} from 'app/shared/model/providencia.model';
 import { DerivacionService } from 'app/entities/derivacion';
-import { PlantillaService } from '../plantilla/plantilla.service';
-import { ProvidenciaService } from './providencia.service';
-import { IAdjunto } from '../../shared/model/adjunto.model';
-import { Principal } from 'app/core';
+import { ProvidenciaService} from './providencia.service';
+import { PlantillaService} from '../plantilla/plantilla.service';
+import { IAdjunto} from '../../shared/model/adjunto.model';
+import { Principal} from 'app/core';
 
 @Component({
-    selector: 'jhi-providencia-fiscal-cierre',
-    templateUrl: './providencia-fiscal-cierre.component.html'
+    selector: 'jhi-providencia-inculpado-envia-memo',
+    templateUrl: './providencia-inculpado-envia-memo.component.html'
 })
-export class ProvidenciaFiscalCierreComponent implements OnInit {
+export class ProvidenciaInculpadoEnviaMemoComponent implements OnInit {
     providencia: IProvidencia;
     providenciaResponse: IProvidenciaResponse = new IProvidenciaResponse();
     observacionDerivacion: string;
-    private _providencia: IProvidencia;
     adjuntos: IAdjunto[];
-    isDerivar = true;
+    private _providencia: IProvidencia;
+    isProrroga = false;
     cuenta: any;
     usuario: any;
 
@@ -31,20 +31,23 @@ export class ProvidenciaFiscalCierreComponent implements OnInit {
         private plantillaService: PlantillaService,
         private providenciaService: ProvidenciaService,
         private principal: Principal
+
     ) {}
 
     clear() {
         this.activeModal.dismiss('cancel');
     }
+
     ngOnInit() {
         this.cuenta = this.principal.identity();
         this.usuario = this.cuenta.__zone_symbol__value.perfil.nombre;
         console.log('usuario: ', this.usuario);
-        if (this.usuario === 'Jefatura') {
-            console.log('el usuario es jefe el envia');
-            this.isDerivar = false;
+        if ( this.providencia.requisito === 'FISCAL_ACEPTO_Y_DA_INICIO') {
+            console.log('el usuario es fiscal el pide prorroga');
+            this.isProrroga = true;
         }
     }
+
     get providencias() {
         return this._providencia;
     }
@@ -53,18 +56,16 @@ export class ProvidenciaFiscalCierreComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    fiscalCierre(id: number ) {
-
+    inculpadoEnviaMemo(id: number) {
         this.providenciaResponse.estadoActual = this.providencia.estadoActual;
         this.providenciaResponse.providenciaId = id;
         this.providenciaResponse.adjuntosDTOs = this.adjuntos;
         this.providenciaResponse.observacion = this.observacionDerivacion;
-        this.providencia.requisito = this.providencia.requisito;
-        this.providencia.etapa = this.providencia.etapa;
-        this.providenciaService.fiscalCierre(this.providenciaResponse).subscribe(res => {
+
+        this.providenciaService.inculpadoEnviaMemo(this.providenciaResponse).subscribe(res => {
             this.eventManager.broadcast({
-                name: 'providenciaListModification',
-                content: 'Providencia aceptada'
+                name: 'providencia',
+                content: 'Providencia notificacion inculpado envia memo'
             });
             this.activeModal.dismiss(true);
             this.previousState();
@@ -85,10 +86,10 @@ export class ProvidenciaFiscalCierreComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-responder-popup',
+    selector: 'jhi-providencia-inculpado-envia-memo-popup',
     template: ''
 })
-export class ProvidenciaFiscalCierrePopupComponent implements OnInit, OnDestroy {
+export class ProvidenciaInculpadoEnviaMemoPopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
@@ -96,7 +97,7 @@ export class ProvidenciaFiscalCierrePopupComponent implements OnInit, OnDestroy 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaFiscalCierreComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciaInculpadoEnviaMemoComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });

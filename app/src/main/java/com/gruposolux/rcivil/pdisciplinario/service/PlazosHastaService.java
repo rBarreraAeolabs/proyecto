@@ -7,6 +7,7 @@
 package com.gruposolux.rcivil.pdisciplinario.service;
 
 import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
+import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
 import com.gruposolux.rcivil.pdisciplinario.repository.ProvidenciaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class PlazosHastaService {
@@ -31,20 +35,6 @@ public class PlazosHastaService {
     public void dias(Long id, Integer dias){
         Providencia providencia = providenciaRepository.findOne(id);
         Instant fechaHoy = Instant.now();
-<<<<<<< Updated upstream
-        log.debug("resultado qlo: "+providencia.getFechaCreacion() );
-        log.debug("fecha hoy: "+ providencia.getFechaSolicitud());
-        Date diahoy = Date.from(fechaHoy);
-        log.debug("fechad e hoy: "+diahoy);
-        fechasService.sumarRestarDias(diahoy,dias);
-
-        log.debug("resultado qlo: "+ fechasService.sumarRestarDias(diahoy,dias)+".");
-
-        Date fechaqla =fechasService.sumarRestarDias(diahoy,dias);
-        Instant fechadehoy =   fechaqla.toInstant();
-        providencia.setFechaHasta(fechadehoy);
-
-=======
         Date diahoy = Date.from(fechaHoy);
         log.debug("fecha de hoy: "+diahoy);
         List<Date> rubenFechasNoLaborables= Collections.emptyList();
@@ -53,7 +43,6 @@ public class PlazosHastaService {
         Instant fechaFinal =   diasHabiles.toInstant();
         //  log.debug("ruben resultado cond dias habiles: "+ fechasService.diasHabiles(rubenHoy,rubenHasta,rubenFechasNoLaborables));
         providencia.setFechaHasta(fechaFinal);
->>>>>>> Stashed changes
         providenciaRepository.save(providencia);
     }
 }

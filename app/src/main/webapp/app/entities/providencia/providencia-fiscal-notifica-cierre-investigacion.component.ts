@@ -10,15 +10,16 @@ import { IAdjunto} from '../../shared/model/adjunto.model';
 import { Principal} from 'app/core';
 
 @Component({
-    selector: 'jhi-providencia-fiscal-remite-expediente',
-    templateUrl: './providencia-fiscal-remite-expediente.component.html'
+    selector: 'jhi-providencia-fiscal-notifica-cierre',
+    templateUrl: './providencia-fiscal-notifica-cierre-investigacion.component.html'
 })
-export class ProvidenciaFiscalRemiteExpedienteComponent implements OnInit {
+export class ProvidenciaFiscalNotificaCierreComponent implements OnInit {
     providencia: IProvidencia;
     providenciaResponse: IProvidenciaResponse = new IProvidenciaResponse();
     observacionDerivacion: string;
     adjuntos: IAdjunto[];
     private _providencia: IProvidencia;
+    isProrroga = false;
     cuenta: any;
     usuario: any;
 
@@ -40,7 +41,11 @@ export class ProvidenciaFiscalRemiteExpedienteComponent implements OnInit {
     ngOnInit() {
         this.cuenta = this.principal.identity();
         this.usuario = this.cuenta.__zone_symbol__value.perfil.nombre;
-        console.log('usuario: ', this.usuario);
+        // console.log('usuario: ', this.usuario);
+        // if ( this.providencia.requisito === 'INVESTIGACION') {
+        //     console.log('el usuario es fiscal notifica cierre de investigacion');
+        // }
+        this.isProrroga = true;
     }
 
     get providencias() {
@@ -51,16 +56,16 @@ export class ProvidenciaFiscalRemiteExpedienteComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    remiteExpediente(id: number) {
+    NotificaCierre(id: number) {
         this.providenciaResponse.estadoActual = this.providencia.estadoActual;
         this.providenciaResponse.providenciaId = id;
         this.providenciaResponse.adjuntosDTOs = this.adjuntos;
         this.providenciaResponse.observacion = this.observacionDerivacion;
-
-        this.providenciaService.remiteExpediente(this.providenciaResponse).subscribe(res => {
+        console.log('entro al servicio notificacion cierre de investigacion');
+        this.providenciaService.fiscalNotificaCierre(this.providenciaResponse).subscribe(res => {
             this.eventManager.broadcast({
-                name: 'providencia',
-                content: 'Providencia fiscal remite expediente'
+                name: 'providenciaProrroga',
+                content: 'Providencia notificacion cierre investigacion'
             });
             this.activeModal.dismiss(true);
             this.previousState();
@@ -81,10 +86,10 @@ export class ProvidenciaFiscalRemiteExpedienteComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-fiscal-remite-expediente-popup',
+    selector: 'jhi-providencia-fiscal-prorroga-popup',
     template: ''
 })
-export class ProvidenciaFiscalRemiteExpedientePopupComponent implements OnInit, OnDestroy {
+export class ProvidenciaFiscalNotificaCierrePopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
@@ -92,7 +97,7 @@ export class ProvidenciaFiscalRemiteExpedientePopupComponent implements OnInit, 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaFiscalRemiteExpedienteComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciaFiscalNotificaCierreComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });
