@@ -65,7 +65,7 @@ compile:
 
 image_build:
   stage: release
-  image: docker:18
+  image: docker:19.03-dind
   variables:
     DOCKER_HOST: tcp://localhost:2375
   cache: {}
