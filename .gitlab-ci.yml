@@ -70,8 +70,10 @@ image_build:
     DOCKER_HOST: tcp://docker:2375
   cache: {}
   services:
-     - docker:19.03.1-dind
-     - startup_timeout: 60
+    - name: docker:19.03.1-dind
+      alias: docker
+      startup_timeout: 60
+
   only:
     - merge_requests
     - master
