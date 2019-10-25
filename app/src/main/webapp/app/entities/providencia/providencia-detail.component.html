@@ -323,10 +323,10 @@
                                                 <dt class="d-flex justify-content-center">
                                                     <span>Cantidad de archivos adjuntos</span>
                                                 </dt>
-                                                <dd class="d-flex justify-content-center" *ngIf="providencia.totalAdjuntos">
-                                                    <span>{{providencia.totalAdjuntos}}</span>
+                                                <dd class="d-flex justify-content-center" *ngIf="providencia.sumaAdjuntos">
+                                                    <span>{{providencia.sumaAdjuntos}}</span>
                                                 </dd>
-                                                <dd class="d-flex justify-content-center" *ngIf="!providencia.totalAdjuntos">
+                                                <dd class="d-flex justify-content-center" *ngIf="!providencia.sumaAdjuntos">
                                                     <span style="color:red">SIN ADJUNTOS</span>
                                                 </dd>
                                             </dl>

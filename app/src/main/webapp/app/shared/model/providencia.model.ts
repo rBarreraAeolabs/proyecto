@@ -223,7 +223,7 @@ export interface IProvidencia {
     ordenJuridico?: OrdenJuridico;
     apelacion?: Apelacion;
     standby?: boolean;
-    totalAdjuntos?: number;
+    sumaAdjuntos?: number;
 }
 
 export class Providencia implements IProvidencia {
@@ -253,7 +253,7 @@ export class Providencia implements IProvidencia {
         public ordenJuridico?: OrdenJuridico,
         public apelacion?: Apelacion,
         public standby?: boolean,
-        public totalAdjuntos?:number,
+        public sumaAdjuntos?:number,
 ) {}
 }
 
