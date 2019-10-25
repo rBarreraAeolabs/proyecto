@@ -70,10 +70,7 @@ image_build:
     DOCKER_HOST: tcp://docker:2375
   cache: {}
   services:
-    - name: docker:19.03.1-dind
-      alias: docker
-      startup_timeout: 60
-
+    - docker:19.03.1-dind
   only:
     - merge_requests
     - master
@@ -104,7 +101,7 @@ deploy_review:
     - tags
   environment:
     name: review/$CI_BUILD_REF_NAME
-    url: http://$CI_ENVIRONMENT_SLUG-registrocivil-pdisciplinario.review.k.netlinux.cl
+    url: http://$CI_ENVIRONMENT_SLUG-gitlab.com/ifyum/ifyum/view
     on_stop: stop_review
   script:
     - echo $KUBECONFIG  
