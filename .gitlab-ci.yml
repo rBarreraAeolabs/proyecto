@@ -71,8 +71,8 @@ image_build:
   cache: {}
   services:
     - docker:18-dind
-   health_check_port: 2375
-   startup_timeout: 60
+#   health_check_port: 2375
+#   startup_timeout: 60
 
   only:
     - merge_requests
