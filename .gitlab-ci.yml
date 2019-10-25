@@ -70,9 +70,9 @@ image_build:
     DOCKER_HOST: tcp://localhost:2375
   cache: {}
   services:
-     - name: docker:18.09-dind
-      alias: docker
-      startup_timeout: 60
+    - docker:18-dind
+   health_check_port: 2375
+   startup_timeout: 60
 
   only:
     - merge_requests
