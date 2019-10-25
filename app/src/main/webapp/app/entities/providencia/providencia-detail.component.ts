@@ -40,6 +40,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
     isDevolver = true;
     isRechazar = true;
     isProrroga = true;
+    isNotificaCierre = true;
     disableResponder = false;
     navigationSubscription;
     excel = [];
