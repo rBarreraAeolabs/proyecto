@@ -65,12 +65,12 @@ compile:
 
 image_build:
   stage: release
-  image: docker:19.03-dind
+  image: docker:19.03.1
   variables:
     DOCKER_HOST: tcp://localhost:2375
   cache: {}
   services:
-    - docker:18-dind
+     - docker:19.03.1-dind
   only:
     - merge_requests
     - master
@@ -150,7 +150,7 @@ deploy_live:
   stage: deploy
   environment:
     name: live
-    url: https://registrocivil-pdisciplinario.demo.netlinux.cl
+    url: https://ifyum.newci.com
   only:
     - tags
   when: manual
