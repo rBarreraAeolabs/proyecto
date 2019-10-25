@@ -120,6 +120,14 @@ export class ProvidenciaService {
         return this.http.post<any>(this.resourceUrl + '/inculpadoEnviaMemo', response, {observe: 'response'});
     }
 
+    formulaCargos(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/formularCargos', response, {observe: 'response'});
+    }
+
+    remiteExpediente(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/remiteExpediente', response, {observe: 'response'});
+    }
+
     apela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/apela', response, {observe: 'response'});
     }

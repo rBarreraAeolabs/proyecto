@@ -382,6 +382,7 @@ public class ProvidenciaService {
             case INCULPADO_ENVIA_MEMO:
             case INCULPADO_NO_ENVIA_MEMO:
             case FISCAL_REMITE_EXPEDIENTE:
+            case REMITE_VISTA_FISCAL:
                 if (etapa==EstadoProvidencia.INVESTIGACION){
                     subEtapa = EstadoProvidencia.DA_INICIO;
                     break;
@@ -823,7 +824,7 @@ public class ProvidenciaService {
     }
  @Transactional
     public void remiteExpediente(ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("boton desde fiscal acepta y da inicio paso: ");
+        log.debug("boton de fiscal remite expdiente: ");
         AccionesProvidencia evento = AccionesProvidencia.REMITE_EXPEDIENTE;
         this.changeStage(providenciaResponseDTO, evento);
     }
@@ -948,7 +949,7 @@ public class ProvidenciaService {
         EstadoProvidencia subEtapaAntes = null;
         EstadoProvidencia etapa = null;
         Long iDProvidenciaMadre = null;
-
+        log.debug("ruben: estado al entrar: " + requisitoDespues);
         if (providenciaOptional.isPresent()) {
             AccionesProvidencia eventoBoton = null;
             providencia = providenciaOptional.get();
@@ -1302,8 +1303,6 @@ public class ProvidenciaService {
             actionsPermitted.put("formularCargos", false);
             actionsPermitted.put("remiteExpediente", false);
 
-
-
             switch (requisito) {   // Falta un switch anidado para los casos especificos de que salte (muestre un boton o accion diferente) a otro requisito si es alguna etapa especifica
 
                 case NUEVA_PROVIDENCIA:
@@ -1370,7 +1369,7 @@ public class ProvidenciaService {
 //                    }
 //                    break;
                 case INCULPADO_ENVIA_MEMO:
-
+                case INCULPADO_NO_ENVIA_MEMO:
                     if (subEtapa== EstadoProvidencia.DA_INICIO){
 
                         if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {

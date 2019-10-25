@@ -378,6 +378,12 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             .source(EstadoProvidencia.INCULPADO_ENVIA_MEMO.name()).target(EstadoProvidencia.FISCAL_REMITE_EXPEDIENTE.name())
             .event(AccionesProvidencia.FORMULAR_CARGOS.name())
 
+
+               .and()
+            .withExternal()
+            .source(EstadoProvidencia.INCULPADO_NO_ENVIA_MEMO.name()).target(EstadoProvidencia.FISCAL_REMITE_EXPEDIENTE.name())
+            .event(AccionesProvidencia.FORMULAR_CARGOS.name())
+
             .and()
             .withExternal()
             .source(EstadoProvidencia.FISCAL_REMITE_EXPEDIENTE.name()).target(EstadoProvidencia.REMITE_VISTA_FISCAL.name())

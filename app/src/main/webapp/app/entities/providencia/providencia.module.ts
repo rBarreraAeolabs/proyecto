@@ -15,7 +15,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { MovimientoProvidenciaComponent } from 'app/entities/movimiento-providencia';
-import { ProvidenciaResponderDialogComponent, ProvidenciaResponderPopupComponent } from 'app/entities/providencia/providencia-responder-dialog.componet';
+import { ProvidenciaResponderDialogComponent, ProvidenciaResponderPopupComponent } from 'app/entities/providencia/providencia-responder-dialog.component';
 import { ProvidenciaDevolverDialogComponent, ProvidenciaDevolverPopupComponent } from 'app/entities/providencia/providencia-devolver-dialog.component';
 import { DerivacionComponent } from '../derivacion/derivacion.component';
 import { AdjuntoShowListPopupComponent } from '../adjunto/adjunto-show-list-dialog.component';
@@ -81,6 +81,14 @@ import {
     ProvidenciaInculpadoEnviaMemoComponent,
     ProvidenciaInculpadoEnviaMemoPopupComponent
 } from 'app/entities/providencia/providencia-inculpado-envia-memo.component';
+import {
+    ProvidenciaFiscalFormulaCargosComponent,
+    ProvidenciaFiscalFormulaCargosPopupComponent
+} from 'app/entities/providencia/providencia-fiscal-formula-cargos.component';
+import {
+    ProvidenciaFiscalRemiteExpedienteComponent,
+    ProvidenciaFiscalRemiteExpedientePopupComponent
+} from 'app/entities/providencia/providencia-fiscal-remite-expediente.component';
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -137,7 +145,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaInculpadoNoEnviaMemoComponent,
         ProvidenciaInculpadoNoEnviaMemoPopupComponent,
         ProvidenciaInculpadoEnviaMemoComponent,
-        ProvidenciaInculpadoEnviaMemoPopupComponent
+        ProvidenciaInculpadoEnviaMemoPopupComponent,
+        ProvidenciaFiscalRemiteExpedienteComponent,
+        ProvidenciaFiscalRemiteExpedientePopupComponent,
+        ProvidenciaFiscalFormulaCargosComponent,
+        ProvidenciaFiscalFormulaCargosPopupComponent
 
     ],
     entryComponents: [
@@ -179,7 +191,12 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaInculpadoNoEnviaMemoComponent,
         ProvidenciaInculpadoNoEnviaMemoPopupComponent,
         ProvidenciaInculpadoEnviaMemoComponent,
-        ProvidenciaInculpadoEnviaMemoPopupComponent
+        ProvidenciaInculpadoEnviaMemoPopupComponent,
+        ProvidenciaFiscalRemiteExpedienteComponent,
+        ProvidenciaFiscalRemiteExpedientePopupComponent,
+        ProvidenciaFiscalFormulaCargosComponent,
+        ProvidenciaFiscalFormulaCargosPopupComponent
+
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

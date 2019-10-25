@@ -36,12 +36,12 @@ public class NotificacionInBrowser implements Serializable {
     @Column(name = "contenido")
     private String contenido;
 
-    @ManyToOne( fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     //creado por ruben
-    @ManyToOne(targetEntity = Grupo.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Grupo.class)
     private Grupo grupo;
 
     @NotNull

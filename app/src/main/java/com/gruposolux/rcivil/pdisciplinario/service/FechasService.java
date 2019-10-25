@@ -15,7 +15,6 @@ import java.util.List;
 @Service("fechasService")
 public class FechasService {
 
-
     public Date  calcularFecha(Date fecha, int dias,List<Date> listaFechasNoLaborables){
 //        Calendar calendar = Calendar.getInstance();
         Calendar fechaInicial = Calendar.getInstance();
@@ -66,11 +65,8 @@ public class FechasService {
 
             }
 
-
-//        }
         }
-        //se suma 1 dia para hacer la validacion del siguiente dia.
-//        fechaInicial.add(Calendar.DATE, 1);
+
         fechaFinal.setTime(fechaInicial.getTime());
 
         System.out.println("terminado el cliclo fecha final:"+fechaFinal.getTime());
