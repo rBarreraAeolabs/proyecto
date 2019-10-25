@@ -26,6 +26,11 @@ stages:
   - review
   - deploy
 
+test_docker:
+  stage: test
+  script:
+     - docker-compose -f docker/dev.yml up -d
+
 test_java:
   stage: test
   allow_failure: true
