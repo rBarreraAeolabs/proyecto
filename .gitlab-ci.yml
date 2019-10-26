@@ -29,6 +29,7 @@ stages:
 test_docker:
   stage: test
   script:
+    - cd ifyum/
      - docker-compose -f docker/dev.yml up -d
 
 test_java:
