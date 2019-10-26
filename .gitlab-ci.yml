@@ -26,8 +26,11 @@ stages:
   - review
   - deploy
 
-test_docker:
+test_cointainers:
   stage: test
+  allow_failure: true
+  except:
+      - tags
   script:
     - cd ifyum/
      - docker-compose -f docker/dev.yml up -d
