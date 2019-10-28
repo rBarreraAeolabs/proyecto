@@ -41,9 +41,7 @@ test_java:
   except:
     - tags
   script:
-    - cd ifyum/
-      - docker-compose -f docker/dev.yml up -d
-      - cd app/
+    - cd app/
     - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean test -Dskip.npm -Dskip.webpack
 
 test_javascript:
