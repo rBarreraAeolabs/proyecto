@@ -296,4 +296,15 @@ public class MovimientoProvidenciaService {
 
         return movimientosSet;
     }
-}
+
+
+
+    @Transactional
+    public MovimientoProvidencia buscarPorId(Long id)
+    {
+       MovimientoProvidencia  movimientoProvidencia = movimientoProvidenciaRepository.traerMovimientos(id);
+        return  movimientoProvidencia;
+    }
+
+
+    }
