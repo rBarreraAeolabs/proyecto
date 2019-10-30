@@ -53,7 +53,15 @@ test_javascript:
     - cd app/
     - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean generate-resources -DskipTests
     - ./npm run test
-
+test_angular:
+  stage: test
+  allow_failure: true
+  except:
+    - tags
+  script:
+    - cd app/
+    - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean generate-resources -DskipTests
+    - ./npm start
 compile:
   stage: build
   only:
