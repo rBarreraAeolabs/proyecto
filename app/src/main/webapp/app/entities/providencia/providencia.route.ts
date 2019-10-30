@@ -29,7 +29,7 @@ import {ProvidenciaInculpadoEnviaMemoPopupComponent} from 'app/entities/providen
 import {ProvidenciaInculpadoNoEnviaMemoPopupComponent} from 'app/entities/providencia/providencia-inculpado-no-envia-memo.component';
 import {ProvidenciaFiscalFormulaCargosPopupComponent} from 'app/entities/providencia/providencia-fiscal-formula-cargos.component';
 import {ProvidenciaFiscalRemiteExpedientePopupComponent} from 'app/entities/providencia/providencia-fiscal-remite-expediente.component';
-import  {ProvidenciaTerminoProbatorioPopupComponent} from "app/entities/providencia/providencia-termino-probatorio.component";
+import  {ProvidenciaTerminoProbatorioPopupComponent} from 'app/entities/providencia/providencia-termino-probatorio.component';
 
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
