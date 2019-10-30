@@ -36,6 +36,13 @@ import {
     ProvidenciaRelacionarDialogComponent,
     ProvidenciaRelacionarPopupComponent
 } from './providencia-relacionar-dialog.component';
+
+import {
+    ProvidenciaTerminoProbatorioComponent,
+    ProvidenciaTerminoProbatorioPopupComponent
+} from './providencia-termino-probatorio.component';
+
+
 import {
     ProvidenciaAsignarFiscalComponent,
     ProvidenciaAsignarFiscalPopupComponent
@@ -149,7 +156,9 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaFiscalRemiteExpedienteComponent,
         ProvidenciaFiscalRemiteExpedientePopupComponent,
         ProvidenciaFiscalFormulaCargosComponent,
-        ProvidenciaFiscalFormulaCargosPopupComponent
+        ProvidenciaFiscalFormulaCargosPopupComponent,
+        ProvidenciaTerminoProbatorioComponent,
+        ProvidenciaTerminoProbatorioPopupComponent
 
     ],
     entryComponents: [
@@ -195,7 +204,9 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaFiscalRemiteExpedienteComponent,
         ProvidenciaFiscalRemiteExpedientePopupComponent,
         ProvidenciaFiscalFormulaCargosComponent,
-        ProvidenciaFiscalFormulaCargosPopupComponent
+        ProvidenciaFiscalFormulaCargosPopupComponent,
+        ProvidenciaTerminoProbatorioComponent,
+        ProvidenciaTerminoProbatorioPopupComponent
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

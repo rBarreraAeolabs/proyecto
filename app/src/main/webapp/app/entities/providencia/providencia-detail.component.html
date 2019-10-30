@@ -155,6 +155,7 @@
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
                                                     <span > Inculpado Envia Memo </span>
 
+
                                                 </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.inculpadoNoEnviaMemo"
@@ -165,6 +166,14 @@
                                                     <span> Inculpado No Envia Memo </span>
 
                                                 </a>
+                                                <a
+                                                class="dropdown-item" *ngIf="actionsPermitted.terminoProbatorio"
+                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/terminoProbatorio'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge"
+                                            ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                <span > termino de Probatorio</span>
+                                            </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.formularCargos"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/formulaCargos'} }]"

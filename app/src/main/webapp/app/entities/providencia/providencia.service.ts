@@ -96,6 +96,10 @@ export class ProvidenciaService {
         return this.http.post<any>(this.resourceUrl + '/reply', response, {observe: 'response'});
     }
 
+    terminoProbatorio(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/reply', response, {observe: 'response'});
+    }
+
     aceptar(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/aceptar', response, {observe: 'response'});
     }
