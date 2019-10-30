@@ -58,7 +58,6 @@ public class ProvidenciaService {
     private final PlazosHastaService plazosHastaService;
     private final DocumentoRepository documentoRepository;
     private final AdjuntoRepository adjuntoRepository;
-    private  final FechasService fechasService;
     @Autowired
     private final AlfrescoStorageService alfrescoStorageService;
 
@@ -89,8 +88,7 @@ public class ProvidenciaService {
         StateMachine stateMachine,
         UserRepository userRepository,
         PlazosHastaService plazosHastaService,
-        DocumentoRepository documentoRepository, AdjuntoRepository adjuntoRepository,
-        FechasService fechasService) {
+        DocumentoRepository documentoRepository, AdjuntoRepository adjuntoRepository) {
         this.providenciaRepository = providenciaRepository;
         this.providenciaMapper = providenciaMapper;
         this.adjuntoMapper = adjuntoMapper;
@@ -119,7 +117,6 @@ public class ProvidenciaService {
 
         this.documentoRepository = documentoRepository;
         this.adjuntoRepository = adjuntoRepository;
-        this.fechasService=fechasService;
     }
 
     /**
@@ -649,8 +646,8 @@ public class ProvidenciaService {
 
             String nombreGrupo = this.determineGroupAnswer(providencia).getNombre();
 
-           MovimientoProvidencia  mp =  movimientoProvidenciaService.buscarPorId(providencia.getId());
-log.debug(" resumen resultado del movimiento: "+mp);
+            MovimientoProvidencia  mp =  movimientoProvidenciaService.buscarPorId(providencia.getId());
+            log.debug(" resumen resultado del movimiento: "+mp);
 
             Long sinresultados= Long.valueOf(0);
             /**
@@ -669,19 +666,19 @@ log.debug(" resumen resultado del movimiento: "+mp);
 
                 );
             }else {
-            return new ProvidenciaItemListDTO(
-                providencia.getId(),
-                providencia.getFechaCreacion(),
-                providencia.getEstadoActual(),
-                nombreGrupo,
-                ChronoUnit.DAYS.between(providencia.getFechaCreacion(), Instant.now()),
-                 sinresultados,
-                providencia.getFechaHasta(),
-                providencia.getStandby()
+                return new ProvidenciaItemListDTO(
+                    providencia.getId(),
+                    providencia.getFechaCreacion(),
+                    providencia.getEstadoActual(),
+                    nombreGrupo,
+                    ChronoUnit.DAYS.between(providencia.getFechaCreacion(), Instant.now()),
+                    sinresultados,
+                    providencia.getFechaHasta(),
+                    providencia.getStandby()
 
 
-            );
-        }});
+                );
+            }});
     }
 
     /**
