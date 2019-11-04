@@ -90,12 +90,14 @@ public enum AccionesProvidencia {
 
     /**
     para investacion luego de prorroga
-
      */
-
     INVESTIGADO,
     FISCAL_NOTIFICA_A_UPD_CIERRE,
     INCULPADO_NO_ENVIA_MEMO,
-    FORMULAR_CARGOS
+    SELECCION_INFORME_ABOGADO,
+    FORMULAR_CARGOS,
+    NO_PROPONE,
+    NO_REABRE,
+    SI_DE_ACUERDO,
 }
 

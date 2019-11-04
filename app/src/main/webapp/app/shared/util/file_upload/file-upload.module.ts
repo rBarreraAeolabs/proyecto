@@ -8,7 +8,7 @@ import { FileSizePipe } from './filesize.pipe';
 
 @NgModule({
     imports: [NgxUploaderModule, BrowserModule, CommonModule],
-    exports: [FileUploadComponent],
+    exports: [FileUploadComponent, FileSizePipe],
     declarations: [FileUploadComponent, FileSizePipe],
     entryComponents: [FileUploadComponent]
 })
