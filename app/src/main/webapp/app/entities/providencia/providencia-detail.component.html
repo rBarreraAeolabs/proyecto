@@ -207,6 +207,15 @@
 
                                                 </a>
                                                 <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.sobreseer"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/sobreseer'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span> Fiscal Formula Cargos</span>
+
+                                                </a>
+                                                <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.remiteExpediente"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/remiteExpediente'} }]"
                                                     replaceUrl="true"

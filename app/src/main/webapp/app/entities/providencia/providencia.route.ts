@@ -33,6 +33,7 @@ import {ProvidenciaTerminoProbatorioPopupComponent} from 'app/entities/providenc
 import {ProvidenciaSiDeAcuerdoPopupComponent} from 'app/entities/providencia/providencia-si-de-acuerdo.component';
 import {ProvidenciaNoReabroPopupComponent} from 'app/entities/providencia/providencia-no-reabro.component';
 import {ProvidenciaNoProponePopupComponent} from "app/entities/providencia/providencia-no-propone.component";
+import {ProvidenciasobreseerPopupComponent} from 'app/entities/providencia/providencia-sobreseer.component';
 
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
@@ -182,6 +183,18 @@ export const providenciaPopupRoute: Routes = [
     {
         path: 'providencia/:id/responder',
         component: ProvidenciaResponderPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Responder providencia',
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },    {
+        path: 'providencia/:id/sobreseer',
+        component: ProvidenciasobreseerPopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },

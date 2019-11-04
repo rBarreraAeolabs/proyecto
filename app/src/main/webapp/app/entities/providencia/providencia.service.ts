@@ -100,6 +100,10 @@ export class ProvidenciaService {
         return this.http.post<any>(this.resourceUrl + '/terminoProbatorio', response, {observe: 'response'});
     }
 
+    sobreseer(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/sobreseer', response, {observe: 'response'});
+    }
+
     siDeAcuerdo(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/siDeAcuerdo', response, {observe: 'response'});
     }
