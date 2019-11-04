@@ -4,12 +4,11 @@ import { NgxUploaderModule } from 'ngx-uploader';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FileUploadComponent } from './file-upload.component';
-import { FileSizePipe } from './filesize.pipe';
 
 @NgModule({
     imports: [NgxUploaderModule, BrowserModule, CommonModule],
     exports: [FileUploadComponent],
-    declarations: [FileUploadComponent, FileSizePipe],
+    declarations: [FileUploadComponent],
     entryComponents: [FileUploadComponent]
 })
 export class AppFileUploaderModule {}

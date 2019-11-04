@@ -42,6 +42,10 @@ import {
     ProvidenciaTerminoProbatorioPopupComponent
 } from './providencia-termino-probatorio.component';
 
+import {
+    ProvidenciaSiDeAcuerdoComponent,
+    ProvidenciaSiDeAcuerdoPopupComponent
+} from './providencia-si-de-acuerdo.component';
 
 import {
     ProvidenciaAsignarFiscalComponent,
@@ -71,6 +75,16 @@ import {
     ProvidenciaApelaComponent,
     ProvidenciaApelaPopupComponent
 } from 'app/entities/providencia/providencia-apela.component';
+import {
+    ProvidenciaNoProponeComponent,
+    ProvidenciaNoProponePopupComponent
+} from 'app/entities/providencia/providencia-no-propone.component';
+
+import {
+
+    ProvidenciaNoReabroComponent,
+    ProvidenciaNoReabroPopupComponent
+}  from 'app/entities/providencia/providencia-no-reabro.component';
 
 import {
     ProvidenciaNoApelaComponent,
@@ -158,7 +172,13 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaFiscalFormulaCargosComponent,
         ProvidenciaFiscalFormulaCargosPopupComponent,
         ProvidenciaTerminoProbatorioComponent,
-        ProvidenciaTerminoProbatorioPopupComponent
+        ProvidenciaTerminoProbatorioPopupComponent,
+        ProvidenciaSiDeAcuerdoComponent,
+        ProvidenciaSiDeAcuerdoPopupComponent,
+        ProvidenciaNoProponeComponent,
+        ProvidenciaNoProponePopupComponent,
+        ProvidenciaNoReabroComponent,
+        ProvidenciaNoReabroPopupComponent
 
     ],
     entryComponents: [
@@ -206,7 +226,13 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaFiscalFormulaCargosComponent,
         ProvidenciaFiscalFormulaCargosPopupComponent,
         ProvidenciaTerminoProbatorioComponent,
-        ProvidenciaTerminoProbatorioPopupComponent
+        ProvidenciaTerminoProbatorioPopupComponent,
+        ProvidenciaSiDeAcuerdoComponent,
+        ProvidenciaSiDeAcuerdoPopupComponent,
+        ProvidenciaNoProponeComponent,
+        ProvidenciaNoProponePopupComponent,
+        ProvidenciaNoReabroComponent,
+        ProvidenciaNoReabroPopupComponent
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

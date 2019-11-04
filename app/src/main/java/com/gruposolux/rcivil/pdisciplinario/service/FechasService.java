@@ -11,13 +11,11 @@ import  org.springframework.stereotype.Service;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
 
 @Service("fechasService")
 public class FechasService {
 
-    public Date calcularFecha(Date fecha, int dias, List<Date> listaFechasNoLaborables) {
+    public Date  calcularFecha(Date fecha, int dias,List<Date> listaFechasNoLaborables){
 //        Calendar calendar = Calendar.getInstance();
         Calendar fechaInicial = Calendar.getInstance();
         Calendar fechaFinal = Calendar.getInstance();
@@ -31,11 +29,11 @@ public class FechasService {
         int diffDays = 0;
 //
 //        while (fechaInicial.before(fechaFinal) || fechaInicial.equals(fechaFinal)) {
-        while (dias != diffDays) {
-            System.out.println("dias a sumar: " + dias);
-            System.out.println("contador de dias: " + diffDays);
+        while  (dias != diffDays) {
+            System.out.println("dias a sumar: "+dias);
+            System.out.println("contador de dias: "+diffDays);
             System.out.println("entro al while ");
-            fechaInicial.add(Calendar.DAY_OF_YEAR, 1);
+            fechaInicial.add(Calendar.DAY_OF_YEAR,1);
             if (!listaFechasNoLaborables.isEmpty()) {
                 for (Date date : listaFechasNoLaborables) {
 //                if (!listaFechasNoLaborables.isEmpty()) {
@@ -55,15 +53,15 @@ public class FechasService {
 
                 if (fechaInicial.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY && fechaInicial.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) {
                     //se aumentan los dias de diferencia entre min y max
-                    diffDays = diffDays + 1;
-                    System.out.println("contador: " + diffDays);
+                    diffDays=diffDays+1;
+                    System.out.println("contador: "+diffDays);
 
-                    System.out.println("sumando dias: " + fechaInicial.getTime());
+                    System.out.println("sumando dias: "+fechaInicial.getTime());
                 }
             }
             if (diaHabil == true) {
 
-                diffDays = diffDays + 1;
+                diffDays=diffDays+1;
 
             }
 
@@ -71,17 +69,9 @@ public class FechasService {
 
         fechaFinal.setTime(fechaInicial.getTime());
 
-        System.out.println("terminado el cliclo fecha final:" + fechaFinal.getTime());
-        return fechaFinal.getTime();
+        System.out.println("terminado el cliclo fecha final:"+fechaFinal.getTime());
+        return  fechaFinal.getTime();
     }
 
-
-//    public int diasentrefechas(Date fechaInicial, Date fechaFinal) {
-//
-//        int dias = (int) ((fechaFinal.getTime() - fechaInicial.getTime()) / 86400000);
-//
-//        System.out.println("Hay " + dias + " dias de diferencia");
-//        return dias;
-//    }
 
 }

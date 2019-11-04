@@ -10,10 +10,10 @@ import { IAdjunto } from '../../shared/model/adjunto.model';
 import { Principal } from 'app/core';
 
 @Component({
-    selector: 'jhi-providencia-termino-probatorio',
-    templateUrl: './providencia-termino-probatorio.component.html'
+    selector: 'jhi-providencia-no-reabro',
+    templateUrl: './providencia-no-reabro.component.html'
 })
-export class ProvidenciaTerminoProbatorioComponent implements OnInit {
+export class ProvidenciaNoReabroComponent implements OnInit {
     providencia: IProvidencia;
     providenciaResponse: IProvidenciaResponse = new IProvidenciaResponse();
     observacionDerivacion: string;
@@ -53,7 +53,7 @@ export class ProvidenciaTerminoProbatorioComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    terminoProbatorio(id: number ) {
+    noReabro(id: number ) {
 
         this.providenciaResponse.estadoActual = this.providencia.estadoActual;
         this.providenciaResponse.providenciaId = id;
@@ -61,7 +61,7 @@ export class ProvidenciaTerminoProbatorioComponent implements OnInit {
         this.providenciaResponse.observacion = this.observacionDerivacion;
         this.providencia.requisito = this.providencia.requisito;
         this.providencia.etapa = this.providencia.etapa;
-        this.providenciaService.terminoProbatorio(this.providenciaResponse).subscribe(res => {
+        this.providenciaService.noReabro(this.providenciaResponse).subscribe(res => {
             this.eventManager.broadcast({
                 name: 'providenciaListModification',
                 content: 'Providencia aceptada'
@@ -85,10 +85,10 @@ export class ProvidenciaTerminoProbatorioComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-termino-probatorio-popup',
+    selector: 'jhi-providencia-no-reabro-popup',
     template: ''
 })
-export class ProvidenciaTerminoProbatorioPopupComponent implements OnInit, OnDestroy {
+export class ProvidenciaNoReabroPopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
@@ -96,7 +96,7 @@ export class ProvidenciaTerminoProbatorioPopupComponent implements OnInit, OnDes
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaTerminoProbatorioComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciaNoReabroComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });

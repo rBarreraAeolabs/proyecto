@@ -185,10 +185,44 @@ public class ProvidenciaResource {
     @PostMapping("/providencias/formularCargos")
     @Timed
     public ResponseEntity<Void> formularCargos (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("ENTRO AL fiscal: ");
+        log.debug("ENTRO AL formularCargos: ");
         this.providenciaService.formularCargos(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
+
+    @PostMapping("/providencias/terminoProbatorio")
+    @Timed
+    public ResponseEntity<Void> terminoProbatorio (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO a terminoProbatorio: ");
+        this.providenciaService.terminoProbatorio(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/siDeAcuerdo")
+    @Timed
+    public ResponseEntity<Void> siDeAcuerdo (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO a deAcuerdo: ");
+        this.providenciaService.siDeAcuerdo(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/noReabro")
+    @Timed
+    public ResponseEntity<Void> noReabro (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO a noReabro: ");
+        this.providenciaService.noReabro(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/noPropone")
+    @Timed
+    public ResponseEntity<Void> noPropone (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO a noPropone: ");
+        this.providenciaService.noPropone(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+
     @PostMapping("/providencias/remiteExpediente")
     @Timed
     public ResponseEntity<Void> remiteExpediente (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {

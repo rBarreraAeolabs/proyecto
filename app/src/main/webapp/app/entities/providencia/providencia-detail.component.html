@@ -38,7 +38,7 @@
                                                 class="btn btn-success mr-2"
                                                 [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/fiscalAcepta'} }]"
                                                 id="jhi-aceptar-providencia"
-                                                 >
+                                        >
                                             <fa-icon [icon]="'check-circle'"></fa-icon>&nbsp;
                                             <span> Aceptar</span>
                                         </button>
@@ -135,7 +135,7 @@
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
                                                     <span> Si Apela </span>
 
-                                                     </a>
+                                                </a>
 
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.noApela"
@@ -167,13 +167,36 @@
 
                                                 </a>
                                                 <a
-                                                class="dropdown-item" *ngIf="actionsPermitted.terminoProbatorio"
-                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/terminoProbatorio'} }]"
+                                                    class="dropdown-item" *ngIf="actionsPermitted.terminoProbatorio"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/terminoProbatorio'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span >Termino de Probatorio</span>
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.siDeAcuerdo"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/siDeAcuerdo'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span >Si de Acuerdo</span>
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.noReabro"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noReabro'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span >No Reabre</span>
+                                                </a>   <a
+                                                class="dropdown-item" *ngIf="actionsPermitted.noPropone"
+                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noPropone'} }]"
                                                 replaceUrl="true"
                                                 queryParamsHandling="merge"
-                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
-                                                <span > termino de Probatorio</span>
-                                                </a>
+                                            ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                <span >No Propone</span>
+                                            </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.formularCargos"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/formulaCargos'} }]"
@@ -194,9 +217,9 @@
                                                 </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.goBackwards"
-                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/devolver'} }]"
-                                                   replaceUrl="true"
-                                                   queryParamsHandling="merge"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/devolver'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
                                                     <span> Devolver</span>
                                                 </a>
@@ -391,7 +414,7 @@
                                         </div>
                                     </div>
                                     <hr>
-                                     <div class="row">
+                                    <div class="row">
                                         <div class="col-12 d-flex justify-content-center">
                                             <dl class="dl-horizontal jh-entity-details">
                                                 <dt class="d-flex justify-content-center">
@@ -399,7 +422,7 @@
                                                 </dt>
                                                 <dd *ngIf="providencia.comentario">
                                                     <P class="text-center text-justify">{{providencia.comentario}}</P>
-<!--                                                    <button (click)="SeguirLeyendo()" type="button" class="btn btn-info btn-xs">Seguir Leyendo</button>-->
+                                                    <!--                                                    <button (click)="SeguirLeyendo()" type="button" class="btn btn-info btn-xs">Seguir Leyendo</button>-->
                                                 </dd>
                                                 <dd class="d-flex justify-content-center" *ngIf="!providencia.comentario">
                                                     <span style="color:red">SIN COMENTARIO</span>

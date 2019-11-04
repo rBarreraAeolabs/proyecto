@@ -97,9 +97,18 @@ export class ProvidenciaService {
     }
 
     terminoProbatorio(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/reply', response, {observe: 'response'});
+        return this.http.post<any>(this.resourceUrl + '/terminoProbatorio', response, {observe: 'response'});
     }
 
+    siDeAcuerdo(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/siDeAcuerdo', response, {observe: 'response'});
+    }
+    noPropone(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/noPropone', response, {observe: 'response'});
+    }
+    noReabro(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/noReabro', response, {observe: 'response'});
+    }
     aceptar(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/aceptar', response, {observe: 'response'});
     }
@@ -166,7 +175,7 @@ export class ProvidenciaService {
         return this.http
             .get<IProvidencia[]>(`${this.resourceUrl}/buscarNroReferencia`, { observe: 'response' })
             .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
-           }
+    }
 
     private convertDateFromClient(providencia: IProvidencia): IProvidencia {
         const copy: IProvidencia = Object.assign({}, providencia, {
