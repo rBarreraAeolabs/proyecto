@@ -1,0 +1,29 @@
+
+{
+    "pdisciplinarioApp": {
+        "fichaIngresoSdj" : {
+            "home": {
+                "title": "Ficha Ingreso Sdjs",
+                "createLabel": "Crear nuevo Ficha Ingreso Sdj",
+                "createOrEditLabel": "Crear o editar Ficha Ingreso Sdj"
+            },
+            "created": "Un nuevo Ficha Ingreso Sdj ha sido creado con el identificador {{ param }}",
+            "updated": "Un Ficha Ingreso Sdj ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Ficha Ingreso Sdj ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Ficha Ingreso Sdj {{ id }}?"
+            },
+            "detail": {
+                "title": "Ficha Ingreso Sdj"
+            },
+            "fechaInicio": "Fecha Inicio",
+            "observacion": "Observacion",
+            "plazo": "Plazo",
+            "fechaHasta": "Fecha Hasta",
+            "providencia": "Providencia",
+            "numeroReferencia": "Numero de Referencia",
+            "acciones": "Para",
+            "atentamente": "Atentamente"
+        }
+    }
+}

@@ -1,0 +1,49 @@
+<form name="deleteForm" (ngSubmit)="fiscalProrroga(providencia.id)">
+    <div class="modal-header">
+        <h4 class="modal-title" *ngIf="
+        providencia.etapa =='NUEVA_PROVIDENCIA' && providencia.requisito =='FISCAL_REDACTA_MEMO' ||
+        providencia.etapa =='PROVIDENCIA_SELECCION_FISCAL' && providencia.requisito =='FISCAL_REDACTA_MEMO'
+        ">Solicitud De Prorroga Uno</h4>
+        <h4 class="modal-title" *ngIf="
+        providencia.etapa =='PROVIDENCIA_PRORROGA' && providencia.requisito =='FISCAL_REDACTA_MEMO'
+        ">Solicitud De Prorroga Dos</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;
+        </button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <p id="jhi-responder-providencia-heading1" *ngIf="
+        providencia.etapa =='NUEVA_PROVIDENCIA' && providencia.requisito =='FISCAL_ACEPTO_Y_DA_INICIO' ||
+        providencia.etapa =='PROVIDENCIA_SELECCION_FISCAL' && providencia.requisito =='FISCAL_ACEPTO_Y_DA_INICIO'
+        ">
+            Seguro que desea solicitar prorroga a la providencia # {{providencia.id}}?
+        </p>
+        <p id="jhi-responder-providencia-heading" *ngIf="providencia.etapa =='PROVIDENCIA_PRORROGA' && providencia.requisito =='FISCAL_REDACTA_MEMO'">
+            Seguro que desea solicitar prorroga dos a la providencia # {{providencia.id}}?
+        </p>
+        <form>
+            <div class="form-group">
+                <label class="form-control-label" for="field_comentario">
+                    Cual Es El Motivo De La Prorroga ??
+                </label>
+                <textarea type="text" class="form-control" name="comentario" id="field_comentario"
+                          [(ngModel)]="observacionDerivacion">
+                    </textarea>
+            </div>
+            <div class="form-group" style="height: auto">
+                <label class="form-control-label">Adjuntar Archivos</label>
+                <jhi-file-upload-component (fileResponse)="getUploadedAdjuntos($event)"></jhi-file-upload-component>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+        <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success">
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;
+            <span *ngIf="isProrroga">Pedir Prorroga</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,24 @@
+
+{
+    "pdisciplinarioApp": {
+        "perfil" : {
+            "home": {
+                "title": "Perfiles",
+                "createLabel": "Crear nuevo Perfil",
+                "createOrEditLabel": "Crear o editar Perfil"
+            },
+            "created": "Un nuevo Perfil ha sido creado con el identificador {{ param }}",
+            "updated": "Un Perfil ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Perfil ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Perfil {{ id }}?"
+            },
+            "detail": {
+                "title": "Perfil"
+            },
+            "nombre": "Nombre",
+            "grupo": "Grupo",
+            "authorities": "Roles"
+        }
+    }
+}

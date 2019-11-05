@@ -1,0 +1,9 @@
+{
+    "pdisciplinarioApp": {
+        "TipoDerivacion" : {
+            "null": "",
+            "TIPO_UNO": "TIPO_UNO",
+            "TIPO_DOS": "TIPO_DOS"
+        }
+    }
+}

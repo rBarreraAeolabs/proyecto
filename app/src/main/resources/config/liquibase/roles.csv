@@ -1,0 +1,25 @@
+name;descripcion
+ROLE_INGRESAR_SOLICITUD;Ingresar solicitud
+ROLE_EDITAR_SOLICITUD;Editar solicitud
+ROLE_ASIGNAR_SOLICITUD;Asignar solicitud
+ROLE_ENVIAR_RESPUESTA;Responder solicitud
+ROLE_DERIVAR_SOLICITUD;Derivar solicitud
+ROLE_INGRESAR_ANTECEDENTE;Ingresar antecedente
+ROLE_REGRESAR_SOLICITUD;Regresar solicitud
+ROLE_VALIDAR_SOLICITUD;Validar solicitud
+ROLE_CERTIFICAR_SOLICITUD;Certificar solicitud
+ROLE_REALIZAR_ENTREGA_SOLICITUD;Realizar entrega de solicitud
+ROLE_EXPORTAR_EXCEL;Exportar a excel
+ROLE_GESTIONAR_USUARIOS;Gestión de usuarios
+ROLE_VER_TIPO_SOLICITUD;Ver tipo de solicitud
+ROLE_VER_REGION;Ver región
+ROLE_VER_TRIBUNAL;Ver tribunal
+ROLE_VER_SOLICITANTE;Ver solicitante
+ROLE_VER_PLANTILLA;Ver plantilla
+ROLE_VER_CALENDARIO;Ver calendario
+ROLE_VER_PERFILES;Ver perfiles
+ROLE_VER_GRUPOS;Ver grupos
+ROLE_DESPACHAR_SOLICITUD;Despachar solicitud
+ROLE_SISTEMA_PUEDE_AUTOASIGNARLE_SOLICITUDES;Recibir solicitudes de forma automática por el sistema.
+ROLE_IMPRIMIR_SOLICITUD;Imprimir solicitud.
+ROLE_VER_DASHBOARD;Ver dashboard.

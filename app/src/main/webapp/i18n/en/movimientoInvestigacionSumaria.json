@@ -1,0 +1,25 @@
+
+{
+    "pdisciplinarioApp": {
+        "movimientoInvestigacionSumaria" : {
+            "home": {
+                "title": "Movimiento Investigacion Sumarias",
+                "createLabel": "Create a new Movimiento Investigacion Sumaria",
+                "createOrEditLabel": "Create or edit a Movimiento Investigacion Sumaria"
+            },
+            "created": "A new Movimiento Investigacion Sumaria is created with identifier {{ param }}",
+            "updated": "A Movimiento Investigacion Sumaria is updated with identifier {{ param }}",
+            "deleted": "A Movimiento Investigacion Sumaria is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Movimiento Investigacion Sumaria {{ id }}?"
+            },
+            "detail": {
+                "title": "Movimiento Investigacion Sumaria"
+            },
+            "estadoAnterior": "Estado Anterior",
+            "estadoNuevo": "Estado Nuevo",
+            "fecha": "Fecha",
+            "investigacionSumaria": "Investigacion Sumaria"
+        }
+    }
+}
