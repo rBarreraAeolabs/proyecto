@@ -96,90 +96,119 @@ image_build:
     - docker info
     - mv "${WAR_NAME}.war" docker/app/
     - docker login registry.gitlab.com -u ifyum -p 9KhETpNGR9pT-rzC3RKq
-    - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
-    - docker pull "${CI_REGISTRY_IMAGE}:latest" || true
+#    - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
+#    - docker pull "${CI_REGISTRY_IMAGE}:latest" || true
     - docker build -t "${CI_REGISTRY_IMAGE}:latest" -f docker/app/Dockerfile docker/app/
     - docker tag "${CI_REGISTRY_IMAGE}:latest" "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
-    - test ! -z "${CI_COMMIT_TAG}" && docker push "${CI_REGISTRY_IMAGE}:latest"
+#    - test ! -z "${CI_COMMIT_TAG}" && docker push "${CI_REGISTRY_IMAGE}:latest"
     - docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
-#    - docker push "${CI_REGISTRY_IMAGE}:latest"
+    - docker push "${CI_REGISTRY_IMAGE}:latest"
 #    - docker build -t "${CI_REGISTRY_IMAGE}:dev" -f docker/dev.dockerfile docker/
 #    - docker push "${CI_REGISTRY_IMAGE}:dev"
 
-deploy_review:
-  image: lachlanevenson/k8s-kubectl:latest
-  stage: review
-  variables:
-    KUBECONFIG: /tmp/kubeconfig
-  cache: {}
-  only:
-    - merge_requests
-    - master
-  except:
-    - tags
-  environment:
-    name: review/$CI_BUILD_REF_NAME
-    url: http://$CI_ENVIRONMENT_SLUG-gitlab.com/ifyum/ifyum/view
-    on_stop: stop_review
-  script:
-    - echo $KUBECONFIG  
-    - echo "${KUBE_CONFIG_FILE}" > $KUBECONFIG
-    - cat $KUBECONFIG
-    - kubectl version
-    - cd kube/
-    - sed -i "s/__CI_ENVIRONMENT_SLUG__/${CI_ENVIRONMENT_SLUG}/" deployment.yaml service.yaml ingress.yaml 
-    - sed -i "s/__VERSION__/${CI_COMMIT_REF_NAME}/" deployment.yaml service.yaml ingress.yaml
-    - |
-      if kubectl apply -f deployment.yaml | grep -q unchanged; then
-          echo "=> Patching deployment to force image update."
-          kubectl patch -f deployment.yaml -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"ci-last-updated\":\"$(date +'%s')\"}}}}}"
-      else
-          echo "=> Deployment apply has changed the object, no need to force image update."
-      fi
-    - kubectl apply -f service.yaml || true
-    - kubectl apply -f ingress.yaml
-    - kubectl rollout status -f deployment.yaml
-    - kubectl get all,ing -l ref=${CI_ENVIRONMENT_SLUG}
+#deploy_review:
+#  image: lachlanevenson/k8s-kubectl:latest
+#  stage: review
+#  variables:
+#    KUBECONFIG: /tmp/kubeconfig
+#  cache: {}
+#  only:
+#    - merge_requests
+#    - master
+#  except:
+#    - tags
+#  environment:
+#    name: review/$CI_BUILD_REF_NAME
+#    url: http://$CI_ENVIRONMENT_SLUG-gitlab.com/ifyum/ifyum/view
+#    on_stop: stop_review
+#  script:
+#    - echo $KUBECONFIG
+#    - echo "${KUBE_CONFIG_FILE}" > $KUBECONFIG
+#    - cat $KUBECONFIG
+#    - kubectl version
+#    - cd kube/
+#    - sed -i "s/__CI_ENVIRONMENT_SLUG__/${CI_ENVIRONMENT_SLUG}/" deployment.yaml service.yaml ingress.yaml
+#    - sed -i "s/__VERSION__/${CI_COMMIT_REF_NAME}/" deployment.yaml service.yaml ingress.yaml
+#    - |
+#      if kubectl apply -f deployment.yaml | grep -q unchanged; then
+#          echo "=> Patching deployment to force image update."
+#          kubectl patch -f deployment.yaml -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"ci-last-updated\":\"$(date +'%s')\"}}}}}"
+#      else
+#          echo "=> Deployment apply has changed the object, no need to force image update."
+#      fi
+#    - kubectl apply -f service.yaml || true
+#    - kubectl apply -f ingress.yaml
+#    - kubectl rollout status -f deployment.yaml
+#    - kubectl get all,ing -l ref=${CI_ENVIRONMENT_SLUG}
+#
+#stop_review:
+#  image: lachlanevenson/k8s-kubectl:latest
+#  stage: review
+#  variables:
+#    GIT_STRATEGY: none
+#    KUBECONFIG: /tmp/kubeconfig
+#  when: manual
+#  only:
+#    - merge_requests
+#    - master
+#  except:
+#    - tags
+#  environment:
+#    name: review/$CI_BUILD_REF_NAME
+#    action: stop
+#  script:
+#    - echo $KUBECONFIG
+#    - echo "${KUBE_CONFIG_FILE}" > $KUBECONFIG
+#    - cat $KUBECONFIG
+#    - kubectl delete ing -l ref=${CI_ENVIRONMENT_SLUG}
+#    - kubectl delete all -l ref=${CI_ENVIRONMENT_SLUG}
+#
+#deploy_live:
+#  image: lachlanevenson/k8s-kubectl:latest
+#  stage: deploy
+#  environment:
+#    name: live
+#    url: https://ifyum.newci.com
+#  only:
+#    - tags
+#  when: manual
+#  script:
+#    - kubectl version
+#    - cd kube/
+#    - sed -i "s/__CI_ENVIRONMENT_SLUG__/${CI_ENVIRONMENT_SLUG}/" deployment.yaml mysql-pvc.yaml service.yaml ingress.yaml
+#    - sed -i "s/__VERSION__/${CI_COMMIT_REF_NAME}/" deployment.yaml mysql-pvc.yaml service.yaml ingress.yaml
+#    - kubectl apply -f deployment.yaml
+#    - kubectl apply -f service.yaml
+#    - kubectl apply -f mysql-pvc.yaml
+#    - kubectl apply -f ingress.yaml
+#    - kubectl rollout status -f deployment.yaml
+#    - kubectl get all,ing -l ref=${CI_ENVIRONMENT_SLUG}
 
-stop_review:
-  image: lachlanevenson/k8s-kubectl:latest
-  stage: review
-  variables:
-    GIT_STRATEGY: none
-    KUBECONFIG: /tmp/kubeconfig
-  when: manual
-  only:
-    - merge_requests
-    - master
-  except:
-    - tags
-  environment:
-    name: review/$CI_BUILD_REF_NAME
-    action: stop
-  script:
-    - echo $KUBECONFIG  
-    - echo "${KUBE_CONFIG_FILE}" > $KUBECONFIG
-    - cat $KUBECONFIG
-    - kubectl delete ing -l ref=${CI_ENVIRONMENT_SLUG}
-    - kubectl delete all -l ref=${CI_ENVIRONMENT_SLUG}
-
-deploy_live:
-  image: lachlanevenson/k8s-kubectl:latest
+deploy_demo:
+  image: dtzar/helm-kubectl:2.14.1
   stage: deploy
   environment:
-    name: live
-    url: https://ifyum.newci.com
+    name: demo
+    url: http://ifyum.demo.cl/
   only:
-    - tags
-  when: manual
+    - master
+  variables:
+    KUBECONFIG: /tmp/kubeconfig
   script:
+    # # install curl
+    # - apk --no-cache add curl
+    - helm version -c
+    - echo "${KUBE_CONFIG_FILE}" > $KUBECONFIG
     - kubectl version
-    - cd kube/
-    - sed -i "s/__CI_ENVIRONMENT_SLUG__/${CI_ENVIRONMENT_SLUG}/" deployment.yaml mysql-pvc.yaml service.yaml ingress.yaml 
-    - sed -i "s/__VERSION__/${CI_COMMIT_REF_NAME}/" deployment.yaml mysql-pvc.yaml service.yaml ingress.yaml
-    - kubectl apply -f deployment.yaml
-    - kubectl apply -f service.yaml
-    - kubectl apply -f mysql-pvc.yaml
-    - kubectl apply -f ingress.yaml
-    - kubectl rollout status -f deployment.yaml
-    - kubectl get all,ing -l ref=${CI_ENVIRONMENT_SLUG}
+    # generate manifests for chart
+    - cd .kube/
+    - mkdir -p generated
+    # - helm template --name rcpdisciplinario --namespace default --values rcpdisciplinario/values.yaml --set "app.image.tag=master-${CI_COMMIT_SHORT_SHA}" rcpdisciplinario/ > generated/template-${CI_COMMIT_SHORT_SHA}.yaml
+    - helm upgrade --install --dry-run --namespace dev-gitlab-review --values rcpdisciplinario/values.yaml --set "app.image.tag=master-${CI_COMMIT_SHORT_SHA}" rcpdisciplinario rcpdisciplinario/
+    - helm upgrade --install --force --namespace dev-gitlab-review --values rcpdisciplinario/values.yaml --set "app.image.tag=master-${CI_COMMIT_SHORT_SHA}" rcpdisciplinario rcpdisciplinario/ || true
+  #   - helm get manifest rcpdisciplinario > generated/manifest-${CI_COMMIT_SHORT_SHA}.yaml || true
+  # artifacts:
+  #   name: "${CI_BUILD_REF_NAME}"
+  #   paths:
+  #     - ".kube/generated/"
+
