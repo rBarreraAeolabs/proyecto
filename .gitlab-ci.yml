@@ -20,7 +20,7 @@ before_script:
   - chmod +x app/npm
 
 stages:
-  - test
+#   - test
   - build
   - release
   - review
@@ -35,33 +35,33 @@ stages:
 #    - cd ifyum/
 #     - docker-compose -f docker/dev.yml up -d
 
-test_java:
-  stage: test
-  allow_failure: true
-  except:
-    - tags
-  script:
-    - cd app/
-    - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean test -Dskip.npm -Dskip.webpack
+# test_java:
+#   stage: test
+#   allow_failure: true
+#   except:
+#     - tags
+#   script:
+#     - cd app/
+#     - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean test -Dskip.npm -Dskip.webpack
 
-test_javascript:
-  stage: test
-  allow_failure: true
-  except:
-    - tags
-  script:
-    - cd app/
-    - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean generate-resources -DskipTests
-    - ./npm run test
-test_angular:
-  stage: test
-  allow_failure: true
-  except:
-    - tags
-  script:
-    - cd app/
-    - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean generate-resources -DskipTests
-    - ./npm start
+# test_javascript:
+#   stage: test
+#   allow_failure: true
+#   except:
+#     - tags
+#   script:
+#     - cd app/
+#     - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean generate-resources -DskipTests
+#     - ./npm run test
+# test_angular:
+#   stage: test
+#   allow_failure: true
+#   except:
+#     - tags
+#   script:
+#     - cd app/
+#     - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean generate-resources -DskipTests
+#     - ./npm start
 compile:
   stage: build
   only:
