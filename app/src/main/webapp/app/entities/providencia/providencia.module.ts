@@ -110,10 +110,10 @@ import {
     ProvidenciaFiscalRemiteExpedienteComponent,
     ProvidenciaFiscalRemiteExpedientePopupComponent
 } from 'app/entities/providencia/providencia-fiscal-remite-expediente.component';
+// directive
 import {
-    ProvidenciasobreseerComponent,
-    ProvidenciasobreseerPopupComponent
-} from 'app/entities/providencia/providencia-sobreseer.component';
+    ReadMoreDirective,
+} from 'app/entities/providencia/read-more.directive';
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -183,9 +183,7 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaNoProponePopupComponent,
         ProvidenciaNoReabroComponent,
         ProvidenciaNoReabroPopupComponent,
-
-        ProvidenciasobreseerComponent,
-        ProvidenciasobreseerPopupComponent
+        ReadMoreDirective
 
     ],
     entryComponents: [
@@ -239,9 +237,7 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaNoProponeComponent,
         ProvidenciaNoProponePopupComponent,
         ProvidenciaNoReabroComponent,
-        ProvidenciaNoReabroPopupComponent,
-        ProvidenciasobreseerComponent,
-        ProvidenciasobreseerPopupComponent
+        ProvidenciaNoReabroPopupComponent
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

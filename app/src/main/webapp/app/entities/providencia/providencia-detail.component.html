@@ -172,7 +172,7 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
-                                                    <span >Termino de Probatorio</span>
+                                                    <span > termino de Probatorio</span>
                                                 </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.siDeAcuerdo"
@@ -188,7 +188,7 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
-                                                    <span >No Reabre</span>
+                                                    <span >No Reabro</span>
                                                 </a>   <a
                                                 class="dropdown-item" *ngIf="actionsPermitted.noPropone"
                                                 [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noPropone'} }]"
@@ -212,7 +212,7 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
-                                                    <span> Fiscal Formula Cargos</span>
+                                                    <span> sobreseer</span>
 
                                                 </a>
                                                 <a
@@ -430,8 +430,21 @@
                                                     <span>Comentario</span>
                                                 </dt>
                                                 <dd *ngIf="providencia.comentario">
-                                                    <P class="text-center text-justify">{{providencia.comentario}}</P>
-                                                    <!--                                                    <button (click)="SeguirLeyendo()" type="button" class="btn btn-info btn-xs">Seguir Leyendo</button>-->
+
+                                                    <P style="width: 800px;" #textContent id="read-more" >
+
+                                                        {{providencia.comentario}}
+
+
+                                                    </P>
+
+                                                    <div class="read-more-link">
+                                                        <a readMore [readMore-length]="70" [readMore-element]="textContent">
+                                                            <span class="less">menos<i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                                            <span class="more">leer mas <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                                        </a>
+                                                    </div>
+
                                                 </dd>
                                                 <dd class="d-flex justify-content-center" *ngIf="!providencia.comentario">
                                                     <span style="color:red">SIN COMENTARIO</span>

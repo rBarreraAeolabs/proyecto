@@ -20,6 +20,7 @@ const ENTITY_STATES = [...movimientoProvidenciaRoute, ...movimientoProvidenciaPo
         MovimientoProvidenciaUpdateComponent,
         MovimientoProvidenciaDeleteDialogComponent,
         MovimientoProvidenciaDeletePopupComponent
+
     ],
     entryComponents: [
         MovimientoProvidenciaUpdateComponent,
