@@ -2,7 +2,7 @@
     "pdisciplinarioApp": {
         "TipoCreacion" : {
             "null": "",
-            "sobreceder": "SOBRECEDER",
+            "sobreceder": "SOBRESEER",
             "absolver": "ABSOLVER",
             "reabrir":  "REABRIR",
             "sancionar": "SANCIONAR"

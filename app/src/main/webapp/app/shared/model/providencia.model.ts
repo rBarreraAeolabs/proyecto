@@ -164,6 +164,7 @@ export interface IProvidencia {
     id?: number;
     numeroReferencia?: number;
     numeroProvidencia?: number;
+    folio?: number;
     estadoActual?: EstadoProvidencia;
     etapa?: EtapaProvidencia;
     subEtapa?: EstadoProvidencia;
@@ -257,6 +258,11 @@ export interface IProvidenciaUpdateNroReferencia {
     providenciaId?: number;
     numeroReferencia?: number;
 }
+export interface IProvidenciaUpdateFolio {
+    providenciaId?: number;
+    folio?: number;
+}
+
 export interface IProvidenciaUpdateTipoSolicitud {
     providenciaId?: number;
     tipoSolicitud?: string;
