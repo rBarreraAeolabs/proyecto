@@ -95,7 +95,7 @@ image_build:
   script:
     - docker info
     - mv "${WAR_NAME}.war" docker/app/
-    - docker login registry.gitlab.com -u ifyum -p 9KhETpNGR9pT-rzC3RKq
+    - docker login registry.gitlab.com -u ifyum -p 8ZoY1w_iQ254VfJN2QQx 
 #    - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
 #    - docker pull "${CI_REGISTRY_IMAGE}:latest" || true
     - docker build -t "${CI_REGISTRY_IMAGE}:latest" -f docker/app/Dockerfile docker/app/
