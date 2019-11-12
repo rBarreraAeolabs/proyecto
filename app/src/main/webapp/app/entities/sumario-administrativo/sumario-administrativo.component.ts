@@ -3,10 +3,8 @@ import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/ht
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
-
 import { ISumarioAdministrativo } from 'app/shared/model/sumario-administrativo.model';
 import { Principal } from 'app/core';
-
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { SumarioAdministrativoService } from './sumario-administrativo.service';
 

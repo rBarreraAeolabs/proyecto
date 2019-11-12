@@ -1,8 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-    IProvidencia,
-    IProvidenciaUpdateTipoSolicitud
-} from 'app/shared/model/providencia.model';
+import { IProvidencia, IProvidenciaUpdateTipoSolicitud } from 'app/shared/model/providencia.model';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JhiEventManager } from 'ng-jhipster';

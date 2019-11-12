@@ -36,6 +36,17 @@ import {
     ProvidenciaRelacionarDialogComponent,
     ProvidenciaRelacionarPopupComponent
 } from './providencia-relacionar-dialog.component';
+
+import {
+    ProvidenciaTerminoProbatorioComponent,
+    ProvidenciaTerminoProbatorioPopupComponent
+} from './providencia-termino-probatorio.component';
+
+import {
+    ProvidenciaSiDeAcuerdoComponent,
+    ProvidenciaSiDeAcuerdoPopupComponent
+} from './providencia-si-de-acuerdo.component';
+
 import {
     ProvidenciaAsignarFiscalComponent,
     ProvidenciaAsignarFiscalPopupComponent
@@ -64,6 +75,16 @@ import {
     ProvidenciaApelaComponent,
     ProvidenciaApelaPopupComponent
 } from 'app/entities/providencia/providencia-apela.component';
+import {
+    ProvidenciaNoProponeComponent,
+    ProvidenciaNoProponePopupComponent
+} from 'app/entities/providencia/providencia-no-propone.component';
+
+import {
+
+    ProvidenciaNoReabroComponent,
+    ProvidenciaNoReabroPopupComponent
+}  from 'app/entities/providencia/providencia-no-reabro.component';
 
 import {
     ProvidenciaNoApelaComponent,
@@ -89,6 +110,10 @@ import {
     ProvidenciaFiscalRemiteExpedienteComponent,
     ProvidenciaFiscalRemiteExpedientePopupComponent
 } from 'app/entities/providencia/providencia-fiscal-remite-expediente.component';
+// directive
+import {
+    ReadMoreDirective,
+} from 'app/entities/providencia/read-more.directive';
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -149,7 +174,16 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaFiscalRemiteExpedienteComponent,
         ProvidenciaFiscalRemiteExpedientePopupComponent,
         ProvidenciaFiscalFormulaCargosComponent,
-        ProvidenciaFiscalFormulaCargosPopupComponent
+        ProvidenciaFiscalFormulaCargosPopupComponent,
+        ProvidenciaTerminoProbatorioComponent,
+        ProvidenciaTerminoProbatorioPopupComponent,
+        ProvidenciaSiDeAcuerdoComponent,
+        ProvidenciaSiDeAcuerdoPopupComponent,
+        ProvidenciaNoProponeComponent,
+        ProvidenciaNoProponePopupComponent,
+        ProvidenciaNoReabroComponent,
+        ProvidenciaNoReabroPopupComponent,
+        ReadMoreDirective
 
     ],
     entryComponents: [
@@ -195,7 +229,15 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaFiscalRemiteExpedienteComponent,
         ProvidenciaFiscalRemiteExpedientePopupComponent,
         ProvidenciaFiscalFormulaCargosComponent,
-        ProvidenciaFiscalFormulaCargosPopupComponent
+        ProvidenciaFiscalFormulaCargosPopupComponent,
+        ProvidenciaTerminoProbatorioComponent,
+        ProvidenciaTerminoProbatorioPopupComponent,
+        ProvidenciaSiDeAcuerdoComponent,
+        ProvidenciaSiDeAcuerdoPopupComponent,
+        ProvidenciaNoProponeComponent,
+        ProvidenciaNoProponePopupComponent,
+        ProvidenciaNoReabroComponent,
+        ProvidenciaNoReabroPopupComponent
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

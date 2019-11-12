@@ -1,11 +1,6 @@
-/**
- * Created by sneiraillanes on 02-05-2019.
- */
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { IProvidencia } from 'app/shared/model/providencia.model';
-
 import { JhiAlertService } from 'ng-jhipster';
 import {ProvidenciaService} from './providencia.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';

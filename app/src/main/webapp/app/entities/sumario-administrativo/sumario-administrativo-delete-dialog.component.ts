@@ -1,9 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
-
 import { ISumarioAdministrativo } from 'app/shared/model/sumario-administrativo.model';
 import { SumarioAdministrativoService } from './sumario-administrativo.service';
 

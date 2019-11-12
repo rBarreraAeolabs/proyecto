@@ -86,7 +86,7 @@ export class ProvidenciaNoApelaComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-fiscal-prorroga-popup',
+    selector: 'jhi-providencia-no-apela-popup',
     template: ''
 })
 export class ProvidenciaNoApelaPopupComponent implements OnInit, OnDestroy {

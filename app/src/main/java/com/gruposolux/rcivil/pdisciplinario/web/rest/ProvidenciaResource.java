@@ -179,20 +179,54 @@ public class ProvidenciaResource {
     public ResponseEntity<Void> fiscalNotificaCierre (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("ENTRO AL fiscal: ");
         this.providenciaService.fiscalNotificaCierre(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
+           return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     @PostMapping("/providencias/formularCargos")
     @Timed
     public ResponseEntity<Void> formularCargos (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("ENTRO AL fiscal formula cargos: ");
+        log.debug("ENTRO AL formularCargos: ");
         this.providenciaService.formularCargos(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
+
+    @PostMapping("/providencias/terminoProbatorio")
+    @Timed
+    public ResponseEntity<Void> terminoProbatorio (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO a terminoProbatorio: ");
+        this.providenciaService.terminoProbatorio(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/siDeAcuerdo")
+    @Timed
+    public ResponseEntity<Void> siDeAcuerdo (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO a deAcuerdo: ");
+        this.providenciaService.siDeAcuerdo(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/noReabro")
+    @Timed
+    public ResponseEntity<Void> noReabro (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO a noReabro: ");
+        this.providenciaService.noReabro(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/noPropone")
+    @Timed
+    public ResponseEntity<Void> noPropone (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO a noPropone: ");
+        this.providenciaService.noPropone(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+
     @PostMapping("/providencias/remiteExpediente")
     @Timed
     public ResponseEntity<Void> remiteExpediente (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("ENTRO AL remite expediente: ");
+        log.debug("ENTRO AL fiscal: ");
         this.providenciaService.remiteExpediente(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
@@ -428,16 +462,16 @@ public class ProvidenciaResource {
     // Metodo permite obtener todas las providencias asociadas a un Numero de Referencia
     /**
      * el metodo  @GetMapping es para en viar datos al front sin que el nos envie nada
-     */
+      */
 
     @GetMapping("/providencias/buscarNroReferencia")
     @Timed
     public ResponseEntity<Set<ProvidenciaDTO>> getnroReferencia() {
         log.debug("ruben te da el numero de referencia hola: {}");
         Set<ProvidenciaDTO> providenciaDTOList = providenciaService.findAllNro();
-        log.debug("ruben te da la lista"+providenciaDTOList);
+            log.debug("ruben te da la lista"+providenciaDTOList);
         return new ResponseEntity<>(this.providenciaService.findAllNro(), HttpStatus.OK);
-    }
+  }
 
     /**
      *  el metodo @PostMapping nos permite recibir un dato del front y tambien devolver algo el put hace lo mismo pero es una mala practica

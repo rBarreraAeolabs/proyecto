@@ -2,13 +2,12 @@
  * Created by sneiraillanes on 10-05-2019.
  */
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {IProvidencia, IProvidenciaResponse} from 'app/shared/model/providencia.model';
+import { IProvidencia } from 'app/shared/model/providencia.model';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProvidenciaService } from 'app/entities/providencia/providencia.service';
 import { JhiEventManager } from 'ng-jhipster';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import {UserService} from '../../core/user/user.service';
 
 @Component({
     selector: 'jhi-providencia-asignar-fiscal',

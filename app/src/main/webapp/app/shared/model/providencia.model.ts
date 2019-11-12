@@ -1,9 +1,7 @@
 import { Moment } from 'moment';
-import { IDerivacion } from 'app/shared/model//derivacion.model';
 import { IDocumento } from 'app/shared/model//documento.model';
 import { IAdjunto } from 'app/shared/model//adjunto.model';
 import { IMovimientoProvidencia } from 'app/shared/model//movimiento-providencia.model';
-import { IGrupo } from 'app/shared/model//grupo.model';
 import {IEntidad} from './entidad.model';
 
 export const enum EstadoProvidencia {
@@ -69,41 +67,6 @@ export const enum EstadoProvidencia {
     IJ_PROVIDENCIA_ABSORVER= 'IJ_PROVIDENCIA_ABSORVER',
     IJ_PROVIDENCIA_REABRIR= 'IJ_PROVIDENCIA_REABRIR',
     IJ_PROVIDENCIA_SANCIONAR= 'IJ_PROVIDENCIA_SANCIONAR',
-    ESTADO_1 = 'ESTADO_1',
-    ESTADO_2 = 'ESTADO_2',
-    ESTADO_3 = 'ESTADO_3',
-    ESTADO_4 = 'ESTADO_4',
-    ESTADO_5 = 'ESTADO_5',
-    ESTADO_6 = 'ESTADO_6',
-    ESTADO_7 = 'ESTADO_7',
-    ESTADO_8 = 'ESTADO_8',
-    ESTADO_9 = 'ESTADO_9',
-    ESTADO_10 = 'ESTADO_10',
-    ESTADO_11 = 'ESTADO_11',
-    ESTADO_12 = 'ESTADO_12',
-    ESTADO_13 = 'ESTADO_13',
-    ESTADO_14 = 'ESTADO_14',
-    ESTADO_15 = 'ESTADO_15',
-    ESTADO_16 = 'ESTADO_16',
-    ESTADO_17 = 'ESTADO_17',
-    ESTADO_18 = 'ESTADO_18',
-    ESTADO_19 = 'ESTADO_19',
-    ESTADO_20 = 'ESTADO_20',
-    ESTADO_21 = 'ESTADO_21',
-    ESTADO_22 = 'ESTADO_22',
-    ESTADO_23 = 'ESTADO_23',
-    ESTADO_24 = 'ESTADO_24',
-    ESTADO_25 = 'ESTADO_25',
-    ESTADO_26 = 'ESTADO_26',
-    ESTADO_27 = 'ESTADO_27',
-    ESTADO_28 = 'ESTADO_28',
-    ESTADO_29 = 'ESTADO_29',
-    ESTADO_30 = 'ESTADO_30',
-    ESTADO_31 = 'ESTADO_31',
-    ESTADO_32 = 'ESTADO_32',
-    ESTADO_33 = 'ESTADO_33',
-    ESTADO_34 = 'ESTADO_34',
-    ESTADO_35 = 'ESTADO_35',
 
 }
 
@@ -122,7 +85,7 @@ export const enum EtapaProvidencia {
 }
 
 export const enum AccionesProvidencia {
-    CREAR_PROVIDENCIA = 'SUMARIO_ADMINISTRATIVO',
+    CREAR_PROVIDENCIA = 'CREAR_PROVIDENCIA',
     DGD_ASIGNA_NUMERO_REFERENCIA = 'DGD_ASIGNA_NUMERO_REFERENCIA',
     SUB_DIRECCION_RECIBE_PROVIDENCIA = 'SUB_DIRECCION_RECIBE_PROVIDENCIA',
     SUB_DIRECCION_ASIGNA = 'SUB_DIRECCION_ASIGNA',
@@ -161,7 +124,8 @@ export const enum AccionesProvidencia {
     FISCAL_NOTIFICADO = 'FISCAL_NOTIFICADO',
     FISCAL_REDACTA_MEMO= 'FISCAL_REDACTA_MEMO',
     SECRETARIA_DESPACHA_A_DGD= 'SECRETARIA_DESPACHA_A_DGD',
-    FISCAL_ACEPTO_Y_DA_INICIO= 'FISCAL_ACEPTO_Y_DA_INICIO'
+    FISCAL_ACEPTO_Y_DA_INICIO= 'FISCAL_ACEPTO_Y_DA_INICIO',
+    INVESTIGACION= 'INVESTIGACION'
 }
 
 export const enum TipoProvidencia {
@@ -223,7 +187,7 @@ export interface IProvidencia {
     ordenJuridico?: OrdenJuridico;
     apelacion?: Apelacion;
     standby?: boolean;
-    sumaAdjuntos?: number;
+    totalAdjuntos?: number;
 }
 
 export class Providencia implements IProvidencia {
@@ -253,7 +217,8 @@ export class Providencia implements IProvidencia {
         public ordenJuridico?: OrdenJuridico,
         public apelacion?: Apelacion,
         public standby?: boolean,
-        public sumaAdjuntos?:number,
+        public totalAdjuntos?: number,
+
 ) {}
 }
 

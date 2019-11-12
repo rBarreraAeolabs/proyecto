@@ -17,7 +17,8 @@ import java.util.Optional;
 @Repository
 public interface NotificacionInBrowserRepository extends JpaRepository<NotificacionInBrowser, Long> {
 
-    @Query("SELECT n FROM NotificacionInBrowser n WHERE n.user.id = :userId")
+//    @Query("SELECT n FROM NotificacionInBrowser n WHERE n.user.id = :userId")
+    @Query(value="SELECT * FROM notificacion_in_browser n  WHERE n.user_id =:userId and  n.visto=false  order by n.created_at desc limit 5",nativeQuery = true)
     List<NotificacionInBrowser> TraerNotificacionesPorUsuario(@Param("userId") Long userId);
 
     @Query("SELECT n FROM NotificacionInBrowser n where n.id=:notiId")

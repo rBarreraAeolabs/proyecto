@@ -29,6 +29,10 @@ import {ProvidenciaInculpadoEnviaMemoPopupComponent} from 'app/entities/providen
 import {ProvidenciaInculpadoNoEnviaMemoPopupComponent} from 'app/entities/providencia/providencia-inculpado-no-envia-memo.component';
 import {ProvidenciaFiscalFormulaCargosPopupComponent} from 'app/entities/providencia/providencia-fiscal-formula-cargos.component';
 import {ProvidenciaFiscalRemiteExpedientePopupComponent} from 'app/entities/providencia/providencia-fiscal-remite-expediente.component';
+import {ProvidenciaTerminoProbatorioPopupComponent} from 'app/entities/providencia/providencia-termino-probatorio.component';
+import {ProvidenciaSiDeAcuerdoPopupComponent} from 'app/entities/providencia/providencia-si-de-acuerdo.component';
+import {ProvidenciaNoReabroPopupComponent} from 'app/entities/providencia/providencia-no-reabro.component';
+import {ProvidenciaNoProponePopupComponent} from "app/entities/providencia/providencia-no-propone.component";
 
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
@@ -57,6 +61,8 @@ export const providenciaRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     },
+
+
     {
         path: 'providencia/:id/view',
         component: ProvidenciaDetailComponent,
@@ -121,6 +127,58 @@ export const providenciaPopupRoute: Routes = [
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
+    {
+        path: 'providencia/:id/siDeAcuerdo',
+        component: ProvidenciaSiDeAcuerdoPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/noReabro',
+        component: ProvidenciaNoReabroPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },{
+        path: 'providencia/:id/noPropone',
+        component: ProvidenciaNoProponePopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/terminoProbatorio',
+        component: ProvidenciaTerminoProbatorioPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+
     {
         path: 'providencia/:id/responder',
         component: ProvidenciaResponderPopupComponent,

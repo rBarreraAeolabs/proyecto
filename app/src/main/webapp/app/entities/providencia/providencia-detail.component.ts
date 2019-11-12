@@ -32,7 +32,11 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
         tipoSolicitud: false,
         prorroga: false,
         apela: false,
-        noApela: false
+        noApela: false,
+        fiscalNotificaCierre: false,
+        inculpadoEnviaMemo: false,
+        inculpadoNoEnviaMemo: false
+
     };
     refresh = false;
     respuesta: IRespuesta;
@@ -74,7 +78,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             this.providencia = providencia;
-            console.log('permisos para continuar', this.providencia.documentos);
+            console.log('cantidad Adjuntos', this.providencia.totalAdjuntos);
 
             // this.providencia.documentos.forEach(documento => {
             //     if (documento.tipoPlantilla === 'RESOLUCION') {
@@ -193,47 +197,47 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
 
         console.log('Respondiendo', this.respuesta);
 
-        if (this.providencia.estadoActual === 'ESTADO_6') {
-
-            if (this.respuesta.documentos != null && this.respuesta.documentos.length >= 2) {
-
-                let countMemos = 0;
-                let countResoluciones = 0;
-
-                this.respuesta.documentos.forEach(doc => {
-                    if (doc.tipoPlantilla === 'MEMORANDUM') {
-                        countMemos += 1;
-                    } else if (doc.tipoPlantilla === 'RESOLUCION') {
-                        countResoluciones += 1;
-                    }
-                });
-
-                if (countMemos > 0 && countResoluciones > 0) {
-                    this.disableResponder = false;
-                }
-            } else {
-                this.disableResponder = true;
-            }
-
-        } else if (this.providencia.estadoActual === 'ESTADO_16') {
-
-            if (this.respuesta.documentos != null && this.respuesta.documentos.length > 0) {
-
-                let countNotificaciones = 0;
-
-                this.respuesta.documentos.forEach(doc => {
-                    if (doc.tipoPlantilla === 'NOTIFICACION') {
-                        countNotificaciones += 1;
-                    }
-                });
-
-                if (countNotificaciones >= 1) {
-                    this.disableResponder = false;
-                }
-            } else {
-                this.disableResponder = true;
-            }
-        }
+        // if (this.providencia.estadoActual === 'ESTADO_6') {
+        //
+        //     if (this.respuesta.documentos != null && this.respuesta.documentos.length >= 2) {
+        //
+        //         let countMemos = 0;
+        //         let countResoluciones = 0;
+        //
+        //         this.respuesta.documentos.forEach(doc => {
+        //             if (doc.tipoPlantilla === 'MEMORANDUM') {
+        //                 countMemos += 1;
+        //             } else if (doc.tipoPlantilla === 'RESOLUCION') {
+        //                 countResoluciones += 1;
+        //             }
+        //         });
+        //
+        //         if (countMemos > 0 && countResoluciones > 0) {
+        //             this.disableResponder = false;
+        //         }
+        //     } else {
+        //         this.disableResponder = true;
+        //     }
+        //
+        // } else if (this.providencia.estadoActual === 'ESTADO_16') {
+        //
+        //     if (this.respuesta.documentos != null && this.respuesta.documentos.length > 0) {
+        //
+        //         let countNotificaciones = 0;
+        //
+        //         this.respuesta.documentos.forEach(doc => {
+        //             if (doc.tipoPlantilla === 'NOTIFICACION') {
+        //                 countNotificaciones += 1;
+        //             }
+        //         });
+        //
+        //         if (countNotificaciones >= 1) {
+        //             this.disableResponder = false;
+        //         }
+        //     } else {
+        //         this.disableResponder = true;
+        //     }
+        // }
     }
 
     ngOnDestroy() {

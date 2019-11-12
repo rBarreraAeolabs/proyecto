@@ -1,6 +1,3 @@
-/**
- * Created by sneiraillanes on 01-04-2019.
- */
 import {Component, OnInit, OnDestroy, Input} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +16,6 @@ export class RespuestaBitacoraModalComponent implements OnInit, OnDestroy {
 
     @Input() movimientoProvidenciaId: number;
     respuesta: IRespuesta;
-    private externalWindow = null;
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,

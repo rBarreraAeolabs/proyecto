@@ -32,7 +32,6 @@ export class RespuestaUpdateComponent implements OnInit {
     documentos: IDocumento[] = [];
     showEditorTemplate = false;
     plantillas: IPlantilla[];
-    showMessageOtherUser = false;
 
     constructor(
         private respuestaService: RespuestaService,
