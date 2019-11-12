@@ -100,6 +100,13 @@
                                                     <span *ngIf="providencia.numeroReferencia == null"> Asignar Número de Referencia</span>
                                                     <span *ngIf="providencia.numeroReferencia !== null"> Editar Número de Referencia</span>
                                                 </a>
+                                                <a class="dropdown-item" *ngIf="actionsPermitted.folio && providencia.folio === null"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/folio'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span *ngIf="providencia.folio == null">Dar Nº de folio</span>
+                                                </a>
 
 
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.tipoSolicitud"
@@ -116,7 +123,7 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span *ngIf="isProrroga"> Prorroga Uno</span>
+                                                    <span *ngIf="isProrroga"> Prorroga </span>
                                                     <span *ngIf="!isProrroga"> Prorroga Dos</span>
                                                 </a>
                                                 <a
@@ -125,7 +132,7 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span *ngIf="isNotificaCierre"> Notificar Cierre De Investigacion</span>
+                                                    <span *ngIf="isNotificaCierre">Cerrar Investigacion</span>
                                                 </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.apela"
@@ -162,8 +169,17 @@
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/inculpadoNoEnviaMemo'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
-                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                ><fa-icon style="color: #F51009;" [icon]="'check-circle'"></fa-icon>&nbsp;
                                                     <span> Inculpado No Envia Memo </span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.notificaDemandado && providencia.folio !== null"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/updNotificaInculpado'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span>Notificar Inculpado </span>
 
                                                 </a>
                                                 <a
@@ -171,7 +187,7 @@
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/terminoProbatorio'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
-                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                ><fa-icon style="color: #F51009;" [icon]="'check-circle'"></fa-icon>&nbsp;
                                                     <span >Termino de Probatorio</span>
                                                 </a>
                                                 <a
@@ -187,28 +203,19 @@
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noReabro'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
-                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                ><fa-icon style="color: #FF5733;" [icon]="'check-circle'"></fa-icon>&nbsp;
                                                     <span >No Reabre</span>
                                                 </a>   <a
                                                 class="dropdown-item" *ngIf="actionsPermitted.noPropone"
                                                 [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noPropone'} }]"
                                                 replaceUrl="true"
                                                 queryParamsHandling="merge"
-                                            ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                            ><fa-icon style="color: #E1E934;" [icon]="'check-circle'"></fa-icon>&nbsp;
                                                 <span >No Propone</span>
                                             </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.formularCargos"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/formulaCargos'} }]"
-                                                    replaceUrl="true"
-                                                    queryParamsHandling="merge"
-                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
-                                                    <span> Fiscal Formula Cargos</span>
-
-                                                </a>
-                                                <a
-                                                    class="dropdown-item" *ngIf="actionsPermitted.sobreseer"
-                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/sobreseer'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
@@ -430,8 +437,21 @@
                                                     <span>Comentario</span>
                                                 </dt>
                                                 <dd *ngIf="providencia.comentario">
-                                                    <P class="text-center text-justify">{{providencia.comentario}}</P>
-                                                    <!--                                                    <button (click)="SeguirLeyendo()" type="button" class="btn btn-info btn-xs">Seguir Leyendo</button>-->
+
+                                                    <P style="width: 800px;" #textContent id="read-more" >
+
+                                                        {{providencia.comentario}}
+
+
+                                                    </P>
+
+                                                    <div class="read-more-link">
+                                                        <a readMore [readMore-length]="70" [readMore-element]="textContent">
+                                                            <span class="less">menos<i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                                            <span class="more">leer mas <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                                        </a>
+                                                    </div>
+
                                                 </dd>
                                                 <dd class="d-flex justify-content-center" *ngIf="!providencia.comentario">
                                                     <span style="color:red">SIN COMENTARIO</span>

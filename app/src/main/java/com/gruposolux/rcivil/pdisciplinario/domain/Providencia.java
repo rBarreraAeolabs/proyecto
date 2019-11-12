@@ -45,6 +45,11 @@ public class Providencia implements Serializable {
     @JsonIgnore
     private Long numeroDgdp;
 
+    @Column(name = "folio")
+    @JsonIgnore
+    private Long folio;
+
+
     @Column(name = "numero_dgd")
     @JsonIgnore
     private Long numeroDgd;
@@ -162,6 +167,12 @@ public class Providencia implements Serializable {
 
     public void setNumeroDgdp(Long numeroDgdp) {
         this.numeroDgdp = numeroDgdp;
+    }
+
+    public Long getFolio() {return folio;
+    }
+
+    public void setFolio(Long folio) {this.folio = folio;
     }
 
     public Long getNumeroDgd() {

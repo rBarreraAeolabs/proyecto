@@ -24,6 +24,8 @@ public class DetalleProvidenciaDTO  {
 
     private Long numeroDgdp;
 
+    private Long folio;
+
     private Long numeroDgd;
 
     private String estadoActual;
@@ -75,6 +77,7 @@ public class DetalleProvidenciaDTO  {
         Long numeroReferencia,
         Long numeroProvidencia,
         Long numeroDgdp,
+        Long folio,
         Long numeroDgd,
         String estadoActual,
         EstadoProvidencia etapa,
@@ -95,6 +98,7 @@ public class DetalleProvidenciaDTO  {
         this.numeroReferencia = numeroReferencia;
         this.numeroProvidencia = numeroProvidencia;
         this.numeroDgdp = numeroDgdp;
+        this.folio = folio;
         this.numeroDgd = numeroDgd;
         this.estadoActual = estadoActual;
         this.etapa = etapa;
@@ -150,8 +154,17 @@ public class DetalleProvidenciaDTO  {
         this.numeroDgdp = numeroDgdp;
     }
 
+
     public Long getNumeroDgd() {
         return numeroDgd;
+    }
+
+    public Long getFolio() {
+        return folio;
+    }
+
+    public void setFolio(Long folio) {
+        this.folio = folio;
     }
 
     public void setNumeroDgd(Long numeroDgd) {
@@ -335,6 +348,7 @@ public class DetalleProvidenciaDTO  {
             ", numeroReferencia=" + numeroReferencia +
             ", numeroProvidencia=" + numeroProvidencia +
             ", numeroDgdp=" + numeroDgdp +
+            ", folio=" + folio +
             ", numeroDgd=" + numeroDgd +
             ", estadoActual='" + estadoActual + '\'' +
             ", etapa=" + etapa +
