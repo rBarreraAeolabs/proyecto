@@ -1,0 +1,52 @@
+{
+    "name": "SumarioAdministrativo",
+    "fields": [
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaCreado",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "fechaIngreso",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "estado",
+            "fieldType": "EstadoSumarioAdministrativo",
+            "fieldValues": "PENDIENTE_ASIGNAR_FISCAL,PENDIENTE_ACEPTAR_FISCAL,INICIO_DE_SUMARIO,INVESTIGACION_EN_CURSO,SOBRE_SEIMIENTO1,PENDIENTE_DIRECTOR1,REALIZAR_DILIGENCIAS1,RETRO_TRAER1,FORMULA_CARGOS,PENDIENTE_INCULPADO,PENDIENTE_FISCAL,SONBRE_SEIMIENTO2,REALIZAR_DILIGENCIAS2,RETRO_TRAER2,RECURSO_REPOSICION,PENDIENTE_DIRECTOR2,TOMA_DE_RAZON,APLICAR_MEDIDAS,PENDIENTE_DIRECTOR3,PENDIENTE_DIRECTOR4,ELEVA_SUMARIO,FINALIZADO",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "providencia",
+            "otherEntityName": "providencia",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "fiscalAsignado",
+            "otherEntityName": "fiscal",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "changelogDate": "20190129154332",
+    "entityTableName": "sumario_administrativo",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

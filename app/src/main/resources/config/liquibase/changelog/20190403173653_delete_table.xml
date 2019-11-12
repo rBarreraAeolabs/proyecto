@@ -1,0 +1,20 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="sneiraillanes (generated)" id="1554313026975-1">
+        <addColumn tableName="derivacion">
+            <column name="jhi_user_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1554313026975-2">
+        <addForeignKeyConstraint baseColumnNames="jhi_user_id" baseTableName="derivacion" constraintName="FKpne8be9jfjkws645v7092ym0k" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1554313026975-3">
+        <dropForeignKeyConstraint baseTableName="providencia_derivada_usuario" constraintName="FK6bnwkjkvm71xsk35psxk0f01j"/>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1554313026975-4">
+        <dropForeignKeyConstraint baseTableName="providencia_derivada_usuario" constraintName="FKhjdwfebniufpxmlejc5tqk5tq"/>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1554313026975-5">
+        <dropTable tableName="providencia_derivada_usuario"/>
+    </changeSet>
+</databaseChangeLog>

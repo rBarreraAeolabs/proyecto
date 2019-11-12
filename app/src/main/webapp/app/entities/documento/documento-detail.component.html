@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="documento">
+            <h2><span jhiTranslate="pdisciplinarioApp.documento.detail.title">Documento</span> {{documento.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{documento.descripcion}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.contenido">Contenido</span></dt>
+                <dd>
+                    <span>{{documento.contenido}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.fechaCreado">Fecha Creado</span></dt>
+                <dd>
+                    <span>{{documento.fechaCreado}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.archivoNombre">Archivo Nombre</span></dt>
+                <dd>
+                    <span>{{documento.archivoNombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.archivoMimeType">Archivo Mime Type</span></dt>
+                <dd>
+                    <span>{{documento.archivoMimeType}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.archivoSize">Archivo Size</span></dt>
+                <dd>
+                    <span>{{documento.archivoSize}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.archivo">Archivo</span></dt>
+                <dd>
+                    <div *ngIf="documento.archivo">
+                        <a (click)="openFile(documento.archivoContentType, documento.archivo)" jhiTranslate="entity.action.open">open</a>
+                        {{documento.archivoContentType}}, {{byteSize(documento.archivo)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.archivoContentType">Archivo Content Type</span></dt>
+                <dd>
+                    <span>{{documento.archivoContentType}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.alfrescoNodeId">Alfresco Node Id</span></dt>
+                <dd>
+                    <span>{{documento.alfrescoNodeId}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.alfrescoNodePath">Alfresco Node Path</span></dt>
+                <dd>
+                    <span>{{documento.alfrescoNodePath}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.localPath">Local Path</span></dt>
+                <dd>
+                    <span>{{documento.localPath}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.hash">Hash</span></dt>
+                <dd>
+                    <span>{{documento.hash}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.providencia">Providencia</span></dt>
+                <dd>
+                    <div *ngIf="documento.providenciaId">
+                        <a [routerLink]="['/providencia', documento.providenciaId, 'view']">{{documento.providenciaId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.derivacion">Derivacion</span></dt>
+                <dd>
+                    <div *ngIf="documento.derivacionId">
+                        <a [routerLink]="['/derivacion', documento.derivacionId, 'view']">{{documento.derivacionId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.documento.movimientoProvidencia">Movimiento Providencia</span></dt>
+                <dd>
+                    <div *ngIf="documento.movimientoProvidenciaId">
+                        <a [routerLink]="['/movimiento-providencia', documento.movimientoProvidenciaId, 'view']">{{documento.movimientoProvidenciaId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/documento', documento.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

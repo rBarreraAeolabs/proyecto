@@ -1,0 +1,50 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="sneiraillanes (generated)" id="1556118600723-1">
+        <createTable tableName="entidad">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="entidadPK"/>
+            </column>
+            <column name="nombre" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1556118600723-2">
+        <addColumn tableName="providencia">
+            <column name="entidad_responsable_id" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1556118600723-3">
+        <addColumn tableName="providencia">
+            <column name="entidad_solicitante_id" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1556118600723-4">
+        <addColumn tableName="providencia">
+            <column name="nombre_responsable" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1556118600723-5">
+        <addColumn tableName="providencia">
+            <column name="nombre_solicitante" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1556118600723-6">
+        <addColumn tableName="providencia">
+            <column name="run_responsable" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1556118600723-7">
+        <addColumn tableName="providencia">
+            <column name="run_solicitante" type="VARCHAR(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1556118600723-8">
+        <addForeignKeyConstraint baseColumnNames="entidad_solicitante_id" baseTableName="providencia" constraintName="FK5r6gaowg03jr8ljnkdcl60741" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="entidad"/>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1556118600723-9">
+        <addForeignKeyConstraint baseColumnNames="entidad_responsable_id" baseTableName="providencia" constraintName="FKq77nnfg1e7fyhj6pbdt2mfhqq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="entidad"/>
+    </changeSet>
+    <changeSet author="sneiraillanes (generated)" id="1556118600723-10">
+        <dropColumn columnName="nombre_persona" tableName="providencia"/>
+    </changeSet>
+</databaseChangeLog>
