@@ -2,6 +2,7 @@ package com.gruposolux.rcivil.pdisciplinario.repository;
 
 import com.gruposolux.rcivil.pdisciplinario.domain.Entidad;
 import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
+import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -78,6 +79,10 @@ public interface ProvidenciaRepository extends JpaRepository<Providencia, Long> 
     void updateNumeroReferencia(Long numeroReferencia, Long providenciaId);
 
     @Modifying
+    @Query(value = "UPDATE providencia SET folio = ? WHERE id = ?", nativeQuery = true)
+    void updateNumeroFolio(Long numeroFolio, Long providenciaId);
+
+    @Modifying
     @Query(value = "UPDATE providencia SET tipo = ? WHERE id = ?", nativeQuery = true)
     void updateTipoSolicitud(String tipoSolicitud, Long providenciaId);
 
@@ -89,7 +94,15 @@ public interface ProvidenciaRepository extends JpaRepository<Providencia, Long> 
     @Query(value = "UPDATE providencia   SET requisito = 'VEREMOS' where id =:id ",nativeQuery = true)
     void  updateRequisito(@Param("id") Long id);
 
+    @Query(value = "SELECT requisito FROM Providencia p WHERE p.numero_referencia = :numeroReferencia ORDER BY p.fecha_creacion DESC LIMIT 1", nativeQuery = true)
+    EstadoProvidencia findRequisitoByNumberRefer(@Param("numeroReferencia")Long numeroReferencia);
 
+    @Query(value = "SELECT requisito FROM Providencia p WHERE p.providencia_madre_id = :iDMadre ORDER BY p.fecha_creacion ASC LIMIT 1;", nativeQuery = true)
+    EstadoProvidencia findRequisitoForProrroga(@Param("iDMadre")Long iDMadre);
 
+    @Query(value = "SELECT requisito FROM Providencia p WHERE p.id = :iDMadre ORDER BY p.fecha_creacion ASC LIMIT 1;", nativeQuery = true)
+    EstadoProvidencia findRequisitoByIdMadre(@Param("iDMadre")Long iDMadre);
 
+    @Query(value = "SELECT providencia_madre_id FROM Providencia p WHERE p.id = :iD ;", nativeQuery = true)
+    Long findIDMadre(@Param("iD")Long iD);
 }

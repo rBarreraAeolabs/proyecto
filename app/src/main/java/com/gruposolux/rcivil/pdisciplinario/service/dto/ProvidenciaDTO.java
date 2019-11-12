@@ -30,8 +30,9 @@ public class ProvidenciaDTO implements Serializable {
 
     private Long numeroDgdp;
 
-    private Long numeroDgd;
+    private Long folio;
 
+    private Long numeroDgd;
 
     private String estadoActual;
 
@@ -114,6 +115,14 @@ public class ProvidenciaDTO implements Serializable {
 
     public void setNumeroDgdp(Long numeroDgdp) {
         this.numeroDgdp = numeroDgdp;
+    }
+
+    public Long getFolio() {
+        return folio;
+    }
+
+    public void setFolio(Long folio) {
+        this.folio = folio;
     }
 
     public Long getNumeroDgd() {
@@ -316,6 +325,7 @@ public class ProvidenciaDTO implements Serializable {
             ", numeroReferencia=" + numeroReferencia +
             ", numeroProvidencia=" + numeroProvidencia +
             ", numeroDgdp=" + numeroDgdp +
+            ", folio=" + folio +
             ", numeroDgd=" + numeroDgd +
             ", estadoActual='" + estadoActual + '\'' +
             ", etapa=" + etapa +
@@ -328,7 +338,6 @@ public class ProvidenciaDTO implements Serializable {
             ", instrucciones=" + instrucciones +
             ", adjuntos=" + adjuntos +
             ", documentos=" + documentos +
-//            ", movimientos=" + movimientos +
             ", sumarioAdministrativoId=" + sumarioAdministrativoId +
             ", investigacionSumariaId=" + investigacionSumariaId +
             ", fechaHasta=" + fechaHasta +

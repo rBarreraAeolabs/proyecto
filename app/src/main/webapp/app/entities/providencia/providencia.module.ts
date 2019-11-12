@@ -84,7 +84,7 @@ import {
 
     ProvidenciaNoReabroComponent,
     ProvidenciaNoReabroPopupComponent
-}  from 'app/entities/providencia/providencia-no-reabro.component';
+} from 'app/entities/providencia/providencia-no-reabro.component';
 
 import {
     ProvidenciaNoApelaComponent,
@@ -111,9 +111,18 @@ import {
     ProvidenciaFiscalRemiteExpedientePopupComponent
 } from 'app/entities/providencia/providencia-fiscal-remite-expediente.component';
 import {
-    ProvidenciasobreseerComponent,
-    ProvidenciasobreseerPopupComponent
-} from 'app/entities/providencia/providencia-sobreseer.component';
+    ProvidenciaAsignarNumeroFolioComponent,
+    ProvidenciaAsignarNumeroFolioPopupComponent
+} from 'app/entities/providencia/providencia-asignar-numero-folio.component';
+
+import {
+    ProvidenciaUpdNotificaInculpadoComponent,
+    ProvidenciaUpdNotificaInculpadoPopupComponent
+} from 'app/entities/providencia/providencia-upd-notifica-inculpado.component';
+// directive
+import {
+    ReadMoreDirective,
+} from 'app/entities/providencia/read-more.directive';
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -183,9 +192,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaNoProponePopupComponent,
         ProvidenciaNoReabroComponent,
         ProvidenciaNoReabroPopupComponent,
-
-        ProvidenciasobreseerComponent,
-        ProvidenciasobreseerPopupComponent
+        ReadMoreDirective,
+        ProvidenciaAsignarNumeroFolioComponent,
+        ProvidenciaAsignarNumeroFolioPopupComponent,
+        ProvidenciaUpdNotificaInculpadoComponent,
+        ProvidenciaUpdNotificaInculpadoPopupComponent
 
     ],
     entryComponents: [
@@ -240,8 +251,10 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaNoProponePopupComponent,
         ProvidenciaNoReabroComponent,
         ProvidenciaNoReabroPopupComponent,
-        ProvidenciasobreseerComponent,
-        ProvidenciasobreseerPopupComponent
+        ProvidenciaAsignarNumeroFolioComponent,
+        ProvidenciaAsignarNumeroFolioPopupComponent,
+        ProvidenciaUpdNotificaInculpadoComponent,
+        ProvidenciaUpdNotificaInculpadoPopupComponent
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

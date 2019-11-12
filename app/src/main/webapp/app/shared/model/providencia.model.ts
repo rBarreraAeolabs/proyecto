@@ -81,7 +81,8 @@ export const enum EtapaProvidencia {
     PROVIDENCIA_SANCIONAR = 'PROVIDENCIA_SANCIONAR',
     PROVIDENCIA_SANCIONAR_INCULPADO_APELA = 'PROVIDENCIA_SANCIONAR_INCULPADO_APELA',
     PROVIDENCIA_SANCIONAR_INCULPADO_NO_APELA = 'PROVIDENCIA_SANCIONAR_INCULPADO_NO_APELA',
-    PROVIDENCIA_REABRE = 'PROVIDENCIA_REABRE'
+    PROVIDENCIA_REABRE = 'PROVIDENCIA_REABRE',
+    INVESTIGACION= 'INVESTIGACION'
 }
 
 export const enum AccionesProvidencia {
@@ -125,8 +126,10 @@ export const enum AccionesProvidencia {
     FISCAL_REDACTA_MEMO= 'FISCAL_REDACTA_MEMO',
     SECRETARIA_DESPACHA_A_DGD= 'SECRETARIA_DESPACHA_A_DGD',
     FISCAL_ACEPTO_Y_DA_INICIO= 'FISCAL_ACEPTO_Y_DA_INICIO',
+    REDACCION_MEMO='REDACCION_MEMO',
     INVESTIGACION= 'INVESTIGACION',
-    DGD_DESPACHA_SUMARIO_COMPLETO='DGD_DESPACHA_SUMARIO_COMPLETO'
+    DGD_DESPACHA_SUMARIO_COMPLETO= 'DGD_DESPACHA_SUMARIO_COMPLETO'
+
 }
 
 export const enum TipoProvidencia {
@@ -135,7 +138,7 @@ export const enum TipoProvidencia {
 }
 export const enum OrdenJuridico {
     ABSOLVER = 'RESERVADO',
-    SOBRECEDER = 'RESERVADO',
+    SOBRESEER = 'RESERVADO',
     SANCIONAR = 'RESERVADO',
     REABRIR = 'RESERVADO'
 }
@@ -189,6 +192,8 @@ export interface IProvidencia {
     apelacion?: Apelacion;
     standby?: boolean;
     totalAdjuntos?: number;
+    folio?: number;
+    providenciaMadreId?: number;
 }
 
 export class Providencia implements IProvidencia {
@@ -255,6 +260,10 @@ export interface IProvidenciaUpdateForType {
 export interface IProvidenciaUpdateNroReferencia {
     providenciaId?: number;
     numeroReferencia?: number;
+}
+export interface IProvidenciaUpdateFolio {
+    providenciaId?: number;
+    folio?: number;
 }
 export interface IProvidenciaUpdateTipoSolicitud {
     providenciaId?: number;
