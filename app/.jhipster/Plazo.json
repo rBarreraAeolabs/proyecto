@@ -1,0 +1,30 @@
+{
+    "name": "Plazo",
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dias",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "movimientosProvidenci",
+            "otherEntityName": "movimientoProvidencia",
+            "otherEntityRelationshipName": "plazo"
+        }
+    ],
+    "changelogDate": "20190306150715",
+    "entityTableName": "plazo",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

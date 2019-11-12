@@ -1,0 +1,98 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="adjunto">
+            <h2><span jhiTranslate="pdisciplinarioApp.adjunto.detail.title">Adjunto</span> {{adjunto.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.tipoAdjunto">Tipo Adjunto</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'pdisciplinarioApp.TipoAdjunto.' + adjunto.tipoAdjunto}}">{{adjunto.tipoAdjunto}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{adjunto.nombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{adjunto.descripcion}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.fechaCreado">Fecha Creado</span></dt>
+                <dd>
+                    <span>{{adjunto.fechaCreado}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.fechaSubido">Fecha Subido</span></dt>
+                <dd>
+                    <span>{{adjunto.fechaSubido}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.archivoNombre">Archivo Nombre</span></dt>
+                <dd>
+                    <span>{{adjunto.archivoNombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.archivoMimeType">Archivo Mime Type</span></dt>
+                <dd>
+                    <span>{{adjunto.archivoMimeType}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.archivoSize">Archivo Size</span></dt>
+                <dd>
+                    <span>{{adjunto.archivoSize}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.estado">Estado</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'pdisciplinarioApp.FileUploadStatus.' + adjunto.estado}}">{{adjunto.estado}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.archivo">Archivo</span></dt>
+                <dd>
+                    <div *ngIf="adjunto.archivo">
+                        <a (click)="openFile(adjunto.archivoContentType, adjunto.archivo)" jhiTranslate="entity.action.open">open</a>
+                        {{adjunto.archivoContentType}}, {{byteSize(adjunto.archivo)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.archivoContentType">Archivo Content Type</span></dt>
+                <dd>
+                    <span>{{adjunto.archivoContentType}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.alfrescoNodeId">Alfresco Node Id</span></dt>
+                <dd>
+                    <span>{{adjunto.alfrescoNodeId}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.alfrescoNodePath">Alfresco Node Path</span></dt>
+                <dd>
+                    <span>{{adjunto.alfrescoNodePath}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.localPath">Local Path</span></dt>
+                <dd>
+                    <span>{{adjunto.localPath}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.hash">Hash</span></dt>
+                <dd>
+                    <span>{{adjunto.hash}}</span>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.providencia">Providencia</span></dt>
+                <dd>
+                    <div *ngIf="adjunto.providenciaId">
+                        <a [routerLink]="['/providencia', adjunto.providenciaId, 'view']">{{adjunto.providenciaId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="pdisciplinarioApp.adjunto.movimientoProvidencia">Movimiento Providencia</span></dt>
+                <dd>
+                    <div *ngIf="adjunto.movimientoProvidenciaId">
+                        <a [routerLink]="['/movimiento-providencia', adjunto.movimientoProvidenciaId, 'view']">{{adjunto.movimientoProvidenciaId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/adjunto', adjunto.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="phernandez (generated)" id="1552058997711-1">
+        <createTable tableName="jhi_grupo_authority">
+            <column name="grupo_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-2">
+        <createTable tableName="notificacion_in_browser">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="notificacion_in_browserPK"/>
+            </column>
+            <column name="contenido" type="VARCHAR(255)"/>
+            <column name ="grupoid" type="BIGINT"/>
+            <column name ="userid" type="BIGINT"/>
+            <column name="created_at" type="datetime">
+                <constraints nullable="true" />
+            </column>
+            <column name="visto" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-3">
+        <createTable tableName="usuarios_grupos">
+            <column name="usuario_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="grupos_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-4">
+        <addPrimaryKey columnNames="grupo_id, authority_name" tableName="jhi_grupo_authority"/>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-5">
+        <addPrimaryKey columnNames="usuario_id, grupos_id" tableName="usuarios_grupos"/>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-6">
+        <addForeignKeyConstraint baseColumnNames="usuario_id" baseTableName="usuarios_grupos"
+                                 constraintName="FK208vmjxo4cke5m6wpquymp8ws" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-7">
+        <addForeignKeyConstraint baseColumnNames="grupo_id" baseTableName="jhi_grupo_authority"
+                                 constraintName="FK40y7cxa9hdncq1j4fbrd2br1o" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="grupo"/>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-8">
+        <addForeignKeyConstraint baseColumnNames="perfil_id" baseTableName="jhi_perfil_authority"
+                                 constraintName="FK4g2lvi9mma7fgegm55imlurtl" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="perfil"/>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-9">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority"
+                                 constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="name"
+                                 referencedTableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-10">
+        <addForeignKeyConstraint baseColumnNames="grupos_id" baseTableName="usuarios_grupos"
+                                 constraintName="FK5ihdnh1h3v6ip6ku3b7qm1t5f" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="grupo"/>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-11">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_grupo_authority"
+                                 constraintName="FK5t014raklj3e416gh7xqa70k1" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="name"
+                                 referencedTableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-12">
+        <addForeignKeyConstraint baseColumnNames="perfil_id" baseTableName="jhi_user"
+                                 constraintName="FKbda7bgnvo5o706o0fiwx18ubh" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="perfil"/>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-13">
+        <dropColumn columnName="grupo_id" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-14">
+        <dropColumn columnName="jhi_roles" tableName="perfil"/>
+    </changeSet>
+    <changeSet author="phernandez (generated)" id="1552058997711-15">
+        <dropColumn columnName="jhi_roles" tableName="perfil_grupos"/>
+    </changeSet>
+</databaseChangeLog>

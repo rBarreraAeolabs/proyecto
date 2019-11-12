@@ -1,0 +1,10 @@
+{
+    "pdisciplinarioApp": {
+        "Caracter" : {
+            "null": "",
+            "RESERVADO": "RESERVADO",
+            "URGENTE": "URGENTE",
+            "REITERO": "REITERO"
+        }
+    }
+}

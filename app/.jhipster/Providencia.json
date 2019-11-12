@@ -1,0 +1,74 @@
+{
+    "name": "Providencia",
+    "fields": [
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaCreado",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "fechaIngreso",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "estado",
+            "fieldType": "EstadoProvidencia",
+            "fieldValues": "NUEVO,PENDIENTE_DIRECTOR,INSTRUYE_SUMARIO_ADMINISTRATIVO,INSTRUYE_INVESTIGACION_SUMARIA,FINALIZADO,ANULADO",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "investigacionActivo",
+            "otherEntityName": "investigacionSumaria",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "providencia"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "sumarioActivo",
+            "otherEntityName": "sumarioAdministrativo",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "providencia"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "directorQueInicia",
+            "otherEntityName": "director",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "inculpado",
+            "otherEntityName": "funcionario",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "documentos",
+            "otherEntityName": "documento",
+            "otherEntityRelationshipName": "providencia"
+        }
+    ],
+    "changelogDate": "20190129154326",
+    "entityTableName": "providencia",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

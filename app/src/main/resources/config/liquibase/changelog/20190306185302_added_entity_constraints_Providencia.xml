@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Providencia.
+    -->
+    <changeSet id="20190306185302-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="ficha_ingreso_id"
+                                 baseTableName="providencia"
+                                 constraintName="fk_providencia_ficha_ingreso_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ficha_ingreso_sdj"/>
+
+        <addForeignKeyConstraint baseColumnNames="providencias_id"
+                                 baseTableName="providencia_grupos"
+                                 constraintName="fk_providencia_grupos_providencias_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="providencia"/>
+        <addForeignKeyConstraint baseColumnNames="grupos_id"
+                                 baseTableName="providencia_grupos"
+                                 constraintName="fk_providencia_grupos_grupos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="grupo"/>
+        
+        <addForeignKeyConstraint baseColumnNames="sumario_administrativo_id"
+                                 baseTableName="providencia"
+                                 constraintName="fk_providencia_sumario_administrativo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sumario_administrativo"/>
+
+        <addForeignKeyConstraint baseColumnNames="investigacion_sumaria_id"
+                                 baseTableName="providencia"
+                                 constraintName="fk_providencia_investigacion_sumaria_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="investigacion_sumaria"/>
+
+    </changeSet>
+</databaseChangeLog>

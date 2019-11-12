@@ -1,0 +1,90 @@
+<div class="cd-main-content sub-nav">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12"></div>
+                        <div class="col-md-0" style="background-color: white; margin: 50px;stroke: grey">
+                            <div>
+                                <h2>
+                                    <span jhiTranslate="pdisciplinarioApp.dashboard.title">Dashboard</span>
+                                </h2>
+                                <hr>
+                                <jhi-alert></jhi-alert>
+                                <div class="container-fluid"></div>
+                                <br/>
+                                <div class="form-inline" style="padding: 10px; margin: -30px 0 0">
+                                    <div class="container-fluid">
+                                        <div class="pull-left">
+                                            <div class="form-group">
+                                                <label class="control-label">Desde </label>
+                                                <div class="input-group">
+                                                    <input id="fechaInicio" type="Date" class="form-control" name="fechaInicio"/>
+                                                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-default">Fecha Inicio
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
+                                                </div>
+                                                <label class="control-label" style="margin-left: 20px">Hasta </label>
+                                                <div class="input-group">
+                                                    <input id="datetime-local" type="Date" class="form-control" name="fechaFin" ngbDatepicker="dd-MM-yyyy"/>
+                                                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-default">Fecha Fin
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6" style="padding: 0 35px 35px 35px; max-width: 25%">
+                                        <h4 style="padding: 10px; background: #dddddd">Investigaciones Sumarias</h4>
+                                        <canvas baseChart
+                                                [datasets]="barChartData"
+                                                [labels]="barCharLabels"
+                                                [options]="barCharOptions"
+                                                [legend]="barChartLegend"
+                                                [chartType]="barChartType"
+                                                (chartClick)="chartClicked($event)"
+                                                (chartHover)="chartHovered($event)"></canvas>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4 style="padding: 10px; background: #dddddd">Sumario Administrativo</h4>
+                                        <canvas baseChart
+                                                [datasets]="barChartData"
+                                                [labels]="barCharLabels"
+                                                [options]="barCharOptions"
+                                                [legend]="barChartLegend"
+                                                [chartType]="barChartType"
+                                                (chartClick)="chartClicked($event)"
+                                                (chartHover)="chartHovered($event)"></canvas>
+                                        <button (click)="randomize()">Actualizar</button>
+                                    </div>
+                                    <div class="col-md-offset-3 col-sm-6" style="padding: 35px">
+                                        <h4 style="padding: 10px; background: #dddddd">InvestigacionSumarias elevadas</h4>
+                                        <canvas baseChart
+                                                [datasets]="barChartData"
+                                                [labels]="barCharLabels"
+                                                [options]="barCharOptions"
+                                                [legend]="barChartLegend"
+                                                chartType="horizontalBar"
+                                                (chartClick)="chartClicked($event)"
+                                                (chartHover)="chartHovered($event)">
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>

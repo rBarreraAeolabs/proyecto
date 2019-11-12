@@ -1,0 +1,37 @@
+<div>
+    <div class="d-flex justify-content-center">
+        <h2 id="page-heading">
+            <span jhiTranslate="pdisciplinarioApp.derivacion.home.title">Derivacions</span>
+        </h2>
+    </div>
+    <!--<jhi-alert></jhi-alert>-->
+    <br/>
+    <div class="table-responsive" *ngIf="derivacions">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="pdisciplinarioApp.derivacion.observacion">Observacion</span></th>
+            <th><span jhiTranslate="pdisciplinarioApp.derivacion.fechaDerivacion">Fecha Derivacion</span></th>
+            <th><span jhiTranslate="pdisciplinarioApp.derivacion.estado">Estado</span></th>
+            <th><span jhiTranslate="pdisciplinarioApp.derivacion.tipo">Tipo</span></th>
+            <th><span jhiTranslate="pdisciplinarioApp.derivacion.providencia">Providencia</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let derivacion of derivacions ;trackBy: trackId">
+                <td><a [routerLink]="['/derivacion', derivacion.id, 'view' ]">{{derivacion.id}}</a></td>
+                <td>{{derivacion.observacion}}</td>
+                <td>{{derivacion.fechaDerivacion | date:'medium'}}</td>
+                <td jhiTranslate="{{'pdisciplinarioApp.EstadoDerivacion.' + derivacion.estado}}">{{derivacion.estado}}</td>
+                <td jhiTranslate="{{'pdisciplinarioApp.TipoDerivacion.' + derivacion.tipo}}">{{derivacion.tipo}}</td>
+                <td>
+                    <div *ngIf="derivacion.providenciaId">
+                        <a [routerLink]="['../providencia', derivacion.providenciaId , 'view' ]" >{{derivacion.providenciaId}}</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

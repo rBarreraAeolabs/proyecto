@@ -1,0 +1,52 @@
+{
+    "name": "InvestigacionSumaria",
+    "fields": [
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaCreado",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "fechaIngreso",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "estado",
+            "fieldType": "EstadoInvestigacionSumaria",
+            "fieldValues": "PENDIENTE_ASIGNAR_INVESTIGADOR,PENDIENTE_ACEPTAR_INVESTIGADOR,INICIO_DE_INVESTIGACION,ELEVA_SUMARIO,PROPONE_SOBRE_SEIMIENTO,FORMULA_CARGOS,FINALIZADO",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "providencia",
+            "otherEntityName": "providencia",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "investigadorAsignado",
+            "otherEntityName": "investigador",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "changelogDate": "20190129154331",
+    "entityTableName": "investigacion_sumaria",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

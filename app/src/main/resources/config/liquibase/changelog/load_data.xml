@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="sneira">
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/plantilla.csv"
+                  separator=","
+                  tableName="plantilla"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/plazos.csv"
+                  separator=";"
+                  tableName="plazo"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/authorities.csv"
+                  separator=";"
+                  tableName="jhi_authority"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/pdisciplinario_public_perfil.csv"
+                  separator=","
+                  tableName="perfil"/>
+
+        <loadData tableName="grupo"
+                  encoding="UTF-8"
+                  file="config/liquibase/pdisciplinario_public_grupo.csv"
+                  separator=",">
+        </loadData>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/pdisciplinario_public_jhi_perfil_authority.csv"
+                  separator=","
+                  tableName="jhi_perfil_authority"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/pdisciplinario_public_jhi_user.csv"
+                  separator=","
+                  tableName="jhi_user">
+            <column name="activated" type="boolean"/>
+            <column name="created_date" type="timestamp"/>
+        </loadData>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/pdisciplinario_public_jhi_user_authority.csv"
+                  separator=","
+                  tableName="jhi_user_authority"/>
+
+    </changeSet>
+
+</databaseChangeLog>
