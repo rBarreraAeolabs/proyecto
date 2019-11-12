@@ -270,6 +270,13 @@ public class ProvidenciaResource {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+//    @PostMapping("/providencias/sobreseer")
+//    @Timed
+//    public ResponseEntity<Void> sobreseer(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+//        log.debug("endpoint botton sobreseer");
+//        this.providenciaService.sobreseer(providenciaResponseDTO);
+//        return new ResponseEntity<Void>(HttpStatus.OK);
+//    }
 
     @PostMapping("/providencias/inculpadoEnviaMemo")
     @Timed
@@ -293,17 +300,17 @@ public class ProvidenciaResource {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    @PostMapping("/providencias/representa")
+    @PostMapping("/providencias/asignaFolio")
     @Timed
-    public ResponseEntity<Void> representa(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        this.providenciaService.representa(providenciaResponseDTO);
+    public ResponseEntity<Void> asignaFolio(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        this.providenciaService.asignaFolio(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    @PostMapping("/providencias/registra")
+    @PostMapping("/providencias/notificaDemandado")
     @Timed
-    public ResponseEntity<Void> registra(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        this.providenciaService.registra(providenciaResponseDTO);
+    public ResponseEntity<Void> notificaDemandado(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        this.providenciaService.notificaDemandado(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 

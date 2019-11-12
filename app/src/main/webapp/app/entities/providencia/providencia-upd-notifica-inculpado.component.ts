@@ -10,10 +10,10 @@ import { IAdjunto} from '../../shared/model/adjunto.model';
 import { Principal} from 'app/core';
 
 @Component({
-    selector: 'jhi-providencia-fiscal-prorroga',
-    templateUrl: './providencia-fiscal-prorroga.component.html'
+    selector: 'jhi-providencia-upd-notifica-inculpado',
+    templateUrl: './providencia-upd-notifica-inculpado.component.html'
 })
-export class ProvidenciaFiscalProrrogaComponent implements OnInit {
+export class ProvidenciaUpdNotificaInculpadoComponent implements OnInit {
     providencia: IProvidencia;
     providenciaResponse: IProvidenciaResponse = new IProvidenciaResponse();
     observacionDerivacion: string;
@@ -42,7 +42,7 @@ export class ProvidenciaFiscalProrrogaComponent implements OnInit {
         this.cuenta = this.principal.identity();
         this.usuario = this.cuenta.__zone_symbol__value.perfil.nombre;
         console.log('usuario: ', this.usuario);
-        if ( this.providencia.requisito === 'INVESTIGACION') {
+        if ( this.providencia.requisito === 'FISCAL_ACEPTO_Y_DA_INICIO') {
             console.log('el usuario es fiscal el pide prorroga');
             this.isProrroga = true;
         }
@@ -56,23 +56,20 @@ export class ProvidenciaFiscalProrrogaComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    fiscalProrroga(id: number) {
+    updNotificaInculpado(id: number) {
         this.providenciaResponse.estadoActual = this.providencia.estadoActual;
         this.providenciaResponse.providenciaId = id;
         this.providenciaResponse.adjuntosDTOs = this.adjuntos;
         this.providenciaResponse.observacion = this.observacionDerivacion;
 
-
-            console.log('entro al servicio prorroga');
-            this.providenciaService.prorroga(this.providenciaResponse).subscribe(res => {
-                this.eventManager.broadcast({
-                    name: 'providenciaProrroga',
-                    content: 'Providencia solicitud prorroga'
-                });
-                this.activeModal.dismiss(true);
-                this.previousState();
+        this.providenciaService.updNotificaInculpado(this.providenciaResponse).subscribe(res => {
+            this.eventManager.broadcast({
+                name: 'providencia',
+                content: 'Providencia upd notifica inculpado'
             });
-
+            this.activeModal.dismiss(true);
+            this.previousState();
+        });
     }
 
     previousState() {
@@ -89,10 +86,10 @@ export class ProvidenciaFiscalProrrogaComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-fiscal-prorroga-popup',
+    selector: 'jhi-providencia-upd-notifica-inculpado-popup',
     template: ''
 })
-export class ProvidenciaFiscalProrrogaPopupComponent implements OnInit, OnDestroy {
+export class ProvidenciaUpdNotificaInculpadoPopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
@@ -100,7 +97,7 @@ export class ProvidenciaFiscalProrrogaPopupComponent implements OnInit, OnDestro
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaFiscalProrrogaComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciaUpdNotificaInculpadoComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });
@@ -114,7 +111,7 @@ export class ProvidenciaFiscalProrrogaPopupComponent implements OnInit, OnDestro
                         this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     }
-                 );
+                );
             }, 0);
         });
     }

@@ -92,13 +92,20 @@
                                                     <span *ngIf="providencia.nombreFiscalAsignado !== null"> Cambiar Fiscal Asignado</span>
                                                 </a>
 
+                                                <a class="dropdown-item" *ngIf="actionsPermitted.folio"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/numerarReferencia'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span *ngIf="providencia.numeroReferencia == null"> Asignar Número de folio</span>
+<!--                                                    <span *ngIf="providencia.numeroReferencia !== null"> Editar Número de folio</span>-->
+                                                </a>
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.numerarReferencia"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/numerarReferencia'} }]"
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
                                                     <span *ngIf="providencia.numeroReferencia == null"> Asignar Número de Referencia</span>
-                                                    <span *ngIf="providencia.numeroReferencia !== null"> Editar Número de Referencia</span>
                                                 </a>
 
 
@@ -164,6 +171,15 @@
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
                                                     <span> Inculpado No Envia Memo </span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.updNotificaInculpado"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/updNotificaInculpado'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span> enviar notificacion a inculpado </span>
 
                                                 </a>
                                                 <a
