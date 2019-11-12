@@ -101,7 +101,7 @@
         "ribbon": {
             "dev":"Development"
         },
-        "item-count": "Showing {{first}} - {{second}} of {{total}} items."
+        "item-count": "Monstrando {{first}} - {{second}} de {{total}} artículos."
     },
     "entity": {
         "action": {

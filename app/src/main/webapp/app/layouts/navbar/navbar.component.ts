@@ -93,7 +93,8 @@ export class NavbarComponent implements OnInit {
     }
 
     marcarLeida(id) {
-        this.notificacionService.marcarLeidas(id).subscribe(res => {
+        this.notificacionService.marcarLeidas(id).subscribe(res1 => {
+            res1=null;
             this.notificacionService.find(this.account.id).subscribe(res => {
                 this.todasNotificaciones = res.body;
                 this.notificacionesNoLeidas = this.todasNotificaciones.filter(noti => noti.visto === false);
