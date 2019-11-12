@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {IProvidencia, IProvidenciaUpdateNroReferencia} from 'app/shared/model/providencia.model';
+import {IProvidencia, IProvidenciaUpdateFolio} from 'app/shared/model/providencia.model';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JhiEventManager } from 'ng-jhipster';
@@ -14,9 +14,9 @@ export class ProvidenciaAsignarNumeroFolioComponent implements OnInit {
     providencia: IProvidencia;
     private _providencia: IProvidencia;
 
-    providenciaUpdateNroReferencia: IProvidenciaUpdateNroReferencia = {
+    providenciaUpdateFolio: IProvidenciaUpdateFolio = {
         providenciaId: null,
-        numeroReferencia: null
+        folio: null
     };
 
     constructor(
@@ -31,7 +31,7 @@ export class ProvidenciaAsignarNumeroFolioComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.providenciaUpdateNroReferencia.providenciaId = this.providencia.id;
+        this.providenciaUpdateFolio.providenciaId = this.providencia.id;
         console.log('esta es la providencia ', this.providencia.id);
     }
 
@@ -44,7 +44,7 @@ export class ProvidenciaAsignarNumeroFolioComponent implements OnInit {
     }
 
     asignarfolio() {
-        this.providenciaService.updateFolio(this.providenciaUpdateNroReferencia)
+        this.providenciaService.updateFolio(this.providenciaUpdateFolio)
             .subscribe(
                 (req: HttpResponse<IProvidencia>) => {
                     this.activeModal.close(req.body);

@@ -29,7 +29,9 @@ export class ComentarioBitacoraModalComponent implements OnInit, OnDestroy {
         private documentoService: DocumentoService
     ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        console.log("estos son los adjuntos en vitacora"+this.movimientoProvidencia.adjuntos)
+    }
 
     ngOnDestroy() {
         this.ngbModalRef = null;

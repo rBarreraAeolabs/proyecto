@@ -56,6 +56,11 @@ import {
     ProvidenciaAsignarNumeroReferenciaPopupComponent
 } from 'app/entities/providencia/providencia-asignar-numero-referencia.component';
 import {
+    ProvidenciaAsignarNumeroFolioComponent,
+    ProvidenciaAsignarNumeroFolioPopupComponent
+} from 'app/entities/providencia/providencia-asignar-numero-folio.component';
+
+import {
     ProvidenciaAsignarTipoSolicitudComponent,
     ProvidenciaAsignarTipoSolicitudPopupComponent
 } from 'app/entities/providencia/providencia-asignar-tipo-solicitud.component';
@@ -84,7 +89,7 @@ import {
 
     ProvidenciaNoReabroComponent,
     ProvidenciaNoReabroPopupComponent
-} from 'app/entities/providencia/providencia-no-reabro.component';
+}  from 'app/entities/providencia/providencia-no-reabro.component';
 
 import {
     ProvidenciaNoApelaComponent,
@@ -110,10 +115,6 @@ import {
     ProvidenciaFiscalRemiteExpedienteComponent,
     ProvidenciaFiscalRemiteExpedientePopupComponent
 } from 'app/entities/providencia/providencia-fiscal-remite-expediente.component';
-import {
-    ProvidenciaAsignarNumeroFolioComponent,
-    ProvidenciaAsignarNumeroFolioPopupComponent
-} from 'app/entities/providencia/providencia-asignar-numero-folio.component';
 
 import {
     ProvidenciaUpdNotificaInculpadoComponent,
@@ -126,6 +127,7 @@ import {
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
+// @ts-ignore
 @NgModule({
     imports: [
         Ng2Rut,

@@ -2,24 +2,24 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
-import { IProvidencia, IProvidenciaResponse} from 'app/shared/model/providencia.model';
+import { IProvidencia, IProvidenciaResponse } from 'app/shared/model/providencia.model';
 import { DerivacionService } from 'app/entities/derivacion';
-import { ProvidenciaService} from './providencia.service';
-import { PlantillaService} from '../plantilla/plantilla.service';
-import { IAdjunto} from '../../shared/model/adjunto.model';
-import { Principal} from 'app/core';
+import { PlantillaService } from '../plantilla/plantilla.service';
+import { ProvidenciaService } from './providencia.service';
+import { IAdjunto } from '../../shared/model/adjunto.model';
+import { Principal } from 'app/core';
 
 @Component({
-    selector: 'jhi-providencia-fiscal-prorroga',
-    templateUrl: './providencia-fiscal-prorroga.component.html'
+    selector: 'jhi-providencia-sobreseer',
+    templateUrl: './providencia-sobreseer.component.html'
 })
-export class ProvidenciaFiscalProrrogaComponent implements OnInit {
+export class ProvidenciasobreseerComponent implements OnInit {
     providencia: IProvidencia;
     providenciaResponse: IProvidenciaResponse = new IProvidenciaResponse();
     observacionDerivacion: string;
-    adjuntos: IAdjunto[];
     private _providencia: IProvidencia;
-    isProrroga = false;
+    adjuntos: IAdjunto[];
+    isDerivar = true;
     cuenta: any;
     usuario: any;
 
@@ -31,23 +31,20 @@ export class ProvidenciaFiscalProrrogaComponent implements OnInit {
         private plantillaService: PlantillaService,
         private providenciaService: ProvidenciaService,
         private principal: Principal
-
     ) {}
 
     clear() {
         this.activeModal.dismiss('cancel');
     }
-
     ngOnInit() {
         this.cuenta = this.principal.identity();
         this.usuario = this.cuenta.__zone_symbol__value.perfil.nombre;
         console.log('usuario: ', this.usuario);
-        if ( this.providencia.requisito === 'INVESTIGACION') {
-            console.log('el usuario es fiscal el pide prorroga');
-            this.isProrroga = true;
+        if (this.usuario === 'Jefatura') {
+            console.log('el usuario es jefe el envia');
+            this.isDerivar = false;
         }
     }
-
     get providencias() {
         return this._providencia;
     }
@@ -56,23 +53,22 @@ export class ProvidenciaFiscalProrrogaComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    fiscalProrroga(id: number) {
+    sobreseer(id: number ) {
+
         this.providenciaResponse.estadoActual = this.providencia.estadoActual;
         this.providenciaResponse.providenciaId = id;
         this.providenciaResponse.adjuntosDTOs = this.adjuntos;
         this.providenciaResponse.observacion = this.observacionDerivacion;
-
-
-            console.log('entro al servicio prorroga');
-            this.providenciaService.prorroga(this.providenciaResponse).subscribe(res => {
-                this.eventManager.broadcast({
-                    name: 'providenciaProrroga',
-                    content: 'Providencia solicitud prorroga'
-                });
-                this.activeModal.dismiss(true);
-                this.previousState();
+        this.providencia.requisito = this.providencia.requisito;
+        this.providencia.etapa = this.providencia.etapa;
+        this.providenciaService.sobreseer(this.providenciaResponse).subscribe(res => {
+            this.eventManager.broadcast({
+                name: 'providenciaListModification',
+                content: 'Providencia aceptada'
             });
-
+            this.activeModal.dismiss(true);
+            this.previousState();
+        });
     }
 
     previousState() {
@@ -89,10 +85,10 @@ export class ProvidenciaFiscalProrrogaComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-fiscal-prorroga-popup',
+    selector: 'jhi-providencia-sobreseer-popup',
     template: ''
 })
-export class ProvidenciaFiscalProrrogaPopupComponent implements OnInit, OnDestroy {
+export class ProvidenciasobreseerPopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
@@ -100,7 +96,7 @@ export class ProvidenciaFiscalProrrogaPopupComponent implements OnInit, OnDestro
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaFiscalProrrogaComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciasobreseerComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });
@@ -114,7 +110,7 @@ export class ProvidenciaFiscalProrrogaPopupComponent implements OnInit, OnDestro
                         this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     }
-                 );
+                );
             }, 0);
         });
     }

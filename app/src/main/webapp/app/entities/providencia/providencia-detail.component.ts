@@ -35,8 +35,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
         noApela: false,
         fiscalNotificaCierre: false,
         inculpadoEnviaMemo: false,
-        inculpadoNoEnviaMemo: false,
-        folio: false,
+        inculpadoNoEnviaMemo: false
 
     };
     refresh = false;
@@ -79,7 +78,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             this.providencia = providencia;
-            console.log('cantidad Adjuntos', this.providencia.folio);
+            console.log('cantidad Adjuntos', this.providencia.totalAdjuntos);
 
             // this.providencia.documentos.forEach(documento => {
             //     if (documento.tipoPlantilla === 'RESOLUCION') {
@@ -144,10 +143,10 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
             if (this.providencia.requisito === 'FISCAL_NOTIFICADO' && this.providencia.etapa === 'NUEVA_PROVIDENCIA') {
                 this.isDevolver = false;
             }
-            // if (this.providencia.providenciaMadreId !== null ) {
-            //     this.isProrroga = false;
-            //
-            // }
+            if (this.providencia.etapa === 'PROVIDENCIA_PRORROGA'  ) {
+                this.isProrroga = false;
+
+            }
         });
 
     }

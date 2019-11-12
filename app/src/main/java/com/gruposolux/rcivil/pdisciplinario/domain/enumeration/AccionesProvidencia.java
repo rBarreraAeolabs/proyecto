@@ -76,7 +76,7 @@ public enum AccionesProvidencia {
     SELECCIONO_SANCIONAR,
 
     FLUJO_ABSOLVER,
-    FLUJO_SOBRESEER_ABSOLVER,
+    FLUJO_SOBRESEER,
     FLUJO_SANCION,
     FLUJO_REABRIR,
     CONTINUAR_FLUJO_NO_APELA,
@@ -101,8 +101,6 @@ public enum AccionesProvidencia {
     NO_PROPONE,
     NO_REABRE,
     SI_DE_ACUERDO,
-    ASIGNA_FOLIO,
-    NOTIFICA,
-    SELECCION_FISCAL;
+    ASIGNA_FOLIO, NOTIFICA,
 }
 

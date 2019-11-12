@@ -32,9 +32,10 @@ import {ProvidenciaFiscalRemiteExpedientePopupComponent} from 'app/entities/prov
 import {ProvidenciaTerminoProbatorioPopupComponent} from 'app/entities/providencia/providencia-termino-probatorio.component';
 import {ProvidenciaSiDeAcuerdoPopupComponent} from 'app/entities/providencia/providencia-si-de-acuerdo.component';
 import {ProvidenciaNoReabroPopupComponent} from 'app/entities/providencia/providencia-no-reabro.component';
-import {ProvidenciaNoProponePopupComponent} from 'app/entities/providencia/providencia-no-propone.component';
-import {ProvidenciaUpdNotificaInculpadoPopupComponent} from 'app/entities/providencia/providencia-upd-notifica-inculpado.component';
+import {ProvidenciaNoProponePopupComponent} from "app/entities/providencia/providencia-no-propone.component";
 import { ProvidenciaAsignarNumeroFolioPopupComponent } from 'app/entities/providencia/providencia-asignar-numero-folio.component';
+import {ProvidenciaUpdNotificaInculpadoPopupComponent} from 'app/entities/providencia/providencia-upd-notifica-inculpado.component';
+
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
     constructor(private service: ProvidenciaService) {}
@@ -62,6 +63,8 @@ export const providenciaRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     },
+
+
     {
         path: 'providencia/:id/view',
         component: ProvidenciaDetailComponent,
@@ -151,8 +154,7 @@ export const providenciaPopupRoute: Routes = [
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
-    },
-    {
+    },{
         path: 'providencia/:id/noPropone',
         component: ProvidenciaNoProponePopupComponent,
         resolve: {
@@ -376,8 +378,8 @@ export const providenciaPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'providencia/:id/folio',
-        component: ProvidenciaAsignarNumeroFolioPopupComponent,
+        path: 'providencia/:id/numerarReferencia',
+        component: ProvidenciaAsignarNumeroReferenciaPopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },
@@ -390,8 +392,8 @@ export const providenciaPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'providencia/:id/numerarReferencia',
-        component: ProvidenciaAsignarNumeroReferenciaPopupComponent,
+        path: 'providencia/:id/folio',
+        component: ProvidenciaAsignarNumeroFolioPopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },

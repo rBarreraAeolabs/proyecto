@@ -14,8 +14,10 @@
   <servers>
       <server>
         <id>maven.oracle.com</id>
-        <username>bcarvajal@gruposolux.com</username>
-        <password>{BbAV2G9Sk3gHNGVQpPabDHbV/B2F58Ane/QShmxox9Q=}</password>
+<!--        <username>bcarvajal@gruposolux.com</username>-->
+<!--        <password>{BbAV2G9Sk3gHNGVQpPabDHbV/B2F58Ane/QShmxox9Q=}</password>-->
+        <username>ifyumx@gmail.com</username>
+        <password>If*174872031</password>
       <configuration>
         <basicAuthScope>
           <host>ANY</host>

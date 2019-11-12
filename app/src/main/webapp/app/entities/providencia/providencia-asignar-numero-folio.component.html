@@ -1,7 +1,7 @@
 <script src="providencia-asignar-numero-folio.component.ts"></script>
 <form name="deleteForm" (ngSubmit)="asignarfolio()">
     <div class="modal-header">
-        <h4 class="modal-title" >Asignar Número De Folio</h4>
+        <h4 class="modal-title" >Asignar Número De Referencia</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
@@ -9,7 +9,7 @@
         <jhi-alert-error></jhi-alert-error>
         <jhi-alert></jhi-alert>
         <p id="jhi-responder-providencia-heading">
-            Asignar número de Folio a la providencia # {{providencia.id}}?
+            Asignar número de folio a la providencia # {{providencia.id}}?
         </p>
         <div class="row">
             <div class="col-12">
@@ -19,7 +19,7 @@
                         type="number"
                         class="form-control"
                         min="0"
-                        [(ngModel)]="providenciaUpdateNroReferencia.numeroReferencia"
+                        [(ngModel)]="providenciaUpdateFolio.folio"
                         name="numeroReferencia"
                         required>
                 </div>
@@ -35,7 +35,7 @@
             type="submit"
             class="btn btn-outline-success"
             [routerLink]="['/providencia', providencia.id, 'view' ]"
-            [disabled]="providenciaUpdateNroReferencia.numeroReferencia == null || providenciaUpdateNroReferencia.numeroReferencia <= 0">
+            [disabled]="providenciaUpdateFolio.folio == null || providenciaUpdateFolio.folio <= 0">
             <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
         </button>
     </div>
