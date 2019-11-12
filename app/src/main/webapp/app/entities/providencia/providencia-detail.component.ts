@@ -143,7 +143,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
             if (this.providencia.requisito === 'FISCAL_NOTIFICADO' && this.providencia.etapa === 'NUEVA_PROVIDENCIA') {
                 this.isDevolver = false;
             }
-            if (this.providencia.etapa === 'PROVIDENCIA_PRORROGA' ) {
+            if (this.providencia.etapa === 'PROVIDENCIA_PRORROGA'  ) {
                 this.isProrroga = false;
 
             }

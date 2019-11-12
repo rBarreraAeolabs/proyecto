@@ -62,7 +62,7 @@ export class ProvidenciaFiscalProrrogaComponent implements OnInit {
         this.providenciaResponse.adjuntosDTOs = this.adjuntos;
         this.providenciaResponse.observacion = this.observacionDerivacion;
 
-        
+
             console.log('entro al servicio prorroga');
             this.providenciaService.prorroga(this.providenciaResponse).subscribe(res => {
                 this.eventManager.broadcast({
