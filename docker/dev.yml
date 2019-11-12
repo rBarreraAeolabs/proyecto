@@ -2,7 +2,7 @@ version: '2'
 services:
 
   app:
-    image: registry.gitlab.com/ifyum/ifyum
+    image: registry.k.netlinux.cl/desarrollo/registrocivil-pdisciplinario:jhipster-latest
     environment:
       - SPRING_PROFILES_ACTIVE=dev,swagger
       - SPRING_DATASOURCE_URL=jdbc:postgresql://192.168.99.100:5432/pdisciplinario
@@ -32,7 +32,6 @@ services:
 
   alfresco:
     image: alfresco/alfresco-content-repository-community:6.1.2-ga
-    build: alfresco/
     environment:
       JAVA_OPTS: '
         -Ddb.driver=org.postgresql.Driver
