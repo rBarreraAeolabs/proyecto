@@ -1,6 +1,6 @@
 <form name="deleteForm" (ngSubmit)="inculpadoEnviaMemo(providencia.id)">
     <div class="modal-header">
-        <h4 class="modal-title" >Solicitud De No Apelacion</h4>
+        <h4 class="modal-title" >Inculpado Envia Memo</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;
         </button>
@@ -8,7 +8,7 @@
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <p id="jhi-responder-providencia-heading1">
-            Seguro que desea notificar que inculpado no envia memo a la providencia # {{providencia.id}}?
+            Seguro que desea notificar que inculpado envia memo a la providencia # {{providencia.id}}?
 
         <form>
             <div class="form-group">
@@ -31,7 +31,7 @@
         </button>
         <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success">
             <fa-icon [icon]="'save'"></fa-icon>&nbsp;
-            <span>Notificar no envio</span>
+            <span>Notificar Envio</span>
         </button>
     </div>
 </form>

@@ -68,13 +68,6 @@ export class ProvidenciaService {
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
 
-    updateFolio(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
-        return this.http.
-        put<IProvidencia>(`${this.resourceUrl}/folio`, providencia, {observe: 'response'})
-            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
-    }
-
-
     updateTipoSolicitud(providencia: IProvidenciaUpdateTipoSolicitud): Observable<EntityResponseType> {
         console.log('almacenando la providencia', providencia);
         return this.http.
@@ -105,10 +98,6 @@ export class ProvidenciaService {
 
     terminoProbatorio(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/terminoProbatorio', response, {observe: 'response'});
-    }
-
-    sobreseer(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/sobreseer', response, {observe: 'response'});
     }
 
     siDeAcuerdo(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
@@ -142,12 +131,16 @@ export class ProvidenciaService {
 
     inculpadoEnviaMemo(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/inculpadoEnviaMemo', response, {observe: 'response'});
-
-    }updNotificaInculpado(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/updNotificaInculpado', response, {observe: 'response'});
     }
-
-    formulaCargos(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+    updNotificaInculpado(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/notificaDemandado', response, {observe: 'response'});
+    }
+    updateFolio(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
+        return this.http.
+        put<IProvidencia>(`${this.resourceUrl}/updateFolio`, providencia, {observe: 'response'})
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+        formulaCargos(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/formularCargos', response, {observe: 'response'});
     }
 
