@@ -18,7 +18,8 @@
                                 <!--BOTONES DE ACCIONES DE LA VISTA-->
                                 <div class="col-md-4">
                                     <div class="d-flex justify-content-center">
-                                        <p *ngIf= providencia.numeroReferencia !== null providencia.requisito !=='GESTOR_DOCUMENTAL_ASIGNA_NUMERO'  >
+<!--                                        <p *ngIf= "providencia.numeroReferencia !== null-->
+<!--                                           && providencia.requisito !== 'GESTOR_DOCUMENTAL_ASIGNA_NUMERO' " >-->
                                         <button type="button"
                                                 *ngIf="actionsPermitted.reply"
                                                 [disabled]="disableResponder"
@@ -30,7 +31,7 @@
                                             <span *ngIf="isResponder"> Continuar</span>
                                             <span *ngIf="!isResponder"> Aceptar</span>
                                         </button>
-                                        </p>
+<!--                                        </p>-->
                                         <button type="button"
                                                 *ngIf="actionsPermitted.aceptar
                                                 && providencia.requisito == 'FISCAL_NOTIFICADO'

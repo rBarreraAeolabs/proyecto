@@ -1441,6 +1441,7 @@ public class ProvidenciaService {
                     }
                     break;
                 case INVESTIGACION: // requisito DONDE SE PUEDE SOLICTAR PRORROGA
+
                     if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)) {
                         actionsPermitted.put("fiscalNotificaCierre", true);
                         actionsPermitted.put("prorroga", true);

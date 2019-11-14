@@ -109,28 +109,26 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
                 // 6, condiciona que si en contenido de la plantilla es nulo desactive el boton continuar
                 // 11, condiciona si el nombre del fiscal es nulo o indefinido desactive el boton continuar
                 // 14 condiciona la vista del btn continuar
-                switch (this.providencia.estadoActual) {
-                    case 'RESOLUCION_Y_MEMO': {
-                        if (this.plantillaUtilizada.contenido === null) {
-                            this.disableResponder = true;
-                            this.refresh = true;
-                        }
+                // console.log('desactivando onit responder: '+this.providencia.estadoActual);
+                // let string: estadoActualProvidencia = this.providencia.estadoActual;
+                // switch (estadoActualProvidencia) {
+                //     case 'RESOLUCION_Y_MEMO': {
+                //         if (this.plantillaUtilizada.contenido === null) {
+                //             this.disableResponder = true;
+                //             this.refresh = true;
+                //         }
+                //
+                //         break;
+                //     }
+                //
 
-                        break;
-                    }
-                    // case 'ESTADO_11': {
-                    //     if (this.providencia.nombreFiscalAsignado === null || typeof this.providencia.nombreFiscalAsignado === 'undefined') {
-                    //         this.disableResponder = true;
-                    //     } else {
-                    //         this.actionsPermitted.asignarFiscal = false;
-                    //     }
+                    // case 'NUEVA_PROVIDENCIA - NUEVA_PROVIDENCIA - GESTOR_DOCUMENTAL_ASIGNA_NUMERO': {
+                    //     console.log('desactivando boton responder');
+                    //     this.actionsPermitted.reply = false;
                     //     break;
                     // }
-                    // case 'ESTADO_14': {
-                    //     this.disableResponder = true;
-                    //     break;
-                    // }
-                }
+
+                // }
 
             });
             // condicion para cuando se valla a continuar=(true) o aceptar=(false)
