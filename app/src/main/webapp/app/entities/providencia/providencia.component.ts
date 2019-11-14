@@ -11,6 +11,7 @@ import { ITEMS_PER_PAGE } from 'app/shared';
 import { ProvidenciaService } from './providencia.service';
 import {Moment} from 'moment';
 import * as moment from 'moment';
+import color = Mocha.reporters.Base.color;
 
 @Component({
     selector: 'jhi-providencia',
@@ -33,7 +34,7 @@ export class ProvidenciaComponent implements OnInit, OnDestroy {
     reverse: any;
     now: Moment = moment();
     userDgdp = false;
-
+    color: string = '#f5ff5f';
     constructor(
         private providenciaService: ProvidenciaService,
         private parseLinks: JhiParseLinks,
@@ -64,6 +65,8 @@ export class ProvidenciaComponent implements OnInit, OnDestroy {
                 (res: HttpResponse<IProvidencia[]>) => this.paginateProvidencias(res.body, res.headers),
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
+
+
     }
 
     loadPage(page: number) {
@@ -109,8 +112,19 @@ export class ProvidenciaComponent implements OnInit, OnDestroy {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: number, item: IProvidencia) {
-        return item.id;
+    trackId( index: Moment, item: IProvidenciaItemList) {
+              return item.fechaCreacion;
+    }
+
+    generarColor(estado : string) {
+        let color='#c3e6cb';
+        switch (estado) {
+        case "INVESTIGACION - PRORROGA_SOLICITADA - PETICION_PRORROGA":
+            color = '#F68334';
+            break;
+
+        }
+        return color;
     }
 
     registerChangeInProvidencias() {

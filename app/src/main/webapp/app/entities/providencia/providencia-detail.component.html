@@ -18,6 +18,7 @@
                                 <!--BOTONES DE ACCIONES DE LA VISTA-->
                                 <div class="col-md-4">
                                     <div class="d-flex justify-content-center">
+                                        <p *ngIf= providencia.numeroReferencia !== null providencia.requisito !=='GESTOR_DOCUMENTAL_ASIGNA_NUMERO'  >
                                         <button type="button"
                                                 *ngIf="actionsPermitted.reply"
                                                 [disabled]="disableResponder"
@@ -29,7 +30,7 @@
                                             <span *ngIf="isResponder"> Continuar</span>
                                             <span *ngIf="!isResponder"> Aceptar</span>
                                         </button>
-
+                                        </p>
                                         <button type="button"
                                                 *ngIf="actionsPermitted.aceptar
                                                 && providencia.requisito == 'FISCAL_NOTIFICADO'
@@ -123,7 +124,7 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span *ngIf="isProrroga"> Prorroga </span>
+                                                    <span *ngIf="isProrroga"> Prorroga uno </span>
                                                     <span *ngIf="!isProrroga"> Prorroga Dos</span>
                                                 </a>
                                                 <a

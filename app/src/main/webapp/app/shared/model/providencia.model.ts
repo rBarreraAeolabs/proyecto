@@ -67,6 +67,7 @@ export const enum EstadoProvidencia {
     IJ_PROVIDENCIA_ABSORVER= 'IJ_PROVIDENCIA_ABSORVER',
     IJ_PROVIDENCIA_REABRIR= 'IJ_PROVIDENCIA_REABRIR',
     IJ_PROVIDENCIA_SANCIONAR= 'IJ_PROVIDENCIA_SANCIONAR',
+    PETICION_PRORROGA = 'PETICION_PRORROGA'
 
 }
 
@@ -82,8 +83,11 @@ export const enum EtapaProvidencia {
     PROVIDENCIA_SANCIONAR_INCULPADO_APELA = 'PROVIDENCIA_SANCIONAR_INCULPADO_APELA',
     PROVIDENCIA_SANCIONAR_INCULPADO_NO_APELA = 'PROVIDENCIA_SANCIONAR_INCULPADO_NO_APELA',
     PROVIDENCIA_REABRE = 'PROVIDENCIA_REABRE',
-    INVESTIGACION= 'INVESTIGACION'
+    INVESTIGACION= 'INVESTIGACION',
+    INVESTIGACION_PRORROGA_1 = 'INVESTIGACION_PRORROGA_1',
+    INVESTIGACION_PRORROGA_2 = 'INVESTIGACION_PRORROGA_2',
 }
+
 
 export const enum AccionesProvidencia {
     CREAR_PROVIDENCIA = 'CREAR_PROVIDENCIA',
@@ -128,7 +132,8 @@ export const enum AccionesProvidencia {
     FISCAL_ACEPTO_Y_DA_INICIO= 'FISCAL_ACEPTO_Y_DA_INICIO',
     REDACCION_MEMO='REDACCION_MEMO',
     INVESTIGACION= 'INVESTIGACION',
-    DGD_DESPACHA_SUMARIO_COMPLETO= 'DGD_DESPACHA_SUMARIO_COMPLETO'
+    DGD_DESPACHA_SUMARIO_COMPLETO= 'DGD_DESPACHA_SUMARIO_COMPLETO',
+    PETICION_PRORROGA = 'PETICION_PRORROGA'
 
 }
 
@@ -167,6 +172,7 @@ export interface IProvidencia {
     numeroReferencia?: number;
     numeroProvidencia?: number;
     estadoActual?: EstadoProvidencia;
+    // estadoProvidencia?: String;
     etapa?: EtapaProvidencia;
     subEtapa?: EstadoProvidencia;
     requisito?: AccionesProvidencia;
@@ -239,7 +245,7 @@ export class IProvidenciaResponse {
 export interface IProvidenciaItemList {
     id?: number;
     fechaCreacion?: Moment;
-    estadoProvidencia?: EstadoProvidencia;
+    estadoProvidencia?: String;
     nombreGrupo?: string;
     diasDesdeCreacion?: number;
     diasUltimoTramite?: number;

@@ -2,7 +2,7 @@ version: '2'
 services:
 
   app:
-    image: registry.k.netlinux.cl/desarrollo/registrocivil-pdisciplinario:jhipster-latest
+    image: registry.gitlab.com/ifyum/ifyum
     environment:
       - SPRING_PROFILES_ACTIVE=dev,swagger
       - SPRING_DATASOURCE_URL=jdbc:postgresql://192.168.99.100:5432/pdisciplinario

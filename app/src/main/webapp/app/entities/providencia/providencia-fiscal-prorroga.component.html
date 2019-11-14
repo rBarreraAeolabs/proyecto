@@ -1,21 +1,21 @@
 <form name="deleteForm" (ngSubmit)="fiscalProrroga(providencia.id)">
     <div class="modal-header">
-        <h4 class="modal-title" >Solicitud De Prorroga </h4>
-<!--        <h4 class="modal-title" *ngIf="-->
-<!--       providencia.providenciaMadreId !== null-->
-<!--        ">Solicitud De Prorroga Dos</h4>-->
+        <h4 class="modal-title" *ngIf="
+       providencia.etapa === 'INVESTIGACION_PRORROGA_2' ">Solicitud De Prorroga uno </h4>
+        <h4 class="modal-title" *ngIf="
+       providencia.etapa === 'INVESTIGACION_PRORROGA_2' ">Solicitud De Prorroga Dos</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;
         </button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <p id="jhi-responder-providencia-heading1" >
-            Seguro que desea solicitar prorroga a la providencia # {{providencia.id}}?
+        <p id="jhi-responder-providencia-heading1" *ngIf="providencia.etapa === 'INVESTIGACION_PRORROGA_1'">
+            Seguro que desea solicitar prorroga uno a la providencia # {{providencia.id}}?
         </p>
-<!--        <p id="jhi-responder-providencia-heading" *ngIf="providencia.etapa =='PROVIDENCIA_PRORROGA' && providencia.requisito =='FISCAL_REDACTA_MEMO'">-->
-<!--            Seguro que desea solicitar prorroga dos a la providencia # {{providencia.id}}?-->
-<!--        </p>-->
+        <p id="jhi-responder-providencia-heading" *ngIf="providencia.etapa === 'INVESTIGACION_PRORROGA_2'">
+            Seguro que desea solicitar prorroga dos a la providencia # {{providencia.id}}?
+        </p>
         <form>
             <div class="form-group">
                 <label class="form-control-label" for="field_comentario">

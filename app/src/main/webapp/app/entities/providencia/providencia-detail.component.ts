@@ -144,10 +144,10 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
             if (this.providencia.requisito === 'FISCAL_NOTIFICADO' && this.providencia.etapa === 'NUEVA_PROVIDENCIA') {
                 this.isDevolver = false;
             }
-            // if (this.providencia.providenciaMadreId !== null ) {
-            //     this.isProrroga = false;
-            //
-            // }
+            if (this.providencia.etapa === 'INVESTIGACION_PRORROGA_1' ) {
+                this.isProrroga = false;
+
+            }
         });
 
     }

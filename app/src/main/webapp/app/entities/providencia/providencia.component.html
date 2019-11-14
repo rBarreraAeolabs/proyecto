@@ -44,13 +44,14 @@
                 <th><span>Días desde la creación</span></th>
                 <th><span>Días desde el último trámite</span></th>
                 <th><span>Fecha de Vencimiento</span></th>
-                <th jhiSortBy="standby"><span >Detenida</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--                <th jhiSortBy="standby"><span >Detenida</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
                 <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let providencia of providencias ;trackBy: trackId"
-                [ngStyle]="{'background-color':providencia.standby == true ? '#f5c6cb' : '#c3e6cb' }">
+            [ngStyle]="{'background-color': generarColor(providencia.estadoProvidencia) }">
+
                 <td><a [routerLink]="['/providencia', providencia.id, 'view' ]">{{providencia.id}}</a></td>
                 <td>{{providencia.fechaCreacion | date}}</td>
                 <td>{{providencia.estadoProvidencia.split('_').join(' ')}}</td>
@@ -58,7 +59,7 @@
                 <td>{{providencia.diasDesdeCreacion}}</td>
                 <td>{{providencia.diasUltimoTramite}}</td>
                 <td>{{providencia.fechaVencimiento | date}}</td>
-                <td>{{providencia.standby? 'Si' : 'No' }}</td>
+<!--                <td>{{providencia.standby? 'Si' : 'No' }}</td>-->
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button
