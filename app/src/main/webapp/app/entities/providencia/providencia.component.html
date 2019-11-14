@@ -1,0 +1,102 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="pdisciplinarioApp.providencia.home.title">Providencias</span>
+        <div class="dropdown" ngbDropdown>
+            <button *jhiHasAnyAuthority="['ROLE_ADMIN' , 'CREAR_PROVIDENCIA']" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-providencia" [routerLink]="['/providencia/new']">
+                <fa-icon [icon]="'plus'"></fa-icon>
+                <span  jhiTranslate="pdisciplinarioApp.providencia.home.createLabel">
+                    Create new Providencia
+                </span>
+            </button>
+            <button class="btn btn-secondary float-right mr-2 dropdown-toggle" type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+                Más opciones
+            </button>
+            <div class="dropdown-menu" ngbDropdownMenu>
+                <a class="dropdown-item" routerLink="/dashboard"
+                   routerLinkActive="active"
+                   [routerLinkActiveOptions]="{ exact: true }">
+                    <fa-icon icon="plus" fixedWidth="true"></fa-icon>
+                    <span>Imprimir</span>
+                </a>
+                <a class="dropdown-item" routerLink="/dashboard"
+                   routerLinkActive="active"
+                   [routerLinkActiveOptions]="{ exact: true }">
+                    <fa-icon icon="plus" fixedWidth="true"></fa-icon>
+                    <span>Exportar todo a excel</span>
+                </a>
+            </div>
+        </div>
+    </h2>
+    <br>
+
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="providencias">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="fechaCreacion"><span >Fecha Creacion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="estadoActual"><span >Estado Actual</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th><span>Grupo</span></th>
+                <th><span>Días desde la creación</span></th>
+                <th><span>Días desde el último trámite</span></th>
+                <th><span>Fecha de Vencimiento</span></th>
+                <th jhiSortBy="standby"><span >Detenida</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let providencia of providencias ;trackBy: trackId"
+                [ngStyle]="{'background-color': generarColor(providencia.estadoProvidencia) }">
+                <td><a [routerLink]="['/providencia', providencia.id, 'view' ]">{{providencia.id}}</a></td>
+                <td>{{providencia.fechaCreacion | date}}</td>
+                <td>{{providencia.estadoProvidencia.split('_').join(' ')}}</td>
+                <td>{{providencia.nombreGrupo}}</td>
+                <td>{{providencia.diasDesdeCreacion}}</td>
+                <td>{{providencia.diasUltimoTramite}}</td>
+                <td>{{providencia.fechaVencimiento | date}}</td>
+                <td>{{providencia.standby? 'Si' : 'No' }}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button
+                            *ngIf="!userDgdp"
+                            type="submit" [routerLink]="['/providencia', providencia.id,'view' ]"
+                            class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button
+                            *ngIf="userDgdp && providencia.estadoProvidencia == 'ESTADO_13'"
+                            type="submit"
+                            [routerLink]="['/providencia', providencia.id, 'viewDgdp' ]"
+                            class="btn btn-outline-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button
+                            *ngIf="userDgdp && providencia.estadoProvidencia == 'ESTADO_14'"
+                            type="submit"
+                            [routerLink]="['/providencia', providencia.id, 'viewDgdp' ]"
+                            class="btn btn-outline-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Pager is not implemented yet, so this is normal pagination instead -->
+    <div *ngIf="providencias && providencias.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

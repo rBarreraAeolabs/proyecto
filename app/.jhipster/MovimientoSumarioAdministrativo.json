@@ -1,0 +1,36 @@
+{
+    "name": "MovimientoSumarioAdministrativo",
+    "fields": [
+        {
+            "fieldName": "estadoAnterior",
+            "fieldType": "EstadoSumarioAdministrativo",
+            "fieldValues": "ESTADO_UNO,ESTADO_DOS"
+        },
+        {
+            "fieldName": "estadoNuevo",
+            "fieldType": "EstadoSumarioAdministrativo",
+            "fieldValues": "ESTADO_UNO,ESTADO_DOS"
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "sumarioAdministrativo",
+            "otherEntityName": "sumarioAdministrativo",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190306150725",
+    "entityTableName": "movimiento_sumario_administrativo",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

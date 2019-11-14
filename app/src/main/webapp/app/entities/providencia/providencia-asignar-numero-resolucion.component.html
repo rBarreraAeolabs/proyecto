@@ -1,0 +1,48 @@
+<script src="providencia-asignar-numero-resolucion.component.ts"></script>
+<form name="deleteForm" (ngSubmit)="asignarNumero()">
+    <div class="modal-header">
+        <h4 class="modal-title" >Asignar Numero A Resolucion</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <jhi-alert></jhi-alert>
+        <p id="jhi-responder-providencia-heading">
+            Asignar número a la resolución de la providencia # {{providencia.id}}?
+        </p>
+        <div class="form-group" *ngIf="showTable">
+            <div class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre Archivo</th>
+                        <th scope="col">Fecha Creación</th>
+                        <th>
+                            <span>Número de Resolución</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{documento.id}}</td>
+                        <td>{{documento.archivoNombre}}</td>
+                        <td>{{documento.fechaCreado | date:'dd-MM-yyyy'}}</td>
+                        <td>
+                            <input type="number" class="form-control" name="numeroResolucion" id="field_numero_resolucion_1"
+                            [(ngModel)]="documento.numeroResolucion">
+                        </td>
+                    </tr>
+                </tbody>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+        <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success">
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+    </div>
+</form>

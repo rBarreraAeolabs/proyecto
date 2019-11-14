@@ -1,0 +1,90 @@
+/* ==========================================================================
+Navbar
+========================================================================== */
+
+.navbar-version {
+    font-size: 10px;
+    color: #ccc;
+}
+.jh-navbar {
+    background-image: linear-gradient(to bottom, #025ea9, #0825a3);
+    padding: 0.2em 1em;
+    padding-right: 0rem;
+    padding-left: 0rem;
+    .profile-image {
+        margin: -10px 0px;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+    }
+    .dropdown-item.active,
+    .dropdown-item.active:focus,
+    .dropdown-item.active:hover {
+        background-color: #353d47;
+    }
+    .dropdown-toggle::after {
+        margin-left: 0.15em;
+    }
+    ul.navbar-nav {
+        padding: 0.5em;
+        .nav-item {
+            margin-left: 1.5rem;
+        }
+    }
+    a.nav-link {
+        font-weight: 400;
+    }
+    .jh-navbar-toggler {
+        color: #ccc;
+        font-size: 1.5em;
+        padding: 10px;
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .jh-navbar-toggler {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .jh-logo-container {
+        width: 100%;
+    }
+}
+
+.navbar-title {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 120px;
+}
+
+/* ==========================================================================
+Logo styles
+========================================================================== */
+.navbar-brand {
+    font-size: 1.52rem;
+    &.logo {
+        padding-right: 5px;
+        padding-left: 180px;
+        .logo-img {
+            margin-left: 145px;
+            height: 105px;
+            width: 110px;
+            display: flex;
+            vertical-align: middle;
+            background: url('../../../content/logo/logo.png') no-repeat center center;
+            background-size: cover;
+            background-color: #fff;
+            padding: 30px;
+            border: 8px solid #fff;
+            border-radius: 5px;
+            position: absolute;
+            margin: 6px;
+
+        }
+    }
+}

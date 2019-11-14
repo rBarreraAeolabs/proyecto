@@ -1,0 +1,39 @@
+{
+    "name": "FichaIngresoSdj",
+    "fields": [
+        {
+            "fieldName": "fechaInicio",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "observacion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "plazo",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "fechaHasta",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "providencia",
+            "otherEntityName": "providencia",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "fichaIngreso"
+        }
+    ],
+    "changelogDate": "20190306150719",
+    "entityTableName": "ficha_ingreso_sdj",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

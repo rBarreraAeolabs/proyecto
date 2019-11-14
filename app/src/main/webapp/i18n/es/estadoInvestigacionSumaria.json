@@ -1,0 +1,10 @@
+{
+    "pdisciplinarioApp": {
+        "EstadoInvestigacionSumaria" : {
+            "null": "",
+            "ESTADO_UNO": "ESTADO_UNO",
+            "ESTADO_DOS": "ESTADO_DOS",
+            "ELEVADO_A_SUMARIO": "ELEVADO_A_SUMARIO"
+        }
+    }
+}

@@ -1,0 +1,36 @@
+
+{
+    "pdisciplinarioApp": {
+        "documento" : {
+            "home": {
+                "title": "Documentos",
+                "createLabel": "Crear nuevo Documento",
+                "createOrEditLabel": "Crear o editar Documento"
+            },
+            "created": "Un nuevo Documento ha sido creado con el identificador {{ param }}",
+            "updated": "Un Documento ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Documento ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Documento {{ id }}?"
+            },
+            "detail": {
+                "title": "Documento"
+            },
+            "descripcion": "Descripcion",
+            "contenido": "Contenido",
+            "fechaCreado": "Fecha Creado",
+            "archivoNombre": "Archivo Nombre",
+            "archivoMimeType": "Archivo Mime Type",
+            "archivoSize": "Archivo Size",
+            "archivo": "Archivo",
+            "archivoContentType": "Archivo Content Type",
+            "alfrescoNodeId": "Alfresco Node Id",
+            "alfrescoNodePath": "Alfresco Node Path",
+            "localPath": "Local Path",
+            "hash": "Hash",
+            "providencia": "Providencia",
+            "derivacion": "Derivacion",
+            "movimientoProvidencia": "Movimiento Providencia"
+        }
+    }
+}
