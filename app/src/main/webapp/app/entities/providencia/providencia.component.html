@@ -50,7 +50,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let providencia of providencias ;trackBy: trackId"
-                [ngStyle]="{'background-color': generarColor(providencia.estadoProvidencia) }">
+                [ngStyle]="{'background-color': generarColor(providencia.estadoProvidencia,  providencia.standby)  }">
                 <td><a [routerLink]="['/providencia', providencia.id, 'view' ]">{{providencia.id}}</a></td>
                 <td>{{providencia.fechaCreacion | date}}</td>
                 <td>{{providencia.estadoProvidencia.split('_').join(' ')}}</td>

@@ -18,18 +18,23 @@
                                 <!--BOTONES DE ACCIONES DE LA VISTA-->
                                 <div class="col-md-4">
                                     <div class="d-flex justify-content-center">
-                                        <button type="button"
-                                                *ngIf="actionsPermitted.reply"
-                                                [disabled]="disableResponder"
-                                                class="btn btn-danger mr-2"
-                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/responder'} }]"
-                                                replaceUrl="true"
-                                                queryParamsHandling="merge">
-                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                            <span *ngIf="isResponder"> Continuar</span>
-                                            <span *ngIf="!isResponder"> Aceptar</span>
-                                        </button>
+                                        <p *ngIf="providencia.numeroReferencia == null && providencia.requisito == 'UPD_REDACTA_RESOLUCION_Y_MEMO';  else viewBoton">
+                                            debe asignar un numero de referencia
+                                        </p>
 
+                                            <ng-template #viewBoton>
+                                            <button type="button"
+                                                    *ngIf="actionsPermitted.reply "
+                                                    [disabled]="disableResponder"
+                                                    class="btn btn-danger mr-2ha"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/responder'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge">
+                                                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                <span *ngIf="isResponder"> Continuar</span>
+                                                <span *ngIf="!isResponder"> Aceptar</span>
+                                            </button>
+                                            </ng-template>
                                         <button type="button"
                                                 *ngIf="actionsPermitted.aceptar
                                                 && providencia.requisito == 'FISCAL_NOTIFICADO'
@@ -123,7 +128,7 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span *ngIf="isProrroga"> Prorroga </span>
+                                                    <span *ngIf="isProrroga"> Prorroga Uno</span>
                                                     <span *ngIf="!isProrroga"> Prorroga Dos</span>
                                                 </a>
                                                 <a

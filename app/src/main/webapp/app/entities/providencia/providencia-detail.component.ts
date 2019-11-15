@@ -79,7 +79,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             this.providencia = providencia;
-            console.log('cantidad Adjuntos', this.providencia.folio);
+            // console.log('cantidad Adjuntos', this.providencia.folio);
 
             // this.providencia.documentos.forEach(documento => {
             //     if (documento.tipoPlantilla === 'RESOLUCION') {
@@ -131,6 +131,10 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
                     //     break;
                     // }
                 }
+                if (this.providencia.etapa === 'INVESTIGACION_PRORROGA_1' ) {
+                    this.isProrroga = false;
+
+                }
 
             });
             // condicion para cuando se valla a continuar=(true) o aceptar=(false)
@@ -144,30 +148,27 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
             if (this.providencia.requisito === 'FISCAL_NOTIFICADO' && this.providencia.etapa === 'NUEVA_PROVIDENCIA') {
                 this.isDevolver = false;
             }
-            // if (this.providencia.providenciaMadreId !== null ) {
-            //     this.isProrroga = false;
-            //
-            // }
+
         });
 
     }
-    SeguirLeyendo(value: string, limit: 40, trail: String = '…'): string {
-        let result = value || '';
-
-        if (value) {
-            const words = value.split(/\s+/);
-            if (words.length > Math.abs(limit)) {
-                if (limit < 0) {
-                    limit *= -1;
-                    result = trail + words.slice(words.length - limit, words.length).join(' ');
-                } else {
-                    result = words.slice(0, limit).join(' ') + trail;
-                }
-            }
-        }
-
-        return result;
-    }
+    // SeguirLeyendo(value: string, limit: 40, trail: String = '…'): string {
+    //     let result = value || '';
+    //
+    //     if (value) {
+    //         const words = value.split(/\s+/);
+    //         if (words.length > Math.abs(limit)) {
+    //             if (limit < 0) {
+    //                 limit *= -1;
+    //                 result = trail + words.slice(words.length - limit, words.length).join(' ');
+    //             } else {
+    //                 result = words.slice(0, limit).join(' ') + trail;
+    //             }
+    //         }
+    //     }
+    //
+    //     return result;
+    // }
 
     // complemento para descargar excel
     exportAsXLSX(): void {
@@ -183,7 +184,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
         this.providenciaService.find(this.providencia.id).subscribe(response => {
             this.providencia = response.body;
         });
-    }
+        }
     // metodo para volver atras
     previousState() {
         window.history.back();
@@ -196,7 +197,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
     getRespuesta($event) {
         this.respuesta = $event;
 
-        console.log('Respondiendo', this.respuesta);
+        // console.log('Respondiendo', this.respuesta);
 
         // if (this.providencia.estadoActual === 'ESTADO_6') {
         //
