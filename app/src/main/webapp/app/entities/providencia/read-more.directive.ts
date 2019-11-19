@@ -47,11 +47,11 @@ export class ReadMoreDirective implements  AfterViewInit, OnChanges {
         this.determineView();
         this.isCollapsed = !this.isCollapsed;
         if (this.isCollapsed) {
-            this.el.nativeElement.querySelector('.more').style.display = "none";
-            this.el.nativeElement.querySelector('.less').style.display = "inherit";
+            this.el.nativeElement.querySelector('.more').style.display = 'none';
+            this.el.nativeElement.querySelector('.less').style.display = 'inherit';
         } else {
-            this.el.nativeElement.querySelector('.more').style.display = "inherit";
-            this.el.nativeElement.querySelector('.less').style.display = "none";
+            this.el.nativeElement.querySelector('.more').style.display = 'inherit';
+            this.el.nativeElement.querySelector('.less').style.display = 'none';
         }
     }
 

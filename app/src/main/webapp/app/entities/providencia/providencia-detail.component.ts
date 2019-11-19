@@ -70,6 +70,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
             if (e instanceof NavigationEnd) {
                 if (this.refresh) {
                     this.refreshDetail();
+                    // this.ngOnInit() ;
                 }
                 this.refresh = true;
             }
@@ -88,28 +89,8 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
             // });
             this.providenciaService.getActionsPermitted(this.providencia).subscribe(response => {
                 this.actionsPermitted = response.body;
-                // // condicion para que en el estado 6 condiciona la vista del btn asignar numero referencia
-                // if (this.providencia.estadoActual === 'ESTADO_3') {
-                //     if (this.providencia.numeroReferencia !== null && typeof this.providencia.numeroReferencia !== 'undefined') {
-                //         this.actionsPermitted.numerarReferencia = false;
-                //     } else {
-                //         this.actionsPermitted.numerarReferencia = true;
-                //     }
-                // }
-                // condicion para que en el estado 6 condiciona la vista del boton asignar tipo solicitud
-                // if (this.providencia.estadoActual === 'ESTADO_6') {
-                //     if (this.providencia.tipo !== null && typeof this.providencia.tipo !== 'undefined') {
-                //         this.actionsPermitted.tipoSolicitud = false;
-                //     } else {
-                //         this.actionsPermitted.tipoSolicitud = true;
-                //     }
-                // }
 
-                // condicion para que en el estado actual haga una accion
-                // 6, condiciona que si en contenido de la plantilla es nulo desactive el boton continuar
-                // 11, condiciona si el nombre del fiscal es nulo o indefinido desactive el boton continuar
-                // 14 condiciona la vista del btn continuar
-                switch (this.providencia.estadoActual) {
+                 switch (this.providencia.estadoActual) {
                     case 'RESOLUCION_Y_MEMO': {
                         if (this.plantillaUtilizada.contenido === null) {
                             this.disableResponder = true;
@@ -118,19 +99,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
 
                         break;
                     }
-                    // case 'ESTADO_11': {
-                    //     if (this.providencia.nombreFiscalAsignado === null || typeof this.providencia.nombreFiscalAsignado === 'undefined') {
-                    //         this.disableResponder = true;
-                    //     } else {
-                    //         this.actionsPermitted.asignarFiscal = false;
-                    //     }
-                    //     break;
-                    // }
-                    // case 'ESTADO_14': {
-                    //     this.disableResponder = true;
-                    //     break;
-                    // }
-                }
+                           }
                 if (this.providencia.etapa === 'INVESTIGACION_PRORROGA_1' ) {
                     this.isProrroga = false;
 
@@ -183,6 +152,10 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
     refreshDetail() {
         this.providenciaService.find(this.providencia.id).subscribe(response => {
             this.providencia = response.body;
+        });
+        this.providenciaService.getActionsPermitted(this.providencia).subscribe(resp => {
+            this.actionsPermitted = resp.body;
+        console.log('action permite recargado' +  this.actionsPermitted.apela + this.actionsPermitted.noApela);
         });
         }
     // metodo para volver atras

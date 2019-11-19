@@ -140,7 +140,7 @@
                                                     <span *ngIf="isNotificaCierre">Cerrar Investigacion</span>
                                                 </a>
                                                 <a
-                                                    class="dropdown-item" *ngIf="actionsPermitted.apela"
+                                                    class="dropdown-item" *ngIf="actionsPermitted.apela && providencia.requisito === 'NOTIFICAR_INCULPADO'"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/apela'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
@@ -150,7 +150,7 @@
                                                 </a>
 
                                                 <a
-                                                    class="dropdown-item" *ngIf="actionsPermitted.noApela"
+                                                    class="dropdown-item" *ngIf="actionsPermitted.noApela && providencia.requisito === 'NOTIFICAR_INCULPADO'"
 
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noApela'} }]"
                                                     replaceUrl="true"
@@ -179,7 +179,8 @@
 
                                                 </a>
                                                 <a
-                                                    class="dropdown-item" *ngIf="actionsPermitted.notificaDemandado && providencia.folio !== null"
+                                                    class="dropdown-item" *ngIf=" (actionsPermitted.notificaDemandado && providencia.folio !== null )
+                                                     || (actionsPermitted.notificaDemandado && providencia.requisito == 'NOTIFICAR_INCULPADO') "
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/updNotificaInculpado'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
