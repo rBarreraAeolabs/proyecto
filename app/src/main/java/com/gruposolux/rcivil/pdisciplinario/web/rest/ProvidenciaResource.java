@@ -1,6 +1,7 @@
 package com.gruposolux.rcivil.pdisciplinario.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
 import com.gruposolux.rcivil.pdisciplinario.repository.ProvidenciaRepository;
 import com.gruposolux.rcivil.pdisciplinario.security.AuthoritiesConstants;
@@ -263,22 +264,6 @@ public class ProvidenciaResource {
         }
     }
 
-    @PostMapping("/providencias/apela")
-    @Timed
-    public ResponseEntity<Void> apela(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("endpoint botton apela");
-        this.providenciaService.apela(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
-
-    @PostMapping("/providencias/noApela")
-    @Timed
-    public ResponseEntity<Void> noApela(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("endpoint botton noApela");
-        this.providenciaService.noApela(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
-
     @PostMapping("/providencias/inculpadoEnviaMemo")
     @Timed
     public ResponseEntity<Void> inculpadoEnviaMemo(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
@@ -305,6 +290,52 @@ public class ProvidenciaResource {
     @Timed
     public ResponseEntity<Void> notificaDemandado(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
         this.providenciaService.notificaDemandado(providenciaResponseDTO);
+        Providencia providencia = providenciaRepository.findById(providenciaResponseDTO.getProvidenciaId()).get();
+
+        if (providencia.getRequisito() == EstadoProvidencia.SE_NOTIFICO_INCULPADO) {
+            return ResponseEntity.ok().headers(HeaderUtil.createAlert("Se Notifico al Inculpado!",ENTITY_NAME)).body(null);
+        } else {
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+    }
+
+    @PostMapping("/providencias/apela")
+    @Timed
+    public ResponseEntity<Void> apela(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton apela");
+        this.providenciaService.apela(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/noApela")
+    @Timed
+    public ResponseEntity<Void> noApela(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton noApela");
+        this.providenciaService.noApela(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/tomaRazon")
+    @Timed
+    public ResponseEntity<Void> tomaRazon(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton tomaRazon");
+        this.providenciaService.tomaRazon(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/registra")
+    @Timed
+    public ResponseEntity<Void> registra (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton registra");
+        this.providenciaService.registra(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/representa")
+    @Timed
+    public ResponseEntity<Void> representa (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton representa");
+        this.providenciaService.representa(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 

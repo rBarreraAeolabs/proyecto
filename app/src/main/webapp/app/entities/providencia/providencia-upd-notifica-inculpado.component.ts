@@ -42,10 +42,10 @@ export class ProvidenciaUpdNotificaInculpadoComponent implements OnInit {
         this.cuenta = this.principal.identity();
         this.usuario = this.cuenta.__zone_symbol__value.perfil.nombre;
         console.log('usuario: ', this.usuario);
-        if ( this.providencia.requisito === 'FISCAL_ACEPTO_Y_DA_INICIO') {
-            console.log('el usuario es fiscal el pide prorroga');
-            this.isProrroga = true;
-        }
+        // if ( this.providencia.requisito === 'FISCAL_ACEPTO_Y_DA_INICIO') {
+        //     console.log('el usuario es fiscal el pide prorroga');
+        //     this.isProrroga = true;
+        // }
     }
 
     get providencias() {
@@ -73,7 +73,11 @@ export class ProvidenciaUpdNotificaInculpadoComponent implements OnInit {
     }
 
     previousState() {
-        window.history.back();
+        if (this.providencia.requisito === 'NOTIFICAR_INCULPADO') {
+
+        } else {
+            window.history.back();
+        }
     }
 
     getUploadedAdjuntos($event) {

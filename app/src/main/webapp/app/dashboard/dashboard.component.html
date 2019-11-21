@@ -18,7 +18,7 @@
                                     <div class="container-fluid">
                                         <div class="pull-left">
                                             <div class="form-group">
-                                                <label class="control-label">Desde </label>
+                                                <label class="control-label" style="margin: 10px">Desde </label>
                                                 <div class="input-group">
                                                     <input id="fechaInicio" type="Date" class="form-control" name="fechaInicio"/>
                                                     <span class="input-group-btn">
@@ -27,7 +27,7 @@
                             </button>
                         </span>
                                                 </div>
-                                                <label class="control-label" style="margin-left: 20px">Hasta </label>
+                                                <label class="control-label" style="margin: 10px">Hasta </label>
                                                 <div class="input-group">
                                                     <input id="datetime-local" type="Date" class="form-control" name="fechaFin" ngbDatepicker="dd-MM-yyyy"/>
                                                     <span class="input-group-btn">
@@ -36,13 +36,16 @@
                             </button>
                         </span>
                                                 </div>
-                                            </div>
+                                                <div style="margin: 10px">
+                                                <button (click)="randomize()" class="btn btn-primary float-right jh-create-entity create-providencia">Actualizar</button>
+                                                </div>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-sm-6" style="padding: 0 35px 35px 35px; max-width: 25%">
+                                <div class="row" style="align-items: center; align-content: center; padding-top: 60px;">
+                                    <div class="col-sm-6" >
                                         <h4 style="padding: 10px; background: #dddddd">Investigaciones Sumarias</h4>
                                         <canvas baseChart
                                                 [datasets]="barChartData"
@@ -63,10 +66,9 @@
                                                 [chartType]="barChartType"
                                                 (chartClick)="chartClicked($event)"
                                                 (chartHover)="chartHovered($event)"></canvas>
-                                        <button (click)="randomize()">Actualizar</button>
                                     </div>
-                                    <div class="col-md-offset-3 col-sm-6" style="padding: 35px">
-                                        <h4 style="padding: 10px; background: #dddddd">InvestigacionSumarias elevadas</h4>
+                                    <div class="col-md-offset-3 col-sm-6" style="padding: 35px; margin-left: 400px;">
+                                        <h4 style="padding: 10px; background: #dddddd">Investigacion Sumarias elevadas</h4>
                                         <canvas baseChart
                                                 [datasets]="barChartData"
                                                 [labels]="barCharLabels"

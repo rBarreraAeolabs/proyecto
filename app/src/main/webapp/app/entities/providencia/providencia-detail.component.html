@@ -18,18 +18,23 @@
                                 <!--BOTONES DE ACCIONES DE LA VISTA-->
                                 <div class="col-md-4">
                                     <div class="d-flex justify-content-center">
-                                        <button type="button"
-                                                *ngIf="actionsPermitted.reply"
-                                                [disabled]="disableResponder"
-                                                class="btn btn-danger mr-2"
-                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/responder'} }]"
-                                                replaceUrl="true"
-                                                queryParamsHandling="merge">
-                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                            <span *ngIf="isResponder"> Continuar</span>
-                                            <span *ngIf="!isResponder"> Aceptar</span>
-                                        </button>
+                                        <p *ngIf="providencia.numeroReferencia == null && providencia.requisito == 'UPD_REDACTA_RESOLUCION_Y_MEMO';  else viewBoton">
+                                            debe asignar un numero de referencia
+                                        </p>
 
+                                            <ng-template #viewBoton>
+                                            <button type="button"
+                                                    *ngIf="actionsPermitted.reply "
+                                                    [disabled]="disableResponder"
+                                                    class="btn btn-danger mr-2ha"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/responder'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge">
+                                                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                <span *ngIf="isResponder"> Continuar</span>
+                                                <span *ngIf="!isResponder"> Aceptar</span>
+                                            </button>
+                                            </ng-template>
                                         <button type="button"
                                                 *ngIf="actionsPermitted.aceptar
                                                 && providencia.requisito == 'FISCAL_NOTIFICADO'
@@ -123,9 +128,34 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span *ngIf="isProrroga"> Prorroga </span>
+                                                    <span *ngIf="isProrroga"> Prorroga Uno</span>
                                                     <span *ngIf="!isProrroga"> Prorroga Dos</span>
                                                 </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.tomaRazon"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/tomaRazon'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span *ngIf="isProrroga"> toma Razon</span>
+
+                                                </a>     <a
+                                                class="dropdown-item" *ngIf="actionsPermitted.registra"
+                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/registra'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge"
+                                            ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                <span *ngIf="isProrroga">registra</span>
+
+                                            </a>     <a
+                                                class="dropdown-item" *ngIf="actionsPermitted.representa"
+                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/representa'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge"
+                                            ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                <span *ngIf="isProrroga"> Prorroga Uno</span>
+
+                                            </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.fiscalNotificaCierre"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/notificaCierre'} }]"
@@ -135,7 +165,7 @@
                                                     <span *ngIf="isNotificaCierre">Cerrar Investigacion</span>
                                                 </a>
                                                 <a
-                                                    class="dropdown-item" *ngIf="actionsPermitted.apela"
+                                                    class="dropdown-item" *ngIf="actionsPermitted.apela  "
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/apela'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
@@ -145,7 +175,7 @@
                                                 </a>
 
                                                 <a
-                                                    class="dropdown-item" *ngIf="actionsPermitted.noApela"
+                                                    class="dropdown-item" *ngIf="actionsPermitted.noApela "
 
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noApela'} }]"
                                                     replaceUrl="true"
@@ -174,7 +204,8 @@
 
                                                 </a>
                                                 <a
-                                                    class="dropdown-item" *ngIf="actionsPermitted.notificaDemandado && providencia.folio !== null"
+                                                    class="dropdown-item" *ngIf=" (actionsPermitted.notificaDemandado && providencia.folio !== null )
+                                                     || (actionsPermitted.notificaDemandado && providencia.requisito == 'NOTIFICAR_INCULPADO') "
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/updNotificaInculpado'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"

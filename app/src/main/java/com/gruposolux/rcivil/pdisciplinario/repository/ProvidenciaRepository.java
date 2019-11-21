@@ -105,4 +105,7 @@ public interface ProvidenciaRepository extends JpaRepository<Providencia, Long> 
 
     @Query(value = "SELECT numero_referencia FROM providencia p WHERE p.numero_referencia = :numeroRefer LIMIT 1;", nativeQuery = true)
     Long existeNumeroReferencia(@Param("numeroRefer")Long numeroRefer);
+
+    @Query(value = "SELECT providencia_madre_id FROM providencia p WHERE p.providencia_madre_id = ?", nativeQuery = true)
+    Long findExisteHija(Long idMadreBuscar);
 }
