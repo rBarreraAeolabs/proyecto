@@ -208,7 +208,11 @@ export const providenciaPopupRoute: Routes = [
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
+<<<<<<< HEAD
     {
+=======
+      {
+>>>>>>> 5db391732f7897351aa863afb691a09931ab2520
         path: 'providencia/:id/registra',
         component: ProvidenciaRegistraPopupComponent,
         resolve: {
@@ -221,7 +225,11 @@ export const providenciaPopupRoute: Routes = [
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
+<<<<<<< HEAD
     {
+=======
+      {
+>>>>>>> 5db391732f7897351aa863afb691a09931ab2520
         path: 'providencia/:id/representa',
         component: ProvidenciaRepresentaPopupComponent,
         resolve: {
@@ -234,6 +242,10 @@ export const providenciaPopupRoute: Routes = [
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5db391732f7897351aa863afb691a09931ab2520
     {
         path: 'providencia/:id/fiscalAcepta',
         component: ProvidenciaFiscalAceptaPopupComponent,

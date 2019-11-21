@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import { Directive,  ElementRef, AfterViewInit, OnChanges, Input } from '@angular/core';
+=======
+import {Directive, ElementRef, AfterViewInit, OnChanges, Input} from '@angular/core';
+>>>>>>> 5db391732f7897351aa863afb691a09931ab2520
 
 @Directive({
+    // tslint:disable-next-line:directive-selector
     selector: '[readMore]'
 })
 

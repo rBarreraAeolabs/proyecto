@@ -149,9 +149,15 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
 
         this.providenciaService.find(this.providencia.id).subscribe(response => {
             this.providencia = response.body;
+<<<<<<< HEAD
             this.refrescarPermisos(response.body);
         });
     }
+=======
+           this.refrescarPermisos(response.body);
+        });
+      }
+>>>>>>> 5db391732f7897351aa863afb691a09931ab2520
 
     refrescarPermisos( provi: IProvidencia ) {
 

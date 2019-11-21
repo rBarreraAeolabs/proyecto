@@ -210,6 +210,10 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaAsignarNumeroFolioPopupComponent,
         ProvidenciaUpdNotificaInculpadoComponent,
         ProvidenciaUpdNotificaInculpadoPopupComponent,
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5db391732f7897351aa863afb691a09931ab2520
         ProvidenciaTomaRazonComponent,
         ProvidenciaTomaRazonPopupComponent,
         ProvidenciaRepresentaComponent,

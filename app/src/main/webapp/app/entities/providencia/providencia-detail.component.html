@@ -140,6 +140,7 @@
                                                     <span *ngIf="isProrroga"> toma Razon</span>
 
                                                 </a>     <a
+<<<<<<< HEAD
                                                 class="dropdown-item" *ngIf="actionsPermitted.registra"
                                                 [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/registra'} }]"
                                                 replaceUrl="true"
@@ -156,6 +157,24 @@
                                                 <span *ngIf="isProrroga"> Prorroga Uno</span>
 
                                             </a>
+=======
+                                                    class="dropdown-item" *ngIf="actionsPermitted.registra"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/registra'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span *ngIf="isProrroga">registra</span>
+
+                                                </a>     <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.representa"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/representa'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span *ngIf="isProrroga"> Prorroga Uno</span>
+
+                                                </a>
+>>>>>>> 5db391732f7897351aa863afb691a09931ab2520
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.fiscalNotificaCierre"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/notificaCierre'} }]"
@@ -165,7 +184,11 @@
                                                     <span *ngIf="isNotificaCierre">Cerrar Investigacion</span>
                                                 </a>
                                                 <a
+<<<<<<< HEAD
                                                     class="dropdown-item" *ngIf="actionsPermitted.apela  "
+=======
+                                                    class="dropdown-item" *ngIf="actionsPermitted.apela "
+>>>>>>> 5db391732f7897351aa863afb691a09931ab2520
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/apela'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
