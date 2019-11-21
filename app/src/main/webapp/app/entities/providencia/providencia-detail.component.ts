@@ -1,7 +1,7 @@
 import { Component , OnDestroy , OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
-import { IProvidencia} from 'app/shared/model/providencia.model';
+import { IProvidencia } from 'app/shared/model/providencia.model';
 
 import { JhiAlertService } from 'ng-jhipster';
 import { IMovimientoProvidencia } from 'app/shared/model/movimiento-providencia.model';
@@ -64,14 +64,12 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
         //         this.excel.push(row);
         //     });
         // });
-        this.actionsPermitted.aceptar = true;
+
         this.navigationSubscription = this.router.events.subscribe ((e: any) => {
             // Si es un evento NavigationEnd, volver a inicializar el componente
             if (e instanceof NavigationEnd) {
                 if (this.refresh) {
                     this.refreshDetail();
-                    // this.ngOnInit() ;
-                    // this.refrescarPermisos(this.providencia);
                 }
                 this.refresh = true;
             }
@@ -114,6 +112,10 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
                 this.isDevolver = false;
             }
 
+            if (this.providencia.etapa === 'INVESTIGACION_PRORROGA_1' ) {
+                this.disableResponder = false;
+
+            }
         });
 
     }
