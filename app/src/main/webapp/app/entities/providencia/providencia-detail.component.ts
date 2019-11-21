@@ -1,7 +1,7 @@
 import { Component , OnDestroy , OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
-import { IProvidencia } from 'app/shared/model/providencia.model';
+import { IProvidencia} from 'app/shared/model/providencia.model';
 
 import { JhiAlertService } from 'ng-jhipster';
 import { IMovimientoProvidencia } from 'app/shared/model/movimiento-providencia.model';
@@ -64,13 +64,14 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
         //         this.excel.push(row);
         //     });
         // });
-
+        this.actionsPermitted.aceptar = true;
         this.navigationSubscription = this.router.events.subscribe ((e: any) => {
             // Si es un evento NavigationEnd, volver a inicializar el componente
             if (e instanceof NavigationEnd) {
                 if (this.refresh) {
                     this.refreshDetail();
                     // this.ngOnInit() ;
+                    // this.refrescarPermisos(this.providencia);
                 }
                 this.refresh = true;
             }
@@ -80,15 +81,10 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             this.providencia = providencia;
-            // console.log('cantidad Adjuntos', this.providencia.folio);
 
-            // this.providencia.documentos.forEach(documento => {
-            //     if (documento.tipoPlantilla === 'RESOLUCION') {
-            //         console.log('puede continuar porque tiene el archivo correcto');
-            //     }
-            // });
             this.providenciaService.getActionsPermitted(this.providencia).subscribe(response => {
                 this.actionsPermitted = response.body;
+                console.log('ng onit ' +  this.actionsPermitted );
 
                  switch (this.providencia.estadoActual) {
                     case 'RESOLUCION_Y_MEMO': {
@@ -150,14 +146,28 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
 
     // metodo que refresca el detalle
     refreshDetail() {
+
         this.providenciaService.find(this.providencia.id).subscribe(response => {
             this.providencia = response.body;
+           this.refrescarPermisos(response.body);
         });
-        this.providenciaService.getActionsPermitted(this.providencia).subscribe(resp => {
+      }
+
+    refrescarPermisos( provi: IProvidencia ) {
+
+        console.log('ng refresh  recargado ' + provi.requisito);
+        // this.providenciaService.find(provi.id).subscribe(response => {
+        //     const provide = response.body;
+        // });
+        console.log('ng refresh  recargado ' + provi.requisito);
+        console.log('ng refesh permite recargado ' +  this.actionsPermitted.apela + ' '  + this.actionsPermitted.noApela);
+        this.providenciaService.getActionsPermitted(provi).subscribe(resp => {
             this.actionsPermitted = resp.body;
-        console.log('action permite recargado' +  this.actionsPermitted.apela + this.actionsPermitted.noApela);
+            console.log('ng refesh permite recargado ' +  this.actionsPermitted.apela + ' '  + this.actionsPermitted.noApela);
+
         });
-        }
+        return this.actionsPermitted = this.actionsPermitted ;
+    }
     // metodo para volver atras
     previousState() {
         window.history.back();
@@ -169,50 +179,6 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
 
     getRespuesta($event) {
         this.respuesta = $event;
-
-        // console.log('Respondiendo', this.respuesta);
-
-        // if (this.providencia.estadoActual === 'ESTADO_6') {
-        //
-        //     if (this.respuesta.documentos != null && this.respuesta.documentos.length >= 2) {
-        //
-        //         let countMemos = 0;
-        //         let countResoluciones = 0;
-        //
-        //         this.respuesta.documentos.forEach(doc => {
-        //             if (doc.tipoPlantilla === 'MEMORANDUM') {
-        //                 countMemos += 1;
-        //             } else if (doc.tipoPlantilla === 'RESOLUCION') {
-        //                 countResoluciones += 1;
-        //             }
-        //         });
-        //
-        //         if (countMemos > 0 && countResoluciones > 0) {
-        //             this.disableResponder = false;
-        //         }
-        //     } else {
-        //         this.disableResponder = true;
-        //     }
-        //
-        // } else if (this.providencia.estadoActual === 'ESTADO_16') {
-        //
-        //     if (this.respuesta.documentos != null && this.respuesta.documentos.length > 0) {
-        //
-        //         let countNotificaciones = 0;
-        //
-        //         this.respuesta.documentos.forEach(doc => {
-        //             if (doc.tipoPlantilla === 'NOTIFICACION') {
-        //                 countNotificaciones += 1;
-        //             }
-        //         });
-        //
-        //         if (countNotificaciones >= 1) {
-        //             this.disableResponder = false;
-        //         }
-        //     } else {
-        //         this.disableResponder = true;
-        //     }
-        // }
     }
 
     ngOnDestroy() {

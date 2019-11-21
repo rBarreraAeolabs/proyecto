@@ -95,6 +95,15 @@ export class ProvidenciaService {
     reply(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/reply', response, {observe: 'response'});
     }
+    tomaRazon(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/tomaRazon', response, {observe: 'response'});
+    }
+    registra(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/registra', response, {observe: 'response'});
+    }
+    representa(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/representa', response, {observe: 'response'});
+    }
 
     terminoProbatorio(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/terminoProbatorio', response, {observe: 'response'});

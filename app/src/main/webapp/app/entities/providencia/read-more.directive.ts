@@ -1,6 +1,7 @@
-import { Directive, Input, ElementRef, AfterViewInit, OnChanges } from '@angular/core';
+import {Directive, ElementRef, AfterViewInit, OnChanges, Input} from '@angular/core';
 
 @Directive({
+    // tslint:disable-next-line:directive-selector
     selector: '[readMore]'
 })
 

@@ -35,6 +35,9 @@ import {ProvidenciaNoReabroPopupComponent} from 'app/entities/providencia/provid
 import {ProvidenciaNoProponePopupComponent} from 'app/entities/providencia/providencia-no-propone.component';
 import {ProvidenciaUpdNotificaInculpadoPopupComponent} from 'app/entities/providencia/providencia-upd-notifica-inculpado.component';
 import { ProvidenciaAsignarNumeroFolioPopupComponent } from 'app/entities/providencia/providencia-asignar-numero-folio.component';
+import {ProvidenciaTomaRazonPopupComponent} from "app/entities/providencia/providencia-toma-razon.component";
+import {ProvidenciaRegistraPopupComponent} from "app/entities/providencia/providencia-registra.component";
+import {ProvidenciaRepresentaPopupComponent} from "app/entities/providencia/providencia-representa.component";
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
     constructor(private service: ProvidenciaService) {}
@@ -192,6 +195,46 @@ export const providenciaPopupRoute: Routes = [
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
+    {
+        path: 'providencia/:id/tomaRazon',
+        component: ProvidenciaTomaRazonPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Tomar Razon providencia',
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+      {
+        path: 'providencia/:id/registra',
+        component: ProvidenciaRegistraPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'registra providencia',
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+      {
+        path: 'providencia/:id/representa',
+        component: ProvidenciaRepresentaPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Representa providencia',
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+
     {
         path: 'providencia/:id/fiscalAcepta',
         component: ProvidenciaFiscalAceptaPopupComponent,

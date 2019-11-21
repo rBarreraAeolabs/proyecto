@@ -274,3 +274,5 @@ export interface IProvidenciaUpdateTipoSolicitud {
     providenciaId?: number;
     tipoSolicitud?: string;
 }
+
+
