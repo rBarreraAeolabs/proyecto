@@ -105,6 +105,5 @@ public enum AccionesProvidencia {
     ASIGNA_FOLIO,
     NOTIFICA,
     SELECCION_FISCAL, NOTIFICA_INCULPADO,
-    FLUJO_SANCION_NO_APELA,
 }
 

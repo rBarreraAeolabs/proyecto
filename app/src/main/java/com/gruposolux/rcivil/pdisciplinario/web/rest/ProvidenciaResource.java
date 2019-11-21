@@ -293,7 +293,7 @@ public class ProvidenciaResource {
         Providencia providencia = providenciaRepository.findById(providenciaResponseDTO.getProvidenciaId()).get();
 
         if (providencia.getRequisito() == EstadoProvidencia.SE_NOTIFICO_INCULPADO) {
-            return ResponseEntity.ok().headers(HeaderUtil.message("Se Notifico al Inculpado!",ENTITY_NAME)).body(null);
+            return ResponseEntity.ok().headers(HeaderUtil.createAlert("Se Notifico al Inculpado!",ENTITY_NAME)).body(null);
         } else {
             return new ResponseEntity<Void>(HttpStatus.OK);
         }

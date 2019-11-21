@@ -527,15 +527,9 @@ public class ProvidenciaService {
                     etapa = EstadoProvidencia.INVESTIGACION;
                 }
                 break;
+
+
         }
-
-//        switch (subEtapaActual){
-//            case ASIGNACION_SJ:
-//            case ABOGADO_RESPONDE:
-//                etapa = EstadoProvidencia.REVISION_SUMARIO;
-//                break;
-//        }
-
         log.debug(" La Etapa en el flujo  es " + etapa);
         return etapa;
     }
@@ -787,6 +781,9 @@ public class ProvidenciaService {
                     break;
                 case NOTIFICA:
                     notificacion.setContenido("Se Notifico al Demandante: ");
+                    break;
+                case NOTIFICA_INCULPADO:
+                    notificacion.setContenido("Se Notifico al Inculpado: ");
                     break;
                   }
 
@@ -1066,6 +1063,9 @@ public class ProvidenciaService {
             nextSubEtapa = subEtapaAntes;
         }else if (subEtapaAntes==EstadoProvidencia.SANCIONA ){
             nextSubEtapa = subEtapaAntes;
+        }else if (requisitoDespues == EstadoProvidencia.TOMA_DE_RAZON || requisitoDespues == EstadoProvidencia.REGISTRA ||
+        requisitoDespues == EstadoProvidencia.REPRESENTA){
+            nextSubEtapa = subEtapaSegunSeleccion(eventoBoton);
         }else{
             nextSubEtapa = this.determinaSubEtapa(requisitoDespues, etapa);
         }
@@ -1079,6 +1079,12 @@ public class ProvidenciaService {
 
         if (eventoBoton == AccionesProvidencia.FORMULAR_CARGOS){
             subEtapa = EstadoProvidencia.FORMULA_CARGOS;
+        }else if (eventoBoton == AccionesProvidencia.FLUJO_TOMA_RAZON){
+            subEtapa = EstadoProvidencia.SANCIONA_TOMA_DE_RAZON;
+        }else if (eventoBoton == AccionesProvidencia.FLUJO_REGISTRA){
+            subEtapa = EstadoProvidencia.SANCIONA_REGISTRA;
+        }else if (eventoBoton == AccionesProvidencia.FLUJO_REPRESENTA){
+            subEtapa = EstadoProvidencia.SANCIONA_REPRESENTA;
         }else{
             subEtapa = EstadoProvidencia.TERMINO_PROBATORIO;
         }
@@ -1102,7 +1108,7 @@ public class ProvidenciaService {
                 case DGD_RECEPCIONA:
                 case SECRETARIA_REVISA_NOTIFICACION:
                 case SECRETARIA_REVISA_FIRMA_NOTIFICACION:
-                    switch (etapa) {
+                     switch (etapa) {
                         case PROVIDENCIA_PRORROGA_1:
                             evento = AccionesProvidencia.PRORROGA;
                             break;
@@ -1114,6 +1120,23 @@ public class ProvidenciaService {
                             break;
                     }
                     break;
+
+                case PROVIDENCIA_CREADA:
+                case SJ_RECIBE_PROVIDENCIA:
+                case SECRETARIA_REVISA_PROVIDENCIA:
+
+                    switch (subEtapaAntes) {
+                        case ABSOLVER:
+                        case SOBRESEER:
+                            evento = AccionesProvidencia.FLUJO_SOBRESEER_ABSOLVER;
+                            break;
+                        case SANCIONA:
+                            evento = AccionesProvidencia.FLUJO_SANCION;
+                            break;
+                    }
+                    break;
+
+
                 // FLUJO DE PRORROGA 1
                 case UPD_ELABORA_NOTIFICACION_PRORROGA_1:
                 case ESPERANDO_FIRMA_DE_SUBDIRECCION_A_NOTIFICACION_PRORROGA_1:
@@ -1161,11 +1184,22 @@ public class ProvidenciaService {
                 case SECRETARIA_REVISA_NOTIFICACION_RESOLUCION:
                 case ESPERANDO_FIRMA_DE_SUBDIRECCION_A_RESOLUCION:
                 case SECRETARIA_REVISA_FIRMA_DE_SUBDIRECCION_A_RESOLUCION:
-                case NOTIFICAR_INCULPADO:
                     evento = AccionesProvidencia.FLUJO_SANCION;
                     break;
 
+                case CERTIFICACION_NO_APELA:
+                case REDACCION_RESOLUCION_MEMO_NO_APELA:
+                case REVISION_RESOLUCION_MEMO_NO_APELA:
+                case ESPERANDO_FIRMA_Y_VISA_DE_SUBDIRECCION:
+                case REVISANDO_FIRMA_Y_VISA_DE_SUBDIRECCION:
+                case GESTOR_DOCUMENTAL_DESPACHA_A_DN:
+                case DN_FIRMA_RESOLUCION_NO_APELA:
+                case DGDP_ASIGNANDO_NUMERO_A_RESOLUCION_NO_APELA:
+                case TOMA_DE_RAZON_O_REGISTRA_O_REPRESENTA:
+                    evento = AccionesProvidencia.FLUJO_NO_APELA;
+                    break;
             }
+
                 // Evento para cuando sea un OrdenJuridico SOBRESEER
             switch (subEtapaAntes) {
                 case SOBRESEER:
@@ -1176,10 +1210,6 @@ public class ProvidenciaService {
                     }else{
                         evento = AccionesProvidencia.FLUJO_SOBRESEER_ABSOLVER;
                     }
-                    break;
-
-                case SANCIONA:
-                    evento = AccionesProvidencia.FLUJO_SANCION;
                     break;
 
                 case REABRIR:
@@ -1302,6 +1332,9 @@ public class ProvidenciaService {
             actionsPermitted.put("notificaDemandado", false);
             actionsPermitted.put("apela", false);
             actionsPermitted.put("noApela", false);
+            actionsPermitted.put("tomaRazon", false);
+            actionsPermitted.put("registra", false);
+            actionsPermitted.put("representa", false);
 
             switch (requisito) {
 
@@ -1494,6 +1527,53 @@ public class ProvidenciaService {
                     if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
                         actionsPermitted.put("apela", true);
                         actionsPermitted.put("noApela", true);
+                    }
+                    break;
+
+                case CERTIFICACION_NO_APELA:
+                case REDACCION_RESOLUCION_MEMO_NO_APELA:
+                case REVISION_RESOLUCION_MEMO_NO_APELA:
+                case ESPERANDO_FIRMA_Y_VISA_DE_SUBDIRECCION:
+                case REVISANDO_FIRMA_Y_VISA_DE_SUBDIRECCION:
+                case GESTOR_DOCUMENTAL_DESPACHA_A_DN:
+                case DN_FIRMA_RESOLUCION_NO_APELA:
+                case DGDP_ASIGNANDO_NUMERO_A_RESOLUCION_NO_APELA:
+                    if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                        actionsPermitted.put("reply", true);
+                    }
+                    break;
+
+                case TOMA_DE_RAZON_O_REGISTRA_O_REPRESENTA:
+                    if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                        actionsPermitted.put("tomaRazon", true);
+                        actionsPermitted.put("registar", true);
+                        actionsPermitted.put("representa", true);
+                    }
+                    break;
+
+                case TOMA_DE_RAZON:
+                case REGISTRA:
+                case SJ_RECIBE_PARA_REDACCION:
+                case UPD_REDACTA_RESOLUCION_MEMO:
+                    if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                        actionsPermitted.put("reply", true);
+                    }
+                    break;
+
+                case REALIZAR_NOTIFICACIONES:
+                    if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                        actionsPermitted.put("notificarDemandado", true);
+                        actionsPermitted.put("notificarDGDP", true);
+                        actionsPermitted.put("notificarDenunciante", true);
+                        actionsPermitted.put("notificarRemuneracion", true);
+
+                    }
+                    break;
+
+                case MEMO:
+                    if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                        actionsPermitted.put("notificarDGDP", true);
+                        actionsPermitted.put("notificarRemuneracion", true);
                     }
                     break;
             }

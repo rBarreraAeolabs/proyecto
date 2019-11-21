@@ -36,13 +36,16 @@
                             </button>
                         </span>
                                                 </div>
-                                            </div>
+                                                <div style="margin: 10px">
+                                                <button (click)="randomize()" class="btn btn-primary float-right jh-create-entity create-providencia">Actualizar</button>
+                                                </div>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row" style="align-items: center; align-content: center; padding-top: 60px; padding-left: 240px;">
-                                    <div class="col-sm-6" style="max-width: 40%;">
+                                <div class="row" style="align-items: center; align-content: center; padding-top: 60px;">
+                                    <div class="col-sm-6" >
                                         <h4 style="padding: 10px; background: #dddddd">Investigaciones Sumarias</h4>
                                         <canvas baseChart
                                                 [datasets]="barChartData"
@@ -63,9 +66,8 @@
                                                 [chartType]="barChartType"
                                                 (chartClick)="chartClicked($event)"
                                                 (chartHover)="chartHovered($event)"></canvas>
-                                        <button (click)="randomize()" class="btn btn-primary float-right jh-create-entity create-providencia">Actualizar</button>
                                     </div>
-                                    <div class="col-md-offset-3 col-sm-6" style="padding: 35px; margin-left: 200px;">
+                                    <div class="col-md-offset-3 col-sm-6" style="padding: 35px; margin-left: 400px;">
                                         <h4 style="padding: 10px; background: #dddddd">Investigacion Sumarias elevadas</h4>
                                         <canvas baseChart
                                                 [datasets]="barChartData"

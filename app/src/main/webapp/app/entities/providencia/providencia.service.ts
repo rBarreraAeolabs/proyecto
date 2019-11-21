@@ -207,4 +207,14 @@ export class ProvidenciaService {
         });
         return res;
     }
+
+    tomaRazon(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/tomaRazon', response, {observe: 'response'});
+    }
+    registra(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/registra', response, {observe: 'response'});
+    }
+    representa(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/representa', response, {observe: 'response'});
+    }
 }

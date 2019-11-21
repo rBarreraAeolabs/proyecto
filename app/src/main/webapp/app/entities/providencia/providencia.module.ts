@@ -119,6 +119,19 @@ import {
     ProvidenciaUpdNotificaInculpadoComponent,
     ProvidenciaUpdNotificaInculpadoPopupComponent
 } from 'app/entities/providencia/providencia-upd-notifica-inculpado.component';
+import {
+    ProvidenciaRepresentaComponent,
+    ProvidenciaRepresentaPopupComponent
+} from 'app/entities/providencia/providencia-representa.component';
+import {
+    ProvidenciaTomaRazonComponent,
+    ProvidenciaTomaRazonPopupComponent
+} from 'app/entities/providencia/providencia-toma-razon.component';
+import {
+    ProvidenciaRegistraComponent,
+    ProvidenciaRegistraPopupComponent
+} from 'app/entities/providencia/providencia-registra.component';
+
 // directive
 import {
     ReadMoreDirective,
@@ -196,7 +209,13 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaAsignarNumeroFolioComponent,
         ProvidenciaAsignarNumeroFolioPopupComponent,
         ProvidenciaUpdNotificaInculpadoComponent,
-        ProvidenciaUpdNotificaInculpadoPopupComponent
+        ProvidenciaUpdNotificaInculpadoPopupComponent,
+        ProvidenciaTomaRazonComponent,
+        ProvidenciaTomaRazonPopupComponent,
+        ProvidenciaRepresentaComponent,
+        ProvidenciaRepresentaPopupComponent,
+        ProvidenciaRegistraComponent,
+        ProvidenciaRegistraPopupComponent
 
     ],
     entryComponents: [
@@ -254,7 +273,13 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaAsignarNumeroFolioComponent,
         ProvidenciaAsignarNumeroFolioPopupComponent,
         ProvidenciaUpdNotificaInculpadoComponent,
-        ProvidenciaUpdNotificaInculpadoPopupComponent
+        ProvidenciaUpdNotificaInculpadoPopupComponent,
+        ProvidenciaTomaRazonComponent,
+        ProvidenciaTomaRazonPopupComponent,
+        ProvidenciaRepresentaComponent,
+        ProvidenciaRepresentaPopupComponent,
+        ProvidenciaRegistraComponent,
+        ProvidenciaRegistraPopupComponent
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
