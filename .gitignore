@@ -13,7 +13,7 @@ adjuntos/**
 app/adjuntos/**
 excel/**
 pdf/**
-
+app/target/**
 ######################
 # Node
 ######################
