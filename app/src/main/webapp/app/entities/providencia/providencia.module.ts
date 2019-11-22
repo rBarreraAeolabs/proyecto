@@ -131,11 +131,18 @@ import {
     ProvidenciaRegistraComponent,
     ProvidenciaRegistraPopupComponent
 } from 'app/entities/providencia/providencia-registra.component';
-
+import {
+    ProvidenciaMemoConductorComponent,
+    ProvidenciaMemoConductorPopupComponent
+} from 'app/entities/providencia/providencia-memo-conductor.component';
 // directive
 import {
     ReadMoreDirective,
 } from 'app/entities/providencia/read-more.directive';
+import {
+    ProvidenciaExamenLegalidadComponent,
+    ProvidenciaExamenLegalidadPopupComponent
+} from 'app/entities/providencia/providencia-examen-legalidad.component';
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -215,7 +222,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaRepresentaComponent,
         ProvidenciaRepresentaPopupComponent,
         ProvidenciaRegistraComponent,
-        ProvidenciaRegistraPopupComponent
+        ProvidenciaRegistraPopupComponent,
+        ProvidenciaMemoConductorComponent,
+        ProvidenciaMemoConductorPopupComponent,
+        ProvidenciaExamenLegalidadComponent,
+        ProvidenciaExamenLegalidadPopupComponent
 
     ],
     entryComponents: [
@@ -279,7 +290,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaRepresentaComponent,
         ProvidenciaRepresentaPopupComponent,
         ProvidenciaRegistraComponent,
-        ProvidenciaRegistraPopupComponent
+        ProvidenciaRegistraPopupComponent,
+        ProvidenciaMemoConductorComponent,
+        ProvidenciaMemoConductorPopupComponent,
+        ProvidenciaExamenLegalidadComponent,
+        ProvidenciaExamenLegalidadPopupComponent
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

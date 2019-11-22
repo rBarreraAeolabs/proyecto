@@ -113,7 +113,7 @@ public class Providencia implements Serializable {
     @JsonIgnore
     private Set<Adjunto> adjuntos = new HashSet<>();
 
-    @OneToMany(mappedBy = "providencia")
+    @OneToMany(mappedBy = "providencia",fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<MovimientoProvidencia> movimientos = new HashSet<>();
 

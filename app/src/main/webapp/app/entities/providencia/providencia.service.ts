@@ -135,6 +135,12 @@ export class ProvidenciaService {
     updNotificaInculpado(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/notificaDemandado', response, {observe: 'response'});
     }
+    memoConductor(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/memoConductor', response, {observe: 'response'});
+    }
+    examenLegalidad(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/examenLegalidad', response, {observe: 'response'});
+    }
     updateFolio(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
         return this.http.
         put<IProvidencia>(`${this.resourceUrl}/updateFolio`, providencia, {observe: 'response'})

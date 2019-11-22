@@ -35,9 +35,11 @@ import {ProvidenciaNoReabroPopupComponent} from 'app/entities/providencia/provid
 import {ProvidenciaNoProponePopupComponent} from 'app/entities/providencia/providencia-no-propone.component';
 import {ProvidenciaUpdNotificaInculpadoPopupComponent} from 'app/entities/providencia/providencia-upd-notifica-inculpado.component';
 import { ProvidenciaAsignarNumeroFolioPopupComponent } from 'app/entities/providencia/providencia-asignar-numero-folio.component';
-import {ProvidenciaTomaRazonPopupComponent} from "app/entities/providencia/providencia-toma-razon.component";
-import {ProvidenciaRegistraPopupComponent} from "app/entities/providencia/providencia-registra.component";
-import {ProvidenciaRepresentaPopupComponent} from "app/entities/providencia/providencia-representa.component";
+import {ProvidenciaTomaRazonPopupComponent} from 'app/entities/providencia/providencia-toma-razon.component';
+import {ProvidenciaRegistraPopupComponent} from 'app/entities/providencia/providencia-registra.component';
+import {ProvidenciaRepresentaPopupComponent} from 'app/entities/providencia/providencia-representa.component';
+import {ProvidenciaMemoConductorPopupComponent} from 'app/entities/providencia/providencia-memo-conductor.component';
+import {ProvidenciaExamenLegalidadPopupComponent} from 'app/entities/providencia/providencia-examen-legalidad.component';
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
     constructor(private service: ProvidenciaService) {}
@@ -196,6 +198,19 @@ export const providenciaPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
+        path: 'providencia/:id/examenLegalidad',
+        component: ProvidenciaExamenLegalidadPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Responder providencia',
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
         path: 'providencia/:id/tomaRazon',
         component: ProvidenciaTomaRazonPopupComponent,
         resolve: {
@@ -341,6 +356,20 @@ export const providenciaPopupRoute: Routes = [
     {
         path: 'providencia/:id/updNotificaInculpado',
         component: ProvidenciaUpdNotificaInculpadoPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/memoConductor',
+        component: ProvidenciaMemoConductorPopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },

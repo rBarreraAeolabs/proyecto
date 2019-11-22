@@ -214,6 +214,24 @@
 
                                                 </a>
                                                 <a
+                                                    class="dropdown-item" *ngIf=" actionsPermitted.memoConductor"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/memoConductor'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span>Notificar Inculpado </span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf=" actionsPermitted.examenLegalidad"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/examenLegalidad'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span>Notificar Inculpado </span>
+
+                                                </a>
+                                                <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.terminoProbatorio"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/terminoProbatorio'} }]"
                                                     replaceUrl="true"
