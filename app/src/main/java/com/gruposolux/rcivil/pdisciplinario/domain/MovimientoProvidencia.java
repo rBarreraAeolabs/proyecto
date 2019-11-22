@@ -38,10 +38,10 @@ public class MovimientoProvidencia implements Serializable, Comparable<Movimient
     @Column(name = "accion")
     private String accion;
 
-    @OneToMany(mappedBy = "movimientoProvidencia",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "movimientoProvidencia")
     private Set<Documento> documentos = new HashSet<>();
 
-    @OneToMany(mappedBy = "movimientoProvidencia",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "movimientoProvidencia")
     @JsonIgnore
     private Set<Adjunto> adjuntos = new HashSet<>();
 

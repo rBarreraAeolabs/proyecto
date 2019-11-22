@@ -35,10 +35,6 @@ public final class HeaderUtil {
         return createAlert("Un " + entityName + " es eliminado con identificador " + param, param);
     }
 
-    public static HttpHeaders message (String context, String message) {
-        return createAlert(context, message);
-    }
-
     public static HttpHeaders createFailureAlert(String entityName, String errorKey, String defaultMessage) {
         log.error("El procesamiento de la entidad falló, {}", defaultMessage);
         HttpHeaders headers = new HttpHeaders();

@@ -34,15 +34,36 @@ public class PlazosHastaService {
 
     public void dias(Long id, Integer dias){
         Providencia providencia = providenciaRepository.findOne(id);
+
         Instant fechaHoy = Instant.now();
+
+//        EstadoProvidencia requisito = providencia.getRequisito();
+
         Date diahoy = Date.from(fechaHoy);
         log.debug("fecha de hoy: "+diahoy);
+
         List<Date> rubenFechasNoLaborables= Collections.emptyList();
-        Date diasHabiles= fechasService.calcularFecha(diahoy,dias,rubenFechasNoLaborables);
+
+       Date diasHabiles= fechasService.calcularFecha(diahoy,dias,rubenFechasNoLaborables);
         log.debug("dias habiles: "+ diasHabiles+".");
+
+
+
+
         Instant fechaFinal =   diasHabiles.toInstant();
+
         //  log.debug("ruben resultado cond dias habiles: "+ fechasService.diasHabiles(rubenHoy,rubenHasta,rubenFechasNoLaborables));
         providencia.setFechaHasta(fechaFinal);
+
+
+
+
         providenciaRepository.save(providencia);
+
+
+
     }
+
+
+
 }

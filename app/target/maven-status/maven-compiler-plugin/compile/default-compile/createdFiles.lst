@@ -51,6 +51,7 @@ com\gruposolux\rcivil\pdisciplinario\service\mapper\ProvidenciaMapper.class
 com\gruposolux\rcivil\pdisciplinario\service\mapper\NotificacionInBrowserMapper.class
 com\gruposolux\rcivil\pdisciplinario\web\rest\AdjuntoResource.class
 com\gruposolux\rcivil\pdisciplinario\domain\Documento.class
+com\gruposolux\rcivil\pdisciplinario\domain\enumeration\Accion.class
 com\gruposolux\rcivil\pdisciplinario\service\mapper\PerfilMapperImpl.class
 com\gruposolux\rcivil\pdisciplinario\service\dto\DetalleProvidenciaDTO.class
 com\gruposolux\rcivil\pdisciplinario\config\audit\AuditEventConverter.class
@@ -215,6 +216,7 @@ com\gruposolux\rcivil\pdisciplinario\web\rest\DocumentoResource.class
 com\gruposolux\rcivil\pdisciplinario\service\NotificationService.class
 com\gruposolux\rcivil\pdisciplinario\domain\Grupo_.class
 com\gruposolux\rcivil\pdisciplinario\service\mapper\DocumentoMapper.class
+com\gruposolux\rcivil\pdisciplinario\service\dto\ProvidenciaUpdateMadreDTO.class
 com\gruposolux\rcivil\pdisciplinario\domain\Adjunto_.class
 com\gruposolux\rcivil\pdisciplinario\service\dto\DerivacionDTO.class
 com\gruposolux\rcivil\pdisciplinario\service\util\PdfConverter$2.class

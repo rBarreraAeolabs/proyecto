@@ -33,7 +33,6 @@ export class ProvidenciaComponent implements OnInit, OnDestroy {
     reverse: any;
     now: Moment = moment();
     userDgdp = false;
-    color: string = '#c3e6cb';
 
     constructor(
         private providenciaService: ProvidenciaService,
@@ -110,29 +109,8 @@ export class ProvidenciaComponent implements OnInit, OnDestroy {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: Moment, item: IProvidenciaItemList) {
-        return item.fechaCreacion;
-    }
-    generarColor(estado: string, stanby: boolean) {
-        let color = '#c3e6cb';
-        console.log(estado);
-        switch (estado) {
-            case 'INVESTIGACION - PRORROGA_SOLICITADA - PETICION_PRORROGA_1':
-            case 'INVESTIGACION_PRORROGA_1 - PRORROGA_SOLICITADA - PETICION_PRORROGA_2':
-            case 'REVISION_SUMARIO - ABOGADO_RESPONDE - DGD_DESPACHA_SUMARIO_COMPLETO':
-            case 'INVESTIGACION_PRORROGA_1 - ABOGADO_RESPONDE - DGD_DESPACHA_SUMARIO_COMPLETO':
-            case 'INVESTIGACION_PRORROGA_2 - ABOGADO_RESPONDE - DGD_DESPACHA_SUMARIO_COMPLETO':
-            case 'INFORME_JURIDICO - ABSOLVER - DEMANDADO_NOTIFICADO':
-            case 'INFORME_JURIDICO - SOBRESEER - DEMANDADO_NOTIFICADO':
-                if (stanby !== true) {
-                    color = '#F68334';
-                } else {
-                    color = '#f5c6cb';
-                }
-                break;
-
-        }
-        return color;
+    trackId(index: number, item: IProvidencia) {
+        return item.id;
     }
 
     registerChangeInProvidencias() {

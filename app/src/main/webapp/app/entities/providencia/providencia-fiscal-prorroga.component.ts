@@ -62,7 +62,7 @@ export class ProvidenciaFiscalProrrogaComponent implements OnInit {
         this.providenciaResponse.adjuntosDTOs = this.adjuntos;
         this.providenciaResponse.observacion = this.observacionDerivacion;
 
-        // if (this.providencia.requisito === 'INVESTIGACION') {
+        if (this.providencia.requisito === 'FISCAL_ACEPTO_Y_DA_INICIO') {
             console.log('entro al servicio prorroga');
             this.providenciaService.prorroga(this.providenciaResponse).subscribe(res => {
                 this.eventManager.broadcast({
@@ -72,7 +72,7 @@ export class ProvidenciaFiscalProrrogaComponent implements OnInit {
                 this.activeModal.dismiss(true);
                 this.previousState();
             });
-        // }
+        }
     }
 
     previousState() {

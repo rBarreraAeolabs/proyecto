@@ -90,7 +90,6 @@ Generic styles
     opacity: 1;
 }
 
-
 .footer {
     border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
@@ -210,25 +209,7 @@ entity detail page css
         }
     }
 }
-.navbar-expand-md .navbar-collapse {
-    display: flex !important;
-    flex-basis: auto;
-    margin-right: 180px;
-}
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.15rem;
-    margin-top: 100px;
-    margin-left: 170px;
-    margin-right: 170px;
-}
+
 /* ==========================================================================
 ui bootstrap tweaks
 ========================================================================== */

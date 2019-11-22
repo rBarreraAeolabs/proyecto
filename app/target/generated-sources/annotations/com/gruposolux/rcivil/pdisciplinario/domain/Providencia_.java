@@ -42,7 +42,6 @@ public abstract class Providencia_ {
 	public static volatile SingularAttribute<Providencia, String> comentario;
 	public static volatile SingularAttribute<Providencia, Long> numeroDgd;
 	public static volatile SingularAttribute<Providencia, String> estadoActual;
-	public static volatile SingularAttribute<Providencia, Long> folio;
 	public static volatile SingularAttribute<Providencia, Instant> fechaCreacion;
 	public static volatile SingularAttribute<Providencia, EstadoProvidencia> subEtapa;
 

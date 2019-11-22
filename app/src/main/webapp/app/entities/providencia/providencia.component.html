@@ -37,7 +37,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="fechaCreacion"><span >Fecha Creacion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="estadoActual"><span >Estado Actual</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th><span>Grupo</span></th>
@@ -50,7 +50,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let providencia of providencias ;trackBy: trackId"
-                [ngStyle]="{'background-color': generarColor(providencia.estadoProvidencia,  providencia.standby)  }">
+                [ngStyle]="{'background-color':providencia.standby == true ? '#f5c6cb' : '#c3e6cb' }">
                 <td><a [routerLink]="['/providencia', providencia.id, 'view' ]">{{providencia.id}}</a></td>
                 <td>{{providencia.fechaCreacion | date}}</td>
                 <td>{{providencia.estadoProvidencia.split('_').join(' ')}}</td>

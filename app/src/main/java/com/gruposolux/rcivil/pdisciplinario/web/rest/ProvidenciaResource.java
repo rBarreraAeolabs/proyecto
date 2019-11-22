@@ -2,7 +2,10 @@ package com.gruposolux.rcivil.pdisciplinario.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
+import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Apelacion;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
+import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.OrdenJuridico;
+import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.Prorroga;
 import com.gruposolux.rcivil.pdisciplinario.repository.ProvidenciaRepository;
 import com.gruposolux.rcivil.pdisciplinario.security.AuthoritiesConstants;
 import com.gruposolux.rcivil.pdisciplinario.service.ProvidenciaService;
@@ -21,10 +24,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.net.ssl.ExtendedSSLSession;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -116,6 +119,8 @@ public class ProvidenciaResource {
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, String.format("/api/providencias?eagerload=%b", eagerload));
 
+
+
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
@@ -180,44 +185,10 @@ public class ProvidenciaResource {
     @PostMapping("/providencias/formularCargos")
     @Timed
     public ResponseEntity<Void> formularCargos (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("ENTRO AL formularCargos: ");
+        log.debug("ENTRO AL fiscal: ");
         this.providenciaService.formularCargos(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
-
-    @PostMapping("/providencias/terminoProbatorio")
-    @Timed
-    public ResponseEntity<Void> terminoProbatorio (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("ENTRO a terminoProbatorio: ");
-        this.providenciaService.terminoProbatorio(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
-
-    @PostMapping("/providencias/siDeAcuerdo")
-    @Timed
-    public ResponseEntity<Void> siDeAcuerdo (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("ENTRO a deAcuerdo: ");
-        this.providenciaService.siDeAcuerdo(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
-
-    @PostMapping("/providencias/noReabro")
-    @Timed
-    public ResponseEntity<Void> noReabro (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("ENTRO a noReabro: ");
-        this.providenciaService.noReabro(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
-
-    @PostMapping("/providencias/noPropone")
-    @Timed
-    public ResponseEntity<Void> noPropone (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("ENTRO a noPropone: ");
-        this.providenciaService.noPropone(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
-
-
     @PostMapping("/providencias/remiteExpediente")
     @Timed
     public ResponseEntity<Void> remiteExpediente (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
@@ -245,24 +216,26 @@ public class ProvidenciaResource {
     @Timed
     public ResponseEntity<Void> prorroga(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("endpoint botton prorroga");
-
-        Long iDMadre = providenciaRepository.findIDMadre(providenciaResponseDTO.getProvidenciaId());
-        log.debug("paso por alquiii");
-        log.debug("el ID de la madre es" + iDMadre);
-        EstadoProvidencia requisitoMadre = null;
-
-        if(iDMadre != null) {
-            requisitoMadre = providenciaRepository.findRequisitoByIdMadre(iDMadre);
-        }
-        log.debug("el requisito de la madre es" + requisitoMadre);
-
-        if (requisitoMadre != EstadoProvidencia.PETICION_PRORROGA_2 || iDMadre == null){
-            this.providenciaService.prorroga(providenciaResponseDTO);
-            return new ResponseEntity<Void>(HttpStatus.OK);
-        }else{
-            throw new BadRequestAlertException("Ya alcanzo el limite de Prorrogas Para Esta Providencia", null, null);
-        }
+        this.providenciaService.prorroga(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
+
+    @PostMapping("/providencias/apela")
+    @Timed
+    public ResponseEntity<Void> apela(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton apela");
+        this.providenciaService.apela(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/noApela")
+    @Timed
+    public ResponseEntity<Void> noApela(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton noApela");
+        this.providenciaService.noApela(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
 
     @PostMapping("/providencias/inculpadoEnviaMemo")
     @Timed
@@ -286,56 +259,17 @@ public class ProvidenciaResource {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    @PostMapping("/providencias/notificaDemandado")
+    @PostMapping("/providencias/representa")
     @Timed
-    public ResponseEntity<Void> notificaDemandado(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        this.providenciaService.notificaDemandado(providenciaResponseDTO);
-        Providencia providencia = providenciaRepository.findById(providenciaResponseDTO.getProvidenciaId()).get();
-
-        if (providencia.getRequisito() == EstadoProvidencia.SE_NOTIFICO_INCULPADO) {
-            return ResponseEntity.ok().headers(HeaderUtil.createAlert("Se Notifico al Inculpado!",ENTITY_NAME)).body(null);
-        } else {
-            return new ResponseEntity<Void>(HttpStatus.OK);
-        }
-    }
-
-    @PostMapping("/providencias/apela")
-    @Timed
-    public ResponseEntity<Void> apela(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("endpoint botton apela");
-        this.providenciaService.apela(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
-
-    @PostMapping("/providencias/noApela")
-    @Timed
-    public ResponseEntity<Void> noApela(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("endpoint botton noApela");
-        this.providenciaService.noApela(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
-
-    @PostMapping("/providencias/tomaRazon")
-    @Timed
-    public ResponseEntity<Void> tomaRazon(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("endpoint botton tomaRazon");
-        this.providenciaService.tomaRazon(providenciaResponseDTO);
+    public ResponseEntity<Void> representa(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        this.providenciaService.representa(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     @PostMapping("/providencias/registra")
     @Timed
-    public ResponseEntity<Void> registra (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("endpoint botton registra");
+    public ResponseEntity<Void> registra(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
         this.providenciaService.registra(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
-
-    @PostMapping("/providencias/representa")
-    @Timed
-    public ResponseEntity<Void> representa (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
-        log.debug("endpoint botton representa");
-        this.providenciaService.representa(providenciaResponseDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
@@ -389,34 +323,34 @@ public class ProvidenciaResource {
         return new ResponseEntity<>(this.providenciaService.findAllWithoutPagination(), HttpStatus.OK);
     }
 
-    @PutMapping("/providencias/updateFolio")
-    @Timed
-    public ResponseEntity<ProvidenciaDTO> updateFolio(@RequestBody ProvidenciaUpdateNumeroReferenciaDTO providenciaUpdateNumeroReferenciaDTO) {
-
-        log.debug(" Entro al updateFolio con el DTO : {} ");
-
-        ProvidenciaDTO providenciaDTO = this.providenciaService.updateFolio(providenciaUpdateNumeroReferenciaDTO);
-
-        if (providenciaDTO.getFolio() == null) {
-            return ResponseEntity.ok().headers(HeaderUtil.message("No se pudo agregar el N° de Folio",ENTITY_NAME)).body(null);
-        }
-        return ResponseEntity.ok().headers(HeaderUtil.createAlert("El N° de Folio se agrego Correctamente!",
-            providenciaDTO.getId().toString())).body(providenciaDTO);
-    }
+//    @PutMapping("/providencias/madre")
+//    @Timed
+//    public ResponseEntity<ProvidenciaDTO> updateProvidenciaMadre(@RequestBody ProvidenciaUpdateMadreDTO
+//                                                                     providenciaUpdateMadreDTO)
+//    {
+//        ProvidenciaDTO providenciaDTO = this.providenciaService.updateProvidenciaMadre(providenciaUpdateMadreDTO);
+//
+//        if (providenciaDTO != null)
+//        {
+//            return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, providenciaDTO.getId()
+//                .toString())).body(providenciaDTO);
+//        }
+//
+//        return ResponseEntity.ok().headers(HeaderUtil.createAlert("No se pudo crear la relación entre las dos providencias",
+//            providenciaDTO.getId().toString())).body(providenciaDTO);
+//    }
 
     @PutMapping("/providencias/nroReferencia")
     @Timed
     public ResponseEntity<ProvidenciaDTO> updateNroReferencia(@RequestBody ProvidenciaUpdateNumeroReferenciaDTO providenciaUpdateNumeroReferenciaDTO) {
-
-        Long numeroReferencia =  providenciaUpdateNumeroReferenciaDTO.getNumeroReferencia();
-        log.debug(" Entro al updateNumeroReferencia con el numero: {} ", numeroReferencia);
-        Long numeroReferenciaNoUsado = this.providenciaRepository.existeNumeroReferencia(numeroReferencia);
-
-        if (numeroReferenciaNoUsado != null) {
-            throw new BadRequestAlertException("El N° que ingreso ya esta siendo utilizado, por favor ingrese otro numero!", null, null);
-        }
         ProvidenciaDTO providenciaDTO = this.providenciaService.updateNumeroReferencia(providenciaUpdateNumeroReferenciaDTO);
-        return ResponseEntity.ok().headers(HeaderUtil.createAlert("El N° de Referencia se agrego Correctamente!",
+
+        if (providenciaDTO != null) {
+            return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, providenciaDTO.getId()
+                .toString())).body(providenciaDTO);
+        }
+
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("No se pudo crear la relación entre las dos providencias",
             providenciaDTO.getId().toString())).body(providenciaDTO);
     }
 
@@ -529,15 +463,8 @@ public class ProvidenciaResource {
     @PutMapping("/providencias/updateProvidenciaForType")
     @Timed
     public ResponseEntity<ProvidenciaDTO> updateProvidenciaForType(@RequestBody ProvidenciaUpdateForTypeDTO providenciaUpdateForTypeDTO)
-        throws URISyntaxException {
+    {  log.debug("REFERENCIA MADRE: "+providenciaUpdateForTypeDTO.getNumeroReferencia());
 
-        EstadoProvidencia requisitoMadre = providenciaRepository.findRequisitoByNumberRefer(providenciaUpdateForTypeDTO.getNumeroReferencia());
-        log.debug("REFERENCIA MADRE: "+providenciaUpdateForTypeDTO.getNumeroReferencia() + " y RequisitoMadre es: "+ requisitoMadre);
-
-        if(requisitoMadre == EstadoProvidencia.DGD_DESPACHA_SUMARIO_COMPLETO &&
-            providenciaUpdateForTypeDTO.getOrdenJuridico()== null){
-           throw new BadRequestAlertException("Debe seleccionar el tipo de Orden Juridica", null, null);
-        }
         ProvidenciaDTO providenciaDTO = this.providenciaService.updateProvidenciaForType(providenciaUpdateForTypeDTO);
 
         if (providenciaDTO != null)

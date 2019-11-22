@@ -32,9 +32,5 @@ public interface MovimientoProvidenciaRepository extends JpaRepository<Movimient
 //        List<MovimientoProvidencia> traerMovimientos(@Param("Id") Long Id);
 
 
-    @Query(value = "SELECT * FROM movimiento_providencia m where m.providencia_id =:id  order by m.fecha desc limit 1", nativeQuery = true)
-    MovimientoProvidencia traerMovimientos(@Param("id") Long id);
-
-
 
 }

@@ -81,10 +81,7 @@ export const enum EtapaProvidencia {
     PROVIDENCIA_SANCIONAR = 'PROVIDENCIA_SANCIONAR',
     PROVIDENCIA_SANCIONAR_INCULPADO_APELA = 'PROVIDENCIA_SANCIONAR_INCULPADO_APELA',
     PROVIDENCIA_SANCIONAR_INCULPADO_NO_APELA = 'PROVIDENCIA_SANCIONAR_INCULPADO_NO_APELA',
-    PROVIDENCIA_REABRE = 'PROVIDENCIA_REABRE',
-    INVESTIGACION= 'INVESTIGACION',
-    INVESTIGACION_PRORROGA_1 = 'INVESTIGACION_PRORROGA_1',
-    INVESTIGACION_PRORROGA_2 = 'INVESTIGACION_PRORROGA_2',
+    PROVIDENCIA_REABRE = 'PROVIDENCIA_REABRE'
 }
 
 export const enum AccionesProvidencia {
@@ -128,14 +125,7 @@ export const enum AccionesProvidencia {
     FISCAL_REDACTA_MEMO= 'FISCAL_REDACTA_MEMO',
     SECRETARIA_DESPACHA_A_DGD= 'SECRETARIA_DESPACHA_A_DGD',
     FISCAL_ACEPTO_Y_DA_INICIO= 'FISCAL_ACEPTO_Y_DA_INICIO',
-    REDACCION_MEMO= 'REDACCION_MEMO',
-    INVESTIGACION= 'INVESTIGACION',
-    DGD_DESPACHA_SUMARIO_COMPLETO= 'DGD_DESPACHA_SUMARIO_COMPLETO',
-    PETICION_PRORROGA = 'PETICION_PRORROGA',
-    GESTOR_DOCUMENTAL_ASIGNA_NUMERO = 'GESTOR_DOCUMENTAL_ASIGNA_NUMERO',
-    NOTIFICAR_INCULPADO = 'NOTIFICAR_INCULPADO',
-    SE_NOTIFICO_INCULPADO = 'SE_NOTIFICO_INCULPADO',
-
+    INVESTIGACION= 'INVESTIGACION'
 }
 
 export const enum TipoProvidencia {
@@ -144,7 +134,7 @@ export const enum TipoProvidencia {
 }
 export const enum OrdenJuridico {
     ABSOLVER = 'RESERVADO',
-    SOBRESEER = 'RESERVADO',
+    SOBRECEDER = 'RESERVADO',
     SANCIONAR = 'RESERVADO',
     REABRIR = 'RESERVADO'
 }
@@ -198,8 +188,6 @@ export interface IProvidencia {
     apelacion?: Apelacion;
     standby?: boolean;
     totalAdjuntos?: number;
-    folio?: number;
-    providenciaMadreId?: number;
 }
 
 export class Providencia implements IProvidencia {
@@ -245,7 +233,7 @@ export class IProvidenciaResponse {
 export interface IProvidenciaItemList {
     id?: number;
     fechaCreacion?: Moment;
-    estadoProvidencia?: String;
+    estadoProvidencia?: EstadoProvidencia;
     nombreGrupo?: string;
     diasDesdeCreacion?: number;
     diasUltimoTramite?: number;
@@ -266,10 +254,6 @@ export interface IProvidenciaUpdateForType {
 export interface IProvidenciaUpdateNroReferencia {
     providenciaId?: number;
     numeroReferencia?: number;
-}
-export interface IProvidenciaUpdateFolio {
-    providenciaId?: number;
-    folio?: number;
 }
 export interface IProvidenciaUpdateTipoSolicitud {
     providenciaId?: number;

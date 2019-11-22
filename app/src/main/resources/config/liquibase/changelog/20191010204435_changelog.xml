@@ -10,10 +10,5 @@
             </column>
         </addColumn>
     </changeSet>
-    <changeSet author="rbarrera (generated)" id="1573003109551-3">
-    <addColumn tableName="providencia">
-        <column name="folio" type="int8"/>
-    </addColumn>
 
-</changeSet>
 </databaseChangeLog>

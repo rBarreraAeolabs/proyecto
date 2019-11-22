@@ -35,8 +35,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
         noApela: false,
         fiscalNotificaCierre: false,
         inculpadoEnviaMemo: false,
-        inculpadoNoEnviaMemo: false,
-        folio: false,
+        inculpadoNoEnviaMemo: false
 
     };
     refresh = false;
@@ -79,11 +78,36 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             this.providencia = providencia;
+            console.log('cantidad Adjuntos', this.providencia.totalAdjuntos);
 
+            // this.providencia.documentos.forEach(documento => {
+            //     if (documento.tipoPlantilla === 'RESOLUCION') {
+            //         console.log('puede continuar porque tiene el archivo correcto');
+            //     }
+            // });
             this.providenciaService.getActionsPermitted(this.providencia).subscribe(response => {
                 this.actionsPermitted = response.body;
-                console.log('ng onit ' +  this.actionsPermitted );
+                // // condicion para que en el estado 6 condiciona la vista del btn asignar numero referencia
+                // if (this.providencia.estadoActual === 'ESTADO_3') {
+                //     if (this.providencia.numeroReferencia !== null && typeof this.providencia.numeroReferencia !== 'undefined') {
+                //         this.actionsPermitted.numerarReferencia = false;
+                //     } else {
+                //         this.actionsPermitted.numerarReferencia = true;
+                //     }
+                // }
+                // condicion para que en el estado 6 condiciona la vista del boton asignar tipo solicitud
+                // if (this.providencia.estadoActual === 'ESTADO_6') {
+                //     if (this.providencia.tipo !== null && typeof this.providencia.tipo !== 'undefined') {
+                //         this.actionsPermitted.tipoSolicitud = false;
+                //     } else {
+                //         this.actionsPermitted.tipoSolicitud = true;
+                //     }
+                // }
 
+                // condicion para que en el estado actual haga una accion
+                // 6, condiciona que si en contenido de la plantilla es nulo desactive el boton continuar
+                // 11, condiciona si el nombre del fiscal es nulo o indefinido desactive el boton continuar
+                // 14 condiciona la vista del btn continuar
                 switch (this.providencia.estadoActual) {
                     case 'RESOLUCION_Y_MEMO': {
                         if (this.plantillaUtilizada.contenido === null) {
@@ -93,10 +117,18 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
 
                         break;
                     }
-                }
-                if (this.providencia.etapa === 'INVESTIGACION_PRORROGA_1' ) {
-                    this.isProrroga = false;
-
+                    // case 'ESTADO_11': {
+                    //     if (this.providencia.nombreFiscalAsignado === null || typeof this.providencia.nombreFiscalAsignado === 'undefined') {
+                    //         this.disableResponder = true;
+                    //     } else {
+                    //         this.actionsPermitted.asignarFiscal = false;
+                    //     }
+                    //     break;
+                    // }
+                    // case 'ESTADO_14': {
+                    //     this.disableResponder = true;
+                    //     break;
+                    // }
                 }
 
             });
@@ -111,31 +143,13 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
             if (this.providencia.requisito === 'FISCAL_NOTIFICADO' && this.providencia.etapa === 'NUEVA_PROVIDENCIA') {
                 this.isDevolver = false;
             }
-
-            if (this.providencia.etapa === 'INVESTIGACION_PRORROGA_1' ) {
-                this.disableResponder = false;
+            if (this.providencia.etapa === 'PROVIDENCIA_PRORROGA' ) {
+                this.isProrroga = false;
 
             }
         });
 
     }
-    // SeguirLeyendo(value: string, limit: 40, trail: String = '…'): string {
-    //     let result = value || '';
-    //
-    //     if (value) {
-    //         const words = value.split(/\s+/);
-    //         if (words.length > Math.abs(limit)) {
-    //             if (limit < 0) {
-    //                 limit *= -1;
-    //                 result = trail + words.slice(words.length - limit, words.length).join(' ');
-    //             } else {
-    //                 result = words.slice(0, limit).join(' ') + trail;
-    //             }
-    //         }
-    //     }
-    //
-    //     return result;
-    // }
 
     // complemento para descargar excel
     exportAsXLSX(): void {
@@ -148,27 +162,9 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
 
     // metodo que refresca el detalle
     refreshDetail() {
-
         this.providenciaService.find(this.providencia.id).subscribe(response => {
             this.providencia = response.body;
-            this.refrescarPermisos(response.body);
         });
-    }
-
-    refrescarPermisos( provi: IProvidencia ) {
-
-        console.log('ng refresh  recargado ' + provi.requisito);
-        // this.providenciaService.find(provi.id).subscribe(response => {
-        //     const provide = response.body;
-        // });
-        console.log('ng refresh  recargado ' + provi.requisito);
-        console.log('ng refesh permite recargado ' +  this.actionsPermitted.apela + ' '  + this.actionsPermitted.noApela);
-        this.providenciaService.getActionsPermitted(provi).subscribe(resp => {
-            this.actionsPermitted = resp.body;
-            console.log('ng refesh permite recargado ' +  this.actionsPermitted.apela + ' '  + this.actionsPermitted.noApela);
-
-        });
-        return this.actionsPermitted = this.actionsPermitted ;
     }
     // metodo para volver atras
     previousState() {
@@ -181,6 +177,50 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
 
     getRespuesta($event) {
         this.respuesta = $event;
+
+        console.log('Respondiendo', this.respuesta);
+
+        // if (this.providencia.estadoActual === 'ESTADO_6') {
+        //
+        //     if (this.respuesta.documentos != null && this.respuesta.documentos.length >= 2) {
+        //
+        //         let countMemos = 0;
+        //         let countResoluciones = 0;
+        //
+        //         this.respuesta.documentos.forEach(doc => {
+        //             if (doc.tipoPlantilla === 'MEMORANDUM') {
+        //                 countMemos += 1;
+        //             } else if (doc.tipoPlantilla === 'RESOLUCION') {
+        //                 countResoluciones += 1;
+        //             }
+        //         });
+        //
+        //         if (countMemos > 0 && countResoluciones > 0) {
+        //             this.disableResponder = false;
+        //         }
+        //     } else {
+        //         this.disableResponder = true;
+        //     }
+        //
+        // } else if (this.providencia.estadoActual === 'ESTADO_16') {
+        //
+        //     if (this.respuesta.documentos != null && this.respuesta.documentos.length > 0) {
+        //
+        //         let countNotificaciones = 0;
+        //
+        //         this.respuesta.documentos.forEach(doc => {
+        //             if (doc.tipoPlantilla === 'NOTIFICACION') {
+        //                 countNotificaciones += 1;
+        //             }
+        //         });
+        //
+        //         if (countNotificaciones >= 1) {
+        //             this.disableResponder = false;
+        //         }
+        //     } else {
+        //         this.disableResponder = true;
+        //     }
+        // }
     }
 
     ngOnDestroy() {

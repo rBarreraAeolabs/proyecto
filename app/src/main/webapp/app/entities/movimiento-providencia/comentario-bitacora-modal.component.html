@@ -14,19 +14,18 @@
         <jhi-alert-error></jhi-alert-error>
         <div class="row">
             <div class="col-12">
-                <div class="form-group" *ngIf="movimientoProvidencia.comentario || movimientoProvidencia.adjuntos">
+                <div class="form-group" *ngIf="movimientoProvidencia.comentario">
                     <label for="field_comentario" class="control-label">Comentario</label>
                     <textarea id="field_comentario" [(ngModel)]="movimientoProvidencia.comentario" class="form-control"
                               style="height: 10rem; background-color: white" disabled>
 
                     </textarea>
-                    <div class="form-group" *ngIf="!movimientoProvidencia.comentario">
-                        <div class="alert alert-warning" role="alert">
-                            <b><p style="text-align: center"><span>Sin comentario</span></p></b>
-                        </div>
+                </div>
+                <div class="form-group" *ngIf="!movimientoProvidencia.comentario">
+                    <div class="alert alert-warning" role="alert">
+                        <b><p style="text-align: center"><span>Sin comentario</span></p></b>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="table-responsive" *ngIf="movimientoProvidencia.adjuntos && movimientoProvidencia.adjuntos.length > 0">
@@ -42,7 +41,7 @@
                         {{adjunto.archivoNombre}}
                     </td>
                     <td>
-                        {{adjunto.archivoSize | filesize}}
+                        {{adjunto.archivoSize}}
                     </td>
                     <td>
                         <div class="btn-group flex-btn-group-container">

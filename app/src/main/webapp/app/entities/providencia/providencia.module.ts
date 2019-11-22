@@ -36,17 +36,6 @@ import {
     ProvidenciaRelacionarDialogComponent,
     ProvidenciaRelacionarPopupComponent
 } from './providencia-relacionar-dialog.component';
-
-import {
-    ProvidenciaTerminoProbatorioComponent,
-    ProvidenciaTerminoProbatorioPopupComponent
-} from './providencia-termino-probatorio.component';
-
-import {
-    ProvidenciaSiDeAcuerdoComponent,
-    ProvidenciaSiDeAcuerdoPopupComponent
-} from './providencia-si-de-acuerdo.component';
-
 import {
     ProvidenciaAsignarFiscalComponent,
     ProvidenciaAsignarFiscalPopupComponent
@@ -75,16 +64,6 @@ import {
     ProvidenciaApelaComponent,
     ProvidenciaApelaPopupComponent
 } from 'app/entities/providencia/providencia-apela.component';
-import {
-    ProvidenciaNoProponeComponent,
-    ProvidenciaNoProponePopupComponent
-} from 'app/entities/providencia/providencia-no-propone.component';
-
-import {
-
-    ProvidenciaNoReabroComponent,
-    ProvidenciaNoReabroPopupComponent
-} from 'app/entities/providencia/providencia-no-reabro.component';
 
 import {
     ProvidenciaNoApelaComponent,
@@ -102,40 +81,6 @@ import {
     ProvidenciaInculpadoEnviaMemoComponent,
     ProvidenciaInculpadoEnviaMemoPopupComponent
 } from 'app/entities/providencia/providencia-inculpado-envia-memo.component';
-import {
-    ProvidenciaFiscalFormulaCargosComponent,
-    ProvidenciaFiscalFormulaCargosPopupComponent
-} from 'app/entities/providencia/providencia-fiscal-formula-cargos.component';
-import {
-    ProvidenciaFiscalRemiteExpedienteComponent,
-    ProvidenciaFiscalRemiteExpedientePopupComponent
-} from 'app/entities/providencia/providencia-fiscal-remite-expediente.component';
-import {
-    ProvidenciaAsignarNumeroFolioComponent,
-    ProvidenciaAsignarNumeroFolioPopupComponent
-} from 'app/entities/providencia/providencia-asignar-numero-folio.component';
-
-import {
-    ProvidenciaUpdNotificaInculpadoComponent,
-    ProvidenciaUpdNotificaInculpadoPopupComponent
-} from 'app/entities/providencia/providencia-upd-notifica-inculpado.component';
-import {
-    ProvidenciaRepresentaComponent,
-    ProvidenciaRepresentaPopupComponent
-} from 'app/entities/providencia/providencia-representa.component';
-import {
-    ProvidenciaTomaRazonComponent,
-    ProvidenciaTomaRazonPopupComponent
-} from 'app/entities/providencia/providencia-toma-razon.component';
-import {
-    ProvidenciaRegistraComponent,
-    ProvidenciaRegistraPopupComponent
-} from 'app/entities/providencia/providencia-registra.component';
-
-// directive
-import {
-    ReadMoreDirective,
-} from 'app/entities/providencia/read-more.directive';
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -192,30 +137,7 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaInculpadoNoEnviaMemoComponent,
         ProvidenciaInculpadoNoEnviaMemoPopupComponent,
         ProvidenciaInculpadoEnviaMemoComponent,
-        ProvidenciaInculpadoEnviaMemoPopupComponent,
-        ProvidenciaFiscalRemiteExpedienteComponent,
-        ProvidenciaFiscalRemiteExpedientePopupComponent,
-        ProvidenciaFiscalFormulaCargosComponent,
-        ProvidenciaFiscalFormulaCargosPopupComponent,
-        ProvidenciaTerminoProbatorioComponent,
-        ProvidenciaTerminoProbatorioPopupComponent,
-        ProvidenciaSiDeAcuerdoComponent,
-        ProvidenciaSiDeAcuerdoPopupComponent,
-        ProvidenciaNoProponeComponent,
-        ProvidenciaNoProponePopupComponent,
-        ProvidenciaNoReabroComponent,
-        ProvidenciaNoReabroPopupComponent,
-        ReadMoreDirective,
-        ProvidenciaAsignarNumeroFolioComponent,
-        ProvidenciaAsignarNumeroFolioPopupComponent,
-        ProvidenciaUpdNotificaInculpadoComponent,
-        ProvidenciaUpdNotificaInculpadoPopupComponent,
-        ProvidenciaTomaRazonComponent,
-        ProvidenciaTomaRazonPopupComponent,
-        ProvidenciaRepresentaComponent,
-        ProvidenciaRepresentaPopupComponent,
-        ProvidenciaRegistraComponent,
-        ProvidenciaRegistraPopupComponent
+        ProvidenciaInculpadoEnviaMemoPopupComponent
 
     ],
     entryComponents: [
@@ -257,30 +179,7 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaInculpadoNoEnviaMemoComponent,
         ProvidenciaInculpadoNoEnviaMemoPopupComponent,
         ProvidenciaInculpadoEnviaMemoComponent,
-        ProvidenciaInculpadoEnviaMemoPopupComponent,
-        ProvidenciaFiscalRemiteExpedienteComponent,
-        ProvidenciaFiscalRemiteExpedientePopupComponent,
-        ProvidenciaFiscalFormulaCargosComponent,
-        ProvidenciaFiscalFormulaCargosPopupComponent,
-        ProvidenciaTerminoProbatorioComponent,
-        ProvidenciaTerminoProbatorioPopupComponent,
-        ProvidenciaSiDeAcuerdoComponent,
-        ProvidenciaSiDeAcuerdoPopupComponent,
-        ProvidenciaNoProponeComponent,
-        ProvidenciaNoProponePopupComponent,
-        ProvidenciaNoReabroComponent,
-        ProvidenciaNoReabroPopupComponent,
-        ProvidenciaAsignarNumeroFolioComponent,
-        ProvidenciaAsignarNumeroFolioPopupComponent,
-        ProvidenciaUpdNotificaInculpadoComponent,
-        ProvidenciaUpdNotificaInculpadoPopupComponent,
-        ProvidenciaTomaRazonComponent,
-        ProvidenciaTomaRazonPopupComponent,
-        ProvidenciaRepresentaComponent,
-        ProvidenciaRepresentaPopupComponent,
-        ProvidenciaRegistraComponent,
-        ProvidenciaRegistraPopupComponent
-
+        ProvidenciaInculpadoEnviaMemoPopupComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

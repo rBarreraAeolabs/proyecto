@@ -28,8 +28,9 @@
     <div class="modal-footer">
         <div class="col-sm-12">
             <div class="form-group " *ngIf="
-            providenciaSeleccionada.requisito == 'DGD_DESPACHA_SUMARIO_COMPLETO' ">
-                <h6 class="form-control-label d-flex justify-content-center" >Tipo de orden juridica</h6>
+            providenciaSeleccionada.requisito == 'SECRETARIA_DESPACHA_A_DGD' && providenciaSeleccionada.subEtapa == 'INFORME_JURIDICO'
+            ">
+             <h6 class="form-control-label d-flex justify-content-center" >Tipo de orden juridica</h6>
                 <select class="form-control"
                         name="tipo" [(ngModel)]="providenciaUpdateForType.ordenJuridico"
                         id="field_orden_juridico"

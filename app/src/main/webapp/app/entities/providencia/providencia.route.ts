@@ -27,17 +27,7 @@ import { ProvidenciaNoApelaPopupComponent } from 'app/entities/providencia/provi
 import { ProvidenciaFiscalNotificaCierrePopupComponent } from 'app/entities/providencia/providencia-fiscal-notifica-cierre-investigacion.component';
 import {ProvidenciaInculpadoEnviaMemoPopupComponent} from 'app/entities/providencia/providencia-inculpado-envia-memo.component';
 import {ProvidenciaInculpadoNoEnviaMemoPopupComponent} from 'app/entities/providencia/providencia-inculpado-no-envia-memo.component';
-import {ProvidenciaFiscalFormulaCargosPopupComponent} from 'app/entities/providencia/providencia-fiscal-formula-cargos.component';
-import {ProvidenciaFiscalRemiteExpedientePopupComponent} from 'app/entities/providencia/providencia-fiscal-remite-expediente.component';
-import {ProvidenciaTerminoProbatorioPopupComponent} from 'app/entities/providencia/providencia-termino-probatorio.component';
-import {ProvidenciaSiDeAcuerdoPopupComponent} from 'app/entities/providencia/providencia-si-de-acuerdo.component';
-import {ProvidenciaNoReabroPopupComponent} from 'app/entities/providencia/providencia-no-reabro.component';
-import {ProvidenciaNoProponePopupComponent} from 'app/entities/providencia/providencia-no-propone.component';
-import {ProvidenciaUpdNotificaInculpadoPopupComponent} from 'app/entities/providencia/providencia-upd-notifica-inculpado.component';
-import { ProvidenciaAsignarNumeroFolioPopupComponent } from 'app/entities/providencia/providencia-asignar-numero-folio.component';
-import {ProvidenciaTomaRazonPopupComponent} from "app/entities/providencia/providencia-toma-razon.component";
-import {ProvidenciaRegistraPopupComponent} from "app/entities/providencia/providencia-registra.component";
-import {ProvidenciaRepresentaPopupComponent} from "app/entities/providencia/providencia-representa.component";
+
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
     constructor(private service: ProvidenciaService) {}
@@ -130,59 +120,6 @@ export const providenciaPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'providencia/:id/siDeAcuerdo',
-        component: ProvidenciaSiDeAcuerdoPopupComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'pdisciplinarioApp.providencia.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    {
-        path: 'providencia/:id/noReabro',
-        component: ProvidenciaNoReabroPopupComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'pdisciplinarioApp.providencia.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    {
-        path: 'providencia/:id/noPropone',
-        component: ProvidenciaNoProponePopupComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'pdisciplinarioApp.providencia.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    {
-        path: 'providencia/:id/terminoProbatorio',
-        component: ProvidenciaTerminoProbatorioPopupComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'pdisciplinarioApp.providencia.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-
-    {
         path: 'providencia/:id/responder',
         component: ProvidenciaResponderPopupComponent,
         resolve: {
@@ -191,45 +128,6 @@ export const providenciaPopupRoute: Routes = [
         data: {
             authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
             pageTitle: 'Responder providencia',
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    {
-        path: 'providencia/:id/tomaRazon',
-        component: ProvidenciaTomaRazonPopupComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
-            pageTitle: 'Tomar Razon providencia',
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    {
-        path: 'providencia/:id/registra',
-        component: ProvidenciaRegistraPopupComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
-            pageTitle: 'registra providencia',
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    {
-        path: 'providencia/:id/representa',
-        component: ProvidenciaRepresentaPopupComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
-            pageTitle: 'Representa providencia',
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -339,46 +237,6 @@ export const providenciaPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'providencia/:id/updNotificaInculpado',
-        component: ProvidenciaUpdNotificaInculpadoPopupComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: [],
-            pageTitle: 'pdisciplinarioApp.providencia.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        runGuardsAndResolvers: 'always',
-        outlet: 'popup'
-    },
-    {
-        path: 'providencia/:id/formulaCargos',
-        component: ProvidenciaFiscalFormulaCargosPopupComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
-            pageTitle: 'NO Envia Memo'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    {
-        path: 'providencia/:id/remiteExpediente',
-        component: ProvidenciaFiscalRemiteExpedientePopupComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
-            pageTitle: 'NO Envia Memo'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    {
         path: 'providencia/:id/devolver',
         component: ProvidenciaDevolverPopupComponent,
         resolve: {
@@ -415,20 +273,6 @@ export const providenciaPopupRoute: Routes = [
             pageTitle: 'pdisciplinarioApp.providencia.home.title'
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    {
-        path: 'providencia/:id/folio',
-        component: ProvidenciaAsignarNumeroFolioPopupComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: [],
-            pageTitle: 'pdisciplinarioApp.providencia.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        runGuardsAndResolvers: 'always',
         outlet: 'popup'
     },
     {

@@ -96,19 +96,6 @@ export class ProvidenciaService {
         return this.http.post<any>(this.resourceUrl + '/reply', response, {observe: 'response'});
     }
 
-    terminoProbatorio(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/terminoProbatorio', response, {observe: 'response'});
-    }
-
-    siDeAcuerdo(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/siDeAcuerdo', response, {observe: 'response'});
-    }
-    noPropone(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/noPropone', response, {observe: 'response'});
-    }
-    noReabro(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/noReabro', response, {observe: 'response'});
-    }
     aceptar(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/aceptar', response, {observe: 'response'});
     }
@@ -131,21 +118,6 @@ export class ProvidenciaService {
 
     inculpadoEnviaMemo(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/inculpadoEnviaMemo', response, {observe: 'response'});
-    }
-    updNotificaInculpado(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/notificaDemandado', response, {observe: 'response'});
-    }
-    updateFolio(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
-        return this.http.
-        put<IProvidencia>(`${this.resourceUrl}/updateFolio`, providencia, {observe: 'response'})
-            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
-    }
-        formulaCargos(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/formularCargos', response, {observe: 'response'});
-    }
-
-    remiteExpediente(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/remiteExpediente', response, {observe: 'response'});
     }
 
     apela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
@@ -182,7 +154,7 @@ export class ProvidenciaService {
         return this.http
             .get<IProvidencia[]>(`${this.resourceUrl}/buscarNroReferencia`, { observe: 'response' })
             .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
-    }
+           }
 
     private convertDateFromClient(providencia: IProvidencia): IProvidencia {
         const copy: IProvidencia = Object.assign({}, providencia, {
@@ -206,15 +178,5 @@ export class ProvidenciaService {
             providencia.fechaCreacion = providencia.fechaCreacion != null ? moment(providencia.fechaCreacion) : null;
         });
         return res;
-    }
-
-    tomaRazon(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/tomaRazon', response, {observe: 'response'});
-    }
-    registra(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/registra', response, {observe: 'response'});
-    }
-    representa(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/representa', response, {observe: 'response'});
     }
 }
