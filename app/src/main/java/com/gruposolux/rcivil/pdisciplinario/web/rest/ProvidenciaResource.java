@@ -20,8 +20,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import javax.net.ssl.ExtendedSSLSession;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -339,6 +337,58 @@ public class ProvidenciaResource {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+    @PostMapping("/providencias/memoConductor")
+    @Timed
+    public ResponseEntity<Void> memoConductor (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton memoConductor");
+        this.providenciaService.memoConductor(providenciaResponseDTO);
+        Providencia providencia = providenciaRepository.findById(providenciaResponseDTO.getProvidenciaId()).get();
+
+        if (providencia.getRequisito() == EstadoProvidencia.REALIZADO_MEMO_CONDUCTOR) {
+            return ResponseEntity.ok().headers(HeaderUtil.createAlert("Se ha realizado Memo Conductor!",ENTITY_NAME)).body(null);
+        }
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/examenLegalidad")
+    @Timed
+    public ResponseEntity<Void> examenLegalidad (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton examenLegalidad");
+        this.providenciaService.examenLegalidad(providenciaResponseDTO);
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("Adjuntado Examen de Legalidad!",ENTITY_NAME)).body(null);
+    }
+
+    @PostMapping("/providencias/alcance")
+    @Timed
+    public ResponseEntity<Void> alcance (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton alcance");
+        this.providenciaService.alcance(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/alcanceConResolucion")
+    @Timed
+    public ResponseEntity<Void> alcanceConResolucion (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton alcanceConResolucion");
+        this.providenciaService.alcanceConResolucion(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);    }
+
+    @PostMapping("/providencias/alcanceSinResolucion")
+    @Timed
+    public ResponseEntity<Void> alcanceSinResolucion (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton alcanceSinResolucion");
+        this.providenciaService.alcanceSinResolucion(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/resolucion")
+    @Timed
+    public ResponseEntity<Void> resolucion (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton resolucion");
+        this.providenciaService.resolucion(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
     @PostMapping("/providencias/actions")
     @Timed
     public ResponseEntity<HashMap<String, Boolean>> getActionsPermitted(@RequestBody ProvidenciaResponseDTO providenciaDTO) {
@@ -433,63 +483,6 @@ public class ProvidenciaResource {
         return ResponseEntity.ok().headers(HeaderUtil.createAlert("No se pudo agregar el tipo de solicitud a la providencia",
             providenciaDTO.getId().toString())).body(providenciaDTO);
     }
-
-    // Crea providencia Seleccion Fiscal
-//    @PostMapping("/providencias/crearSeleccionFiscal")
-//    @Timed
-//    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
-//    public ResponseEntity<ProvidenciaDTO> crearSeleccionFiscal(@RequestBody(required = false) ProvidenciaDTO providenciaDTO,
-//                                                               @RequestParam Long numeroReferencia) throws URISyntaxException {
-//        String tipoProvidencia = "SeleccionFiscal";
-//        // Busca la providencia madre
-//        Providencia providenciaMadre = providenciaService.getProvidenciaNumeroReferencia(numeroReferencia, tipoProvidencia);
-//
-//        //Crear una providencia nueva a partir de la madre
-//        ProvidenciaDTO result = providenciaService.createdProvidenciaForType(providenciaDTO, providenciaMadre, null);
-//
-//        return ResponseEntity.created(new URI("/api/providencias/" + result.getId())).body(result);
-//    }
-
-    // Crea providencia tipo Orden Juridico
-//    @PostMapping("/providencias/crearProvidenciaOrdenJuridico")
-//    @Timed
-//    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
-//    public ResponseEntity<ProvidenciaDTO> crearProvidenciaOrdenJuridico(@RequestBody(required = false) ProvidenciaDTO providenciaDTO,
-//                                                                        @RequestParam Long numeroReferencia,
-//                                                                        OrdenJuridico tipoOrdeJuridico) throws URISyntaxException {
-//        String tipoProvidencia = "ordenJuridico";
-//        // Primero buscar la providencia madre
-//        Providencia providenciaMadre = providenciaService.getProvidenciaNumeroReferencia(numeroReferencia, tipoProvidencia);
-//
-//        //Crear una providencia nueva a partir de la madre y segun el Tipo Seleccionado (Absolver, Sobreceder, Reabrir, Sancionar)
-//        ProvidenciaDTO result = null;
-//        if (providenciaMadre.getRequisito() == EstadoProvidencia.SUB_DIRECCION_ENVIA_A_DN_INFORME_JURIDICO) {
-//            result = providenciaService.createdProvidenciaForType(providenciaDTO, providenciaMadre, tipoOrdeJuridico);
-//        } else {
-//            log.debug("No se puede Crear una Providencia de tipo Orden Juridico " + providenciaMadre.getId());
-//        }
-//        return ResponseEntity.created(new URI("/api/providencias/" + result.getId())).body(result);
-//    }
-
-    // Crea providencia tipo Seleccion Apelacion
-//    @PostMapping("/providencias/crearProvidenciaSeleccionApelacion")
-//    @Timed
-//    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.CREAR_PROVIDENCIA + "\")")
-//    public ResponseEntity<ProvidenciaDTO> crearProvidenciaSeleccionApelacion(@RequestBody(required = false) ProvidenciaDTO providenciaDTO,
-//                                                                             @RequestParam Long numeroReferencia,
-//                                                                             Apelacion seleccionApelacion) throws URISyntaxException {
-//        String tipoProvidencia = "seleccionApelacion";
-//        // Primero buscar la providencia madre
-//        Providencia providenciaMadre = providenciaService.getProvidenciaNumeroReferencia(numeroReferencia, tipoProvidencia);
-//
-//        ProvidenciaDTO result = null;
-//        if (providenciaMadre.getEtapa() == EstadoProvidencia.PROVIDENCIA_SANCIONAR) {
-//            result = providenciaService.createdProvidenciaSancion(providenciaDTO, providenciaMadre, seleccionApelacion);
-//        } else {
-//            log.debug("No se puede Crear una Providencia de tipo Sancion Apelo o No " + providenciaMadre.getId());
-//        }
-//        return ResponseEntity.created(new URI("/api/providencias/" + result.getId())).body(result);
-//    }
 
     // Metodo permite obtener todas las providencias asociadas a un Numero de Referencia
     /**

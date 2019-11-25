@@ -1,6 +1,6 @@
 <form name="deleteForm" (ngSubmit)="tomaRazon(providencia.id)">
     <div class="modal-header">
-        <h4 class="modal-title" >Solicitud De tomar razon</h4>
+        <h4 class="modal-title" >Solicitud De Toma de Razón</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;
         </button>
@@ -13,7 +13,7 @@
         <form>
             <div class="form-group">
                 <label class="form-control-label" for="field_comentario">
-                    Cual Es El Motivo De Tomar Razon ??
+                    Cual Es El Motivo??
                 </label>
                 <textarea type="text" class="form-control" name="comentario" id="field_comentario"
                           [(ngModel)]="observacionDerivacion">
@@ -31,7 +31,7 @@
         </button>
         <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success">
             <fa-icon [icon]="'save'"></fa-icon>&nbsp;
-            <span>Tomar Razon </span>
+            <span>Tomar Razón</span>
         </button>
     </div>
 </form>

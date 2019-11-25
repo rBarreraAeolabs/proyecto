@@ -110,7 +110,7 @@
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span *ngIf="providencia.folio == null">Dar Nº de folio</span>
+                                                    <span >Dar Nº de folio</span>
                                                 </a>
 
 
@@ -137,7 +137,7 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span *ngIf="isProrroga"> toma Razon</span>
+                                                    <span >Toma de Razón</span>
 
                                                 </a>     <a
                                                 class="dropdown-item" *ngIf="actionsPermitted.registra"
@@ -145,7 +145,7 @@
                                                 replaceUrl="true"
                                                 queryParamsHandling="merge"
                                             ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                <span *ngIf="isProrroga">registra</span>
+                                                <span >Registra</span>
 
                                             </a>     <a
                                                 class="dropdown-item" *ngIf="actionsPermitted.representa"
@@ -153,7 +153,7 @@
                                                 replaceUrl="true"
                                                 queryParamsHandling="merge"
                                             ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                <span *ngIf="isProrroga"> Prorroga Uno</span>
+                                                <span >Representa</span>
 
                                             </a>
                                                 <a
@@ -211,6 +211,25 @@
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
                                                     <span>Notificar Inculpado </span>
+
+                                                </a>
+
+                                                <a
+                                                    class="dropdown-item" *ngIf=" actionsPermitted.memoConductor"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/memoConductor'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span>Realizar Memo Conductor</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf=" actionsPermitted.examenLegalidad"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/examenLegalidad'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span>Examen de Legalidad</span>
 
                                                 </a>
                                                 <a

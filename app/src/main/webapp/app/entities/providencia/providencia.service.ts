@@ -217,4 +217,10 @@ export class ProvidenciaService {
     representa(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/representa', response, {observe: 'response'});
     }
+    memoConductor(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/memoConductor', response, {observe: 'response'});
+    }
+    examenLegalidad(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/examenLegalidad', response, {observe: 'response'});
+    }
 }
