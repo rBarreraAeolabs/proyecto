@@ -4,7 +4,7 @@ variables:
   WAR_NAME: "app-${CI_BUILD_REF_NAME}"
   FOLDER_NAME: "${CI_BUILD_REF_NAME}"
   MAVEN_CONFIG: "$CI_PROJECT_DIR/.m2"
-  MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.defaultLogLevel=info -Dsettings.security=$CI_PROJECT_DIR/.m2/settings-security.xml"  
+  MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.defaultLogLevel=info -Dsettings.security=$CI_PROJECT_DIR/.m2/settings-security.xml"
   NPM_CONFIG_CACHE: "$CI_PROJECT_DIR/.npm"
 
 cache:
@@ -20,10 +20,10 @@ before_script:
   - chmod +x app/npm
 
 stages:
-#   - test
+  #   - test
   - build
   - release
-#   - review
+  #   - review
   - deploy
 
 #test_cointainers:
@@ -68,8 +68,8 @@ compile:
     - merge_requests
     - master
     - tags
-#  changes:
-#    - app/**/*
+  #  changes:
+  #    - app/**/*
   script:
     - cd app/
     - mvn --batch-mode -s "${MAVEN_CONFIG}/settings.xml" clean package -Pprod -DskipTests
@@ -95,12 +95,12 @@ image_build:
   script:
     - docker info
     - mv "${WAR_NAME}.war" docker/app/
-    - docker login registry.gitlab.com -u ifyum -p z3KFh4pUbtRa-RJgPRJk 
-#    - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
-#    - docker pull "${CI_REGISTRY_IMAGE}:latest" || true
+    - docker login registry.gitlab.com -u ifyum -p z3KFh4pUbtRa-RJgPRJk
+    #    - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
+    #    - docker pull "${CI_REGISTRY_IMAGE}:latest" || true
     - docker build -t "${CI_REGISTRY_IMAGE}:latest" -f docker/app/Dockerfile docker/app/
     - docker tag "${CI_REGISTRY_IMAGE}:latest" "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
-#    - test ! -z "${CI_COMMIT_TAG}" && docker push "${CI_REGISTRY_IMAGE}:latest"
+    #    - test ! -z "${CI_COMMIT_TAG}" && docker push "${CI_REGISTRY_IMAGE}:latest"
     - docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
     - docker push "${CI_REGISTRY_IMAGE}:latest"
 #    - docker build -t "${CI_REGISTRY_IMAGE}:dev" -f docker/dev.dockerfile docker/
@@ -211,4 +211,5 @@ deploy_demo:
   #   name: "${CI_BUILD_REF_NAME}"
   #   paths:
   #     - ".kube/generated/"
+
 

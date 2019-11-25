@@ -10,7 +10,7 @@
                             <div class="row">
                                 <div class="col-md-8 d-flex justify-content-center">
                                     <h2>
-                                        {{providencia.etapa.split('_').join(' ')}}
+                                        {{providencia.etapa.toString().split('_').join(' ')}}
                                         <span jhiTranslate="pdisciplinarioApp.providencia.detail.title"></span>
                                         {{ providencia.id}}
                                     </h2>
@@ -147,7 +147,8 @@
                                             ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
                                                 <span >Registra</span>
 
-                                            </a>     <a
+                                            </a>
+                                                <a
                                                 class="dropdown-item" *ngIf="actionsPermitted.representa"
                                                 [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/representa'} }]"
                                                 replaceUrl="true"
@@ -156,6 +157,42 @@
                                                 <span >Representa</span>
 
                                             </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.alcance"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/alcance'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > alcance</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.realizoResolucion"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/realizoResolucion'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > realizoResolucion</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.sinResolucion"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/sinResolucion'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > sin Resolucion</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.resolucion"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/resolucion'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > resolucion</span>
+
+                                                </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.fiscalNotificaCierre"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/notificaCierre'} }]"
@@ -220,7 +257,7 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
-                                                    <span>Realizar Memo Conductor</span>
+                                                    <span>Notificar Inculpado </span>
 
                                                 </a>
                                                 <a
@@ -229,7 +266,7 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
-                                                    <span>Examen de Legalidad</span>
+                                                    <span>Notificar Inculpado </span>
 
                                                 </a>
                                                 <a
@@ -370,7 +407,7 @@
                                                     <span>Etapa</span>
                                                 </dt>
                                                 <dd class="d-flex justify-content-center" >
-                                                    <span>{{providencia.etapa.split('_').join(' ')}}</span>
+                                                    <span>{{providencia.etapa.toString().split('_').join(' ')}}</span>
                                                 </dd>
                                             </dl>
                                         </div>
@@ -380,7 +417,7 @@
                                                     <span class="d-flex justify-content-center">Sub Etapa</span>
                                                 </dt>
                                                 <dd class="d-flex justify-content-center" >
-                                                    <span>{{providencia.subEtapa.split('_').join(' ')}}</span>
+                                                    <span>{{providencia.subEtapa.toString().split('_').join(' ')}}</span>
                                                 </dd>
                                             </dl>
                                         </div>
@@ -390,7 +427,7 @@
                                                     <span class="d-flex justify-content-center">Accion </span>
                                                 </dt>
                                                 <dd class="d-flex justify-content-center" >
-                                                    <span>{{providencia.requisito.split('_').join(' ')}}</span>
+                                                    <span>{{providencia.requisito.toString().split('_').join(' ')}}</span>
                                                 </dd>
                                             </dl>
                                         </div>

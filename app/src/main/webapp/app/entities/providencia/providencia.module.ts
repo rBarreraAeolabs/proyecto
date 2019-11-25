@@ -139,6 +139,14 @@ import {
     ProvidenciaExamenLegalidadComponent,
     ProvidenciaExamenLegalidadPopupComponent
 } from 'app/entities/providencia/providencia-examen-legalidad.component';
+import {
+    ProvidenciaAlcanceComponent,
+    ProvidenciaAlcancePopupComponent
+} from 'app/entities/providencia/providencia-alcance.component';
+import {
+    ProvidenciaResolucionComponent,
+    ProvidenciaResolucionPopupComponent
+} from 'app/entities/providencia/providencia-resolucion.component';
 
 // directive
 import {
@@ -227,7 +235,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaMemoConductorComponent,
         ProvidenciaMemoConductorPopupComponent,
         ProvidenciaExamenLegalidadComponent,
-        ProvidenciaExamenLegalidadPopupComponent
+        ProvidenciaExamenLegalidadPopupComponent,
+        ProvidenciaAlcanceComponent,
+        ProvidenciaAlcancePopupComponent,
+        ProvidenciaResolucionComponent,
+        ProvidenciaResolucionPopupComponent
 
     ],
     entryComponents: [
@@ -295,7 +307,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaMemoConductorComponent,
         ProvidenciaMemoConductorPopupComponent,
         ProvidenciaExamenLegalidadComponent,
-        ProvidenciaExamenLegalidadPopupComponent
+        ProvidenciaExamenLegalidadPopupComponent,
+        ProvidenciaAlcanceComponent,
+        ProvidenciaAlcancePopupComponent,
+        ProvidenciaResolucionComponent,
+        ProvidenciaResolucionPopupComponent
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

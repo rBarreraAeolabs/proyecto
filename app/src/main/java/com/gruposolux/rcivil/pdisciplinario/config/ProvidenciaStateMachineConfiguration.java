@@ -30,6 +30,12 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
 
     private static Logger logger = LoggerFactory.getLogger(ProvidenciaStateMachineConfiguration.class);
 
+//    @Autowired
+//    private IdleToActiveGuard idleToActiveGuard;
+//
+//    @Autowired
+//    private IdleToActiveAction idleToActiveAction;
+
     @Override
     public void configure(StateMachineStateConfigurer<String, String> states)
         throws Exception {
@@ -52,86 +58,107 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             .withExternal()
             .source(EstadoProvidencia.PROVIDENCIA_CREADA.name()).target(EstadoProvidencia.GESTOR_DOCUMENTAL_ASIGNA_NUMERO.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.GESTOR_DOCUMENTAL_ASIGNO_NUMERO.name()).event(AccionesProvidencia.ENVIAR_A_SUB_DIRECCION.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.GESTOR_DOCUMENTAL_ASIGNA_NUMERO.name()).target(EstadoProvidencia.SECRETARIA_REVISA_NUMERO.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.SUB_DIRECCION_CONFIRMA.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.SECRETARIA_REVISA_NUMERO.name()).target(EstadoProvidencia.SUB_DIRECCION_DEBE_ASIGNAR.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.GESTOR_DOCUMENTAL_ASIGNO_NUMERO.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.SUB_DIRECCION_DEBE_ASIGNAR.name()).target(EstadoProvidencia.SECRETARIA_REVISA_ASIGNACION.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.GESTOR_DOCUMENTAL_ASIGNO_NUMERO.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.SECRETARIA_REVISA_ASIGNACION.name()).target(EstadoProvidencia.UPD_REDACTA_RESOLUCION_Y_MEMO.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.SECRETARIA_ENVIA_A_UPD.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.UPD_REDACTA_RESOLUCION_Y_MEMO.name()).target(EstadoProvidencia.SECRETARIA_REVISA_RESOLUCION_Y_MEMO.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.UPD_REDACTA_RESOLUCION_Y_MEMO.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.SECRETARIA_REVISA_RESOLUCION_Y_MEMO.name()).target(EstadoProvidencia.ESPERANDO_FIRMA_VISA_DE_SUBDIRECCION.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.ENVIAR_A_SUB_DIRECCION.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.ESPERANDO_FIRMA_VISA_DE_SUBDIRECCION.name()).target(EstadoProvidencia.SECRETARIA_REVISA_FIRMA.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.SUB_DIRECCION_FIRMA_VISA.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.SECRETARIA_REVISA_FIRMA.name()).target(EstadoProvidencia.DGD_DESPACHA_A_DN.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.SECRETARIA_REVISA.name()).event(AccionesProvidencia.ENVIA_A_DGD.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.DGD_DESPACHA_A_DN.name()).target(EstadoProvidencia.ESPERANDO_FIRMA_DEL_DN.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.ENVIADA_A_DGD.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.ESPERANDO_FIRMA_DEL_DN.name()).target(EstadoProvidencia.DGDP_ASIGNANDO_NUMERO.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.DGDP_ASIGNO_TIPO_SOLICITUD.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.DGDP_ASIGNANDO_NUMERO.name()).target(EstadoProvidencia.DGD_RECEPCIONA.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.DGDP_ASIGNA_NUMERO.name()).event(AccionesProvidencia.ENVIAR_A_UPD.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.DGD_RECEPCIONA.name()).target(EstadoProvidencia.UPD_ELABORA_NOTIFICACION_VISTA_FISCAL.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.DGD_REGISTRA.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.UPD_ELABORA_NOTIFICACION_VISTA_FISCAL.name()).target(EstadoProvidencia.SECRETARIA_REVISA_NOTIFICACION.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.UPD_ADJUNTO_NOTIFICACION_VISTA_FISCAL.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.SECRETARIA_REVISA_NOTIFICACION.name()).target(EstadoProvidencia.ESPERANDO_FIRMA_DE_SUBDIRECCION_A_NOTIFICACION.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.ENVIAR_A_SUB_DIRECCION.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.ESPERANDO_FIRMA_DE_SUBDIRECCION_A_NOTIFICACION.name()).target(EstadoProvidencia.SECRETARIA_REVISA_FIRMA_NOTIFICACION.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.FIRMA_DE_SUBDIRECCION_A_NOTIFICACION.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.SECRETARIA_REVISA_FIRMA_NOTIFICACION.name()).target(EstadoProvidencia.UPD_NOTIFICA_FISCAL.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.SECRETARIA_ENVIA_A_UPD.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.UPD_NOTIFICA_FISCAL.name()).target(EstadoProvidencia.DGD_DESPACHA_NOTIFICACION_FISCAL.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.SECRETARIA_ENVIA_A_UPD.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.DGD_DESPACHA_NOTIFICACION_FISCAL.name()).target(EstadoProvidencia.FISCAL_NOTIFICADO.name())
             .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
+//            .event(AccionesProvidencia.DGD_DESPACHO_NOTIFICACION_FISCAL.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.FISCAL_NOTIFICADO.name()).target(EstadoProvidencia.INVESTIGACION.name())
             .event(AccionesProvidencia.FISCAL_ACEPTA.name())
+//            .event(AccionesProvidencia.FISCAL_RECHAZA.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.FISCAL_NOTIFICADO.name()).target(EstadoProvidencia.FISCAL_RECHAZO.name())
             .event(AccionesProvidencia.FISCAL_RECHAZA.name())
+//            .event(AccionesProvidencia.FISCAL_RECHAZA.name())
             .and()
             .withExternal()
             .source(EstadoProvidencia.INVESTIGACION.name()).target(EstadoProvidencia.FORMULA_CARGOS_Y_NOTIFICA.name())
@@ -300,7 +327,7 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             .event(AccionesProvidencia.PRORROGA.name())
             .and()
 
-            //  ------------------------------------------  FLUJO ESPECIFICO PARA PROVIDENCIA SOBRECEDER Y ABSOLVER --------------------------------------------
+  //  ------------------------------------------  FLUJO ESPECIFICO PARA PROVIDENCIA SOBRECEDER Y ABSOLVER --------------------------------------------
 
             .withExternal()
             .source(EstadoProvidencia.PROVIDENCIA_CREADA.name()).target(EstadoProvidencia.SJ_RECIBE_PROVIDENCIA.name())
@@ -355,7 +382,7 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             .event(AccionesProvidencia.NOTIFICA.name())
             .and()
 
-            // --------------------------------------------------   FLUJO ESPECIFICO PARA PROVIDENCIA SANCION    -----------------------------------------------------
+     // --------------------------------------------------   FLUJO ESPECIFICO PARA PROVIDENCIA SANCION    -----------------------------------------------------
 
             .withExternal()
             .source(EstadoProvidencia.PROVIDENCIA_CREADA.name()).target(EstadoProvidencia.SJ_RECIBE_PROVIDENCIA.name())
@@ -427,7 +454,7 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             .and()
 
 
-            //  -------------------------------------------------    FLUJO ESPECIFICO PARA PROVIDENCIA NO APELA  -------------------------------------------------
+        //  -------------------------------------------------    FLUJO ESPECIFICO PARA PROVIDENCIA NO APELA  -------------------------------------------------
 
             .withExternal()
             .source(EstadoProvidencia.SE_NOTIFICO_INCULPADO.name()).target(EstadoProvidencia.CERTIFICACION_NO_APELA.name())
@@ -465,7 +492,7 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             .source(EstadoProvidencia.DGDP_ASIGNANDO_NUMERO_A_RESOLUCION_NO_APELA.name()).target(EstadoProvidencia.TOMA_DE_RAZON_O_REGISTRA_O_REPRESENTA.name())
             .event(AccionesProvidencia.FLUJO_NO_APELA.name())
             .and()
-            //  -----------------------------   FLUJO ESPECIFICO PARA PROVIDENCIA TOMA RAZON O REGISTRA  ------------------------------------
+        //  -----------------------------   FLUJO ESPECIFICO PARA PROVIDENCIA TOMA RAZON O REGISTRA  ------------------------------------
 
             .withExternal()
             .source(EstadoProvidencia.TOMA_DE_RAZON_O_REGISTRA_O_REPRESENTA.name()).target(EstadoProvidencia.TOMA_DE_RAZON.name())
@@ -492,14 +519,14 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             .event(AccionesProvidencia.FLUJO_TOMA_RAZON.name())
             .and()
 
-            //  -----------------------------    FLUJO ESPECIFICO PARA PROVIDENCIA REPRESENTA  -----------------------------------------------
+        //  -----------------------------    FLUJO ESPECIFICO PARA PROVIDENCIA REPRESENTA  -----------------------------------------------
 
             .withExternal()
             .source(EstadoProvidencia.TOMA_DE_RAZON_O_REGISTRA_O_REPRESENTA.name()).target(EstadoProvidencia.MEMO.name())
             .event(AccionesProvidencia.FLUJO_REPRESENTA.name())
             .and()
 
-            //  -------------------------------------------------    FLUJO ESPECIFICO PARA PROVIDENCIA APELA  ----------------------------------------------------
+        //  -------------------------------------------------    FLUJO ESPECIFICO PARA PROVIDENCIA APELA  ----------------------------------------------------
 
             .withExternal()
             .source(EstadoProvidencia.SE_NOTIFICO_INCULPADO.name()).target(EstadoProvidencia.APELACION_RECIBIDA.name())
@@ -622,36 +649,12 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             .source(EstadoProvidencia.ESPERANDO_ASIGNACION_DE_NUMERO.name()).target(EstadoProvidencia.EXAMEN_DE_LEGALIDAD.name())
             .event(AccionesProvidencia.FLUJO_APELA.name())
             .and()
-            //  ------------------------------------------  ALCANCE Y RESOLUCION  --------------------------------------------------
-
             .withExternal()
             .source(EstadoProvidencia.EXAMEN_DE_LEGALIDAD.name()).target(EstadoProvidencia.ALCANCE_O_RESOLUCION.name())
             .event(AccionesProvidencia.SELECCIONO_EXAMEN_LEGALIDAD.name())
             .and()
-            .withExternal()
-            .source(EstadoProvidencia.ALCANCE_O_RESOLUCION.name()).target(EstadoProvidencia.SJ_RECIBIO_RESOLUCION.name())
-            .event(AccionesProvidencia.SELECCIONO_RESOLUCION.name())
-            .and()
-//            .withExternal()
-//            .source(EstadoProvidencia.ALCANCE_O_RESOLUCION.name()).target(EstadoProvidencia.SELECCION_ALCANCE.name())
-//            .event(AccionesProvidencia.SELECCIONO_ALCANCE.name())
-//            .and()
-//            .withExternal()
-//            .source(EstadoProvidencia.SELECCION_ALCANCE.name()).target(EstadoProvidencia.SJ_RECIBIO_ALCANCE.name())
-//            .event(AccionesProvidencia.SELECCIONO_ALCANCE_CON_RESOLUCION.name())
-//            .and()
-//            .withExternal()
-//            .source(EstadoProvidencia.SJ_RECIBIO_ALCANCE.name()).target(EstadoProvidencia.NOTIFICA_E_INFORMA.name())
-//            .event(AccionesProvidencia.FLUJO_APELA.name())
-//            .and()
-//            .withExternal()
-//            .source(EstadoProvidencia.SJ_RECIBIO_RESOLUCION.name()).target(EstadoProvidencia.NOTIFICA_E_INFORMA.name())
-//            .event(AccionesProvidencia.FLUJO_APELA.name())
-//            .and()
-//            ------------------------------------------  SUSPENSION / MULTA / SENSURA / DESTITUCION  ---------------------------------------
 
         ;
-
     }
     @Override
     public void configure(StateMachineConfigurationConfigurer<String, String> config) throws Exception {
@@ -664,6 +667,16 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             @Override
             public void eventNotAccepted(Message<String> event) {
                logger.info("Listener eventNotAccepted {}", event);
+            }
+
+            @Override
+            public void stateEntered(State<String, String> state) {
+                logger.info("Listener stateEntered in {}", state.getId());
+            }
+
+            @Override
+            public void stateExited(State<String, String> state) {
+                logger.info("Listener stateExited in {}", state.getId());
             }
 
             @Override
