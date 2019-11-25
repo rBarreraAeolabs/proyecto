@@ -135,14 +135,29 @@ import {
     ProvidenciaMemoConductorComponent,
     ProvidenciaMemoConductorPopupComponent
 } from 'app/entities/providencia/providencia-memo-conductor.component';
+import {
+    ProvidenciaExamenLegalidadComponent,
+    ProvidenciaExamenLegalidadPopupComponent
+} from 'app/entities/providencia/providencia-examen-legalidad.component';
+import {
+    ProvidenciaAlcanceComponent,
+    ProvidenciaAlcancePopupComponent
+} from 'app/entities/providencia/providencia-alcance.component';
+
 // directive
 import {
     ReadMoreDirective,
 } from 'app/entities/providencia/read-more.directive';
 import {
-    ProvidenciaExamenLegalidadComponent,
-    ProvidenciaExamenLegalidadPopupComponent
-} from 'app/entities/providencia/providencia-examen-legalidad.component';
+    ProvidenciaResolucionComponent,
+    ProvidenciaResolucionPopupComponent
+} from 'app/entities/providencia/providencia-resolucion.component';
+import {
+    ProvidenciaSinResolucionComponent,
+    ProvidenciaSinResolucionPopupComponent
+} from 'app/entities/providencia/providencia-sin-resolucion.component';
+import {ProvidenciaRealizoResolucionComponent,
+    ProvidenciaRealizoResolucionPopupComponent} from 'app/entities/providencia/providencia-realizo-resolucion.component';
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -226,7 +241,15 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaMemoConductorComponent,
         ProvidenciaMemoConductorPopupComponent,
         ProvidenciaExamenLegalidadComponent,
-        ProvidenciaExamenLegalidadPopupComponent
+        ProvidenciaExamenLegalidadPopupComponent,
+        ProvidenciaAlcanceComponent,
+        ProvidenciaAlcancePopupComponent,
+        ProvidenciaResolucionComponent,
+        ProvidenciaResolucionPopupComponent,
+        ProvidenciaSinResolucionComponent,
+        ProvidenciaSinResolucionPopupComponent,
+        ProvidenciaRealizoResolucionComponent,
+        ProvidenciaRealizoResolucionPopupComponent
 
     ],
     entryComponents: [
@@ -294,7 +317,14 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaMemoConductorComponent,
         ProvidenciaMemoConductorPopupComponent,
         ProvidenciaExamenLegalidadComponent,
-        ProvidenciaExamenLegalidadPopupComponent
+        ProvidenciaExamenLegalidadPopupComponent,
+        ProvidenciaAlcancePopupComponent,
+        ProvidenciaResolucionComponent,
+        ProvidenciaResolucionPopupComponent,
+        ProvidenciaSinResolucionComponent,
+        ProvidenciaSinResolucionPopupComponent,
+        ProvidenciaRealizoResolucionComponent,
+        ProvidenciaRealizoResolucionPopupComponent
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

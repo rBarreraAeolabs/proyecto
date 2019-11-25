@@ -10,7 +10,7 @@
                             <div class="row">
                                 <div class="col-md-8 d-flex justify-content-center">
                                     <h2>
-                                        {{providencia.etapa.split('_').join(' ')}}
+                                        {{providencia.etapa.toString().split('_').join(' ')}}
                                         <span jhiTranslate="pdisciplinarioApp.providencia.detail.title"></span>
                                         {{ providencia.id}}
                                     </h2>
@@ -22,7 +22,7 @@
                                             debe asignar un numero de referencia
                                         </p>
 
-                                            <ng-template #viewBoton>
+                                        <ng-template #viewBoton>
                                             <button type="button"
                                                     *ngIf="actionsPermitted.reply "
                                                     [disabled]="disableResponder"
@@ -34,7 +34,7 @@
                                                 <span *ngIf="isResponder"> Continuar</span>
                                                 <span *ngIf="!isResponder"> Aceptar</span>
                                             </button>
-                                            </ng-template>
+                                        </ng-template>
                                         <button type="button"
                                                 *ngIf="actionsPermitted.aceptar
                                                 && providencia.requisito == 'FISCAL_NOTIFICADO'
@@ -110,7 +110,7 @@
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span *ngIf="providencia.folio == null">Dar Nº de folio</span>
+                                                    <span >Dar Nº de folio</span>
                                                 </a>
 
 
@@ -137,7 +137,7 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span *ngIf="isProrroga"> toma Razon</span>
+                                                    <span >Toma de Razón</span>
 
                                                 </a>     <a
                                                 class="dropdown-item" *ngIf="actionsPermitted.registra"
@@ -145,17 +145,54 @@
                                                 replaceUrl="true"
                                                 queryParamsHandling="merge"
                                             ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                <span *ngIf="isProrroga">registra</span>
-
-                                            </a>     <a
-                                                class="dropdown-item" *ngIf="actionsPermitted.representa"
-                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/representa'} }]"
-                                                replaceUrl="true"
-                                                queryParamsHandling="merge"
-                                            ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                <span *ngIf="isProrroga"> Prorroga Uno</span>
+                                                <span >Registra</span>
 
                                             </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.representa"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/representa'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span >Representa</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.alcance"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/alcance'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > alcance</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.alcanceConResolucion"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/alcanceConResolucion'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > realizoResolucion</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.sinResolucion"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/sinResolucion'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > sin Resolucion</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.resolucion"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/resolucion'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > resolucion</span>
+
+                                                </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.fiscalNotificaCierre"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/notificaCierre'} }]"
@@ -213,6 +250,7 @@
                                                     <span>Notificar Inculpado </span>
 
                                                 </a>
+
                                                 <a
                                                     class="dropdown-item" *ngIf=" actionsPermitted.memoConductor"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/memoConductor'} }]"
@@ -369,7 +407,7 @@
                                                     <span>Etapa</span>
                                                 </dt>
                                                 <dd class="d-flex justify-content-center" >
-                                                    <span>{{providencia.etapa.split('_').join(' ')}}</span>
+                                                    <span>{{providencia.etapa.toString().split('_').join(' ')}}</span>
                                                 </dd>
                                             </dl>
                                         </div>
@@ -379,7 +417,7 @@
                                                     <span class="d-flex justify-content-center">Sub Etapa</span>
                                                 </dt>
                                                 <dd class="d-flex justify-content-center" >
-                                                    <span>{{providencia.subEtapa.split('_').join(' ')}}</span>
+                                                    <span>{{providencia.subEtapa.toString().split('_').join(' ')}}</span>
                                                 </dd>
                                             </dl>
                                         </div>
@@ -389,7 +427,7 @@
                                                     <span class="d-flex justify-content-center">Accion </span>
                                                 </dt>
                                                 <dd class="d-flex justify-content-center" >
-                                                    <span>{{providencia.requisito.split('_').join(' ')}}</span>
+                                                    <span>{{providencia.requisito.toString().split('_').join(' ')}}</span>
                                                 </dd>
                                             </dl>
                                         </div>

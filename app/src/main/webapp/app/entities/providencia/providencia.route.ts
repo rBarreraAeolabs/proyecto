@@ -40,6 +40,10 @@ import {ProvidenciaRegistraPopupComponent} from 'app/entities/providencia/provid
 import {ProvidenciaRepresentaPopupComponent} from 'app/entities/providencia/providencia-representa.component';
 import {ProvidenciaMemoConductorPopupComponent} from 'app/entities/providencia/providencia-memo-conductor.component';
 import {ProvidenciaExamenLegalidadPopupComponent} from 'app/entities/providencia/providencia-examen-legalidad.component';
+import {ProvidenciaAlcancePopupComponent} from 'app/entities/providencia/providencia-alcance.component';
+import {ProvidenciaResolucionPopupComponent} from 'app/entities/providencia/providencia-resolucion.component';
+import {ProvidenciaSinResolucionPopupComponent} from 'app/entities/providencia/providencia-sin-resolucion.component';
+import {ProvidenciaRealizoResolucionPopupComponent} from 'app/entities/providencia/providencia-realizo-resolucion.component';
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
     constructor(private service: ProvidenciaService) {}
@@ -198,6 +202,44 @@ export const providenciaPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
+        path: 'providencia/:id/resolucion',
+        component: ProvidenciaResolucionPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Responder resolucion',
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/sinResolucion',
+        component: ProvidenciaSinResolucionPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Responder sin resolucion',
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },   {
+        path: 'providencia/:id/realizoResolucion',
+        component: ProvidenciaRealizoResolucionPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Responder sin resolucion',
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+      {
         path: 'providencia/:id/examenLegalidad',
         component: ProvidenciaExamenLegalidadPopupComponent,
         resolve: {
@@ -304,6 +346,19 @@ export const providenciaPopupRoute: Routes = [
     {
         path: 'providencia/:id/apela',
         component: ProvidenciaApelaPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Apela'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/alcance',
+        component: ProvidenciaAlcancePopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },
