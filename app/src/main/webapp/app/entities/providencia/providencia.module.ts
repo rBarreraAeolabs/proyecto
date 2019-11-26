@@ -120,6 +120,10 @@ import {
     ProvidenciaUpdNotificaInculpadoPopupComponent
 } from 'app/entities/providencia/providencia-upd-notifica-inculpado.component';
 import {
+    ProvidenciaDgdpNotificaInculpadoComponent,
+    ProvidenciaDgdpNotificaInculpadoPopupComponent
+} from 'app/entities/providencia/providencia-dgdp-notifica-inculpado.component';
+import {
     ProvidenciaRepresentaComponent,
     ProvidenciaRepresentaPopupComponent
 } from 'app/entities/providencia/providencia-representa.component';
@@ -158,6 +162,26 @@ import {
 } from 'app/entities/providencia/providencia-sin-resolucion.component';
 import {ProvidenciaRealizoResolucionComponent,
     ProvidenciaRealizoResolucionPopupComponent} from 'app/entities/providencia/providencia-realizo-resolucion.component';
+import {
+    ProvidenciaSuspensionComponent,
+    ProvidenciaSuspensionPopupComponent
+} from 'app/entities/providencia/providencia-suspension.component';
+import {
+    ProvidenciaMultaComponent,
+    ProvidenciaMultaPopupComponent
+} from 'app/entities/providencia/providencia-multa.component';
+import {
+ProvidenciaSensuraComponent,
+    ProvidenciaSensuraPopupComponent
+} from 'app/entities/providencia/providencia-sensura.component';
+
+import {  ProvidenciaDestitucionComponent,
+    ProvidenciaDestitucionPopupComponent
+} from 'app/entities/providencia/providencia-destitucion.component';
+
+import { ProvidenciaNotificaRemuneracionComponent,
+    ProvidenciaNotificaRemuneracionPopupComponent
+} from 'app/entities/providencia/providencia-notifica-remuneracion.component';
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -249,7 +273,19 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaSinResolucionComponent,
         ProvidenciaSinResolucionPopupComponent,
         ProvidenciaRealizoResolucionComponent,
-        ProvidenciaRealizoResolucionPopupComponent
+        ProvidenciaRealizoResolucionPopupComponent,
+        ProvidenciaDgdpNotificaInculpadoComponent,
+        ProvidenciaDgdpNotificaInculpadoPopupComponent,
+        ProvidenciaSuspensionComponent,
+        ProvidenciaSuspensionPopupComponent,
+        ProvidenciaMultaComponent,
+        ProvidenciaMultaPopupComponent,
+        ProvidenciaSensuraComponent,
+        ProvidenciaSensuraPopupComponent,
+        ProvidenciaDestitucionComponent,
+        ProvidenciaDestitucionPopupComponent,
+        ProvidenciaNotificaRemuneracionComponent,
+        ProvidenciaNotificaRemuneracionPopupComponent,
 
     ],
     entryComponents: [
@@ -324,8 +360,19 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaSinResolucionComponent,
         ProvidenciaSinResolucionPopupComponent,
         ProvidenciaRealizoResolucionComponent,
-        ProvidenciaRealizoResolucionPopupComponent
-
+        ProvidenciaRealizoResolucionPopupComponent,
+        ProvidenciaDgdpNotificaInculpadoComponent,
+        ProvidenciaDgdpNotificaInculpadoPopupComponent,
+        ProvidenciaSuspensionComponent,
+        ProvidenciaSuspensionPopupComponent,
+        ProvidenciaMultaComponent,
+        ProvidenciaMultaPopupComponent,
+        ProvidenciaSensuraComponent,
+        ProvidenciaSensuraPopupComponent,
+        ProvidenciaDestitucionComponent,
+        ProvidenciaDestitucionPopupComponent,
+        ProvidenciaNotificaRemuneracionComponent,
+        ProvidenciaNotificaRemuneracionPopupComponent,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

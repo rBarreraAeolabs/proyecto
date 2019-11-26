@@ -185,6 +185,61 @@
 
                                                 </a>
                                                 <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.notificarDGDP"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/notificarDGDP'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > sin Resolucion</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.suspension"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/suspension'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > sin Resolucion</span>
+
+                                                </a>
+
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.multa"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/multa'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > sin Resolucion</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.sensura"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/sensura'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > sin Resolucion</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.destitucion"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/destitucion'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > sin Resolucion</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.notificaRemuneracion"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/notificaRemuneracion'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > sin Resolucion</span>
+
+                                                </a>
+                                                <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.resolucion"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/resolucion'} }]"
                                                     replaceUrl="true"

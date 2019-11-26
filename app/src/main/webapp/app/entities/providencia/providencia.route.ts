@@ -44,6 +44,12 @@ import {ProvidenciaAlcancePopupComponent} from 'app/entities/providencia/provide
 import {ProvidenciaResolucionPopupComponent} from 'app/entities/providencia/providencia-resolucion.component';
 import {ProvidenciaSinResolucionPopupComponent} from 'app/entities/providencia/providencia-sin-resolucion.component';
 import {ProvidenciaRealizoResolucionPopupComponent} from 'app/entities/providencia/providencia-realizo-resolucion.component';
+import {ProvidenciaDgdpNotificaInculpadoPopupComponent} from 'app/entities/providencia/providencia-dgdp-notifica-inculpado.component';
+import {ProvidenciaMultaPopupComponent} from 'app/entities/providencia/providencia-multa.component';
+import {ProvidenciaSuspensionPopupComponent} from 'app/entities/providencia/providencia-suspension.component';
+import {ProvidenciaSensuraPopupComponent} from 'app/entities/providencia/providencia-sensura.component';
+import {ProvidenciaDestitucionPopupComponent} from 'app/entities/providencia/providencia-destitucion.component';
+import {ProvidenciaNotificaRemuneracionPopupComponent} from 'app/entities/providencia/providencia-notifica-remuneracion.component';
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
     constructor(private service: ProvidenciaService) {}
@@ -411,6 +417,90 @@ export const providenciaPopupRoute: Routes = [
     {
         path: 'providencia/:id/updNotificaInculpado',
         component: ProvidenciaUpdNotificaInculpadoPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/notificarDGDP',
+        component: ProvidenciaDgdpNotificaInculpadoPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/multa',
+        component: ProvidenciaMultaPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/suspension',
+        component: ProvidenciaSuspensionPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/censura',
+        component: ProvidenciaSensuraPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+     {
+        path: 'providencia/:id/destitucion',
+        component: ProvidenciaDestitucionPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/notificaRemuneracion',
+        component: ProvidenciaNotificaRemuneracionPopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },

@@ -234,4 +234,28 @@ export class ProvidenciaService {
     sinResolucion(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/sinResolucion', response, {observe: 'response'});
     }
+
+    /**
+     *
+     * @param response
+     */
+    notificarDGDP(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/notificarDGDP\n', response, {observe: 'response'});
+    }
+    suspension(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/suspension\n', response, {observe: 'response'});
+    }
+    multa(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/multa\n', response, {observe: 'response'});
+    }
+    sensura(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/sensura\n', response, {observe: 'response'});
+    }
+    destitucion(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/destitucion\n', response, {observe: 'response'});
+    }
+    notificaRemuneracion(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/notificaRemuneracion\n', response, {observe: 'response'});
+    }
+
 }
