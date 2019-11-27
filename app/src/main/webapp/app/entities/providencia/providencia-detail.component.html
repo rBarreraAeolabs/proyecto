@@ -222,6 +222,15 @@
 
                                                 </a>
                                                 <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.notificaDenunciante"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/notificaDenunciante'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span >Notificar Denunciante</span>
+
+                                                </a>
+                                                <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.destitucion"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/destitucion'} }]"
                                                     replaceUrl="true"
@@ -297,11 +306,12 @@
                                                 </a>
                                                 <a
                                                     class="dropdown-item" *ngIf=" (actionsPermitted.notificaDemandado && providencia.folio !== null )
-                                                     || (actionsPermitted.notificaDemandado && providencia.requisito == 'NOTIFICAR_INCULPADO') "
+                                                     || (actionsPermitted.notificaDemandado && providencia.requisito == 'NOTIFICAR_INCULPADO') ||
+                                                        (actionsPermitted.notificaDemandado && providencia.requisito == 'REALIZAR_NOTIFICACIONES')"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/updNotificaInculpado'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
-                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                ><fa-icon style="color: #25a02a;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
                                                     <span>Notificar Inculpado </span>
 
                                                 </a>

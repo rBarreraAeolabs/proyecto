@@ -177,6 +177,10 @@ import {  ProvidenciaDestitucionComponent,
 import { ProvidenciaNotificaRemuneracionComponent,
     ProvidenciaNotificaRemuneracionPopupComponent
 } from 'app/entities/providencia/providencia-notifica-remuneracion.component';
+import {
+    ProvidenciaNotificaDenuncianteComponent,
+    ProvidenciaNotificaDenunciantePopupComponent
+} from 'app/entities/providencia/providencia-notifica-denunciante.component';
 
 // directive
 import {
@@ -286,6 +290,8 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaDestitucionPopupComponent,
         ProvidenciaNotificaRemuneracionComponent,
         ProvidenciaNotificaRemuneracionPopupComponent,
+        ProvidenciaNotificaDenuncianteComponent,
+        ProvidenciaNotificaDenunciantePopupComponent
 
 
     ],
@@ -375,6 +381,9 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaDestitucionPopupComponent,
         ProvidenciaNotificaRemuneracionComponent,
         ProvidenciaNotificaRemuneracionPopupComponent,
+        ProvidenciaNotificaDenuncianteComponent,
+        ProvidenciaNotificaDenunciantePopupComponent
+
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

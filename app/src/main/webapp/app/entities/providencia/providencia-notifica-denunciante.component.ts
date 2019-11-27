@@ -10,10 +10,10 @@ import { IAdjunto} from '../../shared/model/adjunto.model';
 import { Principal} from 'app/core';
 
 @Component({
-    selector: 'jhi-providencia-upd-notifica-inculpado',
-    templateUrl: './providencia-upd-notifica-inculpado.component.html'
+    selector: 'jhi-providencia-notifica-denunciante-inculpado',
+    templateUrl: './providencia-notifica-denunciante.component.html'
 })
-export class ProvidenciaUpdNotificaInculpadoComponent implements OnInit {
+export class ProvidenciaNotificaDenuncianteComponent implements OnInit {
     providencia: IProvidencia;
     providenciaResponse: IProvidenciaResponse = new IProvidenciaResponse();
     observacionDerivacion: string;
@@ -42,10 +42,7 @@ export class ProvidenciaUpdNotificaInculpadoComponent implements OnInit {
         this.cuenta = this.principal.identity();
         this.usuario = this.cuenta.__zone_symbol__value.perfil.nombre;
         console.log('usuario: ', this.usuario);
-        // if ( this.providencia.requisito === 'FISCAL_ACEPTO_Y_DA_INICIO') {
-        //     console.log('el usuario es fiscal el pide prorroga');
-        //     this.isProrroga = true;
-        // }
+
     }
 
     get providencias() {
@@ -56,13 +53,13 @@ export class ProvidenciaUpdNotificaInculpadoComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    updNotificaInculpado(id: number) {
+    notificaDenunciante(id: number) {
         this.providenciaResponse.estadoActual = this.providencia.estadoActual;
         this.providenciaResponse.providenciaId = id;
         this.providenciaResponse.adjuntosDTOs = this.adjuntos;
         this.providenciaResponse.observacion = this.observacionDerivacion;
 
-        this.providenciaService.updNotificaInculpado(this.providenciaResponse).subscribe(res => {
+        this.providenciaService.notificaDenunciante(this.providenciaResponse).subscribe(res => {
             this.eventManager.broadcast({
                 name: 'providencia',
                 content: 'Providencia upd notifica inculpado'
@@ -73,11 +70,7 @@ export class ProvidenciaUpdNotificaInculpadoComponent implements OnInit {
     }
 
     previousState() {
-        if (this.providencia.requisito === 'NOTIFICAR_INCULPADO' || this.providencia.requisito === 'REALIZAR_NOTIFICACIONES' ) {
-
-        } else {
-            window.history.back();
-        }
+        // window.history.back();
     }
 
     getUploadedAdjuntos($event) {
@@ -90,10 +83,10 @@ export class ProvidenciaUpdNotificaInculpadoComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-upd-notifica-inculpado-popup',
+    selector: 'jhi-providencia-notifica-denunciante-popup',
     template: ''
 })
-export class ProvidenciaUpdNotificaInculpadoPopupComponent implements OnInit, OnDestroy {
+export class ProvidenciaNotificaDenunciantePopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
@@ -101,7 +94,7 @@ export class ProvidenciaUpdNotificaInculpadoPopupComponent implements OnInit, On
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaUpdNotificaInculpadoComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciaNotificaDenuncianteComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });

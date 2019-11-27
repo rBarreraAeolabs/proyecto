@@ -64,7 +64,7 @@ export class ProvidenciaDevolverDialogComponent implements OnInit {
         this.providenciaService.goBackwards(this.providenciaResponse).subscribe(res => {
             this.eventManager.broadcast({
                 name: 'providenciaAceptada',
-                content: 'Providencia solicitud prorroga'
+                content: 'Providencia notificacion'
             });
             this.activeModal.dismiss(true);
             this.previousState();

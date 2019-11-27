@@ -253,4 +253,7 @@ export class ProvidenciaService {
     notificaRemuneracion(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/notificaRemuneracion\n', response, {observe: 'response'});
     }
+    notificaDenunciante(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/notificaDenunciante\n', response, {observe: 'response'});
+    }
 }

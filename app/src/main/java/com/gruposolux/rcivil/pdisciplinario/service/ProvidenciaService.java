@@ -1028,6 +1028,15 @@ public class ProvidenciaService {
         this.changeStage(providenciaResponseDTO, evento);
     }
 
+    @Transactional
+    public void notificaDenunciante (ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("boton notificaDenunciante paso: ");
+        Providencia providencia = providenciaRepository.findById(providenciaResponseDTO.getProvidenciaId()).get();
+        AccionesProvidencia evento = AccionesProvidencia.NOTIFICA_DENUNCIANTE;
+        Grupo groupAnswer = this.determineGroupAnswer(providencia);
+        this.registryNotificacion("pendiente por hacer " + providencia.getRequisito(), groupAnswer, evento);
+    }
+
     /**
      * Método que recibe una devolución.
      *
@@ -1462,7 +1471,6 @@ public class ProvidenciaService {
             actionsPermitted.put("noPropone", false);
             actionsPermitted.put("remiteExpediente", false);
             actionsPermitted.put("folio", false);
-            actionsPermitted.put("notificaDemandado", false);
             actionsPermitted.put("apela", false);
             actionsPermitted.put("noApela", false);
             actionsPermitted.put("tomaRazon", false);
@@ -1480,6 +1488,8 @@ public class ProvidenciaService {
             actionsPermitted.put("destitucion", false);
             actionsPermitted.put("notificarDGDP", false);
             actionsPermitted.put("notificaRemuneracion", false);
+            actionsPermitted.put("notificaDemandado", false);
+            actionsPermitted.put("notificaDenunciante", false);
 
             switch (requisito) {
 
@@ -1706,17 +1716,17 @@ public class ProvidenciaService {
 
                 case REALIZAR_NOTIFICACIONES:
                     if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
-                        actionsPermitted.put("notificarDemandado", true);
+                        actionsPermitted.put("notificaDemandado", true);
                         actionsPermitted.put("notificarDGDP", true);
-                        actionsPermitted.put("notificarDenunciante", true);
-                        actionsPermitted.put("notificarRemuneracion", true);
+                        actionsPermitted.put("notificaRemuneracion", true);
+                        actionsPermitted.put("notificaDenunciante", true);
                     }
                     break;
 
                 case MEMO:
                     if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
                         actionsPermitted.put("notificarDGDP", true);
-                        actionsPermitted.put("notificarRemuneracion", true);
+                        actionsPermitted.put("notificaRemuneracion", true);
                     }
                     break;
 

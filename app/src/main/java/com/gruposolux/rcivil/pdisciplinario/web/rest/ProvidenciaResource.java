@@ -394,7 +394,7 @@ public class ProvidenciaResource {
     public ResponseEntity<Void> notificarDGDP (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("endpoint botton notificarDGDP");
         this.providenciaService.notificarDGDP(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("Se ha notificado al DGDP!",ENTITY_NAME)).body(null);
     }
 
     @PostMapping("/providencias/suspension")
@@ -434,7 +434,15 @@ public class ProvidenciaResource {
     public ResponseEntity<Void> notificaRemuneracion (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("endpoint botton notificaRemuneracion");
         this.providenciaService.notificaRemuneracion(providenciaResponseDTO);
-        return ResponseEntity.ok().headers(HeaderUtil.createAlert("Se notifico a Remuneración!",ENTITY_NAME)).body(null);
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("Se ha notificado a Remuneración!",ENTITY_NAME)).body(null);
+    }
+
+    @PostMapping("/providencias/notificaDenunciante")
+    @Timed
+    public ResponseEntity<Void> notificaDenunciante (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton notificaDenunciante");
+        this.providenciaService.notificaDenunciante(providenciaResponseDTO);
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("Se ha notificado al Denunciante!",ENTITY_NAME)).body(null);
     }
 
     @PostMapping("/providencias/actions")
