@@ -1,9 +1,7 @@
-com\gruposolux\rcivil\pdisciplinario\config\Actions\IdleToActiveAction.class
 com\gruposolux\rcivil\pdisciplinario\web\rest\EntidadResource.class
 com\gruposolux\rcivil\pdisciplinario\web\rest\RespuestaResource.class
 com\gruposolux\rcivil\pdisciplinario\service\mapper\FichaIngresoSdjMapper.class
 com\gruposolux\rcivil\pdisciplinario\web\rest\UserJWTController$JWTToken.class
-com\gruposolux\rcivil\pdisciplinario\config\Guards\IdleToActiveGuard.class
 com\gruposolux\rcivil\pdisciplinario\service\dto\AuthorityDTO.class
 com\gruposolux\rcivil\pdisciplinario\config\CloudDatabaseConfiguration.class
 com\gruposolux\rcivil\pdisciplinario\service\dto\MovimientoSumarioAdministrativoDTO.class

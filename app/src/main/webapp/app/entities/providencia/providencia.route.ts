@@ -42,7 +42,15 @@ import {ProvidenciaMemoConductorPopupComponent} from 'app/entities/providencia/p
 import {ProvidenciaExamenLegalidadPopupComponent} from 'app/entities/providencia/providencia-examen-legalidad.component';
 import {ProvidenciaAlcancePopupComponent} from 'app/entities/providencia/providencia-alcance.component';
 import {ProvidenciaResolucionPopupComponent} from 'app/entities/providencia/providencia-resolucion.component';
-
+import {ProvidenciaSinResolucionPopupComponent} from 'app/entities/providencia/providencia-sin-resolucion.component';
+import {ProvidenciaRealizoResolucionPopupComponent} from 'app/entities/providencia/providencia-realizo-resolucion.component';
+import {ProvidenciaDgdpNotificaInculpadoPopupComponent} from 'app/entities/providencia/providencia-dgdp-notifica-inculpado.component';
+import {ProvidenciaMultaPopupComponent} from 'app/entities/providencia/providencia-multa.component';
+import {ProvidenciaSuspensionPopupComponent} from 'app/entities/providencia/providencia-suspension.component';
+import {ProvidenciaSensuraPopupComponent} from 'app/entities/providencia/providencia-sensura.component';
+import {ProvidenciaDestitucionPopupComponent} from 'app/entities/providencia/providencia-destitucion.component';
+import {ProvidenciaNotificaRemuneracionPopupComponent} from 'app/entities/providencia/providencia-notifica-remuneracion.component';
+@Injectable({ providedIn: 'root' })
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
     constructor(private service: ProvidenciaService) {}
@@ -209,6 +217,31 @@ export const providenciaPopupRoute: Routes = [
         data: {
             authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
             pageTitle: 'Responder resolucion',
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/sinResolucion',
+        component: ProvidenciaSinResolucionPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Responder sin resolucion',
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },   {
+        path: 'providencia/:id/realizoResolucion',
+        component: ProvidenciaRealizoResolucionPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Responder sin resolucion',
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -385,6 +418,89 @@ export const providenciaPopupRoute: Routes = [
     {
         path: 'providencia/:id/updNotificaInculpado',
         component: ProvidenciaUpdNotificaInculpadoPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/notificarDGDP',
+        component: ProvidenciaDgdpNotificaInculpadoPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/multa',
+        component: ProvidenciaMultaPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },  {
+        path: 'providencia/:id/suspension',
+        component: ProvidenciaSuspensionPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/censura',
+        component: ProvidenciaSensuraPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/destitucion',
+        component: ProvidenciaDestitucionPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/notificaRemuneracion',
+        component: ProvidenciaNotificaRemuneracionPopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },
