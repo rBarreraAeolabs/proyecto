@@ -50,6 +50,8 @@ import {ProvidenciaSuspensionPopupComponent} from 'app/entities/providencia/prov
 import {ProvidenciaSensuraPopupComponent} from 'app/entities/providencia/providencia-sensura.component';
 import {ProvidenciaDestitucionPopupComponent} from 'app/entities/providencia/providencia-destitucion.component';
 import {ProvidenciaNotificaRemuneracionPopupComponent} from 'app/entities/providencia/providencia-notifica-remuneracion.component';
+import {ProvidenciaNotificaDenunciantePopupComponent} from 'app/entities/providencia/providencia-notifica-denunciante.component';
+
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
     constructor(private service: ProvidenciaService) {}
@@ -470,6 +472,21 @@ export const providenciaPopupRoute: Routes = [
         runGuardsAndResolvers: 'always',
         outlet: 'popup'
     },
+    {
+        path: 'providencia/:id/notificaDenunciante   ',
+        component: ProvidenciaNotificaDenunciantePopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+
     {
         path: 'providencia/:id/censura',
         component: ProvidenciaSensuraPopupComponent,
