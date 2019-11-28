@@ -42,10 +42,7 @@ export class ProvidenciaDgdpNotificaInculpadoComponent implements OnInit {
         this.cuenta = this.principal.identity();
         this.usuario = this.cuenta.__zone_symbol__value.perfil.nombre;
         console.log('usuario: ', this.usuario);
-        // if ( this.providencia.requisito === 'FISCAL_ACEPTO_Y_DA_INICIO') {
-        //     console.log('el usuario es fiscal el pide prorroga');
-        //     this.isProrroga = true;
-        // }
+
     }
 
     get providencias() {

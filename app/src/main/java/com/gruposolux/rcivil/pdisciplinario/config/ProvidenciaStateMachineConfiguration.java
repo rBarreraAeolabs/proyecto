@@ -139,6 +139,28 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
                 .withExternal()
                 .source(EstadoProvidencia.INVESTIGACION.name()).target(EstadoProvidencia.FORMULA_CARGOS_Y_NOTIFICA.name())
                 .event(AccionesProvidencia.FISCAL_NOTIFICA_A_UPD_CIERRE.name())
+                .and()
+                                  // ----------- DEVOLVER    -------------------
+                .withExternal()
+                .source(EstadoProvidencia.SECRETARIA_REVISA_RESOLUCION_Y_MEMO.name()).target(EstadoProvidencia.UPD_REDACTA_RESOLUCION_Y_MEMO.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER.name())
+                .and()
+                .withExternal()
+                .source(EstadoProvidencia.ESPERANDO_FIRMA_VISA_DE_SUBDIRECCION.name()).target(EstadoProvidencia.SECRETARIA_REVISA_RESOLUCION_Y_MEMO.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER.name())
+                .and()
+                .withExternal()
+                .source(EstadoProvidencia.ESPERANDO_FIRMA_DEL_DN.name()).target(EstadoProvidencia.ESPERANDO_FIRMA_VISA_DE_SUBDIRECCION.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER.name())
+                .and()
+
+                 .withExternal()
+                .source(EstadoProvidencia.SECRETARIA_REVISA_NOTIFICACION.name()).target(EstadoProvidencia.UPD_ELABORA_NOTIFICACION_VISTA_FISCAL.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER.name())
+                .and()
+                .withExternal()
+                .source(EstadoProvidencia.ESPERANDO_FIRMA_DE_SUBDIRECCION_A_NOTIFICACION.name()).target(EstadoProvidencia.SECRETARIA_REVISA_NOTIFICACION.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER.name())
                 .and();
         }
             /**
@@ -231,25 +253,42 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
                 .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
                 .and()
 
-                /**
-                 * Estados en los que se puede saltar a peticion de prorroga
-                 *
-                 */
+                // -------------------------      DEVOLVER      --------------------------------
+
+                .withExternal()
+                .source(EstadoProvidencia.SI_DE_ACUERDO.name()).target(EstadoProvidencia.ABOGADO_ELABORA_INFORME.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER.name())
+                .and()
+                .withExternal()
+                .source(EstadoProvidencia.NO_REABRE.name()).target(EstadoProvidencia.ABOGADO_ELABORA_INFORME.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER.name())
+                .and()
+                .withExternal()
+                .source(EstadoProvidencia.NO_PROPONE.name()).target(EstadoProvidencia.ABOGADO_ELABORA_INFORME.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER.name())
+                .and()
+                .withExternal()
+                .source(EstadoProvidencia.SECRETARIA_REVISA_INFORME.name()).target(EstadoProvidencia.ABOGADO_ELABORA_INFORME.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER.name())
+                .and()
+                .withExternal()
+                .source(EstadoProvidencia.SUB_DIRECCION_REVISA_INFORME.name()).target(EstadoProvidencia.SECRETARIA_REVISA_INFORME.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER.name())
+                .and()
+
+       //    --------------------    Estados en los que se puede saltar a PETICION de PRORROGA   -----------------------
                 .withExternal()
                 .source(EstadoProvidencia.INVESTIGACION.name()).target(EstadoProvidencia.PETICION_PRORROGA_1.name())
                 .event(AccionesProvidencia.PRORROGA.name())
-//            .event(AccionesProvidencia.FISCAL_RECHAZA.name())
-                //
                 .and()
                 .withExternal()
                 .source(EstadoProvidencia.INVESTIGACION.name()).target(EstadoProvidencia.PETICION_PRORROGA_2.name())
                 .event(AccionesProvidencia.PRORROGA2.name())
-//            .event(AccionesProvidencia.FISCAL_ADJUNTA_MEMO.name()).event(AccionesProvidencia.ENVIA_A_UPD.name())
                 .and();
         }
 
-//     ----------------------------------  PRORROGA 1  ----------------------------------------------------------------------
         {
+            //     ----------------------------------  PRORROGA 1  -------------------------------------------------------
             transitions
                 .withExternal()
                 .source(EstadoProvidencia.DGD_RECEPCIONA.name()).target(EstadoProvidencia.UPD_ELABORA_NOTIFICACION_PRORROGA_1.name())
@@ -279,6 +318,26 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
                 .source(EstadoProvidencia.DGD_DESPACHA_NOTIFICACION_PRORROGA_1_FISCAL.name()).target(EstadoProvidencia.INVESTIGACION.name())
                 .event(AccionesProvidencia.PRORROGA.name())
                 .and()
+                // ------- DEVOLVER EN PRORROGA 1 y PRORROGA 2  --------------------
+
+                .withExternal()
+                .source(EstadoProvidencia.SECRETARIA_REVISA_NOTIFICACION.name()).target(EstadoProvidencia.UPD_ELABORA_NOTIFICACION_PRORROGA_1.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER_PRORROGA1.name())
+                .and()
+                .withExternal()
+                .source(EstadoProvidencia.ESPERANDO_FIRMA_DE_SUBDIRECCION_A_NOTIFICACION_PRORROGA_1.name()).target(EstadoProvidencia.SECRETARIA_REVISA_NOTIFICACION.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER.name())
+                .and()
+
+                .withExternal()
+                .source(EstadoProvidencia.SECRETARIA_REVISA_NOTIFICACION.name()).target(EstadoProvidencia.UPD_ELABORA_NOTIFICACION_PRORROGA_2.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER_PRORROGA2.name())
+                .and()
+                .withExternal()
+                .source(EstadoProvidencia.ESPERANDO_FIRMA_DE_SUBDIRECCION_A_NOTIFICACION_PRORROGA_2.name()).target(EstadoProvidencia.SECRETARIA_REVISA_NOTIFICACION.name())
+                .event(AccionesProvidencia.FLUJO_DEVOLVER.name())
+                .and()
+
                 //     ----------------------------------  PRORROGA 2  ----------------------------------------------------------------------
                 .withExternal()
                 .source(EstadoProvidencia.DGD_RECEPCIONA.name()).target(EstadoProvidencia.UPD_ELABORA_NOTIFICACION_PRORROGA_2.name())
@@ -310,9 +369,8 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
                 .and();
         }
 
-            //  ------------------------------------------  FLUJO ESPECIFICO PARA PROVIDENCIA SOBRECEDER Y ABSOLVER --------------------------------------------
-
         {
+            //  ------------------------------------------  FLUJO ESPECIFICO PARA PROVIDENCIA SOBRECEDER Y ABSOLVER --------------------------------------------
             transitions
 
                 .withExternal()
@@ -360,18 +418,20 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
                 .event(AccionesProvidencia.FLUJO_SOBRESEER_ABSOLVER.name())
                 .and()
                 .withExternal()
-                .source(EstadoProvidencia.RECIBE_SJ_PARA_MEMO.name()).target(EstadoProvidencia.REDACCION_NOTIFICACION_INCULPADO.name())
+                .source(EstadoProvidencia.RECIBE_SJ_PARA_MEMO.name()).target(EstadoProvidencia.REDACCION_NOTIFICACION_MEMO_DEMANDANTE.name())
                 .event(AccionesProvidencia.FLUJO_SOBRESEER_ABSOLVER.name())
                 .and()
                 .withExternal()
-                .source(EstadoProvidencia.REDACCION_NOTIFICACION_INCULPADO.name()).target(EstadoProvidencia.DEMANDADO_NOTIFICADO.name())
+                .source(EstadoProvidencia.REDACCION_NOTIFICACION_MEMO_DEMANDANTE.name()).target(EstadoProvidencia.DEMANDADO_NOTIFICADO.name())
                 .event(AccionesProvidencia.NOTIFICA.name())
-                .and();
+                .and()
+            // -----------        DEVOLVER  ABSOLVER SOBRESEER -------------
+
+
+            ;
         }
 
-
-            // --------------------------------------------------   FLUJO ESPECIFICO PARA PROVIDENCIA SANCION    -----------------------------------------------------
-        {
+        { // ---------------------------------   FLUJO ESPECIFICO PARA PROVIDENCIA SANCION    ------------------------------------------
             transitions
 
                 .withExternal()
@@ -519,7 +579,15 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
                 //  -------------------------------------------------    FLUJO ESPECIFICO PARA PROVIDENCIA APELA  ----------------------------------------------------
 
                 .withExternal()
-                .source(EstadoProvidencia.SE_NOTIFICO_INCULPADO.name()).target(EstadoProvidencia.APELACION_RECIBIDA.name())
+                .source(EstadoProvidencia.SE_NOTIFICO_INCULPADO.name()).target(EstadoProvidencia.UPD_REGISTRA_INCULPADO_SI_APELA.name())
+                .event(AccionesProvidencia.FLUJO_APELA.name())
+                .and()
+                .withExternal()
+                .source(EstadoProvidencia.UPD_REGISTRA_INCULPADO_SI_APELA.name()).target(EstadoProvidencia.DGD_DESPACHA_APELACION_A_DN.name())
+                .event(AccionesProvidencia.FLUJO_APELA.name())
+                .and()
+                .withExternal()
+                .source(EstadoProvidencia.DGD_DESPACHA_APELACION_A_DN.name()).target(EstadoProvidencia.APELACION_RECIBIDA.name())
                 .event(AccionesProvidencia.FLUJO_APELA.name())
                 .and()
                 .withExternal()
@@ -680,12 +748,11 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
             .source(EstadoProvidencia.NOTIFICA_E_INFORMA_DESTITUCION.name()).target(EstadoProvidencia.DESTITUCION.name())
             .event(AccionesProvidencia.NOTIFICAR_A_DGDP.name())
             .and()
-
-
-
-            ;}
+            ;
+        }
 
     }
+
     @Override
     public void configure(StateMachineConfigurationConfigurer<String, String> config) throws Exception {
 

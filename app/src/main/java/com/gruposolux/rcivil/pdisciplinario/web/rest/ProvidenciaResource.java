@@ -495,6 +495,36 @@ public class ProvidenciaResource {
         return new ResponseEntity<>(this.providenciaService.findAllWithoutPagination(), HttpStatus.OK);
     }
 
+    @PutMapping("/providencias/updateNumeroDGD")
+    @Timed
+    public ResponseEntity<ProvidenciaDTO> updateNumeroDGD(@RequestBody ProvidenciaUpdateNumeroReferenciaDTO providenciaUpdateNumeroReferenciaDTO) {
+
+        log.debug(" Entro al updateNumeroDGD con el DTO : {} ");
+
+        ProvidenciaDTO providenciaDTO = this.providenciaService.updateNumeroDGD(providenciaUpdateNumeroReferenciaDTO);
+
+        if (providenciaDTO.getNumeroDgd() == null) {
+            return ResponseEntity.ok().headers(HeaderUtil.message("No se pudo agregar el N° DGD",ENTITY_NAME)).body(null);
+        }
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("El N° DGD se agrego Correctamente!",
+            providenciaDTO.getId().toString())).body(providenciaDTO);
+    }
+
+    @PutMapping("/providencias/updateNumeroProvidencia")
+    @Timed
+    public ResponseEntity<ProvidenciaDTO> updateNumeroProvidencia (@RequestBody ProvidenciaUpdateNumeroReferenciaDTO providenciaUpdateNumeroReferenciaDTO) {
+
+        log.debug(" Entro al updateNumeroProvidencia con el DTO : {} ");
+
+        ProvidenciaDTO providenciaDTO = this.providenciaService.updateNumeroProvidencia(providenciaUpdateNumeroReferenciaDTO);
+
+        if (providenciaDTO.getNumeroProvidencia() == null) {
+            return ResponseEntity.ok().headers(HeaderUtil.message("No se pudo agregar el N° DGD",ENTITY_NAME)).body(null);
+        }
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("El N° DGD se agrego Correctamente!",
+            providenciaDTO.getId().toString())).body(providenciaDTO);
+    }
+
     @PutMapping("/providencias/updateFolio")
     @Timed
     public ResponseEntity<ProvidenciaDTO> updateFolio(@RequestBody ProvidenciaUpdateNumeroReferenciaDTO providenciaUpdateNumeroReferenciaDTO) {

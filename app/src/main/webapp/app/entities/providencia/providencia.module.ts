@@ -181,6 +181,14 @@ import {
     ProvidenciaNotificaDenuncianteComponent,
     ProvidenciaNotificaDenunciantePopupComponent
 } from 'app/entities/providencia/providencia-notifica-denunciante.component';
+import {
+    ProvidenciaAsignarNumeroDgdComponent,
+    ProvidenciaAsignarNumeroDgdPopupComponent
+} from 'app/entities/providencia/providencia-asignar-numero-dgd.component';
+import {
+    ProvidenciaAsignarNumeroProvidenciaComponent,
+    ProvidenciaAsignarNumeroProvidenciaPopupComponent
+} from 'app/entities/providencia/providencia-asignar-numero-providencia.component';
 
 // directive
 import {
@@ -291,9 +299,12 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaNotificaRemuneracionComponent,
         ProvidenciaNotificaRemuneracionPopupComponent,
         ProvidenciaNotificaDenuncianteComponent,
-        ProvidenciaNotificaDenunciantePopupComponent
+        ProvidenciaNotificaDenunciantePopupComponent,
 
-
+        ProvidenciaAsignarNumeroDgdComponent,
+        ProvidenciaAsignarNumeroDgdPopupComponent,
+        ProvidenciaAsignarNumeroProvidenciaComponent,
+        ProvidenciaAsignarNumeroProvidenciaPopupComponent,
     ],
     entryComponents: [
         ProvidenciaComponent,
@@ -382,8 +393,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaNotificaRemuneracionComponent,
         ProvidenciaNotificaRemuneracionPopupComponent,
         ProvidenciaNotificaDenuncianteComponent,
-        ProvidenciaNotificaDenunciantePopupComponent
-
+        ProvidenciaNotificaDenunciantePopupComponent,
+        ProvidenciaAsignarNumeroDgdComponent,
+        ProvidenciaAsignarNumeroDgdPopupComponent,
+        ProvidenciaAsignarNumeroProvidenciaComponent,
+        ProvidenciaAsignarNumeroProvidenciaPopupComponent,
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

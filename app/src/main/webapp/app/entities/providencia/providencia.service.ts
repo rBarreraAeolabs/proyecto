@@ -256,4 +256,14 @@ export class ProvidenciaService {
     notificaDenunciante(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/notificaDenunciante\n', response, {observe: 'response'});
     }
+    asignarNumeroDGD(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
+        return this.http.
+        put<IProvidencia>(`${this.resourceUrl}/updateNumeroDGD`, providencia, {observe: 'response'})
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+    asignarNumeroProvidencia(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
+        return this.http.
+        put<IProvidencia>(`${this.resourceUrl}/updateNumeroProvidencia`, providencia, {observe: 'response'})
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
 }
