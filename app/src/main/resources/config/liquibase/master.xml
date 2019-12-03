@@ -91,5 +91,11 @@
     <include file="config\liquibase\changelog\20190927182747_changelog.xml" relativeToChangelogFile="false"/>
     <!-- editando la columna  derivacion de varchar a tipo text en la tabla derivacion. -->
       <include file="config\liquibase\changelog\20191010204435_changelog.xml" relativeToChangelogFile="false"/>
+    <!-- nuevos datos en la tabla grupo. -->
+    <include file="config/liquibase/changelog/20191120201123_update_grupos_data.xml" relativeToChangelogFile="false"/>
+    <!-- Nueva entidad Instrucciones. -->
+    <include file="config/liquibase/changelog/2711198600723_added_entity_Instrucciones.xml" relativeToChangelogFile="false"/>
+    <!-- datos en la tabla Instrucciones. -->
+    <include file="config/liquibase/changelog/20191127185261_update_instrucciones_data.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
 

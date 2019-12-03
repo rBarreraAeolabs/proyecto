@@ -10,9 +10,11 @@ C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\j
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\web\rest\vm\package-info.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\web\rest\vm\LoggerVM.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\dto\MovimientoInvestigacionSumariaDTO.java
+C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\mapper\InstruccionesMapper.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\mapper\MovimientoSumarioAdministrativoMapper.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\web\rest\errors\LoginAlreadyUsedException.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\mapper\DerivacionMapper.java
+C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\dto\FiltroGrupoDTO.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\domain\enumeration\TipoProvidencia.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\domain\SumarioAdministrativo.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\repository\CustomAuditEventRepository.java
@@ -37,6 +39,7 @@ C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\j
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\security\jwt\JWTFilter.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\dto\MovimientoProvidenciaDTO.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\domain\enumeration\Caracter.java
+C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\web\rest\InstruccionesResource.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\domain\Plantilla.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\dto\FiltroMovProDTO.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\repository\SumarioAdministrativoRepository.java
@@ -144,6 +147,7 @@ C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\j
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\domain\Derivacion.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\repository\GrupoRepository.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\domain\Providencia.java
+C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\repository\InstruccionesRepository.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\mapper\PlazoMapper.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\storage\StorageFileNotFoundException.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\PerfilService.java
@@ -173,6 +177,7 @@ C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\j
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\web\rest\EntidadResource.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\MovimientoProvidenciaService.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\web\rest\MovimientoProvidenciaResource.java
+C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\dto\FiltroPerfilDTO.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\web\rest\errors\FieldErrorVM.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\domain\MovimientoSumarioAdministrativo.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\dto\PasswordChangeDTO.java
@@ -180,6 +185,7 @@ C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\j
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\web\rest\errors\InvalidPasswordException.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\config\MetricsConfiguration.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\web\rest\PlazoResource.java
+C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\InstruccionesService.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\domain\enumeration\InstruccionesProvidencia.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\dto\ProvidenciaUpdateForTypeDTO.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\domain\enumeration\EstadoInvestigacionSumaria.java
@@ -219,6 +225,7 @@ C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\j
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\domain\enumeration\AccionesProvidencia.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\security\SpringSecurityAuditorAware.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\repository\DerivacionRepository.java
+C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\domain\Instrucciones.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\InvestigacionSumariaService.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\ApplicationWebXml.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\dto\ProvidenciaUpdateTipoSolicitudDTO.java
@@ -230,6 +237,7 @@ C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\j
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\MovimientoInvestigacionSumariaService.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\dto\ProvidenciaDerivacionDTO.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\mapper\UserMapper.java
+C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\dto\InstruccionesDTO.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\web\rest\errors\package-info.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\web\rest\GrupoResource.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\repository\FichaIngresoSdjRepository.java

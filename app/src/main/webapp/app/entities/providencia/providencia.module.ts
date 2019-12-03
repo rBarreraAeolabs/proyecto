@@ -189,7 +189,14 @@ import {
     ProvidenciaAsignarNumeroProvidenciaComponent,
     ProvidenciaAsignarNumeroProvidenciaPopupComponent
 } from 'app/entities/providencia/providencia-asignar-numero-providencia.component';
-
+import {
+    ProvidenciaEmiteComponent,
+    ProvidenciaEmitePopupComponent
+} from 'app/entities/providencia/providencia-emite.component';
+import {
+    ProvidenciaAsignarNumeroDgdpComponent,
+    ProvidenciaAsignarNumeroDgdpPopupComponent
+} from 'app/entities/providencia/providencia-asignar-numero-dgdp.component';
 // directive
 import {
     ReadMoreDirective,
@@ -305,6 +312,10 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaAsignarNumeroDgdPopupComponent,
         ProvidenciaAsignarNumeroProvidenciaComponent,
         ProvidenciaAsignarNumeroProvidenciaPopupComponent,
+        ProvidenciaEmiteComponent,
+        ProvidenciaEmitePopupComponent,
+        ProvidenciaAsignarNumeroDgdpComponent,
+        ProvidenciaAsignarNumeroDgdpPopupComponent,
     ],
     entryComponents: [
         ProvidenciaComponent,
@@ -398,8 +409,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaAsignarNumeroDgdPopupComponent,
         ProvidenciaAsignarNumeroProvidenciaComponent,
         ProvidenciaAsignarNumeroProvidenciaPopupComponent,
-
-    ],
+        ProvidenciaEmiteComponent,
+        ProvidenciaEmitePopupComponent,
+        ProvidenciaAsignarNumeroDgdpComponent,
+        ProvidenciaAsignarNumeroDgdpPopupComponent,
+            ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PdisciplinarioProvidenciaModule {}

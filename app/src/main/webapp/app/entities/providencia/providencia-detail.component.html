@@ -126,6 +126,20 @@
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
                                                     <span> Asignar Número Providencia</span>
                                                 </a>
+                                                <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroDGDP"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/asignarNumeroDGDP'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span> Asignar Número DGDP</span>
+                                                </a>
+                                                <a class="dropdown-item" *ngIf="actionsPermitted.emiteProvidencia"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/emiteProvidencia '} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span> Emite providencia</span>
+                                                </a>
 
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.tipoSolicitud"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/tipoSolicitud'} }]"

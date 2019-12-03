@@ -27,5 +27,9 @@ public interface PerfilRepository extends JpaRepository<Perfil, Long> {
     @Query("select perfil from Perfil perfil where perfil.id =:id")
     Optional<Perfil> findOneWithEagerRelationships(@Param("id") Long id);
 
+    @Query("SELECT g FROM Perfil g WHERE " +
+        "UPPER(g.nombre) LIKE UPPER(CONCAT('%', :nombre, '%'))")
+    Page<Perfil> FindOneByPerfilName(Pageable pageable, @Param("nombre") String nombre);
+
 }
 

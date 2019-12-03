@@ -1,8 +1,11 @@
 package com.gruposolux.rcivil.pdisciplinario.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.gruposolux.rcivil.pdisciplinario.domain.Grupo;
+import com.gruposolux.rcivil.pdisciplinario.repository.GrupoRepository;
 import com.gruposolux.rcivil.pdisciplinario.security.AuthoritiesConstants;
 import com.gruposolux.rcivil.pdisciplinario.service.GrupoService;
+import com.gruposolux.rcivil.pdisciplinario.service.dto.FiltroGrupoDTO;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.GrupoDTO;
 import com.gruposolux.rcivil.pdisciplinario.web.rest.errors.BadRequestAlertException;
 import com.gruposolux.rcivil.pdisciplinario.web.rest.util.HeaderUtil;
@@ -16,6 +19,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -38,8 +42,11 @@ public class GrupoResource {
 
     private final GrupoService grupoService;
 
-    public GrupoResource(GrupoService grupoService) {
+    private final GrupoRepository grupoRepository;
+
+    public GrupoResource(GrupoService grupoService, GrupoRepository grupoRepository) {
         this.grupoService = grupoService;
+        this.grupoRepository = grupoRepository;
     }
 
     /**
@@ -103,6 +110,27 @@ public class GrupoResource {
     }
 
     /**
+     * GET  /grupos : get all the grupos.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of clientes in body
+     */
+    @GetMapping("/grupos/paged")
+    @Timed
+    public ResponseEntity<List<Grupo>> getAllGruposFilter(Pageable pageable, String nombre)
+    {
+        FiltroGrupoDTO filtroGrupoDTO = new FiltroGrupoDTO();
+        filtroGrupoDTO.setNombre(nombre.equalsIgnoreCase("null") ||
+            nombre.equalsIgnoreCase("TODOS") ? null : nombre);
+
+        Page<Grupo> page = grupoService.findAllGroup(pageable, filtroGrupoDTO);
+
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/grupos");
+
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
      * GET  /grupos/:id : get the "id" grupo.
      *
      * @param id the id of the grupoDTO to retrieve
@@ -140,4 +168,19 @@ public class GrupoResource {
     {
         return new ResponseEntity<List<GrupoDTO>>(this.grupoService.getAllAsList(), HttpStatus.OK);
     }
+
+    /**
+     * Get one cliente by id.
+     *
+     * @param nombre the rut of the entity
+     * @return the entity
+     */
+    @GetMapping("/grupos/nombre")
+    @Transactional(readOnly = true)
+    public Optional<Grupo> findOneGroupByName(String nombre) {
+        log.debug("EquifaxRequest to findOneGroupByName : {}", nombre);
+        return grupoRepository.findOneByGroupName(nombre);
+    }
+
+
 }

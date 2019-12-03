@@ -1,6 +1,9 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="pdisciplinarioApp.perfil.home.title">Perfils</span>
+    </h2>
+    <div>
+    <h2>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-perfil" [routerLink]="['/perfil/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="pdisciplinarioApp.perfil.home.createLabel">
@@ -8,6 +11,23 @@
             </span>
         </button>
     </h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="form-inline">
+                <div class="container-fluid">
+                    <div class="pull-left">
+                        <div class="form-group">
+                            <label class="control-label" >Filtrar por:  </label> &nbsp;
+                            <input type="text" id="nombre-filtro" name="nombre-filtro" class="form-control"
+                                   placeholder="Buscar por Nombre" [(ngModel)]="filtrosBack.nombre">                            &nbsp;
+                            <input type="submit" class="btn btn-sm btn-default" value="Buscar" (click)="filtro()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <jhi-alert></jhi-alert>
     <br/>
     <div class="table-responsive" *ngIf="perfils">

@@ -29,6 +29,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
+    filtrosBack = {nombre: null};
 
     constructor(
         private perfilService: PerfilService,
@@ -49,12 +50,13 @@ export class PerfilComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
+        // @ts-ignore
         this.perfilService
             .query({
                 page: this.page - 1,
                 size: this.itemsPerPage,
                 sort: this.sort()
-            })
+            }, this.filtrosBack)
             .subscribe(
                 (res: HttpResponse<IPerfil[]>) => this.paginatePerfils(res.body, res.headers),
                 (res: HttpErrorResponse) => this.onError(res.message)
@@ -117,6 +119,10 @@ export class PerfilComponent implements OnInit, OnDestroy {
             result.push('id');
         }
         return result;
+    }
+
+    filtro() {
+        this.ngOnInit();
     }
 
     private paginatePerfils(data: IPerfil[], headers: HttpHeaders) {

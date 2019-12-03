@@ -1,13 +1,40 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="pdisciplinarioApp.grupo.home.title">Grupos</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-grupo" [routerLink]="['/grupo/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="pdisciplinarioApp.grupo.home.createLabel">
-            Create new Grupo
-            </span>
-        </button>
+<!--        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-grupo" [routerLink]="['/grupo/new']">-->
     </h2>
+    <div>
+        <h2>
+            <button id="jh-create-entity" class="btn btn-primary pull-right jh-create-entity create-grupo" [routerLink]="['/grupo/new']">
+                <fa-icon [icon]="'plus'"></fa-icon>
+                <span  jhiTranslate="pdisciplinarioApp.grupo.home.createLabel">
+                                Create new Grupo
+                </span>
+            </button>
+        </h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="form-inline">
+                <div class="container-fluid">
+                    <div class="pull-left">
+                        <div class="form-group">
+                            <label class="control-label" >Filtrar por:  </label>
+                            &nbsp;
+<!--                            <input id="nombre" name="nombre" placeholder="Nombre" ng-model="vm.filtros.nombre" class="form-control" />-->
+                            <input type="text" id="nombre-filtro" name="nombre-filtro" class="form-control"
+                                   placeholder="Buscar por Nombre" [(ngModel)]="filtrosBack.nombre">
+                            &nbsp;
+                            <input type="submit" class="btn btn-sm btn-default" value="Buscar" (click)="filtro()">
+<!--                            <button type="submit" class="btn btn-outline-primary mb-2" (click)="filtro()">Buscar</button>-->
+                            &nbsp;
+<!--                            <input name="tipo" placeholder="Tipo" ng-model="vm.filtros.tipo" class="form-control" />-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <jhi-alert></jhi-alert>
     <br/>
     <div class="table-responsive" *ngIf="grupos">

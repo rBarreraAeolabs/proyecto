@@ -1,0 +1,23 @@
+
+{
+    "pdisciplinarioApp": {
+        "instrucciones" : {
+            "home": {
+                "title": "Instrucciones",
+                "createLabel": "Crear Nueva Instrucción",
+                "createOrEditLabel": "Crear O Editar Instrucción"
+            },
+            "created": "Una nueva Instrucción ha sido creada con el identificador {{ param }}",
+            "updated": "Una nueva Instrucción ha sido actualizada con el identificador {{ param }}",
+            "deleted": "Una nueva Instrucción ha sido eliminada con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Instrucción {{ id }}?"
+            },
+            "detail": {
+                "title": "Instrucciones"
+            },
+            "nombre": "Nombre",
+            "instrucciones": "Instrucciones"
+        }
+    }
+}

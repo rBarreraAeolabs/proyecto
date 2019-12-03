@@ -124,6 +124,8 @@ export class ProvidenciaComponent implements OnInit, OnDestroy {
             case 'INVESTIGACION_PRORROGA_2 - ABOGADO_RESPONDE - DGD_DESPACHA_SUMARIO_COMPLETO':
             case 'INFORME_JURIDICO - ABSOLVER - DEMANDADO_NOTIFICADO':
             case 'INFORME_JURIDICO - SOBRESEER - DEMANDADO_NOTIFICADO':
+            case 'INFORME_JURIDICO - SANCIONA - ALCANCE_SIN_RESOLUCION':
+
                 if (stanby !== true) {
                     color = '#F68334';
                 } else {

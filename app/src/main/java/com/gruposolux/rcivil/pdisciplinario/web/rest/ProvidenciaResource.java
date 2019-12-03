@@ -358,12 +358,20 @@ public class ProvidenciaResource {
         return ResponseEntity.ok().headers(HeaderUtil.createAlert("Adjuntado Examen de Legalidad!",ENTITY_NAME)).body(null);
     }
 
+    @PostMapping("/providencias/emiteProvidencia")
+    @Timed
+    public ResponseEntity<Void> emiteProvidencia (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("endpoint botton emiteProvidencia");
+        this.providenciaService.emiteProvidencia(providenciaResponseDTO);
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("DN ha emitido Providencia!",ENTITY_NAME)).body(null);
+    }
+
     @PostMapping("/providencias/alcance")
     @Timed
     public ResponseEntity<Void> alcance (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("endpoint botton alcance");
         this.providenciaService.alcance(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("Ha Seleccionado Alcance!",ENTITY_NAME)).body(null);
     }
 
     @PostMapping("/providencias/alcanceConResolucion")
@@ -386,8 +394,7 @@ public class ProvidenciaResource {
     public ResponseEntity<Void> resolucion (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("endpoint botton resolucion");
         this.providenciaService.resolucion(providenciaResponseDTO);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("Ha Seleccionado Resolución!",ENTITY_NAME)).body(null);    }
 
     @PostMapping("/providencias/notificarDGDP")
     @Timed
@@ -507,6 +514,21 @@ public class ProvidenciaResource {
             return ResponseEntity.ok().headers(HeaderUtil.message("No se pudo agregar el N° DGD",ENTITY_NAME)).body(null);
         }
         return ResponseEntity.ok().headers(HeaderUtil.createAlert("El N° DGD se agrego Correctamente!",
+            providenciaDTO.getId().toString())).body(providenciaDTO);
+    }
+
+    @PutMapping("/providencias/updateNumeroDGDP")
+    @Timed
+    public ResponseEntity<ProvidenciaDTO> updateNumeroDGDP(@RequestBody ProvidenciaUpdateNumeroReferenciaDTO providenciaUpdateNumeroReferenciaDTO) {
+
+        log.debug(" Entro al updateNumeroDGDP con el DTO : {} ");
+
+        ProvidenciaDTO providenciaDTO = this.providenciaService.updateNumeroDGDP(providenciaUpdateNumeroReferenciaDTO);
+
+        if (providenciaDTO.getNumeroDgd() == null) {
+            return ResponseEntity.ok().headers(HeaderUtil.message("No se pudo agregar el N° DGDP",ENTITY_NAME)).body(null);
+        }
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("El N° DGDP se agrego Correctamente!",
             providenciaDTO.getId().toString())).body(providenciaDTO);
     }
 

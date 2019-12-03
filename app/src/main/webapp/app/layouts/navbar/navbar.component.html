@@ -104,6 +104,12 @@
                             <span jhiTranslate="global.menu.entities.entidad">Entidad</span>
                         </a>
                     </li>
+                    <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'VISUALIZAR_INSTRUCCIONES']">
+                        <a class="dropdown-item" routerLink="instrucciones" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.instrucciones">Instrucciones</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'VISUALIZAR_MENU_USUARIO']" ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">

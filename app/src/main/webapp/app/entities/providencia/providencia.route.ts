@@ -53,6 +53,8 @@ import {ProvidenciaNotificaRemuneracionPopupComponent} from 'app/entities/provid
 import {ProvidenciaNotificaDenunciantePopupComponent} from 'app/entities/providencia/providencia-notifica-denunciante.component';
 import {ProvidenciaAsignarNumeroDgdPopupComponent} from 'app/entities/providencia/providencia-asignar-numero-dgd.component';
 import {ProvidenciaAsignarNumeroProvidenciaPopupComponent} from 'app/entities/providencia/providencia-asignar-numero-providencia.component';
+import {ProvidenciaEmitePopupComponent} from 'app/entities/providencia/providencia-emite.component';
+import {ProvidenciaAsignarNumeroDgdpPopupComponent} from 'app/entities/providencia/providencia-asignar-numero-dgdp.component';
 
 @Injectable({ providedIn: 'root' })
 @Injectable({ providedIn: 'root' })
@@ -448,6 +450,19 @@ export const providenciaPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
+        path: 'providencia/:id/emiteProvidencia ',
+        component: ProvidenciaEmitePopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Apela'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
         path: 'providencia/:id/multa',
         component: ProvidenciaMultaPopupComponent,
         resolve: {
@@ -649,6 +664,32 @@ export const providenciaPopupRoute: Routes = [
         },
         canActivate: [UserRouteAccessService],
         runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },  {
+        path: 'providencia/:id/asignarNumeroDGDP',
+        component: ProvidenciaAsignarNumeroDgdpPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/emiteProvidencia ',
+        component: ProvidenciaEmitePopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Apela'
+        },
+        canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
     {

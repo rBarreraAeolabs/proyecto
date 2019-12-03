@@ -4,6 +4,7 @@ import { PdisciplinarioGrupoModule } from './grupo/grupo.module';
 import { PdisciplinarioPlazoModule } from './plazo/plazo.module';
 import { PdisciplinarioPlantillaModule } from './plantilla/plantilla.module';
 import { PdisciplinarioEntidadModule } from 'app/entities/entidad/entidad.module';
+import { PdisciplinarioInstruccionesModule } from 'app/entities/instrucciones/instrucciones.module';
 import { PdisciplinarioDocumentoModule } from './documento/documento.module';
 import { PdisciplinarioAdjuntoModule } from './adjunto/adjunto.module';
 import { PdisciplinarioFichaIngresoSdjModule } from './ficha-ingreso-sdj/ficha-ingreso-sdj.module';
@@ -25,6 +26,7 @@ import { PdisciplinarioRespuestaModule } from 'app/entities/respuesta/respuesta.
         PdisciplinarioPlazoModule,
         PdisciplinarioPlantillaModule,
         PdisciplinarioEntidadModule,
+        PdisciplinarioInstruccionesModule,
         PdisciplinarioDocumentoModule,
         PdisciplinarioAdjuntoModule,
         PdisciplinarioFichaIngresoSdjModule,

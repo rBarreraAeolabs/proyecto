@@ -1,7 +1,7 @@
 <form name="deleteForm" (ngSubmit)="alcanceSinResolucion
  (providencia.id)">
     <div class="modal-header">
-        <h4 class="modal-title" >Solicitud De alcance</h4>
+        <h4 class="modal-title" >Solicitud De Alcance sin Resolucion</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;
         </button>
@@ -14,7 +14,7 @@
         <form>
             <div class="form-group">
                 <label class="form-control-label" for="field_comentario">
-                    Cual Es El Motivo De realizoResolucion??
+                    Cual Es El Motivo De Alcance sin Resolucion??
                 </label>
                 <textarea type="text" class="form-control" name="comentario" id="field_comentario"
                           [(ngModel)]="observacionDerivacion">
@@ -32,7 +32,7 @@
         </button>
         <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success">
             <fa-icon [icon]="'save'"></fa-icon>&nbsp;
-            <span>alcance</span>
+            <span>Sin Resolución</span>
         </button>
     </div>
 </form>

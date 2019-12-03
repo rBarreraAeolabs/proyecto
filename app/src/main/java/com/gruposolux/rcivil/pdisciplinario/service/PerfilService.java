@@ -3,6 +3,7 @@ package com.gruposolux.rcivil.pdisciplinario.service;
 import com.gruposolux.rcivil.pdisciplinario.domain.Authority;
 import com.gruposolux.rcivil.pdisciplinario.repository.AuthorityRepository;
 import com.gruposolux.rcivil.pdisciplinario.repository.PerfilRepository;
+import com.gruposolux.rcivil.pdisciplinario.service.dto.FiltroPerfilDTO;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.PerfilDTO;
 import com.gruposolux.rcivil.pdisciplinario.service.mapper.PerfilMapper;
 import com.gruposolux.rcivil.pdisciplinario.domain.Perfil;
@@ -10,10 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -66,6 +69,24 @@ public class PerfilService {
         log.debug("Request to get all Perfils");
         return perfilRepository.findAll(pageable)
             .map(perfilMapper::toDto);
+    }
+
+    /**
+     * Get all the grupos.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<Perfil> findAllPerfil(Pageable pageable, FiltroPerfilDTO filtro) {
+        log.debug("Get all Perfiles");
+
+        if (filtro.getNombre() != null && !filtro.getNombre().isEmpty())
+        {
+            pageable = new PageImpl<Perfil>(new ArrayList<Perfil>()).getPageable();
+            return this.perfilRepository.FindOneByPerfilName(pageable, filtro.getNombre());
+        }
+        return perfilRepository.findAll(pageable);
     }
 
     /**

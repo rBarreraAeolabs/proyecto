@@ -3,6 +3,7 @@ package com.gruposolux.rcivil.pdisciplinario.service;
 import com.gruposolux.rcivil.pdisciplinario.domain.Authority;
 import com.gruposolux.rcivil.pdisciplinario.repository.AuthorityRepository;
 import com.gruposolux.rcivil.pdisciplinario.repository.GrupoRepository;
+import com.gruposolux.rcivil.pdisciplinario.service.dto.FiltroGrupoDTO;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.GrupoDTO;
 import com.gruposolux.rcivil.pdisciplinario.service.mapper.GrupoMapper;
 import com.gruposolux.rcivil.pdisciplinario.domain.Grupo;
@@ -10,10 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -63,6 +66,24 @@ public class GrupoService {
     }
 
     /**
+     * Get all the grupos.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<Grupo> findAllGroup(Pageable pageable, FiltroGrupoDTO filtro) {
+        log.debug("Get all Grupos");
+
+        if (filtro.getNombre() != null && !filtro.getNombre().isEmpty())
+        {
+            pageable = new PageImpl<Grupo>(new ArrayList<Grupo>()).getPageable();
+            return this.grupoRepository.FindOneByGroupName(pageable, filtro.getNombre());
+        }
+        return grupoRepository.findAll(pageable);
+    }
+
+    /**
      * Get one grupo by id.
      *
      * @param id the id of the entity
@@ -96,4 +117,6 @@ public class GrupoService {
     {
         return this.grupoRepository.findAll().stream().map(grupo -> this.grupoMapper.toDto(grupo)).collect(Collectors.toList());
     }
+
+
 }

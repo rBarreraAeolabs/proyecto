@@ -19,6 +19,7 @@ import { PdisciplinarioEntityModule } from './entities/entity.module';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { FormsModule } from '@angular/forms';
 import * as moment from 'moment';
+// import {PopupModule} from 'ng2-opd-popud';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { ActiveMenuDirective, ErrorComponent, FooterComponent, JhiMainComponent, NavbarComponent, PageRibbonComponent } from './layouts';
 import { PdisciplinarioDashboardModule } from './dashboard/dashboard.module';

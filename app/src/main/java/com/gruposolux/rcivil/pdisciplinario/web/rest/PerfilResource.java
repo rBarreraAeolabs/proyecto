@@ -1,8 +1,10 @@
 package com.gruposolux.rcivil.pdisciplinario.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.gruposolux.rcivil.pdisciplinario.domain.Perfil;
 import com.gruposolux.rcivil.pdisciplinario.security.AuthoritiesConstants;
 import com.gruposolux.rcivil.pdisciplinario.service.PerfilService;
+import com.gruposolux.rcivil.pdisciplinario.service.dto.FiltroPerfilDTO;
 import com.gruposolux.rcivil.pdisciplinario.service.dto.PerfilDTO;
 import com.gruposolux.rcivil.pdisciplinario.web.rest.errors.BadRequestAlertException;
 import com.gruposolux.rcivil.pdisciplinario.web.rest.util.HeaderUtil;
@@ -109,6 +111,27 @@ public class PerfilResource {
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, String.format("/api/perfils?eagerload=%b", eagerload));
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /perfiles : get all the perfiles.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of perfiles in body
+     */
+    @GetMapping("/perfils/paged")
+    @Timed
+    public ResponseEntity<List<Perfil>> getAllPerfilFilter(Pageable pageable, String nombre)
+    {
+        FiltroPerfilDTO filtroPerfilDTO = new FiltroPerfilDTO();
+        filtroPerfilDTO.setNombre(nombre.equalsIgnoreCase("null") ||
+            nombre.equalsIgnoreCase("TODOS") ? null : nombre);
+
+        Page<Perfil> page = perfilService.findAllPerfil(pageable, filtroPerfilDTO);
+
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/perfils");
+
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**

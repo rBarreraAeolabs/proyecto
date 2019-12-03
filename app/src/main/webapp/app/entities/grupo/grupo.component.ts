@@ -29,6 +29,7 @@ export class GrupoComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
+    filtrosBack = {nombre: null};
 
     constructor(
         private grupoService: GrupoService,
@@ -49,12 +50,13 @@ export class GrupoComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
+        // @ts-ignore
         this.grupoService
             .query({
                 page: this.page - 1,
                 size: this.itemsPerPage,
-                sort: this.sort()
-            })
+                sort: this.sort(),
+            }, this.filtrosBack)
             .subscribe(
                 (res: HttpResponse<IGrupo[]>) => this.paginateGrupos(res.body, res.headers),
                 (res: HttpErrorResponse) => this.onError(res.message)
@@ -117,6 +119,10 @@ export class GrupoComponent implements OnInit, OnDestroy {
             result.push('id');
         }
         return result;
+    }
+
+    filtro() {
+        this.ngOnInit();
     }
 
     private paginateGrupos(data: IGrupo[], headers: HttpHeaders) {
