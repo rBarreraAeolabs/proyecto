@@ -4,8 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { IInstrucciones } from 'app/shared/model/instrucciones.model';
+// import { IInstrucciones } from 'app/shared/model/instrucciones.model';
 import { InstruccionesService } from './instrucciones.service';
+import {IInstrucciones} from 'app/shared/model/Instrucciones.model';
 
 @Component({
     selector: 'jhi-instrucciones-delete-dialog',
