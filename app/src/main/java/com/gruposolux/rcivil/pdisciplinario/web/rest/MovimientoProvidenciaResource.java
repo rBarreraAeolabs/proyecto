@@ -145,12 +145,18 @@ public class MovimientoProvidenciaResource {
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
     public ResponseEntity<Set<MovimientoProvidenciaDTO>> getAllByProvidencia(@RequestBody FiltroMovProDTO filtroMovPro) throws URISyntaxException {
 
-        if (filtroMovPro.getProvidencia() != null)
+        if (filtroMovPro.getFiltroMovimientoProvidencia() != null)
         {
             return new ResponseEntity<>(this.movimientoProvidenciaService.getAllByIdProvidenciaWithFilters(filtroMovPro
                 .getProvidencia(), filtroMovPro.getFiltroMovimientoProvidencia()), HttpStatus.OK);
         }
-        return ResponseEntity.badRequest().body(null);
+        else {
+            ProvidenciaDTO providenciaDTO = filtroMovPro.getProvidencia();
+            return new ResponseEntity(this.movimientoProvidenciaService.getmoviruben(providenciaDTO), HttpStatus.OK);
+//            return new ResponseEntity<>(this.movimientoProvidenciaService.getAllByIdProvidencia(providenciaDTO), HttpStatus.OK);
+        }
+
+//        return ResponseEntity.badRequest().body(null);
     }
 
     @GetMapping("/movimiento-providencias/list")

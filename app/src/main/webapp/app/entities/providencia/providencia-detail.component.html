@@ -24,8 +24,8 @@
 
                                             <ng-template #viewBoton>
                                             <button type="button"
-                                                    *ngIf="actionsPermitted.reply "
-                                                    [disabled]="disableResponder"
+                                                    *ngIf="actionsPermitted.reply && this.disableResponder !=true "
+
                                                     class="btn btn-danger mr-2ha"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/responder'} }]"
                                                     replaceUrl="true"
@@ -96,6 +96,15 @@
                                                     <span *ngIf="providencia.nombreFiscalAsignado == null"> Asignar Fiscal</span>
                                                     <span *ngIf="providencia.nombreFiscalAsignado !== null"> Cambiar Fiscal Asignado</span>
                                                 </a>
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.asignarAbogado"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/asignarAbogado'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > Asignar Abogado</span>
+
+                                                </a>
 
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.numerarReferencia && providencia.providenciaMadreId == null"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/numerarReferencia'} }]"
@@ -112,7 +121,7 @@
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
                                                     <span >Dar Nº de folio</span>
                                                 </a>
-                                                <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroDGD "
+                                                <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroDGD"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/asignarNumeroDGD'} }]"
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"

@@ -28,10 +28,10 @@ public class Respuesta implements Serializable
     @OneToOne
     private MovimientoProvidencia movimientoProvidencia;
 
-    @OneToMany(mappedBy = "respuesta", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "respuesta", fetch = FetchType.LAZY)
     private Set<Adjunto> adjuntos;
 
-    @OneToMany(mappedBy = "respuesta", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "respuesta", fetch = FetchType.LAZY)
     private Set<Documento> documentos;
 
     @Column(name = "guardada")

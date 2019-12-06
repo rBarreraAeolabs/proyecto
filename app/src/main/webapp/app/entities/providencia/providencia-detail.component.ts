@@ -1,16 +1,16 @@
-import { Component , OnDestroy , OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
-import { IProvidencia} from 'app/shared/model/providencia.model';
+import {EstadoProvidencia, IProvidencia} from 'app/shared/model/providencia.model';
 
-import { JhiAlertService } from 'ng-jhipster';
-import { IMovimientoProvidencia } from 'app/shared/model/movimiento-providencia.model';
-import { ProvidenciaService } from './providencia.service';
-import { IRespuesta } from '../../shared/model/respuesta.model';
-import { IPlantilla } from 'app/shared/model/plantilla.model';
+import {JhiAlertService} from 'ng-jhipster';
+import {IMovimientoProvidencia} from 'app/shared/model/movimiento-providencia.model';
+import {ProvidenciaService} from './providencia.service';
+import {IRespuesta} from '../../shared/model/respuesta.model';
+import {IPlantilla} from 'app/shared/model/plantilla.model';
 
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'jhi-providencia-detail',
@@ -113,7 +113,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
             }
 
         });
-
+      this.refreshDetail();
     }
 
     // complemento para descargar excel
@@ -132,8 +132,20 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
             this.providencia = response.body;
             this.refrescarPermisos(response.body);
         });
-    }
-
+     }
+// validarPorNumero(){
+//         this.movimientosProvidencia.
+//     switch (this.providencia.requisito) {
+//         case 'GESTOR_DOCUMENTAL_ASIGNA_NUMERO':
+//             console.log('numero dgd ' + this.providencia.numeroDgd);
+//             if (this.providencia.numeroDgd == null) {
+//                 this.disableResponder = true;
+//                 console.log('entro al si ' );
+//             }
+//             break;
+//     }
+//     }
+// hacer la vaidacion por back por el estado revisando el estado anterior
     refrescarPermisos( provi: IProvidencia ) {
 
         console.log('ng refresh  recargado ' + provi.requisito);
@@ -141,13 +153,13 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
         //     const provide = response.body;
         // });
         console.log('ng refresh  recargado ' + provi.requisito);
-        console.log('ng refesh permite recargado ' +  this.actionsPermitted.apela + ' '  + this.actionsPermitted.noApela);
+        console.log('ng refesh permite recargado ' +  this.actionsPermitted.reply + ' '  );
         this.providenciaService.getActionsPermitted(provi).subscribe(resp => {
             this.actionsPermitted = resp.body;
-            console.log('ng refesh permite recargado ' +  this.actionsPermitted.apela + ' '  + this.actionsPermitted.noApela);
+            // console.log('ng refesh permite recargado ' +  this.actionsPermitted.apela + ' '  + this.actionsPermitted.noApela);
 
         });
-        return this.actionsPermitted = this.actionsPermitted ;
+        return this.actionsPermitted = this.actionsPermitted;
     }
     // metodo para volver atras
     previousState() {

@@ -10,10 +10,10 @@ import { JhiEventManager } from 'ng-jhipster';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
-    selector: 'jhi-providencia-asignar-fiscal',
-    templateUrl: './providencia-asignar-fiscal.component.html'
+    selector: 'jhi-providencia-asignar-abogado',
+    templateUrl: './providencia-asignar-abogado.component.html'
 })
-export class ProvidenciaAsignarFiscalComponent implements OnInit {
+export class ProvidenciaAsignarAbogadoComponent implements OnInit {
 
     private _providencia: IProvidencia;
 
@@ -37,11 +37,11 @@ export class ProvidenciaAsignarFiscalComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    asignarFiscal() {
+    asignarAbogado() {
 
-        this.providenciaService.updateFiscal(this.providencia).subscribe(
+        this.providenciaService.updateAbogado(this.providencia).subscribe(
             (req: HttpResponse<IProvidencia>) => {
-                this.activeModal.close('fiscal asignado');
+                this.activeModal.close('abogado asignado');
             },
             (req: HttpErrorResponse) => {
                 console.log('error', req.message);
@@ -63,14 +63,14 @@ export class ProvidenciaAsignarFiscalComponent implements OnInit {
     selector: 'jhi-providencia-asignar-fiscal-popup',
     template: ''
 })
-export class  ProvidenciaAsignarFiscalPopupComponent implements OnInit, OnDestroy {
+export class  ProvidenciaAsignarAbogadoPopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaAsignarFiscalComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciaAsignarAbogadoComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });

@@ -220,15 +220,27 @@ public class MovimientoProvidenciaService {
     public Set<MovimientoProvidenciaDTO> getAllByIdProvidencia(ProvidenciaDTO providenciaDTO)
     {
         Providencia providencia = this.providenciaMapper.toEntity(providenciaDTO);
-        Set<MovimientoProvidencia> movimientos = this.movimientoProvidenciaRepository.findByProvidencia(providencia);
-
+////        Set<MovimientoProvidencia> movimientos = this.movimientoProvidenciaRepository.findByProvidencia(providencia);
+        Set<MovimientoProvidencia> movimientos = this.movimientoProvidenciaRepository.traerMovimientos(providencia.getId());
         Set<MovimientoProvidenciaDTO> movimientoProvidenciaDTOs = new TreeSet<>();
+//
         for (Iterator<MovimientoProvidencia> it = movimientos.iterator(); it.hasNext();)
         {
             MovimientoProvidencia movimientoProvidencia = it.next();
 
             movimientoProvidenciaDTOs.add(this.movimientoProvidenciaMapper.toDto(movimientoProvidencia));
         }
+
+        return movimientoProvidenciaDTOs;
+    }
+
+    public List<MovimientoProvidenciaDTO> getmoviruben (ProvidenciaDTO providenciaDTO)
+    {
+        Providencia providencia = this.providenciaMapper.toEntity(providenciaDTO);
+        List<MovimientoProvidencia> movimientos = this.movimientoProvidenciaRepository.traerMovimiento(providencia.getId());
+        List<MovimientoProvidenciaDTO> movimientoProvidenciaDTOs ;
+
+        movimientoProvidenciaDTOs =(this.movimientoProvidenciaMapper.toDto(movimientos));
 
         return movimientoProvidenciaDTOs;
     }
@@ -300,7 +312,7 @@ public class MovimientoProvidenciaService {
     @Transactional
     public MovimientoProvidencia buscarPorId(Long id)
     {
-        MovimientoProvidencia  movimientoProvidencia = movimientoProvidenciaRepository.traerMovimientos(id);
+        MovimientoProvidencia  movimientoProvidencia = movimientoProvidenciaRepository.traerMovi(id);
         return  movimientoProvidencia;
     }
 }

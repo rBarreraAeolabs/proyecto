@@ -1591,7 +1591,7 @@ public class ProvidenciaService {
             actionsPermitted.put("notificaRemuneracion", false);
             actionsPermitted.put("notificaDemandado", false);
             actionsPermitted.put("notificaDenunciante", false);
-
+            actionsPermitted.put("asignarAbogado", false);
 
             switch (requisito) {
 
@@ -1713,7 +1713,7 @@ public class ProvidenciaService {
                 case FISCAL_REMITE_SUMARIO_A_DN:
                 case ENVIAR_SUMARIO_A_SUB_DIRECCION:
                 case SECRETARIA_REVISA_SUMARIO:
-                case SUB_DIRECCION_ASIGNA_ABOGADO:
+
                 case SECRETARIA_REVISA_SUMARIO_Y_NOTIFICA_A_ABOGADO:
                 case SECRETARIA_DESPACHA_INFORME:
                     if ((grupoCurrentUser.getId() == 5 && perfilUser.getId() == 8) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
@@ -1726,7 +1726,13 @@ public class ProvidenciaService {
                         actionsPermitted.put("reply", true);
                     }
                     break;
-
+                case ASIGNANDO_ABOGADO_A_APELACION:
+                case SUB_DIRECCION_ASIGNA_ABOGADO:
+                    if ((grupoCurrentUser.getId() == 5 && perfilUser.getId() == 8) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+                        actionsPermitted.put("asignarAbogado", true);
+                        actionsPermitted.put("reply", true);
+                    }
+                    break;
                 case SUB_DIRECCION_ASIGNA_A_RESOLUCION_Y_MEMO:
                 case SECRETARIA_DESPACHA_A_UPD:
                     if ((grupoCurrentUser.getId() == 2 && perfilUser.getId() == 2) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
@@ -1866,7 +1872,6 @@ public class ProvidenciaService {
                 case DGD_DESPACHA_APELACION_A_DN:
                 case APELACION_RECIBIDA:
                 case SECRETARIA_REVISA_APELACION:
-                case ASIGNANDO_ABOGADO_A_APELACION:
                 case ABOGADO_ELABORA_INFORME_APELACION:
                 case SECRETARIA_DESPACHA_INFORME_APELACION_A_DGD:
                 case DGD_DESPACHA_INFORME_APELACION_A_DN:

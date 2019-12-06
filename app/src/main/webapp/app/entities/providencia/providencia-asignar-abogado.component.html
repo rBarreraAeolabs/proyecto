@@ -1,37 +1,36 @@
-<form name="deleteForm" (ngSubmit)="alcance(providencia.id)">
+<form name="deleteForm" (ngSubmit)="asignarAbogado()">
     <div class="modal-header">
-        <h4 class="modal-title" >Solicitud De alcance</h4>
+        <h4 class="modal-title" >Asignar Abogado A La Providencia</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;
         </button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <p id="jhi-responder-providencia-heading1">
-            Seguro que desea alcance a la providencia # {{providencia.id}}?
-
-        <form>
-            <div class="form-group">
-                <label class="form-control-label" for="field_comentario">
-                    Cual Es El Motivo De Alcance??
-                </label>
-                <textarea type="text" class="form-control" name="comentario" id="field_comentario"
-                          [(ngModel)]="observacionDerivacion">
-                    </textarea>
-            </div>
-            <div class="form-group" style="height: auto">
-                <label class="form-control-label">Adjuntar Archivos</label>
-                <jhi-file-upload-component (fileResponse)="getUploadedAdjuntos($event)"></jhi-file-upload-component>
-            </div>
-        </form>
+        <jhi-alert></jhi-alert>
+        <p id="jhi-asignar-fiscal-heading">
+            Asignar un fiscal a la providencia # {{providencia.numeroReferencia}}?
+        </p>
+        <div class="form-group">
+            <label class="control-label">Nombre del Abogado</label>
+            <select name="Abogados"
+                [(ngModel)]="providencia.nombreFiscalAbogado"
+                required>
+                <option value="1">Ruben Barrera</option>
+                <option value="2">Francisco</option>
+                <option value="3">Marcelo</option>
+                <option value="10">Karla</option>
+                <option value="11">Cristian</option>
+                <option value="12">walala</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
         </button>
-        <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success">
-            <fa-icon [icon]="'save'"></fa-icon>&nbsp;
-            <span>Alcance</span>
+        <button id="jhi-confirm-delete-providencia" type="submit" class="btn btn-outline-success" [disabled]="!providencia.nombreFiscalAbogado">
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>guardar</span>
         </button>
     </div>
 </form>

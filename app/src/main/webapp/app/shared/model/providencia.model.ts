@@ -197,12 +197,15 @@ export interface IProvidencia {
     entidadSolicitante?: IEntidad;
     entidadImplicada?: IEntidad;
     nombreFiscalAsignado?: string;
+    nombreFiscalAbogado?: string;
     ordenJuridico?: OrdenJuridico;
     apelacion?: Apelacion;
     standby?: boolean;
     totalAdjuntos?: number;
     folio?: number;
     providenciaMadreId?: number;
+    numeroDgdp?: number;
+    numeroDgd?: number;
 }
 
 export class Providencia implements IProvidencia {

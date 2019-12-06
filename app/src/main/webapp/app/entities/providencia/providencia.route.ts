@@ -55,6 +55,7 @@ import {ProvidenciaAsignarNumeroDgdPopupComponent} from 'app/entities/providenci
 import {ProvidenciaAsignarNumeroProvidenciaPopupComponent} from 'app/entities/providencia/providencia-asignar-numero-providencia.component';
 import {ProvidenciaEmitePopupComponent} from 'app/entities/providencia/providencia-emite.component';
 import {ProvidenciaAsignarNumeroDgdpPopupComponent} from 'app/entities/providencia/providencia-asignar-numero-dgdp.component';
+import {ProvidenciaAsignarAbogadoPopupComponent} from 'app/entities/providencia/providencia-asignar-abogado.component';
 
 @Injectable({ providedIn: 'root' })
 @Injectable({ providedIn: 'root' })
@@ -601,6 +602,19 @@ export const providenciaPopupRoute: Routes = [
     {
         path: 'providencia/:id/asignarFiscal',
         component: ProvidenciaAsignarFiscalPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/asignarAbogado',
+        component: ProvidenciaAsignarAbogadoPopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },
