@@ -1973,44 +1973,72 @@ public class ProvidenciaService {
 
             switch (providenciaDTO.getRequisito()) {
 
+//                case UPD_REDACTA_RESOLUCION_Y_MEMO:
+//                case REDACCION_RESOLUCION_MEMO:
+//                case ESPERANDO_FIRMA_VISA_DE_SUBDIRECCION_A_RESOLUCION:
+//                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
+//                        if (p.getTipo().equals(TipoPlantilla.MEMORANDUM) || p.getTipo().equals(TipoPlantilla.RESOLUCION)) {
+//                            return true;
+//                        }
+//                        return false;
+//                    }).collect(Collectors.toList());
+//                    break;
+//
+//                case UPD_ELABORA_NOTIFICACION_PRORROGA_1:
+//                case UPD_ELABORA_NOTIFICACION_PRORROGA_2:
+//                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
+//                        if (p.getTipo().equals(TipoPlantilla.RESOLUCION)) {
+//                            return true;
+//                        }
+//                        return false;
+//                    }).collect(Collectors.toList());
+//                    break;
+//
+//                case FISCAL_REMITE_EXPEDIENTE:
+//                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
+//                        if (p.getTipo().equals(TipoPlantilla.NOTIFICACION)) {
+//                            return true;
+//                        }
+//                        return false;
+//                    }).collect(Collectors.toList());
+//                    break;
+//
+//                case INVESTIGACION:
+//                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
+//                        if (p.getTipo().equals(TipoPlantilla.MEMORANDUM)) {
+//                            return true;
+//                        }
+//                        return false;
+//                    }).collect(Collectors.toList());
+//
+//            }
+
                 case UPD_REDACTA_RESOLUCION_Y_MEMO:
                 case REDACCION_RESOLUCION_MEMO:
                 case ESPERANDO_FIRMA_VISA_DE_SUBDIRECCION_A_RESOLUCION:
-                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
-                        if (p.getTipo().equals(TipoPlantilla.MEMORANDUM) || p.getTipo().equals(TipoPlantilla.RESOLUCION)) {
-                            return true;
-                        }
-                        return false;
-                    }).collect(Collectors.toList());
-                    break;
-
                 case UPD_ELABORA_NOTIFICACION_PRORROGA_1:
                 case UPD_ELABORA_NOTIFICACION_PRORROGA_2:
-                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
-                        if (p.getTipo().equals(TipoPlantilla.RESOLUCION)) {
-                            return true;
-                        }
-                        return false;
-                    }).collect(Collectors.toList());
-                    break;
-
                 case FISCAL_REMITE_EXPEDIENTE:
+                case INVESTIGACION:
+                    // desde aqui agrega ruben
+                case  REDACCION_NOTIFICACION_MEMO_DEMANDANTE:
+                case REDACCION_DE_RESOLUCION:
+                case REDACCION_RESOLUCION_MEMO_UPD:
+                case REDACCION_RESOLUCION_MEMO_NO_APELA:
+                case FISCAL_REDACTA_MEMO:
+
                     plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
-                        if (p.getTipo().equals(TipoPlantilla.NOTIFICACION)) {
+                           if (p.getTipo().equals(TipoPlantilla.MEMORANDUM)
+                            || p.getTipo().equals(TipoPlantilla.CERTIFICACION)
+                            || p.getTipo().equals(TipoPlantilla.RESOLUCION)
+                            || p.getTipo().equals(TipoPlantilla.EXPEDIENTE)
+                            || p.getTipo().equals(TipoPlantilla.NOTIFICACION)
+                        ) {
                             return true;
                         }
                         return false;
                     }).collect(Collectors.toList());
                     break;
-
-                case INVESTIGACION:
-                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
-                        if (p.getTipo().equals(TipoPlantilla.MEMORANDUM)) {
-                            return true;
-                        }
-                        return false;
-                    }).collect(Collectors.toList());
-
             }
             return plantillasEnabled;
         }

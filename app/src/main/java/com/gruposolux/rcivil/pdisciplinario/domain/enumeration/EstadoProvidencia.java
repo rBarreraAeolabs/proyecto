@@ -242,6 +242,7 @@ public enum EstadoProvidencia {
     DGD_DESPACHA_APELACION_A_DN,
     ALCANCE_SIN_RESOLUCION,
 
+
     //----------------------------------- SUB ETAPAS ---------------------
     ASIGNACION_SJ,
     SOBRESEER,
