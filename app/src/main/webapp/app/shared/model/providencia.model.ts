@@ -203,6 +203,8 @@ export interface IProvidencia {
     totalAdjuntos?: number;
     folio?: number;
     providenciaMadreId?: number;
+    numeroDgdp?: number;
+    numeroDgd?: number;
 }
 
 export class Providencia implements IProvidencia {

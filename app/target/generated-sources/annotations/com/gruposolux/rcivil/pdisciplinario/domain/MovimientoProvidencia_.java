@@ -14,6 +14,7 @@ public abstract class MovimientoProvidencia_ {
 	public static volatile SingularAttribute<MovimientoProvidencia, Instant> fecha;
 	public static volatile SingularAttribute<MovimientoProvidencia, Providencia> providencia;
 	public static volatile SetAttribute<MovimientoProvidencia, Documento> documentos;
+	public static volatile SingularAttribute<MovimientoProvidencia, Integer> numero_dgd;
 	public static volatile SingularAttribute<MovimientoProvidencia, String> estadoNuevo;
 	public static volatile SingularAttribute<MovimientoProvidencia, Plazo> plazo;
 	public static volatile SingularAttribute<MovimientoProvidencia, Long> id;

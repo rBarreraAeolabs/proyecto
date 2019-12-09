@@ -48,6 +48,8 @@ public final class AuthoritiesConstants {
     public static final String DERIVAR_PROVIDENCIA = "DERIVAR_PROVIDENCIA";
     public static final String ADJUNTAR_DOCUMENTO = "ADJUNTAR_DOCUMENTO";
     public static final String DESCARGAR_DOCUMENTO = "DESCARGAR_DOCUMENTO";
+    public static final String ACTUALIZAR_ADJUNTO = "ACTUALIZAR_ADJUNTO";
+    public static final String ACTUALIZAR_DOCUMENTO = "ACTUALIZAR_DOCUMENTO";
 
 //    public static final String LEER = "LEER";
 //    public static final String ACTUALIZAR = "ACTUALIZAR";

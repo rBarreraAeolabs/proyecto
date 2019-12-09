@@ -164,14 +164,17 @@ public class ProvidenciaService {
 
         Derivacion derivacion = this.registerDerivation("desde el director nacional", providencia, null, groupAnswer);
 
+
         // si la creacion de la providecia se debe notificar se debe descomentar
 //        this.registryNotificacion("desde el director nacional", groupAnswer);
-
+        log.debug("variable xy", providencia.getNumeroDgd());
         this.movimientoProvidenciaService.save(estadoInicial, estadoProviCompleto, providencia.getId(), derivacion.getObservacion(),
-            null, providenciaDTO.getAdjuntos(), "Derivado");
+            null, providenciaDTO.getAdjuntos(), "Derivado",
+            Math.toIntExact(providenciaRepository.findnumeroDgd(providencia.getId()) == null ? 0 : providenciaRepository.findnumeroDgd(providencia.getId())),
+            Math.toIntExact(providenciaRepository.findnumeroDgdp(providencia.getId()) == null ? 0 : providenciaRepository.findnumeroDgdp(providencia.getId())));
 
                this.calcularPlazos(providencia);
-
+    log.debug("variable nn", providenciaDTO);
         return providenciaDTO;
     }
 
@@ -1121,6 +1124,8 @@ public class ProvidenciaService {
         EstadoProvidencia subEtapaAntes = null;
         EstadoProvidencia etapa = null;
         Long iDProvidenciaMadre = null;
+        Long numeroDgd = null;
+        Long numeroDgdp = null;
         log.debug("ruben: estado al entrar: " + requisitoDespues);
         if (providenciaOptional.isPresent()) {
             AccionesProvidencia eventoBoton = null;
@@ -1188,9 +1193,12 @@ public class ProvidenciaService {
                     accion = "Enviar";
                 }
 
+                log.info("aquinumeroDgd");
+                numeroDgd = providencia.getNumeroDgd();
+                numeroDgdp = providencia.getNumeroDgdp();
                 this.movimientoProvidenciaService.save(providenciaResponseDTO.getEstadoActual(), providenciaDTO.getEstadoActual(),
                     providencia.getId(), derivacion.getObservacion(), providenciaResponseDTO.getDocumentosDTOs(),
-                    providenciaResponseDTO.getAdjuntosDTOs(), accion);
+                    providenciaResponseDTO.getAdjuntosDTOs(), accion, Math.toIntExact(numeroDgd == null ? 0 : numeroDgd), Math.toIntExact(numeroDgdp == null ? 0 : numeroDgdp));
             }
             providencia.setProvidencia_madre_id(iDProvidenciaMadre);
         this.calcularPlazos(providencia);
@@ -1591,7 +1599,7 @@ public class ProvidenciaService {
             actionsPermitted.put("notificaRemuneracion", false);
             actionsPermitted.put("notificaDemandado", false);
             actionsPermitted.put("notificaDenunciante", false);
-
+            actionsPermitted.put("asignarAbogado", false);
 
             switch (requisito) {
 
@@ -1713,7 +1721,6 @@ public class ProvidenciaService {
                 case FISCAL_REMITE_SUMARIO_A_DN:
                 case ENVIAR_SUMARIO_A_SUB_DIRECCION:
                 case SECRETARIA_REVISA_SUMARIO:
-                case SUB_DIRECCION_ASIGNA_ABOGADO:
                 case SECRETARIA_REVISA_SUMARIO_Y_NOTIFICA_A_ABOGADO:
                 case SECRETARIA_DESPACHA_INFORME:
                     if ((grupoCurrentUser.getId() == 5 && perfilUser.getId() == 8) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
@@ -1726,7 +1733,13 @@ public class ProvidenciaService {
                         actionsPermitted.put("reply", true);
                     }
                     break;
-
+                case ASIGNANDO_ABOGADO_A_APELACION:
+                case SUB_DIRECCION_ASIGNA_ABOGADO:
+                    if ((grupoCurrentUser.getId() == 5 && perfilUser.getId() == 8) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+                        actionsPermitted.put("asignarAbogado", true);
+                        actionsPermitted.put("reply", true);
+                    }
+                    break;
                 case SUB_DIRECCION_ASIGNA_A_RESOLUCION_Y_MEMO:
                 case SECRETARIA_DESPACHA_A_UPD:
                     if ((grupoCurrentUser.getId() == 2 && perfilUser.getId() == 2) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
@@ -1866,7 +1879,7 @@ public class ProvidenciaService {
                 case DGD_DESPACHA_APELACION_A_DN:
                 case APELACION_RECIBIDA:
                 case SECRETARIA_REVISA_APELACION:
-                case ASIGNANDO_ABOGADO_A_APELACION:
+
                 case ABOGADO_ELABORA_INFORME_APELACION:
                 case SECRETARIA_DESPACHA_INFORME_APELACION_A_DGD:
                 case DGD_DESPACHA_INFORME_APELACION_A_DN:
@@ -1973,46 +1986,72 @@ public class ProvidenciaService {
 
             switch (providenciaDTO.getRequisito()) {
 
+//                case UPD_REDACTA_RESOLUCION_Y_MEMO:
+//                case REDACCION_RESOLUCION_MEMO:
+//                case ESPERANDO_FIRMA_VISA_DE_SUBDIRECCION_A_RESOLUCION:
+//                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
+//                        if (p.getTipo().equals(TipoPlantilla.MEMORANDUM) || p.getTipo().equals(TipoPlantilla.RESOLUCION)) {
+//                            return true;
+//                        }
+//                        return false;
+//                    }).collect(Collectors.toList());
+//                    break;
+//
+//                case UPD_ELABORA_NOTIFICACION_PRORROGA_1:
+//                case UPD_ELABORA_NOTIFICACION_PRORROGA_2:
+//                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
+//                        if (p.getTipo().equals(TipoPlantilla.RESOLUCION)) {
+//                            return true;
+//                        }
+//                        return false;
+//                    }).collect(Collectors.toList());
+//                    break;
+//
+//                case FISCAL_REMITE_EXPEDIENTE:
+//                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
+//                        if (p.getTipo().equals(TipoPlantilla.NOTIFICACION)) {
+//                            return true;
+//                        }
+//                        return false;
+//                    }).collect(Collectors.toList());
+//                    break;
+//
+//                case INVESTIGACION:
+//                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
+//                        if (p.getTipo().equals(TipoPlantilla.MEMORANDUM)) {
+//                            return true;
+//                        }
+//                        return false;
+//                    }).collect(Collectors.toList());
+//
+//            }
                 case UPD_REDACTA_RESOLUCION_Y_MEMO:
                 case REDACCION_RESOLUCION_MEMO:
                 case ESPERANDO_FIRMA_VISA_DE_SUBDIRECCION_A_RESOLUCION:
-                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
-                        if (p.getTipo().equals(TipoPlantilla.MEMORANDUM) || p.getTipo().equals(TipoPlantilla.RESOLUCION)) {
-                            return true;
-                        }
-                        return false;
-                    }).collect(Collectors.toList());
-                    break;
-
                 case UPD_ELABORA_NOTIFICACION_PRORROGA_1:
                 case UPD_ELABORA_NOTIFICACION_PRORROGA_2:
-                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
-                        if (p.getTipo().equals(TipoPlantilla.RESOLUCION)) {
-                            return true;
-                        }
-                        return false;
-                    }).collect(Collectors.toList());
-                    break;
-
                 case FISCAL_REMITE_EXPEDIENTE:
+                case INVESTIGACION:
+                    // desde aqui agrega ruben
+                case  REDACCION_NOTIFICACION_MEMO_DEMANDANTE:
+                case REDACCION_DE_RESOLUCION:
+                case REDACCION_RESOLUCION_MEMO_UPD:
+                case REDACCION_RESOLUCION_MEMO_NO_APELA:
+                case FISCAL_REDACTA_MEMO:
                     plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
-                        if (p.getTipo().equals(TipoPlantilla.NOTIFICACION)) {
+                        if (p.getTipo().equals(TipoPlantilla.MEMORANDUM)
+                            || p.getTipo().equals(TipoPlantilla.CERTIFICACION)
+                            || p.getTipo().equals(TipoPlantilla.RESOLUCION)
+                            || p.getTipo().equals(TipoPlantilla.EXPEDIENTE)
+                            || p.getTipo().equals(TipoPlantilla.NOTIFICACION)
+                        ) {
                             return true;
                         }
                         return false;
                     }).collect(Collectors.toList());
                     break;
-
-                case INVESTIGACION:
-                    plantillasEnabled = new ArrayList<>(this.plantillaService.getAll()).stream().filter(p -> {
-                        if (p.getTipo().equals(TipoPlantilla.MEMORANDUM)) {
-                            return true;
-                        }
-                        return false;
-                    }).collect(Collectors.toList());
-
             }
-            return plantillasEnabled;
+                return plantillasEnabled;
         }
 
         /**

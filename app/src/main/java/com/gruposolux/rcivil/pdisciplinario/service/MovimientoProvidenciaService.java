@@ -81,7 +81,7 @@ public class MovimientoProvidenciaService {
      */
     public MovimientoProvidenciaDTO save(String estadoAnterior, String estadoNuevo,
                                          Long providenciaId, String comentario, Set<DocumentoDTO> documentoDTOs,
-                                         Set<AdjuntoDTO> adjuntoDTOs, String accion) {
+                                         Set<AdjuntoDTO> adjuntoDTOs, String accion, Integer numero_dgd, Integer numero_dgdp) {
         log.debug("Request to save MovimientoProvidencia : {}");
 
         MovimientoProvidencia movimientoProvidencia = new MovimientoProvidencia();
@@ -90,6 +90,8 @@ public class MovimientoProvidenciaService {
         movimientoProvidencia.setEstadoNuevo(estadoNuevo);
         movimientoProvidencia.setComentario(comentario);
         movimientoProvidencia.setAccion(accion);
+        movimientoProvidencia.setNumero_dgd(numero_dgd);
+        movimientoProvidencia.setNumero_dgdp(numero_dgdp);
         movimientoProvidencia.setProvidencia(this.providenciaRepository.findById(providenciaId).get());
 
         Plazo plazo = this.determinePlazo(estadoAnterior, estadoNuevo);

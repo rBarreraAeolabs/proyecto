@@ -1,0 +1,29 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="20191202201123-3" author="jhipster">
+        <update tableName="grupo">
+            <column name="nombre"  value="Departamento de desarrollo personal (DGDP)"/>
+            <where>id=4</where>
+        </update>
+        <update tableName="grupo">
+            <column name="nombre"  value="Unidad de procedimientos disciplinarios (UPD)"/>
+            <where>id=3</where>
+        </update>
+        <update tableName="grupo">
+            <column name="nombre"  value="Sub dirección jurídica (SJ)"/>
+            <where>id=2</where>
+        </update>
+        <update tableName="grupo">
+            <column name="nombre"  value="Abogados -Sub dirección jurídica (SJ)"/>
+            <where>id=10</where>
+        </update>
+        <insert tableName="grupo">
+            <column name="id"  value="12"/>
+            <column name="nombre"  value="Unidad de Gestión Documental (DGD)"/>
+        </insert>
+        <insert tableName="grupo">
+            <column name="id"  value="13"/>
+            <column name="nombre"  value="Secretaria (UPD)"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

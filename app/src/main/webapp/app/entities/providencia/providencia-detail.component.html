@@ -401,6 +401,15 @@
                                                     <span> Fiscal Formula Cargos</span>
 
                                                 </a>
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.asignarAbogado"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/asignarAbogado'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > Asignar Abogado</span>
+
+                                                </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.remiteExpediente"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/remiteExpediente'} }]"

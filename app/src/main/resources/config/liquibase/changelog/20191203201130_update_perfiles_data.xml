@@ -1,0 +1,45 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="20191203201130-3" author="jhipster">
+        <update tableName="perfil">
+            <column name="nombre"  value="Unidad de Gestión Documental (DGD)"/>
+            <where>id=8</where>
+        </update>
+        <update tableName="perfil">
+            <column name="nombre"  value="Secretaria (UPD)"/>
+            <where>id=2</where>
+        </update>
+        <update tableName="perfil">
+            <column name="nombre"  value="Abogados"/>
+            <where>id=4</where>
+        </update>
+        <insert tableName="perfil">
+            <column name="id"  value="9"/>
+            <column name="nombre"  value="Director Nacional"/>
+        </insert>
+        <insert tableName="perfil">
+            <column name="id"  value="10"/>
+            <column name="nombre"  value="Departamento de desarrollo personal (DGDP)"/>
+        </insert>
+        <insert tableName="perfil">
+            <column name="id"  value="11"/>
+            <column name="nombre"  value="Unidad de procedimientos disciplinarios (UPD)"/>
+        </insert>
+        <insert tableName="perfil">
+            <column name="id"  value="12"/>
+            <column name="nombre"  value="Contraloria"/>
+        </insert>
+        <insert tableName="perfil">
+            <column name="id"  value="13"/>
+            <column name="nombre"  value="Sub dirección juridica (SJ)"/>
+        </insert>
+        <insert tableName="perfil">
+            <column name="id"  value="14"/>
+            <column name="nombre"  value="Abogados -Sub direccion juridica (SJ)"/>
+        </insert>
+        <insert tableName="perfil">
+            <column name="id"  value="15"/>
+            <column name="nombre"  value="Remuneración"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

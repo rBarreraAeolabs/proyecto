@@ -197,6 +197,10 @@ import {
     ProvidenciaAsignarNumeroDgdpComponent,
     ProvidenciaAsignarNumeroDgdpPopupComponent
 } from 'app/entities/providencia/providencia-asignar-numero-dgdp.component';
+import {
+    ProvidenciaAsignarAbogadoComponent,
+    ProvidenciaAsignarAbogadoPopupComponent
+} from 'app/entities/providencia/providencia-asignar-abogado.component';
 // directive
 import {
     ReadMoreDirective,
@@ -316,6 +320,8 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaEmitePopupComponent,
         ProvidenciaAsignarNumeroDgdpComponent,
         ProvidenciaAsignarNumeroDgdpPopupComponent,
+        ProvidenciaAsignarAbogadoComponent,
+        ProvidenciaAsignarAbogadoPopupComponent,
     ],
     entryComponents: [
         ProvidenciaComponent,
@@ -413,6 +419,8 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaEmitePopupComponent,
         ProvidenciaAsignarNumeroDgdpComponent,
         ProvidenciaAsignarNumeroDgdpPopupComponent,
+        ProvidenciaAsignarAbogadoComponent,
+        ProvidenciaAsignarAbogadoPopupComponent,
             ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
