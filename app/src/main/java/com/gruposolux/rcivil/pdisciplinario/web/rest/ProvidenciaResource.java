@@ -452,9 +452,18 @@ public class ProvidenciaResource {
         return ResponseEntity.ok().headers(HeaderUtil.createAlert("Se ha notificado al Denunciante!",ENTITY_NAME)).body(null);
     }
 
+//    @PostMapping("/providencias/actions")
+//    @Timed
+//    public ResponseEntity<HashMap<String, Boolean>> getActionsPermitted(@RequestBody ProvidenciaResponseDTO providenciaDTO) {
+//        log.debug("ruben2: da " +providenciaDTO.getProvidenciaId());
+//        HashMap<String, Boolean> actionsPermitted = this.providenciaService.getActionsPermitted(providenciaDTO);
+//        return new ResponseEntity<>(actionsPermitted, HttpStatus.OK);
+//    }
+
     @PostMapping("/providencias/actions")
     @Timed
-    public ResponseEntity<HashMap<String, Boolean>> getActionsPermitted(@RequestBody ProvidenciaResponseDTO providenciaDTO) {
+    public ResponseEntity<HashMap<String, Boolean>> getActionsPermitted(@RequestBody ProvidenciaDTO providenciaDTO) {
+        log.debug("ruben2: da " +providenciaDTO.getId());
         HashMap<String, Boolean> actionsPermitted = this.providenciaService.getActionsPermitted(providenciaDTO);
         return new ResponseEntity<>(actionsPermitted, HttpStatus.OK);
     }

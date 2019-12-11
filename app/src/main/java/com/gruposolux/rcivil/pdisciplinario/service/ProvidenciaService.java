@@ -170,8 +170,8 @@ public class ProvidenciaService {
         log.debug("variable xy", providencia.getNumeroDgd());
         this.movimientoProvidenciaService.save(estadoInicial, estadoProviCompleto, providencia.getId(), derivacion.getObservacion(),
             null, providenciaDTO.getAdjuntos(), "Derivado",
-            Math.toIntExact(providenciaRepository.findnumeroDgd(providencia.getId()) == null ? 0 : providenciaRepository.findnumeroDgd(providencia.getId())),
-            Math.toIntExact(providenciaRepository.findnumeroDgdp(providencia.getId()) == null ? 0 : providenciaRepository.findnumeroDgdp(providencia.getId())));
+           (providenciaRepository.findnumeroDgd(providencia.getId())),
+           (providenciaRepository.findnumeroDgdp(providencia.getId())));
 
                this.calcularPlazos(providencia);
     log.debug("variable nn", providenciaDTO);
@@ -1198,7 +1198,7 @@ public class ProvidenciaService {
                 numeroDgdp = providencia.getNumeroDgdp();
                 this.movimientoProvidenciaService.save(providenciaResponseDTO.getEstadoActual(), providenciaDTO.getEstadoActual(),
                     providencia.getId(), derivacion.getObservacion(), providenciaResponseDTO.getDocumentosDTOs(),
-                    providenciaResponseDTO.getAdjuntosDTOs(), accion, Math.toIntExact(numeroDgd == null ? 0 : numeroDgd), Math.toIntExact(numeroDgdp == null ? 0 : numeroDgdp));
+                    providenciaResponseDTO.getAdjuntosDTOs(), accion, numeroDgd, numeroDgdp );
             }
             providencia.setProvidencia_madre_id(iDProvidenciaMadre);
         this.calcularPlazos(providencia);
@@ -1533,12 +1533,16 @@ public class ProvidenciaService {
          * @return
          */
         @Transactional(readOnly = true)
-        public HashMap<String, Boolean> getActionsPermitted (ProvidenciaResponseDTO providenciaDTO){
+        public HashMap<String, Boolean> getActionsPermitted (ProvidenciaDTO providenciaDTO){
 
             EstadoProvidencia requisito = providenciaDTO.getRequisito();
             EstadoProvidencia etapa = providenciaDTO.getEtapa();
             EstadoProvidencia subEtapa= providenciaDTO.getSubEtapa();
-
+            log.debug("ruben2: reci " +providenciaDTO.getId());
+            MovimientoProvidenciaDTO ultimovimiento=  this.movimientoProvidenciaService.buscarUltimo(providenciaDTO.getId());
+            Long ultimoDgdp = ultimovimiento.getNumero_dgdp();
+            Long ultimoDgd = ultimovimiento.getNumero_dgd();
+            log.debug("ruben2: ultimo numero de dgd " +ultimoDgd);
             if (providenciaDTO.getEtapa() == null && providenciaDTO.getSubEtapa() == null && providenciaDTO.getRequisito() == null) {
                 return null;
             }
@@ -1622,8 +1626,13 @@ public class ProvidenciaService {
                 case SJ_RECEPCIONA_APELACION:
                 case DGD_DESPACHA_SUMARIO:
                     if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)   || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5))   {
-                        actionsPermitted.put("reply", true);
+
+                        if(ultimoDgd != providenciaDTO.getNumeroDgd()) {
+                            log.debug("ruben3 "+ultimoDgd+ "es " +providenciaDTO.getNumeroDgd());
+                            actionsPermitted.put("reply", true);
+                        }
                         actionsPermitted.put("asignarNumeroDGD", true);
+
                     }
                     break;
 
@@ -1634,7 +1643,9 @@ public class ProvidenciaService {
                 case DGDP_ASIGNANDO_NUMERO:
                 case DGDP_ASIGNA_NUMERO:
                     if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
-                        actionsPermitted.put("reply", true);
+                        if(ultimoDgdp != providenciaDTO.getNumeroDgdp()) {
+                            actionsPermitted.put("reply", true);
+                        }
                         actionsPermitted.put("asignarNumeroDGDP", true);
                     }
                     break;

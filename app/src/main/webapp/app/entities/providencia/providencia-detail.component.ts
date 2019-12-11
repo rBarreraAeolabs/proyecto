@@ -79,10 +79,10 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             this.providencia = providencia;
-
+            console.log('ng onit ' +  this.providencia.id );
             this.providenciaService.getActionsPermitted(this.providencia).subscribe(response => {
                 this.actionsPermitted = response.body;
-                console.log('ng onit ' +  this.actionsPermitted );
+
 
                 switch (this.providencia.estadoActual) {
                     case 'RESOLUCION_Y_MEMO': {
@@ -136,12 +136,12 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
 
     refrescarPermisos( provi: IProvidencia ) {
 
-        console.log('ng refresh  recargado ' + provi.requisito);
+        // console.log('ng refresh  recargado ' + provi.requisito);
         // this.providenciaService.find(provi.id).subscribe(response => {
         //     const provide = response.body;
         // });
-        console.log('ng refresh  recargado ' + provi.requisito);
-        console.log('ng refesh permite recargado ' +  this.actionsPermitted.apela + ' '  + this.actionsPermitted.noApela);
+        console.log('ng refresh  recargado ' + provi.id);
+        // console.log('ng refesh permite recargado ' +  this.actionsPermitted.apela + ' '  + this.actionsPermitted.noApela);
         this.providenciaService.getActionsPermitted(provi).subscribe(resp => {
             this.actionsPermitted = resp.body;
             console.log('ng refesh permite recargado ' +  this.actionsPermitted.apela + ' '  + this.actionsPermitted.noApela);

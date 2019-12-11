@@ -168,7 +168,9 @@ export class ProvidenciaService {
     getActionsPermitted(providencia: IProvidencia): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/actions', providencia, {observe: 'response'});
     }
-
+    // getActionsPermitted(response: IProvidencia): Observable<HttpResponse<any>> {
+    //     return this.http.post<any>(this.resourceUrl + '/actions', response, {observe: 'response'});
+    // }
     getPlantillasEnabled(providencia: IProvidencia): Observable<HttpResponse<IPlantilla[]>> {
         return this.http.post<IPlantilla[]>(this.resourceUrl + '/templates', providencia, {observe: 'response'});
     }

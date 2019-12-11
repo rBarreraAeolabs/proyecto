@@ -81,7 +81,7 @@ public class MovimientoProvidenciaService {
      */
     public MovimientoProvidenciaDTO save(String estadoAnterior, String estadoNuevo,
                                          Long providenciaId, String comentario, Set<DocumentoDTO> documentoDTOs,
-                                         Set<AdjuntoDTO> adjuntoDTOs, String accion, Integer numero_dgd, Integer numero_dgdp) {
+                                         Set<AdjuntoDTO> adjuntoDTOs, String accion, Long numero_dgd, Long numero_dgdp) {
         log.debug("Request to save MovimientoProvidencia : {}");
 
         MovimientoProvidencia movimientoProvidencia = new MovimientoProvidencia();
@@ -235,6 +235,15 @@ public class MovimientoProvidenciaService {
         return movimientoProvidenciaDTOs;
     }
 
+
+    @Transactional
+    public MovimientoProvidenciaDTO buscarUltimo (Long id) {
+
+
+        MovimientoProvidencia movimientos = this.movimientoProvidenciaRepository.traerMovimientos(id);
+        MovimientoProvidenciaDTO ultimovimiento = this.movimientoProvidenciaMapper.toDto(movimientos);
+        return ultimovimiento;
+    }
 //    @Transactional
 //    public Set<MovimientoProvidenciaDTO> traerMovimiento (Long id )
 //    {        return movimientoProvidenciaRepository.traerMovimientos(id)

@@ -61,10 +61,10 @@ public class MovimientoProvidencia implements Serializable, Comparable<Movimient
     private User user;
 
     @Column(name = "numero_dgd")
-    private Integer numero_dgd;
+    private Long numero_dgd;
 
     @Column(name = "numero_dgdp")
-    private Integer numero_dgdp;
+    private Long numero_dgdp;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
@@ -159,19 +159,19 @@ public class MovimientoProvidencia implements Serializable, Comparable<Movimient
         this.user = user;
     }
 
-    public Integer getNumero_dgd() {
+    public Long getNumero_dgd() {
         return numero_dgd;
     }
 
-    public void setNumero_dgd(Integer numero_dgd) {
+    public void setNumero_dgd(Long numero_dgd) {
         this.numero_dgd = numero_dgd;
     }
 
-    public Integer getNumero_dgdp() {
+    public Long getNumero_dgdp() {
         return numero_dgdp;
     }
 
-    public void setNumero_dgdp(Integer numero_dgdp) {
+    public void setNumero_dgdp(Long numero_dgdp) {
         this.numero_dgdp = numero_dgdp;
     }
 // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
