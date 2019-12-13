@@ -1572,6 +1572,9 @@ public class ProvidenciaService {
             actionsPermitted.put("folio", false);
             actionsPermitted.put("asignarNumeroDGD", false);
             actionsPermitted.put("asignarNumeroDGDP", false);
+            actionsPermitted.put("cambiadoNumeroDGD", false);
+            actionsPermitted.put("cambiadoNumeroDGDP", false);
+
             actionsPermitted.put("tipoSolicitud", false);
             actionsPermitted.put("aceptar", false);
             actionsPermitted.put("rechazar", false);
@@ -1630,8 +1633,11 @@ public class ProvidenciaService {
                         if(ultimoDgd != providenciaDTO.getNumeroDgd()) {
                             log.debug("ruben3 "+ultimoDgd+ "es " +providenciaDTO.getNumeroDgd());
                             actionsPermitted.put("reply", true);
+                        }else{
+                            actionsPermitted.put("cambiadoNumeroDGD", true);
+                            actionsPermitted.put("asignarNumeroDGD", true);
                         }
-                        actionsPermitted.put("asignarNumeroDGD", true);
+
 
                     }
                     break;
@@ -1645,8 +1651,11 @@ public class ProvidenciaService {
                     if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
                         if(ultimoDgdp != providenciaDTO.getNumeroDgdp()) {
                             actionsPermitted.put("reply", true);
+                        }else{
+                            actionsPermitted.put("cambiadoNumeroDGDP", true);
+                            actionsPermitted.put("asignarNumeroDGDP", true);
                         }
-                        actionsPermitted.put("asignarNumeroDGDP", true);
+
                     }
                     break;
 

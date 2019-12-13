@@ -21,7 +21,12 @@
                                         <p *ngIf="providencia.numeroReferencia == null && providencia.requisito == 'UPD_REDACTA_RESOLUCION_Y_MEMO';  else viewBoton">
                                             debe asignar un numero de referencia
                                         </p>
-
+                                        <p *ngIf="actionsPermitted.cambiadoNumeroDGD ">
+                                            debe asignar un numero DGD
+                                        </p>
+                                        <p *ngIf="actionsPermitted.cambiadoNumeroDGDP ">
+                                            debe asignar un numero DGDP
+                                        </p>
                                             <ng-template #viewBoton>
                                             <button type="button"
                                                     *ngIf="actionsPermitted.reply "

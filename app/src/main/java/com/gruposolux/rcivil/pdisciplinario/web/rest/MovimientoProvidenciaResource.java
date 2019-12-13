@@ -149,8 +149,12 @@ public class MovimientoProvidenciaResource {
         {
             return new ResponseEntity<>(this.movimientoProvidenciaService.getAllByIdProvidenciaWithFilters(filtroMovPro
                 .getProvidencia(), filtroMovPro.getFiltroMovimientoProvidencia()), HttpStatus.OK);
+        }else{
+
+            return new ResponseEntity<>(this.movimientoProvidenciaService.getAllByIdProvidencia(filtroMovPro
+                .getProvidencia()), HttpStatus.OK);
         }
-        return ResponseEntity.badRequest().body(null);
+//        return ResponseEntity.badRequest().body(null);
     }
 
     @GetMapping("/movimiento-providencias/list")

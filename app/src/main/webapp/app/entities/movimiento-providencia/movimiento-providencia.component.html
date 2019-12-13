@@ -99,6 +99,15 @@
                     <th>
                         <span class="d-flex justify-content-center" class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.comentarios">Comentarios</span>
                     </th>
+
+                    <th>
+                        <span class="d-flex justify-content-center"class="d-flex justify-content-center"  >Numero DGD</span>
+
+                    </th>
+                    <th>
+                        <span class="d-flex justify-content-center"class="d-flex justify-content-center"  >Numero DGDP</span>
+
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -116,7 +125,7 @@
                 </td>
                 <td>
                     <div *ngIf="movimientoProvidencia.estadoAnterior">
-                        <span> {{movimientoProvidencia.estadoAnterior.split('_').join(' ')}} </span>
+                        <span> {{movimientoProvidencia.estadoAnterior.toString().split('_').join(' ')}} </span>
                     </div>
                     <div *ngIf="!movimientoProvidencia.estadoAnterior">
                         <span> SIN ESTADO </span>
@@ -138,6 +147,8 @@
                         <jhi-comentario-bitacora-modal-popup [movimientoProvidencia]="movimientoProvidencia"></jhi-comentario-bitacora-modal-popup>
                     </div>
                 </td>
+                <td>{{movimientoProvidencia.numeroDgd}}</td>
+                <td>{{movimientoProvidencia.numeroDgdp}}</td>
             </tr>
             </tbody>
         </table>

@@ -65,6 +65,7 @@ export class MovimientoProvidenciaComponent implements OnInit, OnDestroy {
                 },
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
+        console.log('movimiento ' + this.movimientosProvidencia);
     }
 
     ngOnInit() {
@@ -73,6 +74,7 @@ export class MovimientoProvidenciaComponent implements OnInit, OnDestroy {
             this.currentAccount = account;
         });
         this.registerChangeInMovimientoProvidencias();
+
     }
 
     ngOnDestroy() {

@@ -251,8 +251,17 @@ public class MovimientoProvidenciaService {
 //            .map(this.movimientoProvidenciaMapper::toDto).collect(Collectors.toSet())
 //            ;
 //    }
-
-
+//public Set<MovimientoProvidenciaDTO> getAllMovimientoProvi(ProvidenciaDTO providenciaDTO, FiltroMovimientoProvidenciaDTO filtro)
+//{
+//    Providencia providencia = this.providenciaMapper.toEntity(providenciaDTO);
+//    Set<MovimientoProvidencia> movimientos = this.movimientoProvidenciaRepository.findByProvidencia(providencia);
+//    Set<MovimientoProvidenciaDTO> movimientoProvidenciaDTOs = new TreeSet<>();
+//    for (Iterator<MovimientoProvidencia> it = movimientos.iterator(); it.hasNext();) {
+//        MovimientoProvidencia movimientoProvidencia = it.next();
+//        movimientoProvidenciaDTOs.add(this.movimientoProvidenciaMapper.toDto(movimientoProvidencia));
+//    }
+//    return movimientoProvidenciaDTOs;
+//}
     @Transactional
     public Set<MovimientoProvidenciaDTO> getAllByIdProvidenciaWithFilters(ProvidenciaDTO providenciaDTO, FiltroMovimientoProvidenciaDTO filtro)
     {
