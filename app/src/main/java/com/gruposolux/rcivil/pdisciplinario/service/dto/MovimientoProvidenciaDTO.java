@@ -43,6 +43,10 @@ public class MovimientoProvidenciaDTO implements Serializable, Comparable<Movimi
 
     private Set<AdjuntoDTO> adjuntos = new HashSet<>();
 
+    private Long numero_dgd;
+
+    private Long numero_dgdp;
+
     public MovimientoProvidenciaDTO() {
     }
 
@@ -158,6 +162,22 @@ public class MovimientoProvidenciaDTO implements Serializable, Comparable<Movimi
         this.plazoDias = plazoDias;
     }
 
+    public Long getNumero_dgd() {
+        return numero_dgd;
+    }
+
+    public Long getNumero_dgdp() {
+        return numero_dgdp;
+    }
+
+    public void setNumero_dgdp(Long numero_dgdp) {
+        this.numero_dgdp = numero_dgdp;
+    }
+
+    public void setNumero_dgd(Long numero_dgd) {
+        this.numero_dgd = numero_dgd;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -183,10 +203,10 @@ public class MovimientoProvidenciaDTO implements Serializable, Comparable<Movimi
     public String toString() {
         return "MovimientoProvidenciaDTO{" +
             "id=" + id +
-            ", estadoAnterior=" + estadoAnterior +
-            ", estadoNuevo=" + estadoNuevo +
+            ", estadoAnterior='" + estadoAnterior + '\'' +
+            ", estadoNuevo='" + estadoNuevo + '\'' +
             ", fecha=" + fecha +
-            ", accion=" + accion +
+            ", accion='" + accion + '\'' +
             ", providenciaId=" + providenciaId +
             ", plazoId=" + plazoId +
             ", plazoDias=" + plazoDias +
@@ -196,6 +216,8 @@ public class MovimientoProvidenciaDTO implements Serializable, Comparable<Movimi
             ", userLastName='" + userLastName + '\'' +
             ", documentos=" + documentos +
             ", adjuntos=" + adjuntos +
+            ", numero_dgd=" + numero_dgd +
+            ", numero_dgdp=" + numero_dgdp +
             '}';
     }
 

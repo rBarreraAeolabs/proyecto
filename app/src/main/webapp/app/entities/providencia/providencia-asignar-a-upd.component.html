@@ -1,6 +1,6 @@
-<form name="deleteForm" (ngSubmit)="NotificaCierre(providencia.id)">
+<form name="deleteForm" (ngSubmit)="AsignarAUpd(providencia.id)">
     <div class="modal-header">
-        <h4 class="modal-title" >Enviar notificacion</h4>
+        <h4 class="modal-title" >asignar a upd </h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;
         </button>
@@ -8,7 +8,7 @@
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <p id="jhi-responder-providencia-heading1">
-            Seguro que desea enviar notificacion de cierre de la providencia # {{providencia.id}}?
+            Seguro que desea asignar a UDP la providencia # {{providencia.id}}?
         </p>
         <form>
             <div class="form-group">

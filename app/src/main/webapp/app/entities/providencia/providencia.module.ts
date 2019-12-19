@@ -202,6 +202,15 @@ import {
     ReadMoreDirective,
 } from 'app/entities/providencia/read-more.directive';
 
+import {
+    ProvidenciaAsignarNumeroIngresoComponent,
+    ProvidenciaAsignarNumeroIngresoPopupComponent
+} from 'app/entities/providencia/providencia-asignar-numero-ingreso.component';
+import {
+    ProvidenciaAsignarAUpdComponent,
+    ProvidenciaAsignarAUpdPopupComponent
+} from 'app/entities/providencia/providencia-asignar-a-upd.component';
+
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
 @NgModule({
@@ -316,6 +325,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaEmitePopupComponent,
         ProvidenciaAsignarNumeroDgdpComponent,
         ProvidenciaAsignarNumeroDgdpPopupComponent,
+
+        ProvidenciaAsignarNumeroIngresoComponent,
+        ProvidenciaAsignarNumeroIngresoPopupComponent,
+        ProvidenciaAsignarAUpdComponent,
+        ProvidenciaAsignarAUpdPopupComponent,
     ],
     entryComponents: [
         ProvidenciaComponent,
@@ -413,6 +427,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaEmitePopupComponent,
         ProvidenciaAsignarNumeroDgdpComponent,
         ProvidenciaAsignarNumeroDgdpPopupComponent,
+
+        ProvidenciaAsignarNumeroIngresoComponent,
+        ProvidenciaAsignarNumeroIngresoPopupComponent,
+        ProvidenciaAsignarAUpdComponent,
+        ProvidenciaAsignarAUpdPopupComponent,
             ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

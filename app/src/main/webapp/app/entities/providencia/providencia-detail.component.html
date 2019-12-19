@@ -97,6 +97,16 @@
                                                     <span *ngIf="providencia.nombreFiscalAsignado !== null"> Cambiar Fiscal Asignado</span>
                                                 </a>
 
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.asignarAUpd"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/asignarAUpd'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span *ngIf="providencia.nombreFiscalAsignado == null"> Asignar a Udp</span>
+
+                                                </a>
+
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.numerarReferencia && providencia.providenciaMadreId == null"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/numerarReferencia'} }]"
                                                    replaceUrl="true"
@@ -105,6 +115,8 @@
                                                     <span *ngIf="providencia.numeroReferencia == null"> Asignar Número de Referencia</span>
                                                     <span *ngIf="providencia.numeroReferencia !== null"> Editar Número de Referencia</span>
                                                 </a>
+
+
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.folio && providencia.folio === null"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/folio'} }]"
                                                    replaceUrl="true"

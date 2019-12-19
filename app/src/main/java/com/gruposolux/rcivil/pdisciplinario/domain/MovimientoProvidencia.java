@@ -60,6 +60,12 @@ public class MovimientoProvidencia implements Serializable, Comparable<Movimient
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "numero_dgd")
+    private Long numero_dgd;
+
+    @Column(name = "numero_dgdp")
+    private Long numero_dgdp;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
     public MovimientoProvidencia() {
@@ -152,6 +158,22 @@ public class MovimientoProvidencia implements Serializable, Comparable<Movimient
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Long getNumero_dgd() {
+        return numero_dgd;
+    }
+
+    public void setNumero_dgd(Long numero_dgd) {
+        this.numero_dgd = numero_dgd;
+    }
+
+    public Long getNumero_dgdp() {
+        return numero_dgdp;
+    }
+
+    public void setNumero_dgdp(Long numero_dgdp) {
+        this.numero_dgdp = numero_dgdp;
+    }
 // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -178,13 +200,18 @@ public class MovimientoProvidencia implements Serializable, Comparable<Movimient
     public String toString() {
         return "MovimientoProvidencia{" +
             "id=" + id +
-            ", estadoAnterior=" + estadoAnterior +
-            ", estadoNuevo=" + estadoNuevo +
+            ", estadoAnterior='" + estadoAnterior + '\'' +
+            ", estadoNuevo='" + estadoNuevo + '\'' +
             ", fecha=" + fecha +
-            ", accion=" + accion +
+            ", accion='" + accion + '\'' +
+            ", documentos=" + documentos +
+            ", adjuntos=" + adjuntos +
+            ", providencia=" + providencia +
             ", plazo=" + plazo +
             ", comentario='" + comentario + '\'' +
             ", user=" + user +
+            ", numero_dgd=" + numero_dgd +
+            ", numero_dgdp=" + numero_dgdp +
             '}';
     }
 

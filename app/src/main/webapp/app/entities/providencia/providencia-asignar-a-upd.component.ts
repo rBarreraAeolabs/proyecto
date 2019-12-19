@@ -1,37 +1,119 @@
-<form name="deleteForm" (ngSubmit)="NotificaCierre(providencia.id)">
-    <div class="modal-header">
-        <h4 class="modal-title" >Enviar notificacion</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                (click)="clear()">&times;
-        </button>
-    </div>
-    <div class="modal-body">
-        <jhi-alert-error></jhi-alert-error>
-        <p id="jhi-responder-providencia-heading1">
-            Seguro que desea enviar notificacion de cierre de la providencia # {{providencia.id}}?
-        </p>
-        <form>
-            <div class="form-group">
-                <label class="form-control-label" for="field_comentario">
-              Comentarios sobre el cierre?
-                </label>
-                <textarea type="text" class="form-control" name="comentario" id="field_comentario"
-                          [(ngModel)]="observacionDerivacion">
-                    </textarea>
-            </div>
-            <div class="form-group" style="height: auto">
-                <label class="form-control-label">Adjuntar Archivos</label>
-                <jhi-file-upload-component (fileResponse)="getUploadedAdjuntos($event)"></jhi-file-upload-component>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
-        </button>
-        <button id="jhi-confirm-envio-providencia" type="submit" class="btn btn-outline-success">
-            <fa-icon [icon]="'save'"></fa-icon>&nbsp;
-            <span *ngIf="isProrroga">Enviar notificacion</span>
-        </button>
-    </div>
-</form>
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager } from 'ng-jhipster';
+import { IProvidencia, IProvidenciaResponse} from 'app/shared/model/providencia.model';
+import { DerivacionService } from 'app/entities/derivacion';
+import { ProvidenciaService} from './providencia.service';
+import { PlantillaService} from '../plantilla/plantilla.service';
+import { IAdjunto} from '../../shared/model/adjunto.model';
+import { Principal} from 'app/core';
+
+@Component({
+    selector: 'jhi-providencia-asignar-a-upd',
+    templateUrl: './providencia-asignar-a-upd.component.html'
+})
+export class ProvidenciaAsignarAUpdComponent implements OnInit {
+    providencia: IProvidencia;
+    providenciaResponse: IProvidenciaResponse = new IProvidenciaResponse();
+    observacionDerivacion: string;
+    adjuntos: IAdjunto[];
+    private _providencia: IProvidencia;
+    isProrroga = false;
+    cuenta: any;
+    usuario: any;
+
+    constructor(
+        public activeModal: NgbActiveModal,
+        private derivacionService: DerivacionService,
+        private router: Router,
+        private eventManager: JhiEventManager,
+        private plantillaService: PlantillaService,
+        private providenciaService: ProvidenciaService,
+        private principal: Principal
+
+    ) {}
+
+    clear() {
+        this.activeModal.dismiss('cancel');
+    }
+
+    ngOnInit() {
+        this.cuenta = this.principal.identity();
+        this.usuario = this.cuenta.__zone_symbol__value.perfil.nombre;
+
+        this.isProrroga = true;
+    }
+
+    get providencias() {
+        return this._providencia;
+    }
+
+    set providencias(providencia: IProvidencia) {
+        this._providencia = providencia;
+    }
+
+    AsignarAUpd(id: number) {
+        this.providenciaResponse.estadoActual = this.providencia.estadoActual;
+        this.providenciaResponse.providenciaId = id;
+        this.providenciaResponse.adjuntosDTOs = this.adjuntos;
+        this.providenciaResponse.observacion = this.observacionDerivacion;
+        console.log('entro al servicio notificacion cierre de investigacion');
+        this.providenciaService.asignaraUpd(this.providenciaResponse).subscribe(res => {
+            this.eventManager.broadcast({
+                name: 'providenciaProrroga',
+                content: 'Providencia asigna a udp'
+            });
+            this.activeModal.dismiss(true);
+            this.previousState();
+        });
+    }
+
+    previousState() {
+        window.history.back();
+    }
+
+    getUploadedAdjuntos($event) {
+        this.adjuntos = $event;
+    }
+
+    private onError(errorMessage: string) {
+        console.log(errorMessage);
+    }
+}
+
+@Component({
+    selector: 'jhi-providencia-fiscal-prorroga-popup',
+    template: ''
+})
+export class ProvidenciaAsignarAUpdPopupComponent implements OnInit, OnDestroy {
+    private ngbModalRef: NgbModalRef;
+
+    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
+
+    ngOnInit() {
+        this.activatedRoute.data.subscribe(({ providencia }) => {
+            setTimeout(() => {
+                this.ngbModalRef = this.modalService.open(ProvidenciaAsignarAUpdComponent as Component, {
+                    size: 'lg',
+                    backdrop: 'static'
+                });
+                this.ngbModalRef.componentInstance.providencia = providencia;
+                this.ngbModalRef.result.then(
+                    result => {
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.ngbModalRef = null;
+                    },
+                    reason => {
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.ngbModalRef = null;
+                    }
+                );
+            }, 0);
+        });
+    }
+
+    ngOnDestroy() {
+        this.ngbModalRef = null;
+    }
+}

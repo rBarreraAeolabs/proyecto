@@ -278,4 +278,14 @@ export class ProvidenciaService {
             put<IProvidencia>(`${this.resourceUrl}/updateNumeroDGDP`, providencia, {observe: 'response'})
                 .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
-}
+    // numero de ingreos
+    asignarNumeroIngreso(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
+        return this.http.
+        put<IProvidencia>(`${this.resourceUrl}/asignarNumeroIngreso`, providencia, {observe: 'response'})
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+    asignaraUpd(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/asignaraUpd', response, {observe: 'response'});
+    }
+
+ }
