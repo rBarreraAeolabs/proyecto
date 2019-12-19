@@ -81,7 +81,7 @@ public class MovimientoProvidenciaService {
      */
     public MovimientoProvidenciaDTO save(String estadoAnterior, String estadoNuevo,
                                          Long providenciaId, String comentario, Set<DocumentoDTO> documentoDTOs,
-                                         Set<AdjuntoDTO> adjuntoDTOs, String accion) {
+                                         Set<AdjuntoDTO> adjuntoDTOs, String accion, Long numero_dgd, Long numero_dgdp) {
         log.debug("Request to save MovimientoProvidencia : {}");
 
         MovimientoProvidencia movimientoProvidencia = new MovimientoProvidencia();
@@ -90,6 +90,8 @@ public class MovimientoProvidenciaService {
         movimientoProvidencia.setEstadoNuevo(estadoNuevo);
         movimientoProvidencia.setComentario(comentario);
         movimientoProvidencia.setAccion(accion);
+        movimientoProvidencia.setNumero_dgd(numero_dgd);
+        movimientoProvidencia.setNumero_dgdp(numero_dgdp);
         movimientoProvidencia.setProvidencia(this.providenciaRepository.findById(providenciaId).get());
 
         Plazo plazo = this.determinePlazo(estadoAnterior, estadoNuevo);
@@ -233,6 +235,15 @@ public class MovimientoProvidenciaService {
         return movimientoProvidenciaDTOs;
     }
 
+
+    @Transactional
+    public MovimientoProvidenciaDTO buscarUltimo (Long id) {
+
+
+        MovimientoProvidencia movimientos = this.movimientoProvidenciaRepository.traerMovimientos(id);
+        MovimientoProvidenciaDTO ultimovimiento = this.movimientoProvidenciaMapper.toDto(movimientos);
+        return ultimovimiento;
+    }
 //    @Transactional
 //    public Set<MovimientoProvidenciaDTO> traerMovimiento (Long id )
 //    {        return movimientoProvidenciaRepository.traerMovimientos(id)
@@ -245,7 +256,7 @@ public class MovimientoProvidenciaService {
     @Transactional
     public Set<MovimientoProvidenciaDTO> getAllByIdProvidenciaWithFilters(ProvidenciaDTO providenciaDTO, FiltroMovimientoProvidenciaDTO filtro)
     {
-         Providencia providencia = this.providenciaMapper.toEntity(providenciaDTO);
+        Providencia providencia = this.providenciaMapper.toEntity(providenciaDTO);
         Set<MovimientoProvidencia> movimientos = this.movimientoProvidenciaRepository.findByProvidencia(providencia);
         Set<MovimientoProvidenciaDTO> movimientoProvidenciaDTOs = new TreeSet<>();
 

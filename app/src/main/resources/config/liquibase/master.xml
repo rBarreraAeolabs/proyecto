@@ -97,5 +97,30 @@
     <include file="config/liquibase/changelog/2711198600723_added_entity_Instrucciones.xml" relativeToChangelogFile="false"/>
     <!-- datos en la tabla Instrucciones. -->
     <include file="config/liquibase/changelog/20191127185261_update_instrucciones_data.xml" relativeToChangelogFile="false"/>
+    <!--Actualización de datos en la tabla Grupo. -->
+    <include file="config/liquibase/changelog/20191202201123_update_grupos_data2.xml" relativeToChangelogFile="false"/>
+    <!--Actualización de datos en la tabla Roles - Administrador General -->
+    <include file="config/liquibase/changelog/20191203201150_delete_rol_jhi_perfil_authority_data.xml" relativeToChangelogFile="false"/>
+    <!--Actualización de datos en la tabla Roles Director Nacional-  -->
+    <include file="config/liquibase/changelog/20191202201170_update_rol_Director_Nacional_data.xml" relativeToChangelogFile="false"/>
+    <!--Actualización de datos en la tabla Perfiles  -->
+    <include file="config/liquibase/changelog/20191203201130_update_perfiles_data.xml" relativeToChangelogFile="false"/>
+    <!--Actualización de datos en la tabla Roles - DN. -->
+    <include file="config/liquibase/changelog/20191203201171_update_rol_DGDP_data.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191203201172_update_rol_DN_data.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191203201173_update_rol_UPD_data.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191203201174_update_rol_DGD_data.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191203201175_update_rol_Secretaria_UPD_data.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191203201176_update_rol_Contraloria_data.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191203201177_update_rol_SJ_data.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191203201178_update_rol_Abogados_data.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191204201179_update_rol_Abogados_SJ_data.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191204201180_update_rol_Remuneracion_data.xml" relativeToChangelogFile="false"/>
+    <!--Nuevo campo numero_DGD en tabla movimiento providencia -->
+    <include file="config/liquibase/changelog/20191204202200_add_DGD_movimiento_providencia.xml" relativeToChangelogFile="false"/>
+    <!--Nuevo campo numero_DGDP en tabla movimiento providencia -->
+    <include file="config/liquibase/changelog/20191206202201_add_DGDP_movimiento_providencia.xml" relativeToChangelogFile="false"/>
+    <!--Nuevo perfil de Asesor -->
+    <include file="config/liquibase/changelog/20191213201130_update_perfile_Asesor_data.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
 

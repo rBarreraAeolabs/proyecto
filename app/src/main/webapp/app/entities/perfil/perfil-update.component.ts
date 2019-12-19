@@ -40,8 +40,8 @@ export class PerfilUpdateComponent implements OnInit {
     // Variables para el checkbox segunda columna
     editarPlantillaPrivilege: IAuthority = {state: false, name: 'EDITAR_PLANTILLA'};
     editarProvidenciaPrivilege: IAuthority = {state: false, name: 'EDITAR_PROVIDENCIA'};
-    actualizarAdjuntoPrivilege: IAuthority = {state: false, name: 'ACTUALIZAR_ADJUNTO_PRIVILEGE'};
-    actualizarDocumentoPrivilege: IAuthority = {state: false, name: 'ACTUALIZAR_DOCUMENTO_PRIVILEGE'};
+    actualizarAdjuntoPrivilege: IAuthority = {state: false, name: 'ACTUALIZAR_ADJUNTO'};
+    actualizarDocumentoPrivilege: IAuthority = {state: false, name: 'ACTUALIZAR_DOCUMENTO'};
     eliminarDocumentoPrivilege: IAuthority = {state: false, name: 'ELIMINAR_DOCUMENTO'};
     eliminarGrupoPrivilege: IAuthority = {state: false, name: 'ELIMINAR_GRUPO'};
     eliminarPerfilPrivilege: IAuthority = {state: false, name: 'ELIMINAR_PERFIL'};
@@ -272,27 +272,53 @@ export class PerfilUpdateComponent implements OnInit {
                 }
                 break;
             }
-            case 'ACTUALIZAR_ADJUNTO_PRIVILEGE' : {
+            // case 'ACTUALIZAR_ADJUNTO_PRIVILEGE' : {
+            //     this.actualizarAdjuntoPrivilege.state = !this.actualizarAdjuntoPrivilege.state;
+            //     if (this.actualizarAdjuntoPrivilege.state) {
+            //         this.selectedAuthorities.push(this.actualizarAdjuntoPrivilege.name);
+            //     } else {
+            //         let auxArray = [];
+            //         auxArray = this.selectedAuthorities.filter(a => {
+            //             return a !== 'ACTUALIZAR_ADJUNTO_PRIVILEGE';
+            //         });
+            //         this.selectedAuthorities = auxArray;
+            //     }
+            //     break;
+            // }
+            // case 'ACTUALIZAR_DOCUMENTO_PRIVILEGE' : {
+            //     this.actualizarDocumentoPrivilege.state = !this.actualizarDocumentoPrivilege.state;
+            //     if (this.actualizarDocumentoPrivilege.state) {
+            //         this.selectedAuthorities.push(this.actualizarDocumentoPrivilege.name);
+            //     } else {
+            //         let auxArray = [];
+            //         auxArray = this.selectedAuthorities.filter(a => {
+            //             return a !== 'ACTUALIZAR_DOCUMENTO_PRIVILEGE';
+            //         });
+            //         this.selectedAuthorities = auxArray;
+            //     }
+            //     break;
+            // }
+            case 'ACTUALIZAR_ADJUNTO' : {
                 this.actualizarAdjuntoPrivilege.state = !this.actualizarAdjuntoPrivilege.state;
                 if (this.actualizarAdjuntoPrivilege.state) {
                     this.selectedAuthorities.push(this.actualizarAdjuntoPrivilege.name);
                 } else {
                     let auxArray = [];
                     auxArray = this.selectedAuthorities.filter(a => {
-                        return a !== 'ACTUALIZAR_ADJUNTO_PRIVILEGE';
+                        return a !== 'ACTUALIZAR_ADJUNTO';
                     });
                     this.selectedAuthorities = auxArray;
                 }
                 break;
             }
-            case 'ACTUALIZAR_DOCUMENTO_PRIVILEGE' : {
+            case 'ACTUALIZAR_DOCUMENTO' : {
                 this.actualizarDocumentoPrivilege.state = !this.actualizarDocumentoPrivilege.state;
                 if (this.actualizarDocumentoPrivilege.state) {
                     this.selectedAuthorities.push(this.actualizarDocumentoPrivilege.name);
                 } else {
                     let auxArray = [];
                     auxArray = this.selectedAuthorities.filter(a => {
-                        return a !== 'ACTUALIZAR_DOCUMENTO_PRIVILEGE';
+                        return a !== 'ACTUALIZAR_DOCUMENTO';
                     });
                     this.selectedAuthorities = auxArray;
                 }

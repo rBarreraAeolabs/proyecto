@@ -172,7 +172,7 @@ public class ProvidenciaResource {
     public ResponseEntity<Void> fiscalNotificaCierre (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("ENTRO AL fiscal: ");
         this.providenciaService.fiscalNotificaCierre(providenciaResponseDTO);
-           return new ResponseEntity<Void>(HttpStatus.OK);
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     @PostMapping("/providencias/formularCargos")
@@ -224,6 +224,13 @@ public class ProvidenciaResource {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+    @PostMapping("/providencias/sinDenunciante ")
+    @Timed
+    public ResponseEntity<Void> sinDenunciante  (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO AL fiscal: ");
+        this.providenciaService.sinDenunciante (providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
     @PostMapping("/providencias/aceptar")
     @Timed
     public ResponseEntity<Void> aceptar(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
@@ -452,9 +459,18 @@ public class ProvidenciaResource {
         return ResponseEntity.ok().headers(HeaderUtil.createAlert("Se ha notificado al Denunciante!",ENTITY_NAME)).body(null);
     }
 
+//    @PostMapping("/providencias/actions")
+//    @Timed
+//    public ResponseEntity<HashMap<String, Boolean>> getActionsPermitted(@RequestBody ProvidenciaResponseDTO providenciaDTO) {
+//        log.debug("ruben2: da " +providenciaDTO.getProvidenciaId());
+//        HashMap<String, Boolean> actionsPermitted = this.providenciaService.getActionsPermitted(providenciaDTO);
+//        return new ResponseEntity<>(actionsPermitted, HttpStatus.OK);
+//    }
+
     @PostMapping("/providencias/actions")
     @Timed
     public ResponseEntity<HashMap<String, Boolean>> getActionsPermitted(@RequestBody ProvidenciaResponseDTO providenciaDTO) {
+        log.debug("ruben2: da " +providenciaDTO.getProvidenciaId());
         HashMap<String, Boolean> actionsPermitted = this.providenciaService.getActionsPermitted(providenciaDTO);
         return new ResponseEntity<>(actionsPermitted, HttpStatus.OK);
     }
@@ -595,16 +611,16 @@ public class ProvidenciaResource {
     // Metodo permite obtener todas las providencias asociadas a un Numero de Referencia
     /**
      * el metodo  @GetMapping es para en viar datos al front sin que el nos envie nada
-      */
+     */
 
     @GetMapping("/providencias/buscarNroReferencia")
     @Timed
     public ResponseEntity<Set<ProvidenciaDTO>> getnroReferencia() {
         log.debug("ruben te da el numero de referencia hola: {}");
         Set<ProvidenciaDTO> providenciaDTOList = providenciaService.findAllNro();
-            log.debug("ruben te da la lista"+providenciaDTOList);
+        log.debug("ruben te da la lista"+providenciaDTOList);
         return new ResponseEntity<>(this.providenciaService.findAllNro(), HttpStatus.OK);
-  }
+    }
 
     /**
      *  el metodo @PostMapping nos permite recibir un dato del front y tambien devolver algo el put hace lo mismo pero es una mala practica
@@ -637,7 +653,7 @@ public class ProvidenciaResource {
 
         if(requisitoMadre == EstadoProvidencia.DGD_DESPACHA_SUMARIO_COMPLETO &&
             providenciaUpdateForTypeDTO.getOrdenJuridico()== null){
-           throw new BadRequestAlertException("Debe seleccionar el tipo de Orden Juridica", null, null);
+            throw new BadRequestAlertException("Debe seleccionar el tipo de Orden Juridica", null, null);
         }
         ProvidenciaDTO providenciaDTO = this.providenciaService.updateProvidenciaForType(providenciaUpdateForTypeDTO);
 

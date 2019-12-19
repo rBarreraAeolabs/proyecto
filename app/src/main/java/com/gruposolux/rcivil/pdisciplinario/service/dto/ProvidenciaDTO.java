@@ -13,7 +13,7 @@ import java.util.*;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.InstruccionesProvidencia;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.TipoProvidencia;
-
+import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
 
 import javax.validation.constraints.Size;
 
@@ -326,7 +326,6 @@ public class ProvidenciaDTO implements Serializable {
             ", numeroProvidencia=" + numeroProvidencia +
             ", numeroDgdp=" + numeroDgdp +
             ", folio=" + folio +
-            ", numeroDgd=" + numeroDgd +
             ", estadoActual='" + estadoActual + '\'' +
             ", etapa=" + etapa +
             ", subEtapa=" + subEtapa +

@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2019-12-03T15:58:10-0300",
+    date = "2019-12-17T09:17:53-0300",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_131 (Oracle Corporation)"
 )
 @Component
@@ -100,6 +100,8 @@ public class MovimientoProvidenciaMapperImpl implements MovimientoProvidenciaMap
         movimientoProvidenciaDTO.setDocumentos( documentoSetToDocumentoDTOSet( movimientoProvidencia.getDocumentos() ) );
         movimientoProvidenciaDTO.setAdjuntos( adjuntoSetToAdjuntoDTOSet( movimientoProvidencia.getAdjuntos() ) );
         movimientoProvidenciaDTO.setComentario( movimientoProvidencia.getComentario() );
+        movimientoProvidenciaDTO.setNumero_dgdp( movimientoProvidencia.getNumero_dgdp() );
+        movimientoProvidenciaDTO.setNumero_dgd( movimientoProvidencia.getNumero_dgd() );
 
         return movimientoProvidenciaDTO;
     }
@@ -123,6 +125,8 @@ public class MovimientoProvidenciaMapperImpl implements MovimientoProvidenciaMap
         movimientoProvidencia.setDocumentos( documentoDTOSetToDocumentoSet( movimientoProvidenciaDTO.getDocumentos() ) );
         movimientoProvidencia.setAdjuntos( adjuntoDTOSetToAdjuntoSet( movimientoProvidenciaDTO.getAdjuntos() ) );
         movimientoProvidencia.setComentario( movimientoProvidenciaDTO.getComentario() );
+        movimientoProvidencia.setNumero_dgd( movimientoProvidenciaDTO.getNumero_dgd() );
+        movimientoProvidencia.setNumero_dgdp( movimientoProvidenciaDTO.getNumero_dgdp() );
 
         return movimientoProvidencia;
     }

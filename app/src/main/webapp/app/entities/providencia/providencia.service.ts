@@ -61,7 +61,12 @@ export class ProvidenciaService {
         put<IProvidencia>(`${this.resourceUrl}/fiscal`, copy, {observe: 'response'})
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
-
+    updateAbogado(providencia: IProvidencia): Observable<EntityResponseType> {
+        const copy = this.convertDateFromClient(providencia);
+        return this.http.
+        put<IProvidencia>(`${this.resourceUrl}/abogado`, copy, {observe: 'response'})
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
     updateNroReferencia(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
         return this.http.
         put<IProvidencia>(`${this.resourceUrl}/nroReferencia`, providencia, {observe: 'response'})
@@ -160,8 +165,8 @@ export class ProvidenciaService {
         return this.http.post<any>(this.resourceUrl + '/fiscalNotificaCierre', response, {observe: 'response'});
     }
 
-    getActionsPermitted(providencia: IProvidencia): Observable<HttpResponse<any>> {
-        return this.http.post<any>(this.resourceUrl + '/actions', providencia, {observe: 'response'});
+    getActionsPermitted(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/actions', response, {observe: 'response'});
     }
 
     getPlantillasEnabled(providencia: IProvidencia): Observable<HttpResponse<IPlantilla[]>> {
@@ -277,5 +282,13 @@ export class ProvidenciaService {
             return this.http.
             put<IProvidencia>(`${this.resourceUrl}/updateNumeroDGDP`, providencia, {observe: 'response'})
                 .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+    asignarNumeroIngreso(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
+        return this.http.
+        put<IProvidencia>(`${this.resourceUrl}/asignarNumeroIngreso`, providencia, {observe: 'response'})
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+    asignaraUpd(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/asignaraUpd', response, {observe: 'response'});
     }
 }

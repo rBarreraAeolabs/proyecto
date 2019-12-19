@@ -1,0 +1,391 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="20191202201170-3" author="jhipster">
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ASIGNAR_A"/>
+        </insert>
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ASIGNAR_NUMERO_REFERENCIA"/>
+        </insert>
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ASIGNAR_NUMERO_PROVIDENCIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ASIGNAR_TIPO_A_PROVIDENCIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ASIGNA_REDACCION_RESOLUCION_MEMO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ASIGNAR_NUMERO_INTERNO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ACTUALIZAR_ADJUNTO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ACTUALIZAR_DOCUMENTO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ADJUNTAR_ADJUNTO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ADJUNTAR_DOCUMENTO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ACEPTA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="CREAR_PROVIDENCIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="CREAR_FICHA_INGRESO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="CREAR_GRUPO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="CREAR_PLANTILLA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="CREAR_USUARIO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="CREAR_PERFIL"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="COMIENZA_INVESTIGACION"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="DERIVAR_PROVIDENCIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="DESCARGAR_DOCUMENTO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="DESCARGAR_ADJUNTO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="DEVOLVER_PROVIDENCIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="DN_ENVIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="DGD_ENVIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="SUB_DIR_ENVIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="UPD_ENVIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="DGDP_ENVIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="FISCAL_ENVIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="INCULPADO_ENVIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="CONTRALORIA_ENVIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ABOGADO_ENVIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ENVIAR_A"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ENVIA_MEMO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ENVIAR_PROVIDENCIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ENVIA_INFORME_JURIDICO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="EDITAR_PERFIL"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="EDITAR_USUARIO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="EDITAR_INVESTIGACION"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="EDITAR_PROVIDENCIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="EDITAR_PLANTILLA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="EDITAR_GRUPO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ELABORACION_NOTIFICACIÓN_FISCAL"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="FORMULA_CARGOS"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ELIMINAR_GRUPO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ELIMINAR_USUARIO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ELIMINAR_DOCUMENTO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ELIMINAR_ADJUNTO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ELIMINAR_PERFIL"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ELIMINAR_PLANTILLA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="ELABORA_INFORME"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_DOCUMENTO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_DASHBOARD"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_SUMARIO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_USUARIO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_ADJUNTO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_MENU_USUARIO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_NOTIFICACION"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_PROVIDENCIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_PROCEDIMIENTOS"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_FICHA_INGRESO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_PLANTILLA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_PERFIL"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_GRUPO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_PLAZO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_DERIVACION"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_ENTIDAD"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="RECHAZAR_PROVIDENCIA"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="REDACCION_RESOLUCION_MEMO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="RECIBE_NOTIFICACIÓN"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="REMITE_EXPEDIENTE"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="RECIBE_SUMARIO_COMPLETO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="REGISTRA_CIERRE"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="FIRMA_VISA_DOCUMENTO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="NOTIFICA_A"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="NOTIFICA_A_INCULPADO"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="INICIA_INVESTIGACION"/>
+        </insert>
+
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="INCULPADO_ENVIA_MEMO"/>
+        </insert>
+        <insert tableName="jhi_perfil_authority">
+            <column name="perfil_id"  value="1"/>
+            <column name="authority_name"  value="VISUALIZAR_INVESTIGACION"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

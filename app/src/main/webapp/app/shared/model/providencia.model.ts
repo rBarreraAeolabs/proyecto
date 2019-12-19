@@ -6,6 +6,9 @@ import {IEntidad} from './entidad.model';
 
 export const enum EstadoProvidencia {
     NUEVA_PROVIDENCIA= 'NUEVA_PROVIDENCIA',
+    ASESOR_DN= 'ASESOR_DN',
+    REVISION_ASESOR='REVISION_ASESOR',
+    ASESOR_DIRECTOR_NACIONAL='ASESOR_DIRECTOR_NACIONAL',
     RESOLUCION_Y_MEMO= 'RESOLUCION_Y_MEMO',
     FIRMA_RESOLUCION= 'FIRMA_RESOLUCION',
     DGDP_ASIGNANDO_NUMERO= 'DGDP_ASIGNANDO_NUMERO',
@@ -90,6 +93,7 @@ export const enum EtapaProvidencia {
 export const enum AccionesProvidencia {
     CREAR_PROVIDENCIA = 'CREAR_PROVIDENCIA',
     DGD_ASIGNA_NUMERO_REFERENCIA = 'DGD_ASIGNA_NUMERO_REFERENCIA',
+    ASESOR_DN= 'ASESOR_DN',
     SUB_DIRECCION_RECIBE_PROVIDENCIA = 'SUB_DIRECCION_RECIBE_PROVIDENCIA',
     SUB_DIRECCION_ASIGNA = 'SUB_DIRECCION_ASIGNA',
     SUB_DIRECCION_RECIBE = 'SUB_DIRECCION_RECIBE',
@@ -203,6 +207,8 @@ export interface IProvidencia {
     totalAdjuntos?: number;
     folio?: number;
     providenciaMadreId?: number;
+    numeroDgdp?: number;
+    numeroDgd?: number;
 }
 
 export class Providencia implements IProvidencia {
@@ -233,7 +239,8 @@ export class Providencia implements IProvidencia {
         public apelacion?: Apelacion,
         public standby?: boolean,
         public totalAdjuntos?: number,
-
+        public numeroDgd?: number,
+        public numeroDgdp?: number,
 ) {}
 }
 

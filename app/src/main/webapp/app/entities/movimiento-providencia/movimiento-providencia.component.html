@@ -73,33 +73,42 @@
         <!-- aqui la informacion -->
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th>
-                        <span class="d-flex justify-content-center" jhiTranslate="global.field.id">ID</span>
-                    </th>
-                    <th>
-                        <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.providencia">Providencia</span>
-                    </th>
-                    <th>
-                        <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.usuarioAsignado">Usuario Asignado</span>
-                    </th>
-                    <th>
-                        <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.estado">Estado</span>
-                        <span class="d-flex justify-content-center" >Etapa - Sub Etapa - Accion</span>
-                    </th>
-                    <th>
-                        <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.accion">Accion</span>
-                    </th>
-                    <th>
-                        <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.plazo">Plazo</span>
-                    </th>
-                    <th>
-                        <span class="d-flex justify-content-center" class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.respuesta">Respuesta</span>
-                    </th>
-                    <th>
-                        <span class="d-flex justify-content-center" class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.comentarios">Comentarios</span>
-                    </th>
-                </tr>
+            <tr>
+                <th>
+                    <span class="d-flex justify-content-center" jhiTranslate="global.field.id">ID</span>
+                </th>
+                <th>
+                    <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.providencia">Providencia</span>
+                </th>
+                <th>
+                    <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.usuarioAsignado">Usuario Asignado</span>
+                </th>
+                <th>
+                    <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.estado">Estado</span>
+                    <span class="d-flex justify-content-center" >Etapa - Sub Etapa - Accion</span>
+                </th>
+                <th>
+                    <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.accion">Accion</span>
+                </th>
+                <th>
+                    <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.plazo">Plazo</span>
+                </th>
+                <th>
+                    <span class="d-flex justify-content-center" class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.respuesta">Respuesta</span>
+                </th>
+                <th>
+                    <span class="d-flex justify-content-center" class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.comentarios">Comentarios</span>
+                </th>
+
+                <th>
+                    <span class="d-flex justify-content-center"class="d-flex justify-content-center"  >Numero DGD</span>
+
+                </th>
+                <th>
+                    <span class="d-flex justify-content-center"class="d-flex justify-content-center"  >Numero DGDP</span>
+
+                </th>
+            </tr>
             </thead>
             <tbody>
             <tr *ngFor="let movimientoProvidencia of movimientosProvidencia ;trackBy: trackId">
@@ -116,7 +125,7 @@
                 </td>
                 <td>
                     <div *ngIf="movimientoProvidencia.estadoAnterior">
-                        <span> {{movimientoProvidencia.estadoAnterior.split('_').join(' ')}} </span>
+                        <span> {{movimientoProvidencia.estadoAnterior.toString().split('_').join(' ')}} </span>
                     </div>
                     <div *ngIf="!movimientoProvidencia.estadoAnterior">
                         <span> SIN ESTADO </span>
@@ -125,7 +134,7 @@
                 <td>{{movimientoProvidencia.accion}}</td>
                 <td>
                     <div *ngIf="movimientoProvidencia.plazoDias">
-                       <span> {{movimientoProvidencia.plazoDias}} días</span>
+                        <span> {{movimientoProvidencia.plazoDias}} días</span>
                     </div>
                 </td>
                 <td>
@@ -138,6 +147,8 @@
                         <jhi-comentario-bitacora-modal-popup [movimientoProvidencia]="movimientoProvidencia"></jhi-comentario-bitacora-modal-popup>
                     </div>
                 </td>
+                <td>{{movimientoProvidencia.numeroDgd}}</td>
+                <td>{{movimientoProvidencia.numeroDgdp}}</td>
             </tr>
             </tbody>
         </table>

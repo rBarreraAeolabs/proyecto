@@ -9,6 +9,7 @@ import java.util.Set;
  */
 public class ProvidenciaResponseDTO
 {
+
     private Long providenciaId;
     private String estadoActual;
     private EstadoProvidencia etapa;
@@ -19,6 +20,16 @@ public class ProvidenciaResponseDTO
     private Set<AdjuntoDTO> adjuntosDTOs;
     private Set<DocumentoDTO> documentosDTOs;
     private String observacion;
+
+    private Long numeroReferencia;
+
+    private Long numeroProvidencia;
+
+    private Long numeroDgdp;
+
+    private Long folio;
+
+    private Long numeroDgd;
 
     public ProvidenciaResponseDTO() {}
 
@@ -32,6 +43,46 @@ public class ProvidenciaResponseDTO
 
     public String getEstadoActual() {
         return estadoActual;
+    }
+
+    public Long getNumeroReferencia() {
+        return numeroReferencia;
+    }
+
+    public void setNumeroReferencia(Long numeroReferencia) {
+        this.numeroReferencia = numeroReferencia;
+    }
+
+    public Long getNumeroProvidencia() {
+        return numeroProvidencia;
+    }
+
+    public void setNumeroProvidencia(Long numeroProvidencia) {
+        this.numeroProvidencia = numeroProvidencia;
+    }
+
+    public Long getNumeroDgdp() {
+        return numeroDgdp;
+    }
+
+    public void setNumeroDgdp(Long numeroDgdp) {
+        this.numeroDgdp = numeroDgdp;
+    }
+
+    public Long getFolio() {
+        return folio;
+    }
+
+    public void setFolio(Long folio) {
+        this.folio = folio;
+    }
+
+    public Long getNumeroDgd() {
+        return numeroDgd;
+    }
+
+    public void setNumeroDgd(Long numeroDgd) {
+        this.numeroDgd = numeroDgd;
     }
 
     public void setEstadoActual(String estadoActual) {
@@ -91,11 +142,17 @@ public class ProvidenciaResponseDTO
         return "ProvidenciaResponseDTO{" +
             "providenciaId=" + providenciaId +
             ", estadoActual='" + estadoActual + '\'' +
-            ", requisito='" + requisito + '\'' +
-            ", subEtapa='" + subEtapa + '\'' +
+            ", etapa=" + etapa +
+            ", subEtapa=" + subEtapa +
+            ", requisito=" + requisito +
             ", adjuntosDTOs=" + adjuntosDTOs +
             ", documentosDTOs=" + documentosDTOs +
             ", observacion='" + observacion + '\'' +
+            ", numeroReferencia=" + numeroReferencia +
+            ", numeroProvidencia=" + numeroProvidencia +
+            ", numeroDgdp=" + numeroDgdp +
+            ", folio=" + folio +
+            ", numeroDgd=" + numeroDgd +
             '}';
     }
 }
