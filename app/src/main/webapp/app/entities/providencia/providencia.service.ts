@@ -152,6 +152,9 @@ export class ProvidenciaService {
     remiteExpediente(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/remiteExpediente', response, {observe: 'response'});
     }
+    sinDenunciante(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/sinDenunciante', response, {observe: 'response'});
+    }
 
     apela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/apela', response, {observe: 'response'});

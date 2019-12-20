@@ -58,6 +58,7 @@ import {ProvidenciaAsignarNumeroDgdpPopupComponent} from 'app/entities/providenc
 import {ProvidenciaAsignarAbogadoPopupComponent} from 'app/entities/providencia/providencia-asignar-abogado.component';
 import {ProvidenciaAsignarNumeroIngresoPopupComponent} from 'app/entities/providencia/providencia-asignar-numero-ingreso.component';
 import {ProvidenciaAsignarAUpdPopupComponent} from 'app/entities/providencia/providencia-asignar-a-upd.component';
+import {ProvidenciaSinDenunciantePopupComponent} from "app/entities/providencia/providencia-sin-denunciante.component";
 
 @Injectable({ providedIn: 'root' })
 @Injectable({ providedIn: 'root' })
@@ -583,11 +584,24 @@ export const providenciaPopupRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
-            pageTitle: 'NO Envia Memo'
+            pageTitle: 'remite expediente'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },  {
+        path: 'providencia/:id/sinDenunciante',
+        component: ProvidenciaSinDenunciantePopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'sin denunciante'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
+
     {
         path: 'providencia/:id/devolver',
         component: ProvidenciaDevolverPopupComponent,

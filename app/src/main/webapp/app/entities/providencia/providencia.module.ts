@@ -209,11 +209,15 @@ import {
     ProvidenciaAsignarAUpdComponent,
     ProvidenciaAsignarAUpdPopupComponent
 } from 'app/entities/providencia/providencia-asignar-a-upd.component';
-
+import {
+    ProvidenciaSinDenuncianteComponent,
+    ProvidenciaSinDenunciantePopupComponent
+} from 'app/entities/providencia/providencia-sin-denunciante.component';
 // directive
 import {
     ReadMoreDirective,
 } from 'app/entities/providencia/read-more.directive';
+
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -335,6 +339,8 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaAsignarNumeroIngresoPopupComponent,
         ProvidenciaAsignarAUpdComponent,
         ProvidenciaAsignarAUpdPopupComponent,
+        ProvidenciaSinDenuncianteComponent,
+        ProvidenciaSinDenunciantePopupComponent
     ],
     entryComponents: [
         ProvidenciaComponent,
@@ -438,6 +444,8 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaAsignarNumeroIngresoPopupComponent,
         ProvidenciaAsignarAUpdComponent,
         ProvidenciaAsignarAUpdPopupComponent,
+        ProvidenciaSinDenuncianteComponent,
+        ProvidenciaSinDenunciantePopupComponent
             ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

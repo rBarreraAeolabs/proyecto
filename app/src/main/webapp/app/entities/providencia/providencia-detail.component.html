@@ -55,7 +55,7 @@
 
                                         <button type="button"
                                                 *ngIf="actionsPermitted.rechazar
-                                                && providencia.requisito == 'FISCAL_NOTIFICADO'"
+                                                && providencia.requisito == 'FISCAL_NOTIFICADO'                                               "
                                                 class="btn btn-danger mr-2"
                                                 [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/fiscalRechaza'} }]"
                                                 id="jhi-rechazar-providencia"
@@ -440,6 +440,15 @@
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
                                                     <span>Fiscal Remite Expediente</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.sinDenunciante"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/sinDenunciante'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span>sin Denunciante</span>
 
                                                 </a>
                                                 <a
