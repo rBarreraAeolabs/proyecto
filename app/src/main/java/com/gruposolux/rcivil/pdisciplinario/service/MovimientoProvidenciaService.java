@@ -303,4 +303,12 @@ public class MovimientoProvidenciaService {
         MovimientoProvidencia  movimientoProvidencia = movimientoProvidenciaRepository.traerMovimientos(id);
         return  movimientoProvidencia;
     }
+
+    @Transactional
+    public List<MovimientoProvidencia> movimientosDeLaProvidencia(Long id)
+    {
+        List<MovimientoProvidencia>  movimientoProvidencia = movimientoProvidenciaRepository.traerMovimientosDeLaProvidencia(id);
+        return  movimientoProvidencia;
+    }
+
 }

@@ -45,6 +45,13 @@ export class MovimientoProvidenciaService {
             .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
     }
 
+    traerMovimientoDeLaProvidencia(id: number): Observable<EntityArrayResponseType> {
+        // const copy = this.convertDateFromClientProvidencia(filtroMoviPro);
+        return this.http
+            .get<IMovimientoProvidencia[]>(`${this.resourceUrl}/movimiento/${id}`, { observe: 'response' })
+            .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+    }
+
     getAllWithoutPagination(): Observable<EntityArrayResponseType> {
         return this.http
             .get<IMovimientoProvidencia[]>(this.resourceUrl + '/list', { observe: 'response' })
