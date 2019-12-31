@@ -153,7 +153,8 @@ export const enum OrdenJuridico {
     ABSOLVER = 'RESERVADO',
     SOBRESEER = 'RESERVADO',
     SANCIONAR = 'RESERVADO',
-    REABRIR = 'RESERVADO'
+    REABRIR = 'RESERVADO',
+    CONTINUAR = '',
 }
 
 export const enum Apelacion {

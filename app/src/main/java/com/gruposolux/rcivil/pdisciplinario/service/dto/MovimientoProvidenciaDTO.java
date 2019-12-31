@@ -6,6 +6,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import com.gruposolux.rcivil.pdisciplinario.domain.Adjunto;
+import com.gruposolux.rcivil.pdisciplinario.domain.Documento;
+import com.gruposolux.rcivil.pdisciplinario.domain.Plazo;
+import com.gruposolux.rcivil.pdisciplinario.domain.User;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
 
 import javax.validation.constraints.NotNull;
@@ -47,8 +51,42 @@ public class MovimientoProvidenciaDTO implements Serializable, Comparable<Movimi
 
     private Long numero_dgdp;
 
-    public MovimientoProvidenciaDTO() {
-    }
+
+
+//    public MovimientoProvidenciaDTO(
+//        Long id,
+//        String estadoAnterior,
+//        String estadoNuevo,
+//        Instant fecha,
+//        String accion,
+//        Long providenciaId,
+//        Long plazoId,
+//        Integer plazoDias,
+//        String comentario,
+//        Long userId,
+//        String userFirstName,
+//        String userLastName,
+////        Set<DocumentoDTO> documentos,
+////        Set<AdjuntoDTO> adjuntos,
+//        Long numero_dgd,
+//        Long numero_dgdp) {
+//        this.id = id;
+//        this.estadoAnterior = estadoAnterior;
+//        this.estadoNuevo = estadoNuevo;
+//        this.fecha = fecha;
+//        this.accion = accion;
+//        this.providenciaId = providenciaId;
+//        this.plazoId = plazoId;
+//        this.plazoDias = plazoDias;
+//        this.comentario = comentario;
+//        this.userId = userId;
+//        this.userFirstName = userFirstName;
+//        this.userLastName = userLastName;
+////        this.documentos = documentos;
+////        this.adjuntos = adjuntos;
+//        this.numero_dgd = numero_dgd;
+//        this.numero_dgdp = numero_dgdp;
+//    }
 
     public Long getId() {
         return id;

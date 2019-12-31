@@ -9,8 +9,6 @@ export interface IMovimientoProvidencia {
     estadoNuevo?: EstadoProvidencia;
     fecha?: Moment;
     accion?: string;
-    documentos?: IDocumento[];
-    adjuntos?: IAdjunto[];
     providenciaId?: number;
     plazoId?: number;
     plazoDias?: number;
@@ -18,8 +16,10 @@ export interface IMovimientoProvidencia {
     userId?: number;
     userFirstName?: string;
     userLastName?: string;
-    numeroDgd?: number;
-    numeroDgdp?: number;
+    documentos?: IDocumento[];
+    adjuntos?: IAdjunto[];
+    numero_dgd?: number;
+    numero_dgdp?: number;
 }
 
 export class MovimientoProvidencia implements IMovimientoProvidencia {
@@ -29,8 +29,6 @@ export class MovimientoProvidencia implements IMovimientoProvidencia {
         public estadoNuevo?: EstadoProvidencia,
         public fecha?: Moment,
         public accion?: string,
-        public documentos?: IDocumento[],
-        public adjuntos?: IAdjunto[],
         public providenciaId?: number,
         public plazoId?: number,
         public plazoDias?: number,
@@ -38,7 +36,9 @@ export class MovimientoProvidencia implements IMovimientoProvidencia {
         public userId?: number,
         public userFirstName?: string,
         public userLastName?: string,
-        public numeroDgd?: number,
-        public numeroDgdp?: number,
+        public documentos?: IDocumento[],
+        public adjuntos?: IAdjunto[],
+        public numero_dgd?: number,
+        public numero_dgdp?: number,
     ) {}
 }

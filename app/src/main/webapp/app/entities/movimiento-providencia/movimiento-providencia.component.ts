@@ -60,6 +60,8 @@ export class MovimientoProvidenciaComponent implements OnInit, OnDestroy {
                 (res: HttpResponse<IMovimientoProvidencia[]>) => {
                     this.movimientosProvidencia = res.body;
 
+                    // const mapped = Object.keys( this.movimientosProvidencia ).map(key => ({type: key, value: this.movimientosProvidencia[key]}));
+                        console.log('movimientos: ' , this.movimientosProvidencia );
                     this.movimientosProvidencia.sort((firstMov, secondMov) => {
                         return secondMov.fecha.isBefore(firstMov.fecha) ? -1 : 1;
                     });

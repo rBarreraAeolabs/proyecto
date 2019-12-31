@@ -84,7 +84,7 @@
                                                     <span>Exportar todo a excel</span>
                                                 </a>
                                                 <a class="dropdown-item"
-                                                   *ngIf="actionsPermitted.relacionarProvidencia"
+
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/relacionar'} }]"
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"

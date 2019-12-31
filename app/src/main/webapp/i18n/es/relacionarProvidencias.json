@@ -5,7 +5,8 @@
             "sobreceder": "SOBRESEER",
             "absolver": "ABSOLVER",
             "reabrir":  "REABRIR",
-            "sancionar": "SANCIONAR"
+            "sancionar": "SANCIONAR",
+            "continuar": ""
         }
     }
 }

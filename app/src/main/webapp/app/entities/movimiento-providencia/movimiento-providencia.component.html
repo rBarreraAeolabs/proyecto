@@ -94,13 +94,6 @@
                     <span class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.plazo">Plazo</span>
                 </th>
                 <th>
-                    <span class="d-flex justify-content-center" class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.respuesta">Respuesta</span>
-                </th>
-                <th>
-                    <span class="d-flex justify-content-center" class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.comentarios">Comentarios</span>
-                </th>
-
-                <th>
                     <span class="d-flex justify-content-center"class="d-flex justify-content-center"  >Numero DGD</span>
 
                 </th>
@@ -108,10 +101,19 @@
                     <span class="d-flex justify-content-center"class="d-flex justify-content-center"  >Numero DGDP</span>
 
                 </th>
+                <th>
+                    <span class="d-flex justify-content-center" class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.respuesta">Respuesta</span>
+                </th>
+                <th>
+                    <span class="d-flex justify-content-center" class="d-flex justify-content-center" jhiTranslate="pdisciplinarioApp.movimientoProvidencia.comentarios">Comentarios</span>
+                </th>
+
+
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let movimientoProvidencia of movimientosProvidencia ;trackBy: trackId">
+
                 <td><a [routerLink]="['/providencia', providencia.id, 'view' ]">{{movimientoProvidencia.id}}</a></td>
                 <td>
                     <div *ngIf="movimientoProvidencia.providenciaId">
@@ -137,8 +139,11 @@
                         <span> {{movimientoProvidencia.plazoDias}} días</span>
                     </div>
                 </td>
+                <td>{{movimientoProvidencia.numero_dgd}}</td>
+
+                <td>{{movimientoProvidencia.numero_dgdp}}</td>
                 <td>
-                    <div class="btn-group flex-btn-group-container">
+                    <div *ngIf ="movimientoProvidencia.adjuntos" class="btn-group flex-btn-group-container">
                         <jhi-respuesta-bitacora-modal-popup [movimientoProvidenciaId]="movimientoProvidencia.id"></jhi-respuesta-bitacora-modal-popup>
                     </div>
                 </td>
@@ -147,8 +152,7 @@
                         <jhi-comentario-bitacora-modal-popup [movimientoProvidencia]="movimientoProvidencia"></jhi-comentario-bitacora-modal-popup>
                     </div>
                 </td>
-                <td>{{movimientoProvidencia.numeroDgd}}</td>
-                <td>{{movimientoProvidencia.numeroDgdp}}</td>
+
             </tr>
             </tbody>
         </table>

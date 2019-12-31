@@ -1,5 +1,6 @@
 package com.gruposolux.rcivil.pdisciplinario.service;
 
+import com.gruposolux.rcivil.pdisciplinario.domain.Documento;
 import com.gruposolux.rcivil.pdisciplinario.domain.Plazo;
 import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
 import com.gruposolux.rcivil.pdisciplinario.domain.enumeration.EstadoProvidencia;
@@ -316,9 +317,14 @@ public class MovimientoProvidenciaService {
     }
 
     @Transactional
-    public List<MovimientoProvidencia> movimientosDeLaProvidencia(Long id)
+    public Set<MovimientoProvidenciaDTO> movimientosDeLaProvidencia(Long id)
     {
-        List<MovimientoProvidencia>  movimientoProvidencia = movimientoProvidenciaRepository.traerMovimientosDeLaProvidencia(id);
-        return  movimientoProvidencia;
+
+
+
+    return
+        movimientoProvidenciaRepository.traerMovimientosDeLaProvidencia(id)
+            .stream().map(this.movimientoProvidenciaMapper::toDto).collect(Collectors.toSet());
     }
+
 }

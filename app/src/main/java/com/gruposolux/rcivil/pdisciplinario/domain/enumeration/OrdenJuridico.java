@@ -5,5 +5,5 @@ public enum OrdenJuridico {
     ABSOLVER,
     SOBRESEER,
     SANCIONAR,
-    SOBRECEDER, REABRIR
+    SOBRECEDER, REABRIR , CONTINUAR
 }

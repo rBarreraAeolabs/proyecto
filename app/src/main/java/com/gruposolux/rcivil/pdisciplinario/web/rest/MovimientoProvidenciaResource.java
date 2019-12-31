@@ -166,9 +166,10 @@ public class MovimientoProvidenciaResource {
     @GetMapping("/movimiento-providencias/movimiento/{id}")
     @Timed
 //    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
-    public ResponseEntity <List<MovimientoProvidencia>> getMovimientoDeLaProvidencia(@PathVariable Long id) {
-        log.debug("REST request to get MovimientoProvidencia : {}", id);
-        List<MovimientoProvidencia> movimientoProvidenciaList = movimientoProvidenciaService.movimientosDeLaProvidencia(id);
+    public ResponseEntity <Set<MovimientoProvidenciaDTO>> getMovimientoDeLaProvidencia(@PathVariable Long id) {
+        log.debug("el id ruben MovimientoProvidencia : {}", id);
+        Set<MovimientoProvidenciaDTO> movimientoProvidenciaList = movimientoProvidenciaService.movimientosDeLaProvidencia(id);
+        log.debug("el movimient ruben Providencia : {}", movimientoProvidenciaList);
         return new ResponseEntity<>(movimientoProvidenciaList, HttpStatus.OK);
     }
 }
