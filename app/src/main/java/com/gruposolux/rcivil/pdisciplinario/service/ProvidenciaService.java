@@ -1619,10 +1619,10 @@ public class ProvidenciaService {
         EstadoProvidencia etapa = providenciaDTO.getEtapa();
         EstadoProvidencia subEtapa= providenciaDTO.getSubEtapa();
         log.debug("ruben2: reci " +providenciaDTO.getProvidenciaId());
-//        MovimientoProvidenciaDTO ultimovimiento=  this.movimientoProvidenciaService.buscarUltimo(providenciaDTO.getId());
-//        Long ultimoDgdp = ultimovimiento.getNumero_dgdp();
-//        Long ultimoDgd = ultimovimiento.getNumero_dgd();
-//        log.debug("ruben2: ultimo numero de dgd " +ultimoDgd);
+        MovimientoProvidenciaDTO ultimovimiento=  this.movimientoProvidenciaService.buscarUltimo(providenciaDTO.getProvidenciaId());
+        Long ultimoDgdp = ultimovimiento.getNumero_dgdp();
+        Long ultimoDgd = ultimovimiento.getNumero_dgd();
+        log.debug("ruben2: ultimo numero de dgd " +ultimoDgd);
         if (providenciaDTO.getEtapa() == null && providenciaDTO.getSubEtapa() == null && providenciaDTO.getRequisito() == null) {
             return null;
         }
@@ -1880,12 +1880,12 @@ public class ProvidenciaService {
             case DGDP_ASIGNANDO_NUMERO:
             case DGDP_ASIGNA_NUMERO:
                 if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
-//                    if(ultimoDgdp != providenciaDTO.getNumeroDgdp()) {
+                    if(ultimoDgdp != providenciaDTO.getNumeroDgdp()) {
                         actionsPermitted.put("reply", true);
 //                    }else{
 //                        actionsPermitted.put("cambiadoNumeroDGDP", true);
                         actionsPermitted.put("asignarNumeroDGDP", true);
-//                    }
+                    }
 
                 }
                 break;
