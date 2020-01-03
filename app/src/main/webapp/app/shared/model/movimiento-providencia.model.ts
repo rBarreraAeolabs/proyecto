@@ -18,8 +18,8 @@ export interface IMovimientoProvidencia {
     userId?: number;
     userFirstName?: string;
     userLastName?: string;
-    numeroDgd?: number;
-    numeroDgdp?: number;
+    numero_dgd?: number;
+    numero_dgdp?: number;
 }
 
 export class MovimientoProvidencia implements IMovimientoProvidencia {
@@ -38,7 +38,7 @@ export class MovimientoProvidencia implements IMovimientoProvidencia {
         public userId?: number,
         public userFirstName?: string,
         public userLastName?: string,
-        public numeroDgd?: number,
-        public numeroDgdp?: number,
+        public numero_dgd?: number,
+        public numero_dgdp?: number,
     ) {}
 }

@@ -28,7 +28,7 @@
     <div class="modal-footer">
         <div class="col-sm-12">
             <div class="form-group " *ngIf="
-            providenciaSeleccionada.requisito == 'DGD_DESPACHA_SUMARIO_COMPLETO' ">
+            providenciaSeleccionada.requisito == 'DGD_DESPACHA_SUMARIO_COMPLETO' || providenciaSeleccionada.requisito == 'ENVIA_VISTA_FISCAL_A_DN__'">
                 <h6 class="form-control-label d-flex justify-content-center" >Tipo de orden juridica</h6>
                 <select class="form-control"
                         name="tipo" [(ngModel)]="providenciaUpdateForType.ordenJuridico"
@@ -46,7 +46,7 @@
             </div>
             <div class="col-md-8 d-flex justify-content-center">
                 <h2>
-                    {{providenciaSeleccionada.etapa.split('_').join(' ')}}
+                    {{providenciaSeleccionada.etapa.toString().split('_') .join(' ')}}
                     <span jhiTranslate="pdisciplinarioApp.providencia.detail.title"></span>
                     {{ providenciaSeleccionada.id}}
                 </h2>
@@ -185,7 +185,7 @@
                                         <span>Etapa</span>
                                     </dt>
                                     <dd class="d-flex justify-content-center" >
-                                        <span>{{providenciaSeleccionada.etapa.split('_').join(' ')}}</span>
+                                        <span>{{providenciaSeleccionada.etapa.toString().split('_').join(' ')}}</span>
                                     </dd>
                                 </dl>
                             </div>
@@ -195,7 +195,7 @@
                                         <span class="d-flex justify-content-center">Sub Etapa</span>
                                     </dt>
                                     <dd class="d-flex justify-content-center" >
-                                        <span>{{providenciaSeleccionada.subEtapa.split('_').join(' ')}}</span>
+                                        <span>{{providenciaSeleccionada.subEtapa.toString().split('_').join(' ')}}</span>
                                     </dd>
                                 </dl>
                             </div>
@@ -205,7 +205,7 @@
                                         <span class="d-flex justify-content-center">Accion </span>
                                     </dt>
                                     <dd class="d-flex justify-content-center" >
-                                        <span>{{providenciaSeleccionada.requisito.split('_').join(' ')}}</span>
+                                        <span>{{providenciaSeleccionada.requisito.toString().split('_').join(' ')}}</span>
                                     </dd>
                                 </dl>
                             </div>

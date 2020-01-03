@@ -58,8 +58,9 @@ import {ProvidenciaAsignarNumeroDgdpPopupComponent} from 'app/entities/providenc
 import {ProvidenciaAsignarAbogadoPopupComponent} from 'app/entities/providencia/providencia-asignar-abogado.component';
 import {ProvidenciaAsignarNumeroIngresoPopupComponent} from 'app/entities/providencia/providencia-asignar-numero-ingreso.component';
 import {ProvidenciaAsignarAUpdPopupComponent} from 'app/entities/providencia/providencia-asignar-a-upd.component';
-import {ProvidenciaSinDenunciantePopupComponent} from "app/entities/providencia/providencia-sin-denunciante.component";
-
+import {ProvidenciaSinDenunciantePopupComponent} from 'app/entities/providencia/providencia-sin-denunciante.component';
+import {ProvidenciaAsignarNumeroDespachoPopupComponent} from 'app/entities/providencia/providencia-asignar-numero-despacho.component';
+import {ProvidenciaEnviarInformePopupComponent} from 'app/entities/providencia/providencia-enviar-informe.component';
 @Injectable({ providedIn: 'root' })
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
@@ -411,6 +412,18 @@ export const providenciaPopupRoute: Routes = [
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
+    }, {
+        path: 'providencia/:id/enviarInforme',
+        component: ProvidenciaEnviarInformePopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Envia Memo'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
     },
     {
         path: 'providencia/:id/inculpadoNoEnviaMemo',
@@ -712,6 +725,20 @@ export const providenciaPopupRoute: Routes = [
     {
         path: 'providencia/:id/asignarNumeroIngreso',
         component: ProvidenciaAsignarNumeroIngresoPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/asignarNumeroDespacho',
+        component: ProvidenciaAsignarNumeroDespachoPopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },

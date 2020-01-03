@@ -142,10 +142,8 @@ export class ProvidenciaComponent implements OnInit, OnDestroy {
     }
 
     sort() {
-        const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
-        if (this.predicate !== 'id') {
-            result.push('id');
-        }
+        const result = ['fechaCreacion' + ',' + (this.reverse ? 'desc' : 'asc')];
+
         return result;
     }
 

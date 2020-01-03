@@ -213,11 +213,18 @@ import {
     ProvidenciaSinDenuncianteComponent,
     ProvidenciaSinDenunciantePopupComponent
 } from 'app/entities/providencia/providencia-sin-denunciante.component';
+import {
+    ProvidenciaAsignarNumeroDespachoComponent,
+    ProvidenciaAsignarNumeroDespachoPopupComponent
+} from 'app/entities/providencia/providencia-asignar-numero-despacho.component';
+import {
+    ProvidenciaEnviarInformeComponent,
+    ProvidenciaEnviarInformePopupComponent
+} from 'app/entities/providencia/providencia-enviar-informe.component';
 // directive
 import {
     ReadMoreDirective,
 } from 'app/entities/providencia/read-more.directive';
-
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -340,7 +347,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaAsignarAUpdComponent,
         ProvidenciaAsignarAUpdPopupComponent,
         ProvidenciaSinDenuncianteComponent,
-        ProvidenciaSinDenunciantePopupComponent
+        ProvidenciaSinDenunciantePopupComponent,
+        ProvidenciaAsignarNumeroDespachoComponent,
+        ProvidenciaAsignarNumeroDespachoPopupComponent,
+        ProvidenciaEnviarInformeComponent,
+        ProvidenciaEnviarInformePopupComponent,
     ],
     entryComponents: [
         ProvidenciaComponent,
@@ -445,7 +456,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaAsignarAUpdComponent,
         ProvidenciaAsignarAUpdPopupComponent,
         ProvidenciaSinDenuncianteComponent,
-        ProvidenciaSinDenunciantePopupComponent
+        ProvidenciaSinDenunciantePopupComponent,
+        ProvidenciaAsignarNumeroDespachoComponent,
+        ProvidenciaAsignarNumeroDespachoPopupComponent,
+        ProvidenciaEnviarInformeComponent,
+        ProvidenciaEnviarInformePopupComponent,
             ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

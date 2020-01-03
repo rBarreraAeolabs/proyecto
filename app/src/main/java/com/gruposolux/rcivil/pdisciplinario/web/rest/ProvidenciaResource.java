@@ -224,7 +224,7 @@ public class ProvidenciaResource {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    @PostMapping("/providencias/sinDenunciante ")
+    @PostMapping("/providencias/sinDenunciante")
     @Timed
     public ResponseEntity<Void> sinDenunciante  (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("ENTRO AL fiscal: ");
@@ -469,8 +469,8 @@ public class ProvidenciaResource {
 
     @PostMapping("/providencias/actions")
     @Timed
-    public ResponseEntity<HashMap<String, Boolean>> getActionsPermitted(@RequestBody ProvidenciaResponseDTO providenciaDTO) {
-        log.debug("ruben2: da " +providenciaDTO.getProvidenciaId());
+    public ResponseEntity<HashMap<String, Boolean>> getActionsPermitted(@RequestBody ProvidenciaDTO providenciaDTO) {
+        log.debug("ruben2: da " +providenciaDTO.getId());
         HashMap<String, Boolean> actionsPermitted = this.providenciaService.getActionsPermitted(providenciaDTO);
         return new ResponseEntity<>(actionsPermitted, HttpStatus.OK);
     }
@@ -541,9 +541,9 @@ public class ProvidenciaResource {
 
         ProvidenciaDTO providenciaDTO = this.providenciaService.updateNumeroDGDP(providenciaUpdateNumeroReferenciaDTO);
 
-        if (providenciaDTO.getNumeroDgd() == null) {
-            return ResponseEntity.ok().headers(HeaderUtil.message("No se pudo agregar el N° DGDP",ENTITY_NAME)).body(null);
-        }
+//        if (providenciaDTO.getNumeroDgd() == null) {
+//            return ResponseEntity.ok().headers(HeaderUtil.message("No se pudo agregar el N° DGDP",ENTITY_NAME)).body(null);
+//        }
         return ResponseEntity.ok().headers(HeaderUtil.createAlert("El N° DGDP se agrego Correctamente!",
             providenciaDTO.getId().toString())).body(providenciaDTO);
     }
@@ -578,6 +578,11 @@ public class ProvidenciaResource {
             providenciaDTO.getId().toString())).body(providenciaDTO);
     }
 
+    /**
+     * ESTE ES EL PRIMER NUMERO DE DGDP QUE SE INGRESA QUE ES UN NUMERO DE REFERENCIA QUE SIRVE PARA LAS RELACIONES
+     * @param providenciaUpdateNumeroReferenciaDTO
+     * @return
+     */
     @PutMapping("/providencias/nroReferencia")
     @Timed
     public ResponseEntity<ProvidenciaDTO> updateNroReferencia(@RequestBody ProvidenciaUpdateNumeroReferenciaDTO providenciaUpdateNumeroReferenciaDTO) {
@@ -590,7 +595,9 @@ public class ProvidenciaResource {
             throw new BadRequestAlertException("El N° que ingreso ya esta siendo utilizado, por favor ingrese otro numero!", null, null);
         }
         ProvidenciaDTO providenciaDTO = this.providenciaService.updateNumeroReferencia(providenciaUpdateNumeroReferenciaDTO);
-        return ResponseEntity.ok().headers(HeaderUtil.createAlert("El N° de Referencia se agrego Correctamente!",
+        this.providenciaService.updateNumeroDGDP(providenciaUpdateNumeroReferenciaDTO);
+
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("El N° de DGDP se agrego Correctamente!",
             providenciaDTO.getId().toString())).body(providenciaDTO);
     }
 
@@ -655,6 +662,10 @@ public class ProvidenciaResource {
             providenciaUpdateForTypeDTO.getOrdenJuridico()== null){
             throw new BadRequestAlertException("Debe seleccionar el tipo de Orden Juridica", null, null);
         }
+//        if(requisitoMadre == EstadoProvidencia.ENVIA_VISTA_FISCAL_A_DN__ &&
+//            providenciaUpdateForTypeDTO.getOrdenJuridico()== null){
+//
+//        }
         ProvidenciaDTO providenciaDTO = this.providenciaService.updateProvidenciaForType(providenciaUpdateForTypeDTO);
 
         if (providenciaDTO != null)

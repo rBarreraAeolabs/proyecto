@@ -65,7 +65,8 @@ export class ProvidenciaInculpadoNoEnviaMemoComponent implements OnInit {
         this.providenciaService.inculpadoNoEnviaMemo(this.providenciaResponse).subscribe(res => {
             this.eventManager.broadcast({
                 name: 'providencia',
-                content: 'Providencia notificacion inculpado no envia memo'
+                content: 'Providencia notificacion no realizó descargo'
+                // content: 'Providencia notificacion inculpado no envia memo'
             });
             this.activeModal.dismiss(true);
             this.previousState();

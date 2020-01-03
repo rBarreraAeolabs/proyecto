@@ -53,7 +53,6 @@ export class MovimientoProvidenciaComponent implements OnInit, OnDestroy {
             filtroMovimientoProvidencia: null
         };
 
-        // this.movimientoProvidenciaService.traerMovimientoDeLaProvidencia(this.filtroMovPro.providencia.id)
         this.movimientoProvidenciaService
             .findByIdProvidencia(this.filtroMovPro)
             .subscribe(

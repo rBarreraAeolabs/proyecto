@@ -8,6 +8,7 @@ import { ProvidenciaService} from './providencia.service';
 import { PlantillaService} from '../plantilla/plantilla.service';
 import { IAdjunto} from '../../shared/model/adjunto.model';
 import { Principal} from 'app/core';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'jhi-providencia-devolver-dialog',
@@ -57,18 +58,37 @@ export class ProvidenciaDevolverDialogComponent implements OnInit {
     }
 
     confirmarDevolucion(id: number) {
-        this.providenciaResponse.estadoActual = this.providencia.estadoActual;
-        this.providenciaResponse.providenciaId = id;
-        this.providenciaResponse.adjuntosDTOs = this.adjuntos;
-        this.providenciaResponse.observacion = this.observacionDerivacion;
-        this.providenciaService.goBackwards(this.providenciaResponse).subscribe(res => {
-            this.eventManager.broadcast({
-                name: 'providenciaAceptada',
-                content: 'Providencia notificacion'
-            });
-            this.activeModal.dismiss(true);
-            this.previousState();
-        });
+
+        Swal.fire({
+            title: 'Estas seguro que deseas devolver la providencia #'+ id + '?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.value) {
+                this.providenciaResponse.estadoActual = this.providencia.estadoActual;
+                this.providenciaResponse.providenciaId = id;
+                this.providenciaResponse.adjuntosDTOs = this.adjuntos;
+                this.providenciaResponse.observacion = this.observacionDerivacion;
+                this.providenciaService.goBackwards(this.providenciaResponse).subscribe(res => {
+                    this.eventManager.broadcast({
+                        name: 'providenciaAceptada',
+                        content: 'Providencia notificacion'
+                    });
+                    this.activeModal.dismiss(true);
+                    this.previousState();
+                });
+                Swal.fire(
+                    'Devuelta!',
+                    'la providencia ha sido devuelta con exito!.',
+                    'success'
+                )
+            }
+        })
+
 
     }
 

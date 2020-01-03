@@ -100,15 +100,15 @@
                                                     <span *ngIf="providencia.nombreFiscalAsignado !== null"> Cambiar Fiscal Asignado</span>
                                                 </a>
 
-<!--                                                <a class="dropdown-item" *ngIf="actionsPermitted.numerarReferencia && providencia.providenciaMadreId == null"-->
-                                                <a class="dropdown-item" *ngIf="actionsPermitted.numerarReferencia"
+                                                <a class="dropdown-item" *ngIf="actionsPermitted.numerarReferencia && providencia.providenciaMadreId == null"
+
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/numerarReferencia'} }]"
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge">
 <!--                                                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;-->
 <!--                                                    <span *ngIf="providencia.numeroReferencia == null && providencia.requisito == 'RESOLUCION_QUE_INSTRUYE_SUMARIO_MEMO_CONDUCTOR'"></span>-->
-                                                    <span *ngIf="providencia.numeroReferencia == null"><fa-icon [icon]="'pencil-alt'"></fa-icon> Asignar Número de Referencia</span>
-                                                    <span *ngIf="providencia.numeroReferencia !== null"><fa-icon [icon]="'pencil-alt'"></fa-icon> Editar Número de Referencia</span>
+                                                    <span *ngIf="providencia.numeroReferencia == null"><fa-icon [icon]="'pencil-alt'"></fa-icon> Asignar Número de Dgdp</span>
+<!--                                                    <span *ngIf="providencia.numeroReferencia !== null"><fa-icon [icon]="'pencil-alt'"></fa-icon> Editar Número de Referencia</span>-->
                                                 </a>
                                                 <a class="dropdown-item"
                                                    *ngIf="actionsPermitted.asignarAUpd"
@@ -120,12 +120,20 @@
 
                                                 </a>
 
-                                                <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroIngreso "
+                                                <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroIngreso"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/asignarNumeroIngreso'} }]"
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
                                                     <span > Asignar Número de Ingreso</span>
+
+                                                </a>
+                                                <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroDespacho "
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/asignarNumeroDespacho'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > Asignar Número de Despacho</span>
 
                                                 </a>
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.folio && providencia.folio === null"
@@ -164,7 +172,7 @@
                                                     <span> Emite providencia</span>
                                                 </a>
 
-                                                <a class="dropdown-item"
+                                                <a class="dropdown-item" *ngIf="providencia.requisito.toString() !== 'REMITE_EXPEDIENTE_VISTA_FISCAL'"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/tipoSolicitud'} }]"
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"
@@ -341,7 +349,8 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
-                                                    <span > Inculpado Envia Memo </span>
+                                                    <span > Realizó descargo </span>
+<!--                                                    <span > Inculpado Envia Memo </span>-->
 
 
                                                 </a>
@@ -351,7 +360,8 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #F51009;" [icon]="'check-circle'"></fa-icon>&nbsp;
-                                                    <span> Inculpado No Envia Memo </span>
+                                                    <span> No Realizó Descargo </span>
+<!--                                                    <span> Inculpado No Envia Memo </span>-->
 
                                                 </a>
                                                 <a
@@ -385,7 +395,7 @@
 
                                                 </a>
                                                 <a
-                                                    class="dropdown-item" *ngIf="actionsPermitted.terminoProbatorio"
+                                                    class="dropdown-item" *ngIf="actionsPermitted.terminoProbatorio && providencia.requisito.toString() !== 'INCULPADO_NO_ENVIA_MEMO'"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/terminoProbatorio'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
@@ -416,7 +426,7 @@
                                                 <span >No Propone</span>
                                             </a>
                                                 <a
-                                                    class="dropdown-item" *ngIf="actionsPermitted.formularCargos"
+                                                    class="dropdown-item" *ngIf="actionsPermitted.formularCargos && (providencia.requisito.toString() !== 'INCULPADO_ENVIA_MEMO' || providencia.requisito.toString() !== 'TERMINO_PROBATORIO') && providencia.requisito.toString() !== 'INCULPADO_NO_ENVIA_MEMO'"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/formulaCargos'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
@@ -448,7 +458,16 @@
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
-                                                    <span>sin Denunciante</span>
+                                                    <span>Sin Denunciante</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.enviarInforme"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/enviarInforme'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span>Sin Denunciante</span>
 
                                                 </a>
                                                 <a

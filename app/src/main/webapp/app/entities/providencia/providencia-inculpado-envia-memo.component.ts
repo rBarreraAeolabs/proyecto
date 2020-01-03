@@ -65,7 +65,8 @@ export class ProvidenciaInculpadoEnviaMemoComponent implements OnInit {
         this.providenciaService.inculpadoEnviaMemo(this.providenciaResponse).subscribe(res => {
             this.eventManager.broadcast({
                 name: 'providencia',
-                content: 'Providencia notificacion inculpado envia memo'
+                content: 'Providencia notificacion realizó descargo'
+                // content: 'Providencia notificacion inculpado envia memo'
             });
             this.activeModal.dismiss(true);
             this.previousState();

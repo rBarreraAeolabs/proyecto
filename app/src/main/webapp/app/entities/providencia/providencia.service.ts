@@ -294,4 +294,13 @@ export class ProvidenciaService {
     asignaraUpd(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/asignaraUpd', response, {observe: 'response'});
     }
+    asignarNumeroDespacho(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
+        return this.http.
+        put<IProvidencia>(`${this.resourceUrl}/asignarNumeroDespacho`, providencia, {observe: 'response'})
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+
+    enviarInforme(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/enviarInforme', response, {observe: 'response'});
+    }
 }

@@ -1,7 +1,6 @@
 package com.gruposolux.rcivil.pdisciplinario.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.gruposolux.rcivil.pdisciplinario.domain.MovimientoProvidencia;
 import com.gruposolux.rcivil.pdisciplinario.domain.Providencia;
 import com.gruposolux.rcivil.pdisciplinario.security.AuthoritiesConstants;
 import com.gruposolux.rcivil.pdisciplinario.service.MovimientoProvidenciaService;
@@ -161,14 +160,5 @@ public class MovimientoProvidenciaResource {
     {
         return new ResponseEntity<Set<MovimientoProvidenciaDTO>>(this.movimientoProvidenciaService.getAllWithoutPagination(),
             HttpStatus.OK);
-    }
-
-    @GetMapping("/movimiento-providencias/movimiento/{id}")
-    @Timed
-//    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\") or hasAuthority(\"" + AuthoritiesConstants.VISUALIZAR_PROVIDENCIA + "\")")
-    public ResponseEntity <List<MovimientoProvidencia>> getMovimientoDeLaProvidencia(@PathVariable Long id) {
-        log.debug("REST request to get MovimientoProvidencia : {}", id);
-        List<MovimientoProvidencia> movimientoProvidenciaList = movimientoProvidenciaService.movimientosDeLaProvidencia(id);
-        return new ResponseEntity<>(movimientoProvidenciaList, HttpStatus.OK);
     }
 }
