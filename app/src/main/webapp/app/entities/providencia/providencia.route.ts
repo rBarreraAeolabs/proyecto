@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 import { IProvidencia, Providencia } from 'app/shared/model/providencia.model';
 import { ProvidenciaService } from './providencia.service';
 import { ProvidenciaComponent } from './providencia.component';
-import { ProvidenciaUpdateComponent } from './providencia-update.component';
+import { ProvidenciaUpdatePopupComponent, ProvidenciaUpdateComponent } from './providencia-update.component';
 import { ProvidenciaDeletePopupComponent } from './providencia-delete-dialog.component';
 import { ProvidenciaResponderPopupComponent } from 'app/entities/providencia/providencia-responder-dialog.component';
 import { ProvidenciaDevolverPopupComponent } from 'app/entities/providencia/providencia-devolver-dialog.component';
@@ -61,6 +61,7 @@ import {ProvidenciaAsignarAUpdPopupComponent} from 'app/entities/providencia/pro
 import {ProvidenciaSinDenunciantePopupComponent} from 'app/entities/providencia/providencia-sin-denunciante.component';
 import {ProvidenciaAsignarNumeroDespachoPopupComponent} from 'app/entities/providencia/providencia-asignar-numero-despacho.component';
 import {ProvidenciaEnviarInformePopupComponent} from 'app/entities/providencia/providencia-enviar-informe.component';
+import {ProvidenciaEnviaVistaFiscalPopupComponent} from 'app/entities/providencia/providencia-envia-vista-fiscal.component';
 @Injectable({ providedIn: 'root' })
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
@@ -138,11 +139,23 @@ export const providenciaRoute: Routes = [
         canActivate: [UserRouteAccessService]
     }
 ];
-
 export const providenciaPopupRoute: Routes = [
     {
         path: 'providencia/:id/delete',
         component: ProvidenciaDeletePopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'providencianewPopup',
+        component: ProvidenciaUpdatePopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },
@@ -364,6 +377,18 @@ export const providenciaPopupRoute: Routes = [
     {
         path: 'providencia/:id/notificaCierre',
         component: ProvidenciaFiscalNotificaCierrePopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Apela'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    }, {
+        path: 'providencia/:id/enviaVistaFiscal',
+        component: ProvidenciaEnviaVistaFiscalPopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },

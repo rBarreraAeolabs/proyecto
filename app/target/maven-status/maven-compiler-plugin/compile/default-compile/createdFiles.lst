@@ -176,6 +176,7 @@ com\gruposolux\rcivil\pdisciplinario\service\mapper\EntidadMapperImpl.class
 com\gruposolux\rcivil\pdisciplinario\service\PerfilService.class
 com\gruposolux\rcivil\pdisciplinario\domain\Grupo.class
 com\gruposolux\rcivil\pdisciplinario\service\dto\AdjuntoDTO.class
+com\gruposolux\rcivil\pdisciplinario\service\dto\ProvidenciaPermisoDTO.class
 com\gruposolux\rcivil\pdisciplinario\web\rest\MovimientoProvidenciaResource.class
 com\gruposolux\rcivil\pdisciplinario\domain\Entidad_.class
 com\gruposolux\rcivil\pdisciplinario\domain\Plazo.class

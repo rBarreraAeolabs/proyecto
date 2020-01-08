@@ -24,6 +24,8 @@ public class DetalleProvidenciaDTO  {
 
     private Long numeroDgdp;
 
+//    private Long numeroDespacho;
+
     private Long folio;
 
     private Long numeroDgd;
@@ -79,6 +81,7 @@ public class DetalleProvidenciaDTO  {
         Long numeroDgdp,
         Long folio,
         Long numeroDgd,
+//        Long numeroDespacho,
         String estadoActual,
         EstadoProvidencia etapa,
         EstadoProvidencia subEtapa,
@@ -100,6 +103,7 @@ public class DetalleProvidenciaDTO  {
         this.numeroDgdp = numeroDgdp;
         this.folio = folio;
         this.numeroDgd = numeroDgd;
+//        this.numeroDespacho = numeroDespacho;
         this.estadoActual = estadoActual;
         this.etapa = etapa;
         this.subEtapa = subEtapa;
@@ -154,6 +158,13 @@ public class DetalleProvidenciaDTO  {
         this.numeroDgdp = numeroDgdp;
     }
 
+//    public Long getNumeroDespacho() {
+//        return numeroDespacho;
+//    }
+//
+//    public void setNumeroDespacho(Long numeroDespacho) {
+//        this.numeroDespacho = numeroDespacho;
+//    }
 
     public Long getNumeroDgd() {
         return numeroDgd;
@@ -348,6 +359,7 @@ public class DetalleProvidenciaDTO  {
             ", numeroReferencia=" + numeroReferencia +
             ", numeroProvidencia=" + numeroProvidencia +
             ", numeroDgdp=" + numeroDgdp +
+//            ", numeroDespacho=" + numeroDespacho +
             ", folio=" + folio +
             ", numeroDgd=" + numeroDgd +
             ", estadoActual='" + estadoActual + '\'' +

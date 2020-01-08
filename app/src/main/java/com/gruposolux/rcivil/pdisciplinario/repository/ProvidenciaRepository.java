@@ -95,6 +95,10 @@ public interface ProvidenciaRepository extends JpaRepository<Providencia, Long> 
     void updateNumeroFolio(Long numeroFolio, Long providenciaId);
 
     @Modifying
+    @Query(value = "UPDATE providencia SET numero_despacho = ? WHERE id = ?", nativeQuery = true)
+    void updateNumeroDespacho(Long numeroDespacho, Long providenciaId);
+
+    @Modifying
     @Query(value = "UPDATE providencia SET tipo = ? WHERE id = ?", nativeQuery = true)
     void updateTipoSolicitud(String tipoSolicitud, Long providenciaId);
 

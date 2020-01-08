@@ -23,6 +23,8 @@ public class ProvidenciaResponseDTO
 
     private Long numeroReferencia;
 
+    private Long providenciaMadreId;
+
     private Long numeroProvidencia;
 
     private Long numeroDgdp;
@@ -30,6 +32,14 @@ public class ProvidenciaResponseDTO
     private Long folio;
 
     private Long numeroDgd;
+
+    public Long getProvidenciaMadreId() {
+        return providenciaMadreId;
+    }
+
+    public void setProvidenciaMadreId(Long providenciaMadreId) {
+        this.providenciaMadreId = providenciaMadreId;
+    }
 
     public ProvidenciaResponseDTO() {}
 
@@ -149,10 +159,30 @@ public class ProvidenciaResponseDTO
             ", documentosDTOs=" + documentosDTOs +
             ", observacion='" + observacion + '\'' +
             ", numeroReferencia=" + numeroReferencia +
+            ", providenciaMadreId=" + providenciaMadreId +
             ", numeroProvidencia=" + numeroProvidencia +
             ", numeroDgdp=" + numeroDgdp +
             ", folio=" + folio +
             ", numeroDgd=" + numeroDgd +
             '}';
     }
+
+    //    @Override
+//    public String toString() {
+//        return "ProvidenciaResponseDTO{" +
+//            "providenciaId=" + providenciaId +
+//            ", estadoActual='" + estadoActual + '\'' +
+//            ", etapa=" + etapa +
+//            ", subEtapa=" + subEtapa +
+//            ", requisito=" + requisito +
+//            ", adjuntosDTOs=" + adjuntosDTOs +
+//            ", documentosDTOs=" + documentosDTOs +
+//            ", observacion='" + observacion + '\'' +
+//            ", numeroReferencia=" + numeroReferencia +
+//            ", numeroProvidencia=" + numeroProvidencia +
+//            ", numeroDgdp=" + numeroDgdp +
+//            ", folio=" + folio +
+//            ", numeroDgd=" + numeroDgd +
+//            '}';
+//    }
 }

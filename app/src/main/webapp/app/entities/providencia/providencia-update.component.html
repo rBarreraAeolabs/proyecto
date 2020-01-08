@@ -1,6 +1,10 @@
-<div class="row justify-content-center" style="width: auto">
-    <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+ <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm" class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                    (click)="clear()">&times;</button>
+    </div>
+            <div class="modal-body">
             <h2 id="jhi-providencia-heading" jhiTranslate="pdisciplinarioApp.providencia.home.createLabel" *ngIf="!providencia.id"></h2>
 
             <h2 id="jhi-providencia-heading-edit" jhiTranslate="pdisciplinarioApp.providencia.home.editLabel" *ngIf="providencia.id"></h2>
@@ -122,7 +126,8 @@
                     </div>
                 </fieldset>
             </div>
-            <div>
+    </div>
+            <div class="modal-footer">
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
@@ -130,6 +135,4 @@
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
-        </form>
-    </div>
-</div>
+ </form>

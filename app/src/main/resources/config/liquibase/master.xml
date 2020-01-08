@@ -122,5 +122,7 @@
     <include file="config/liquibase/changelog/20191206202201_add_DGDP_movimiento_providencia.xml" relativeToChangelogFile="false"/>
     <!--Nuevo perfil de Asesor -->
     <include file="config/liquibase/changelog/20191213201130_update_perfile_Asesor_data.xml" relativeToChangelogFile="false"/>
+    <!--Nuevo campo Numero Despacho -->
+    <include file="config/liquibase/changelog/20191231212200_add_Numero_Despacho_movimiento_providencia.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
 

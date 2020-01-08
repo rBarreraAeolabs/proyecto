@@ -5,7 +5,6 @@ import { PdisciplinarioSharedModule } from 'app/shared';
 import {
     ProvidenciaComponent,
     ProvidenciaDetailComponent,
-    ProvidenciaUpdateComponent,
     ProvidenciaDeletePopupComponent,
     ProvidenciaDeleteDialogComponent,
     providenciaRoute,
@@ -221,10 +220,17 @@ import {
     ProvidenciaEnviarInformeComponent,
     ProvidenciaEnviarInformePopupComponent
 } from 'app/entities/providencia/providencia-enviar-informe.component';
+import {
+    ProvidenciaEnviaVistaFiscalComponent,
+    ProvidenciaEnviaVistaFiscalPopupComponent
+} from 'app/entities/providencia/providencia-envia-vista-fiscal.component';
+
 // directive
 import {
     ReadMoreDirective,
 } from 'app/entities/providencia/read-more.directive';
+import { ProvidenciaUpdatePopupComponent, ProvidenciaUpdateComponent } from 'app/entities/providencia/providencia-update.component';
+
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -242,6 +248,7 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaComponent,
         ProvidenciaDetailComponent,
         ProvidenciaDetailDgdpComponent,
+        ProvidenciaUpdatePopupComponent,
         ProvidenciaUpdateComponent,
         ProvidenciaDeleteDialogComponent,
         ProvidenciaResponderDialogComponent,
@@ -352,9 +359,12 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaAsignarNumeroDespachoPopupComponent,
         ProvidenciaEnviarInformeComponent,
         ProvidenciaEnviarInformePopupComponent,
+        ProvidenciaEnviaVistaFiscalComponent,
+        ProvidenciaEnviaVistaFiscalPopupComponent,
     ],
     entryComponents: [
         ProvidenciaComponent,
+        ProvidenciaUpdatePopupComponent,
         ProvidenciaUpdateComponent,
         ProvidenciaDeleteDialogComponent,
         ProvidenciaResponderDialogComponent,
@@ -461,6 +471,8 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaAsignarNumeroDespachoPopupComponent,
         ProvidenciaEnviarInformeComponent,
         ProvidenciaEnviarInformePopupComponent,
+        ProvidenciaEnviaVistaFiscalComponent,
+        ProvidenciaEnviaVistaFiscalPopupComponent,
             ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

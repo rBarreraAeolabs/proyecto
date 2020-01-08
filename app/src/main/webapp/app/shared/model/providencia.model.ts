@@ -211,6 +211,7 @@ export interface IProvidencia {
     providenciaMadreId?: number;
     numeroDgdp?: number;
     numeroDgd?: number;
+    numeroDespacho?: number;
 }
 
 export class Providencia implements IProvidencia {

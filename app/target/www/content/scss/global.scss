@@ -13,6 +13,13 @@ h4 {
     font-weight: 300;
     color: #7D7D7D;
 }
+body {
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important;
+    font-size: 14px !important;
+    line-height: 1.42857 !important;
+    color: #333 !important;
+    background-color: #fff;
+}
 
 a {
     color: #533f03;
@@ -228,6 +235,38 @@ entity detail page css
     margin-top: 100px;
     margin-left: 170px;
     margin-right: 170px;
+}
+.dl-horizontal dt {
+    float: left;
+    width: 160px;
+    clear: left;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: auto !important;
+}
+
+.dl-horizontal.jh-entity-details>dt {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.dl-horizontal.jh-entity-details>dd {
+    border-bottom: 1px solid #eee;
+    padding-left: 180px;
+    margin-left: 0;
+}
+dd, dt {
+    line-height: 1.42857;
+}
+dt {
+    font-weight: 700;
+}
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 0px solid rgba(0, 0, 0, 0.1) !important;
 }
 /* ==========================================================================
 ui bootstrap tweaks

@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-01-02T12:01:52-0300",
+    date = "2020-01-08T10:47:39-0300",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_131 (Oracle Corporation)"
 )
 @Component
@@ -82,6 +82,7 @@ public class ProvidenciaMapperImpl implements ProvidenciaMapper {
         if ( id1 != null ) {
             providenciaDTO.setSumarioAdministrativoId( id1 );
         }
+        providenciaDTO.setNumeroDespacho( providencia.getNumeroDespacho() );
         providenciaDTO.setId( providencia.getId() );
         providenciaDTO.setnumeroReferencia( providencia.getNumeroReferencia() );
         providenciaDTO.setNumeroProvidencia( providencia.getNumeroProvidencia() );
@@ -136,6 +137,7 @@ public class ProvidenciaMapperImpl implements ProvidenciaMapper {
         providencia.setId( providenciaDTO.getId() );
         providencia.setNumeroDgdp( providenciaDTO.getNumeroDgdp() );
         providencia.setFolio( providenciaDTO.getFolio() );
+        providencia.setNumeroDespacho( providenciaDTO.getNumeroDespacho() );
         providencia.setNumeroDgd( providenciaDTO.getNumeroDgd() );
         providencia.setNumeroReferencia( providenciaDTO.getnumeroReferencia() );
         providencia.setNumeroProvidencia( providenciaDTO.getNumeroProvidencia() );

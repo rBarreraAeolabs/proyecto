@@ -303,4 +303,8 @@ export class ProvidenciaService {
     enviarInforme(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/enviarInforme', response, {observe: 'response'});
     }
+    enviaVistaFiscal(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/enviaVistaFiscal', response, {observe: 'response'});
+    }
+
 }

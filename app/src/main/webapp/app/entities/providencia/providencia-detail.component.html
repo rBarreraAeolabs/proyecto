@@ -118,6 +118,14 @@
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
                                                     <span *ngIf="providencia.nombreFiscalAsignado == null"> Asignar a Udp</span>
 
+                                                </a> <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.enviaVistaFiscal"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/enviaVistaFiscal'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span *ngIf="providencia.nombreFiscalAsignado == null">  Envia Vista Fiscal</span>
+
                                                 </a>
 
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroIngreso"
@@ -487,182 +495,157 @@
                             <hr>
                             <jhi-alert-error></jhi-alert-error>
                             <!--DETALLE DE LOS DETALLES DE PROVIDENCIA-->
+                        <div style="box-shadow: -11px 10px 5px rgba(12, 12, 12, 0.09);border: 1px #eeeeee solid;border-radius: 4px;background-color: #f9f9f9; padding: 20px;">
+                            <div class="col-sm-12">
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <dt class="d-flex justify-content-center"><h4>Datos Del Solicitante</h4></dt>
-                                    <hr>
-                                    <div class="d-flex justify-content-center">
+                                <div class="col-sm-6" >
+                                    <div>
                                         <dl class="dl-horizontal jh-entity-details">
-                                            <dt class="d-flex justify-content-center" >
+                                            <h5>Datos Del Solicitante</h5>
+                                            <dt>
                                                 <span jhiTranslate="pdisciplinarioApp.providencia.rutSolicitante">Rut</span>
                                             </dt>
-                                            <dd class="d-flex justify-content-center" >
+                                            <dd>
                                                 <span>{{providencia.runSolicitante  | rut}}</span>
                                             </dd>
-                                            <dt class="d-flex justify-content-center" >
+                                            <dt>
                                                 <span *ngIf="!providencia.entidadSolicitante" jhiTranslate="pdisciplinarioApp.providencia.nombreSolicitante">Nombre</span>
                                             </dt>
-                                            <dd class="d-flex justify-content-center" *ngIf="providencia.nombreSolicitante && !providencia.entidadSolicitante">
+                                            <dd *ngIf="providencia.nombreSolicitante && !providencia.entidadSolicitante">
                                                 <span >{{providencia.nombreSolicitante}}</span>
                                             </dd>
-                                            <dd class="d-flex justify-content-center" *ngIf="!providencia.nombreSolicitante && !providencia.entidadSolicitante">
+                                            <dd *ngIf="!providencia.nombreSolicitante && !providencia.entidadSolicitante">
                                                 <span style="color:red">NO INGRESADO</span>
                                             </dd>
-                                            <dt class="d-flex justify-content-center" *ngIf="providencia.entidadSolicitante">
+                                            <dt  *ngIf="providencia.entidadSolicitante">
                                                 <span jhiTranslate="pdisciplinarioApp.providencia.entidadSolicitante">Entidad </span>
                                             </dt>
-                                            <dd class="d-flex justify-content-center" *ngIf="providencia.entidadSolicitante">
+                                            <dd *ngIf="providencia.entidadSolicitante">
                                                 <span>{{providencia.entidadSolicitante.nombre}}</span>
                                             </dd>
-                                        </dl>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="col-sm-6">
-                                    <dt class="d-flex justify-content-center"><h4>Datos Del Implicado</h4></dt>
-                                    <hr>
-                                    <div class="d-flex justify-content-center">
-                                        <dl class="dl-horizontal jh-entity-details">
-                                            <dt class="d-flex justify-content-center" >
+                                           <h5>Datos Del Demandado</h5>
+                                            <dt>
                                                 <span jhiTranslate="pdisciplinarioApp.providencia.rutImplicado">Rut</span>
                                             </dt>
-                                            <dd class="d-flex justify-content-center" >
+                                            <dd>
                                                 <span>{{providencia.runImplicado | rut}}</span>
                                             </dd>
-                                            <dt class="d-flex justify-content-center" >
+                                            <dt>
                                                 <span *ngIf="!providencia.entidadImplicada && !providencia.entidadImplicada" jhiTranslate="pdisciplinarioApp.providencia.nombreImplicado">Nombre</span>
                                             </dt>
-                                            <dd class="d-flex justify-content-center" *ngIf="providencia.nombreImplicado">
+                                            <dd *ngIf="providencia.nombreImplicado">
                                                 <span >{{providencia.nombreImplicado}}</span>
                                             </dd>
-                                            <dd class="d-flex justify-content-center" *ngIf="!providencia.nombreImplicado && !providencia.entidadImplicada">
+                                            <dd *ngIf="!providencia.nombreImplicado && !providencia.entidadImplicada">
                                                 <span style="color:red">NO INGRESADO</span>
                                             </dd>
-                                            <dt class="d-flex justify-content-center" *ngIf="providencia.entidadImplicada">
+                                            <dt *ngIf="providencia.entidadImplicada">
                                                 <span jhiTranslate="pdisciplinarioApp.providencia.entidadImplicada">Entidad</span>
                                             </dt>
-                                            <dd class="d-flex justify-content-center" *ngIf="providencia.entidadImplicada">
+                                            <dd *ngIf="providencia.entidadImplicada">
                                                 <span>{{providencia.entidadImplicada.nombre}}</span>
                                             </dd>
                                         </dl>
                                     </div>
                                 </div>
+                                        <div class="col-sm-6">
+                                            <dl class="dl-horizontal jh-entity-details">
+                                                <h5>Datos De La Providencia</h5>
+                                                <dt>
+                                                    <span jhiTranslate="pdisciplinarioApp.providencia.fechaSolicitud">Fecha Providencia</span>
+                                                </dt>
+                                                <dd>
+                                                    <span>{{providencia.fechaSolicitud | date:'mediumDate'}}</span>
+                                                </dd>
+                                                <dt>
+                                                    <span>Fecha Creacion</span>
+                                                </dt>
+                                                <dd >
+                                                    <span>{{providencia.fechaCreacion  | date:'mediumDate'}}</span>
+                                                </dd>
+                                                <dt>
+                                                    <span jhiTranslate="pdisciplinarioApp.providencia.numeroProvidencia">N° Providencia </span>
+                                                </dt>
+                                                <dd *ngIf="providencia.numeroProvidencia">
+                                                    <span>{{providencia.numeroProvidencia}}</span>
+                                                </dd>
+                                                <dd *ngIf="!providencia.numeroProvidencia">
+                                                    <span style="color:red">DEBE ENUMERAR</span>
+                                                </dd>
+                                                <dt >
+                                                    <span jhiTranslate="pdisciplinarioApp.providencia.numeroReferencia">N° Referencia </span>
+                                                </dt>
+                                                <dd *ngIf="providencia.numeroReferencia">
+                                                    <span>{{providencia.numeroReferencia}}</span>
+                                                </dd>
+                                                <dd *ngIf="!providencia.numeroReferencia">
+                                                    <span style="color:red">DEBE ENUMERAR</span>
+                                                </dd>
+                                                <dt>
+                                                    <span jhiTranslate="pdisciplinarioApp.providencia.tipo">Tipo de Solicitud</span>
+                                                </dt>
+                                                <dd *ngIf="providencia.tipo">
+                                                    <span jhiTranslate="{{'pdisciplinarioApp.TipoProvidencia.' + providencia.tipo}}">{{providencia.tipo}}</span>
+                                                </dd>
+                                                <dd *ngIf="!providencia.tipo">
+                                                    <span style="color:red">DEBE ESPECIFICAR</span>
+                                                </dd>
+                                                <dt >
+                                                    <span>Fiscal Asignado</span>
+                                                </dt>
+                                                <dd *ngIf="providencia.nombreFiscalAsignado">
+                                                    <span>{{providencia.nombreFiscalAsignado}}</span>
+                                                </dd>
+                                                <dd *ngIf="!providencia.nombreFiscalAsignado">
+                                                    <span style="color:red">DEBE ASIGNAR</span>
+                                                </dd>
+                                                <dt>
+                                                    <span>Cantidad de archivos adjuntos</span>
+                                                </dt>
+                                                <dd *ngIf="providencia.totalAdjuntos">
+                                                    <span>{{providencia.totalAdjuntos}}</span>
+                                                </dd>
+                                                <dd *ngIf="!providencia.totalAdjuntos">
+                                                    <span style="color:red">SIN ADJUNTOS</span>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                            </div>
                                 <br>
                                 <div class="col-sm-12">
-                                    <hr>
-                                    <dt class="d-flex justify-content-center"><h4>Estado De La Providencia</h4></dt>
-                                    <hr>
+
                                     <div class="row">
-                                        <div class="col-sm-4 d-flex justify-content-center">
+                                        <div class="col-sm-6">
                                             <dl class="dl-horizontal jh-entity-details">
-                                                <dt class="d-flex justify-content-center" >
+                                                <h4>Estado De La Providencia</h4>
+                                                <dt >
                                                     <span>Etapa</span>
                                                 </dt>
-                                                <dd class="d-flex justify-content-center" >
+                                                <dd >
                                                     <span>{{providencia.etapa.toString().split('_').join(' ')}}</span>
                                                 </dd>
-                                            </dl>
-                                        </div>
-                                        <div class="col-sm-4 d-flex justify-content-center">
-                                            <dl class="dl-horizontal jh-entity-details">
-                                                <dt class="d-flex justify-content-center" >
-                                                    <span class="d-flex justify-content-center">Sub Etapa</span>
+                                                <dt>
+                                                    <span>Sub Etapa</span>
                                                 </dt>
-                                                <dd class="d-flex justify-content-center" >
+                                                <dd >
                                                     <span>{{providencia.subEtapa.toString().split('_').join(' ')}}</span>
                                                 </dd>
-                                            </dl>
-                                        </div>
-                                        <div class="col-sm-4 d-flex justify-content-center">
-                                            <dl class="dl-horizontal jh-entity-details">
-                                                <dt class="d-flex justify-content-center" >
-                                                    <span class="d-flex justify-content-center">Accion </span>
+                                                <dt>
+                                                    <span >Accion </span>
                                                 </dt>
-                                                <dd class="d-flex justify-content-center" >
+                                                <dd >
                                                     <span>{{providencia.requisito.toString().split('_').join(' ')}}</span>
                                                 </dd>
                                             </dl>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <hr>
-                                    <dt class="d-flex justify-content-center"><h4>Datos De La Providencia</h4></dt>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-6 d-flex justify-content-center">
+                                        <div class="col-sm-6">
                                             <dl class="dl-horizontal jh-entity-details">
-                                                <dt class="d-flex justify-content-center">
-                                                    <span jhiTranslate="pdisciplinarioApp.providencia.fechaSolicitud">Fecha Solicitud</span>
-                                                </dt>
-                                                <dd class="d-flex justify-content-center">
-                                                    <span>{{providencia.fechaSolicitud | date:'mediumDate'}}</span>
-                                                </dd>
-                                                <dt class="d-flex justify-content-center">
-                                                    <span jhiTranslate="pdisciplinarioApp.providencia.numeroProvidencia">numero Providencia </span>
-                                                </dt>
-                                                <dd class="d-flex justify-content-center" *ngIf="providencia.numeroProvidencia">
-                                                    <span>{{providencia.numeroProvidencia}}</span>
-                                                </dd>
-                                                <dd class="d-flex justify-content-center" *ngIf="!providencia.numeroProvidencia">
-                                                    <span style="color:red">DEBE ENUMERAR</span>
-                                                </dd>
-                                                <dt class="d-flex justify-content-center">
-                                                    <span>Cantidad de archivos adjuntos</span>
-                                                </dt>
-                                                <dd class="d-flex justify-content-center" *ngIf="providencia.totalAdjuntos">
-                                                    <span>{{providencia.totalAdjuntos}}</span>
-                                                </dd>
-                                                <dd class="d-flex justify-content-center" *ngIf="!providencia.totalAdjuntos">
-                                                    <span style="color:red">SIN ADJUNTOS</span>
-                                                </dd>
-                                            </dl>
-                                        </div>
-                                        <div class="col-sm-6 d-flex justify-content-center">
-                                            <dl class="dl-horizontal jh-entity-details">
-                                                <dt class="d-flex justify-content-center">
-                                                    <span>Fecha Creacion</span>
-                                                </dt>
-                                                <dd class="d-flex justify-content-center">
-                                                    <span>{{providencia.fechaCreacion  | date:'mediumDate'}}</span>
-                                                </dd>
-                                                <dt class="d-flex justify-content-center">
-                                                    <span jhiTranslate="pdisciplinarioApp.providencia.numeroReferencia">numero referencia </span>
-                                                </dt>
-                                                <dd class="d-flex justify-content-center" *ngIf="providencia.numeroReferencia">
-                                                    <span>{{providencia.numeroReferencia}}</span>
-                                                </dd>
-                                                <dd class="d-flex justify-content-center" *ngIf="!providencia.numeroReferencia">
-                                                    <span style="color:red">DEBE ENUMERAR</span>
-                                                </dd>
-                                                <dt class="d-flex justify-content-center">
-                                                    <span jhiTranslate="pdisciplinarioApp.providencia.tipo">Tipo</span>
-                                                </dt>
-                                                <dd class="d-flex justify-content-center" *ngIf="providencia.tipo">
-                                                    <span jhiTranslate="{{'pdisciplinarioApp.TipoProvidencia.' + providencia.tipo}}">{{providencia.tipo}}</span>
-                                                </dd>
-                                                <dd class="d-flex justify-content-center" *ngIf="!providencia.tipo">
-                                                    <span style="color:red">DEBE ESPECIFICAR</span>
-                                                </dd>
-                                                <dt class="d-flex justify-content-center">
-                                                    <span>Nombre del Fiscal Asignado</span>
-                                                </dt>
-                                                <dd class="d-flex justify-content-center" *ngIf="providencia.nombreFiscalAsignado">
-                                                    <span>{{providencia.nombreFiscalAsignado}}</span>
-                                                </dd>
-                                                <dd class="d-flex justify-content-center" *ngIf="!providencia.nombreFiscalAsignado">
-                                                    <span style="color:red">DEBE ASIGNAR</span>
-                                                </dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 d-flex justify-content-center">
-                                            <dl class="dl-horizontal jh-entity-details">
-                                                <dt class="d-flex justify-content-center" *ngIf="providencia.instrucciones && providencia.instrucciones.length > 0">
+                                                <dt  *ngIf="providencia.instrucciones && providencia.instrucciones.length > 0">
                                                     <span jhiTranslate="pdisciplinarioApp.providencia.instrucciones">Instrucciones</span>
                                                 </dt>
-                                                <dd class="d-flex justify-content-center" *ngFor="let instruccion of providencia.instrucciones">
+                                                <dd *ngFor="let instruccion of providencia.instrucciones">
                                                     {{instruccion.split('_').join(' ')}}
                                                 </dd>
                                             </dl>
@@ -672,7 +655,7 @@
                                     <div class="row">
                                         <div class="col-12 d-flex justify-content-center">
                                             <dl class="dl-horizontal jh-entity-details">
-                                                <dt class="d-flex justify-content-center">
+                                                <dt >
                                                     <span>Comentario</span>
                                                 </dt>
                                                 <dd *ngIf="providencia.comentario">
@@ -692,7 +675,7 @@
                                                     </div>
 
                                                 </dd>
-                                                <dd class="d-flex justify-content-center" *ngIf="!providencia.comentario">
+                                                <dd *ngIf="!providencia.comentario">
                                                     <span style="color:red">SIN COMENTARIO</span>
                                                 </dd>
                                             </dl>
@@ -701,6 +684,7 @@
                                     <hr>
                                 </div>
                             </div>
+                        </div>
                             <br>
                             <!--AQUI VIENEN LOS TABS-->
                             <div class="row">

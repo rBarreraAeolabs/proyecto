@@ -42,6 +42,7 @@ C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\j
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\web\rest\InstruccionesResource.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\domain\Plantilla.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\dto\FiltroMovProDTO.java
+C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\dto\ProvidenciaPermisoDTO.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\repository\SumarioAdministrativoRepository.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\domain\enumeration\TipoDocumento.java
 C:\Users\rbarrera\Proyectos\netlinux\registrocivil-pdisciplinario\app\src\main\java\com\gruposolux\rcivil\pdisciplinario\service\mapper\RespuestaMapper.java

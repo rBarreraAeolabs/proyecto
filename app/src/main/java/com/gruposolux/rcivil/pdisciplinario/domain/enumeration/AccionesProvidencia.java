@@ -48,6 +48,7 @@ public enum AccionesProvidencia {
 
     FISCAL_NOTIFICA_A_INCULPADO,
     INCULPADO_ENVIA_MEMO,
+    ENVIA_VISTA_FISCAL,
     FISCAL_FORMULA_CARGOS,
 
     TERMINO_PROBATORIO,
@@ -85,6 +86,7 @@ public enum AccionesProvidencia {
     FLUJO_REABRIR,
     FLUJO_NO_APELA,
     FLUJO_APELA,
+    NUMERO_DESPACHO,
 
     CONTINUAR_FLUJO_APELA_SUSPENCION_MULTA,
     CONTINUAR_FLUJO_APELA_SENSURA_DESTITUCION,
@@ -94,6 +96,9 @@ public enum AccionesProvidencia {
     FLUJO_REPRESENTA,
     PRORROGA,
     PRORROGA2,
+    PROVIDENCIA_CREADA_,
+    PROVIDENCIA_CREADA,
+
 
     /**
     para investacion luego de prorroga

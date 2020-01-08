@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
@@ -11,6 +11,8 @@ import { ProvidenciaService } from './providencia.service';
 import { IGrupo } from 'app/shared/model/grupo.model';
 import {IEntidad} from '../../shared/model/entidad.model';
 import {EntidadService} from '../entidad/entidad.service';
+import {NgbActiveModal, NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
+import {ProvidenciaResponderDialogComponent} from "app/entities/providencia/providencia-responder-dialog.component";
 
 @Component({
     selector: 'jhi-providencia-update',
@@ -32,6 +34,7 @@ export class ProvidenciaUpdateComponent implements OnInit {
 
     constructor(
         private jhiAlertService: JhiAlertService,
+        public activeModal: NgbActiveModal,
         private providenciaService: ProvidenciaService,
         private activatedRoute: ActivatedRoute,
         private entidadService: EntidadService
@@ -51,6 +54,8 @@ export class ProvidenciaUpdateComponent implements OnInit {
                     this.providencia.instrucciones.length > 0
                 ) {
                     this.cargarAccionesProvidencia(this.providencia.instrucciones);
+                    this.activeModal.dismiss(true);
+                    this.previousState();
                 }
             }
         });
@@ -65,6 +70,9 @@ export class ProvidenciaUpdateComponent implements OnInit {
         this.providencia.tipo = null;
     }
 
+    clear() {
+        this.activeModal.dismiss('cancel');
+    }
     cargarConfigMultiSelectAcciones() {
         this.dropdownListAcciones = [
             { id: 1, itemName: InstruccionesProvidencia.TOMAR_CONOCIMIENTO.split('_').join(' ') },
@@ -181,5 +189,40 @@ export class ProvidenciaUpdateComponent implements OnInit {
 
     getUploadedAdjuntos($event) {
         this.providencia.adjuntos = $event;
+    }
+}
+@Component({
+    selector: 'jhi-providencia-update-popup',
+    template: ''
+})
+export class ProvidenciaUpdatePopupComponent implements OnInit, OnDestroy {
+    private ngbModalRef: NgbModalRef;
+
+    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
+
+    ngOnInit() {
+        this.activatedRoute.data.subscribe(({ providencia }) => {
+            setTimeout(() => {
+                this.ngbModalRef = this.modalService.open(ProvidenciaUpdateComponent as Component, {
+                    size: 'lg',
+                    backdrop: 'static'
+                });
+                this.ngbModalRef.componentInstance.providencia = providencia;
+                this.ngbModalRef.result.then(
+                    result => {
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.ngbModalRef = null;
+                    },
+                    reason => {
+                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.ngbModalRef = null;
+                    }
+                );
+            }, 0);
+        });
+    }
+
+    ngOnDestroy() {
+        this.ngbModalRef = null;
     }
 }

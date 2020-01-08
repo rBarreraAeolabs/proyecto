@@ -37,6 +37,7 @@ public abstract class Providencia_ {
 	public static volatile SetAttribute<Providencia, Adjunto> adjuntos;
 	public static volatile SingularAttribute<Providencia, InvestigacionSumaria> investigacionSumaria;
 	public static volatile SingularAttribute<Providencia, Instant> fechaSolicitud;
+	public static volatile SingularAttribute<Providencia, Long> numeroDespacho;
 	public static volatile SingularAttribute<Providencia, String> runImplicado;
 	public static volatile SetAttribute<Providencia, MovimientoProvidencia> movimientos;
 	public static volatile SingularAttribute<Providencia, String> comentario;

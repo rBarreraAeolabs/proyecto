@@ -86,6 +86,16 @@ public class ProvidenciaDTO implements Serializable {
 
     private Boolean standby;
 
+    private Long numeroDespacho;
+
+    public Long getNumeroDespacho() {
+        return numeroDespacho;
+    }
+
+    public void setNumeroDespacho(Long numeroDespacho) {
+        this.numeroDespacho = numeroDespacho;
+    }
+
     public ProvidenciaDTO() {
     }
 
@@ -326,6 +336,7 @@ public class ProvidenciaDTO implements Serializable {
             ", numeroProvidencia=" + numeroProvidencia +
             ", numeroDgdp=" + numeroDgdp +
             ", folio=" + folio +
+            ", numeroDgd=" + numeroDgd +
             ", estadoActual='" + estadoActual + '\'' +
             ", etapa=" + etapa +
             ", subEtapa=" + subEtapa +
@@ -350,6 +361,7 @@ public class ProvidenciaDTO implements Serializable {
             ", providenciaMadreId=" + providenciaMadreId +
             ", numeroReferenciaPorvidenciaMadre=" + numeroReferenciaPorvidenciaMadre +
             ", standby=" + standby +
+            ", numeroDespacho=" + numeroDespacho +
             '}';
     }
 }

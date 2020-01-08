@@ -37,6 +37,7 @@ export class ProvidenciaDetailComponent implements OnInit, OnDestroy {
         inculpadoEnviaMemo: false,
         inculpadoNoEnviaMemo: false,
         folio: false,
+        asignarNumeroDespacho: false,
 
     };
     refresh = false;

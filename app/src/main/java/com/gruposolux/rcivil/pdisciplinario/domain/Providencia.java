@@ -54,6 +54,10 @@ public class Providencia implements Serializable {
     @JsonIgnore
     private Long numeroDgd;
 
+    @Column(name = "numeroDespacho")
+    @JsonIgnore
+    private Long numeroDespacho;
+
     @Column(name = "estado_actual")
     private String estadoActual;
 
@@ -177,6 +181,14 @@ public class Providencia implements Serializable {
 
     public Long getNumeroDgd() {
         return numeroDgd;
+    }
+
+    public Long getNumeroDespacho() {
+        return numeroDespacho;
+    }
+
+    public void setNumeroDespacho(Long numeroDespacho) {
+        this.numeroDespacho = numeroDespacho;
     }
 
     public void setNumeroDgd(Long numeroDgd) {
