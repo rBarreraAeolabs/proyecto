@@ -10,10 +10,10 @@ import { IAdjunto} from '../../shared/model/adjunto.model';
 import { Principal} from 'app/core';
 
 @Component({
-    selector: 'jhi-providencia-apela',
-    templateUrl: './providencia-apela.component.html'
+    selector: 'jhi-providencia-notifica-resolucion-inculpado',
+    templateUrl: './providencia-notifica-resolucion.component.html'
 })
-export class ProvidenciaApelaComponent implements OnInit {
+export class ProvidenciaNotificaResolucionComponent implements OnInit {
     providencia: IProvidencia;
     providenciaResponse: IProvidenciaResponse = new IProvidenciaResponse();
     observacionDerivacion: string;
@@ -42,10 +42,7 @@ export class ProvidenciaApelaComponent implements OnInit {
         this.cuenta = this.principal.identity();
         this.usuario = this.cuenta.__zone_symbol__value.perfil.nombre;
         console.log('usuario: ', this.usuario);
-        // if ( this.providencia.requisito === 'FISCAL_ACEPTO_Y_DA_INICIO') {
-        //     console.log('el usuario es fiscal el pide prorroga');
-        //     this.isProrroga = true;
-        // }
+
     }
 
     get providencias() {
@@ -56,24 +53,24 @@ export class ProvidenciaApelaComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    apela(id: number) {
+    notificaResolucion(id: number) {
         this.providenciaResponse.estadoActual = this.providencia.estadoActual;
         this.providenciaResponse.providenciaId = id;
         this.providenciaResponse.adjuntosDTOs = this.adjuntos;
         this.providenciaResponse.observacion = this.observacionDerivacion;
 
-            this.providenciaService.apela(this.providenciaResponse).subscribe(res => {
-                this.eventManager.broadcast({
-                    name: 'providenciaApela',
-                    content: 'Providencia solicitud Apelacion??'
-                });
-                this.activeModal.dismiss(true);
-                this.previousState();
-                   });
+        this.providenciaService.notificaResolucion(this.providenciaResponse).subscribe(res => {
+            this.eventManager.broadcast({
+                name: 'providencia',
+                content: 'Providencia upd notifica resolucion'
+            });
+            this.activeModal.dismiss(true);
+            this.previousState();
+        });
     }
 
     previousState() {
-        window.history.back();
+        // window.history.back();
     }
 
     getUploadedAdjuntos($event) {
@@ -86,10 +83,10 @@ export class ProvidenciaApelaComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-apela-popup',
+    selector: 'jhi-providencia-notifica-resolucion-popup',
     template: ''
 })
-export class ProvidenciaApelaPopupComponent implements OnInit, OnDestroy {
+export class ProvidenciaNotificaResolucionPopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
@@ -97,7 +94,7 @@ export class ProvidenciaApelaPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaApelaComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciaNotificaResolucionComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });
@@ -111,7 +108,7 @@ export class ProvidenciaApelaPopupComponent implements OnInit, OnDestroy {
                         this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
                         this.ngbModalRef = null;
                     }
-                                   );
+                );
             }, 0);
         });
     }

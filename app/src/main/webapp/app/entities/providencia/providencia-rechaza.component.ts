@@ -10,10 +10,10 @@ import { IAdjunto} from '../../shared/model/adjunto.model';
 import { Principal} from 'app/core';
 
 @Component({
-    selector: 'jhi-providencia-apela',
-    templateUrl: './providencia-apela.component.html'
+    selector: 'jhi-providencia-rechaza',
+    templateUrl: './providencia-rechaza.component.html'
 })
-export class ProvidenciaApelaComponent implements OnInit {
+export class ProvidenciaRechazaComponent implements OnInit {
     providencia: IProvidencia;
     providenciaResponse: IProvidenciaResponse = new IProvidenciaResponse();
     observacionDerivacion: string;
@@ -56,16 +56,16 @@ export class ProvidenciaApelaComponent implements OnInit {
         this._providencia = providencia;
     }
 
-    apela(id: number) {
+    rechaza(id: number) {
         this.providenciaResponse.estadoActual = this.providencia.estadoActual;
         this.providenciaResponse.providenciaId = id;
         this.providenciaResponse.adjuntosDTOs = this.adjuntos;
         this.providenciaResponse.observacion = this.observacionDerivacion;
 
-            this.providenciaService.apela(this.providenciaResponse).subscribe(res => {
+            this.providenciaService.rechaza(this.providenciaResponse).subscribe(res => {
                 this.eventManager.broadcast({
-                    name: 'providenciaApela',
-                    content: 'Providencia solicitud Apelacion??'
+                    name: 'providenciaRechaza',
+                    content: 'Providencia solicitud rechaza??'
                 });
                 this.activeModal.dismiss(true);
                 this.previousState();
@@ -86,10 +86,10 @@ export class ProvidenciaApelaComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-apela-popup',
+    selector: 'jhi-providencia-rechaza-popup',
     template: ''
 })
-export class ProvidenciaApelaPopupComponent implements OnInit, OnDestroy {
+export class ProvidenciaRechazaPopupComponent implements OnInit, OnDestroy {
     private ngbModalRef: NgbModalRef;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
@@ -97,7 +97,7 @@ export class ProvidenciaApelaPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaApelaComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciaRechazaComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });

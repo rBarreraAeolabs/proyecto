@@ -100,15 +100,15 @@
                                                     <span *ngIf="providencia.nombreFiscalAsignado !== null"> Cambiar Fiscal Asignado</span>
                                                 </a>
 
-                                                <a class="dropdown-item" *ngIf="actionsPermitted.numerarReferencia && providencia.providenciaMadreId == null"
-
+<!--                                                <a class="dropdown-item" *ngIf="actionsPermitted.numerarReferencia && providencia.providenciaMadreId == null"-->
+                                                <a class="dropdown-item" *ngIf="actionsPermitted.numerarReferencia"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/numerarReferencia'} }]"
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge">
 <!--                                                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;-->
 <!--                                                    <span *ngIf="providencia.numeroReferencia == null && providencia.requisito == 'RESOLUCION_QUE_INSTRUYE_SUMARIO_MEMO_CONDUCTOR'"></span>-->
-                                                    <span *ngIf="providencia.numeroReferencia == null"><fa-icon [icon]="'pencil-alt'"></fa-icon> Asignar Número de Dgdp</span>
-<!--                                                    <span *ngIf="providencia.numeroReferencia !== null"><fa-icon [icon]="'pencil-alt'"></fa-icon> Editar Número de Referencia</span>-->
+                                                    <span *ngIf="providencia.numeroReferencia == null"><fa-icon [icon]="'pencil-alt'"></fa-icon> Asignar Número de Referencia</span>
+                                                    <span *ngIf="providencia.numeroReferencia !== null"><fa-icon [icon]="'pencil-alt'"></fa-icon> Editar Número de Referencia</span>
                                                 </a>
                                                 <a class="dropdown-item"
                                                    *ngIf="actionsPermitted.asignarAUpd"
@@ -128,7 +128,7 @@
 
                                                 </a>
 
-                                                <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroIngreso"
+                                                <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroIngreso "
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/asignarNumeroIngreso'} }]"
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"
@@ -136,7 +136,7 @@
                                                     <span > Asignar Número de Ingreso</span>
 
                                                 </a>
-                                                <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroDespacho "
+                                                <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroDespacho"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/asignarNumeroDespacho'} }]"
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"
@@ -350,6 +350,48 @@
                                                 ><fa-icon style="color: #dc0000;" [icon]="'ban'"></fa-icon>&nbsp;
                                                     <span>No Apela</span>
 
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.notificaResolucion"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/notificaResolucion'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Notificar resolucion</span>
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.acoge"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/acoge'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>Acoger</span>
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.acogeParcial"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/acogeParcial'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>Acoge Parcial</span>
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.notificaDgdp"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/notificaDgdp'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>notifica Dgdp</span>
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.notificaDenunciado"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/notificaDenunciado'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>notifica Denunciado</span>
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.rechaza"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/rechaza'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>Rechazar</span>
                                                 </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.inculpadoEnviaMemo"

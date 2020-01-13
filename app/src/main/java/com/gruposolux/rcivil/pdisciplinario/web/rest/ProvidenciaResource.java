@@ -478,7 +478,7 @@ public class ProvidenciaResource {
     @PostMapping("/providencias/actions")
     @Timed
     public ResponseEntity<HashMap<String, Boolean>> getActionsPermitted(@RequestBody ProvidenciaPermisoDTO providenciaDTO) {
-        log.debug("ruben2: da " +providenciaDTO.getId());
+        log.debug("ruben2: da " + providenciaDTO.getId());
         HashMap<String, Boolean> actionsPermitted = this.providenciaService.getActionsPermitted(providenciaDTO);
         return new ResponseEntity<>(actionsPermitted, HttpStatus.OK);
     }
@@ -550,7 +550,7 @@ public class ProvidenciaResource {
         ProvidenciaDTO providenciaDTO = this.providenciaService.updateNumeroDGDP(providenciaUpdateNumeroReferenciaDTO);
 
 //        if (providenciaDTO.getNumeroDgd() == null) {
-//            return ResponseEntity.ok().headers(HeaderUtil.message("No se pudo agregar el N° DGDP",ENTITY_NAME)).body(null);
+////            return ResponseEntity.ok().headers(HeaderUtil.message("No se pudo agregar el N° DGDP",ENTITY_NAME)).body(null);
 //        }
         return ResponseEntity.ok().headers(HeaderUtil.createAlert("El N° DGDP se agrego Correctamente!",
             providenciaDTO.getId().toString())).body(providenciaDTO);
@@ -586,7 +586,6 @@ public class ProvidenciaResource {
             providenciaDTO.getId().toString())).body(providenciaDTO);
     }
 
-
 //    @PutMapping("/providencias/asignarNumeroDespacho")
 //    @Timed
 //    public ResponseEntity<ProvidenciaDTO> updateNumeroDespacho(@RequestBody ProvidenciaUpdateNumeroReferenciaDTO providenciaUpdateNumeroReferenciaDTO) {
@@ -601,7 +600,6 @@ public class ProvidenciaResource {
 //        return ResponseEntity.ok().headers(HeaderUtil.createAlert("El N° de Despacho se agrego Correctamente!",
 //            providenciaDTO.getId().toString())).body(providenciaDTO);
 //    }
-
     /**
      * ESTE ES EL PRIMER NUMERO DE DGDP QUE SE INGRESA QUE ES UN NUMERO DE REFERENCIA QUE SIRVE PARA LAS RELACIONES
      * @param providenciaUpdateNumeroReferenciaDTO
@@ -686,14 +684,10 @@ public class ProvidenciaResource {
             providenciaUpdateForTypeDTO.getOrdenJuridico()== null){
             throw new BadRequestAlertException("Debe seleccionar el tipo de Orden Juridica", null, null);
         }
-        if(requisitoMadre == EstadoProvidencia.ENVIA_VISTA_FISCAL_A_DN__ &&
-            providenciaUpdateForTypeDTO.getOrdenJuridico()== null){
-
-        }
-        if(requisitoMadre == EstadoProvidencia.REMITE_EXPEDIENTE_VISTA_FISCAL &&
-            providenciaUpdateForTypeDTO.getOrdenJuridico()== null){
-
-        }
+//        if(requisitoMadre == EstadoProvidencia.ENVIA_VISTA_FISCAL_A_DN__ &&
+//            providenciaUpdateForTypeDTO.getOrdenJuridico()== null){
+//
+//        }
         ProvidenciaDTO providenciaDTO = this.providenciaService.updateProvidenciaForType(providenciaUpdateForTypeDTO);
 
         if (providenciaDTO != null)

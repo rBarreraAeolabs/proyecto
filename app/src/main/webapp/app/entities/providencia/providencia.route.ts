@@ -51,6 +51,7 @@ import {ProvidenciaSensuraPopupComponent} from 'app/entities/providencia/provide
 import {ProvidenciaDestitucionPopupComponent} from 'app/entities/providencia/providencia-destitucion.component';
 import {ProvidenciaNotificaRemuneracionPopupComponent} from 'app/entities/providencia/providencia-notifica-remuneracion.component';
 import {ProvidenciaNotificaDenunciantePopupComponent} from 'app/entities/providencia/providencia-notifica-denunciante.component';
+import {ProvidenciaNotificaDenunciadoPopupComponent} from 'app/entities/providencia/providencia-notifica-denunciado.component';
 import {ProvidenciaAsignarNumeroDgdPopupComponent} from 'app/entities/providencia/providencia-asignar-numero-dgd.component';
 import {ProvidenciaAsignarNumeroProvidenciaPopupComponent} from 'app/entities/providencia/providencia-asignar-numero-providencia.component';
 import {ProvidenciaEmitePopupComponent} from 'app/entities/providencia/providencia-emite.component';
@@ -62,6 +63,11 @@ import {ProvidenciaSinDenunciantePopupComponent} from 'app/entities/providencia/
 import {ProvidenciaAsignarNumeroDespachoPopupComponent} from 'app/entities/providencia/providencia-asignar-numero-despacho.component';
 import {ProvidenciaEnviarInformePopupComponent} from 'app/entities/providencia/providencia-enviar-informe.component';
 import {ProvidenciaEnviaVistaFiscalPopupComponent} from 'app/entities/providencia/providencia-envia-vista-fiscal.component';
+import {ProvidenciaNotificaResolucionPopupComponent} from 'app/entities/providencia/providencia-notifica-resolucion.component';
+import {ProvidenciaAcogePopupComponent} from 'app/entities/providencia/providencia-acoge.component';
+import {ProvidenciaAcogeParcialPopupComponent} from 'app/entities/providencia/providencia-acoge-parcial.component';
+import {ProvidenciaRechazaPopupComponent} from 'app/entities/providencia/providencia-rechaza.component';
+import {ProvidenciaNotificaDgdpPopupComponent} from 'app/entities/providencia/providencia-notifica-dgdp.component';
 @Injectable({ providedIn: 'root' })
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
@@ -400,6 +406,57 @@ export const providenciaPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
+        path: 'providencia/:id/notificaResolucion',
+        component: ProvidenciaNotificaResolucionPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'notifica Resolucion'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/acoge',
+        component: ProvidenciaAcogePopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Acoge'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    }, {
+        path: 'providencia/:id/acogeParcial',
+        component: ProvidenciaAcogeParcialPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Acoge'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/rechaza',
+        component: ProvidenciaRechazaPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Rechaza'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
         path: 'providencia/:id/apela',
         component: ProvidenciaApelaPopupComponent,
         resolve: {
@@ -582,6 +639,33 @@ export const providenciaPopupRoute: Routes = [
         data: {
             authorities: [],
             pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/notificaDenunciado',
+        component: ProvidenciaNotificaDenunciadoPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'notificar denunciado'
+        },
+        canActivate: [UserRouteAccessService],
+        runGuardsAndResolvers: 'always',
+        outlet: 'popup'
+    },   {
+        path: 'providencia/:id/notificaDgdp',
+        component: ProvidenciaNotificaDgdpPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'notificar denunciado'
         },
         canActivate: [UserRouteAccessService],
         runGuardsAndResolvers: 'always',

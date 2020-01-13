@@ -306,5 +306,23 @@ export class ProvidenciaService {
     enviaVistaFiscal(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/enviaVistaFiscal', response, {observe: 'response'});
     }
+    notificaResolucion(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/notificaResolucion', response, {observe: 'response'});
+    }
+    acoge(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/acoge', response, {observe: 'response'});
+    }
+    acogeParcial(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/acogeParcial', response, {observe: 'response'});
+    }
+    rechaza(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/rechaza', response, {observe: 'response'});
+    }
+    notificaDenunciado(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/notificaDenunciado', response, {observe: 'response'});
+    }
+    notificaDgdp(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/notificaDgdp', response, {observe: 'response'});
+    }
 
 }

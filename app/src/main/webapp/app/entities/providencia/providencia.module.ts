@@ -224,13 +224,36 @@ import {
     ProvidenciaEnviaVistaFiscalComponent,
     ProvidenciaEnviaVistaFiscalPopupComponent
 } from 'app/entities/providencia/providencia-envia-vista-fiscal.component';
+import {
+    ProvidenciaNotificaResolucionComponent,
+    ProvidenciaNotificaResolucionPopupComponent
+} from 'app/entities/providencia/providencia-notifica-resolucion.component';
+import {
+    ProvidenciaAcogeComponent,
+    ProvidenciaAcogePopupComponent
+} from 'app/entities/providencia/providencia-acoge.component';
+import {
+    ProvidenciaAcogeParcialComponent,
+    ProvidenciaAcogeParcialPopupComponent
+} from 'app/entities/providencia/providencia-acoge-parcial.component';
+import {
+    ProvidenciaRechazaComponent,
+    ProvidenciaRechazaPopupComponent
+} from 'app/entities/providencia/providencia-rechaza.component';
+import {
+    ProvidenciaNotificaDenunciadoComponent,
+    ProvidenciaNotificaDenunciadoPopupComponent
+} from 'app/entities/providencia/providencia-notifica-denunciado.component';
+import {
+    ProvidenciaNotificaDgdpComponent,
+    ProvidenciaNotificaDgdpPopupComponent
+} from 'app/entities/providencia/providencia-notifica-dgdp.component';
 
 // directive
 import {
     ReadMoreDirective,
 } from 'app/entities/providencia/read-more.directive';
 import { ProvidenciaUpdatePopupComponent, ProvidenciaUpdateComponent } from 'app/entities/providencia/providencia-update.component';
-
 
 const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
 
@@ -361,6 +384,18 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaEnviarInformePopupComponent,
         ProvidenciaEnviaVistaFiscalComponent,
         ProvidenciaEnviaVistaFiscalPopupComponent,
+        ProvidenciaNotificaResolucionComponent,
+        ProvidenciaNotificaResolucionPopupComponent,
+        ProvidenciaAcogeComponent,
+        ProvidenciaAcogePopupComponent,
+        ProvidenciaAcogeParcialComponent,
+        ProvidenciaAcogeParcialPopupComponent,
+        ProvidenciaRechazaComponent,
+        ProvidenciaRechazaPopupComponent,
+        ProvidenciaNotificaDenunciadoComponent,
+        ProvidenciaNotificaDenunciadoPopupComponent,
+        ProvidenciaNotificaDgdpComponent,
+        ProvidenciaNotificaDgdpPopupComponent,
     ],
     entryComponents: [
         ProvidenciaComponent,
@@ -473,6 +508,18 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaEnviarInformePopupComponent,
         ProvidenciaEnviaVistaFiscalComponent,
         ProvidenciaEnviaVistaFiscalPopupComponent,
+        ProvidenciaNotificaResolucionComponent,
+        ProvidenciaNotificaResolucionPopupComponent,
+        ProvidenciaAcogeComponent,
+        ProvidenciaAcogePopupComponent,
+        ProvidenciaAcogeParcialComponent,
+        ProvidenciaAcogeParcialPopupComponent,
+        ProvidenciaRechazaComponent,
+        ProvidenciaRechazaPopupComponent,
+        ProvidenciaNotificaDenunciadoComponent,
+        ProvidenciaNotificaDenunciadoPopupComponent,
+        ProvidenciaNotificaDgdpComponent,
+        ProvidenciaNotificaDgdpPopupComponent,
             ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

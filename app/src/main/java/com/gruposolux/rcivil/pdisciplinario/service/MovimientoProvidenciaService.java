@@ -219,6 +219,12 @@ public class MovimientoProvidenciaService {
     }
 
     @Transactional
+    public Long findNumeroDGDPMasRecienteByProvidenciaId (Long id) {
+        Long dgdpreciente = this.movimientoProvidenciaRepository.findNumeroDGDPMasRecienteByProvidenciaId(id);
+        return dgdpreciente;
+    }
+
+    @Transactional
     public Set<MovimientoProvidenciaDTO> getAllByIdProvidencia(ProvidenciaDTO providenciaDTO)
     {
         Providencia providencia = this.providenciaMapper.toEntity(providenciaDTO);
@@ -252,12 +258,6 @@ public class MovimientoProvidenciaService {
 //            ;
 //    }
 
-
-    @Transactional
-    public Long findNumeroDGDPMasRecienteByProvidenciaId (Long id) {
-        Long dgdpreciente = this.movimientoProvidenciaRepository.findNumeroDGDPMasRecienteByProvidenciaId(id);
-        return dgdpreciente;
-    }
 
     @Transactional
     public Set<MovimientoProvidenciaDTO> getAllByIdProvidenciaWithFilters(ProvidenciaDTO providenciaDTO, FiltroMovimientoProvidenciaDTO filtro)
