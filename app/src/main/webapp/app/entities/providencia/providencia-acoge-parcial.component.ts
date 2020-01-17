@@ -97,7 +97,7 @@ export class ProvidenciaAcogeParcialPopupComponent implements OnInit, OnDestroy 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ providencia }) => {
             setTimeout(() => {
-                this.ngbModalRef = this.modalService.open(ProvidenciaAcogeParicialComponent as Component, {
+                this.ngbModalRef = this.modalService.open(ProvidenciaAcogeParcialComponent as Component, {
                     size: 'lg',
                     backdrop: 'static'
                 });

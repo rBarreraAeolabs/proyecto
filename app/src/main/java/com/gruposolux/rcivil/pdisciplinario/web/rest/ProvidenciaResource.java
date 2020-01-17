@@ -207,6 +207,30 @@ public class ProvidenciaResource {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+    @PostMapping("/providencias/acogeParcial")
+    @Timed
+    public ResponseEntity<Void> acogeParcial (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO a acogeParcial: ");
+        this.providenciaService.acogeParcial(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/acoge")
+    @Timed
+    public ResponseEntity<Void> acoge (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO a acoge: ");
+        this.providenciaService.acoge(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/rechaza")
+    @Timed
+    public ResponseEntity<Void> rechaza (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO a rechaza: ");
+        this.providenciaService.rechaza(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
     @PostMapping("/providencias/noReabro")
     @Timed
     public ResponseEntity<Void> noReabro (@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {

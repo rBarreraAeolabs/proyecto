@@ -412,7 +412,6 @@ public class ProvidenciaService {
                         break;
                 }
                 break;
-
             case ASIGNACION_A_UPD_:
                 subEtapa = EstadoProvidencia.RESOLUCION_SJ;
                 break;
@@ -500,7 +499,6 @@ public class ProvidenciaService {
             case FISCAL_NOTIFICADO:
                 subEtapa = EstadoProvidencia.ELABORACION_NOTIFICACION_FISCAL;
                 break;
-
             case UPD_ELABORA_NOTIFICACION_PRORROGA_1:
             case ESPERANDO_FIRMA_DE_SUBDIRECCION_A_NOTIFICACION_PRORROGA_1:
             case UPD_NOTIFICA_PRORROGA_1_FISCAL:
@@ -593,6 +591,21 @@ public class ProvidenciaService {
             case DESPACHO_COMPLETO:
                 subEtapa = EstadoProvidencia.INFORME_SJ;
                 break;
+            case RECIBE_RECURSO:
+            case REVISA_SECRETARIA______:
+            case ASIGNA_ABOGADO:
+            case SECRETARIA_REVISA:
+            case INFORME_PRONUNCIADO:
+            case INFORME_PRONUNCIADO_ACOGE_PARCIAL:
+//            case ACOGE:
+            case INFORME_PRONUNCIADO_ACOGE:
+            case INFORME_PRONUNCIADO_RECHAZA:
+            case SECRETARIA_REVISA_:
+            case FIRMA_INFORME_:
+            case SECRETARIA_REVISA__:
+            case DESPACHO:
+                subEtapa = EstadoProvidencia.SANCIONAR_SI_APELA;
+                break;
             case TERMINO_PROBATORIO:
             case INCULPADO_ENVIA_MEMO:
             case INCULPADO_NO_ENVIA_MEMO:
@@ -603,7 +616,6 @@ public class ProvidenciaService {
                     subEtapa = EstadoProvidencia.DA_INICIO_FISCALIA;
                 }
                 break;
-
 //            case ASIGNACION_A_SJ:
             case ENVIAR_SUMARIO_A_SUB_DIRECCION:
             case DGD_DESPACHA_SUMARIO:
@@ -1133,6 +1145,27 @@ public class ProvidenciaService {
     }
 
     @Transactional
+    public void acogeParcial (ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("boton acogeParcial: ");
+        AccionesProvidencia evento = AccionesProvidencia.INFORME_PRONUNCIADO_ACOGE_PARCIAL;
+        this.changeStage(providenciaResponseDTO, evento);
+    }
+
+    @Transactional
+    public void acoge (ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("boton acoge: ");
+        AccionesProvidencia evento = AccionesProvidencia.INFORME_PRONUNCIADO_ACOGE;
+        this.changeStage(providenciaResponseDTO, evento);
+    }
+
+    @Transactional
+    public void rechaza (ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("boton rechaza: ");
+        AccionesProvidencia evento = AccionesProvidencia.INFORME_PRONUNCIADO_RECHAZA;
+        this.changeStage(providenciaResponseDTO, evento);
+    }
+
+    @Transactional
     public void noReabro(ProvidenciaResponseDTO providenciaResponseDTO) {
         log.debug("boton noReabro: ");
         AccionesProvidencia evento = AccionesProvidencia.NO_REABRE;
@@ -1530,7 +1563,7 @@ public class ProvidenciaService {
             subEtapa = EstadoProvidencia.SANCIONA_ALCANCE;
         }else if (eventoBoton == AccionesProvidencia.ENVIA_VISTA_FISCAL){
             subEtapa = EstadoProvidencia.ENVIA_VISTA_FISCAL_A_DN___;
-        }else{
+        }else {
             subEtapa = EstadoProvidencia.TERMINO_PROBATORIO;
         }
         return subEtapa;
@@ -1581,6 +1614,59 @@ public class ProvidenciaService {
 //            case SECRETARIA_REVISA_PROVIDENCIA:
             case REVISA_PROVIDENCIA____:
             case ASIGNACION_No_DE_INGRESO:
+            case PROVIDENCIA_APLICA_SANCION:
+            case REVISA_PROVIDENCIA______:
+            case ASIGNACION_DE_NUMERO_:
+            case REVISA_SECRETARIA:
+            case ASIGNACION_UPD:
+            case REVISA_SECRETARIA_:
+            case RESOLUCION_QUE_APLICA_SANCION_PARA_RECURSO_Y_MEMO_CONDUCTOR:
+            case REVISA_SECRETARIA__:
+            case VISA_RESOLUCION_Y_FIRMA_MEMO:
+            case REVISA_SECRETARIA___:
+            case ASIGNACION_No_DESPACHO_:
+            case REVISA_ASESOR:
+            case FIRMA_RESOLUCION_QUE_APLICA_SANCION_PARA_RECURSO:
+            case REVISA_ASESOR_:
+            case ASIGNA_No_DGDP:
+            case RECEPCIONA_DGDP:
+            case NOTIFICACION_PARA_RECURSO:
+            case REVISA_SECRETARIA____:
+            case FIRMA_SUB_DIRECTORA:
+            case REVISA_SECRETARIA_____:
+            case DESPACHO_DGD:
+            case NOTIFICA_RESOLUCION_PARA_RECURSO:
+            case REVISA_PRONUNCIAMIENTO:
+            case ASIGNA_No_DGD:
+            case REVISA_SECRETARIA_______:
+            case REVISA_SECRETARIA________:
+            case REVISA_SECRETARIA_________:
+            case REVISA_SECRETARIA__________:
+            case REVISA_SECRETARIA___________:
+            case REVISA_SECRETARIA____________:
+            case ASIGNACION_SUB_DIRECTORA:
+            case RESOLUCION_QUE_PRONUNCIA_RECURSO_CON_MEMO_CONDUCTOR:
+            case VISA_Y_FIRMA_:
+            case DESPACHO_:
+            case REVISA_RESOLUCION_QUE_PRONUNCIA:
+            case FIRMA_DIRECTOR_NACIONAL_:
+            case DESPACHA_ASESOR:
+            case ASIGNACION_DE_NUMERO__:
+            case ASIGNA_NUMERO_SJ_:
+            case NOTIFICACION_RESULTADO_DE_RECURSO:
+            case ELABORA_RESOLUCION_QUE_APLICA_SANCION_FINAL:
+            case VISA_Y_FIRMA__:
+            case DESPACHO_DE_SJ:
+            case REVISA_RESOLUCION_QUE_APLICA_SANCION_FINAL:
+            case FIRMA_DIRECTOR_NACIONAL__:
+            case DESPACHA_ASESOR_:
+            case ASIGNACION_DE_NUMERO___:
+            case RECEPCION_CONTRALORIA:
+            case RECEPCION_CONTRALORIA_TOMA_DE_RAZON_:
+            case RECEPCION_CONTRALORIA_REGISTRA_:
+            case RECEPCION_CONTRALORIA_REPRESENTA_:
+//            case APELA_NO_APELA:
+//            case PROVIDENCIA_CREADA_INFORME_RECURSO:
             case NUEVA_PROVIDENCIA_ORDENANDO_SOBRESEDIMIENTO:
                 switch (subEtapaAntes) {
                     case ABSOLVER:
@@ -1594,19 +1680,19 @@ public class ProvidenciaService {
                         break;
                 }
                 break;
-            case NUEVA_PROVIDENCIA_ORDENANDO_SOBRESEDIMIENTO_:
-                switch (subEtapaAntes) {
-                    case ABSOLVER:
-                        evento = AccionesProvidencia.FLUJO_SOBRESEER_ABSOLVER_;
-                        break;
-                    case SOBRESEER:
-                        evento = AccionesProvidencia.FLUJO_SOBRESEER_ABSOLVER;
-                        break;
-                    case SANCIONA:
-                        evento = AccionesProvidencia.FLUJO_SANCION;
-                        break;
-                }
-                break;
+//            case NUEVA_PROVIDENCIA_ORDENANDO_SOBRESEDIMIENTO_:
+//                switch (subEtapaAntes) {
+//                    case ABSOLVER:
+//                        evento = AccionesProvidencia.FLUJO_SOBRESEER_ABSOLVER_;
+//                        break;
+//                    case SOBRESEER:
+//                        evento = AccionesProvidencia.FLUJO_SOBRESEER_ABSOLVER;
+//                        break;
+//                    case SANCIONA:
+//                        evento = AccionesProvidencia.FLUJO_SANCION;
+//                        break;
+//                }
+//                break;
 
 
             // FLUJO DE PRORROGA 1
@@ -1730,6 +1816,23 @@ public class ProvidenciaService {
             case ESPERANDO_ASIGNACION_DE_NUMERO:
             case SJ_RECIBIO_ALCANCE:
             case SJ_RECIBIO_RESOLUCION:
+//            case APELA_NO_APELA:
+            case APELA:
+//            case PROVIDENCIA_CREADA_INFORME_RECURSO:
+            case ASESOR_REVISA_PROVIDENCIA_APELACION:
+            case RECIBE_RECURSO:
+            case REVISA_SECRETARIA______:
+            case ASIGNA_ABOGADO:
+            case SECRETARIA_REVISA:
+            case INFORME_PRONUNCIADO:
+            case INFORME_PRONUNCIADO_ACOGE_PARCIAL:
+//            case ACOGE:
+            case INFORME_PRONUNCIADO_ACOGE:
+            case INFORME_PRONUNCIADO_RECHAZA:
+            case SECRETARIA_REVISA_:
+            case FIRMA_INFORME_:
+            case SECRETARIA_REVISA__:
+            case DESPACHO:
                 if (eventoAntes == AccionesProvidencia.FLUJO_DEVOLVER){
                     evento = eventoAntes;
                 }else if(eventoAntes == AccionesProvidencia.EMITIR_PROVIDENCIA) { // Accion para que Salte de estado cuando el requisito es DN_EMITE_PROVIDENCIA
@@ -1737,11 +1840,9 @@ public class ProvidenciaService {
                 }else{
                     evento = AccionesProvidencia.FLUJO_APELA;
                 }break;
-
             case EXAMEN_DE_LEGALIDAD:
                 evento = AccionesProvidencia.SELECCIONO_EXAMEN_LEGALIDAD;
                 break;
-
             case TOMA_DE_RAZON:
             case SJ_RECIBE_PARA_REDACCION:
             case UPD_REDACTA_RESOLUCION_MEMO:
@@ -1922,6 +2023,9 @@ public class ProvidenciaService {
         actionsPermitted.put("asignarNumeroDespacho", false);
         actionsPermitted.put("asignarAUpd", false);
         actionsPermitted.put("enviaVistaFiscal", false);
+        actionsPermitted.put("acogeParcial", false);
+        actionsPermitted.put("acoge", false);
+        actionsPermitted.put("rechaza", false);
 
         switch (requisito) {
 
@@ -2529,26 +2633,259 @@ public class ProvidenciaService {
 //                }
             case SECRETARIA_REVISA_SUMARIO_Y_NOTIFICA_A_ABOGADO:
             case SECRETARIA_DESPACHA_INFORME:
-                if ((grupoCurrentUser.getId() == 5 && perfilUser.getId() == 8) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
                     actionsPermitted.put("reply", true);
                 }
                 break;
 
             case SECRETARIA_REVISA_PROVIDENCIA:
-                if ((grupoCurrentUser.getId() == 2 && perfilUser.getId() == 2) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
                     actionsPermitted.put("reply", true);
                 }
                 break;
             case REVISA_PROVIDENCIA____:
-                if ((grupoCurrentUser.getId() == 2 && perfilUser.getId() == 2) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
                     actionsPermitted.put("reply", true);
                     actionsPermitted.put("goBackwards", true);
                 }
                 break;
             case NUEVA_PROVIDENCIA_ORDENANDO_SOBRESEDIMIENTO:
             case NUEVA_PROVIDENCIA_ORDENANDO_SOBRESEDIMIENTO_:
-                if ((grupoCurrentUser.getId() == 2 && perfilUser.getId() == 2) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+            case PROVIDENCIA_APLICA_SANCION:
+            case REVISA_PROVIDENCIA______:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
                     actionsPermitted.put("reply", true);
+                }
+                break;
+            case ASIGNACION_DE_NUMERO_:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("asignarNumeroIngreso", true);
+                }
+                break;
+            case REVISA_SECRETARIA:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("goBackwards", true);
+                }
+                break;
+            case ASIGNACION_UPD:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("asignarAUpd", true);
+                }
+                break;
+            case REVISA_SECRETARIA_:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("goBackwards", true);
+                }
+                break;
+            case RESOLUCION_QUE_APLICA_SANCION_PARA_RECURSO_Y_MEMO_CONDUCTOR:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                }
+                break;
+            case REVISA_SECRETARIA__:
+            case VISA_RESOLUCION_Y_FIRMA_MEMO:
+            case REVISA_SECRETARIA___:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("goBackwards", true);
+                }
+                break;
+            case ASIGNACION_No_DESPACHO_:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("asignarNumeroDespacho", true);
+                }
+                break;
+            case REVISA_ASESOR:
+            case FIRMA_RESOLUCION_QUE_APLICA_SANCION_PARA_RECURSO:
+            case REVISA_ASESOR_:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("goBackwards", true);
+                }
+                break;
+            case ASIGNA_No_DGDP:
+            case RECEPCIONA_DGDP:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("asignarNumeroDGDP", true);
+                }
+                break;
+            case NOTIFICACION_PARA_RECURSO:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                }
+                break;
+            case REVISA_SECRETARIA____:
+            case FIRMA_SUB_DIRECTORA:
+            case REVISA_SECRETARIA_____:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("goBackwards", true);
+                }
+                break;
+            case DESPACHO_DGD:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("asignarNumeroDespacho", true);
+                    actionsPermitted.put("reply", true);
+                }
+                break;
+            case NOTIFICA_RESOLUCION_PARA_RECURSO:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                }
+                break;
+            case APELA_NO_APELA:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("apela", true);
+                    actionsPermitted.put("noApela", true);
+                    actionsPermitted.put("asignarAbogado", false);
+                    actionsPermitted.put("reply", false);
+                }
+                break;
+            case APELA:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", false);
+                }
+                break;
+//            case PROVIDENCIA_CREADA_INFORME_RECURSO:
+            case ASESOR_REVISA_PROVIDENCIA_APELACION:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                }
+                break;
+            case RECIBE_RECURSO:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("asignarNumeroIngreso", true);
+                }
+                break;
+            case REVISA_SECRETARIA______:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("goBackwards", true);
+                }
+                break;
+            case ASIGNA_ABOGADO:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("asignarAbogado", true);
+                }
+                break;
+            case SECRETARIA_REVISA:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("goBackwards", true);
+                }
+                break;
+            case INFORME_PRONUNCIADO:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", false);
+                    actionsPermitted.put("acogeParcial", true);
+                    actionsPermitted.put("acoge", true);
+                    actionsPermitted.put("rechaza", true);
+                }
+                break;
+            case INFORME_PRONUNCIADO_ACOGE_PARCIAL:
+//            case ACOGE:
+            case INFORME_PRONUNCIADO_ACOGE:
+            case INFORME_PRONUNCIADO_RECHAZA:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                }
+                break;
+            case SECRETARIA_REVISA_:
+            case FIRMA_INFORME_:
+            case SECRETARIA_REVISA__:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("goBackwards", true);
+                }
+                break;
+            case DESPACHO:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", false);
+                }
+                break;
+            case REVISA_PRONUNCIAMIENTO:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("goBackwards", true);
+                }
+                break;
+            case ASIGNA_No_DGD:
+                if ((grupoCurrentUser.getId() == 5 && perfilUser.getId() == 8) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+                    actionsPermitted.put("asignarNumeroDGD", true);
+                    actionsPermitted.put("reply", true);
+                }
+                break;
+            case REVISA_SECRETARIA_______:
+            case REVISA_SECRETARIA________:
+            case REVISA_SECRETARIA_________:
+            case REVISA_SECRETARIA__________:
+            case REVISA_SECRETARIA___________:
+            case REVISA_SECRETARIA____________:
+            case ASIGNACION_SUB_DIRECTORA:
+            case VISA_Y_FIRMA_:
+            case REVISA_RESOLUCION_QUE_PRONUNCIA:
+            case FIRMA_DIRECTOR_NACIONAL_:
+            case DESPACHA_ASESOR:
+            case VISA_Y_FIRMA__:
+            case REVISA_RESOLUCION_QUE_APLICA_SANCION_FINAL:
+            case FIRMA_DIRECTOR_NACIONAL__:
+            case DESPACHA_ASESOR_:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("goBackwards", true);
+                }
+                break;
+            case RECEPCION_CONTRALORIA:
+                if ((grupoCurrentUser.getId() == 5 && perfilUser.getId() == 8) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+                    actionsPermitted.put("tomaRazon", true);
+                    actionsPermitted.put("registra", true);
+                    actionsPermitted.put("representa", true);
+                }
+                break;
+            case RECEPCION_CONTRALORIA_TOMA_DE_RAZON_:
+            case RECEPCION_CONTRALORIA_REGISTRA_:
+            case RECEPCION_CONTRALORIA_REPRESENTA_:
+                if ((grupoCurrentUser.getId() == 5 && perfilUser.getId() == 8) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+                    actionsPermitted.put("reply", false);
+                }
+                break;
+            case ASIGNACION_DE_NUMERO__:
+            case ASIGNACION_DE_NUMERO___:
+                if ((grupoCurrentUser.getId() == 5 && perfilUser.getId() == 8) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("asignarNumeroDGDP", true);
+                }
+                break;
+            case NOTIFICACION_RESULTADO_DE_RECURSO:
+            case ELABORA_RESOLUCION_QUE_APLICA_SANCION_FINAL:
+                if ((grupoCurrentUser.getId() == 5 && perfilUser.getId() == 8) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+                    actionsPermitted.put("reply", true);
+                }
+                break;
+            case ASIGNA_NUMERO_SJ_:
+                if ((grupoCurrentUser.getId() == 5 && perfilUser.getId() == 8) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("asignarNumeroIngreso", true);
+                }
+                break;
+            case RESOLUCION_QUE_PRONUNCIA_RECURSO_CON_MEMO_CONDUCTOR:
+                if ((grupoCurrentUser.getId() == 5 && perfilUser.getId() == 8) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+                    actionsPermitted.put("reply", true);
+                }
+                break;
+            case DESPACHO_DE_SJ:
+            case DESPACHO_:
+                if ((grupoCurrentUser.getId() == 5 && perfilUser.getId() == 8) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1))   {
+                    actionsPermitted.put("reply", true);
+                    actionsPermitted.put("asignarNumeroDespacho", true);
                 }
                 break;
             case ASIGNANDO_ABOGADO_A_APELACION:
@@ -3176,13 +3513,52 @@ public class ProvidenciaService {
                 }
                 if (subEtapaActualizada.toString() == "ABSOLVER"){
                     providencia.setRequisito(EstadoProvidencia.NUEVA_PROVIDENCIA_ORDENANDO_SOBRESEDIMIENTO_);
-                }else{
+                }else  if (subEtapaActualizada.toString() == "SANCIONA"){
+                    providencia.setRequisito(EstadoProvidencia.PROVIDENCIA_APLICA_SANCION);
+                }
+                else{
                     providencia.setRequisito(EstadoProvidencia.NUEVA_PROVIDENCIA_ORDENANDO_SOBRESEDIMIENTO);
                 }
 //                providencia.setRequisito(EstadoProvidencia.NUEVA_PROVIDENCIA_ORDENANDO_SOBRESEDIMIENTO);
                 providencia.setNumeroReferencia(numeroReferencia);
                 providencia.setEtapa(etapaActualizada);
                 providencia.setSubEtapa(subEtapaActualizada);
+                providencia.setEstadoActual(this.concatenarEstado(providencia.getRequisito(), providencia.getSubEtapa(), etapaActualizada));
+                providenciaMadre.setStandby(true);
+                break;
+
+            case APELA:
+
+                etapaActualizada = EstadoProvidencia.INFORME_JURIDICO; // ETAPA DE PRUEBA COLOCAR EL INDICADO
+                EstadoProvidencia subEtapa4 = EstadoProvidencia.SANCIONAR_SI_APELA; // SUBETAPA DE PRUEBA COLOCAR EL INDICADO
+                providencia = this.providenciaRepository.getOne(providenciaUpdateTypeDTO.getProvidenciaId());
+
+                if (providencia.getProvidencia_madre_id() == null) {
+                    log.debug("el id de la Provimadre a setear ORDEN JURIDICO es " + providenciaUpdateTypeDTO.getProvidenciaMadreId());
+                    providencia.setProvidencia_madre_id(providenciaMadre.getId());
+                }
+                providencia.setRequisito(EstadoProvidencia.ASESOR_REVISA_PROVIDENCIA_APELACION);
+                providencia.setNumeroReferencia(numeroReferencia);
+                providencia.setEtapa(etapaActualizada);
+                providencia.setSubEtapa(subEtapa4);
+                providencia.setEstadoActual(this.concatenarEstado(providencia.getRequisito(), providencia.getSubEtapa(), etapaActualizada));
+                providenciaMadre.setStandby(true);
+                break;
+
+            case DESPACHO:
+
+                etapaActualizada = EstadoProvidencia.INFORME_JURIDICO; // ETAPA DE PRUEBA COLOCAR EL INDICADO
+                EstadoProvidencia subEtapa5 = EstadoProvidencia.PRONUNCIANDO_RECURSO; // SUBETAPA DE PRUEBA COLOCAR EL INDICADO
+                providencia = this.providenciaRepository.getOne(providenciaUpdateTypeDTO.getProvidenciaId());
+
+                if (providencia.getProvidencia_madre_id() == null) {
+                    log.debug("el id de la Provimadre a setear ORDEN JURIDICO es " + providenciaUpdateTypeDTO.getProvidenciaMadreId());
+                    providencia.setProvidencia_madre_id(providenciaMadre.getId());
+                }
+                providencia.setRequisito(EstadoProvidencia.NUEVA_PROVIDENCIA);
+                providencia.setNumeroReferencia(numeroReferencia);
+                providencia.setEtapa(etapaActualizada);
+                providencia.setSubEtapa(subEtapa5);
                 providencia.setEstadoActual(this.concatenarEstado(providencia.getRequisito(), providencia.getSubEtapa(), etapaActualizada));
                 providenciaMadre.setStandby(true);
                 break;
