@@ -65,6 +65,9 @@ import {ProvidenciaEnviarInformePopupComponent} from 'app/entities/providencia/p
 import {ProvidenciaEnviaVistaFiscalPopupComponent} from 'app/entities/providencia/providencia-envia-vista-fiscal.component';
 import {ProvidenciaNotificaResolucionPopupComponent} from 'app/entities/providencia/providencia-notifica-resolucion.component';
 import {ProvidenciaAcogePopupComponent} from 'app/entities/providencia/providencia-acoge.component';
+import {ProvidenciaAcogeFiscalPopupComponent} from 'app/entities/providencia/providencia-acoge-fiscal.component';
+import {ProvidenciaNoAcogeFiscalPopupComponent} from 'app/entities/providencia/providencia-no-acoge-fiscal.component';
+
 import {ProvidenciaAcogeParcialPopupComponent} from 'app/entities/providencia/providencia-acoge-parcial.component';
 import {ProvidenciaRechazaPopupComponent} from 'app/entities/providencia/providencia-rechaza.component';
 import {ProvidenciaNotificaDgdpPopupComponent} from 'app/entities/providencia/providencia-notifica-dgdp.component';
@@ -421,6 +424,30 @@ export const providenciaPopupRoute: Routes = [
     {
         path: 'providencia/:id/acoge',
         component: ProvidenciaAcogePopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Acoge'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },  {
+        path: 'providencia/:id/acogeFiscal',
+        component: ProvidenciaAcogeFiscalPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Acoge'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    }, {
+        path: 'providencia/:id/noAcogeFiscal',
+        component: ProvidenciaNoAcogeFiscalPopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },

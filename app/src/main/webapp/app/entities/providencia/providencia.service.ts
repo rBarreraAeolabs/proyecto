@@ -312,6 +312,12 @@ export class ProvidenciaService {
     acoge(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/acoge', response, {observe: 'response'});
     }
+    acogeFiscal(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/acogeFiscal', response, {observe: 'response'});
+    }
+    noAcogeFiscal(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/noAcogeFiscal', response, {observe: 'response'});
+    }
     acogeParcial(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/acogeParcial', response, {observe: 'response'});
     }

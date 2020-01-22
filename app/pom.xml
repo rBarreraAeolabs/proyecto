@@ -13,7 +13,7 @@
         <repository>
             <id>central</id>
             <!--<url>http://nexus.k.netlinux.cl/repository/maven-central</url>-->
-            <url>http://repo.maven.apache.org/maven2/</url>
+            <url>https://repo.maven.apache.org/maven2/</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>daily</updatePolicy>
@@ -28,7 +28,7 @@
         <pluginRepository>
             <id>central</id>
             <!--<url>http://nexus.k.netlinux.cl/repository/maven-central</url>-->
-            <url>http://repo.maven.apache.org/maven2/</url>
+            <url>https://repo.maven.apache.org/maven2/</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>daily</updatePolicy>

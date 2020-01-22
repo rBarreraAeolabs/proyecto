@@ -136,6 +136,22 @@
                                                     <span > Asignar Número de Ingreso</span>
 
                                                 </a>
+                                                <a class="dropdown-item" *ngIf="actionsPermitted.noAcogeFiscal"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noAcogeFiscal'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > noAcogeFiscal</span>
+
+                                                </a> <a class="dropdown-item"
+                                                        *ngIf="actionsPermitted.acogeFiscal "
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/acogeFiscal'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span > cogeFiscal</span>
+
+                                                </a>
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroDespacho"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/asignarNumeroDespacho'} }]"
                                                    replaceUrl="true"
@@ -332,7 +348,7 @@
                                                     <span *ngIf="isNotificaCierre">Cerrar Investigacion</span>
                                                 </a>
                                                 <a
-                                                    class="dropdown-item" *ngIf="actionsPermitted.apela"
+                                                    class="dropdown-item" *ngIf="actionsPermitted.apela  "
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/apela'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
@@ -341,8 +357,10 @@
 
                                                 </a>
 
-                                                <a class="dropdown-item" *ngIf="actionsPermitted.noApela"
-                                                      [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noApela'} }]"
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.noApela "
+
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noApela'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #dc0000;" [icon]="'ban'"></fa-icon>&nbsp;
@@ -356,7 +374,8 @@
                                                    queryParamsHandling="merge"
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Notificar resolucion</span>
                                                 </a>
-                                                <a class="dropdown-item" *ngIf="actionsPermitted.acoge"
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.acoge"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/acoge'} }]"
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"

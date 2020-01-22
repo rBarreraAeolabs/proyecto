@@ -248,6 +248,8 @@ import {
     ProvidenciaNotificaDgdpComponent,
     ProvidenciaNotificaDgdpPopupComponent
 } from 'app/entities/providencia/providencia-notifica-dgdp.component';
+import {ProvidenciaAcogeFiscalPopupComponent, ProvidenciaAcogeFiscalComponent} from 'app/entities/providencia/providencia-acoge-fiscal.component';
+import {ProvidenciaNoAcogeFiscalPopupComponent,ProvidenciaNoAcogeFiscalComponent} from 'app/entities/providencia/providencia-no-acoge-fiscal.component';
 
 // directive
 import {
@@ -396,6 +398,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaNotificaDenunciadoPopupComponent,
         ProvidenciaNotificaDgdpComponent,
         ProvidenciaNotificaDgdpPopupComponent,
+
+        ProvidenciaAcogeFiscalPopupComponent,
+        ProvidenciaAcogeFiscalComponent,
+        ProvidenciaNoAcogeFiscalPopupComponent,
+        ProvidenciaNoAcogeFiscalComponent
     ],
     entryComponents: [
         ProvidenciaComponent,
@@ -520,6 +527,11 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaNotificaDenunciadoPopupComponent,
         ProvidenciaNotificaDgdpComponent,
         ProvidenciaNotificaDgdpPopupComponent,
+
+        ProvidenciaAcogeFiscalPopupComponent,
+        ProvidenciaAcogeFiscalComponent,
+        ProvidenciaNoAcogeFiscalPopupComponent,
+        ProvidenciaNoAcogeFiscalComponent
             ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
