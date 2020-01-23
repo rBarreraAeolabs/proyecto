@@ -271,6 +271,29 @@ public class ProvidenciaResource {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+    // --- FLUJO FISCAL ACOGE / NO ACOGE -------
+
+    @PostMapping("/providencias/acogeFiscal")
+    @Timed
+    public ResponseEntity<Void> acogeFiscal(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO AL ACOGE FISCAL");
+        this.providenciaService.acogeFiscal(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/providencias/noAcogeFiscal")
+    @Timed
+    public ResponseEntity<Void> noAcogeFiscal(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {
+        log.debug("ENTRO AL NO ACOGE FISCAL");
+        this.providenciaService.noAcogeFiscal(providenciaResponseDTO);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+    // ---------------------------------------
+
+
+
+
+
     @PostMapping("/providencias/rechazar")
     @Timed
     public ResponseEntity<Void> rechazar(@RequestBody ProvidenciaResponseDTO providenciaResponseDTO) {

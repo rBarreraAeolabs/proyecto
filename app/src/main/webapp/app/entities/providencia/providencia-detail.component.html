@@ -61,7 +61,8 @@
                                                 id="jhi-rechazar-providencia"
                                         >
                                             <fa-icon [icon]="'minus-circle'"></fa-icon>&nbsp;
-                                            <span *ngIf="isDevolver"> Devolver</span>
+                                            <!--<span *ngIf="isDevolver"> Devolver</span>-->
+                                            <span *ngIf="isDevolver"> Rechazar</span>
                                             <span *ngIf="!isDevolver"> Rechazar</span>
                                         </button>
                                         <div class="dropdown" ngbDropdown>
@@ -141,7 +142,7 @@
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span > noAcogeFiscal</span>
+                                                    <span > noAcogeRecurso</span>
 
                                                 </a> <a class="dropdown-item"
                                                         *ngIf="actionsPermitted.acogeFiscal "
@@ -149,7 +150,7 @@
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span > cogeFiscal</span>
+                                                    <span > acogeRecurso</span>
 
                                                 </a>
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroDespacho"
