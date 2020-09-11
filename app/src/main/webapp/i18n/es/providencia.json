@@ -2,8 +2,8 @@
     "pdisciplinarioApp": {
         "providencia" : {
             "home": {
-                "title": "Providencias",
-                "createLabel": "Crear Nueva Providencia",
+                "title": "Documentos",
+                "createLabel": "Crear Nuevo Documento",
                 "editLabel": "Editar la Providencia"
             },
             "modal":{

@@ -1,11 +1,11 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="pdisciplinarioApp.providencia.home.title">Providencias</span>
+        <span jhiTranslate="pdisciplinarioApp.providencia.home.title">Documentos</span>
         <div class="dropdown" ngbDropdown>
             <button *jhiHasAnyAuthority="['ROLE_ADMIN' , 'CREAR_PROVIDENCIA']" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-providencia" [routerLink]="['/providencia', 'new' ]">
                 <fa-icon [icon]="'plus'"></fa-icon>
                 <span  jhiTranslate="pdisciplinarioApp.providencia.home.createLabel">
-                    Create new Providencia
+                    Create new Documento
                 </span>
             </button>
 
