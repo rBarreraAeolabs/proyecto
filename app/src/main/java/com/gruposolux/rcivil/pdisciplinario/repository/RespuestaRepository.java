@@ -37,4 +37,10 @@ public interface RespuestaRepository extends JpaRepository<Respuesta, Long>
         "WHERE providencia_id = ? AND movimiento_providencia_id is null AND user_id = ? AND estado_providencia = ?",
         nativeQuery = true)
     void updateMovimientoProvidencia(Long movimientoProvidenciaId, Long providenciaId, Long userId, String estadoProvidencia);
+
+    @Query(value = "SELECT r.movimiento_providencia_id FROM respuesta r where r.providencia_id= :id order by r.id desc limit 1", nativeQuery = true)
+    Long findByversihayplantillaadjunta(@Param("id") Long id);
+
+
+
 }

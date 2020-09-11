@@ -72,14 +72,16 @@ export interface IAdjunto {
     archivoMimeType?: string;
     archivoSize?: number;
     estado?: FileUploadStatus;
-    archivoContentType?: string;
     archivo?: any;
+    archivoContentType?: string;
     alfrescoNodeId?: string;
     alfrescoNodePath?: string;
     localPath?: string;
     hash?: string;
     providenciaId?: number;
     movimientoProvidenciaId?: number;
+    derivacion_id?: number;
+    respuesta_id?: number;
 }
 
 export class Adjunto implements IAdjunto {
@@ -101,6 +103,8 @@ export class Adjunto implements IAdjunto {
         public localPath?: string,
         public hash?: string,
         public providenciaId?: number,
-        public movimientoProvidenciaId?: number
+        public movimientoProvidenciaId?: number,
+        public derivacion_id?: number,
+        public respuesta_id?: number
     ) {}
 }

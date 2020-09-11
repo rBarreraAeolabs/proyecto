@@ -47,6 +47,7 @@ public class ProvidenciaService {
     private final MovimientoProvidenciaService movimientoProvidenciaService;
     private final PlantillaService plantillaService;
     private final EntidadService entidadService;
+    private final RespuestaService respuestaService;
     private final EntidadMapper entidadMapper;
     private final InvestigacionSumariaService investigacionSumariaService;
     private final SumarioAdministrativoService sumarioAdministrativoService;
@@ -78,7 +79,7 @@ public class ProvidenciaService {
         MovimientoProvidenciaService movimientoProvidenciaService,
         PlantillaService plantillaService,
         EntidadService entidadService,
-        EntidadMapper entidadMapper,
+        RespuestaService respuestaService, EntidadMapper entidadMapper,
         InvestigacionSumariaService investigacionSumariaService,
         SumarioAdministrativoService sumarioAdministrativoService,
         InvestigacionSumariaMapper investigacionSumariaMapper,
@@ -104,6 +105,7 @@ public class ProvidenciaService {
         this.movimientoProvidenciaService = movimientoProvidenciaService;
         this.plantillaService = plantillaService;
         this.entidadService = entidadService;
+        this.respuestaService = respuestaService;
         this.entidadMapper = entidadMapper;
         this.investigacionSumariaService = investigacionSumariaService;
         this.sumarioAdministrativoService = sumarioAdministrativoService;
@@ -1224,15 +1226,14 @@ public class ProvidenciaService {
         return providenciaRepository.findAll(pageable).map(providencia -> {
 
             String nombreGrupo = this.determineGroupAnswer(providencia).getNombre();
-
             MovimientoProvidencia  mp =  movimientoProvidenciaService.buscarPorId(providencia.getId());
             log.debug(" resumen resultado del movimiento: "+mp);
 
-            Long sinresultados= Long.valueOf(0);
+//            Long sinresultados= Long.valueOf(0);
             /**
              * si agregas mas cosas al providenciaitemlistdto debes seguir el orden  del dto cuando muestres los datos aca
              */
-            if (mp != null) {
+//            if (mp != null) {
                 return new ProvidenciaItemListDTO(
                     providencia.getId(),
                     providencia.getFechaCreacion(),
@@ -1240,23 +1241,13 @@ public class ProvidenciaService {
                     nombreGrupo,
                     ChronoUnit.DAYS.between(providencia.getFechaCreacion(), Instant.now()),
                     ChronoUnit.DAYS.between(providencia.getFechaCreacion(),mp.getFecha()),
-                    providencia.getFechaHasta(),
-                    providencia.getStandby()
+                    providencia.getFechaHasta()
+
 
                 );
-            }else {
-                return new ProvidenciaItemListDTO(
-                    providencia.getId(),
-                    providencia.getFechaCreacion(),
-                    providencia.getEstadoActual(),
-                    nombreGrupo,
-                    ChronoUnit.DAYS.between(providencia.getFechaCreacion(), Instant.now()),
-                    sinresultados,
-                    providencia.getFechaHasta(),
-                    providencia.getStandby()
-                );
-            }});
+            });
     }
+//
 
     /**
      * Get all the Providencia with eager load of many-to-many relationships.
@@ -2793,7 +2784,9 @@ public class ProvidenciaService {
                 if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1)   || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5))   {
                     actionsPermitted.put("asignarFiscal", true);
                     actionsPermitted.put("goBackwards", false);
-                    actionsPermitted.put("reply", true);
+                    Boolean respuestaplantilla=  this.respuestaService.findByversihayplantillaadjunta(providenciaDTO.getId());
+                    log.debug("ruben2: plantila " + respuestaplantilla);
+                    actionsPermitted.put("reply", respuestaplantilla);
                 }
                 break;
             case REVISION_NOTIFICACION_FISCAL:
@@ -3014,11 +3007,8 @@ public class ProvidenciaService {
                     if(ultimoDgdp != providenciaDTO.getNumeroDgdp()) {
                         actionsPermitted.put("reply", true);
                     }else{
-//                        actionsPermitted.put("cambiadoNumeroDGDP", true);
-
                         actionsPermitted.put("asignarNumeroDGDP", true);
-
-                    }
+                        }
 
                 }
                 break;
@@ -3973,14 +3963,23 @@ public class ProvidenciaService {
             case SECRETARIA_REVISA_VISA_Y_FIRMA_SUBDIRECCION:
             case DESPACHA_A_DN:
             case SJ_RECIBE_RESOLUCION_CON_NUMERO:
-            case REDACCION_DE_RESOLUCION:
+
             case SJ_RECIBIO_ALCANCE:
             case SJ_RECIBIO_RESOLUCION:
                 if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
                     actionsPermitted.put("reply", true);
                 }
                 break;
+            case REDACCION_DE_RESOLUCION:
+                if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
 
+                    Boolean respuestaplantilla=  this.respuestaService.findByversihayplantillaadjunta(providenciaDTO.getId());
+                    log.debug("ruben2: plantila " + respuestaplantilla);
+
+                    actionsPermitted.put("reply", respuestaplantilla);
+
+                }
+                break;
             case DN_EMITE_PROVIDENCIA:
                 if ((grupoCurrentUser.getId() == 1 && perfilUser.getId() == 3) || (grupoCurrentUser.getId() == 1 && perfilUser.getId() == 1) || (grupoCurrentUser.getId() == 2 && perfilUser.getId() == 5)) {
 //                        actionsPermitted.put("reply", true);

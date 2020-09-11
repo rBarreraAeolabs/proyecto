@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 import { IProvidencia, Providencia } from 'app/shared/model/providencia.model';
 import { ProvidenciaService } from './providencia.service';
 import { ProvidenciaComponent } from './providencia.component';
-import { ProvidenciaUpdatePopupComponent, ProvidenciaUpdateComponent } from './providencia-update.component';
+import { ProvidenciaUpdatePopupComponent } from './providencia-update.component';
 import { ProvidenciaDeletePopupComponent } from './providencia-delete-dialog.component';
 import { ProvidenciaResponderPopupComponent } from 'app/entities/providencia/providencia-responder-dialog.component';
 import { ProvidenciaDevolverPopupComponent } from 'app/entities/providencia/providencia-devolver-dialog.component';
@@ -71,6 +71,23 @@ import {ProvidenciaNoAcogeFiscalPopupComponent} from 'app/entities/providencia/p
 import {ProvidenciaAcogeParcialPopupComponent} from 'app/entities/providencia/providencia-acoge-parcial.component';
 import {ProvidenciaRechazaPopupComponent} from 'app/entities/providencia/providencia-rechaza.component';
 import {ProvidenciaNotificaDgdpPopupComponent} from 'app/entities/providencia/providencia-notifica-dgdp.component';
+import {ProvidenciaCierreInvestigacionSumariaPopupComponent} from 'app/entities/providencia/providencia-cierre-investigacion-sumaria.component';
+import {ProvidenciaElevarsumarioAdministrativoPopupComponent} from 'app/entities/providencia/providencia-elevar-sumario-administrativo.component';
+import {ProvidenciaApelaInvestigacionPopupComponent} from 'app/entities/providencia/providencia-apela-investigacion.component';
+import {ProvidenciaAcogeInvestigacionApelaPopupComponent} from 'app/entities/providencia/providencia-acoge-investigacion-apela.component';
+import {ProvidenciaAceptaInvestigadorNoAceptaPopupComponent} from 'app/entities/providencia/providencia-acepta-investigador-no-acepta.component';
+// import {ProvidenciaAcogeParcialInvestigacionApelaPopupComponent} from 'app/entities/providencia/providencia-acoge-parcial-investigacion-apela.component';
+// import {ProvidenciaRechazaInvestigacionApelaPopupComponent} from 'app/entities/providencia/providencia-rechaza-investigacion-apela.component';
+// import {ProvidenciaAcogeInvestigacionNoApelaPopupComponent} from 'app/entities/providencia/providencia-acoge-investigacion-no-apela.component';
+// import {ProvidenciaAcogeParcialInvestigacionNoApelaPopupComponent} from 'app/entities/providencia/providencia-acoge-parcial-investigacion-no-apela.component';
+// import {ProvidenciaRechazaInvestigacionNoApelaPopupComponent} from 'app/entities/providencia/providencia-rechaza-investigacion-no-apela.component';
+// import {ProvidenciaSiDeAcuerdoInvestigacionPopupComponent} from 'app/entities/providencia/providencia-si-de-acuerdo-investigacion.component';
+// import {ProvidenciaNoReabroInvestigacionPopupComponent} from 'app/entities/providencia/providencia-no-reabro-investigacion.component';
+// import {ProvidenciaNoProponeInvestigacionPopupComponent} from 'app/entities/providencia/providencia-no-propone-investigacion.component';
+// import {ProvidenciaNoAceptaInvestigadorNoAceptaPopupComponent} from 'app/entities/providencia/providencia-no-acepta-investigador-no-acepta.component';
+// import {ProvidenciaNoAcogeInvestigacionNoApelaPopupComponent} from 'app/entities/providencia/providencia-no-acoge-investigacion-no-apela.component';
+
+
 @Injectable({ providedIn: 'root' })
 @Injectable({ providedIn: 'root' })
 export class ProvidenciaResolve implements Resolve<IProvidencia> {
@@ -122,36 +139,36 @@ export const providenciaRoute: Routes = [
             pageTitle: 'pdisciplinarioApp.providencia.home.title'
         },
         canActivate: [UserRouteAccessService]
-    },
-    {
-        path: 'providencia/new',
-        component: ProvidenciaUpdateComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER', 'CREAR_PROVIDENCIA'],
-            pageTitle: 'pdisciplinarioApp.providencia.home.title'
-        },
-        canActivate: [UserRouteAccessService]
-    },
-    {
-        path: 'providencia/:id/edit',
-        component: ProvidenciaUpdateComponent,
-        resolve: {
-            providencia: ProvidenciaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER', 'EDITAR_PROVIDENCIA'],
-            pageTitle: 'pdisciplinarioApp.providencia.home.title'
-        },
-        canActivate: [UserRouteAccessService]
     }
+    // {
+    //     path: 'providencia/new',
+    //     component: ProvidenciaUpdateComponent,
+    //     resolve: {
+    //         providencia: ProvidenciaResolve
+    //     },
+    //     data: {
+    //         authorities: ['ROLE_USER', 'CREAR_PROVIDENCIA'],
+    //         pageTitle: 'pdisciplinarioApp.providencia.home.title'
+    //     },
+    //     canActivate: [UserRouteAccessService]
+    // },
+    // {
+    //     path: 'providencia/:id/edit',
+    //     component: ProvidenciaUpdateComponent,
+    //     resolve: {
+    //         providencia: ProvidenciaResolve
+    //     },
+    //     data: {
+    //         authorities: ['ROLE_USER', 'EDITAR_PROVIDENCIA'],
+    //         pageTitle: 'pdisciplinarioApp.providencia.home.title'
+    //     },
+    //     canActivate: [UserRouteAccessService]
+    // }
 ];
 export const providenciaPopupRoute: Routes = [
     {
-        path: 'providencia/:id/delete',
-        component: ProvidenciaDeletePopupComponent,
+        path: 'providencia/new',
+        component: ProvidenciaUpdatePopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },
@@ -163,8 +180,21 @@ export const providenciaPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'providencianewPopup',
+        path: 'providencia/:id/edit',
         component: ProvidenciaUpdatePopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'EDITAR_PROVIDENCIA'],
+            pageTitle: 'pdisciplinarioApp.providencia.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/delete',
+        component: ProvidenciaDeletePopupComponent,
         resolve: {
             providencia: ProvidenciaResolve
         },
@@ -214,6 +244,45 @@ export const providenciaPopupRoute: Routes = [
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
+    // {
+    //     path: 'providencia/:id/siDeAcuerdoInvestigacion',
+    //     component: ProvidenciaSiDeAcuerdoInvestigacionPopupComponent,
+    //     resolve: {
+    //         providencia: ProvidenciaResolve
+    //     },
+    //     data: {
+    //         authorities: ['ROLE_USER'],
+    //         pageTitle: 'pdisciplinarioApp.providencia.home.title'
+    //     },
+    //     canActivate: [UserRouteAccessService],
+    //     outlet: 'popup'
+    // },
+    // {
+    //     path: 'providencia/:id/noReabroInvestigacion',
+    //     component: ProvidenciaNoReabroInvestigacionPopupComponent,
+    //     resolve: {
+    //         providencia: ProvidenciaResolve
+    //     },
+    //     data: {
+    //         authorities: ['ROLE_USER'],
+    //         pageTitle: 'pdisciplinarioApp.providencia.home.title'
+    //     },
+    //     canActivate: [UserRouteAccessService],
+    //     outlet: 'popup'
+    // },
+    // {
+    //     path: 'providencia/:id/noProponeInvestigacion',
+    //     component: ProvidenciaNoProponeInvestigacionPopupComponent,
+    //     resolve: {
+    //         providencia: ProvidenciaResolve
+    //     },
+    //     data: {
+    //         authorities: ['ROLE_USER'],
+    //         pageTitle: 'pdisciplinarioApp.providencia.home.title'
+    //     },
+    //     canActivate: [UserRouteAccessService],
+    //     outlet: 'popup'
+    // },
     {
         path: 'providencia/:id/terminoProbatorio',
         component: ProvidenciaTerminoProbatorioPopupComponent,
@@ -279,7 +348,7 @@ export const providenciaPopupRoute: Routes = [
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
-        {
+    {
         path: 'providencia/:id/alcance',
         component: ProvidenciaAlcancePopupComponent,
         resolve: {
@@ -287,7 +356,7 @@ export const providenciaPopupRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
-            pageTitle: 'Apela'
+            pageTitle: 'Alcance'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -356,7 +425,32 @@ export const providenciaPopupRoute: Routes = [
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
+    },  {
+        path: 'providencia/:id/aceptaInvestigadorNoAcepta',
+        component: ProvidenciaAceptaInvestigadorNoAceptaPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Aceptar providencia'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
     },
+    // {
+    //     path: 'providencia/:id/NoAceptaInvestigadorNoAcepta',
+    //     component: ProvidenciaNoAceptaInvestigadorNoAceptaPopupComponent,
+    //     resolve: {
+    //         providencia: ProvidenciaResolve
+    //     },
+    //     data: {
+    //         authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+    //         pageTitle: 'Aceptar providencia'
+    //     },
+    //     canActivate: [UserRouteAccessService],
+    //     outlet: 'popup'
+    // },
     {
         path: 'providencia/:id/fiscalRechaza',
         component: ProvidenciaFiscalRechazaPopupComponent,
@@ -370,6 +464,31 @@ export const providenciaPopupRoute: Routes = [
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
+    // {
+    //     path: 'providencia/:id/rechazaInvestigacionApela',
+    //     component: ProvidenciaRechazaInvestigacionApelaPopupComponent,
+    //     resolve: {
+    //         providencia: ProvidenciaResolve
+    //     },
+    //     data: {
+    //         authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+    //         pageTitle: 'Rechazar providencia'
+    //     },
+    //     canActivate: [UserRouteAccessService],
+    //     outlet: 'popup'
+    // }, {
+    //     path: 'providencia/:id/rechazaInvestigacionNoApela',
+    //     component: ProvidenciaRechazaInvestigacionNoApelaPopupComponent,
+    //     resolve: {
+    //         providencia: ProvidenciaResolve
+    //     },
+    //     data: {
+    //         authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+    //         pageTitle: 'Rechazar providencia'
+    //     },
+    //     canActivate: [UserRouteAccessService],
+    //     outlet: 'popup'
+    // },
     {
         path: 'providencia/:id/prorroga',
         component: ProvidenciaFiscalProrrogaPopupComponent,
@@ -391,7 +510,32 @@ export const providenciaPopupRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
-            pageTitle: 'Apela'
+            pageTitle: 'NotificaCierre'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    }, {
+        path: 'providencia/:id/CierreIvestigacionSumaria',
+        component: ProvidenciaCierreInvestigacionSumariaPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'CierreIvestigacionSumaria'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    }, {
+        path: 'providencia/:id/elevarSumarioAdministrativo',
+        component: ProvidenciaElevarsumarioAdministrativoPopupComponent
+        ,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'CierreIvestigacionSumaria'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -403,7 +547,7 @@ export const providenciaPopupRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
-            pageTitle: 'Apela'
+            pageTitle: 'enviaVistaFiscal'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -433,7 +577,71 @@ export const providenciaPopupRoute: Routes = [
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
-    },  {
+    },
+    {
+        path: 'providencia/:id/acogeInvestigacionApela',
+        component: ProvidenciaAcogeInvestigacionApelaPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'Acoge'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    // {
+    //     path: 'providencia/:id/acogeInvestigacionNoApela',
+    //     component: ProvidenciaAcogeInvestigacionNoApelaPopupComponent,
+    //     resolve: {
+    //         providencia: ProvidenciaResolve
+    //     },
+    //     data: {
+    //         authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+    //         pageTitle: 'Acoge'
+    //     },
+    //     canActivate: [UserRouteAccessService],
+    //     outlet: 'popup'
+    // }, {
+    //     path: 'providencia/:id/noAcogeInvestigacionNoApela',
+    //     component: ProvidenciaNoAcogeInvestigacionNoApelaPopupComponent,
+    //     resolve: {
+    //         providencia: ProvidenciaResolve
+    //     },
+    //     data: {
+    //         authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+    //         pageTitle: 'Acoge'
+    //     },
+    //     canActivate: [UserRouteAccessService],
+    //     outlet: 'popup'
+    // },
+    // {
+    //     path: 'providencia/:id/acogeParcialInvestacionApela',
+    //     component: ProvidenciaAcogeParcialInvestigacionApelaPopupComponent,
+    //     resolve: {
+    //         providencia: ProvidenciaResolve
+    //     },
+    //     data: {
+    //         authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+    //         pageTitle: 'Acoge'
+    //     },
+    //     canActivate: [UserRouteAccessService],
+    //     outlet: 'popup'
+    // }, {
+    //     path: 'providencia/:id/acogeParcialInvestacionNoApela',
+    //     component: ProvidenciaAcogeParcialInvestigacionNoApelaPopupComponent,
+    //     resolve: {
+    //         providencia: ProvidenciaResolve
+    //     },
+    //     data: {
+    //         authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+    //         pageTitle: 'Acoge'
+    //     },
+    //     canActivate: [UserRouteAccessService],
+    //     outlet: 'popup'
+    // },
+    {
         path: 'providencia/:id/acogeFiscal',
         component: ProvidenciaAcogeFiscalPopupComponent,
         resolve: {
@@ -505,6 +713,32 @@ export const providenciaPopupRoute: Routes = [
         data: {
             authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
             pageTitle: 'NO Apela'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/apelaInvestigacion',
+        component: ProvidenciaApelaInvestigacionPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'ApelaInvestigacion'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'providencia/:id/noApelaInvestigacion',
+        component: ProvidenciaNoApelaPopupComponent,
+        resolve: {
+            providencia: ProvidenciaResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'DERIVAR_PROVIDENCIA'],
+            pageTitle: 'NO Apela investigacion'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

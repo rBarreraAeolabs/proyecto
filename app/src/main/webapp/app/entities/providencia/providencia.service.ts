@@ -117,9 +117,21 @@ export class ProvidenciaService {
     aceptar(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/aceptar', response, {observe: 'response'});
     }
+    aceptarInvestigacion(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/aceptarInvestigacion', response, {observe: 'response'});
+    }
+    aceptaInvestigadorNoAcepta(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/aceptaInvestigadorNoAcepta', response, {observe: 'response'});
+    }
+    noAceptaInvestigadorNoAcepta(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/aceptaInvestigadorNoAcepta', response, {observe: 'response'});
+    }
 
     rechazar(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/rechazar', response, {observe: 'response'});
+    }
+    rechazarInvestigacion(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/rechazarInvestigacion', response, {observe: 'response'});
     }
 
     goBackwards(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
@@ -145,7 +157,7 @@ export class ProvidenciaService {
         put<IProvidencia>(`${this.resourceUrl}/updateFolio`, providencia, {observe: 'response'})
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
-        formulaCargos(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+    formulaCargos(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/formularCargos', response, {observe: 'response'});
     }
 
@@ -159,6 +171,12 @@ export class ProvidenciaService {
     apela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/apela', response, {observe: 'response'});
     }
+    noApelaInvestigacion(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/noApelaInvestigacion', response, {observe: 'response'});
+    }
+    apelaInvestigacion(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/apelaInvestigacion', response, {observe: 'response'});
+    }
 
     noApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/noApela', response, {observe: 'response'});
@@ -166,6 +184,12 @@ export class ProvidenciaService {
 
     fiscalNotificaCierre(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/fiscalNotificaCierre', response, {observe: 'response'});
+    }
+    cierreIvestigacionSumaria(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/cierreIvestigacionSumaria', response, {observe: 'response'});
+    }
+    elevarSumarioAdministrativo(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/elevarSumarioAdministrativo', response, {observe: 'response'});
     }
 
     getActionsPermitted(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
@@ -232,7 +256,7 @@ export class ProvidenciaService {
         return this.http.post<any>(this.resourceUrl + '/examenLegalidad', response, {observe: 'response'});
     }
     alcance(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
-    return this.http.post<any>(this.resourceUrl + '/alcance', response, {observe: 'response'});
+        return this.http.post<any>(this.resourceUrl + '/alcance', response, {observe: 'response'});
     }
     resolucion(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/resolucion', response, {observe: 'response'});
@@ -281,10 +305,10 @@ export class ProvidenciaService {
     //     return this.http.put<IProvidencia>(`${this.resourceUrl}/emiteProvidencia`, providencia, {observe: 'response'})
     //         .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     // }
-        asignarNumeroDGDP(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
-            return this.http.
-            put<IProvidencia>(`${this.resourceUrl}/updateNumeroDGDP`, providencia, {observe: 'response'})
-                .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    asignarNumeroDGDP(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
+        return this.http.
+        put<IProvidencia>(`${this.resourceUrl}/updateNumeroDGDP`, providencia, {observe: 'response'})
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
     asignarNumeroIngreso(providencia: IProvidenciaUpdateNroReferencia): Observable<EntityResponseType> {
         return this.http.
@@ -318,6 +342,9 @@ export class ProvidenciaService {
     noAcogeFiscal(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/noAcogeFiscal', response, {observe: 'response'});
     }
+    // noAcogeInvestigacionApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+    //     return this.http.post<any>(this.resourceUrl + '/noAcogeInvestigacionApela', response, {observe: 'response'});
+    // }
     acogeParcial(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/acogeParcial', response, {observe: 'response'});
     }
@@ -329,6 +356,55 @@ export class ProvidenciaService {
     }
     notificaDgdp(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
         return this.http.post<any>(this.resourceUrl + '/notificaDgdp', response, {observe: 'response'});
+    }
+    acogeInvestigacionApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/acogeInvestigacionapela', response, {observe: 'response'});
+    }
+    acogeParcialInvestigacionApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/acogeParcialInvestigacionApela', response, {observe: 'response'});
+    }
+    rechazaInvestigacionApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/rechazaInvestigacionApela', response, {observe: 'response'});
+    }
+    acogeInvestigacionNoApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/acogeInvestigacionNoApela', response, {observe: 'response'});
+    }
+    noAcogeInvestigacionNoApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/noAcogeInvestigacionNoApela', response, {observe: 'response'});
+    }
+    acogeParcialInvestigacionNoApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/acogeParcialInvestigacionNoApela', response, {observe: 'response'});
+    }
+    rechazaInvestigacionNoApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/rechazaInvestigacionNoApela', response, {observe: 'response'});
+    }
+    siDeAcuerdoInvestigacion(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/siDeAcuerdoInvestigacion', response, {observe: 'response'});
+    }
+    noProponeInvestigacion(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/noProponeInvestigacion', response, {observe: 'response'});
+    }
+    noReabroInvestigacion(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/noReabreInvestigacion', response, {observe: 'response'});
+    }
+
+    tomaRazonApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/tomaRazonApela', response, {observe: 'response'});
+    }
+    registraApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/registraApela', response, {observe: 'response'});
+    }
+    representaApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/representaApela', response, {observe: 'response'});
+    }
+    tomaRazonNoApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/tomaRazonNoApela', response, {observe: 'response'});
+    }
+    registraNoApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/registraNoApela', response, {observe: 'response'});
+    }
+    representaNoApela(response: IProvidenciaResponse): Observable<HttpResponse<any>> {
+        return this.http.post<any>(this.resourceUrl + '/representaNoApela', response, {observe: 'response'});
     }
 
 }

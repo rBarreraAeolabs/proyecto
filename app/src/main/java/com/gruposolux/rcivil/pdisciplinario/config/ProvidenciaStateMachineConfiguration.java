@@ -49,7 +49,7 @@ public class ProvidenciaStateMachineConfiguration extends StateMachineConfigurer
         {
             transitions
                 .withExternal()
-                .source(EstadoProvidencia.NUEVA_PROVIDENCIA.name()).target(EstadoProvidencia.PROVIDENCIA_CREADA.name())
+                .source(EstadoProvidencia.NUEVA_PROVIDENCIA.name()).state(EstadoDerivacion.LEIDO.name()).target(EstadoProvidencia.PROVIDENCIA_CREADA.name())
                 .event(AccionesProvidencia.CREAR_PROVIDENCIA.name())
                 .and()
                 .withExternal()

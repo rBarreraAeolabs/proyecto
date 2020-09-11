@@ -22,8 +22,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @Transactional
-public class RespuestaService
-{
+public class RespuestaService {
     private final Logger log = LoggerFactory.getLogger(RespuestaService.class);
     private final RespuestaMapper respuestaMapper;
     private final RespuestaRepository respuestaRepository;
@@ -54,33 +53,28 @@ public class RespuestaService
         this.userService = userService;
     }
 
-    public RespuestaDTO save(RespuestaDTO respuestaDTO)
-    {
+    public RespuestaDTO save(RespuestaDTO respuestaDTO) {
         Respuesta respuesta = this.respuestaMapper.toEntity(respuestaDTO);
         User user = this.userService.getCurrentUser();
         respuesta.setUser(user);
         respuesta = this.respuestaRepository.save(respuesta);
-        if (respuestaDTO.getAdjuntos() != null && respuestaDTO.getAdjuntos().size() > 0)
-        {
+        if (respuestaDTO.getAdjuntos() != null && respuestaDTO.getAdjuntos().size() > 0) {
             this.setIdRespuestaOnAdjuntos(respuestaDTO.getAdjuntos(), respuesta.getId(), respuesta.getProvidencia().getId());
         }
-        if (respuestaDTO.getDocumentos() != null && respuestaDTO.getDocumentos().size() > 0)
-        {
+        if (respuestaDTO.getDocumentos() != null && respuestaDTO.getDocumentos().size() > 0) {
             this.setIdRespuestaOnDocumentos(respuestaDTO.getDocumentos(), respuesta.getId(), respuesta.getProvidencia().getId());
         }
         return this.respuestaMapper.toDto(respuesta);
     }
 
     @Transactional(readOnly = true)
-    public List<RespuestaDTO> getAll()
-    {
+    public List<RespuestaDTO> getAll() {
         List<Respuesta> respuestas = this.respuestaRepository.findAll();
         return respuestas.stream().map(this.respuestaMapper::toDto).collect(Collectors.toList());
     }
 
     @Transactional
-    public Optional<RespuestaDTO> findOne(Long id)
-    {
+    public Optional<RespuestaDTO> findOne(Long id) {
         return this.respuestaRepository.findById(id).map(this.respuestaMapper::toDto);
     }
 
@@ -90,35 +84,29 @@ public class RespuestaService
     }
 
     @Transactional
-    public Optional<RespuestaDTO> findOneByProvidencia(ProvidenciaDTO providenciaDTO)
-    {
+    public Optional<RespuestaDTO> findOneByProvidencia(ProvidenciaDTO providenciaDTO) {
         return this.respuestaRepository.findByProvidencia(this.providenciaMapper.toEntity(providenciaDTO),
             this.userService.getCurrentUser(), providenciaDTO.getEstadoActual()).map(this.respuestaMapper::toDto);
     }
 
-    public void updateMovimientoProvidencia(Long movimientoProvideniaId, Long providenciaId, String estadoProvidencia)
-    {
+    public void updateMovimientoProvidencia(Long movimientoProvideniaId, Long providenciaId, String estadoProvidencia) {
         this.respuestaRepository.updateMovimientoProvidencia(movimientoProvideniaId, providenciaId,
             this.userService.getCurrentUser().getId(), estadoProvidencia);
     }
 
     @Transactional
-    public RespuestaDTO findByMovimientoProvidencia(Long movimientoProvidenciaId)
-    {
+    public RespuestaDTO findByMovimientoProvidencia(Long movimientoProvidenciaId) {
         Long id = this.respuestaRepository.findByMovimientoPrividencia(movimientoProvidenciaId);
 
-        if (id != null)
-        {
+        if (id != null) {
             return this.respuestaMapper.toDto(this.respuestaRepository.getOne(id));
         }
 
         return new RespuestaDTO();
     }
 
-    private void setIdRespuestaOnAdjuntos(Set<AdjuntoDTO> adjuntoDTOs, Long respuestaId, Long providenciaId)
-    {
-        for(Iterator<AdjuntoDTO> it = adjuntoDTOs.iterator(); it.hasNext();)
-        {
+    private void setIdRespuestaOnAdjuntos(Set<AdjuntoDTO> adjuntoDTOs, Long respuestaId, Long providenciaId) {
+        for (Iterator<AdjuntoDTO> it = adjuntoDTOs.iterator(); it.hasNext(); ) {
             AdjuntoDTO adjuntoDto = it.next();
             adjuntoDto.setRespuestaId(respuestaId);
             adjuntoDto.setProvidenciaId(providenciaId);
@@ -126,14 +114,28 @@ public class RespuestaService
         this.adjuntoService.updateAdjuntos(adjuntoDTOs);
     }
 
-    private void setIdRespuestaOnDocumentos(Set<DocumentoDTO> documentoDTOs, Long respuestaId, Long providenciaId)
-    {
-        for(Iterator<DocumentoDTO> it = documentoDTOs.iterator(); it.hasNext();)
-        {
+    private void setIdRespuestaOnDocumentos(Set<DocumentoDTO> documentoDTOs, Long respuestaId, Long providenciaId) {
+        for (Iterator<DocumentoDTO> it = documentoDTOs.iterator(); it.hasNext(); ) {
             DocumentoDTO documentoDTO = it.next();
             documentoDTO.setRespuestaId(respuestaId);
             documentoDTO.setProvidenciaId(providenciaId);
         }
         this.documentoService.updateDocumentos(documentoDTOs);
     }
-}
+
+    public Boolean findByversihayplantillaadjunta(Long id) {
+        Boolean verdaderoOfalso = false;
+        log.debug("ruben2: plantila restriccion ");
+        Long respuesta = this.respuestaRepository.findByversihayplantillaadjunta(id);
+
+        log.debug("ruben2: plantila id " + respuesta);
+
+            log.debug("ruben2: plantila restriccion id:" + respuesta);
+            if (respuesta == null) {
+                verdaderoOfalso = true;
+
+            }
+            return verdaderoOfalso;
+        }
+    }
+

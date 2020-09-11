@@ -92,4 +92,5 @@ public class RespuestaResource
         Optional<RespuestaDTO> respuestaDTO = Optional.of(this.respuestaService.findByMovimientoProvidencia(movimientoProvidenciaId));
         return ResponseUtil.wrapOrNotFound(respuestaDTO);
     }
+
 }

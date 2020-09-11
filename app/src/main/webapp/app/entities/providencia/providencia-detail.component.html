@@ -27,7 +27,7 @@
                                         <p *ngIf="actionsPermitted.cambiadoNumeroDGDP ">
                                             debe asignar un numero DGDP
                                         </p>
-                                            <ng-template #viewBoton>
+                                        <ng-template #viewBoton>
                                             <button type="button"
                                                     *ngIf="actionsPermitted.reply "
                                                     [disabled]="disableResponder"
@@ -39,10 +39,10 @@
                                                 <span *ngIf="isResponder"> Continuar</span>
                                                 <span *ngIf="!isResponder"> Aceptar</span>
                                             </button>
-                                            </ng-template>
+                                        </ng-template>
                                         <button type="button"
                                                 *ngIf="actionsPermitted.aceptar
-                                                && providencia.requisito == 'FISCAL_NOTIFICADO'
+                                                && providencia.requisito.toString() == 'FISCAL_NOTIFICADO' || providencia.requisito.toString() == 'INVESTIGADOR_NOTIFICADO'
 
                                                 "
                                                 class="btn btn-success mr-2"
@@ -55,7 +55,9 @@
 
                                         <button type="button"
                                                 *ngIf="actionsPermitted.rechazar
-                                                && providencia.requisito == 'FISCAL_NOTIFICADO'                                               "
+                                                && providencia.requisito.toString() == 'FISCAL_NOTIFICADO'
+                                                || providencia.requisito.toString() == 'INVESTIGADOR_NOTIFICADO'
+                                                && providencia.etapa.toString() != 'RECHAZA_INHABILIDAD'"
                                                 class="btn btn-danger mr-2"
                                                 [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/fiscalRechaza'} }]"
                                                 id="jhi-rechazar-providencia"
@@ -101,13 +103,13 @@
                                                     <span *ngIf="providencia.nombreFiscalAsignado !== null"> Cambiar Fiscal Asignado</span>
                                                 </a>
 
-<!--                                                <a class="dropdown-item" *ngIf="actionsPermitted.numerarReferencia && providencia.providenciaMadreId == null"-->
+                                                <!--                                                <a class="dropdown-item" *ngIf="actionsPermitted.numerarReferencia && providencia.providenciaMadreId == null"-->
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.numerarReferencia"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/numerarReferencia'} }]"
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge">
-<!--                                                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;-->
-<!--                                                    <span *ngIf="providencia.numeroReferencia == null && providencia.requisito == 'RESOLUCION_QUE_INSTRUYE_SUMARIO_MEMO_CONDUCTOR'"></span>-->
+                                                    <!--                                                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;-->
+                                                    <!--                                                    <span *ngIf="providencia.numeroReferencia == null && providencia.requisito == 'RESOLUCION_QUE_INSTRUYE_SUMARIO_MEMO_CONDUCTOR'"></span>-->
                                                     <span *ngIf="providencia.numeroReferencia == null"><fa-icon [icon]="'pencil-alt'"></fa-icon> Asignar Número de Referencia</span>
                                                     <span *ngIf="providencia.numeroReferencia !== null"><fa-icon [icon]="'pencil-alt'"></fa-icon> Editar Número de Referencia</span>
                                                 </a>
@@ -120,14 +122,14 @@
                                                     <span *ngIf="providencia.nombreFiscalAsignado == null"> Asignar a Udp</span>
 
                                                 </a> <a class="dropdown-item"
-                                                   *ngIf="actionsPermitted.enviaVistaFiscal"
-                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/enviaVistaFiscal'} }]"
-                                                   replaceUrl="true"
-                                                   queryParamsHandling="merge"
-                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span *ngIf="providencia.nombreFiscalAsignado == null">  Envia Vista Fiscal</span>
+                                                        *ngIf="actionsPermitted.enviaVistaFiscal"
+                                                        [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/enviaVistaFiscal'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                            ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                <span *ngIf="providencia.nombreFiscalAsignado == null">  Envia Vista Fiscal</span>
 
-                                                </a>
+                                            </a>
 
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroIngreso "
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/asignarNumeroIngreso'} }]"
@@ -146,13 +148,13 @@
 
                                                 </a> <a class="dropdown-item"
                                                         *ngIf="actionsPermitted.acogeFiscal "
-                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/acogeFiscal'} }]"
-                                                   replaceUrl="true"
-                                                   queryParamsHandling="merge"
-                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                    <span > acogeRecurso</span>
+                                                        [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/acogeFiscal'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                            ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                <span > acogeRecurso</span>
 
-                                                </a>
+                                            </a>
                                                 <a class="dropdown-item" *ngIf="actionsPermitted.asignarNumeroDespacho"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/asignarNumeroDespacho'} }]"
                                                    replaceUrl="true"
@@ -232,14 +234,65 @@
 
                                             </a>
                                                 <a
-                                                class="dropdown-item" *ngIf="actionsPermitted.representa"
-                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/representa'} }]"
+                                                    class="dropdown-item" *ngIf="actionsPermitted.representa"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/representa'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span >Representa</span>
+
+                                                </a>  <a
+                                                class="dropdown-item" *ngIf="actionsPermitted.tomaRazonApela"
+                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/tomaRazonApela'} }]"
                                                 replaceUrl="true"
                                                 queryParamsHandling="merge"
                                             ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                                                <span >Representa</span>
+                                                <span >Toma de Razón</span>
+
+                                            </a>     <a
+                                                class="dropdown-item" *ngIf="actionsPermitted.registraApela"
+                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/registraApela'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge"
+                                            ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                <span >Registra</span>
 
                                             </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.representaApela"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/representaApela'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span >Representa</span>
+
+                                                </a><a
+                                                class="dropdown-item" *ngIf="actionsPermitted.tomaRazonNoApela"
+                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/tomaRazonNoApela'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge"
+                                            ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                <span >Toma de Razón</span>
+
+                                            </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.registraNoApela"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/registraNoApela'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span >Registra</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.representaNoApela"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/representaNoApela'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #dc0000;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span >Representa</span>
+
+                                                </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.alcance"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/alcance'} }]"
@@ -349,6 +402,22 @@
                                                     <span *ngIf="isNotificaCierre">Cerrar Investigacion</span>
                                                 </a>
                                                 <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.elevarSumarioAdministrativo"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/elevarSumarioAdministrativo'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span *ngIf="isNotificaCierre">elevar Sumario Administrativo</span>
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.CierreIvestigacionSumaria"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/CierreIvestigacionSumaria'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span *ngIf="isNotificaCierre">cierre de la investigacion</span>
+                                                </a>
+                                                <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.apela  "
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/apela'} }]"
                                                     replaceUrl="true"
@@ -357,7 +426,6 @@
                                                     <span> Si Apela </span>
 
                                                 </a>
-
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.noApela "
 
@@ -366,6 +434,24 @@
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #dc0000;" [icon]="'ban'"></fa-icon>&nbsp;
                                                     <span>No Apela</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.apelaInvestigacion"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/apelaInvestigacion'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span> Si Apela </span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.noApelaInvestigacion"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noApelaInvestigacion'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span> No Apela </span>
 
                                                 </a>
                                                 <a class="dropdown-item"
@@ -383,12 +469,53 @@
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>Acoger</span>
                                                 </a>
                                                 <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.acogeInvestigacionapela"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/acogeInvestigacionApela'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>Acoger</span>
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.acogeInvestigacionNoApela"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/acogeInvestigacionNoApela'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>Acoger</span>
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.rechazaInvestigacionApela"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/rechazaInvestigacionApela'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>rechaza</span>
+                                                </a> <a class="dropdown-item"
+                                                        *ngIf="actionsPermitted.rechazaInvestigacionNoApela"
+                                                        [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/rechazaInvestigacionNoApela'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                            ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>rechaza</span>
+                                            </a>
+
+                                                <a class="dropdown-item"
                                                    *ngIf="actionsPermitted.acogeParcial"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/acogeParcial'} }]"
                                                    replaceUrl="true"
                                                    queryParamsHandling="merge"
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>Acoge Parcial</span>
                                                 </a>
+                                                <a class="dropdown-item"
+                                                   *ngIf="actionsPermitted.acogeParcialInvestigacionApela"
+                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/acogeParcialInvestigacionApela'} }]"
+                                                   replaceUrl="true"
+                                                   queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>Acoge Parcial</span>
+                                                </a> <a class="dropdown-item"
+                                                        *ngIf="actionsPermitted.acogeParcialInvestigacionNoApela"
+                                                        [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/acogeParcialInvestigacionNoApela'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                            ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>Acoge Parcial</span>
+                                            </a>
                                                 <a class="dropdown-item"
                                                    *ngIf="actionsPermitted.notificaDgdp"
                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/notificaDgdp'} }]"
@@ -403,13 +530,8 @@
                                                    queryParamsHandling="merge"
                                                 ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>notifica Denunciado</span>
                                                 </a>
-                                                <a class="dropdown-item"
-                                                   *ngIf="actionsPermitted.rechaza"
-                                                   [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/rechaza'} }]"
-                                                   replaceUrl="true"
-                                                   queryParamsHandling="merge"
-                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>Rechazar</span>
-                                                </a>
+
+
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.inculpadoEnviaMemo"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/inculpadoEnviaMemo'} }]"
@@ -417,7 +539,7 @@
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
                                                     <span > Realizó descargo </span>
-<!--                                                    <span > Inculpado Envia Memo </span>-->
+                                                    <!--                                                    <span > Inculpado Envia Memo </span>-->
 
 
                                                 </a>
@@ -428,7 +550,7 @@
                                                     queryParamsHandling="merge"
                                                 ><fa-icon style="color: #F51009;" [icon]="'check-circle'"></fa-icon>&nbsp;
                                                     <span> No Realizó Descargo </span>
-<!--                                                    <span> Inculpado No Envia Memo </span>-->
+                                                    <!--                                                    <span> Inculpado No Envia Memo </span>-->
 
                                                 </a>
                                                 <a
@@ -493,6 +615,30 @@
                                                 <span >No Propone</span>
                                             </a>
                                                 <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.siDeAcuerdoInvestigacion"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/siDeAcuerdoInvestigacion'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span >Si de Acuerdo</span>
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.noReabreInvestigacion"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noReabroInvestigacion'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #FF5733;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span >No Reabre</span>
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.noProponeInvestigacion"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noPropone'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon style="color: #E1E934;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                    <span >No Propone</span>
+                                                </a>
+                                                <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.formularCargos && (providencia.requisito.toString() !== 'INCULPADO_ENVIA_MEMO' || providencia.requisito.toString() !== 'TERMINO_PROBATORIO') && providencia.requisito.toString() !== 'INCULPADO_NO_ENVIA_MEMO'"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/formulaCargos'} }]"
                                                     replaceUrl="true"
@@ -515,7 +661,7 @@
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/remiteExpediente'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
-                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
                                                     <span>Fiscal Remite Expediente</span>
 
                                                 </a>
@@ -524,7 +670,7 @@
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/sinDenunciante'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
-                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
                                                     <span>Sin Denunciante</span>
 
                                                 </a>
@@ -533,10 +679,36 @@
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/enviarInforme'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
-                                                ><fa-icon style="color: #25a02a;" [icon]="'check-circle'"></fa-icon>&nbsp;
-                                                    <span>Sin Denunciante</span>
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span>enviar informe</span>
 
                                                 </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.aceptaInvestigadorNoAcepta"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/aceptaInvestigadorNoAcepta'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span>acepta</span>
+
+                                                </a>
+                                                <a
+                                                    class="dropdown-item" *ngIf="actionsPermitted.NoAceptaInvestigadorNoAcepta"
+                                                    [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/NoAceptaInvestigadorNoAcepta'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                    <span>no acepta</span>
+
+                                                </a> <a
+                                                class="dropdown-item" *ngIf="actionsPermitted.noAcogeInvestigacionNoApela"
+                                                [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/noAcogeInvestigacionNoApela'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge"
+                                            ><fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
+                                                <span>no acoge</span>
+
+                                            </a>
                                                 <a
                                                     class="dropdown-item" *ngIf="actionsPermitted.goBackwards"
                                                     [routerLink]="['/', { outlets: { popup: 'providencia/'+ providencia.id + '/devolver'} }]"
@@ -554,59 +726,59 @@
                             <hr>
                             <jhi-alert-error></jhi-alert-error>
                             <!--DETALLE DE LOS DETALLES DE PROVIDENCIA-->
-                        <div style="box-shadow: -11px 10px 5px rgba(12, 12, 12, 0.09);border: 1px #eeeeee solid;border-radius: 4px;background-color: #f9f9f9; padding: 20px;">
-                            <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-6" >
-                                    <div>
-                                        <dl class="dl-horizontal jh-entity-details">
-                                            <h5>Datos Del Solicitante</h5>
-                                            <dt>
-                                                <span jhiTranslate="pdisciplinarioApp.providencia.rutSolicitante">Rut</span>
-                                            </dt>
-                                            <dd>
-                                                <span>{{providencia.runSolicitante  | rut}}</span>
-                                            </dd>
-                                            <dt>
-                                                <span *ngIf="!providencia.entidadSolicitante" jhiTranslate="pdisciplinarioApp.providencia.nombreSolicitante">Nombre</span>
-                                            </dt>
-                                            <dd *ngIf="providencia.nombreSolicitante && !providencia.entidadSolicitante">
-                                                <span >{{providencia.nombreSolicitante}}</span>
-                                            </dd>
-                                            <dd *ngIf="!providencia.nombreSolicitante && !providencia.entidadSolicitante">
-                                                <span style="color:red">NO INGRESADO</span>
-                                            </dd>
-                                            <dt  *ngIf="providencia.entidadSolicitante">
-                                                <span jhiTranslate="pdisciplinarioApp.providencia.entidadSolicitante">Entidad </span>
-                                            </dt>
-                                            <dd *ngIf="providencia.entidadSolicitante">
-                                                <span>{{providencia.entidadSolicitante.nombre}}</span>
-                                            </dd>
-                                           <h5>Datos Del Demandado</h5>
-                                            <dt>
-                                                <span jhiTranslate="pdisciplinarioApp.providencia.rutImplicado">Rut</span>
-                                            </dt>
-                                            <dd>
-                                                <span>{{providencia.runImplicado | rut}}</span>
-                                            </dd>
-                                            <dt>
-                                                <span *ngIf="!providencia.entidadImplicada && !providencia.entidadImplicada" jhiTranslate="pdisciplinarioApp.providencia.nombreImplicado">Nombre</span>
-                                            </dt>
-                                            <dd *ngIf="providencia.nombreImplicado">
-                                                <span >{{providencia.nombreImplicado}}</span>
-                                            </dd>
-                                            <dd *ngIf="!providencia.nombreImplicado && !providencia.entidadImplicada">
-                                                <span style="color:red">NO INGRESADO</span>
-                                            </dd>
-                                            <dt *ngIf="providencia.entidadImplicada">
-                                                <span jhiTranslate="pdisciplinarioApp.providencia.entidadImplicada">Entidad</span>
-                                            </dt>
-                                            <dd *ngIf="providencia.entidadImplicada">
-                                                <span>{{providencia.entidadImplicada.nombre}}</span>
-                                            </dd>
-                                        </dl>
-                                    </div>
-                                </div>
+                            <div style="box-shadow: -11px 10px 5px rgba(12, 12, 12, 0.09);border: 1px #eeeeee solid;border-radius: 4px;background-color: #f9f9f9; padding: 20px;">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-6" >
+                                            <div>
+                                                <dl class="dl-horizontal jh-entity-details">
+                                                    <h5>Datos Del Solicitante</h5>
+                                                    <dt>
+                                                        <span jhiTranslate="pdisciplinarioApp.providencia.rutSolicitante">Rut</span>
+                                                    </dt>
+                                                    <dd>
+                                                        <span>{{providencia.runSolicitante  | rut}}</span>
+                                                    </dd>
+                                                    <dt>
+                                                        <span *ngIf="!providencia.entidadSolicitante" jhiTranslate="pdisciplinarioApp.providencia.nombreSolicitante">Nombre</span>
+                                                    </dt>
+                                                    <dd *ngIf="providencia.nombreSolicitante && !providencia.entidadSolicitante">
+                                                        <span >{{providencia.nombreSolicitante}}</span>
+                                                    </dd>
+                                                    <dd *ngIf="!providencia.nombreSolicitante && !providencia.entidadSolicitante">
+                                                        <span style="color:red">NO INGRESADO</span>
+                                                    </dd>
+                                                    <dt  *ngIf="providencia.entidadSolicitante">
+                                                        <span jhiTranslate="pdisciplinarioApp.providencia.entidadSolicitante">Entidad </span>
+                                                    </dt>
+                                                    <dd *ngIf="providencia.entidadSolicitante">
+                                                        <span>{{providencia.entidadSolicitante.nombre}}</span>
+                                                    </dd>
+                                                    <h5>Datos Del Demandado</h5>
+                                                    <dt>
+                                                        <span jhiTranslate="pdisciplinarioApp.providencia.rutImplicado">Rut</span>
+                                                    </dt>
+                                                    <dd>
+                                                        <span>{{providencia.runImplicado | rut}}</span>
+                                                    </dd>
+                                                    <dt>
+                                                        <span *ngIf="!providencia.entidadImplicada && !providencia.entidadImplicada" jhiTranslate="pdisciplinarioApp.providencia.nombreImplicado">Nombre</span>
+                                                    </dt>
+                                                    <dd *ngIf="providencia.nombreImplicado">
+                                                        <span >{{providencia.nombreImplicado}}</span>
+                                                    </dd>
+                                                    <dd *ngIf="!providencia.nombreImplicado && !providencia.entidadImplicada">
+                                                        <span style="color:red">NO INGRESADO</span>
+                                                    </dd>
+                                                    <dt *ngIf="providencia.entidadImplicada">
+                                                        <span jhiTranslate="pdisciplinarioApp.providencia.entidadImplicada">Entidad</span>
+                                                    </dt>
+                                                    <dd *ngIf="providencia.entidadImplicada">
+                                                        <span>{{providencia.entidadImplicada.nombre}}</span>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
                                         <div class="col-sm-6">
                                             <dl class="dl-horizontal jh-entity-details">
                                                 <h5>Datos De La Providencia</h5>
@@ -670,7 +842,7 @@
                                             </dl>
                                         </div>
                                     </div>
-                            </div>
+                                </div>
                                 <br>
                                 <div class="col-sm-12">
 
@@ -699,75 +871,74 @@
                                             </dl>
                                         </div>
                                     </div>
-                                        <div class="col-sm-6">
-                                            <dl class="dl-horizontal jh-entity-details">
-                                                <dt  *ngIf="providencia.instrucciones && providencia.instrucciones.length > 0">
-                                                    <span jhiTranslate="pdisciplinarioApp.providencia.instrucciones">Instrucciones</span>
-                                                </dt>
-                                                <dd *ngFor="let instruccion of providencia.instrucciones">
-                                                    {{instruccion.split('_').join(' ')}}
-                                                </dd>
-                                            </dl>
-                                        </div>
+                                    <div class="col-sm-6">
+                                        <dl class="dl-horizontal jh-entity-details">
+                                            <dt  *ngIf="providencia.instrucciones && providencia.instrucciones.length > 0">
+                                                <span jhiTranslate="pdisciplinarioApp.providencia.instrucciones">Instrucciones</span>
+                                            </dt>
+                                            <dd *ngFor="let instruccion of providencia.instrucciones">
+                                                {{instruccion.split('_').join(' ')}}
+                                            </dd>
+                                        </dl>
                                     </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <dl class="dl-horizontal jh-entity-details">
-                                                <dt >
-                                                    <span>Comentario</span>
-                                                </dt>
-                                                <dd *ngIf="providencia.comentario">
-
-                                                    <P style="width: 800px;" #textContent id="read-more" >
-
-                                                        {{providencia.comentario}}
-
-
-                                                    </P>
-
-                                                    <div class="read-more-link">
-                                                        <a readMore [readMore-length]="70" [readMore-element]="textContent">
-                                                            <span class="less">menos<i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                                            <span class="more">leer mas <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                                        </a>
-                                                    </div>
-
-                                                </dd>
-                                                <dd *ngIf="!providencia.comentario">
-                                                    <span style="color:red">SIN COMENTARIO</span>
-                                                </dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <hr>
                                 </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <dl class="dl-horizontal jh-entity-details">
+                                            <dt >
+                                                <span>Comentario</span>
+                                            </dt>
+                                            <dd *ngIf="providencia.comentario">
+
+                                                <P style="width: 800px;" #textContent id="read-more" >
+
+                                                    {{providencia.comentario}}
+
+
+                                                </P>
+
+                                                <div class="read-more-link">
+                                                    <a readMore [readMore-length]="70" [readMore-element]="textContent">
+                                                        <span class="less">menos<i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                                        <span class="more">leer mas <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                                    </a>
+                                                </div>
+
+                                            </dd>
+                                            <dd *ngIf="!providencia.comentario">
+                                                <span style="color:red">SIN COMENTARIO</span>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <hr>
                             </div>
                         </div>
-                            <br>
-                            <!--AQUI VIENEN LOS TABS-->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="tab-content">
-                                        <ngb-tabset justify="fill">
-                                            <ngb-tab title="Respuesta" *ngIf="actionsPermitted.watchTabRespuesta">
-                                                <ng-template ngbTabContent>
-                                                    <jhi-respuesta-update [providencia]="providencia" (resp)="getRespuesta($event)"></jhi-respuesta-update>
-                                                </ng-template>
-                                            </ngb-tab>
-                                            <ngb-tab title="Bitácora de movimientos">
-                                                <ng-template ngbTabContent>
-                                                    <jhi-movimiento-providencia [providencia]="providencia"></jhi-movimiento-providencia>
-                                                </ng-template>
-                                            </ngb-tab>
-                                            <ngb-tab title="Solicitudes Relacionadas">
-                                                <ng-template ngbTabContent>
-                                                    <jhi-providencia-relacionadas [providencia]="providencia"></jhi-providencia-relacionadas>
-                                                </ng-template>
-                                            </ngb-tab>
-                                        </ngb-tabset>
-                                    </div>
-                                </div>
+                    </div>
+                    <br>
+                    <!--AQUI VIENEN LOS TABS-->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="tab-content">
+                                <ngb-tabset justify="fill">
+                                    <ngb-tab title="Respuesta" *ngIf="actionsPermitted.watchTabRespuesta">
+                                        <ng-template ngbTabContent>
+                                            <jhi-respuesta-update [providencia]="providencia" (resp)="getRespuesta($event)"></jhi-respuesta-update>
+                                        </ng-template>
+                                    </ngb-tab>
+                                    <ngb-tab title="Bitácora de movimientos">
+                                        <ng-template ngbTabContent>
+                                            <jhi-movimiento-providencia [providencia]="providencia"></jhi-movimiento-providencia>
+                                        </ng-template>
+                                    </ngb-tab>
+                                    <ngb-tab title="Solicitudes Relacionadas">
+                                        <ng-template ngbTabContent>
+                                            <jhi-providencia-relacionadas [providencia]="providencia"></jhi-providencia-relacionadas>
+                                        </ng-template>
+                                    </ngb-tab>
+
+                                </ngb-tabset>
                             </div>
                         </div>
                     </div>
@@ -775,4 +946,6 @@
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>

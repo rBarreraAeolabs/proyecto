@@ -15,7 +15,7 @@ import {PlantillaService} from '../plantilla/plantilla.service';
 import {IProvidencia} from '../../shared/model/providencia.model';
 import {ProvidenciaService} from '../providencia/providencia.service';
 import {JhiAlertService} from 'ng-jhipster';
-
+import { ProvidenciaDetailComponent} from 'app/entities/providencia/providencia-detail.component';
 @Component({
     selector: 'jhi-respuesta-update',
     templateUrl: './respuesta-update.component.html'
@@ -39,7 +39,8 @@ export class RespuestaUpdateComponent implements OnInit {
         private plantillaService: PlantillaService,
         private activatedRoute: ActivatedRoute,
         private providenciaService: ProvidenciaService,
-        private jhiAlertService: JhiAlertService
+        private jhiAlertService: JhiAlertService,
+       public  refrescar: ProvidenciaDetailComponent,
     ) {}
 
     ngOnInit() {
@@ -65,6 +66,8 @@ export class RespuestaUpdateComponent implements OnInit {
             },
             (req: HttpErrorResponse) => this.onError(req.status)
         );
+        this.refrescar.refreshDetail();
+        console.log('viendo si refresca el boton');
     }
 
     previousState() {
@@ -105,6 +108,8 @@ export class RespuestaUpdateComponent implements OnInit {
         this.isSaving = false;
     }
     get respuesta() {
+        this.refrescar.refreshDetail();
+        console.log('viendo si refresca el boton');
         return this._respuesta;
     }
 

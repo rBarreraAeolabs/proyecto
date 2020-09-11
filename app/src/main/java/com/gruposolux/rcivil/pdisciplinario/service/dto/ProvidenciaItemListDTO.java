@@ -39,6 +39,9 @@ public class ProvidenciaItemListDTO
         this.standby = standby;
     }
 
+    public ProvidenciaItemListDTO(Long id, Instant fechaCreacion, String estadoActual, String nombreGrupo, long between, long between1, Instant fechaHasta) {
+    }
+
     public Long getId() {
         return id;
     }
