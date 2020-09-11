@@ -11,7 +11,7 @@ import { Principal} from 'app/core';
 
 @Component({
     selector: 'jhi-providencia-elevar-sumario-administrativo',
-    templateUrl: './-providencia-elevar-sumario-administrativo.component.html'
+    templateUrl: './providencia-elevar-sumario-administrativo.component.html'
 })
 export class ProvidenciaElevarsumarioAdministrativoComponent implements OnInit {
     providencia: IProvidencia;

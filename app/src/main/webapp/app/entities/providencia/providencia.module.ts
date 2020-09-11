@@ -248,9 +248,34 @@ import {
     ProvidenciaNotificaDgdpComponent,
     ProvidenciaNotificaDgdpPopupComponent
 } from 'app/entities/providencia/providencia-notifica-dgdp.component';
-import {ProvidenciaAcogeFiscalPopupComponent, ProvidenciaAcogeFiscalComponent} from 'app/entities/providencia/providencia-acoge-fiscal.component';
-import {ProvidenciaNoAcogeFiscalPopupComponent,ProvidenciaNoAcogeFiscalComponent} from 'app/entities/providencia/providencia-no-acoge-fiscal.component';
 
+//sadasda
+import {
+    ProvidenciaAcogeFiscalPopupComponent,
+    ProvidenciaAcogeFiscalComponent}
+    from 'app/entities/providencia/providencia-acoge-fiscal.component';
+import {
+    ProvidenciaNoAcogeFiscalPopupComponent,
+    ProvidenciaNoAcogeFiscalComponent
+} from './providencia-no-acoge-fiscal.component';
+import {
+    ProvidenciaCierreInvestigacionSumariaPopupComponent
+    ,ProvidenciaCierreInvestigacionSumariaComponent
+} from './providencia-cierre-investigacion-sumaria.component';
+import {
+    ProvidenciaElevarsumarioAdministrativoPopupComponent,
+    ProvidenciaElevarsumarioAdministrativoComponent
+} from './providencia-elevar-sumario-administrativo.component';
+import {ProvidenciaApelaInvestigacionPopupComponent
+    , ProvidenciaApelaInvestigacionComponent
+} from './providencia-apela-investigacion.component';
+import {
+    ProvidenciaAcogeInvestigacionApelaPopupComponent,
+    ProvidenciaAcogeInvestigacionApelaComponent} from './providencia-acoge-investigacion-apela.component';
+import {
+    ProvidenciaAceptaInvestigadorNoAceptaPopupComponent,
+    ProvidenciaAceptaInvestigadorNoAceptaComponent
+} from './providencia-acepta-investigador-no-acepta.component';
 // directive
 import {
     ReadMoreDirective,
@@ -402,7 +427,21 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaAcogeFiscalPopupComponent,
         ProvidenciaAcogeFiscalComponent,
         ProvidenciaNoAcogeFiscalPopupComponent,
-        ProvidenciaNoAcogeFiscalComponent
+        ProvidenciaNoAcogeFiscalComponent,
+        //test
+        ProvidenciaAceptaInvestigadorNoAceptaPopupComponent,
+        ProvidenciaAceptaInvestigadorNoAceptaComponent,
+        ProvidenciaApelaInvestigacionPopupComponent,
+        ProvidenciaApelaInvestigacionComponent,
+        ProvidenciaAcogeInvestigacionApelaPopupComponent,
+        ProvidenciaAcogeInvestigacionApelaComponent,
+        ProvidenciaElevarsumarioAdministrativoPopupComponent,
+        ProvidenciaElevarsumarioAdministrativoComponent,
+        ProvidenciaCierreInvestigacionSumariaPopupComponent,
+        ProvidenciaCierreInvestigacionSumariaComponent,
+
+
+
     ],
     entryComponents: [
         ProvidenciaComponent,
@@ -531,8 +570,20 @@ const ENTITY_STATES = [...providenciaRoute, ...providenciaPopupRoute];
         ProvidenciaAcogeFiscalPopupComponent,
         ProvidenciaAcogeFiscalComponent,
         ProvidenciaNoAcogeFiscalPopupComponent,
-        ProvidenciaNoAcogeFiscalComponent
-            ],
+        ProvidenciaNoAcogeFiscalComponent,
+
+        ProvidenciaAceptaInvestigadorNoAceptaPopupComponent,
+        ProvidenciaAceptaInvestigadorNoAceptaComponent,
+        ProvidenciaApelaInvestigacionPopupComponent,
+        ProvidenciaApelaInvestigacionComponent,
+        ProvidenciaAcogeInvestigacionApelaPopupComponent,
+        ProvidenciaAcogeInvestigacionApelaComponent,
+        ProvidenciaElevarsumarioAdministrativoPopupComponent,
+        ProvidenciaElevarsumarioAdministrativoComponent,
+        ProvidenciaCierreInvestigacionSumariaPopupComponent,
+        ProvidenciaCierreInvestigacionSumariaComponent,
+
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PdisciplinarioProvidenciaModule {}

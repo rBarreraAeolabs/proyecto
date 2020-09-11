@@ -1,4 +1,4 @@
-Registero Civil: Procedimiento Disciplinario
+proyecto ifyum
 ===
 
 La base del proyecto se genero con **jhipster vx.x.x**. A partir del modelo `docs/modelo_er_v1.jh`. Se puede usar [https://start.jhipster.tech/jdl-studio/](https://start.jhipster.tech/jdl-studio/) para editar el modelo y regenerar el codigo base (aumentar version del modelo y guardar en misma carpeta).

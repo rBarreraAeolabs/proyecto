@@ -1,4 +1,4 @@
-# Registro Civil - Procedimiento Disciplnario
+# proyecto local
 
 ## Desarrollo local
 

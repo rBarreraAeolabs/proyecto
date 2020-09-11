@@ -10,8 +10,8 @@ import { IAdjunto} from '../../shared/model/adjunto.model';
 import { Principal} from 'app/core';
 
 @Component({
-    selector: 'jhi-providencia-apela-investigacion.component',
-    templateUrl: './-providencia-apela-investigacion.component.html'
+    selector: 'jhi-providencia-apela-investigacion',
+    templateUrl: './providencia-apela-investigacion.component.html'
 })
 export class ProvidenciaApelaInvestigacionComponent implements OnInit {
     providencia: IProvidencia;

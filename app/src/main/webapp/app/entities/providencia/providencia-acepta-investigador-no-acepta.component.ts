@@ -10,8 +10,8 @@ import { IAdjunto} from '../../shared/model/adjunto.model';
 import { Principal} from 'app/core';
 
 @Component({
-    selector: 'jhi-providenciacierre-acepta-investigador',
-    templateUrl: './-providenciacierre-acepta-investigador.component.html'
+    selector: 'jhi-providencia-acepta-investigador-no-acepta',
+    templateUrl: './providencia-acepta-investigador-no-acepta.component.html'
 })
 export class ProvidenciaAceptaInvestigadorNoAceptaComponent implements OnInit {
     providencia: IProvidencia;
@@ -86,7 +86,7 @@ export class ProvidenciaAceptaInvestigadorNoAceptaComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-providencia-cierre-investigacion-sumaria-popup',
+    selector: 'jhi-providenciacierre-acepta-investigador-popup',
     template: ''
 })
 export class ProvidenciaAceptaInvestigadorNoAceptaPopupComponent implements OnInit, OnDestroy {
