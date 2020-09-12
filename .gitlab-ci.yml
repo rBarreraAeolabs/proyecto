@@ -106,40 +106,40 @@ compile:
 ##    - docker build -t "${CI_REGISTRY_IMAGE}:dev" -f docker/dev.dockerfile docker/
 ##    - docker push "${CI_REGISTRY_IMAGE}:dev"
 
- deploy_review:
-  image: lachlanevenson/k8s-kubectl:latest
-  stage: review
-  variables:
-     KUBECONFIG: /tmp/kubeconfig
-  cache: {}
-  only:
-     - merge_requests
-     - master
-  except:
-     - tags
-  environment:
-     name: review/$CI_BUILD_REF_NAME
-     url: http://$CI_ENVIRONMENT_SLUG-gitlab.com/ifyum/ifyum/view
-     on_stop: stop_review
-  script:
-     - echo $KUBECONFIG
-     - echo "${KUBE_CONFIG_FILE}" > $KUBECONFIG
-     - cat $KUBECONFIG
-     - kubectl version
-     - cd kube/
-     - sed -i "s/__CI_ENVIRONMENT_SLUG__/${CI_ENVIRONMENT_SLUG}/" deployment.yaml service.yaml ingress.yaml
-     - sed -i "s/__VERSION__/${CI_COMMIT_REF_NAME}/" deployment.yaml service.yaml ingress.yaml
-     - |
-      if kubectl apply -f deployment.yaml | grep -q unchanged; then
-          echo "=> Patching deployment to force image update."
-          kubectl patch -f deployment.yaml -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"ci-last-updated\":\"$(date +'%s')\"}}}}}"
-      else
-          echo "=> Deployment apply has changed the object, no need to force image update."
-      fi
-     - kubectl apply -f service.yaml || true
-     - kubectl apply -f ingress.yaml
-     - kubectl rollout status -f deployment.yaml
-     - kubectl get all,ing -l ref=${CI_ENVIRONMENT_SLUG}
+# deploy_review:
+#  image: lachlanevenson/k8s-kubectl:latest
+#  stage: review
+#  variables:
+#     KUBECONFIG: /tmp/kubeconfig
+#  cache: {}
+#  only:
+#     - merge_requests
+#     - master
+#  except:
+#     - tags
+#  environment:
+#     name: review/$CI_BUILD_REF_NAME
+#     url: http://$CI_ENVIRONMENT_SLUG-gitlab.com/ifyum/ifyum/view
+#     on_stop: stop_review
+#  script:
+#     - echo $KUBECONFIG
+#     - echo "${KUBE_CONFIG_FILE}" > $KUBECONFIG
+#     - cat $KUBECONFIG
+#     - kubectl version
+#     - cd kube/
+#     - sed -i "s/__CI_ENVIRONMENT_SLUG__/${CI_ENVIRONMENT_SLUG}/" deployment.yaml service.yaml ingress.yaml
+#     - sed -i "s/__VERSION__/${CI_COMMIT_REF_NAME}/" deployment.yaml service.yaml ingress.yaml
+#     - |
+#      if kubectl apply -f deployment.yaml | grep -q unchanged; then
+#          echo "=> Patching deployment to force image update."
+#          kubectl patch -f deployment.yaml -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"ci-last-updated\":\"$(date +'%s')\"}}}}}"
+#      else
+#          echo "=> Deployment apply has changed the object, no need to force image update."
+#      fi
+#     - kubectl apply -f service.yaml || true
+#     - kubectl apply -f ingress.yaml
+#     - kubectl rollout status -f deployment.yaml
+#     - kubectl get all,ing -l ref=${CI_ENVIRONMENT_SLUG}
 
 #stop_review:
 #  image: lachlanevenson/k8s-kubectl:latest
