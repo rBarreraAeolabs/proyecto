@@ -183,32 +183,32 @@ compile:
 #    - kubectl apply -f ingress.yaml
 #    - kubectl rollout status -f deployment.yaml
 #    - kubectl get all,ing -l ref=${CI_ENVIRONMENT_SLUG}
-
-deploy_demo:
-  image: dtzar/helm-kubectl:2.14.1
-  stage: deploy
-  environment:
-    name: demo
-    url: http://ifyum.demo.cl/
-  only:
-    - master
-  variables:
-    KUBECONFIG: /tmp/kubeconfig
-  script:
-    # # install curl
-    # - apk --no-cache add curl
-    - helm version -c
-    - echo "${KUBE_CONFIG_FILE}" > $KUBECONFIG
-    - kubectl version
-    # generate manifests for chart
-    - cd .kube/
-    - mkdir -p generated
-    # - helm template --name rcpdisciplinario --namespace default --values rcpdisciplinario/values.yaml --set "app.image.tag=master-${CI_COMMIT_SHORT_SHA}" rcpdisciplinario/ > generated/template-${CI_COMMIT_SHORT_SHA}.yaml
-    - helm upgrade --install --dry-run --namespace dev-gitlab-review --values rcpdisciplinario/values.yaml --set "app.image.tag=master-${CI_COMMIT_SHORT_SHA}" rcpdisciplinario rcpdisciplinario/
-    - helm upgrade --install --force --namespace dev-gitlab-review --values rcpdisciplinario/values.yaml --set "app.image.tag=master-${CI_COMMIT_SHORT_SHA}" rcpdisciplinario rcpdisciplinario/ || true
-  #   - helm get manifest rcpdisciplinario > generated/manifest-${CI_COMMIT_SHORT_SHA}.yaml || true
-  # artifacts:
-  #   name: "${CI_BUILD_REF_NAME}"
-  #   paths:
-  #     - ".kube/generated/"
-
+#
+#deploy_demo:
+#  image: dtzar/helm-kubectl:2.14.1
+#  stage: deploy
+#  environment:
+#    name: demo
+#    url: http://ifyum.demo.cl/
+#  only:
+#    - master
+#  variables:
+#    KUBECONFIG: /tmp/kubeconfig
+#  script:
+#    # # install curl
+#    # - apk --no-cache add curl
+#    - helm version -c
+#    - echo "${KUBE_CONFIG_FILE}" > $KUBECONFIG
+#    - kubectl version
+#    # generate manifests for chart
+#    - cd .kube/
+#    - mkdir -p generated
+#    # - helm template --name rcpdisciplinario --namespace default --values rcpdisciplinario/values.yaml --set "app.image.tag=master-${CI_COMMIT_SHORT_SHA}" rcpdisciplinario/ > generated/template-${CI_COMMIT_SHORT_SHA}.yaml
+#    - helm upgrade --install --dry-run --namespace dev-gitlab-review --values rcpdisciplinario/values.yaml --set "app.image.tag=master-${CI_COMMIT_SHORT_SHA}" rcpdisciplinario rcpdisciplinario/
+#    - helm upgrade --install --force --namespace dev-gitlab-review --values rcpdisciplinario/values.yaml --set "app.image.tag=master-${CI_COMMIT_SHORT_SHA}" rcpdisciplinario rcpdisciplinario/ || true
+#  #   - helm get manifest rcpdisciplinario > generated/manifest-${CI_COMMIT_SHORT_SHA}.yaml || true
+#  # artifacts:
+#  #   name: "${CI_BUILD_REF_NAME}"
+#  #   paths:
+#  #     - ".kube/generated/"
+#
